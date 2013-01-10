@@ -1,0 +1,87 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%            LMU-Vorlage              %%
+%%                                     %%
+%%         zur Erstellung einer        %%
+%%   Dissertation mit pdflatex/latex   %%
+%%                                     %%
+%%  (2002) Robert Dahlke               %%
+%%         & Sigmund Stintzing         %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[12pt]{book}
+
+\input{head}
+\input{defs}
+
+%\includeonly{filename2,filename3}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  Beginn des Dokuments  %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+
+  \frontmatter
+
+
+  \LMUTitle
+      {Generalized Bayesian Inference under Prior-Data Conflict\\
+       ***eventuell mit Untertitel***}         % Titel der Arbeit
+      {Gero Walter     }                       % Vor- und Nachname des Autors
+      {T\"ubingen}                             % Geburtsort des Autors
+      {Fakult\"at f\"ur Mathematik, Informatik und Statistik} % Name der Fakultaet
+      {M\"unchen 2012}                         % Ort und Jahr der Erstellung
+      {***Abgabedatum***}                            % Tag der Abgabe
+      {Prof.\ Dr.\ Thomas Augustin}            % Name des Erstgutachters
+      {Prof.\ Dr.\ Frank P.A.\ Coolen}         % Name des Zweitgutachters
+      {***Pr\"ufungsdatum***}                  % Datum der muendlichen Pruefung
+
+
+  \tableofcontents
+  \markboth{Contents}{Contents}
+
+  \listoffigures
+  \markboth{List of Figures}{List of Figures}
+
+  \listoftables
+  \markboth{List of Tables}{List of Tables}
+  \cleardoublepage
+
+  \markboth{Summary}{Summary}
+  \include{summary}
+
+  \markboth{Zusammenfassung}{Zusammenfassung}
+  \include{zusammenfassung}
+
+  \markboth{Eidesstattliche Versicherung}{Eidesstattliche Versicherung}
+  \include{versicherung}
+
+\mainmatter\setcounter{page}{1}
+  \include{intro}
+  \include{genbayesinf}
+  %\include{kap_02}
+  %\include{kap_03}
+  %\include{kap_04} usw.
+  
+  \begin{appendix}
+  \include{appendix1}
+%  \include{anhang2}
+  \end{appendix}
+
+
+  \backmatter
+
+  %\include{bibliographie}
+  %\addcontentsline{toc}{chapter}{\protect Bibliography}
+  \bibliographystyle{plainnat}
+  \bibliography{bib/eigene_121018}
+  \markboth{Bibliography}{Bibliography}
+
+ % \include{danksagung}
+
+
+%  \include{lebenslauf}
+
+
+\end{document}

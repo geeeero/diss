@@ -1,0 +1,16 @@
+*.aux
+*.bbl
+*.blg
+*.log
+*.lof
+*.lot
+*.bst
+*.out
+*.pdf
+*.spl
+*.toc
+*.Rproj
+*.gz
+.Rproj*
+.Rhistory
+*~

@@ -3,10 +3,99 @@
 
 \begin{itemize}
 \item overview, which paper used where\ldots
-\item statistical inference (\textbf{StatInf chapter}, \cite{itip-statinf})
+\item statistical inference ??? (\textbf{StatInf chapter}, \cite{itip-statinf})
 \item Bayesian inference, conjugate priors, etc. (\textbf{TechRep Dirichlet}, \cite{Walter2012b})
 \item motivate priors etc.\ with ress paper: \cite{Walter2013a}
 \item short part on decision theory, updating rules?
 \item \pdc\ (Evans \& Moshonov), examples (\textbf{Festschrift paper}, \cite{Walter2010a})
 \item other motivations for IP?
 \end{itemize}
+
+\section{Overview}
+
+***structure, which papers where***
+
+Sec.~\ref{sec:stat-inference}: parts of \cite{itip-statinf}
+
+Sec.~\ref{sec:bayes-inference}: parts of \cite{itip-statinf}
+
+\section{Statistical Inference}
+\label{sec:stat-inference}
+
+%This thesis being concerned with generalized Bayesian Inference
+
+In this Section, we will give a short introduction to statistical inference
+and models that are used to describe random samples.
+%These introductory sections may also serve as a guide to the notation utilized.
+
+Statistical inference is about learning from data.
+It is basically concerned with inductive reasoning,
+i.e.\ establishing a general rule from observations.
+As is long known as the problem of induction \cite{1739:hume},
+it is impossible to justify inductive reasoning by pure reason,
+and therefore one cannot infer general statements (laws) with absolute truth from single observations.
+%***statistical models are built for a certain purpose. (citexxx George P. Box, Kaplan?)\\
+%***models try to mirror certain aspects of reality: those deemed relevant to answer %the question(s) at hand etc.
+The statistical remedy for this inevitable and fundamental dilemma of any type of inductive reasoning is
+(postulated, maybe virtual) \emph{randomness} of the sampling process that generates the data.
+If, and only if, the sample is, or can be understood as, drawn randomly,
+probability theory allows to quantify the error of statistical propositions concluded from the sample.
+
+Specifically, to model the randomness, a \emph{statistical model} is formulated.
+It is a tuple $(\mathcal{X}, \mathcal{Q})$, consisting of the \emph{sample space} $\mathcal{X}$,
+i.e.\ the domain of the random quantity $X$ under consideration,
+and a set $\mathcal{Q}$ of probability distributions,%
+\footnote{Most models of statistical inference rely on $\sigma$-additive probability distributions.
+Therefore, technically, in addition an appropriate ($\sigma$-)field $\sigma(\mathcal{X})$,
+describing the domain of the underlying probability measure, has to be specified.
+In most applications there are straightforward canonical choices for $\sigma(\mathcal{X})$,
+and thus $\sigma$-fields are not explicitly discussed here.}
+collecting all probability distributions that are judged to be potential candidates for the distribution of $X$.
+In this setting $\mathcal{Q}$ is called \emph{sampling model} and every element $p\in \mathcal{Q}$ \emph{(potential) sampling distribution}.
+The inferential task is to learn the true element $p^* \in \mathcal{Q}$ from multiple observations of the random process producing $X$.
+
+In this thesis, generally, so-called \emph{parameteric models} are considered,
+where $\mathcal{Q}$ is pa\-ra\-me\-trized by a parameter $\vartheta$ of finite dimension,
+assuming values in the so-called \emph{parameter space} $\Theta$, $\Theta \subseteq \reals^q, \ q < \infty$,
+i.e.\ ${\cal Q}=\left(p_\vartheta\right)_{\vartheta \in \Theta}$.
+Here, the different sampling distributions $p_\vartheta$ are implicitly understood as belonging to a specific class of distributions
+(e.g. normal distributions, see the example in ****),
+the basic type of which is assumed to be known completely,
+and only some characteristics $\vartheta$ (e.g.\ the mean) of the distributions are unknown.
+Throughout, we will assume (as is the case for all common applications)
+that the underlying candidate distributions $p_\vartheta$ of the random quantity $X$
+are either discrete or absolutely continuous with respect to the Lebesgue measure
+(see, e.g. \cite[pp.~32f, 38]{1993:karr} for some technical details) for every $\vartheta \in \Theta$.
+Then it is convenient to express every $p_\vartheta$ in the discrete case by its \emph{mass function} $f_\vartheta$,
+with $f_\vartheta(x):=p_\vartheta(X=x),\forall x \in \mathcal{X}$,
+and in the continuous case by its \emph{probability density function} (pdf) $f_\vartheta$,
+where $f_\vartheta$ is such that $p_\vartheta(X \in [a,b]) = \int_a^b f_\vartheta(x) \dd x$.
+
+An \emph{i.i.d.\ sample of size} $n$ (where \emph{i.i.d.}\ abbreviates independent, identically distributed)
+\emph{based on the parametric statistical model} %
+$(\mathcal{X}, (p_\vartheta)_{\vartheta \in \Theta})$ is then a vector
+\[
+{\X}=(X_1, \ldots, X_n)^T %\label{120722-1}
+\]
+of independent random quantities $X_i$ with the same distribution $p_\vartheta$.
+Then $\X$ is defined on $\mathcal{X}^n$ with probability distribution $p_\vartheta^{\otimes n}$
+as the $n$-dimensional product measure describing the independent observations.
+For Bayesian approaches as discussed here,
+independence is often replaced by exchangeability (see, e.g., \cite[\S 4.2]{2000:bernardosmith}).
+$p_\vartheta^{\otimes n}$ thus has the probability mass or density function
+\[
+\prod_{i=1}^{n} f_\vartheta(x_i) =: f_\vartheta(x_1, \ldots, x_n).%\label{120710-2}
+\]
+The term \emph{sample} is then also used for the concretely observed value(s) $\x=(x_1, \ldots, x_n)^T$.%
+\footnote{Throughout, random quantities are denoted by capital letters, their values, or realizations, by small letters.}
+
+
+
+\section{Statistical Inference with the Bayesian Paradigm}
+\label{sec:bayes-inference}
+
+As the inference models discussed in this thesis are all based on the Bayesian approach to statistical inference,
+we will now give a short introduction to the basic principles of Bayesian inference.
+
+
+

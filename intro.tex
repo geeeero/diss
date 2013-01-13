@@ -54,6 +54,9 @@ collecting all probability distributions that are judged to be potential candida
 In this setting $\mathcal{Q}$ is called \emph{sampling model} and every element $p\in \mathcal{Q}$ \emph{(potential) sampling distribution}.
 The inferential task is to learn the true element $p^* \in \mathcal{Q}$ from multiple observations of the random process producing $X$.
 
+
+\subsection{Parametric Models}
+
 In this thesis, generally, so-called \emph{parameteric models} are considered,
 where $\mathcal{Q}$ is pa\-ra\-me\-trized by a parameter $\vartheta$ of finite dimension,
 assuming values in the so-called \emph{parameter space} $\Theta$, $\Theta \subseteq \reals^q, \ q < \infty$,
@@ -90,6 +93,79 @@ $p_\vartheta^{\otimes n}$ thus has the probability mass or density function
 The term \emph{sample} is then also used for the concretely observed value(s) $\x=(x_1, \ldots, x_n)^T$.%
 \footnote{Throughout, random quantities are denoted by capital letters, their values, or realizations, by small letters.}
 
+Next, we will present two basic parametric models that will be repeatedly discussed further on.
+
+
+\subsection{The Multinomial Distribution}
+
+The \emph{multinomial distribution} is a common model for samples where only a limited number of distinct values can be observed.
+%like in the data from an election poll, or from a pharmacological study asking about a certain set of adverse reactions.
+These distinct values are often named \emph{categories} (hence the term \emph{categorical data}),
+and are usually numbered from $1$ to $k$, without imposing any natural ordering on these values.
+We have therefore a discrete distribution,
+giving the probability for observing certain category counts $(n_1, \ldots, n_k) = \mbf{n}$ in a sample of $n$ observations in total.
+Thus, $\sum_{j=1}^k n_j = n$.
+
+We start the definition of the multinomial distribution by decomposing the collection of $n$ observations into its constituents,
+single observations of either of the categories $1,\ldots,k$.
+Such a single observation, often named \emph{multivariate Bernoulli observation}, can be encoded as a vector $x_i$ of length $k$,
+where the $j$-th element, $x_{ij}$, equals $1$ if category $j$ has been observed, and all other elements being $0$.
+Given the vectorial parameter $\theta$ of length $k$,
+where the component $\theta_j$ models the probability of observing category $j$ in a single draw
+(therefore $\sum_{j=1}^k \theta_j = 1$),
+the probability for observing $x_i$ can be written as
+\begin{align*}
+f_\theta(x_i) = \prod_{j=1}^k \theta_j^{x_{ij}}\,.
+\end{align*}
+Assuming independence, the probability for observing a certain sequence $\mbf{x}$ of $n$ observations can thus be written as
+\begin{align*}
+f_\theta(\mbf{x}) &= \prod_{i=1}^n f_\theta(x_i)
+             \propto \prod_{i=1}^n \prod_{j=1}^k \theta_j^{x_{ij}}
+                   = \prod_{j=1}^k \theta_j^{\sum_{i=1}^n x_{ij}}
+                   = \prod_{j=1}^k \theta_j^{n_j}\,,
+\end{align*}
+where $n_j = \sum_{i=1}^n x_{ij}$ tells us how often category $j$ was observed in the sample.
+
+For the probability to observe a certain category count $(n_1, \ldots, n_k) = \mbf{n}$,
+we have to account for the different possible orderings in $\mbf{x}$ leading to the same count vector $\mbf{n}$.
+Therefore,
+\begin{align}\label{eq:multinomdens}
+f_\theta(\mbf{n}) &= \binom{n}{n_1,\ldots,n_k} \prod_{j=1}^k \theta_j^{n_j}
+                   = \frac{n!}{n_1!\cdot \ldots \cdot n_k!} \prod_{j=1}^k \theta_j^{n_j}\,.
+%             \propto \prod_{j=1}^k \theta_j^{n_j}\,.
+\end{align}
+As a shortcut, we write $\mbf{n} \sim \mult(\theta)$.
+
+
+\subsection{The Normal Distribution}
+
+A common model for observations that in principle can assume any value on the real line
+is the \emph{normal distribution} with parameters $\mu$ and $\sigma^2$, also called the \emph{Gaussian distribution}.
+Typical examples for data of this kind are scores in intelligence testing, or technical measurements in general.%
+\footnote{The normal distribution is distinguished by the central limit theorem
+(see, e.g., \cite[\S 7.3]{1993:karr}, or \cite[\S 9]{1968:breiman}), stating that, under regularity conditions,
+the distribution of an appropriately scaled sum of $n$ standardized random variables converges to a normal distribution
+for $n \longrightarrow \infty$.}
+
+For each observation $x_i$, $i=1,\ldots, n$, the normal probability density is
+\begin{align*}
+f_{(\mu, \sigma^2)}(x_{i}) &= \frac{1}{\sqrt{2\pi\sigma^2}}\exp\Big\{ -\frac{1}{2\sigma^2}(x_{i} - \mu)^2 \Big\}\,,
+\end{align*}
+with the two parameters $\mu \in \reals$ and $\sigma^2 \in \reals_{>0}$
+being in fact the mean and the variance of (the distribution of) $x_i$, respectively.
+As a shortcut, we write $x_i \sim \norm(\mu, \sigma^2)$.
+%a normal density with $\mu=0$ and $\sigma^2=1$ is displayed
+%in Figure~\ref{inference:fig:normal-vs-cauchy}, page~\pageref{inference:fig:normal-vs-cauchy}.
+
+With the independence assumption, the density of $\mbf{x} = (x_1,\ldots,x_n)$ amounts to
+\begin{align}\label{eq:normaldens}
+f_{(\mu, \sigma^2)}(\mbf{x})
+ &= \prod_{i=1}^n f_{(\mu, \sigma^2)}(x_{i})
+  = (2\pi\sigma^2)^{-\frac{n}{2}}\exp\Big\{ -\frac{1}{2\sigma^2}\sum_{i=1}^n (x_{i} - \mu)^2 \Big\}\,.
+\end{align}
+
+Later on, we restrict considerations to the case where the variance $\sigma_0^2$ is known, denoted by $x_i \sim \norm(\mu, \sigma_0^2)$.
+Inference may thus concern the parameter $\mu$ directly, or future observations $x_{n+1}, x_{n+2}, \ldots$ in a chain of i.i.d.\ observations.
 
 
 \section{Statistical Inference with the Bayesian Paradigm}
@@ -102,7 +178,7 @@ The Bayesian approach allows (possibly subjective) knowledge on the parameter $\
 \footnote{Again we implicitly assume that $\Theta$ is complemented by an appropriate $\sigma$-field $\sigma(\Theta)$.}
 $\Theta$, with probability mass or density function $p(\vartheta)$ called \emph{prior distribution}.
 Interpreting the elements $f_\vartheta(x)$ of the sampling model as conditional distributions of the sample given the parameter,
-denoted by $f(\mbf{x}|\vartheta)$ and called \emph{likelihood},
+denoted by $f(\mbf{x}\mid\vartheta)$ and called \emph{likelihood},
 turns the problem of statistical inference into a problem of probabilistic deduction,
 where the \emph{posterior distribution}, i.e.\ the distribution of the parameter given the sample data,
 can be calculated by Bayes' Rule.%
@@ -112,13 +188,13 @@ Thus, in the light of the sample $\mbf{x}= (x_1, \ldots, x_n)$ the prior distrib
 to obtain the posterior distribution with density or mass function
 \begin{align}
 \label{eq:bayesrule}
-p(\vartheta|\mbf{x}) \propto f(\mbf{x}|\vartheta) \cdot p(\vartheta)\,.
+p(\vartheta\mid\mbf{x}) \propto f(\mbf{x}\mid\vartheta) \cdot p(\vartheta)\,.
 \end{align}
 The posterior distribution is understood as comprising all the information from the sample and the prior knowledge.
 It therefore underlies all further inferences on the parameter $\vartheta$,
 like point estimators, interval estimators,
 or the \emph{posterior predictive distribution},
-which is the distribution of further observations based on $p(\vartheta|\mbf{x})$ (see below).
+which is the distribution of further observations based on $p(\vartheta\mid\mbf{x})$ (see below).
 
 
 

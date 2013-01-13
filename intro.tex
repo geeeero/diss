@@ -62,6 +62,7 @@ Here, the different sampling distributions $p_\vartheta$ are implicitly understo
 (e.g. normal distributions, see the example in ****),
 the basic type of which is assumed to be known completely,
 and only some characteristics $\vartheta$ (e.g.\ the mean) of the distributions are unknown.
+
 Throughout, we will assume (as is the case for all common applications)
 that the underlying candidate distributions $p_\vartheta$ of the random quantity $X$
 are either discrete or absolutely continuous with respect to the Lebesgue measure
@@ -73,7 +74,7 @@ where $f_\vartheta$ is such that $p_\vartheta(X \in [a,b]) = \int_a^b f_\varthet
 
 An \emph{i.i.d.\ sample of size} $n$ (where \emph{i.i.d.}\ abbreviates independent, identically distributed)
 \emph{based on the parametric statistical model} %
-$(\mathcal{X}, (p_\vartheta)_{\vartheta \in \Theta})$ is then a vector
+$(\mathcal{X}, (p_\vartheta)_{\vartheta \in \Theta})$ is a vector
 \[
 {\X}=(X_1, \ldots, X_n)^T %\label{120722-1}
 \]
@@ -96,6 +97,28 @@ The term \emph{sample} is then also used for the concretely observed value(s) $\
 
 As the inference models discussed in this thesis are all based on the Bayesian approach to statistical inference,
 we will now give a short introduction to the basic principles of Bayesian inference.
+
+The Bayesian approach allows (possibly subjective) knowledge on the parameter $\vartheta$ to be expressed by a probability distribution on%
+\footnote{Again we implicitly assume that $\Theta$ is complemented by an appropriate $\sigma$-field $\sigma(\Theta)$.}
+$\Theta$, with probability mass or density function $p(\vartheta)$ called \emph{prior distribution}.
+Interpreting the elements $f_\vartheta(x)$ of the sampling model as conditional distributions of the sample given the parameter,
+denoted by $f(\mbf{x}|\vartheta)$ and called \emph{likelihood},
+turns the problem of statistical inference into a problem of probabilistic deduction,
+where the \emph{posterior distribution}, i.e.\ the distribution of the parameter given the sample data,
+can be calculated by Bayes' Rule.%
+\footnote{Donald Gillies \cite{1987:gillies, 2000:gillies} argues that Bayes' Theorem was actually developed
+in order to confront the problem of induction as posed by Hume \cite{1739:hume}.}
+Thus, in the light of the sample $\mbf{x}= (x_1, \ldots, x_n)$ the prior distribution is updated by Bayes' Rule
+to obtain the posterior distribution with density or mass function
+\begin{align}
+\label{eq:bayesrule}
+p(\vartheta|\mbf{x}) \propto f(\mbf{x}|\vartheta) \cdot p(\vartheta)\,.
+\end{align}
+The posterior distribution is understood as comprising all the information from the sample and the prior knowledge.
+It therefore underlies all further inferences on the parameter $\vartheta$,
+like point estimators, interval estimators,
+or the \emph{posterior predictive distribution},
+which is the distribution of further observations based on $p(\vartheta|\mbf{x})$ (see below).
 
 
 

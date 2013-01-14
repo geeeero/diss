@@ -19,6 +19,8 @@ Sec.~\ref{sec:stat-inference}: parts of \cite{itip-statinf}
 
 Sec.~\ref{sec:bayes-inference}: parts of \cite{itip-statinf}
 
+Sec.~\ref{sec:inferencetasks}: parts of \cite{itip-statinf}
+
 \section{Statistical Inference}
 \label{sec:stat-inference}
 
@@ -56,6 +58,7 @@ The inferential task is to learn the true element $p^* \in \mathcal{Q}$ from mul
 
 
 \subsection{Parametric Models}
+\label{sec:parametricmodels}
 
 In this thesis, generally, so-called \emph{parameteric models} are considered,
 where $\mathcal{Q}$ is pa\-ra\-me\-trized by a parameter $\vartheta$ of finite dimension,
@@ -276,10 +279,95 @@ f(\x^*\mid\x) &= \int f(\x^* \mid \psi) p(\psi \mid \nn, \yn) \dd\psi\,,
 \end{align}
 a distribution on future samples $\x^*$ after having seen a sample $\x$,
 forms the basis for the different inference tasks. %as listed in Section~\ref{inference:sec:basictasks}.
+Next, we will thus briefly describe a systematic of inference tasks.
+
+
+\subsection{Inference Tasks}
+\label{sec:inferencetasks}
+
+We may structure the different inference tasks by
+the type of statement one wants to infer from the data.
+As such, this systematic is not exclusive to Bayesian inference methods,
+and neither to the parametric models considered in Section~\ref{sec:parametricmodels},
+but it will be formulated in terms of parameters in a Bayesian setting here.
+
+We distinguish two groups of inferences, namely
+\begin{enumerate}
+\item static conclusions and
+\item predictive conclusions.%
+%\footnote{Static conclusions are still more common in statistical applications.
+%In the light of the success of procedures from machine learning in statistics, the predictive view,
+%early propagated, e.g., by \cite{1993:geisser}, has attracted increasing attention.}
+\end{enumerate}
+
+\emph{Static conclusions} refer directly to properties of the sampling model, typically to its parameter(s).
+The following procedures, which are based directly on the posterior \eqref{eq:canonicalposterior} in the Bayesian paradigm,
+are the most common:
+\begin{enumerate}
+\item[1a)] \emph{Point estimators},
+where a certain parameter value is selected to describe the sample.
+\item[1b)] \emph{Interval estimators},
+where the information is condensed in a certain subset of the parameter space $\Theta$, typically in an interval when $\Theta \subseteq \reals$.
+\item[1c)] \emph{Hypotheses tests},
+where the information in the sample is only used to decide between two mutually exclusive statements called \emph{hypotheses},
+usually denoted by $H_0$ and $H_1$.
+\item[1e)] \emph{Decision making},
+where, more generally, the conclusion may be to select certain utility maximizing or loss minimizing acts from a set of possible acts.
+Indeed, all three tasks listed before can be formally understood as a special case of decision making,
+by considering an appropriate set of acts and a loss function fitting the inferential objective.
+We will flesh this out to some extent in the examples below***.%
+\footnote{For more details, see, e.g., ******.}
+\end{enumerate}
+
+\emph{Predictive conclusions} instead summarize the information by statements on properties of typical further units,
+either by describing the whole distribution (as with the posterior predictive \eqref{eq:posteriorpredictive},
+or by certain summary measures.
+Similar to static conclusions, one can thus consider, e.g.,
+\begin{enumerate}
+\item[2a)] \emph{Point prediction},
+where a certain sample value is selected as the most likely to occur.
+This is especially useful in the case of discrete sampling distributions,
+where this procedure amounts to classification of further sample units.
+\item[2b)] \emph{Interval prediction},
+where instead a certain subset of the sample space $\mathcal{X}$ is determined,
+into which furter sample units are like to fall.
+An example are prediction bands in regression analysis.
+\end{enumerate}
 
 The concretion of this framework for Bayesian inference with regular conjugate priors
 is now demonstrated for the sampling models presented in Sections~\ref{sec:normaldist} and \ref{sec:multinomdist}.
-The framework for the Multinomial model (Section~\ref{sec:multinomdist})
+As a first simple example, we will consider inference in the Binomial model,
+being the special case of the Multinomial model with only two categories.
+Then, we will briefly turn to the Normal model,
+before we present the more complex considerations for the Multinomial model with $k>2$ categories.
+The latter model %for the Multinomial model (Section~\ref{sec:multinomdist})
 is then used for inferences in common-cause modeling,
-which will serve as a real-world example illustrating the powers and shortcomings of standard Bayesian inference.
+which will serve as a real-world example illustrating the powers and shortcomings of standard Bayesian inference,
+ultimately motivating the shift to imprecise Bayesian inference.
+
+
+
+--------------------
+
+A \textbf{point estimator} for $\theta$ can be extracted from the posterior distribution $p(\theta\mid\x)$
+by considering $\Theta$ as the set of possible acts, and choosing a \emph{loss function}.
+The loss function $l$ gives a functional form of the severity of deviations of an estimator to its goal;
+here, it values the distance of a point estimator $\hat{\theta}$ to $\theta$.
+The \emph{quadratic loss function} $l(\hat{\theta}, \theta) = (\hat{\theta}-\theta)^2$
+values small deviations relatively low, whereas large deviations are given a high weight.
+As can be shown (see, e.g., \cite[p.~352f]{2002:casella}),
+the quadratic loss function leads to the posterior expectation as the Bayesian point estimator.
+Here, $\E[\theta\vert \mbf{x}] = \yn$, and so the posterior expectation of $\theta$ is a weighted average
+of the prior expectation $\E[\theta] = \yz$ and the sample proportion $s/n$, with weights $\nz$ and $n$, respectively.
+Taking the \emph{absolute loss function} $l(\hat{\theta}, \theta) = |\hat{\theta}-\theta|$ leads to the median of the posterior distribution as the point estimator.
+Here, $\med(\theta\vert \mbf{x})$ has no closed form solution, and must be determined numerically.
+The \emph{indicator loss function}
+\begin{align*}
+l(\hat{\theta}, \theta) = \begin{cases} 0 & |\hat{\theta}-\theta| \le \epsilon \\ 1 & \text{else}\end{cases}\,,
+\end{align*}
+for $\epsilon \rightarrow 0$, leads to the maximum of the posterior, often abbreviated as MAP (maximum a posteriori) estimator
+***Bernardo \& Smith 2000, Ch.~5.1.5, p.~257 (Bayesian Theory) ***xxxx .
+
+--------------------
+
 

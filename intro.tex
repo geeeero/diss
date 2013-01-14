@@ -21,6 +21,8 @@ Sec.~\ref{sec:bayes-inference}: parts of \cite{itip-statinf}
 
 Sec.~\ref{sec:inferencetasks}: parts of \cite{itip-statinf}
 
+Sec.~\ref{sec:beta-binom}: parts of \cite{itip-statinf}
+
 \section{Statistical Inference}
 \label{sec:stat-inference}
 
@@ -346,8 +348,45 @@ which will serve as a real-world example illustrating the powers and shortcoming
 ultimately motivating the shift to imprecise Bayesian inference.
 
 
+\subsection{The Beta-Binomial Model}
+\label{sec:beta-binom}
 
---------------------
+As the special case of the multinomial model \eqref{eq:multinomdens} with only two categories, we will consider the Binomial model
+\begin{align}
+\label{eq:binomdens}
+f(\x\mid\theta) &= {n \choose s}\theta^s (1-\theta)^{n-s}\,,
+\end{align}
+where $\x$, the vector of $n$ observations, is composed of scalar $x_i$'s being either $0$ or $1$
+denoting `failure' or `success' in an experiment with these two outcomes.
+$s = \sum_{i=1}^n x_i$ is the number of successes,
+and the (unknown) parameter $\theta \in (0,1)$ is the probability for `success' in a single trial.
+\eqref{eq:binomdens} can be written in the canonical exponential family form \eqref{eq:expofam-sampledens}:
+\begin{align*}
+f(\x\mid\theta) &\propto \exp\Big\{ \log\Big(\frac{\theta}{1-\theta}\Big) s - n \big(-\log(1-\theta)\big) \Big\}
+\end{align*}
+We have thus $\psi = \log(\theta/(1-\theta))$, $\mbf{b}(\psi) = -\log(1-\theta)$, and $\tau(\x) = s$.
+
+From these ingredients, a conjugate prior on $\psi$ can be constructed along \eqref{eq:canonicalprior},
+leading here to
+\begin{align*}
+p\Big(\log\Big(\frac{\theta}{1-\theta}\Big) \mid \nz, \yz\Big) \dd\psi %\dd\log\big(\frac{\theta}{1-\theta}\big)
+ &\propto \exp\Big\{ \nz \Big[ \yz \log\Big(\frac{\theta}{1-\theta}\Big) + \log(1-\theta) \Big] \Big\} \dd\psi\,.
+ %\dd\log\big(\frac{\theta}{1-\theta}\big)\,.
+\end{align*}
+This prior, transformed to the parameter of interest $\theta$,
+\begin{align*}
+p(\theta\mid \nz, \yz)\dd\theta &\propto \theta^{\nz\yz - 1} (1-\theta)^{\nz(1-\yz) - 1} \dd\theta\,,
+\end{align*}
+is a Beta distribution with parameters $\nz\yz$ and $\nz(1-\yz)$, in short, %$\theta \sim \Be(\nz\yz, \nz(1-\yz))$.
+\begin{align*}
+\theta &\sim \be(\nz\yz, \nz(1-\yz))\,.
+\end{align*}
+
+The combination of a Binomial sampling model with this conjugate Beta prior is called \emph{Beta-Binomial Model}.
+Here, $\yz = \E[\theta]$ can be interpreted as prior guess of $\theta$,
+while $\nz$ governs the concentration of probability mass around $\yz$.
+Due to conjugacy, the posterior on $\theta$ is a $\be(\nn\yn, \nn(1-\yn))$,
+where the posterior parameters $\nn$ and $\yn$ are given by \eqref{eq:canonicalupdate}.
 
 A \textbf{point estimator} for $\theta$ can be extracted from the posterior distribution $p(\theta\mid\x)$
 by considering $\Theta$ as the set of possible acts, and choosing a \emph{loss function}.
@@ -357,17 +396,43 @@ The \emph{quadratic loss function} $l(\hat{\theta}, \theta) = (\hat{\theta}-\the
 values small deviations relatively low, whereas large deviations are given a high weight.
 As can be shown (see, e.g., \cite[p.~352f]{2002:casella}),
 the quadratic loss function leads to the posterior expectation as the Bayesian point estimator.
-Here, $\E[\theta\vert \mbf{x}] = \yn$, and so the posterior expectation of $\theta$ is a weighted average
+Here, $\E[\theta\mid\x] = \yn$, and so the posterior expectation of $\theta$ is a weighted average
 of the prior expectation $\E[\theta] = \yz$ and the sample proportion $s/n$, with weights $\nz$ and $n$, respectively.
-Taking the \emph{absolute loss function} $l(\hat{\theta}, \theta) = |\hat{\theta}-\theta|$ leads to the median of the posterior distribution as the point estimator.
-Here, $\med(\theta\vert \mbf{x})$ has no closed form solution, and must be determined numerically.
+Taking the \emph{absolute loss function} $l(\hat{\theta}, \theta) = |\hat{\theta}-\theta|$
+leads to the median of the posterior distribution as the point estimator.
+Here, $\med(\theta\mid\x)$ has no closed form solution, and must be determined numerically.
 The \emph{indicator loss function}
 \begin{align*}
 l(\hat{\theta}, \theta) = \begin{cases} 0 & |\hat{\theta}-\theta| \le \epsilon \\ 1 & \text{else}\end{cases}\,,
 \end{align*}
-for $\epsilon \rightarrow 0$, leads to the maximum of the posterior, often abbreviated as MAP (maximum a posteriori) estimator
-***Bernardo \& Smith 2000, Ch.~5.1.5, p.~257 (Bayesian Theory) ***xxxx .
+for $\epsilon \rightarrow 0$, leads to the maximum of the posterior,
+often abbreviated as MAP (maximum a posteriori) estimator \cite[\S 5.1.5, p.~257]{2000:bernardosmith}.
+For a $\be(\nn\yn, \nn(1-\yn))$, the mode is
+\begin{align*}
+\mode \pi(\theta\vert\mbf{x}) &= \frac{\nn\yn - 1}{\nn - 2} = \frac{\nz\yz - 1 + s}{\nz - 2 + n}\,,
+\end{align*}
+and thus is a weighted average of the prior mode $\frac{\nz\yz - 1}{\nz -2}$ $(\nz > 2)$
+and the sample proportion $s/n$, with weights $\nz - 2$ and $n$, respectively.
 
---------------------
+In the Bayesian approach, \textbf{interval estimation} is rather simple,
+as the posterior distribution delivers a direct measure of probability for arbitrary subsets of the parameter space $\Theta$.
+Mostly, so-called \emph{highest posterior density} (HPD) intervals are considered,
+where for a given probability level $\gamma$ the shortest interval covering this probability mass is calculated.
+For unimodal densities, this is equivalent to finding a threshold $\alpha$ such that
+the probability mass for all $\theta$ with $p(\theta\mid\x) \ge \alpha$ equals $\gamma$, hence the name.
+(See, e.g., \cite[\S 5.1.5, pp.~259f]{2000:bernardosmith}.)
+For the Beta posterior, a HPD interval for $\theta$ must be determined by numeric optimization.
+For approximately symmetric (around $\frac{1}{2}$) Beta posteriors, a good approximation is the symmetric credibility interval,
+delimited by the $\frac{1-\gamma}{2}$ and the $\frac{1+\gamma}{2}$ quantile of the posterior.
 
+The \textbf{testing of hypotheses} concerning the parameter of interest $\theta$ can be done
+by comparing posterior probabilities of two subsets of the parameter space, which are usually denoted by $H_0$ and $H_1$.
+High values of $P(H_1\mid\x) / P(H_0\mid\x)$ then indicate high plausibility of $H_1$ as compared to $H_0$.
+
+The \textbf{posterior predictive} distribution, giving the probability for $s^*$ successes in $n^*$ future trials
+after having seen $s$ successes in $n$ trials, is
+\begin{align*}
+f(s^* \mid s) &= {n^* \choose s^*} \frac{\B\big(s^* + \nn \yn, n^* - s^* + \nn (1 - \yn)\big)}{\B\big(\nn\yn, \nn (1 - \yn)\big)}\,,
+\end{align*}
+known as the \emph{Beta-Binomial distribution}.
 

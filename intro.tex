@@ -124,7 +124,7 @@ As a shortcut, we write $x_i \sim \norm(\mu, \sigma^2)$.
 
 With the independence assumption, the density of $\mbf{x} = (x_1,\ldots,x_n)$ amounts to
 \begin{align}\label{eq:normaldens}
-f_{(\mu, \sigma^2)}(\mbf{x})
+f_{(\mu, \sigma^2)}(\x)
  &= \prod_{i=1}^n f_{(\mu, \sigma^2)}(x_{i})
   = (2\pi\sigma^2)^{-\frac{n}{2}}\exp\Big\{ -\frac{1}{2\sigma^2}\sum_{i=1}^n (x_{i} - \mu)^2 \Big\}\,.
 \end{align}
@@ -277,7 +277,7 @@ in order to deal with a commonly known parameter or distribution family for it
 Besides the posterior itself, also the posterior predictive distribution
 \begin{align}
 \label{eq:posteriorpredictive}
-f(\x^*\mid\x) &= \int f(\x^* \mid \psi) p(\psi \mid \nn, \yn) \dd\psi\,,
+f(\x^*\mid\x, \nz, \yz) &= \int f(\x^* \mid \psi) p(\psi \mid \nn, \yn) \dd\psi\,,
 \end{align}
 a distribution on future samples $\x^*$ after having seen a sample $\x$,
 forms the basis for the different inference tasks. %as listed in Section~\ref{inference:sec:basictasks}.
@@ -365,6 +365,7 @@ and the (unknown) parameter $\theta \in (0,1)$ is the probability for `success' 
 f(\x\mid\theta) &\propto \exp\Big\{ \log\Big(\frac{\theta}{1-\theta}\Big) s - n \big(-\log(1-\theta)\big) \Big\}
 \end{align*}
 We have thus $\psi = \log(\theta/(1-\theta))$, $\mbf{b}(\psi) = -\log(1-\theta)$, and $\tau(\x) = s$.
+The function $\log(\theta/(1-\theta))$ is known as the \emph{logit}, denoted by $\logit(\theta)$.
 
 From these ingredients, a conjugate prior on $\psi$ can be constructed along \eqref{eq:canonicalprior},
 leading here to
@@ -382,25 +383,27 @@ is a Beta distribution with parameters $\nz\yz$ and $\nz(1-\yz)$, in short, %$\t
 \theta &\sim \be(\nz\yz, \nz(1-\yz))\,.
 \end{align*}
 
-The combination of a Binomial sampling model with this conjugate Beta prior is called \emph{Beta-Binomial Model}.
+The combination of a Binomial sampling model with this conjugate Beta prior is called \emph{Beta-Binomial model}.
 Here, $\yz = \E[\theta]$ can be interpreted as prior guess of $\theta$,
-while $\nz$ governs the concentration of probability mass around $\yz$.
+while $\nz$ governs the concentration of probability mass around $\yz$,
+with large values of $\nz$ giving high concentration of probability mass.
 Due to conjugacy, the posterior on $\theta$ is a $\be(\nn\yn, \nn(1-\yn))$,
 where the posterior parameters $\nn$ and $\yn$ are given by \eqref{eq:canonicalupdate}.
 
 A \textbf{point estimator} for $\theta$ can be extracted from the posterior distribution $p(\theta\mid\x)$
 by considering $\Theta$ as the set of possible acts, and choosing a \emph{loss function}.
-The loss function $l$ gives a functional form of the severity of deviations of an estimator to its goal;
+The loss function $l$ gives a functional form for the severity of deviations of an estimator to its goal;
 here, it values the distance of a point estimator $\hat{\theta}$ to $\theta$.
 The \emph{quadratic loss function} $l(\hat{\theta}, \theta) = (\hat{\theta}-\theta)^2$
 values small deviations relatively low, whereas large deviations are given a high weight.
 As can be shown (see, e.g., \cite[p.~352f]{2002:casella}),
 the quadratic loss function leads to the posterior expectation as the Bayesian point estimator.
-Here, $\E[\theta\mid\x] = \yn$, and so the posterior expectation of $\theta$ is a weighted average
-of the prior expectation $\E[\theta] = \yz$ and the sample proportion $s/n$, with weights $\nz$ and $n$, respectively.
+Here, $\E[\theta\mid\x, \nz, \yz] = \E[\theta\mid\nn, \yn] = \yn$,
+and so the posterior expectation of $\theta$ is a weighted average
+of the prior expectation $\E[\theta\mid\nz, \yz] = \yz$ and the sample proportion $s/n$, with weights $\nz$ and $n$, respectively.
 Taking the \emph{absolute loss function} $l(\hat{\theta}, \theta) = |\hat{\theta}-\theta|$
 leads to the median of the posterior distribution as the point estimator.
-Here, $\med(\theta\mid\x)$ has no closed form solution, and must be determined numerically.
+Here, $\med(\theta\mid\nn, \yn)$ has no closed form solution, and must be determined numerically.
 The \emph{indicator loss function}
 \begin{align*}
 l(\hat{\theta}, \theta) = \begin{cases} 0 & |\hat{\theta}-\theta| \le \epsilon \\ 1 & \text{else}\end{cases}\,,
@@ -409,7 +412,7 @@ for $\epsilon \rightarrow 0$, leads to the maximum of the posterior,
 often abbreviated as MAP (maximum a posteriori) estimator \cite[\S 5.1.5, p.~257]{2000:bernardosmith}.
 For a $\be(\nn\yn, \nn(1-\yn))$, the mode is
 \begin{align*}
-\mode \pi(\theta\vert\mbf{x}) &= \frac{\nn\yn - 1}{\nn - 2} = \frac{\nz\yz - 1 + s}{\nz - 2 + n}\,,
+\mode p(\theta\mid\nn, \yn) &= \frac{\nn\yn - 1}{\nn - 2} = \frac{\nz\yz - 1 + s}{\nz - 2 + n}\,,
 \end{align*}
 and thus is a weighted average of the prior mode $\frac{\nz\yz - 1}{\nz -2}$ $(\nz > 2)$
 and the sample proportion $s/n$, with weights $\nz - 2$ and $n$, respectively.
@@ -419,20 +422,77 @@ as the posterior distribution delivers a direct measure of probability for arbit
 Mostly, so-called \emph{highest posterior density} (HPD) intervals are considered,
 where for a given probability level $\gamma$ the shortest interval covering this probability mass is calculated.
 For unimodal densities, this is equivalent to finding a threshold $\alpha$ such that
-the probability mass for all $\theta$ with $p(\theta\mid\x) \ge \alpha$ equals $\gamma$, hence the name.
-(See, e.g., \cite[\S 5.1.5, pp.~259f]{2000:bernardosmith}.)
+the probability mass for all $\theta$ with $p(\theta\mid\nn, \yn) \ge \alpha$ equals $\gamma$, hence the name.%
+\footnote{See, e.g., \cite[\S 5.1.5, pp.~259f]{2000:bernardosmith}.}
 For the Beta posterior, a HPD interval for $\theta$ must be determined by numeric optimization.
 For approximately symmetric (around $\frac{1}{2}$) Beta posteriors, a good approximation is the symmetric credibility interval,
-delimited by the $\frac{1-\gamma}{2}$ and the $\frac{1+\gamma}{2}$ quantile of the posterior.
+delimited by the $\frac{1-\gamma}{2}$- and the $\frac{1+\gamma}{2}$-quantile of the posterior.
 
 The \textbf{testing of hypotheses} concerning the parameter of interest $\theta$ can be done
-by comparing posterior probabilities of two subsets of the parameter space, which are usually denoted by $H_0$ and $H_1$.
+by comparing posterior probabilities of two (disjunct) subsets of the parameter space.
+Like in frequentist Neyman-Pearson testing, these are denoted by $H_0$ and $H_1$,
+but unlike there, in Bayesian testing these hypotheses play a symmetric role.
+
+****more on Bayes factors, etc.***
 High values of $P(H_1\mid\x) / P(H_0\mid\x)$ then indicate high plausibility of $H_1$ as compared to $H_0$.
+****
 
 The \textbf{posterior predictive} distribution, giving the probability for $s^*$ successes in $n^*$ future trials
 after having seen $s$ successes in $n$ trials, is
 \begin{align*}
-f(s^* \mid s) &= {n^* \choose s^*} \frac{\B\big(s^* + \nn \yn, n^* - s^* + \nn (1 - \yn)\big)}{\B\big(\nn\yn, \nn (1 - \yn)\big)}\,,
+f(s^* \mid \nn, \yn) &= {n^* \choose s^*} \frac{\B\big(s^* + \nn \yn, n^* - s^* + \nn (1 - \yn)\big)}{\B\big(\nn\yn, \nn (1 - \yn)\big)}\,,
 \end{align*}
 known as the \emph{Beta-Binomial distribution}.
+
+
+\subsection{The Normal-Normal Model}
+\label{sec:norm-norm}
+
+The normal density \eqref{eq:normaldens}, here with the variance $\sigma^2$ known to be $\sigma^2_0$,
+also adheres to the exponential family form:
+\begin{align*}
+f(\x \mid \mu, \sigma_0^2)
+ &\propto \exp\Big\{ \frac{\mu}{\sigma_0^2} \sum_{i=1}^n x_i - \frac{n\mu^2}{2\sigma_0^2} \Big\}.
+\end{align*}
+So we have here $\psi = \frac{\mu}{\sigma_0^2}$, $\mbf{b}(\psi) = \frac{\mu^2}{2\sigma_0^2}$, and $\tau^*(x_i) = x_i$.
+From these ingredients, a conjugate prior can be constructed with \eqref{eq:canonicalprior}, leading to
+\begin{align*}
+p\Big(\frac{\mu}{\sigma_0^2} \mid \nz, \yz\Big) \dd\frac{\mu}{\sigma_0^2}
+ &\propto \exp\Big\{ \nz \Big( \langle \yz, \frac{\mu}{\sigma_0^2} \rangle - \frac{\mu^2}{2\sigma_0^2} \Big) \Big\} \dd\frac{\mu}{\sigma_0^2}\,.
+\end{align*}
+This prior, transformed to the parameter of interest $\mu$ and with the square completed,
+\begin{align*}
+p(\mu \mid \nz, \yz) \dd\mu
+ &\propto \frac{1}{\sigma_0^2} \exp\Big\{ -\frac{\nz}{2\sigma_0^2} (\mu - \yz)^2 \Big\} \dd\mu\,,
+\end{align*}
+is a normal distribution with mean $\yz$ and variance $\frac{\sigma_0^2}{\nz}$,
+i.e.\ $\mu \sim \norm(\yz, \frac{\sigma_0^2}{\nz})$.
+
+With \eqref{eq:canonicalupdate}, the parameters for the posterior distribution are
+\begin{align}
+\yn &= \E[\mu\mid\nn, \yn] = \frac{\nz}{\nz + n} \cdot \yz + \frac{n}{\nz + n} \cdot \bar{\x} \label{eq:normalposte}\\
+\frac{\sigma_0^2}{\nn} &= \V(\mu\mid\nn, \yn) = \frac{\sigma_0^2}{\nz + n}\,. \label{eq:normalpostvar}
+\end{align}
+The posterior expectation of $\mu$ thus is a weighted average of the prior expectation $\yz$ and the sample mean $\bar{\x}$,
+with weights $\nz$ and $n$, respectively.
+The effect of the update step on variance is that it decreases by the factor $\nz/(\nz+n)$.
+
+Here, all of the three choices of loss functions mentioned for the Beta-Binomial model
+lead to the same \textbf{point estimator} $\hat{\mu} = \yn$,
+as in normal distributions mean, median, and mode coincide.
+
+As \textbf{interval estimation}, the HPD interval can be calculated, due to symmetry of the normal posterior,
+as $[z\un_\frac{1-\gamma}{2}, z\un_\frac{1+\gamma}{2}]$, where, e.g.,
+$z\un_\frac{1-\gamma}{2}$ is the $\frac{1-\gamma}{2}$-quantile of the normal distribution with mean $\yn$ and variance $\frac{\sigma_0^2}{\nn}$.
+
+The \textbf{testing of hypotheses} about $\mu$ works again by comparing posterior probabilities of two disjunct subsets of the parameter space.
+Note that the frequentist analogue to such a test is the (one-sided) one-sample Z-test (or Gaussian test).
+
+The \textbf{posterior predictive} distribution for $n^*$ future observations denoted by $\x^*$ is again a normal distribution,
+$\x^*\mid(\nn,\yn) \sim \norm\big(\yn, \frac{\sigma_0^2}{\nn}(\nn + n^*)\big)$,
+centered at the posterior mean \eqref{eq:normalposte},
+and with variance increasing with the posterior variance \eqref{eq:normalpostvar}
+and the number of observations to be predicted.
+
+
 

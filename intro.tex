@@ -148,19 +148,19 @@ We start the definition of the multinomial distribution by decomposing the colle
 single observations of either of the categories $1,\ldots,k$.
 Such a single observation, often named \emph{multivariate Bernoulli observation}, can be encoded as a vector $x_i$ of length $k$,
 where the $j$-th element, $x_{ij}$, equals $1$ if category $j$ has been observed, and all other elements being $0$.
-Given the vectorial parameter $\theta$ of length $k$,
+Given the vectorial parameter $\btheta$ of length $k$,
 where the component $\theta_j$ models the probability of observing category $j$ in a single draw
 (therefore $\sum_{j=1}^k \theta_j = 1$),
 the probability for observing $x_i$ can be written as
 \begin{align*}
-f_\theta(x_i) = \prod_{j=1}^k \theta_j^{x_{ij}}\,.
+f_{\btheta}(x_i) = \prod_{j=1}^k \theta_j^{x_{ij}}\,.
 \end{align*}
 Assuming independence, the probability for observing a certain sequence $\mbf{x}$ of $n$ observations can thus be written as
 \begin{align*}
-f_\theta(\mbf{x}) &= \prod_{i=1}^n f_\theta(x_i)
-             \propto \prod_{i=1}^n \prod_{j=1}^k \theta_j^{x_{ij}}
-                   = \prod_{j=1}^k \theta_j^{\sum_{i=1}^n x_{ij}}
-                   = \prod_{j=1}^k \theta_j^{n_j}\,,
+f_{\btheta}(\mbf{x}) &= \prod_{i=1}^n f_{\btheta}(x_i)
+                \propto \prod_{i=1}^n \prod_{j=1}^k \theta_j^{x_{ij}}
+                      = \prod_{j=1}^k \theta_j^{\sum_{i=1}^n x_{ij}}
+                      = \prod_{j=1}^k \theta_j^{n_j}\,,
 \end{align*}
 where $n_j = \sum_{i=1}^n x_{ij}$ tells us how often category $j$ was observed in the sample.
 
@@ -168,11 +168,11 @@ For the probability to observe a certain category count $(n_1, \ldots, n_k) = \m
 we have to account for the different possible orderings in $\mbf{x}$ leading to the same count vector $\mbf{n}$.
 Therefore,
 \begin{align}\label{eq:multinomdens}
-f_\theta(\mbf{n}) &= \binom{n}{n_1,\ldots,n_k} \prod_{j=1}^k \theta_j^{n_j}
-                   = \frac{n!}{n_1!\cdot \ldots \cdot n_k!} \prod_{j=1}^k \theta_j^{n_j}\,.
-%             \propto \prod_{j=1}^k \theta_j^{n_j}\,.
+f_{\btheta}(\mbf{n}) &= \binom{n}{n_1,\ldots,n_k} \prod_{j=1}^k \theta_j^{n_j}
+                      = \frac{n!}{n_1!\cdot \ldots \cdot n_k!} \prod_{j=1}^k \theta_j^{n_j}\,.
+%               \propto \prod_{j=1}^k \theta_j^{n_j}\,.
 \end{align}
-As a shortcut, we write $\mbf{n} \sim \mult(\theta)$.
+As a shortcut, we write $\mbf{n} \sim \mult(\btheta)$.
 
 
 \section{Statistical Inference with the Bayesian Paradigm}
@@ -336,7 +336,7 @@ into which furter sample units are like to fall.
 An example are prediction bands in regression analysis.
 \end{enumerate}
 
-The concretion of this framework for Bayesian inference with regular conjugate priors
+The concretion of this framework for Bayesian inference with canonical conjugate priors
 is now demonstrated for the sampling models presented in Sections~\ref{sec:normaldist} and \ref{sec:multinomdist}.
 As a first simple example, we will consider inference in the Binomial model,
 being the special case of the Multinomial model with only two categories.
@@ -493,6 +493,42 @@ $\x^*\mid(\nn,\yn) \sim \norm\big(\yn, \frac{\sigma_0^2}{\nn}(\nn + n^*)\big)$,
 centered at the posterior mean \eqref{eq:normalposte},
 and with variance increasing with the posterior variance \eqref{eq:normalpostvar}
 and the number of observations to be predicted.
+
+
+\subsection{The Dirichlet-Multinomial Model}
+\label{sec:diri-multi}
+
+The construction of the canonical conjugate prior along \eqref{eq:canonicalprior}
+for the Multinomial model $\mult(\btheta)$ with $k>2$ is more complex than for the case $k=2$
+as covered in Section~\ref{sec:beta-binom}.
+It is a well-known result that this construction leads to the commonly used Dirichlet prior;
+however, it is usually not derived in detail.%
+\footnote{E.g., \cite[Table~1]{2005:quaeghebeurcooman} tabulate, without proof,
+priors constructed for a number of sample models.
+However, for the Multinomial sampling model, the table contains a sign error for $\mbf{b}(\bpsi)$.}
+We will cover the construction of $p(\bpsi\mid\nz, \yz)$,
+and also the transformation to $p(\btheta\mid\nz, \yz)$,
+in more detail here.
+
+As in Section~\ref{sec:multinomdist}, we will use the formulation of $\mult(\btheta)$ as the multivariate Bernoulli distribution,
+where each observation is represented as a vector with $k$ elements,
+with the $j$-th element equal to $1$ if category $j$ has been observed, and all other elements $0$.
+The distribution of a single multivariate Bernoulli observation is equivalent to a Multinomial distribution with sample size $1$,
+thus i.i.d.\ repetitions of a multivariate Bernoulli distribution lead to the Multinomial distribution.
+Since i.i.d.\ repetitions do not interfere with conjugacy,
+we may construct the canonical conjugate prior by considering a single multivariate Bernoulli observation.
+
+
+
+
+
+---------------------
+
+Due to the considerations from the beginning of this section,
+we see that the Dirichlet distribution is the canonically constructed conjugate prior also to the Multinomial distribution.
+
+
+
 
 
 

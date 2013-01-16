@@ -223,7 +223,8 @@ and the Multinomial sampling models as introduced in Sections~\ref{sec:normaldis
 A sample distribution
 (from now on understood directly as the distribution $p_\vartheta^{\otimes n}$ of an i.i.d.\ sample $\mbf{x}$ of size $n$)
 is said to belong to the \emph{(regular) canonical exponential family} if its density or mass function satisfies the decomposition
-\begin{align}\label{eq:expofam-sampledens}
+\begin{align}
+\label{eq:expofam-sampledens}
 f(\x \mid \theta) &\propto \exp\big\{\langle \psi, \tau(\x) \rangle - n \mbf{b}(\psi)\big\}\,,
 \end{align}
 where $\psi \in \Psi \subset \reals^q$ is a transformation of the (possibly vectorial) parameter $\theta \in \Theta$,
@@ -233,7 +234,8 @@ with $\tau^*(x_i) \in \mathcal{T} \subset \reals^q$,
 while $\langle\cdot, \cdot\rangle$ denotes the scalar product.
 From these ingredients, a conjugate prior on $\psi$ can be constructed as%
 \footnote{In our notation, ${}\uz$ denotes prior parameters; ${}\un$ posterior parameters.}
-\begin{align}\label{eq:canonicalprior}
+\begin{align}
+\label{eq:canonicalprior}
 p(\psi \mid \nz, \yz) \dd\psi
  &\propto \exp\Big\{ \nz \Big[ \langle \yz, \psi \rangle - \mbf{b}(\psi) \Big] \Big\} \dd\psi\,,
 \end{align}
@@ -505,30 +507,156 @@ It is a well-known result that this construction leads to the commonly used Diri
 however, it is usually not derived in detail.%
 \footnote{E.g., \cite[Table~1]{2005:quaeghebeurcooman} tabulate, without proof,
 priors constructed for a number of sample models.
-However, for the Multinomial sampling model, the table contains a sign error for $\mbf{b}(\bpsi)$.}
+Note that the table contains a sign error in $\mbf{b}(\bpsi)$ for the Multinomial sampling model.}
 We will cover the construction of $p(\bpsi\mid\nz, \yz)$,
 and also the transformation to $p(\btheta\mid\nz, \yz)$,
 in more detail here.
 
-As in Section~\ref{sec:multinomdist}, we will use the formulation of $\mult(\btheta)$ as the multivariate Bernoulli distribution,
-where each observation is represented as a vector with $k$ elements,
-with the $j$-th element equal to $1$ if category $j$ has been observed, and all other elements $0$.
+We will use the formulation of $\mult(\btheta)$ as the multivariate Bernoulli distribution
+like in Section~\ref{sec:multinomdist}.
 The distribution of a single multivariate Bernoulli observation is equivalent to a Multinomial distribution with sample size $1$,
-thus i.i.d.\ repetitions of a multivariate Bernoulli distribution lead to the Multinomial distribution.
+and i.i.d.\ repetitions of a multivariate Bernoulli distribution lead to the Multinomial distribution.
 Since i.i.d.\ repetitions do not interfere with conjugacy,
 we may construct the canonical conjugate prior by considering a single multivariate Bernoulli observation.
 
+To do without side conditions like $\sum_{j=1}^k \theta_j = 1$ as needed in Section~\ref{sec:multinomdist},
+we will define here as a single multivariate Bernoulli observation distinguishing $k+1$ categories $j = 0,1,\ldots,k$
+(instead of $k$ categories $j = 1,\ldots,k$ as in Section~\ref{sec:multinomdist})
+a vector $\x$ with $k$ components indexed $1,\ldots,k$
+such that
+\begin{align*}
+\x \in \{0,1\}^k \cap \big\{ \x: \sum_{j=1}^k x_j \in \{0,1\}  \big\}\,,
+\end{align*}
+and $x_0 := 1 - \sum_{j=1} x_j$.
 
+The parameter vector is treated in the same way, i.e.,
+we consider now $\btheta$ with $k$ components $\theta_j, j=1,\ldots,k$ such that
+\begin{align*}
+\btheta \in (0,1)^k \cap \{\btheta: 0 < \sum_{j=1}^k \theta_j < 1\}\,,
+\end{align*}
+and thus $\theta_0 := 1-\sum_{j=1}^k \theta_j$.
 
+Formulating the density \eqref{eq:multinomdens} accordingly, and rewriting it towards~\eqref{eq:expofam-sampledens},
+we get
+\begin{align*}
+p(\x\mid\btheta)&= \Bigg( \prod_{j=1}^k \theta_j^{x_j}\Bigg) \bigg( 1 - \sum_{j=1}^k \theta_j\bigg)^{1-\sum_{j=1}^k x_j}%\\
+                 = \theta_0 \prod_{j=1}^k \left(\frac{\theta_j}{\theta_0}\right)^{x_j} \\
+                &= \exp\Bigg\{ \sum_{j=1}^k x_j \ln\bigg(\frac{\theta_j}{\theta_0}\bigg) - \big(-\ln(\theta_0)\big) \Bigg\}\,.
+\end{align*}
+With $\bpsi$ and $\mbf{b}(\bpsi)$ derived from the sample model as
+\begin{align*}
+\psi_j &= \ln\left(\frac{\theta_j}{\theta_0}\right),\, j=1,\ldots,k & \text{and}& &
+\mbf{b}(\bpsi) &= -\ln(\theta_0),\,% \theta_0 = 1 - \sum_{j=1}^k \theta_j\,,
+\end{align*}
+the conjugate prior is at first constructed as a density over $\bpsi$,
+dropping the upper index ${}\uz$ in $\nz$ and the vectorial $\mbf{y}\uz$ for ease of notation:
+\begin{align*}
+p(\bpsi\mid n,\mbf{y})\, \dd\bpsi
+ &\propto \exp\Bigg\{n\, \Bigg[ \sum_{j=1}^k y_j \ln\bigg(\frac{\theta_j}{\theta_0}\bigg) - \big(-\ln(\theta_0)\big) \Bigg] \Bigg\} \,\dd\bpsi\,,.
+\end{align*}
+Written as a density over $\btheta$, we have
+\begin{align*}
+p(\btheta\mid n,\mbf{y})\, \dd\btheta
+ &\propto \exp\Bigg\{n\, \Bigg[ \sum_{j=1}^k y_j \ln\bigg(\frac{\theta_j}{\theta_0}\bigg) - \big(-\ln(\theta_0)\big) \Bigg] \Bigg\}
+  \cdot \left| \det\left(\frac{\dd\bpsi}{\dd\btheta}\right) \right|\, \dd\btheta\,,
+\end{align*}
+with the the elements of the Jacobian matrix $\frac{\dd\bpsi}{\dd\btheta}$ being
+\begin{align*}
+\frac{\dd\psi_i}{\dd\theta_i} &= \frac{1}{d\theta_i} \ln\left(\frac{\theta_i}{1 - \sum_{j=1}^k \theta_j}\right)
+                               = \frac{1-\sum_{j=1}^k \theta_j}{\theta_i}
+                                 \cdot \frac{1 - \sum_{j=1}^k \theta_j + \theta_i}{(1 - \sum_{j=1}^k \theta_j)^2}
+                               = \frac{\theta_0 + \theta_i}{\theta_0 \theta_i}\\
+\frac{\dd\psi_h}{\dd\theta_i} &= \frac{1}{d\theta_i} \ln\left(\frac{\theta_h}{1 - \sum_{j=1}^k \theta_j}\right)
+                               = \frac{1-\sum_{j=1}^k \theta_j}{\theta_h} \cdot \frac{\theta_h}{(1 - \sum_{j=1}^k \theta_j)^2}
+                               = \frac{1}{\theta_0}\,, \quad h \neq i
+\end{align*}
+%\allowdisplaybreaks
+Thus,
+\begin{align*}
+\det\left(\frac{\dd\bpsi}{\dd\btheta}\right)
+&= \det \begin{pmatrix}\frac{\theta_0 + \theta_1}{\theta_0 \theta_1} & \frac{1}{\theta_0} & \hdots & \frac{1}{\theta_0} \\
+                       \frac{1}{\theta_0} & \frac{\theta_0 + \theta_2}{\theta_0 \theta_2} & \ddots & \vdots \\
+                       \vdots & \ddots & \ddots & \frac{1}{\theta_0} \\[1ex]
+                       \frac{1}{\theta_0} & \hdots & \frac{1}{\theta_0} & \frac{\theta_0 + \theta_k}{\theta_0 \theta_k}
+        \end{pmatrix} \\
+&= \left(\frac{1}{\theta_0}\right)^k\, \det
+        \begin{pmatrix}\frac{\theta_0}{\theta_1} + 1 & 1 & \hdots & 1 \\
+                       1 & \frac{\theta_0 }{\theta_2} + 1 & \ddots & \vdots \\
+                       \vdots & \ddots & \ddots & 1 \\[1ex]
+                       1 & \hdots & 1 & \frac{\theta_0}{\theta_k} + 1
+        \end{pmatrix} \\
+&\stackrel{*}{=} \left(\frac{1}{\theta_0}\right)^k \prod_{j=1}^k \frac{\theta_0}{\theta_j}
+                 \cdot \Bigg( 1 + \begin{pmatrix}1 & \hdots & 1\end{pmatrix}
+                                  \begin{pmatrix}\frac{\theta_1}{\theta_0} &  & 0 \\
+                                                  & \ddots & \\
+                                                 0 & & \frac{\theta_k}{\theta_0}\end{pmatrix}
+                                  \begin{pmatrix}1 \\ \vdots\\ 1\end{pmatrix}\Bigg)\\
+&= \prod_{j=1}^k \frac{1}{\theta_j} \cdot \Bigg( 1 + \sum_{i=1}^k \frac{\theta_i}{\theta_0} \Bigg)
+ = \Bigg( \prod_{j=1}^k \frac{1}{\theta_j}\Bigg) \frac{ \theta_0 + \sum_{i=1}^k \theta_i}{\theta_0}\\
+&= \Bigg( \prod_{j=1}^k \frac{1}{\theta_j}\Bigg) \frac{1}{\theta_0}
+ = \prod_{j=0}^k \frac{1}{\theta_j}\,,
+\end{align*}
+where equality ${}^*$ holds by the theorem \cite[Theorem A 16 (x), Appendix A3, p.~494]{MR2370506},
+%in Rao, Toutenburg, Shalabh, and Heumann, \emph{Linear models and generalizations}, Springer, Berlin 2008: %bibtex at end of document
+stating that
+\begin{align*}
+\det (A + a\, a^\tra) &= \det(A) (1+a^\tra A^{-1} a) & \text{if}& & \det(A) &\neq 0
+\end{align*}
+for all appropriately sized matrices $A$ and column vectors $a$.
 
-
----------------------
-
+With $\det\left(\frac{\dd\bpsi}{\dd\btheta}\right) = \prod_{j=0}^k \frac{1}{\theta_j}$, we get
+\begin{align*}
+p(\btheta\mid n,\mbf{y})
+ &\propto \exp\Bigg\{n\, \Bigg[ \sum_{j=1}^k y_j \ln\bigg(\frac{\theta_j}{\theta_0}\bigg) - \big(-\ln(\theta_0)\big) \Bigg] \Bigg\}
+  \cdot \bigg| \prod_{j=0}^k \frac{1}{\theta_j} \bigg| \\
+ &=       \exp\Bigg\{n\, \Bigg[ \sum_{j=1}^k y_j \Big(\ln(\theta_j)-\ln(\theta_0)\Big) + \ln(\theta_0) \Bigg]
+                         - \sum_{j=0}^k \ln(\theta_j) \Bigg\} \\
+ &=       \exp\Bigg\{n\, \Bigg[ \sum_{j=1}^k y_j \ln(\theta_j) + \ln(\theta_0) \bigg(\underbrace{1 - \sum_{j=1}^k  y_j}_{=: y_0}\bigg) \Bigg]
+                         - \sum_{j=0}^k \ln(\theta_j) \Bigg\} \\
+ &=       \exp\Bigg\{n\, \Bigg[ \sum_{j=0}^k y_j \ln(\theta_j) \Bigg] - \sum_{j=0}^k \ln(\theta_j) \Bigg\} \\
+ &=       \exp\Bigg\{\sum_{j=0}^k (n\,y_j -1 ) \ln(\theta_j) \Bigg\}
+  =       \exp\Bigg\{\sum_{j=0}^k \ln\left(\theta_j^{n\,y_j -1}\right) \Bigg\}\\
+ &= \prod_{j=0}^k \theta_j^{n\,y_j - 1}\,,
+\end{align*}
+which is the core of a Dirichlet density over $\btheta$.
+Therefore, the Dirichlet distribution is the canonically constructed conjugate prior to the multivariate Bernoulli.
 Due to the considerations from the beginning of this section,
-we see that the Dirichlet distribution is the canonically constructed conjugate prior also to the Multinomial distribution.
+we see that the Dirichlet distribution is the canonically constructed conjugate prior
+also to the Multinomial sample model with arbitrary sample sizes.
 
+The Dirichlet distribution can be seen as a direct generalization of the Beta distribution,
+and we will speak of the \emph{Dirichlet-Multinomial model}
+as the analogue to the Beta-Binomial model from Section~\ref{sec:beta-binom}.
 
+Returning to the notation from Section~\ref{sec:multinomdist},
+where $k$ categories $j=1,\ldots,k$ are considered, 
+we have thus
+\begin{align*}
+p(\btheta\mid\nz,\byz) \propto \prod_{j=1}^k \theta_j^{\nz\yz_j-1}
+\end{align*}
+as the prior.
+The vectorial $\byz$ is an element of the interior of the unit simplex $\Delta$,
+thus $\forall j \ \yz_j \in (0,1)$, $\sum_{j=1}^k \yz_j = 1$, in short $\byz \in \text{int}(\Delta)$.
+Here, the main posterior parameter is calculated as
+\begin{align*}
+\yn_j &= \frac{\nz}{\nz+n} \yz_j + \frac{n}{\nz+n} \cdot \frac{n_j}{n}\,, j = 1,\ldots, k,
+\end{align*}
+and is thus again a weighted average of the main prior parameter
+(which can be interpreted as prior guess for $\btheta$, as $\E[\btheta\mid\nz,\byz] = \byz$)
+and the fractions of observations in each category,
+with weights $\nz$ and $n$, respectively.
+$\nz$ again governs the concentration of probability mass around $\yz$,
+with larger values of $\nz$ leading to higher concentrations.
 
+With these intuitions for $\nz$ and $\byz$,
+we will denote the Dirichlet prior directly in terms of the canonical parameters, i.e.\ by
+%\begin{align*}
+$\btheta \sim \dir(\nz,\byz)$.
+%\end{align*}
+The canonical parameters relate to the commonly used parameter $\bs{\alpha}$ with components $\alpha_1, \ldots, \alpha_k$ by
+\begin{align*}
+\yz_j &= \frac{\alpha_j}{\sum_{l=1}^k \alpha_l} &
+\nz   &= \sum_{l=1}^k \alpha_l \,.
+\end{align*}
 
-
-
+The Dirichlet-Multinomial model will now be used in a real-life application***

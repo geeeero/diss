@@ -23,7 +23,9 @@ Sec.~\ref{sec:inferencetasks}: parts of \cite{itip-statinf}
 
 Sec.~\ref{sec:beta-binom}: parts of \cite{itip-statinf}
 
-Sec.~\ref{sec:diri-mult}: \cite{Walter2012b}
+Sec.~\ref{sec:norm-norm}: parts of \cite{itip-statinf}
+
+Sec.~\ref{sec:diri-multi}: \cite{Walter2012b}
 
 Sec.~\ref{sec:commoncause}: parts of \cite{Walter2013a}
 
@@ -280,7 +282,7 @@ corresponds to the trust in conclusions based on such a real sample \cite[p.~258
 
 The posterior $p(\psi \mid \nn, \yn)$ can be transformed back to a distribution on $\theta$
 in order to deal with a commonly known parameter or distribution family for it
-(as we will do in Section~\ref{}*** below.)
+(as we will do, e.g., in Section~\ref{sec:beta-binom} below.)
 Besides the posterior itself, also the posterior predictive distribution
 \begin{align}
 \label{eq:posteriorpredictive}
@@ -667,12 +669,12 @@ The canonical parameters relate to the commonly used parameter $\bs{\alpha}$ wit
 The Dirichlet-Multinomial model will now be used in a real-life application***
 
 
-\section{Dirichlet-Multinomial Model for Common-cause Failure}
+\section{Dirichlet-Multinomial Model for Common-Cause Failure}
 \label{sec:commoncause}
 
 In reliabilty analysis of systems with redundant components,
 \emph{common-cause failure} refers to simultaneous failure of several redunant components due to a common cause.
-In a nuclear power plant, a common-cause failure analysis can relate to, e.g.,
+For a nuclear power plant, a common-cause failure analysis can relate to, e.g.,
 the diesel generators that, if in an emergency the off-site power supply is cut off,
 provide the electricity to power the emergency core cooling systems.
 Emergency core cooling systems are needed to transfer away residual heat emitted from the core after shutdown,
@@ -682,27 +684,22 @@ which is then condensed to water and fed back into the steam generators)
 is not available.
 When residual heat is not removed, it can overheat the core,
 which could lead to a (partial) core meltdown,
-and subsequently a possibly catastrophic release of radioactive material.%
-\footnote{Residual heat is present in the core of a nuclear power plant
-after shutdown of the nuclear chain reaction maintained for normal operation.
-It is mostly comprised of \emph{decay heat},
-resulting from decay processes of fission products produced during normal operation of the power plant.
+and subsequently to a possibly catastrophic release of radioactive material.%
+\footnote{The residual heat that is present in the core of a nuclear power plant
+after shutdown of the nuclear chain reaction is called \emph{decay heat}.
+It results from decay processes of fission products produced during normal operation of the power plant.
 Although comprising only a small fraction of the energy output during normal operation
-(where the energy stems from the actual fission process),
-the decay heat may be enough to damage the core of a reactor significantly.}
+(where the energy stems from the primary fission process \cite[Module~4, p.~33]{united1993doe}),
+depending on the design of the reactor,
+the decay heat may be enough to damage the core of a reactor significantly
+\cite[p.~VIII-9 and VIII-25f]{1975:reactor:safety:study}.}
 
 Due to their critical role for the functioning of emergency cooling systems,
 there are several diesel generators installed,
 each of which supplying enough energy to power the cooling systems on its own.
-
-The number of diesel generators installed is typically in the range of four,
+The number of diesel generators installed is typically in the range of four***??***,
 i.e., there are four redundant components, of which one is needed for service.
+%with a redundancy in the order of four or 
 
-with a redundancy in the order of four or 
-
-\url{http://www.hss.doe.gov/nuclearsafety/techstds/docs/handbook/h1019v1.pdf} p.61
-
-\url{http://books.google.de/books?id=yugQKddO82IC&pg=PA680&dq=neutron+startup+source&lr=&as_drrb_is=q&as_minm_is=0&as_miny_is=&as_maxm_is=0&as_maxy_is=&num=50&as_brr=3&cd=52&redir_esc=y#v=onepage&q=neutron%20startup%20source&f=false}
-
-NUREG-75/014
+Failure of a component
 

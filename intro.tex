@@ -326,8 +326,9 @@ usually denoted by $H_0$ and $H_1$.
 where, more generally, the conclusion may be to select certain utility maximizing or loss minimizing acts from a set of possible acts.
 Indeed, all three tasks listed before can be formally understood as a special case of decision making,
 by considering an appropriate set of acts and a loss function fitting the inferential objective.
-We will flesh this out to some extent in the examples below***.%
-\footnote{For more details, see, e.g., ******.}
+We will flesh this out to some extent in the examples below ******.%
+\footnote{For more details, see, e.g., \cite[\S 2]{2007:robert},
+where, e.g., loss functions usually utilized in statistical settings are described in \S 2.5, p.~77ff.}
 \end{enumerate}
 
 \emph{Predictive conclusions} instead summarize the information by statements on properties of typical further units,
@@ -418,7 +419,7 @@ The \emph{indicator loss function}
 l(\hat{\theta}, \theta) = \begin{cases} 0 & |\hat{\theta}-\theta| \le \epsilon \\ 1 & \text{else}\end{cases}\,,
 \end{align*}
 for $\epsilon \rightarrow 0$, leads to the maximum of the posterior,
-often abbreviated as MAP (maximum a posteriori) estimator \cite[\S 5.1.5, p.~257]{2000:bernardosmith}.
+often abbreviated as MAP (maximum a posteriori) estimator \cite[\S 5.1.5, p.~257]{2000:bernardosmith}, \cite[\S 4.1.2, p.~166]{2007:robert}.
 For a $\be(\nn\yn, \nn(1-\yn))$, the mode is
 \begin{align*}
 \mode p(\theta\mid\nn, \yn) &= \frac{\nn\yn - 1}{\nn - 2} = \frac{\nz\yz - 1 + s}{\nz - 2 + n}\,,
@@ -426,13 +427,16 @@ For a $\be(\nn\yn, \nn(1-\yn))$, the mode is
 and thus is a weighted average of the prior mode $\frac{\nz\yz - 1}{\nz -2}$ $(\nz > 2)$
 and the sample proportion $s/n$, with weights $\nz - 2$ and $n$, respectively.
 
+Note that asymptotic optimality properties of maximum likelihood estimators (consistency, efficiency)
+are usually preserved for these Baysian point estimators \cite[Note~1.8.4, p.~48f]{2007:robert}.
+
 In the Bayesian approach, \textbf{interval estimation} is rather simple,
 as the posterior distribution delivers a direct measure of probability for arbitrary subsets of the parameter space $\Theta$.
 Mostly, so-called \emph{highest posterior density} (HPD) intervals are considered,
 where for a given probability level $\gamma$ the shortest interval covering this probability mass is calculated.
 For unimodal densities, this is equivalent to finding a threshold $\alpha$ such that
 the probability mass for all $\theta$ with $p(\theta\mid\nn, \yn) \ge \alpha$ equals $\gamma$, hence the name.%
-\footnote{See, e.g., \cite[\S 5.1.5, pp.~259f]{2000:bernardosmith}.}
+\footnote{See, e.g., \cite[\S 5.1.5, pp.~259f]{2000:bernardosmith}, or \cite[Def.~5.5.3, p.~260]{2007:robert}.}
 For the Beta posterior, a HPD interval for $\theta$ must be determined by numeric optimization.
 For approximately symmetric (around $\frac{1}{2}$) Beta posteriors, a good approximation is the symmetric credibility interval,
 delimited by the $\frac{1-\gamma}{2}$- and the $\frac{1+\gamma}{2}$-quantile of the posterior.
@@ -443,8 +447,28 @@ Like in frequentist Neyman-Pearson testing, these are denoted by $H_0$ and $H_1$
 but unlike there, in Bayesian testing these hypotheses play a symmetric role.
 
 ****more on Bayes factors, etc.***
+
 High values of $P(H_1\mid\x) / P(H_0\mid\x)$ then indicate high plausibility of $H_1$ as compared to $H_0$.
-****
+
+Bayesian testing: \cite[\S 5.2--5.4]{2007:robert}
+
+Bayes factor definition: \cite[\S 5.2.2, Def.~5.2.5, p.~227]{2007:robert}
+
+Article on Bayes factors as entity of its own: Kass \& Raftery 1995: Bayes factor and model uncertainty, JASA 90, 773--795
+
+improper priors are problematic in Bayesian testing \cite[\S 5.2.5, p.~232ff]{2007:robert}
+
+\cite[p.~235f]{2007:robert}
+\begin{quote}
+The difficulties encountered with noninformative priors in testing
+also point out that a testing problem cannot be treated in a coherent way if no prior information is available,
+that is, that the information brought by the observations alone is usually not enough
+to infer about the truth of a hypothesis in categorical fashion (\emph{yes}/\emph{no}).
+This obviously reinforces the the motivation for a Bayesian treatment of such testing problems,
+since it is the only coherent approach taking advantage of the residual information.
+\end{quote}
+
+****end more on Bayes factors, etc.***
 
 The \textbf{posterior predictive} distribution, giving the probability for $s^*$ successes in $n^*$ future trials
 after having seen $s$ successes in $n$ trials, is

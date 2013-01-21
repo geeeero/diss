@@ -74,7 +74,7 @@ where $\mathcal{Q}$ is pa\-ra\-me\-trized by a parameter $\vartheta$ of finite d
 assuming values in the so-called \emph{parameter space} $\Theta$, $\Theta \subseteq \reals^q, \ q < \infty$,
 i.e.\ ${\cal Q}=\left(p_\vartheta\right)_{\vartheta \in \Theta}$.
 Here, the different sampling distributions $p_\vartheta$ are implicitly understood as belonging to a specific class of distributions
-(e.g. normal distributions, see the example in ****),
+(e.g., normal distributions, as in Section~\ref{sec:normaldist} below),
 the basic type of which is assumed to be known completely,
 and only some characteristics $\vartheta$ (e.g.\ the mean) of the distributions are unknown.
 
@@ -217,7 +217,12 @@ which is the distribution of further observations based on $p(\vartheta\mid\mbf{
 Traditional Bayesian inference is frequently based on so-called \emph{conjugate priors} related to a specific likelihood.
 Such priors have the convenient property that the posterior resulting from~\eqref{eq:bayesrule}
 belongs to the same class of parametric distributions as the prior, and thus only the parameters have to be updated,
-which makes calculation of the posterior and thus the whole Bayesian inference easily tractable.
+which makes calculation of the posterior and thus the whole Bayesian inference easily tractable.%
+\footnote{This motivation for the use of conjugate priors can be founded on formal arguments.
+As will be explained below, posterior expectation of the parameter of interest
+is actually a linear function of a sufficient statistic of the data and the prior expectation.
+It turns out that, under some regularity conditions, requiring linearity of posterior expectation
+implies the use of conjugate priors \cite[p.~276]{2000:bernardosmith}.}
 
 Fortunately, there are general results guiding the construction of conjugate priors in models used most frequently in practice,
 namely in the case where the sample distribution belongs to a so-called \emph{(regular) canonical exponential family}
@@ -267,7 +272,7 @@ In this setting, $\yz$ and $\yn$ can be seen as the parameter describing the mai
 and thus we will call them \emph{main prior} and \emph{main posterior parameter}, respectively.
 $\yz$ can also be understood as a prior guess for the random quantity $\ttau(\x) := \tau(\x)/n$ summarizing the sample,
 as $\E[\ttau(\x) \mid \psi] = \nabla\mbf{b}(\psi)$,
-where in turn $\E[\nabla\mbf{b}(\psi) \mid \nz, \yz] = \yz$ \cite{2000:bernardosmith}***more concrete***.
+where in turn $\E[\nabla\mbf{b}(\psi) \mid \nz, \yz] = \yz$ \cite[Prop.~5.7, p.~275]{2000:bernardosmith}.
 
 Characteristically, $\yn$ is a weighted average of this prior guess $\yz$ and the sample `mean' $\ttau(\x)$,
 with weights $\nz$ and $n$, respectively.%
@@ -320,7 +325,7 @@ where a certain parameter value is selected to describe the sample.
 \item[1b)] \emph{Interval estimators},
 where the information is condensed in a certain subset of the parameter space $\Theta$, typically in an interval when $\Theta \subseteq \reals$.
 \item[1c)] \emph{Hypotheses tests},
-where the information in the sample is only used to decide between two mutually exclusive statements called \emph{hypotheses},
+where the information in the sample is only used to decide between two mutually exclusive statements about parameter(s) called \emph{hypotheses},
 usually denoted by $H_0$ and $H_1$.
 \item[1e)] \emph{Decision making},
 where, more generally, the conclusion may be to select certain utility maximizing or loss minimizing acts from a set of possible acts.
@@ -690,14 +695,23 @@ The canonical parameters relate to the commonly used parameter $\bs{\alpha}$ wit
 \nz   &= \sum_{l=1}^k \alpha_l \,.
 \end{align*}
 
-The Dirichlet-Multinomial model will now be used in a real-life application***
+We will now present a problem in reliability analysis for which the most common model
+relies on the Dirichlet-Multinomial model.
+***It will also serve as a motivation for the use of sets of priors.***
 
 
 \section{Dirichlet-Multinomial Model for Common-Cause Failure}
 \label{sec:commoncause}
 
 In reliabilty analysis of systems with redundant components,
-\emph{common-cause failure} refers to simultaneous failure of several redunant components due to a common cause.
+\emph{common-cause failure} refers to simultaneous failure of several redunant components due to a common or shared root cause,
+like extreme environmental condistions (fire, flood, earthquake) \cite[p.325]{1994:hoyland}.
+It has been recognized as the dominant factor to the unreliability of redundant systems,
+and its modeling has become an important part of reliability analysis
+following the Reactor Safety Study \cite{1975:reactor:safety:study},
+which was prepared in the wake of the Three Mile Island accident,
+where a partial core meltdown in a nuclear power plant took place \cite{2005:walker}.
+
 For a nuclear power plant, a common-cause failure analysis can relate to, e.g.,
 the diesel generators that, if in an emergency the off-site power supply is cut off,
 provide the electricity to power the emergency core cooling systems.

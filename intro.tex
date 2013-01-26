@@ -712,6 +712,8 @@ following the Reactor Safety Study \cite{1975:reactor:safety:study},
 which was prepared in the wake of the Three Mile Island accident,
 where a partial core meltdown in a nuclear power plant took place \cite{2005:walker}.
 
+\subsection{An Example for Common-Cause Failure Modelling}
+
 For a nuclear power plant, a common-cause failure analysis can relate to, e.g.,
 the diesel generators that, if in an emergency the off-site power supply is cut off,
 provide the electricity to power the emergency core cooling systems.
@@ -735,8 +737,9 @@ the decay heat may be enough to damage the core of a reactor significantly
 Due to their critical role for the functioning of emergency cooling systems,
 there are usually several diesel generators installed in a nuclear power plant,
 each of which can supply enough energy to power the cooling systems on its own.
-The number of diesel generators installed is typically in the range of four***??***,
-i.e., there are four redundant components, of which one is needed for service.
+The number of diesel generators installed is typically in the range of two to four per reactor***??***
+\cite[p.~31]{2011:iaea::report} ***.
+%i.e., there are four redundant components, of which one is needed for service.
 %with a redundancy in the order of four or 
 The Fukushima Daiichi nuclear disaster is a recent example of an accident
 involving common cause failure of diesel generators.
@@ -746,6 +749,83 @@ The tsunami wave had been caused by the Tohoku*** earthquake,
 which had promted the reactors to shutdown automatically, and in doing so,
 switching to the diesel generators for power supply.
 
+The arguably most widely used model for common-cause failure is the Basic Parameter Model.
+The alpha-factor parametrisation of this model uses a multinomial distribution
+as its aleatory model for observed failures \cite{1988:mosleh::common:cause}. 
+As seen in Section~\ref{sec:diri-multi}, the conjugate prior to the multinomial model is the Dirichlet distribution.
+In the standard Bayesian approach, the analyst specifies the parameters $\nz, \byz$ of a precise Dirichlet distribution
+to model epistemic uncertainty in the alpha-factors, which are the parameters of the multinomial sample model.
+%This Dirichlet prior is then updated with observed data to obtain a precise posterior distribution, also Dirichlet.
 
-Failure of a component
+We will first describe the Basic Parameter Model in its basic form,
+and subsequently present its reparametrization in terms of so-called alpha-factors.
+
+
+\subsection{The Basic Parameter Model}
+
+Consider a system that consists of $k$ components.
+Throughout, we make the following standard assumptions:
+(i) repair is immediate, and
+(ii) failures follow a Poisson process.
+
+For simplicity, we assume that all $k$ components are exchangeable,
+in the sense that they have identical failure rates.
+More precisely,
+we assume that all events involving \emph{exactly} $j$ components failing
+have the same failure rate, which we denote by $q_j$.
+This model is called the \emph{basic parameter model},
+and we write $\vec{q}$ for $(q_1,\dots,q_k)$.
+
+For example, if we have three components, A, B, and C,
+then the rate at which we see only A failing
+is equal to the rate at which we see only B failing,
+and is also equal to the rate at which we see only C failing;
+this failure rate is $q_1$.
+Moreover, the rate at which we observe only A and B jointly failing
+is equal to the rate at which we observe only B and C jointly failing,
+and also equal to the rate at which we observe only A and C jointly failing;
+this failure rate is $q_2$.
+The rate at which we see all three components jointly failing is $q_3$.
+
+In case of $k$ identical components without common-cause failure modes,
+thus each failing independently at rate $\lambda$, we would have%
+\footnote{This is due to our Poisson assumption, and the assumption of immediate repair:
+independent Poisson processes never generate events simultaneously when we observe failure times precisely.}
+\begin{equation*}
+  q_1=\lambda\qquad \text{ and }\qquad q_j=0\text{ for }j\ge 2.
+\end{equation*}
+The fact that we allow arbitrary values for the $q_j$ reflects
+the lack of independence, and whence, our modelling of common-cause failures.
+At this point, it is worth noting that we do not actually write down a statistical model
+for all possible common-cause failure modes---we could do so if this information was available,
+and in fact, this could render the basic parameter model obsolete,
+and allow for more detailed inferences.
+In essence, the basic parameter model allows us to statistically model
+lack of independence between component failures,
+without further detail as to where dependencies arise from:
+all failure modes are lumped together, so to speak.
+
+It is useful to note that it is possible, and sometimes necessary,
+to relax the exchangeability assumption
+to accommodate specific asymmetric cases.
+For example, when components are in different state of health,
+single failures would clearly not have identical failure rates.
+Because the formulas become a lot more complicated,
+we stick to the exchangeable case here.
+
+Clearly, to answer typical reliability questions, such as for instance
+``what is the probability that two or more components fail in the next month?'',
+we need $\vec{q}$.
+In practice, the following three issues commonly arise.
+First, $\vec{q}$ is rarely measured directly,
+as failure data is often collected only per component.
+Secondly, when direct data about joint failures is available,
+typically, this data is sparse,
+because events involving more than two components failing simultaneously are usually quite rare.
+Thirdly, there are usually two distinct sources of failure data,
+one usually very large data set related to failure per component,
+and one usually much smaller data set related to joint failures.
+For these reasons,
+it is sensible to reparametrise the model in terms
+of parameters that can be more easily estimated, as follows.
 

@@ -832,3 +832,59 @@ For these reasons,
 it is sensible to reparametrise the model in terms
 of parameters that can be more easily estimated, as follows.
 
+
+\subsection{The Alpha-Factor Model}
+
+The alpha-factor parametrisation of the basic parameter model
+\cite{1988:mosleh::common:cause} starts out with
+considering the total failure rate of a component $q_t$,
+which could involve failure of any number of components,
+that is, this is the rate obtained by looking at just one component,
+ignoring everything else.
+Clearly,
+\begin{equation}\label{eq:qt:in:terms:of:qj}
+  q_t=\sum_{j=1}^k\binom{k-1}{j-1}q_j.
+\end{equation}
+For example, again consider a three component system, A, B, and C.
+The rate at which A fails is then
+the rate at which only A fails ($q_1$),
+plus the rate at which A and B, or A and C fail ($2q_2$),
+plus the rate at which all three components fail ($q_3$).
+
+Next, the alpha-factor model introduces
+$\theta_j$---the so-called alpha-factor---which
+denotes the probability of \emph{exactly} $j$ of the $k$ components
+failing given that failure occurs;
+in terms of relative frequency,
+$\theta_j$ is the fraction of failures
+that involve \emph{exactly} $j$ failed components.
+We write $\vec{\theta}$ for $(\theta_1,\dots,\theta_k)$.
+Clearly,
+\begin{equation}\label{eq:alphaj:in:terms:of:qj}
+  \alpha_j=\frac{\binom{k}{j}q_j}{\sum_{\ell=1}^k\binom{k}{\ell}q_\ell}.
+\end{equation}
+For example, again consider A, B, and C.
+Then the rate at which exactly one component fails is $3q_1$
+(as we have three single components, each of which failing with rate $q_1$),
+the rate at which exactly two components fail is $3q_2$
+(as we have three combinations of two components,
+each combination failing with rate $q_2$),
+and the rate at which all components fail is $q_3$.
+Translating these rates into fractions,
+we arrive precisely at Eq.~\eqref{eq:alphaj:in:terms:of:qj}.
+
+It can be shown that \cite[Table~C-1, p.~C-5]{1988:mosleh::common:cause}:\footnote{Hint: consider $\sum_{j=1}^k j\alpha_j$.}
+\begin{equation}\label{eq:qj:in:terms:of:qt}
+  q_j=\frac{1}{\binom{k-1}{j-1}}\frac{j\theta_j}{\sum_{\ell=1}^k \ell\theta_\ell}\,q_t.
+\end{equation}
+Eqs.~\eqref{eq:qt:in:terms:of:qj}, \eqref{eq:alphaj:in:terms:of:qj},
+and~\eqref{eq:qj:in:terms:of:qt}
+establish a one-to-one link between the so-called
+basic parameter model ($\vec{q}$)
+and the alpha-factor model ($q_t$, $\vec{\theta}$).
+The benefit of the alpha-factor model over the basic parameter model
+lies in its distinction between the total failure rate of a component $q_t$,
+for which we generally have a lot of information,
+and common-cause failures modelled by $\vec{\theta}$,
+for which we generally have very little information.
+

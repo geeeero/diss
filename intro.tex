@@ -888,5 +888,14 @@ The benefit of the alpha-factor model over the basic parameter model
 lies in its distinction between the total failure rate of a component $q_t$,
 for which there is generally have a lot of information,
 and common-cause failures modelled by $\vec{\alpha}$,
-for which there is generally have very little information.
+for which there is generally very little information.
+
+Next, we will use the Dirichlet-Multinomial model**** to estimate the alpha factors $\vec{\alpha}$.
+Estimating the marginal failure rate $q_t$ is possible in the framework from **** as well,
+when failures are assumed to follow a Poisson process.
+Then, the Gamma prior usually specified for the intensity parameter is of the form ****.
+We will not cover this Gamma-Poisson model here further,
+but details for this model and its combination with the Dirichlet-Multinomial model
+to make inferences on $\vec{q}$ can be found in \cite{Troffaes2013a}.
+
 

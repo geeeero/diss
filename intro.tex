@@ -29,6 +29,8 @@ Sec.~\ref{sec:diri-multi}: \cite{Walter2012b}
 
 Sec.~\ref{sec:commoncause}: parts of \cite{Troffaes2013a}
 
+Sec.~\ref{sec:alpha-factor-prior}: parts of \cite{Troffaes2013a}
+
 
 \section{Statistical Inference}
 \label{sec:stat-inference}
@@ -148,7 +150,7 @@ The \emph{multinomial distribution} is a common model for samples where only a l
 These distinct values are often named \emph{categories} (hence the term \emph{categorical data}),
 and are usually numbered from $1$ to $k$, without imposing any natural ordering on these values.
 We have therefore a discrete distribution,
-giving the probability for observing certain category counts $(n_1, \ldots, n_k) = \mbf{n}$ in a sample of $n$ observations in total.
+giving the probability for observing certain category counts $(n_1, \ldots, n_k) = \vec{n}$ in a sample of $n$ observations in total.
 Thus, $\sum_{j=1}^k n_j = n$.
 
 We start the definition of the multinomial distribution by decomposing the collection of $n$ observations into its constituents,
@@ -171,15 +173,15 @@ f_{\btheta}(\mbf{x}) &= \prod_{i=1}^n f_{\btheta}(x_i)
 \end{align*}
 where $n_j = \sum_{i=1}^n x_{ij}$ tells us how often category $j$ was observed in the sample.
 
-For the probability to observe a certain category count $(n_1, \ldots, n_k) = \mbf{n}$,
-we have to account for the different possible orderings in $\mbf{x}$ leading to the same count vector $\mbf{n}$.
+For the probability to observe a certain category count $(n_1, \ldots, n_k) = \vec{n}$,
+we have to account for the different possible orderings in $\mbf{x}$ leading to the same count vector $\vec{n}$.
 Therefore,
 \begin{align}\label{eq:multinomdens}
-f_{\btheta}(\mbf{n}) &= \binom{n}{n_1,\ldots,n_k} \prod_{j=1}^k \theta_j^{n_j}
+f_{\btheta}(\vec{n}) &= \binom{n}{n_1,\ldots,n_k} \prod_{j=1}^k \theta_j^{n_j}
                       = \frac{n!}{n_1!\cdot \ldots \cdot n_k!} \prod_{j=1}^k \theta_j^{n_j}\,.
 %               \propto \prod_{j=1}^k \theta_j^{n_j}\,.
 \end{align}
-As a shortcut, we write $\mbf{n} \sim \mult(\btheta)$.
+As a shortcut, we write $\vec{n} \sim \mult(\btheta)$.
 
 
 \section{Statistical Inference with the Bayesian Paradigm}
@@ -541,10 +543,11 @@ The construction of the canonical conjugate prior along \eqref{eq:canonicalprior
 for the Multinomial model $\mult(\btheta)$ with $k>2$ is more complex than for the case $k=2$
 as covered in Section~\ref{sec:beta-binom}.
 It is a well-known result that this construction leads to the commonly used Dirichlet prior;
-however, it is usually not derived in detail.%
+however, in the literature the construction is usually not derived in detail.%
 \footnote{E.g., \cite[Table~1]{2005:quaeghebeurcooman} tabulate, without proof,
 priors constructed for a number of sample models.
-Note that the table contains a sign error in $\mbf{b}(\bpsi)$ for the Multinomial sampling model.}
+Note that the first version of the paper contains a sign error in the $\mbf{b}(\bpsi)$ column
+for both the Binomial (Bernoulli) and the Multinomial (multivariate Bernoulli) sampling model.}
 We will cover the construction of $p(\bpsi\mid\nz, \yz)$,
 and also the transformation to $p(\btheta\mid\nz, \yz)$,
 in more detail here.
@@ -668,11 +671,12 @@ as the analogue to the Beta-Binomial model from Section~\ref{sec:beta-binom}.
 Returning to the notation from Section~\ref{sec:multinomdist},
 where $k$ categories $j=1,\ldots,k$ are considered, 
 we have thus
-\begin{align*}
+\begin{align}
+\label{eq:dirichlet-prior}
 p(\btheta\mid\nz,\byz) \propto \prod_{j=1}^k \theta_j^{\nz\yz_j-1}
-\end{align*}
+\end{align}
 as the prior.
-The vectorial $\byz$ is an element of the interior of the unit simplex $\Delta$,
+The vectorial $\byz$ is an element of the interior of the $k-1$-dimensional unit simplex $\Delta$,
 thus $\forall j \ \yz_j \in (0,1)$, $\sum_{j=1}^k \yz_j = 1$, in short $\byz \in \text{int}(\Delta)$.
 Here, the main posterior parameter is calculated as
 \begin{align*}
@@ -690,7 +694,7 @@ we will denote the Dirichlet prior directly in terms of the canonical parameters
 %\begin{align*}
 $\btheta \sim \dir(\nz,\byz)$.
 %\end{align*}
-The canonical parameters relate to the commonly used parameter $\bs{\alpha}$ with components $\alpha_1, \ldots, \alpha_k$ by
+The canonical parameters relate to the commonly used parameter, often denoted by $\bs{\alpha} = (\alpha_1, \ldots, \alpha_k)$, via
 \begin{align*}
 \yz_j &= \frac{\alpha_j}{\sum_{l=1}^k \alpha_l} &
 \nz   &= \sum_{l=1}^k \alpha_l \,.
@@ -891,7 +895,7 @@ for which there is generally have a lot of information,
 and common-cause failures modelled by $\vec{\alpha}$,
 for which there is generally very little information.
 
-Next, we will see that we can use the Dirichlet-Multinomial model
+Next, we will show how we can use the Dirichlet-Multinomial model
 from Section~\ref{sec:diri-multi} to estimate the alpha factors $\vec{\alpha}$.
 Estimating the marginal failure rate $q_t$ is possible in the framework from Section~\ref{sec:regularconjugates} as well,
 when failures are assumed to follow a Poisson process.
@@ -900,5 +904,81 @@ We will not cover such a \emph{Gamma-Poisson model} here further,
 but details for this model can be found in \cite{Troffaes2013a}.
 There, also the combination of the Dirichlet-Multinomial model for $\vec{\alpha}$
 and the Gamma-Poisson model for $q_t$ to make inferences on $\vec{q}$ is discussed.
+
+
+\subsection{Dirichlet Prior for Alpha-Factors}
+\label{sec:alpha-factor-prior}
+
+Suppose that we have observed a sequence of $n$ failure events,
+where we have counted the number of components involved with each failure event,
+say $n_j$ of the $n$ observed failure events involved \emph{exactly} $j$ failed components.
+As in Section~\ref{sec:multinomdist}, we write $\vec{n}$ for $(n_1,\dots,n_k)$.
+With the alpha-factors taking the role of the parameter $\btheta$ in \eqref{eq:multinomdens},
+the multinomial sample model for $\vec{n}$ has the form
+\begin{equation*}
+%  \label{eq:multinomial:likelihood}
+f(\vec{n}\mid\vec{\alpha}) \propto \prod_{j=1}^k\alpha_j^{n_j}\,.
+\end{equation*}
+
+As mentioned already, in this application of multinomial sample model,
+the $n_j$ are usually very low for $j\ge 2$,
+with zero being quite common for larger $j$.
+In such cases, standard techniques such as maximum likelihood for estimating the alpha-factors fail to produce sensible inferences.
+For any inference to be reasonably possible, it has been recognized \cite{1988:mosleh::common:cause}
+that we have to rely on epistemic information, that is, information which is not just described by the data.
+
+A standard way to include epistemic information in the model is
+through specification of the conjugate Dirichlet prior \eqref{eq:dirichlet-prior} for the alpha-factors \cite{1988:mosleh::common:cause},
+i.e., using the Dirichlet-Multinomial model for inferences about $\vec{\alpha}$:
+\begin{equation*}
+%\label{eq:dirichlet-prior-alpha}
+p(\vec{\alpha}\mid\nz,\byz) \propto \prod_{j=1}^k\alpha_j^{\nz\yz_j-1}
+\end{equation*}
+
+To recap, $\nz>0$ and $\byz\in\Delta$, where $\Delta$ is the $(k-1)$-dimensional unit simplex:
+\begin{equation*}
+\Delta=\left\{
+(\yz_1,\dots,\yz_k)\colon \yz_1\ge 0,\dots,\yz_k\ge 0,\,\sum_{j=1}^k \yz_j=1
+\right\}
+\end{equation*}
+%An interpretation for these parameters will be given shortly.
+Calculating the posterior density for $\vec{\alpha}$ then results in
+\begin{align*}
+p(\vec{\alpha}\mid\nz,\byz, \vec{n})
+ &= p(\vec{\alpha}\mid\nn,\byn)
+ \propto \prod_{j=1}^k\alpha_j^{\nn\yn_j-1} 
+ = \prod_{j=1}^k\alpha_j^{\nz\yz_j+n_j-1}\,.
+\end{align*}
+
+Of typical interest is for instance the posterior expectation of the probability $\alpha_j$
+of observing $j$ of the $k$ components failing due to a common cause given that failure occurs,
+\begin{align}
+\label{eq:dirichlet:posterior:predictive}
+\E[\alpha_j\mid\nz,\byz,\vec{n}]
+ &= \int_{\Delta}\alpha_j p(\vec{\alpha}\mid\nz,\byz,\vec{n})\dd\vec{\alpha}\nonumber\\
+ &= \frac{\nz\yz_j+n_j}{\nz+n}
+  = \frac{\nz}{\nz+n} \yz_j + \frac{n}{\nz+n} \frac{n_j}{n}\,,
+\end{align}
+where $n=\sum_{j=1}^k n_j$ is the total number of observations.
+
+Eq.~\eqref{eq:dirichlet:posterior:predictive} provides the interpretation for the hyperparameters
+$\nz$ and $\byz$ as mentioned in Section~\ref{sec:diri-multi},
+discussed here in terms of the alpha-factor model:
+\begin{itemize}
+\item If $n=0$, then $\E[\alpha_j\mid\nz,\byz,\vec{n}]=\yz_j$,
+so $\yz_j$ is the prior expected chance of observing $j$ of the $k$ components failing due to a common cause,
+given that failure occurs.
+\item $\E[\alpha_j\mid\nz,\byz,\vec{n}]$ is a weighted average of $\yz_j$ and $n_j/n$
+(the proportion of $j$-component failures in the $n$ observations), with weights $\nz$ and $n$, respectively.
+The parameter $\nz$ thus determines how much data is required for the posterior to start moving away from the prior.
+If $n \ll \nz$ then the prior will weigh more;
+if $n = \nz$, then prior and data will weigh equally;
+and if $n \gg \nz$, then the data will weigh more.
+In particular, $\E[\alpha_j\mid\nz,\byz,\vec{n}]=\yz_j$ if $n=0$ (as already mentioned),
+and $\E[\alpha_j\mid\nz,\byz,\vec{n}] \to \frac{n_j}{n}$ as $n \to \infty$.
+\end{itemize}
+
+
+
 
 

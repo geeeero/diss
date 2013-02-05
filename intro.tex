@@ -213,6 +213,7 @@ which is the distribution of further observations based on $p(\vartheta\mid\mbf{
 
 
 \subsection{Regular Conjugate Families of Distributions}
+\label{sec:regularconjugates}
 
 Traditional Bayesian inference is frequently based on so-called \emph{conjugate priors} related to a specific likelihood.
 Such priors have the convenient property that the posterior resulting from~\eqref{eq:bayesrule}
@@ -890,12 +891,14 @@ for which there is generally have a lot of information,
 and common-cause failures modelled by $\vec{\alpha}$,
 for which there is generally very little information.
 
-Next, we will use the Dirichlet-Multinomial model**** to estimate the alpha factors $\vec{\alpha}$.
-Estimating the marginal failure rate $q_t$ is possible in the framework from **** as well,
+Next, we will see that we can use the Dirichlet-Multinomial model
+from Section~\ref{sec:diri-multi} to estimate the alpha factors $\vec{\alpha}$.
+Estimating the marginal failure rate $q_t$ is possible in the framework from Section~\ref{sec:regularconjugates} as well,
 when failures are assumed to follow a Poisson process.
-Then, the Gamma prior usually specified for the intensity parameter is of the form ****.
-We will not cover this Gamma-Poisson model here further,
-but details for this model and its combination with the Dirichlet-Multinomial model
-to make inferences on $\vec{q}$ can be found in \cite{Troffaes2013a}.
+Then, the Gamma prior usually specified for the intensity parameter is of the form \eqref{eq:canonicalprior}.
+We will not cover such a \emph{Gamma-Poisson model} here further,
+but details for this model can be found in \cite{Troffaes2013a}.
+There, also the combination of the Dirichlet-Multinomial model for $\vec{\alpha}$
+and the Gamma-Poisson model for $q_t$ to make inferences on $\vec{q}$ is discussed.
 
 

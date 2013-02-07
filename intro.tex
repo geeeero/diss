@@ -247,6 +247,7 @@ and $\mbf{b}(\psi)$ a scalar function of $\psi$ (or, in turn, of $\theta$).
 $\tau(\x)$ is a function of the sample $\x$ that fulfills $\tau(\x) = \sum_{i=1}^n \tau^*(x_i)$,
 with $\tau^*(x_i) \in \mathcal{T} \subset \reals^q$,
 while $\langle\cdot, \cdot\rangle$ denotes the scalar product.
+
 From these ingredients, a conjugate prior on $\psi$ can be constructed as%
 \footnote{In our notation, ${}\uz$ denotes prior parameters; ${}\un$ posterior parameters.}
 \begin{align}
@@ -255,6 +256,7 @@ p(\psi \mid \nz, \yz) \dd\psi
  &\propto \exp\Big\{ \nz \Big[ \langle \yz, \psi \rangle - \mbf{b}(\psi) \Big] \Big\} \dd\psi\,,
 \end{align}
 where $\nz$ and $\yz$ are now the parameters by which a certain prior can be specified.
+We will refer to priors of the form~\eqref{eq:canonicalprior} as \emph{canonically constructed priors}.
 The domain of $\yz$ is $\Y$, the interior of the convex hull of $\mathcal{T}$;
 $\nz$ must take strictly positive values for the prior to be proper (integrable to $1$).
 
@@ -979,22 +981,15 @@ and $\E[\alpha_j\mid\nz,\byz,\vec{n}] \to \frac{n_j}{n}$ as $n \to \infty$.
 \end{itemize}
 
 
-\subsection{Ususal Handling Epistemic Information for Alpha-Factors}
+\subsection{Ususal Handling of Epistemic Information for Alpha-Factors}
 \label{sec:epistemic-alpha}
 
 Crucial to reliable inference in the alpha-factor model
 is proper modelling of epistemic information about failures,
 which is in the above approach expressed through the choice of $(\nz,\byz)$.
-By means of an example, taken from Kelly and Atwood \cite{2011:kelly:atwood},
+By means of an example taken from \cite{2011:kelly:atwood},
 we will demonstrate that posterior inferences rely crucially on this choice of hyperparameters,
 particularly when faced with zero counts.
-Therefore, we will argue that bounds, rather than precise values,
-should be assigned for these hyperparameters, and that in this application,
-assigning an interval for the learning parameter $\nz$ is especially important.
-This effects to using the imprecise probability models that are at the core of this thesis.
-A systematic presentation of these models,
-together with more arguments for employing them in important statistical inference tasks,
-is given in Sections*****.
 
 %We focus on two methods for elicitation of these parameters, and the inferences that result from them.
 
@@ -1002,7 +997,7 @@ Consider a system with four redundant components ($k=4$).
 The probability of $j$ out of $k$ failures, given that failure has happend, was denoted by $\alpha_j$.
 We assume that the analyst's prior expectation $\mu_{\text{spec},j}$ for each $\alpha_j$ is:
 \begin{align}
-  \label{eq:alphaexample:muspec}
+  \label{eq:example:muspec}
   \mu_{\text{spec},1} &= 0.950
   &
   \mu_{\text{spec},2} &= 0.030
@@ -1023,14 +1018,14 @@ and 1 showed two components failing:
   n_4 &= 0
 \end{align*}
 
-Atwood \cite{1996:atwood} studied priors for the binomial model
+\cite{1996:atwood} studied priors for the binomial model
 which maximise entropy (and whence, are `non-informative'%
 \footnote{We will comment on so-called \emph{non-informative} priors in Section****.})
 whilst constraining the mean to a specific value.
 Although these priors are not conjugate,
-Atwood \cite{1996:atwood} showed that they can be well approximated by Beta distributions, which are conjugate.
+\cite{1996:atwood} showed that they can be well approximated by Beta distributions, which are conjugate.
 %
-Kelly and Atwood \cite{2011:kelly:atwood} applied this approach to the multinomal model with conjugate Dirichlet priors,
+\cite{2011:kelly:atwood} applied this approach to the multinomal model with conjugate Dirichlet priors,
 by choosing a constrained non-informative prior for the marginals of the Dirichlet---which are Beta.
 This leads to an over-specified system of equalities, which can be solved via least-squares optimisation.
 
@@ -1054,7 +1049,7 @@ Using Eq.~\eqref{eq:dirichlet:posterior:predictive}, under this prior \cite[p.~4
   &
   \E[\alpha_4\mid\nz,\byz,\vec{n}] &= \frac{0.05 + 0}{10 + 36} = 0.001
 \end{align*}
-Kelly and Atwood \cite[p.~402, \S 4]{2011:kelly:atwood}
+\cite[p.~402, \S 4]{2011:kelly:atwood}
 compare these results against a large number of other choices of priors,
 and note that the posterior resulting from Eq.~\eqref{eq:constrainednoninformative}
 seems too strongly influenced by the prior, particularly in the presence of zero counts.
@@ -1082,7 +1077,375 @@ $\yz_j=0.125$ and $\nz=4$, which gives:
 \end{align*}
 
 The degree of variation in the posterior under different priors is evidently somewhat alarming.
-In the next section, we aim to robustify the model by using sets of priors from the start.
+In the next section, we thus aim to robustify the model by using sets of priors
+instead of a single Dirichlet prior to model epistemic information.
+We will argue that bounds, rather than precise values,
+should be assigned for $(\nz,\byz)$, and that in this application,
+assigning an interval for the learning parameter $\nz$ is especially important.
+This effects to using the imprecise probability models that are at the core of this thesis.
+A systematic presentation of these models,
+together with more arguments for employing them in important statistical inference tasks,
+is given in Sections*****.
 
 
+\subsection{Cautious Epistemic Information for Alpha-Factors}
+\label{sec:imprecise-alpha}
+
+For Bayesian inference in the Dirichlet-Multinomial model
+when no prior information is available,
+\cite{1996:walley::idm} proposes as a so-called \emph{near-ignorance prior} a set of Dirichlet priors,
+with hyperparameters constrained to the set:
+\begin{equation*}
+  \mathcal{H}=\{(\nz,\byz)\colon\byz\in\Delta\}
+\end{equation*}
+for some fixed value of $\nz$, which determines the learning speed of the model
+\cite[p.~218, \S 5.3.2]{1991:walley} \cite[p.~9, \S 2.3]{1996:walley::idm}.%
+\footnote{Our notation relates to Walley's as $\nz \leftrightarrow s$, $\yz_j \leftrightarrow t_j$.}
+
+When prior information is available, more generally,
+we may assume that we can specify a subset $\mathcal{H}$ of $(0,+\infty)\times\Delta$.
+Following Walley's suggestions
+\cite[p.~224, \S 5.4.3]{1991:walley} \cite[p.~32, \S 6]{1996:walley::idm},
+we take
+\begin{equation}
+  \label{eq:hyperparams:boxmodel}
+  \mathcal{H}
+  =
+  \left\{
+  (\nz,\byz)
+  \colon
+  \nz\in[\nzl,\nzu],\,
+  \byz\in\Delta,\,
+  \yz_j\in[\yzl_j,\yzu_j]
+  \right\}
+\end{equation}
+where the analyst has to specify the bounds
+$[\yzl_j,\yzu_j]$ for each $j\in\{1,\dots,k\}$,
+and $[\nzl,\nzu]$.
+
+The posterior lower and upper expectations of $\alpha_j$ are:
+\begin{align}
+  \label{eq:idm-update-lower}
+  \El[\alpha_j\mid\mathcal{H},\vec{n}]
+  &=
+  \min\left\{
+    \frac{\nzl\yzl_j + n_j}{\nzl + n},
+    \frac{\nzu\yzl_j + n_j}{\nzu + n}
+  \right\}
+  =
+  \begin{cases}
+    \frac{\nzl\yzl_j + n_j}{\nzl + n} & \text{if }\yzl_j\ge n_j/n \\[1ex]
+    \frac{\nzu\yzl_j + n_j}{\nzu + n} & \text{if }\yzl_j\le n_j/n
+  \end{cases}
+  \\
+  \label{eq:idm-update-upper}
+  \Eu[\alpha_j\mid\mathcal{H},\vec{n}]
+  &=
+  \max\left\{
+    \frac{\nzl\yzu_j + n_j}{\nzl + n},
+    \frac{\nzu\yzu_j + n_j}{\nzu + n}
+  \right\}
+  =
+  \begin{cases}
+    \frac{\nzu\yzu_j + n_j}{\nzu + n} & \text{if }\yzu_j\ge n_j/n \\[1ex]
+    \frac{\nzl\yzu_j + n_j}{\nzl + n} & \text{if }\yzu_j\le n_j/n
+  \end{cases}
+\end{align}
+
+For the model to be of any use, we must be able to elicit the bounds.
+The interval $[\yzl_j,\yzu_j]$ simply represents bounds on the prior
+expectation of the chance $\alpha_j$.
+
+%\paragraph{Fixed Learning Parameter}
+
+Typically, the learning parameter $\nz$ is taken to be $2$
+(not without controversy; see insightful discussions in \cite{1996:walley::idm}).
+One might therefore be tempted to using the same prior expectations
+$\yz_j$ for the $\alpha_j$ as above (Eq.~\eqref{eq:example:muspec}), with $\nz=2$,
+resulting in the following posterior expectations:
+\begin{align*}
+  \E[\alpha_1\mid\nz,\byz,\vec{n}] &= \frac{1.9 + 35}{2 + 36} = 0.971
+  &
+  \E[\alpha_2\mid\nz,\byz,\vec{n}] &= \frac{0.06 + 1}{2 + 36} = 0.028
+  \\
+  \E[\alpha_3\mid\nz,\byz,\vec{n}] &= \frac{0.03 + 0}{2 + 36} = 0.0007
+  &
+  \E[\alpha_4\mid\nz,\byz,\vec{n}] &= \frac{0.01 + 0}{2 + 36} = 0.0002
+\end{align*}
+Whence, for this example, it is obvious that $\nz=2$ is an excessively poor choice:
+the posterior expectations in case of zero counts are pulled way too much towards zero.
+One might suspect that this is partly due to the strong prior information,
+that is, the knowledge of $\yz_j$.
+However, even if we interpret the given probabilities as bounds, say:
+\begin{subequations}
+  \label{eq:example:tintervals}
+\begin{align} %%% same layout as below
+  [\yzl_1,\yzu_1] &= [0.950,1]
+  \\
+  [\yzl_2,\yzu_2] &= [0,0.030]
+  \\
+  [\yzl_3,\yzu_3] &= [0,0.015]
+  \\
+  [\yzl_4,\yzu_4] &= [0,0.005]
+\end{align}
+\end{subequations}
+we still find:
+\begin{subequations}
+\begin{align}
+  \big[
+  \El[\alpha_1\mid\mathcal{H},\vec{n}] %=\frac{35+1.9}{36+2}
+  ,
+  \Eu[\alpha_1\mid\mathcal{H},\vec{n}] %=\frac{35+2}{36+2}
+  \big]
+  &=
+  [
+  0.971
+  ,
+  0.974
+  ]
+  \\
+  \big[
+  \El[\alpha_2\mid\mathcal{H},\vec{n}] %=\frac{1}{36+2}
+  ,
+  \Eu[\alpha_2\mid\mathcal{H},\vec{n}] %=\frac{1+0.06}{36+2}
+  \big]
+  &=
+  [
+  0.026
+  ,
+  0.028
+  ]
+  \\
+  \big[
+  \El[\alpha_3\mid\mathcal{H},\vec{n}] %=\frac{0}{36+2}
+  ,
+  \Eu[\alpha_3\mid\mathcal{H},\vec{n}] %=\frac{0+0.03}{36+2}
+  \big]
+  &=
+  [
+  0
+  ,
+  0.0007
+  ]
+  \\
+  \big[
+  \El[\alpha_4\mid\mathcal{H},\vec{n}] %=\frac{0}{36+2}
+  ,
+  \Eu[\alpha_4\mid\mathcal{H},\vec{n}] %=\frac{0+0.01}{36+2}
+  \big]
+  &=
+  [
+  0
+  ,
+  0.0002
+  ]
+\end{align}
+\end{subequations}
+Clearly, only the posterior inferences about $\alpha_1$ (and perhaps also $\alpha_2$) seem reasonable.
+We conclude that \emph{the imprecise Dirichlet model with $\nz=2$ learns too fast from the data in case of zero counts}.
+
+On the one hand, when counts are sufficiently far from zero,
+the posterior probability with $\nz=2$, and perhaps even $\nz=1$ or $\nz=0$,%
+\footnote{As mentioned on page~\pageref{eq:canonicalprior},
+a taking $\nz \le 0$ would result in an improper prior.}
+seem appropriate.
+For zero counts, however, a larger value of $\nz$ seems mandatory.
+Therefore, it seems logical to pick an interval for $\nz$.
+
+A further argument for choosing an interval for $\nz$,
+in case of an informative set of priors,
+is provided by \cite[p.~225, \S 5.4.4]{1991:walley}:
+a larger value of $\nzu$ ensures that the posterior does not move away too fast from the prior,
+which is particularly important for zero counts,
+and the difference between $\nzl$ and $\nzu$ effectively results in greater posterior
+imprecision if $n_j/n \notin [\yzl_j,\yzu_j]$.% %in case of prior-data conflict.
+\footnote{We will show in Section**** that this argument makes sense
+also for the general case of canonically constructed priors \eqref{eq:canonicalprior}.}
+
+To see this, note that, if $\yzl_j \le n_j/n \le \yzu_j$, it follows from
+Eqs.~\eqref{eq:idm-update-lower} and \eqref{eq:idm-update-upper}
+that both lower and upper posterior expectation are calculated using $\nzu$.
+When $n_j/n \le \yzl_j$ (or $\yzu_j \le n_j/n$),
+the lower (upper) posterior expectation is calculated using $\nzl$ instead,
+which is nearer to $n_j/n$ due to the lower weight $\nzl$ for the prior bound $\yzl_j$ ($\yzu_j$).
+%resulting in a wider posterior expectation interval.
+The increased imprecision reflects the conflict between the prior assignment
+$[\yzl_j,\yzu_j]$ and the observed fraction $n_j/n$,
+and this is referred to as \emph{prior-data conflict}
+(see Section****, or \cite{Walter2009a} for the paper centered around this idea).
+
+%\paragraph{Interval for Learning Parameter}
+
+We follow \cite[p.~19]{1965:good} (as suggested by \cite[Note~5.4.1, p.~524]{1991:walley}),
+and reason about posterior expectations of hypothetical data to elicit $\nzl$ and $\nzu$;
+also see \cite[p.~219, \S 5.3.3]{1991:walley} for further
+discussion on elicitation on $\nz$---our approach is similar, but simpler for the case under study.
+We assume that $\yzu_1=1$ and $\yzl_j=0$ for all $j\ge 2$.
+
+The upper probability of multiple ($j\ge 2$) failed components in trial $m+1$,
+given single-component failures ($j=1$) in all of the first $m$ trials, is
+\begin{equation*}
+  \Eu[\alpha_j\mid\mathcal{H}, n_1=m, n=m] = \frac{\nzu\yzu_j}{\nzu + m}
+\end{equation*}
+(Note: there is no prior-data conflict in this case.)
+Whence, for the above probability to reduce to $\yzu_j/2$
+(i.e., to reduce the prior upper probability by half), we need that $m=\nzu$.
+In other words, \emph{$\nzu$ is the number of one-component failures required
+to reduce the upper probabilities of multi-components failure by half}.
+
+Conversely, the lower probability of single-component failure ($j=1$) in trial $m+1$,
+given only multiple ($j\ge 2$) failed components in the first $m$ trials,
+is
+\begin{equation*}
+  \El[\alpha_1\mid\mathcal{H}, n_1=0, n=m] = \frac{\nzl\yzl_1}{\nzl + m}
+\end{equation*}
+(Note: there is strong prior-data conflict in this case.)
+%
+In other words, \emph{$\nzl$ is the number of multi-component failures required
+to reduce the lower probability of one-component failure by half}.
+%
+Note that, in this case, a few alternative interpretations present themselves.
+First, for $j \ge 2$,
+\begin{equation*}
+  \Eu[\alpha_j\mid\mathcal{H}, n_j=m, n=m] = \frac{\nzl\yzu_j + m}{\nzl + m}
+\end{equation*}
+In other words, \emph{$\nzl$ is also the number of $j$-component failures required
+to increase the upper probability of $j$ components failing to $(1+\yzu_j)/2$}
+(generally, this will be close to $1/2$, provided that $\yzu_j$ is close to zero).
+%
+Secondly, as $\yzl_j = 0$ for $j \ge 2$, we get, for $j \ge 2$,
+\begin{equation*}
+  \El[\alpha_j\mid\mathcal{H}, n_j=m, n=m] = \frac{m}{m+\nzu}
+\end{equation*}
+so \emph{$\nzu$ is also the number of multi-component failures required
+to increase the lower probability of multi-component failures from zero to a half}.
+
+Any of these counts seem well suited for elicitation, and are easy to interpret.
+As a guideline, we suggest the following easily remembered rules:
+\begin{itemize}
+\item $\nzu$ is the number of one-component failures required to reduce
+the upper probabilities of multi-component failures by half, and
+\item $\nzl$ is the number of multi-component failures required to reduce
+the lower probability of one-component failures by half.
+\end{itemize}
+Taking the above interpretation, the difference between $\nzu$ and $\nzl$
+reflects the fact that the rate at which we reduce upper probabilities
+is less than the rate at which we reduce lower probabilities,
+and thus reflects a level of caution in our model.
+
+Coming back to our example, reasonable values are $\nzl=1$
+(if we immediately observe multi-component failures,
+we might be quite keen to reduce our lower probability for one-component failure)
+and $\nzu=10$ (we are happy to halve our upper probabilities of
+multi-component failures after observing $10$ one-component failures).
+With these values, when taking for $\yz_j$ the values given in Eq.~\eqref{eq:example:muspec},
+we find the following posterior lower and upper expectations of $\alpha_j$:
+\begin{subequations}
+\begin{align}
+  \big[
+  \El[\alpha_1\mid\mathcal{H},\vec{n}] %=\frac{35+9.5}{36+10}
+  ,
+  \Eu[\alpha_1\mid\mathcal{H},\vec{n}] %=\frac{35+0.95}{36+1}
+  \big]
+  &=
+  [
+  0.967
+  ,
+  0.972
+  ]
+  \\
+  \big[
+  \El[\alpha_2\mid\mathcal{H},\vec{n}] %=\frac{1+0.03}{36+1}
+  ,
+  \Eu[\alpha_2\mid\mathcal{H},\vec{n}] %=\frac{1+0.3}{36+10}
+  \big]
+  &=
+  [
+  0.0278
+  ,
+  0.0283
+  ]
+  \\
+  \big[
+  \El[\alpha_3\mid\mathcal{H},\vec{n}] %=\frac{0+0.015}{36+1}
+  ,
+  \Eu[\alpha_3\mid\mathcal{H},\vec{n}] %=\frac{0+0.15}{36+10}
+  \big]
+  &=
+  [
+  0.00041
+  ,
+  0.00326
+  ]
+  \\
+  \big[
+  \El[\alpha_4\mid\mathcal{H},\vec{n}] %=\frac{0+0.005}{36+1}
+  ,
+  \El[\alpha_4\mid\mathcal{H},\vec{n}] %=\frac{0+0.05}{36+10}
+  \big]
+  &=
+  [
+  0.00014
+  ,
+  0.00109
+  ]
+\end{align}
+\end{subequations}
+These bounds indeed reflect caution in inferences where zero counts have occurred ($j=3$ and $j=4$),
+with upper expectations considerably larger as compared to the model with fixed $s$,
+while still giving a reasonable expectation interval for the probability of one-component failure.
+
+If we desire to specify our initial bounds for $\yz_j$ more conservatively,
+as in Eqs.~\eqref{eq:example:tintervals}, we find similar results:
+\begin{subequations}\label{eq:alphabounds}
+\begin{align}
+  \big[
+  \El[\alpha_1\mid\mathcal{H},\vec{n}] %=\frac{35+9.5}{36+10}
+  ,
+  \Eu[\alpha_1\mid\mathcal{H},\vec{n}] %=\frac{35+10}{36+10}
+  \big]
+  &=
+  [
+  0.967
+  ,
+  0.978
+  ]
+  \\
+  \big[
+  \El[\alpha_2\mid\mathcal{H},\vec{n}] %=\frac{1+0}{36+1}
+  ,
+  \Eu[\alpha_2\mid\mathcal{H},\vec{n}] %=\frac{1+0.3}{36+10}
+  \big]
+  &=
+  [
+  0.0270
+  ,
+  0.0283
+  ]
+  \\
+  \big[
+  \El[\alpha_3\mid\mathcal{H},\vec{n}] %=\frac{0+0}{36+1}
+  ,
+  \Eu[\alpha_3\mid\mathcal{H},\vec{n}] %=\frac{0+0.15}{36+10}
+  \big]
+  &=
+  [
+  0
+  ,
+  0.00326
+  ]
+  \\
+  \big[
+  \El[\alpha_4\mid\mathcal{H},\vec{n}] %=\frac{0+0}{36+1}
+  ,
+  \Eu[\alpha_4\mid\mathcal{H},\vec{n}] %=\frac{0+0.05}{36+10}
+  \big]
+  &=
+  [
+  0
+  ,
+  0.00109
+  ]
+\end{align}
+\end{subequations}
 

@@ -979,6 +979,110 @@ and $\E[\alpha_j\mid\nz,\byz,\vec{n}] \to \frac{n_j}{n}$ as $n \to \infty$.
 \end{itemize}
 
 
+\subsection{Ususal Handling Epistemic Information for Alpha-Factors}
+\label{sec:epistemic-alpha}
+
+Crucial to reliable inference in the alpha-factor model
+is proper modelling of epistemic information about failures,
+which is in the above approach expressed through the choice of $(\nz,\byz)$.
+By means of an example, taken from Kelly and Atwood \cite{2011:kelly:atwood},
+we will demonstrate that posterior inferences rely crucially on this choice of hyperparameters,
+particularly when faced with zero counts.
+Therefore, we will argue that bounds, rather than precise values,
+should be assigned for these hyperparameters, and that in this application,
+assigning an interval for the learning parameter $\nz$ is especially important.
+This effects to using the imprecise probability models that are at the core of this thesis.
+A systematic presentation of these models,
+together with more arguments for employing them in important statistical inference tasks,
+is given in Sections*****.
+
+%We focus on two methods for elicitation of these parameters, and the inferences that result from them.
+
+Consider a system with four redundant components ($k=4$).
+The probability of $j$ out of $k$ failures, given that failure has happend, was denoted by $\alpha_j$.
+We assume that the analyst's prior expectation $\mu_{\text{spec},j}$ for each $\alpha_j$ is:
+\begin{align}
+  \label{eq:alphaexample:muspec}
+  \mu_{\text{spec},1} &= 0.950
+  &
+  \mu_{\text{spec},2} &= 0.030
+  &
+  \mu_{\text{spec},3} &= 0.015
+  &
+  \mu_{\text{spec},4} &= 0.005
+\end{align}
+We have 36 observations, in which 35 showed one component failing,
+and 1 showed two components failing:
+\begin{align*}
+  n_1 &= 35
+  &
+  n_2 &= 1
+  &
+  n_3 &= 0
+  &
+  n_4 &= 0
+\end{align*}
+
+Atwood \cite{1996:atwood} studied priors for the binomial model
+which maximise entropy (and whence, are `non-informative'%
+\footnote{We will comment on so-called \emph{non-informative} priors in Section****.})
+whilst constraining the mean to a specific value.
+Although these priors are not conjugate,
+Atwood \cite{1996:atwood} showed that they can be well approximated by Beta distributions, which are conjugate.
+%
+Kelly and Atwood \cite{2011:kelly:atwood} applied this approach to the multinomal model with conjugate Dirichlet priors,
+by choosing a constrained non-informative prior for the marginals of the Dirichlet---which are Beta.
+This leads to an over-specified system of equalities, which can be solved via least-squares optimisation.
+
+For the problem we are interested in, $\mu_{\text{spec},1}$ is close to $1$.
+In this case, the solution of the least-squares problem turns out to be close to:
+\begin{equation}
+ \label{eq:constrainednoninformative}
+ \begin{split}
+  t_j&=\mu_{\text{spec},j} \text{ for all $j\in\{1,\dots,k\}$} \\
+  s&=\frac{1}{2(1-\mu_{\text{spec},1})}
+ \end{split}
+\end{equation}
+For our example, this means that $s=10$ \cite[p.~400, \S 3]{2011:kelly:atwood}.
+Using Eq.~\eqref{eq:dirichlet:posterior:predictive}, under this prior \cite[p.~401, \S 3.1]{2011:kelly:atwood}:
+\begin{align*}
+  \E[\alpha_1\mid\nz,\byz,\vec{n}] &= \frac{9.5 + 35}{10 + 36} = 0.967
+  &
+  \E[\alpha_2\mid\nz,\byz,\vec{n}] &= \frac{0.3  + 1}{10 + 36} = 0.028
+  \\
+  \E[\alpha_3\mid\nz,\byz,\vec{n}] &= \frac{0.15 + 0}{10 + 36} = 0.003
+  &
+  \E[\alpha_4\mid\nz,\byz,\vec{n}] &= \frac{0.05 + 0}{10 + 36} = 0.001
+\end{align*}
+Kelly and Atwood \cite[p.~402, \S 4]{2011:kelly:atwood}
+compare these results against a large number of other choices of priors,
+and note that the posterior resulting from Eq.~\eqref{eq:constrainednoninformative}
+seems too strongly influenced by the prior, particularly in the presence of zero counts.
+For instance, the uniform prior is a Dirichlet distribution with hyperparameters
+$\yz_j=0.25$ and $\nz=4$, which gives:
+\begin{align*}
+  \E[\alpha_1\mid\nz,\byz,\vec{n}] &= \frac{1+35}{4+36} = 0.9
+  &
+  \E[\alpha_2\mid\nz,\byz,\vec{n}] &= \frac{1+1}{4+36} = 0.05
+  \\
+  \E[\alpha_3\mid\nz,\byz,\vec{n}] &= \frac{1+0}{4+36} = 0.025
+  &
+  \E[\alpha_4\mid\nz,\byz,\vec{n}] &= \frac{1+0}{4+36} = 0.025
+\end{align*}
+Jeffrey's prior is again a Dirichlet distribution with hyperparameters
+$\yz_j=0.125$ and $\nz=4$, which gives:
+\begin{align*}
+  \E[\alpha_1\mid\nz,\byz,\vec{n}] &= \frac{0.5 + 35}{4+36} = 0.8875
+  &
+  \E[\alpha_2\mid\nz,\byz,\vec{n}] &= \frac{0.5 + 1}{4+36} = 0.0375
+  \\
+  \E[\alpha_3\mid\nz,\byz,\vec{n}] &= \frac{0.5 + 0}{4+36} = 0.0125
+  &
+  \E[\alpha_4\mid\nz,\byz,\vec{n}] &= \frac{0.5 + 0}{4+36} = 0.0125
+\end{align*}
+
+The degree of variation in the posterior under different priors is evidently somewhat alarming.
+In the next section, we aim to robustify the model by using sets of priors from the start.
 
 
 

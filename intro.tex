@@ -35,8 +35,8 @@ Sec.~\ref{sec:commoncause}: parts of \cite{Troffaes2013a}
 
 scalars: italic letters ($x$, $\theta$);
 vectors: bold italic letters ($\vec{x}$, $\btheta$);
-matrices: bold ***upright*** letters ($\mbf{x}$, $\mbf{z}$)
-transposed matrices: raised uppercase sans serif T ($\mbf{x}^\tra$)
+matrices: bold ***upright*** uppercase letters ($\mbf{X}$, $\mbf{Z}$)
+transposed matrices: raised uppercase sans serif T ($\mbf{X}^\tra$)
 
 samples, realizations: lowercase letters ($x$, $\x$)
 
@@ -571,7 +571,7 @@ and the number of observations to be predicted.
 \subsection{The Dirichlet-Multinomial Model}
 \label{sec:diri-multi}
 
-The construction of the canonical conjugate prior along \eqref{eq:canonicalprior}
+The construction of the canonical conjugate prior by Eq.~\eqref{eq:canonicalprior}
 for the Multinomial model $\mult(\btheta)$ with $k>2$ is more complex than for the case $k=2$
 as covered in Section~\ref{sec:beta-binom}.
 It is a well-known result that this construction leads to the commonly used Dirichlet prior;
@@ -623,12 +623,12 @@ With $\bpsi$ and $\mbf{b}(\bpsi)$ derived from the sample model as
 the conjugate prior is at first constructed as a density over $\bpsi$,
 dropping the upper index ${}\uz$ in $\nz$ and the vectorial $\mbf{y}\uz$ for ease of notation:
 \begin{align*}
-p(\bpsi\mid n,\mbf{y})\, \dd\bpsi
+p(\bpsi\mid n,\vec{y})\, \dd\bpsi
  &\propto \exp\Bigg\{n\, \Bigg[ \sum_{j=1}^k y_j \ln\bigg(\frac{\theta_j}{\theta_0}\bigg) - \big(-\ln(\theta_0)\big) \Bigg] \Bigg\} \,\dd\bpsi\,,.
 \end{align*}
 Written as a density over $\btheta$, we have
 \begin{align*}
-p(\btheta\mid n,\mbf{y})\, \dd\btheta
+p(\btheta\mid n,\vec{y})\, \dd\btheta
  &\propto \exp\Bigg\{n\, \Bigg[ \sum_{j=1}^k y_j \ln\bigg(\frac{\theta_j}{\theta_0}\bigg) - \big(-\ln(\theta_0)\big) \Bigg] \Bigg\}
   \cdot \left| \det\left(\frac{\dd\bpsi}{\dd\btheta}\right) \right|\, \dd\btheta\,,
 \end{align*}
@@ -668,17 +668,17 @@ Thus,
 &= \Bigg( \prod_{j=1}^k \frac{1}{\theta_j}\Bigg) \frac{1}{\theta_0}
  = \prod_{j=0}^k \frac{1}{\theta_j}\,,
 \end{align*}
-where equality ${}^*$ holds by the theorem \cite[Theorem A 16 (x), Appendix A3, p.~494]{MR2370506},
+where equality ${}^*$ holds by the theorem \cite[Theorem A 16 (x), Appendix A3, p.~494]{MR2370506}
 %in Rao, Toutenburg, Shalabh, and Heumann, \emph{Linear models and generalizations}, Springer, Berlin 2008: %bibtex at end of document
 stating that
 \begin{align*}
-\det (A + a\, a^\tra) &= \det(A) (1+a^\tra A^{-1} a) & \text{if}& & \det(A) &\neq 0
+\det (\mbf{A} + \vec{a}\, \vec{a}^\tra) &= \det(\mbf{A}) (1+\vec{a}^\tra \mbf{A}^{-1} \vec{a}) & \text{if}& & \det(\mbf{A}) &\neq 0
 \end{align*}
-for all appropriately sized matrices $A$ and column vectors $a$.
+for all appropriately sized matrices $\mbf{A}$ and column vectors $\vec{a}$.
 
 With $\det\left(\frac{\dd\bpsi}{\dd\btheta}\right) = \prod_{j=0}^k \frac{1}{\theta_j}$, we get
 \begin{align*}
-p(\btheta\mid n,\mbf{y})
+p(\btheta\mid n,\vec{y})
  &\propto \exp\Bigg\{n\, \Bigg[ \sum_{j=1}^k y_j \ln\bigg(\frac{\theta_j}{\theta_0}\bigg) - \big(-\ln(\theta_0)\big) \Bigg] \Bigg\}
   \cdot \bigg| \prod_{j=0}^k \frac{1}{\theta_j} \bigg| \\
  &=       \exp\Bigg\{n\, \Bigg[ \sum_{j=1}^k y_j \Big(\ln(\theta_j)-\ln(\theta_0)\Big) + \ln(\theta_0) \Bigg]
@@ -734,7 +734,7 @@ The canonical parameters relate to the commonly used parameter, often denoted by
 
 We will now present a problem in reliability analysis for which the most common model
 relies on the Dirichlet-Multinomial model.
-***It will also serve as a motivation for the use of sets of priors.***
+This will also motivate the use of sets of prior distributions.
 
 
 \section{Dirichlet-Multinomial Model for Common-Cause Failure}

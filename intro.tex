@@ -47,7 +47,16 @@ is not maintained throughout most of the thesis.
 
 sets, spaces: calligraphic uppercase letters ($\mathcal{X}$, $\Y$, $\mathcal{M}$)
 
-special sets: real numbers $\reals$, 
+special sets: real numbers $\reals$, positive real numbers $\reals_{>0}$
+
+Prior/posterior probability distributions(on parameters) are usually denoted by lowercase letter $p$,
+while sample models (distributions on observable quantities) are denoted by lowercase letter $f$:
+$f(x)$, $p(\theta)$
+Expectation and variance of a random quantity $X$: $\E[X]$, $\V(X)$.
+Often, quantities identifying the distribution
+with respect to which expectation and variance are calculated
+are added in the argument, seperated by a vertical line: $f(x\mid\theta)$, $\E[\theta\mid\nz, \yz]$.
+(This notation refers to the auffassung in Bayesian statistics that ****)
 
 Other notational conventions are declared upon introduction of the concepts they are representing.
 
@@ -113,10 +122,10 @@ An \emph{i.i.d.\ sample of size} $n$ (where \emph{i.i.d.}\ abbreviates independe
 \emph{based on the parametric statistical model} %
 $(\mathcal{X}, (p_\vartheta)_{\vartheta \in \Theta})$ is a vector
 \[
-{\X}=(X_1, \ldots, X_n)^T %\label{120722-1}
+\vec{X} = (X_1, \ldots, X_n)^T %\label{120722-1}
 \]
 of independent random quantities $X_i$ with the same distribution $p_\vartheta$.
-Then $\X$ is defined on $\mathcal{X}^n$ with probability distribution $p_\vartheta^{\otimes n}$
+Then $\vec{X}$ is defined on $\mathcal{X}^n$ with probability distribution $p_\vartheta^{\otimes n}$
 as the $n$-dimensional product measure describing the independent observations.
 For Bayesian approaches as discussed here,
 independence is often replaced by exchangeability (see, e.g., \cite[\S 4.2]{2000:bernardosmith}).
@@ -151,7 +160,7 @@ As a shortcut, we write $x_i \sim \norm(\mu, \sigma^2)$.
 %a normal density with $\mu=0$ and $\sigma^2=1$ is displayed
 %in Figure~\ref{inference:fig:normal-vs-cauchy}, page~\pageref{inference:fig:normal-vs-cauchy}.
 
-With the independence assumption, the density of $\mbf{x} = (x_1,\ldots,x_n)$ amounts to
+With the independence assumption, the density of $\x = (x_1,\ldots,x_n)$ amounts to
 \begin{align}\label{eq:normaldens}
 f_{(\mu, \sigma^2)}(\x)
  &= \prod_{i=1}^n f_{(\mu, \sigma^2)}(x_{i})
@@ -175,18 +184,19 @@ Thus, $\sum_{j=1}^k n_j = n$.
 
 We start the definition of the multinomial distribution by decomposing the collection of $n$ observations into its constituents,
 single observations of either of the categories $1,\ldots,k$.
-Such a single observation, often named \emph{multivariate Bernoulli observation}, can be encoded as a vector $x_i$ of length $k$,
+Such a single observation, often named \emph{multivariate Bernoulli observation}, can be encoded as a vector $\x_i$ of length $k$,
 where the $j$-th element, $x_{ij}$, equals $1$ if category $j$ has been observed, and all other elements being $0$.
 Given the vectorial parameter $\btheta$ of length $k$,
 where the component $\theta_j$ models the probability of observing category $j$ in a single draw
 (therefore $\sum_{j=1}^k \theta_j = 1$),
-the probability for observing $x_i$ can be written as
+the probability for observing $\x_i$ can be written as
 \begin{align*}
-f_{\btheta}(x_i) = \prod_{j=1}^k \theta_j^{x_{ij}}\,.
+f_{\btheta}(\x_i) = \prod_{j=1}^k \theta_j^{x_{ij}}\,.
 \end{align*}
-Assuming independence, the probability for observing a certain sequence $\mbf{x}$ of $n$ observations can thus be written as
+Assuming independence, the probability for observing a certain sequence
+$\mbf{x} = (\x_1, \ldots, \x_n)$ of $n$ observations can thus be written as
 \begin{align*}
-f_{\btheta}(\mbf{x}) &= \prod_{i=1}^n f_{\btheta}(x_i)
+f_{\btheta}(\mbf{x}) &= \prod_{i=1}^n f_{\btheta}(\x_i)
                 \propto \prod_{i=1}^n \prod_{j=1}^k \theta_j^{x_{ij}}
                       = \prod_{j=1}^k \theta_j^{\sum_{i=1}^n x_{ij}}
                       = \prod_{j=1}^k \theta_j^{n_j}\,,
@@ -213,24 +223,24 @@ we will now give a short introduction to the basic principles of Bayesian infere
 The Bayesian approach allows (possibly subjective) knowledge on the parameter $\vartheta$ to be expressed by a probability distribution on%
 \footnote{Again we implicitly assume that $\Theta$ is complemented by an appropriate $\sigma$-field $\sigma(\Theta)$.}
 $\Theta$, with probability mass or density function $p(\vartheta)$ called \emph{prior distribution}.
-Interpreting the elements $f_\vartheta(x)$ of the sampling model as conditional distributions of the sample given the parameter,
-denoted by $f(\mbf{x}\mid\vartheta)$ and called \emph{likelihood},
+Interpreting the elements $f_\vartheta(\x)$ of the sampling model as conditional distributions of the sample given the parameter,
+denoted by $f(\x\mid\vartheta)$ and called \emph{likelihood},
 turns the problem of statistical inference into a problem of probabilistic deduction,
 where the \emph{posterior distribution}, i.e.\ the distribution of the parameter given the sample data,
 can be calculated by Bayes' Rule.%
 \footnote{Donald Gillies \cite{1987:gillies, 2000:gillies} argues that Bayes' Theorem was actually developed
 in order to confront the problem of induction as posed by Hume \cite{1739:hume}.}
-Thus, in the light of the sample $\mbf{x}= (x_1, \ldots, x_n)$ the prior distribution is updated by Bayes' Rule
+Thus, in the light of the sample $\x= (x_1, \ldots, x_n)$ the prior distribution is updated by Bayes' Rule
 to obtain the posterior distribution with density or mass function
 \begin{align}
 \label{eq:bayesrule}
-p(\vartheta\mid\mbf{x}) \propto f(\mbf{x}\mid\vartheta) \cdot p(\vartheta)\,.
+p(\vartheta\mid\x) \propto f(\x\mid\vartheta) \cdot p(\vartheta)\,.
 \end{align}
 The posterior distribution is understood as comprising all the information from the sample and the prior knowledge.
 It therefore underlies all further inferences on the parameter $\vartheta$,
 like point estimators, interval estimators,
 or the \emph{posterior predictive distribution},
-which is the distribution of further observations based on $p(\vartheta\mid\mbf{x})$
+which is the distribution of further observations based on $p(\vartheta\mid\x)$
 (see Eq.~\eqref{eq:posteriorpredictive} below).
 
 
@@ -256,7 +266,7 @@ After presentation of the general framework, we will discuss its instantiation f
 and the Multinomial sampling models as introduced in Sections~\ref{sec:normaldist} and \ref{sec:multinomdist} above.
 
 A sample distribution
-(from now on understood directly as the distribution $p_\vartheta^{\otimes n}$ of an i.i.d.\ sample $\mbf{x}$ of size $n$)
+(from now on understood directly as the distribution $p_\vartheta^{\otimes n}$ of an i.i.d.\ sample $\x$ of size $n$)
 is said to belong to the \emph{(regular) canonical exponential family} if its density or mass function satisfies the decomposition
 \begin{align}
 \label{eq:expofam-sampledens}

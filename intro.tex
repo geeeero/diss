@@ -27,7 +27,10 @@ Sec.~\ref{sec:norm-norm}: parts of \cite{itip-statinf}
 
 Sec.~\ref{sec:diri-multi}: \cite{Walter2012b}
 
-Sec.~\ref{sec:commoncause}: parts of \cite{Troffaes2013a}
+Sec.~\ref{sec:commoncause}: parts of \cite{Troffaes2013a},
+where in particular Sec.~\ref{sec:basic-param-model} and Sec.~\ref{sec:alpha-factor-model}
+have been written primarily by Matthias Troffaes.
+
 %Sec.~\ref{sec:alpha-factor-prior}: parts of \cite{Troffaes2013a}
 
 \section{Notation}
@@ -35,7 +38,7 @@ Sec.~\ref{sec:commoncause}: parts of \cite{Troffaes2013a}
 
 scalars: italic letters ($x$, $\theta$);
 vectors: bold italic letters ($\vec{x}$, $\btheta$);
-matrices: bold ***upright*** uppercase letters ($\mbf{X}$, $\mbf{Z}$)
+matrices: bold regular (i.e., non-italic) uppercase letters ($\mbf{X}$, $\mbf{Z}$)
 transposed matrices: raised uppercase sans serif T ($\mbf{X}^\tra$)
 
 samples, realizations: lowercase letters ($x$, $\x$)
@@ -53,7 +56,7 @@ Prior/posterior probability distributions(on parameters) are usually denoted by 
 while sample models (distributions on observable quantities) are denoted by lowercase letter $f$:
 $f(x)$, $p(\theta)$
 Expectation and variance of a random quantity $X$: $\E[X]$, $\V(X)$.
-Often, quantities identifying the distribution
+Usually, quantities identifying the distribution
 with respect to which expectation and variance are calculated
 are added in the argument, seperated by a vertical line: $f(x\mid\theta)$, $\E[\theta\mid\nz, \yz]$.
 (This notation refers to the auffassung in Bayesian statistics that ****)
@@ -749,7 +752,7 @@ following the Reactor Safety Study \cite{1975:reactor:safety:study},
 which was prepared in the wake of the Three Mile Island accident,
 where a partial core meltdown in a nuclear power plant took place \cite{2005:walker}.
 
-\subsection{An Example for Common-Cause Failure Modelling}
+\subsection{An Example for the Need to Model Common-Cause Failure}
 
 For a nuclear power plant, a common-cause failure analysis can relate to, e.g.,
 the diesel generators that, if in an emergency the off-site power supply is cut off,
@@ -805,6 +808,7 @@ and subsequently present its reparametrization in terms of so-called alpha-facto
 
 
 \subsection{The Basic Parameter Model}
+\label{sec:basic-param-model}
 
 Consider a system that consists of $k$ components.
 Throughout, we make the following standard assumptions:
@@ -876,6 +880,7 @@ of parameters that can be more easily estimated, as follows.
 
 
 \subsection{The Alpha-Factor Model}
+\label{sec:alpha-factor-model}
 
 The alpha-factor parametrisation of the basic parameter model
 \cite{1988:mosleh::common:cause} starts out with

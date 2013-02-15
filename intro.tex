@@ -50,15 +50,16 @@ is not maintained throughout most of the thesis.
 
 sets, spaces: calligraphic uppercase letters ($\mathcal{X}$, $\Y$, $\mathcal{M}$)
 
-special sets: real numbers $\reals$, positive real numbers $\reals_{>0}$
+special sets: real numbers $\reals$, positive real numbers $\reals_{>0}$, space of $q$-dimensional tuples of real numbers $\reals^q$
 
-Prior/posterior probability distributions(on parameters) are usually denoted by lowercase letter $p$,
+In the Bayesian setting, prior/posterior probability distributions (on parameters) are usually denoted by lowercase letter $p$,
 while sample models (distributions on observable quantities) are denoted by lowercase letter $f$:
-$f(x)$, $p(\theta)$
-Expectation and variance of a random quantity $X$: $\E[X]$, $\V(X)$.
-Usually, quantities identifying the distribution
+$f(x)$, $p(\theta)$.
+
+Expectation and variance of a random quantity $X$ are denoted by $\E[X]$ and $\V(X)$, respectively.
+In a Bayesian setting, quantities identifying the distribution
 with respect to which expectation and variance are calculated
-are added in the argument, seperated by a vertical line: $f(x\mid\theta)$, $\E[\theta\mid\nz, \yz]$.
+are added in the argument, seperated by a vertical line, as in $f(x\mid\theta)$, $\E[\theta\mid\nz, \yz]$.
 (This notation refers to the auffassung in Bayesian statistics that ****)
 
 Other notational conventions are declared upon introduction of the concepts they are representing.
@@ -110,7 +111,7 @@ i.e.\ ${\cal Q}=\left(p_\vartheta\right)_{\vartheta \in \Theta}$.
 Here, the different sampling distributions $p_\vartheta$ are implicitly understood as belonging to a specific class of distributions
 (e.g., normal distributions, as in Section~\ref{sec:normaldist} below),
 the basic type of which is assumed to be known completely,
-and only some characteristics $\vartheta$ (e.g.\ the mean) of the distributions are unknown.
+and only some characteristics $\vartheta$ (e.g., the mean) of the distributions are unknown.
 
 Throughout, we will assume (as is the case for all common applications)
 that the underlying candidate distributions $p_\vartheta$ of the random quantity $X$
@@ -137,7 +138,7 @@ $p_\vartheta^{\otimes n}$ thus has the probability mass or density function
 \prod_{i=1}^{n} f_\vartheta(x_i) =: f_\vartheta(x_1, \ldots, x_n).%\label{120710-2}
 \]
 The term \emph{sample} is then also used for the concretely observed value(s) $\x=(x_1, \ldots, x_n)^T$.%
-\footnote{Throughout, random quantities are denoted by capital letters, their values, or realizations, by small letters.}
+%\footnote{Throughout, random quantities are denoted by capital letters, their values, or realizations, by small letters.}
 
 Next, we will present two examples for basic parametric models that will be repeatedly discussed further on.
 

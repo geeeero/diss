@@ -224,7 +224,7 @@ As a shortcut, we write $\vec{n} \sim \mult(\btheta)$.
 As the inference models discussed in this thesis are all based on the Bayesian approach to statistical inference,
 we will now give a short introduction to the basic principles of Bayesian inference.
 
-The Bayesian approach allows (possibly subjective) knowledge on the parameter $\vartheta$ to be expressed by a probability distribution on%
+The Bayesian approach requires (possibly subjective) knowledge on the parameter $\vartheta$ to be expressed by a probability distribution on%
 \footnote{Again we implicitly assume that $\Theta$ is complemented by an appropriate $\sigma$-field $\sigma(\Theta)$.}
 $\Theta$, with probability mass or density function $p(\vartheta)$ called \emph{prior distribution}.
 Interpreting the elements $f_\vartheta(\x)$ of the sampling model as conditional distributions of the sample given the parameter,
@@ -232,8 +232,8 @@ denoted by $f(\x\mid\vartheta)$ and called \emph{likelihood},
 turns the problem of statistical inference into a problem of probabilistic deduction,
 where the \emph{posterior distribution}, i.e.\ the distribution of the parameter given the sample data,
 can be calculated by Bayes' Rule.%
-\footnote{Donald Gillies \cite{1987:gillies, 2000:gillies} argues that Bayes' Theorem was actually developed
-in order to confront the problem of induction as posed by Hume \cite{1739:hume}.}
+\footnote{\cite{1987:gillies, 2000:gillies} argues that Bayes' Theorem was actually developed
+in order to confront the problem of induction as posed by \cite{1739:hume}.}
 Thus, in the light of the sample $\x= (x_1, \ldots, x_n)$ the prior distribution is updated by Bayes' Rule
 to obtain the posterior distribution with density or mass function
 \begin{align}
@@ -280,7 +280,12 @@ where $\psi \in \Psi \subset \reals^q$ is a transformation of the (possibly vect
 and $\mbf{b}(\psi)$ a scalar function of $\psi$ (or, in turn, of $\theta$).
 $\tau(\x)$ is a function of the sample $\x$ that fulfills $\tau(\x) = \sum_{i=1}^n \tau^*(x_i)$,
 with $\tau^*(x_i) \in \mathcal{T} \subset \reals^q$,
-while $\langle\cdot, \cdot\rangle$ denotes the scalar product.
+while $\langle\cdot, \cdot\rangle$ denotes the scalar product.%
+\footnote{\label{foot:dataisplural}It would be possible, and indeed is often done in the literature,
+to consider a single observation $x$ in Eq.~\eqref{eq:expofam-sampledens} only,
+as the conjugacy property does not depend on the sample size.
+However, we find our version with $n$-dimensional i.i.d.\ sample $\vec{x}$
+more appropriate for a statistical treatment, as `data is plural' ***kaplan?***.}
 
 From these ingredients, a conjugate prior on $\psi$ can be constructed as%
 \footnote{In our notation, ${}\uz$ denotes prior parameters; ${}\un$ posterior parameters.}
@@ -292,7 +297,7 @@ p(\psi \mid \nz, \yz) \dd\psi
 where $\nz$ and $\yz$ are now the parameters by which a certain prior can be specified.
 We will refer to priors of the form~\eqref{eq:canonicalprior} as \emph{canonically constructed priors}.
 The domain of $\yz$ is $\Y$, the interior of the convex hull of $\mathcal{T}$;
-$\nz$ must take strictly positive values for the prior to be proper (integrable to $1$).
+$\nz$ must take strictly positive values for the prior to be \emph{proper} (i.e., integrable to $1$).
 
 An interpretation for these parameters will be given shortly.
 First, let us calculate the posterior density for $\psi$.
@@ -319,22 +324,22 @@ with weights $\nz$ and $n$, respectively.%
 we comment on ***later / in Section~\ref{}***.}
 Therefore, $\nz$ can be seen as ``prior strength'' or ``pseudocounts'',
 reflecting the weight one gives to the prior as compared to the sample size $n$.
-To make this more explicit, $\nz$ can be interpreted as the size of an imaginary sample
+To make this more explicit, ``$\nz$ can be interpreted as the size of an imaginary sample
 that corresponds to the trust on the prior information in the same way
 as the sample size of a real sample
-corresponds to the trust in conclusions based on such a real sample \cite[p.~258]{Walter2009a}.
+corresponds to the trust in conclusions based on such a real sample'' \cite[p.~258]{Walter2009a}.
 
 The posterior $p(\psi \mid \nn, \yn)$ can be transformed back to a distribution on $\theta$
 in order to deal with a commonly known parameter or distribution family for it
-(as we will do, e.g., in Section~\ref{sec:beta-binom} below.)
+(as we will do, e.g., in Section~\ref{sec:beta-binom} below)..
 Besides the posterior itself, also the posterior predictive distribution
 \begin{align}
 \label{eq:posteriorpredictive}
 f(\x^*\mid\x, \nz, \yz) &= \int f(\x^* \mid \psi) p(\psi \mid \nn, \yn) \dd\psi\,,
 \end{align}
-a distribution on future samples $\x^*$ after having seen a sample $\x$,
+the distribution of future samples $\x^*$ after having seen a sample $\x$,
 forms the basis for the different inference tasks. %as listed in Section~\ref{inference:sec:basictasks}.
-Next, we will thus briefly describe a systematic of inference tasks.
+Next, we will briefly describe a systematic of inference tasks.
 
 
 \subsection{Inference Tasks}
@@ -370,9 +375,9 @@ usually denoted by $H_0$ and $H_1$.
 where, more generally, the conclusion may be to select certain utility maximizing or loss minimizing acts from a set of possible acts.
 Indeed, all three tasks listed before can be formally understood as a special case of decision making,
 by considering an appropriate set of acts and a loss function fitting the inferential objective.
-We will flesh this out to some extent in the examples below ******.%
+We will flesh this out to some extent in the examples below.%
 \footnote{For more details, see, e.g., \cite[\S 2]{2007:robert},
-where, e.g., loss functions usually utilized in statistical settings are described in \S 2.5, p.~77ff.}
+where, e.g., loss functions usually utilized in statistical settings are described in \S 2.5, pp.~77ff.}
 \end{enumerate}
 
 \emph{Predictive conclusions} instead summarize the information by statements on properties of typical further units,
@@ -386,18 +391,19 @@ This is especially useful in the case of discrete sampling distributions,
 where this procedure amounts to classification of further sample units.
 \item[2b)] \emph{Interval prediction},
 where instead a certain subset of the sample space $\mathcal{X}$ is determined,
-into which furter sample units are like to fall.
+into which furter sample units are likely to fall.
 An example are prediction bands in regression analysis.
 \end{enumerate}
 
-The concretion of this framework for Bayesian inference with canonical conjugate priors
-is now demonstrated for the sampling models presented in Sections~\ref{sec:normaldist} and \ref{sec:multinomdist}.
+The concretion of the framework for Bayesian inference with canonical conjugate priors
+as presented in Section~\ref{sec:regularconjugates}
+is now demonstrated for the sampling models discussed in Sections~\ref{sec:normaldist} and \ref{sec:multinomdist}.
 As a first simple example, we will consider inference in the Binomial model,
 being the special case of the Multinomial model with only two categories.
 Then, we will briefly turn to the Normal model,
 before we present the more complex considerations for the Multinomial model with $k>2$ categories.
 The latter model %for the Multinomial model (Section~\ref{sec:multinomdist})
-is then used for inferences in common-cause modeling,
+is then used in Section~\ref{sec:commoncause} for inferences in common-cause modeling,
 which will serve as a real-world example illustrating the powers and shortcomings of standard Bayesian inference,
 ultimately motivating the shift to imprecise Bayesian inference.
 
@@ -438,7 +444,7 @@ is a Beta distribution with parameters $\nz\yz$ and $\nz(1-\yz)$, in short, %$\t
 \end{align*}
 
 The combination of a Binomial sampling model with this conjugate Beta prior is called \emph{Beta-Binomial model}.
-Here, $\yz = \E[\theta]$ can be interpreted as prior guess of $\theta$,
+Here, $\yz = \E[\theta\mid\nz, \yz]$ can be interpreted as prior guess of $\theta$,
 while $\nz$ governs the concentration of probability mass around $\yz$,
 with large values of $\nz$ giving high concentration of probability mass.
 Due to conjugacy, the posterior on $\theta$ is a $\be(\nn\yn, \nn(1-\yn))$,
@@ -463,7 +469,8 @@ The \emph{indicator loss function}
 l(\hat{\theta}, \theta) = \begin{cases} 0 & |\hat{\theta}-\theta| \le \epsilon \\ 1 & \text{else}\end{cases}\,,
 \end{align*}
 for $\epsilon \rightarrow 0$, leads to the maximum of the posterior,
-often abbreviated as MAP (maximum a posteriori) estimator \cite[\S 5.1.5, p.~257]{2000:bernardosmith}, \cite[\S 4.1.2, p.~166]{2007:robert}.
+often abbreviated as MAP (maximum a posteriori) estimator
+(see, e.g., \cite[\S 5.1.5, p.~257]{2000:bernardosmith}, or \cite[\S 4.1.2, p.~166]{2007:robert}).
 For a $\be(\nn\yn, \nn(1-\yn))$, the mode is
 \begin{align*}
 \mode p(\theta\mid\nn, \yn) &= \frac{\nn\yn - 1}{\nn - 2} = \frac{\nz\yz - 1 + s}{\nz - 2 + n}\,,
@@ -603,7 +610,7 @@ We will use the formulation of $\mult(\btheta)$ as the multivariate Bernoulli di
 like in Section~\ref{sec:multinomdist}.
 The distribution of a single multivariate Bernoulli observation is equivalent to a Multinomial distribution with sample size $1$,
 and i.i.d.\ repetitions of a multivariate Bernoulli distribution lead to the Multinomial distribution.
-Since i.i.d.\ repetitions do not interfere with conjugacy,
+Since i.i.d.\ repetitions do not interfere with conjugacy (as mentioned in Footnote~\ref{foot:dataisplural}),
 we may construct the canonical conjugate prior by considering a single multivariate Bernoulli observation.
 
 To do without side conditions like $\sum_{j=1}^k \theta_j = 1$ as needed in Section~\ref{sec:multinomdist},
@@ -647,7 +654,7 @@ p(\btheta\mid n,\vec{y})\, \dd\btheta
  &\propto \exp\Bigg\{n\, \Bigg[ \sum_{j=1}^k y_j \ln\bigg(\frac{\theta_j}{\theta_0}\bigg) - \big(-\ln(\theta_0)\big) \Bigg] \Bigg\}
   \cdot \left| \det\left(\frac{\dd\bpsi}{\dd\btheta}\right) \right|\, \dd\btheta\,,
 \end{align*}
-with the the elements of the Jacobian matrix $\frac{\dd\bpsi}{\dd\btheta}$ being
+with the the elements of the Jacobian matrix $\dfrac{\dd\bpsi}{\dd\btheta}$ being
 \begin{align*}
 \frac{\dd\psi_i}{\dd\theta_i} &= \frac{1}{d\theta_i} \ln\left(\frac{\theta_i}{1 - \sum_{j=1}^k \theta_j}\right)
                                = \frac{1-\sum_{j=1}^k \theta_j}{\theta_i}
@@ -689,7 +696,7 @@ stating that
 \begin{align*}
 \det (\mbf{A} + \vec{a}\, \vec{a}^\tra) &= \det(\mbf{A}) (1+\vec{a}^\tra \mbf{A}^{-1} \vec{a}) & \text{if}& & \det(\mbf{A}) &\neq 0
 \end{align*}
-for all appropriately sized matrices $\mbf{A}$ and column vectors $\vec{a}$.
+for all appropriately sized, invertable matrices $\mbf{A}$ and column vectors $\vec{a}$.
 
 With $\det\left(\frac{\dd\bpsi}{\dd\btheta}\right) = \prod_{j=0}^k \frac{1}{\theta_j}$, we get
 \begin{align*}
@@ -727,7 +734,7 @@ The vectorial $\byz$ is an element of the interior of the $k-1$-dimensional unit
 thus $\forall j \ \yz_j \in (0,1)$, $\sum_{j=1}^k \yz_j = 1$, in short $\byz \in \text{int}(\Delta)$.
 Here, the main posterior parameter is calculated as
 \begin{align*}
-\yn_j &= \frac{\nz}{\nz+n} \yz_j + \frac{n}{\nz+n} \cdot \frac{n_j}{n}\,, j = 1,\ldots, k,
+\yn_j &= \frac{\nz}{\nz+n} \yz_j + \frac{n}{\nz+n} \cdot \frac{n_j}{n}\,,\quad j = 1,\ldots, k,
 \end{align*}
 and is thus again a weighted average of the main prior parameter
 (which can be interpreted as prior guess for $\btheta$, as $\E[\btheta\mid\nz,\byz] = \byz$)
@@ -741,7 +748,8 @@ we will denote the Dirichlet prior directly in terms of the canonical parameters
 %\begin{align*}
 $\btheta \sim \dir(\nz,\byz)$.
 %\end{align*}
-The canonical parameters relate to the commonly used parameter, often denoted by $\bs{\alpha} = (\alpha_1, \ldots, \alpha_k)$, via
+The canonical parameters relate to the commonly used parameter, often denoted by $\bs{\alpha} = (\alpha_1, \ldots, \alpha_k)$, 
+not to be confused with $\vec{alpha}$ as discussed in Section~\ref{sec:alpha-factor-model}, via%
 \begin{align*}
 \yz_j &= \frac{\alpha_j}{\sum_{l=1}^k \alpha_l} &
 \nz   &= \sum_{l=1}^k \alpha_l \,.

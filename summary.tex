@@ -6,18 +6,19 @@ This thesis is concerned with the generalization of Bayesian inference towards t
 with a focus on model behaviour in case of prior-data conflict.
 
 Bayesian inference is one of the main approaches to statistical inference.
-It allows to express (subjective) knowledge on the parameter(s) of interest not incorporated in the data by a so-called prior distribution,
+It requires to express (subjective) knowledge on the parameter(s) of interest not incorporated in the data by a so-called prior distribution,
 and the adequate choice of priors has always been an intensive matter of debate in the Bayesian literature.
-While a considerable part of the literature is concerned with so-called non-informative priors aiming to eliminate the influence of priors on posterior inferences,
+While a considerable part of the literature is concerned with so-called non-informative priors
+aiming to eliminate (or, so-to-say, standardize) the influence of priors on posterior inferences,
 inclusion of specific prior information into the model may be necessary if data are scarce,
 or do not contain much information about the parameter(s) of interest;
 also, shrinking estimators common in frequentist approaches can be considered as Bayesian estimators based on informative priors.
 
 When substantial information is used to elicit the prior distribution through, e.g, an expert's assessment,
 and the sample size is not large enough to eliminate the influence of the prior, \emph{prior-data conflict} can occur.
-Then, the information from data suggests parameter values which are very surprising from the viewpoint of prior information,
+I.e., information from outlier-free data suggests parameter values which are very surprising from the viewpoint of prior information,
 and it may not be clear whether the prior specifications or the integrity of the data collecting method should be questioned.
-In any case, such a conflict should be detectable in the posterior, leading to very cautious inferences,
+In any case, such a conflict should be reflected in the posterior, leading to very cautious inferences,
 and most statisticians would thus expect to observe, e.g., wider credibility intervals for parameters in case of prior-data conflict.
 However, when modelling is based on conjugate priors, prior-data conflict is in most cases completely averaged out,
 giving a false certainty in posterior inferences.
@@ -33,9 +34,9 @@ giving a false certainty in posterior inferences.
 %This conflict should show up in posterior inferences, alerting the analyst and, e.g., lead to a revision of prior specifications.
 
 Here, imprecise/interval probability methods offer sound strategies to counter this issue,
-by mapping parameter uncertainty over \emph{sets} of priors resp.\ posteriors instead of single distributions.
+by mapping parameter uncertainty over \emph{sets} of priors resp.\ posteriors instead over single distributions.
 This approach is supported by recent research in economics, risk analysis and artificial intelligence,
-showing the multi-dimensional nature of uncertainty and concluding that standard probability theory
+corroborating the multi-dimensional nature of uncertainty and concluding that standard probability theory
 as founded on Kolmogorov's or de Finetti's axioms may be too restrictive,
 being appropriate only for describing one dimension, namely ideal stochastic phenomena.
 
@@ -43,5 +44,5 @@ The thesis project studies how to efficiently describe sets of priors in the set
 Models are developed that offer enough flexibility to express a wide range of (partial) prior information,
 give reasonably cautious inferences in case of prior-data conflict while resulting in more precise inferences when prior and data agree well,
 and still remain easily tractable in order to be useful for statistical practice.
-Applications in various areas, e.g.\ Bayesian linear regression, are explored,
+Applications in various areas, e.g.\ common-cause failure modeling or Bayesian linear regression, are explored,
 and the approach developed is compared to other imprecise/interval probability models.

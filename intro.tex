@@ -285,7 +285,7 @@ while $\langle\cdot, \cdot\rangle$ denotes the scalar product.%
 to consider a single observation $x$ in Eq.~\eqref{eq:expofam-sampledens} only,
 as the conjugacy property does not depend on the sample size.
 However, we find our version with $n$-dimensional i.i.d.\ sample $\vec{x}$
-more appropriate for a statistical treatment, as `data is plural' ***kaplan?***.}
+more appropriate for a statistical treatment.} %, as `data is plural' ***kaplan?***.}
 
 From these ingredients, a conjugate prior on $\psi$ can be constructed as%
 \footnote{In our notation, ${}\uz$ denotes prior parameters; ${}\un$ posterior parameters.}
@@ -610,7 +610,8 @@ We will use the formulation of $\mult(\btheta)$ as the multivariate Bernoulli di
 like in Section~\ref{sec:multinomdist}.
 The distribution of a single multivariate Bernoulli observation is equivalent to a Multinomial distribution with sample size $1$,
 and i.i.d.\ repetitions of a multivariate Bernoulli distribution lead to the Multinomial distribution.
-Since i.i.d.\ repetitions do not interfere with conjugacy (as mentioned in Footnote~\ref{foot:dataisplural}),
+Since i.i.d.\ repetitions do not interfere with conjugacy
+(as mentioned in Footnote~\ref{foot:dataisplural}, page~\pageref{foot:dataisplural}.),
 we may construct the canonical conjugate prior by considering a single multivariate Bernoulli observation.
 
 To do without side conditions like $\sum_{j=1}^k \theta_j = 1$ as needed in Section~\ref{sec:multinomdist},
@@ -765,7 +766,7 @@ This will also motivate the use of sets of prior distributions.
 
 In reliabilty analysis of systems with redundant components,
 \emph{common-cause failure} refers to simultaneous failure of several redunant components due to a common or shared root cause,
-like extreme environmental conditions (e.g., fire, flood, or earthquake) \cite[p.325]{1994:hoyland}.
+like extreme environmental conditions (e.g., fire, flood, or earthquake) \cite[p.~325]{1994:hoyland}.
 It has been recognized as the dominant factor to the unreliability of redundant systems,
 and its modeling has become an important part of reliability analysis
 following the Reactor Safety Study \cite{1975:reactor:safety:study},
@@ -780,9 +781,9 @@ provide the electricity to power the emergency core cooling systems.
 Emergency core cooling systems are needed to transfer away residual heat emitted from the core after shutdown,
 in case the normal heat removal process%
 \footnote{Heat from the core is transferred to steam generators,
-producing steam that drives the turbines to produce electricity.
+producing steam that drives turbines linked to generators producing electricity.
 Usually, the depressurized steam exiting the turbines
-is then condensed to water and fed back into the steam generators.}
+is then condensed to water, which is fed back into the steam generators.}
 is not available.
 When residual heat is not removed, it can overheat the core,
 which could lead to a (partial) core meltdown,
@@ -815,8 +816,8 @@ which had promted the reactors to shutdown automatically, and in doing so,
 switching to the diesel generators for power supply.%
 \footnote{All six off-site power lines were cut off, also due to the earthquake \cite[p.~31]{2011:iaea::report}.}
 
-The arguably most widely used model for common-cause failure is the Basic Parameter Model.
-The alpha-factor parametrisation of this model uses a multinomial distribution
+The arguably most widely used model for common-cause failure is the so-called \emph{Basic Parameter Model}.
+The \emph{alpha-factor} parametrisation of this model uses a multinomial distribution
 as its aleatory model for observed failures \cite{1988:mosleh::common:cause}. 
 As seen in Section~\ref{sec:diri-multi}, the conjugate prior to the multinomial model is the Dirichlet distribution.
 In the standard Bayesian approach, the analyst specifies the parameters $(\nz, \byz)$ of a precise Dirichlet distribution
@@ -824,7 +825,7 @@ to model epistemic uncertainty in the alpha-factors, which are the parameters of
 %This Dirichlet prior is then updated with observed data to obtain a precise posterior distribution, also Dirichlet.
 
 We will first describe the Basic Parameter Model in its standard form,
-and subsequently present its reparametrization in terms of so-called alpha-factors.
+and subsequently present its reparametrization in terms of alpha-factors.
 
 
 \subsection{The Basic Parameter Model}
@@ -983,7 +984,6 @@ As mentioned already, in this application of multinomial sample model,
 the $n_j$ are usually very low for $j\ge 2$,
 with zero being quite common for larger $j$.
 In such cases, standard techniques such as maximum likelihood for estimating the alpha-factors fail to produce sensible inferences.
-****citation***
 For any inference to be reasonably possible, it has been recognized \cite{1988:mosleh::common:cause}
 that we have to rely on epistemic information, that is, information which is not just described by the data.
 
@@ -1096,7 +1096,7 @@ In this case, the solution of the least-squares problem turns out to be close to
   s&=\frac{1}{2(1-\mu_{\text{spec},1})}
  \end{split}
 \end{equation}
-For our example, this means that $s=10$ \cite[p.~400, \S 3]{2011:kelly:atwood}.
+For our example, this means that $\nz=10$ \cite[p.~400, \S 3]{2011:kelly:atwood}.
 Using Eq.~\eqref{eq:dirichlet:posterior:predictive}, under this prior \cite[p.~401, \S 3.1]{2011:kelly:atwood}:
 \begin{align*}
   \E[\alpha_1\mid\nz,\byz,\vec{n}] &= \frac{9.5 + 35}{10 + 36} = 0.967
@@ -1143,7 +1143,7 @@ assigning an interval for the learning parameter $\nz$ is especially important.
 This effects to using the imprecise probability models that are at the core of this thesis.
 A systematic presentation of these models,
 together with more arguments for employing them in important statistical inference tasks,
-is given in Sections*****.
+is given in Sections *****.
 
 
 \subsection{Cautious Epistemic Information for Alpha-Factors}
@@ -1151,7 +1151,9 @@ is given in Sections*****.
 
 For Bayesian inference in the Dirichlet-Multinomial model
 when no prior information is available,
-\cite{1996:walley::idm} proposes as a so-called \emph{near-ignorance prior} a set of Dirichlet priors,
+\cite{1996:walley::idm} proposes as a so-called \emph{near-ignorance prior}%
+\footnote{See Section ***** for a more detailed discussion of near-ignorance priors.}
+a set of Dirichlet priors,
 with hyperparameters constrained to the set:
 \begin{equation*}
   \mathcal{H}=\{(\nz,\byz)\colon\byz\in\Delta\}
@@ -1181,7 +1183,7 @@ where the analyst has to specify the bounds
 $[\yzl_j,\yzu_j]$ for each $j\in\{1,\dots,k\}$,
 and $[\nzl,\nzu]$.
 
-The posterior lower and upper expectations of $\alpha_j$ are:
+As $\yn$ is linear in $\yz$ (see Eq.~\eqref{eq:canonicalupdate}), the posterior lower and upper expectations of $\alpha_j$ are:
 \begin{align}
   \label{eq:idm-update-lower}
   \El[\alpha_j\mid\mathcal{H},\vec{n}]
@@ -1210,11 +1212,10 @@ The posterior lower and upper expectations of $\alpha_j$ are:
   \end{cases}
 \end{align}
 
-For the model to be of any use, we must be able to elicit the bounds.
-The interval $[\yzl_j,\yzu_j]$ simply represents bounds on the prior
-expectation of the chance $\alpha_j$.
+For the model to be of any use, we must be able to elicit the bounds for the prior parameters.
+The interval $[\yzl_j,\yzu_j]$ simply represents bounds on the prior expectation of the chance $\alpha_j$.
 
-%\paragraph{Fixed Learning Parameter}
+\paragraph{Fixed Learning Parameter}
 
 Typically, the learning parameter $\nz$ is taken to be $2$
 (not without controversy; see insightful discussions in \cite{1996:walley::idm}).
@@ -1234,7 +1235,7 @@ Whence, for this example, it is obvious that $\nz=2$ is an excessively poor choi
 the posterior expectations in case of zero counts are pulled way too much towards zero.
 One might suspect that this is partly due to the strong prior information,
 that is, the knowledge of $\yz_j$.
-However, even if we interpret the given probabilities as bounds, say:
+However, even if we interpret the prior expectations~\eqref{eq:example:muspec} as bounds, say:
 \begin{subequations}
   \label{eq:example:tintervals}
 \begin{align} %%% same layout as below
@@ -1310,14 +1311,14 @@ seem appropriate.
 For zero counts, however, a larger value of $\nz$ seems mandatory.
 Therefore, it seems logical to pick an interval for $\nz$.
 
-A further argument for choosing an interval for $\nz$,
+A related argument for choosing an interval for $\nz$,
 in case of an informative set of priors,
 is provided by \cite[p.~225, \S 5.4.4]{1991:walley}:
 a larger value of $\nzu$ ensures that the posterior does not move away too fast from the prior,
 which is particularly important for zero counts,
 and the difference between $\nzl$ and $\nzu$ effectively results in greater posterior
 imprecision if $n_j/n \notin [\yzl_j,\yzu_j]$.% %in case of prior-data conflict.
-\footnote{We will show in Section**** that this argument makes sense
+\footnote{We will show in Section **** that this argument makes sense
 also for the general case of canonically constructed priors \eqref{eq:canonicalprior}.}
 
 To see this, note that, if $\yzl_j \le n_j/n \le \yzu_j$, it follows from
@@ -1332,7 +1333,7 @@ $[\yzl_j,\yzu_j]$ and the observed fraction $n_j/n$,
 and this is referred to as \emph{prior-data conflict}
 (see Section****, or \cite{Walter2009a} for the paper centered around this idea).
 
-%\paragraph{Interval for Learning Parameter}
+\paragraph{Interval for Learning Parameter}
 
 We follow \cite[p.~19]{1965:good} (as suggested by \cite[Note~5.4.1, p.~524]{1991:walley}),
 and reason about posterior expectations of hypothetical data to elicit $\nzl$ and $\nzu$;

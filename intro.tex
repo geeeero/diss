@@ -496,29 +496,46 @@ The \textbf{testing of hypotheses} concerning the parameter of interest $\theta$
 by comparing posterior probabilities of two (disjunct) subsets of the parameter space.
 Like in frequentist Neyman-Pearson testing, these are often denoted by $\Theta_0$ and $\Theta_1$,
 but unlike there, in Bayesian testing the hypotheses $H_0: \theta \in \Theta_0$ and $H_1: \theta \in \Theta_1$ play a symmetric role.
+Therefore, it is also possible to express evidence \emph{in favour of} $H_0$,
+whereas frequentist tests are constructed such that they can express conclusive evidence only when $H_0$ is rejected.%
+\footnote{In Neyman-Pearson testing, only the probability
+for the \emph{error of the first kind}, denoted by $\alpha$, of rejecting $H_0$ although it is true, is set to a low predefined level,
+whereas the \emph{error of the second kind}, denoted by $\beta$, of accepting $H_0$ although it is false, may be very large.}
+However, \emph{point hypotheses}, where one of $\Theta_0$ or $\Theta_1$
+consists of a single element of the parameter space only (usually, $\Theta_0 = \{\theta_0\}$),%
+\footnote{Such a testing problem is often called \emph{two-sided} in Neyman-Pearson testing.}
+require a special treatment if the prior on $\Theta$ is absolutely continuous,
+as is the case for the priors \eqref{eq:canonicalprior} considered here,
+because then, $P(\theta \in \Theta_0) = 0$ for any $\theta_0$.
+Such an inference task is considered in terms of a problem of \emph{model selection},
+where $\theta = \theta_0$ vs.\ $\theta \neq \theta_0$ decides between two different statistical models,
+to each of which a prior probability is assigned \cite[\S 5.2.4]{2007:robert}.
+An overview on Bayesian testing, including a detailed comparison with classical testing procedures,
+is given in \cite[\S 5.2--5.4]{2007:robert}.
 
-Can express evidence \emph{in favour of} point-null hypothesis (Kass \& Raftery).
+Especially in model selection problems, evidence against or in favor of a hypothesis
+is often not expressed in posterior probability for hypotheses, but by means of the so-called \emph{Bayes factor},
+arising when considering odds instead of probability:%
+\footnote{See, e.g., \cite[\S 5.2.2, Def.~5.2.5, p.~227]{2007:robert}, or \cite[p.~776]{1995:kass-raftery}.}
+\begin{align*}
+\frac{p(H_1\mid\vec{x})}{p(H_0\mid\vec{x})} &= \frac{f(\vec{x}\mid H_1)}{f(\vec{x}\mid H_0)} \cdot \frac{p(H_1)}{p(H_0)}
+\end{align*}
+Here, the factor
+\begin{align*}
+B_{10} &:= \frac{f(\vec{x}\mid H_1)}{f(\vec{x}\mid H_0)}
+\end{align*}
+translating prior to posterior odds is the Bayes factor for comparing $H_1$ to $H_0$.%
+\footnote{Usually, more than two hypotheses are considered in model selection,
+by comparing competing models $H_1, H_2, \ldots$ to a null model $H_0$
+with help of Bayes factors $B_{10}, B_{20}, \ldots$.}
 
-The problem with point-null hypotheses (Robert)???
-
-Model selection mostly and Testing closely related.
-
-****more on Bayes factors, etc.***
-
-High values of $P(H_1\mid\x) / P(H_0\mid\x)$ then indicate high plausibility of $H_1$ as compared to $H_0$.
-
-Bayesian testing: \cite[\S 5.2--5.4]{2007:robert}
-
-Bayes factor definition: \cite[\S 5.2.2, Def.~5.2.5, p.~227]{2007:robert}
-
-Article on Bayes factors as entity of its own: Kass \& Raftery 1995: Bayes factor and model uncertainty, JASA 90, 773--795
-
-Improper priors are problematic in Bayesian testing \cite[\S 5.2.5, p.~232ff]{2007:robert};
-we see this as a strong argument for proper priors.
+Improper priors are problematic in Bayesian testing \cite[\S 5.2.5]{2007:robert}
+and should be avoided for parameters the test decides upon \cite[p.~782]{1995:kass-raftery}.
+We see this as a strong argument against the use of improper priors.
 An example where a proper prior is necessary to obtain useful results also for parameter estimation
-is given in Section~\ref{sec:alpha-factor-prior};
+will be given in Section~\ref{sec:alpha-factor-prior};
 a note on improper priors from the viewpoint of generalized Bayesian inference is given in Section~* *****.
-
+\iffalse
 \cite[p.~235f]{2007:robert}
 \begin{quote}
 The difficulties encountered with noninformative priors in testing
@@ -528,8 +545,15 @@ to infer about the truth of a hypothesis in categorical fashion (\emph{yes}/\emp
 This obviously reinforces the the motivation for a Bayesian treatment of such testing problems,
 since it is the only coherent approach taking advantage of the residual information.
 \end{quote}
+\fi
 
-****end more on Bayes factors, etc.***
+%Can express evidence \emph{in favour of} point-null hypothesis (Kass \& Raftery).
+%The problem with point-null hypotheses (Robert)???
+%Model selection mostly and Testing closely related.
+
+%equivalence of posterior probability for $H_0$ (or $H_1$) and Bayes factor \cite[p.~227]{2007:robert}
+%High values of $P(H_1\mid\x) / P(H_0\mid\x)$ then indicate high plausibility of $H_1$ as compared to $H_0$.
+%Article on Bayes factors as entity of its own: Kass \& Raftery 1995: Bayes factor and model uncertainty, JASA 90, 773--795
 
 
 The \textbf{posterior predictive} distribution, giving the probability for $s^*$ successes in $n^*$ future trials
@@ -665,7 +689,7 @@ with the the elements of the Jacobian matrix $\dfrac{\dd\bpsi}{\dd\btheta}$ bein
                                = \frac{1-\sum_{j=1}^k \theta_j}{\theta_h} \cdot \frac{\theta_h}{(1 - \sum_{j=1}^k \theta_j)^2}
                                = \frac{1}{\theta_0}\,, \quad h \neq i
 \end{align*}
-%\allowdisplaybreaks
+\allowdisplaybreaks
 Thus,
 \begin{align*}
 \det\left(\frac{\dd\bpsi}{\dd\btheta}\right)
@@ -701,6 +725,7 @@ for all appropriately sized, invertable matrices $\mbf{A}$ and column vectors $\
 
 With $\det\left(\frac{\dd\bpsi}{\dd\btheta}\right) = \prod_{j=0}^k \frac{1}{\theta_j}$, we get
 \begin{align*}
+\allowdisplaybreaks
 p(\btheta\mid n,\vec{y})
  &\propto \exp\Bigg\{n\, \Bigg[ \sum_{j=1}^k y_j \ln\bigg(\frac{\theta_j}{\theta_0}\bigg) - \big(-\ln(\theta_0)\big) \Bigg] \Bigg\}
   \cdot \bigg| \prod_{j=0}^k \frac{1}{\theta_j} \bigg| \\

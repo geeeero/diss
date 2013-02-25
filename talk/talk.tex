@@ -53,6 +53,7 @@
    decorations.footprints,%
    decorations.markings,%
    shadows}
+%\usepackage{bbold}
 \usepackage{hyperref}
 
 \setbeamertemplate{blocks}[rounded][shadow=true]
@@ -99,8 +100,9 @@
 \def\yzur{\rot{\yzu}}
 \def\ynlr{\rot{\ynl}}
 \def\ynur{\rot{\ynu}}
-\def\yzjlr{\rot{\ul{y}\uz_j}}
-\def\yzjur{\rot{\ol{y}\uz_j}}
+\def\yzjlr#1{\rot{\ul{y}\uz_#1}}
+\def\yzjur#1{\rot{\ol{y}\uz_#1}}
+
 
 \def\nzg{\gruen{\nz}}
 \def\nng{\gruen{\nn}}
@@ -109,8 +111,28 @@
 \def\nnlg{\gruen{\nnl}}
 \def\nnug{\gruen{\nnu}}
 
-\def\PZc{\Pi\uz}
-\def\PNc{\Pi\un}
+% ------------ shading start
+\newsavebox{\tempbox}
+\newcommand\leftrightshading[3]{%
+  \begin{tikzfadingfrompicture}[name=inputtext]
+    \node [text=white] {#1};
+  \end{tikzfadingfrompicture}
+  \begin{lrbox}{\tempbox}%
+    \begin{tikzpicture}
+      \node [text=white,inner sep=0pt,outer sep=0pt] (textnode) {#1};
+      \shade[path fading=inputtext,fit fading=false,left color=#2,right color=#3]
+      (textnode.south west) rectangle (textnode.north east);
+    \end{tikzpicture}%
+  \end{lrbox}
+  % Now we use the fading in another picture:
+  \usebox\tempbox{}%
+}
+% ------------ shading end
+
+
+%\def\PZc{\mathrm I\!\Pi\uz}
+\def\PZc{\leftrightshading{$\mathrm I\!\Pi\uz$}{blue}{red}}
+\def\PNc{\PN}
 
 
 \title[Bayesian Inference with Sets of Conjugate Priors]
@@ -327,7 +349,7 @@ Right: Wikimedia Commons,\\[-1.8ex]
   \end{center}
 \end{frame}
 
-\subsection{Example}
+%\subsection{Example}
 
 \begin{frame}{Example: Prior and Data}
   (taken from Kelly \& Atwood, 2011) %\cite{2011:kelly:atwood})
@@ -410,7 +432,7 @@ Right: Wikimedia Commons,\\[-1.8ex]
 
 \begin{frame}{Imprecise Dirichlet Model: Definition}
 \begin{block}{Imprecise Dirichlet Model (IDM) for Common-Cause Failure}
-use a \alert{set of hyperparameters}
+use a \alert{set of hyperparameters}:
     % \cite[p.~224, \S 5.4.3]{1991:walley} \cite[p.~32, \S 6]{1996:walley::idm},
     %\cite{1991:walley,1996:walley::idm}
     (Walley 1991, 1996)
@@ -424,20 +446,98 @@ use a \alert{set of hyperparameters}
         \colon
         \nzg\in[\nzlg,\nzug],\,
         \byzr\in\Delta,\,
-        \yzjr\in[\yzjlr,\yzjur]
+        \yzjr\in[\yzjlr{j},\yzjur{j}]
       \right\}
     \end{align*}
 \end{block}
 \begin{block}{Interpretation}
 \begin{itemize}
-  \item we are doing a \alert{sensitivity analysis} (\'a la robust Bayes) over $(\nzg,\byzr) \in \PZc$,
-  \item we consider a \alert{set of priors} $\{p(\alpha\mid\nzg,\byzr) \colon (\nzg,\byzr) \in \PZc\}$
+  \item we are doing a \alert{sensitivity analysis} (\'a la robust Bayes) over $(\nzg,\byzr) \in \PZc$
+  \item we consider a \alert{set of priors} $\big\{p(\alpha\mid\nzg,\byzr) \colon (\nzg,\byzr) \in \PZc\big\}$
   (resp.\ all convex mixtures of them)
 \end{itemize}
 \end{block}
 Analyst has to specify \\
-    bounds $[\yzjlr,\yzjur]$ for each $j\in\{1,\dots,k\}$, %\\
-    bounds $[\nzlg,\nzug]$
+    bounds $[\nzlg,\nzug]$ and
+    bounds $[\yzjlr{j},\yzjur{j}]$ for each $j\in\{1,\dots,k\}$ %\\
 \end{frame}
+
+\begin{frame}{Imprecise Dirichlet Model: Elicitation}
+  \begin{itemize}
+  \item   $[\yzjlr{j},\yzjur{j}]$? Cautious interpretation of prior specifications $\mu_{\text{spec},j}$:
+  \begin{align*}
+    [\yzjlr{1},\yzjur{1}]&=[0.950,1]
+    &
+    [\yzjlr{2},\yzjur{2}]&=[0,0.030]
+    \\
+    [\yzjlr{3},\yzjur{3}]&=[0,0.015]
+    &
+    [\yzjlr{4},\yzjur{4}]&=[0,0.005]
+  \end{align*}
+  \item  $[\nzlg,\nzug]$? Good (1965): \\ %\cite{1965:good}: \\
+    \begin{center}
+    reason about posterior expectations of hypothetical data
+    \end{center}
+  \end{itemize}
+  \begin{alertblock}{}
+    $\nzug$ = number of one-component failures required \\
+    to reduce the upper probabilities of multi-components failure by half
+  \end{alertblock}
+  \begin{alertblock}{}
+    $\nzlg$ = number of multi-component failures required \\
+    to reduce the lower probability of one-component failure by half
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}{Imprecise Dirichlet Model: Elicitation}
+  Reasonable values in example:
+  \begin{itemize}
+  \item
+    $\nzlg=1$: \\
+    immediate multi-component failure
+    \\
+    \then\ keen to reduce lower probability for one-component failure
+  \item 
+    $\nzug=10$: \\
+    after observing $10$ one-component failures \\
+    \then\ halve upper probabilities of multi-component failures
+  \end{itemize}
+  There is a \alert{difference between $\nzlg$ and $\nzug$} \\
+  as the rate at which we reduce upper probabilities \\
+  is less than the rate at which we reduce lower probabilities \\
+  \then\ reflects a \alert{level of caution}
+\end{frame}
+
+\begin{frame}{Imprecise Dirichlet Model: Inference}
+  \begin{center}
+    prior bounds + likelihood $\to$ posterior bounds
+  \end{center}
+
+  \begin{center}
+  \begin{tabular}{c|cc||cc}
+    \multicolumn{1}{c}{}
+  & \multicolumn{2}{c}{with $\yzjr=\mu_{\text{spec},j}$:}
+  & \multicolumn{2}{c}{with bounds as earlier:} \\
+    $j$ & $\El[\alpha_j\mid\PZc,\vec{n}]$ &$\Eu[\alpha_j\mid\PZc,\vec{n}]$
+        & $\El[\alpha_j\mid\PZc,\vec{n}]$ &$\Eu[\alpha_j\mid\PZc,\vec{n}]$ \\
+    \hline
+    1 & 0.967   & 0.972   & 0.967   & 0.978\\
+    2 & 0.0278  & 0.0283  & 0.0270  & 0.0283\\
+    3 & 0.00041 & 0.00326 & 0       & 0.00326\\
+    4 & 0.00014 & 0.00109 & 0       & 0.00109
+  \end{tabular}
+  \end{center}
+  
+  \begin{itemize}
+  \item \alert{Bounds}, rather than precise values, are desirable \\
+    due to inferences being strongly sensitive to the prior \\
+    particularly when faced with zero counts.
+  \item Simple ways to elicit the parameters of the model \\
+    by \alert{reasoning on hypothetical data} \\
+%    rather than by maximum entropy arguments
+  \item Is it possible to generalise this method to other problems?
+  \end{itemize}
+\end{frame}
+
 
 \end{document}

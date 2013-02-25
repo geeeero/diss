@@ -8,6 +8,7 @@
 \usepackage[german]{babel}
 
 \usepackage{amssymb, amsmath, amsfonts, enumerate}
+%\usepackage{bbold}
 \usepackage{bm}
 %\usepackage{dsfont}
 \usepackage{pxfonts}
@@ -41,6 +42,7 @@
    folding,%
    fadings,%
    through,%
+   patterns,%
    positioning,%
    scopes,%
    decorations.fractals,%
@@ -88,10 +90,17 @@
 
 \def\yzr{\rot{\yz}}
 \def\ynr{\rot{\yn}}
+\def\byzr{\rot{\byz}}
+\def\bynr{\rot{\byn}}
+\def\yzor{\rot{y\uz_1}}
+\def\yzjr{\rot{y\uz_j}}
+\def\yzkr{\rot{y\uz_k}}
 \def\yzlr{\rot{\yzl}}
 \def\yzur{\rot{\yzu}}
 \def\ynlr{\rot{\ynl}}
 \def\ynur{\rot{\ynu}}
+\def\yzjlr{\rot{\ul{y}\uz_j}}
+\def\yzjur{\rot{\ol{y}\uz_j}}
 
 \def\nzg{\gruen{\nz}}
 \def\nng{\gruen{\nn}}
@@ -99,6 +108,10 @@
 \def\nzug{\gruen{\nzu}}
 \def\nnlg{\gruen{\nnl}}
 \def\nnug{\gruen{\nnu}}
+
+\def\PZc{\Pi\uz}
+\def\PNc{\Pi\un}
+
 
 \title[Bayesian Inference with Sets of Conjugate Priors]
 {Bayesian Inference with Sets of Conjugate Priors: Parameter Set Shapes and Model Behaviour}
@@ -151,11 +164,15 @@
 \item Usually 2 -- 4 generators per reactor
 \item Sufficient cooling of core if one generator works
 %\item Reliability through redundancy is jeopardised by common-cause failure:%\\
-\item redundant component may not fail independently:
+\item Redundant components may not fail independently:
+ \begin{center}
+ \begin{minipage}{0.8\textwidth}
  \begin{alertblock}{common-cause failure} 
  \emph{simultaneous failure of several redundant components\\ due to a common or shared root cause}
  \end{alertblock}
-\item All 12 generators (for 6 reactors) at Fukushima Daiichi not available due to flooding of machine rooms\\
+ \end{minipage}
+ \end{center}
+\item All 12 generators (for 6 reactors) at Fukushima Daiichi\\ were not available due to flooding of machine rooms\\
 (Tsunami from T\={o}hoku earthquake)
 \item Include common cause failures in overall system reliability analysis
 \end{itemize}
@@ -167,14 +184,18 @@
 
 \begin{columns}%[T]
 \begin{column}{0.7\textwidth}\centering
-\includegraphics[scale=1.2]{./graph/800px-Three_Mile_Island_nuclear_power_plant.jpg}\\%[-1ex]
-{\tiny Source: CDC, \url{http://phil.cdc.gov/phil/} ID 1194}
+\includegraphics[scale=1.2]{./graph/800px-Three_Mile_Island_nuclear_power_plant.jpg}
 \end{column}
-\begin{column}{0.3\textwidth}\centering
-\includegraphics[scale=0.8]{./graph/Graphic_TMI-2_Core_End-State_Configuration.png}\\%[-1ex]
-{\tiny Source: Wikimedia Commons, \url{http://commons.wikimedia.org/wiki/File:Graphic_TMI-2_Core_End-State_Configuration.png}}
+\begin{column}{0.35\textwidth}\centering
+\includegraphics[scale=0.95]{./graph/Graphic_TMI-2_Core_End-State_Configuration.png}
 \end{column}
 \end{columns}
+\vspace*{1ex}
+\begin{tiny}
+Above: CDC, \url{http://phil.cdc.gov/phil/} ID 1194\\[1ex]
+Right: Wikimedia Commons,\\[-1.8ex]
+\url{http://commons.wikimedia.org/wiki/File:Graphic_TMI-2_Core_End-State_Configuration.png}
+\end{tiny}
 }
 
 \subsection{Alpha-Factor Model}
@@ -182,11 +203,11 @@
 \begin{frame}{Alpha-Factor Model: Definition}
   \begin{definition}[Alpha-Factor Model] %\cite{1988:mosleh::common:cause}]
     multinomial distribution for common-cause failures \\
-    in a $k$-component system\vspace*{-1ex}
+    in a $k$-component system\vspace*{-2ex}
     %the number of redundant components in the common-cause component group
     \begin{align*}
-      p(\vec{n}\mid\vec{\alpha})=\prod_{j=1}^k\alpha^{n_j}
-    \end{align*}
+      p(\vec{n}\mid\vec{\alpha})=\prod_{j=1}^k\alpha_j^{n_j}
+    \end{align*}\vspace*{-0.5ex}
     where
     \begin{itemize}
     \item \alert{alpha-factor}
@@ -201,8 +222,222 @@
     \item $\vec{n}$ denotes $(n_1,\dots,n_k)$ and $\vec{\alpha}$ denotes $(\alpha_1,\dots,\alpha_k)$
     \end{itemize}
   \end{definition}
-  (there's much more to this, but the above is all what matters in this talk)
+  (the model actually serves to estimate failure \emph{rates},\\ but the above is all what matters in this talk)
 \end{frame}
 
+\begin{frame}{Alpha-Factor Model: Inference ***raus??***}
+  \begin{block}{Inference}
+    involves rational functions \\
+    of probabilities $\vec{\alpha}$ of common-cause failures\\
+    and of total failure rate $q_t$ for individual components
+  \end{block}
+  \begin{center}
+    \textbf{this talk: focus on $\vec{\alpha}$ only}
+  \end{center}
+\end{frame}
+
+\begin{frame}{Alpha-Factor Model: Parameter Estimation}
+  \begin{exampleblock}{The Good News}
+    attractive feature of this model: \\
+    $\vec{\alpha}$ can be estimated directly from data, e.g.\ MLE:
+    \begin{align*}
+      \alpha_j=\frac{n_j}{\sum_{j=1}^n n_j}
+    \end{align*}
+  \end{exampleblock}
+  \begin{alertblock}{The Bad News}
+    \begin{itemize}
+    \item typically, for $j\ge 2$, the $n_j$ are very low \\
+      with zero being quite common for larger $j$
+    \item zero counts = flat likelihoods \\
+      standard techniques such as MLE can struggle \\
+      to produce sensible inferences for this problem
+    \end{itemize}
+  \end{alertblock}
+  \begin{center}
+    \textbf{\then\ need to rely on \alert{epistemic information}}
+  \end{center}
+\end{frame}
+
+\subsection{Bayesian Analysis}
+
+\begin{frame}{Bayesian Analysis: Dirichlet Prior}
+  $\vec{\alpha}$ considered as uncertain parameter on which we put\dots
+  \begin{block}{Dirichlet Distribution}
+  \begin{columns}
+  \begin{column}{0.65\textwidth}
+    \begin{align*}
+      p(\vec{\theta}\mid \nzg,\byzr) \propto \prod_{j=1}^k\theta_j^{\nzg\yzjr-1}
+    \end{align*}
+  \end{column}  
+  \begin{column}{0.35\textwidth}
+    \rule{0ex}{3ex}where $(\nzg, \byzr)$\\ are hyperparameters
+ \end{column}
+ \end{columns}\vspace*{-1ex}
+    \begin{align*}
+      \nzg &> 0\\[-1ex]
+      \byzr &\in \Delta=\Big\{
+        (\yzor,\dots,\yzkr)\colon \yzor\ge0,\dots,\yzkr\ge 0,\,\sum_{j=1}^k \yzjr=1
+      \Big\}
+    \end{align*}
+  \end{block}
+  \begin{block}{Interpretation}
+    \begin{itemize}
+    \item $\byzr$ = \alert{prior expectation of $\vec{\alpha}$}
+    \item $\nzg$ = determines \alert{spread} and \alert{learning speed} (see next slide)
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}{Bayesian Analysis: Dirichlet Posterior}
+  \begin{itemize}
+  \item posterior density for $\vec{\alpha}$ is again Dirichlet
+    \begin{align*}
+      p(\vec{\alpha}\mid\nzg,\byzr,\vec{n})
+%      =:
+%      p(\vec{\alpha}\mid\nng,\bynr)
+      \propto
+      \prod_{j=1}^k\alpha_j^{\nzg\yzjr+n_j-1}.
+    \end{align*}
+  \item posterior expectation of $\alpha_j$
+    \begin{align*}
+      %\label{eq:dirichlet:posterior:predictive}
+      %\colorbox{red!10!white}{$\displaystyle
+      \E[\alpha_j\mid\nzg,\byzr,\vec{n}]
+      &=
+      \int_{\Delta}\alpha_j p(\vec{\alpha}\mid\nzg,\byzr,\vec{n})\dd\vec{\alpha} \\
+      &=
+      %\frac{n_j+st_j}{N+s}
+      %=
+      %\textcolor{green!50!black}{\frac{N}{N+s}}
+      %\textcolor{blue}{\frac{n_j}{N}}
+      %+
+      %\textcolor{green!50!black}{\frac{s}{N+s}}
+      %\textcolor{blue}{t_j}
+      \colorbox{lmugreen!10!white}{$\displaystyle
+      \frac{\nzg}{\nzg+n} \cdot \yzjr + \frac{n}{\nzg+n} \cdot \frac{n_j}{n}
+      $}
+    \end{align*}
+    where $n=\sum_{j=1}^k n_j$ is total number of observations
+  \end{itemize}
+  %\vspace{1em}
+  \begin{center}
+    \textbf{we will focus on $\E[\alpha_j\mid\nzg,\byzr,\vec{n}]$} \\
+    (in a decision context, this expectation would typically end up \\
+    in expressions for expected utility)
+  \end{center}
+\end{frame}
+
+\subsection{Example}
+
+\begin{frame}{Example: Prior and Data}
+  (taken from Kelly \& Atwood, 2011) %\cite{2011:kelly:atwood})
+
+  \begin{example}
+    Consider a system with four redundant components ($k=4$). \\
+    %The probability of
+    %$j$ out of $k$ common-cause failures, given that failure has happend,
+    %was denoted by $\theta_j$.
+    The analyst specifies
+    the following prior expectation $\mu_{\text{spec},j}$
+    for each $\alpha_j$:
+    \begin{align*}
+      %\label{eq:example:muspec}
+      \mu_{\text{spec},1}&=0.950
+      &
+      \mu_{\text{spec},2}&=0.030
+      &
+      \mu_{\text{spec},3}&=0.015
+      &
+      \mu_{\text{spec},4}&=0.005
+    \end{align*}
+    We have 36 observations, in which 35 showed one component failing,
+    and 1 showed two components failing:
+    \begin{align*}
+      n_1&=35
+      &
+      n_2&=1
+      &
+      n_3&=0
+      &
+      n_4&=0
+    \end{align*}
+  \end{example}
+\end{frame}
+
+\begin{frame}{Example: Non-Informative Priors}
+  \alert{large variation in posterior under different non-informative priors} \\
+  \begin{itemize}
+  \item with constrained maximum entropy prior (Kelly and Atwood, 1996): %\cite{1996:atwood,2011:kelly:atwood}):
+    \begin{align*}
+      \E[\alpha_1\mid\nzg,\byzr,\vec{n}]&=0.967
+      &
+      \E[\alpha_2\mid\nzg,\byzr,\vec{n}]&=0.028
+      \\
+      \E[\alpha_3\mid\nzg,\byzr,\vec{n}]&=0.003
+      &
+      \E[\alpha_4\mid\nzg,\byzr,\vec{n}]&=0.001
+    \end{align*}
+  \item 
+  with uniform prior $t_j=0.25$ and $s=4$:
+  \begin{align*}
+    \E[\alpha_1\mid\nzg,\byzr,\vec{n}]&=0.9
+    &
+    \E[\alpha_2\mid\nzg,\byzr,\vec{n}]&=0.05
+    \\
+    \E[\alpha_3\mid\nzg,\byzr,\vec{n}]&=0.025
+    &
+    \E[\alpha_4\mid\nzg,\byzr,\vec{n}]&=0.025
+  \end{align*}
+  \item
+  with Jeffrey's prior $t_j=0.25$ and $s=2$:
+  \begin{align*}
+    \E[\alpha_1\mid\nzg,\byzr,\vec{n}]&=0.9342
+    &
+    \E[\alpha_2\mid\nzg,\byzr,\vec{n}]&=0.0395
+    \\
+    \E[\alpha_3\mid\nzg,\byzr,\vec{n}]&=0.0132
+    &
+    \E[\alpha_4\mid\nzg,\byzr,\vec{n}]&=0.0132
+  \end{align*}
+  \end{itemize}
+  % The degree of variation in the posterior under different priors
+  % is evidently somewhat alarming.
+  % In the next section, we aim to robustify the model
+  % by using sets of priors from the start.
+\end{frame}
+
+\subsection{Imprecise Dirichlet Model}
+
+\begin{frame}{Imprecise Dirichlet Model: Definition}
+\begin{block}{Imprecise Dirichlet Model (IDM) for Common-Cause Failure}
+use a \alert{set of hyperparameters}
+    % \cite[p.~224, \S 5.4.3]{1991:walley} \cite[p.~32, \S 6]{1996:walley::idm},
+    %\cite{1991:walley,1996:walley::idm}
+    (Walley 1991, 1996)
+    \begin{align*}
+      %\label{eq:hyperparams:boxmodel}
+      %\mathcal{H}
+      \PZc
+      =
+      \left\{
+        (\nzg,\byzr)
+        \colon
+        \nzg\in[\nzlg,\nzug],\,
+        \byzr\in\Delta,\,
+        \yzjr\in[\yzjlr,\yzjur]
+      \right\}
+    \end{align*}
+\end{block}
+\begin{block}{Interpretation}
+\begin{itemize}
+  \item we are doing a \alert{sensitivity analysis} (\'a la robust Bayes) over $(\nzg,\byzr) \in \PZc$,
+  \item we consider a \alert{set of priors} $\{p(\alpha\mid\nzg,\byzr) \colon (\nzg,\byzr) \in \PZc\}$
+  (resp.\ all convex mixtures of them)
+\end{itemize}
+\end{block}
+Analyst has to specify \\
+    bounds $[\yzjlr,\yzjur]$ for each $j\in\{1,\dots,k\}$, %\\
+    bounds $[\nzlg,\nzug]$
+\end{frame}
 
 \end{document}

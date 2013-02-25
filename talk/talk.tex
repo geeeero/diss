@@ -10,6 +10,8 @@
 \usepackage{amssymb, amsmath, amsfonts, enumerate}
 \usepackage{bm}
 %\usepackage{dsfont}
+\usepackage{pxfonts}
+\usepackage{xcolor}
 
 \usepackage{tikz}
 \usetikzlibrary{%
@@ -49,6 +51,7 @@
    decorations.footprints,%
    decorations.markings,%
    shadows}
+\usepackage{hyperref}
 
 \setbeamertemplate{blocks}[rounded][shadow=true]
 \definecolor{lmugreen2}{RGB}{0,120,94}
@@ -127,6 +130,79 @@
 \titlepage
 }
 
+\section{Common-cause Failure Modelling}
+
+
+\frame{
+\frametitle{Common-Cause Failures}
+
+\begin{center}
+\includegraphics[scale=0.4]{./graph/800px-Fukushima_I_by_Digital_Globe.jpg}\\%[-1ex]
+{\tiny Source: Wikimedia Commons, \url{http://commons.wikimedia.org/wiki/File:Fukushima_I_by_Digital_Globe.jpg}}
+\end{center}
+}
+
+
+\frame{
+\frametitle{Common-Cause Failures}
+
+\begin{itemize}
+\item Reliability of redundant systems (emergency diesel generators)
+\item Usually 2 -- 4 generators per reactor
+\item Sufficient cooling of core if one generator works
+%\item Reliability through redundancy is jeopardised by common-cause failure:%\\
+\item redundant component may not fail independently:
+ \begin{alertblock}{common-cause failure} 
+ \emph{simultaneous failure of several redundant components\\ due to a common or shared root cause}
+ \end{alertblock}
+\item All 12 generators (for 6 reactors) at Fukushima Daiichi not available due to flooding of machine rooms\\
+(Tsunami from T\={o}hoku earthquake)
+\item Include common cause failures in overall system reliability analysis
+\end{itemize}
+}
+
+
+\frame{
+\frametitle{Common-Cause Failure Modelling}
+
+\begin{columns}%[T]
+\begin{column}{0.7\textwidth}\centering
+\includegraphics[scale=1.2]{./graph/800px-Three_Mile_Island_nuclear_power_plant.jpg}\\%[-1ex]
+{\tiny Source: CDC, \url{http://phil.cdc.gov/phil/} ID 1194}
+\end{column}
+\begin{column}{0.3\textwidth}\centering
+\includegraphics[scale=0.8]{./graph/Graphic_TMI-2_Core_End-State_Configuration.png}\\%[-1ex]
+{\tiny Source: Wikimedia Commons, \url{http://commons.wikimedia.org/wiki/File:Graphic_TMI-2_Core_End-State_Configuration.png}}
+\end{column}
+\end{columns}
+}
+
+\subsection{Alpha-Factor Model}
+
+\begin{frame}{Alpha-Factor Model: Definition}
+  \begin{definition}[Alpha-Factor Model] %\cite{1988:mosleh::common:cause}]
+    multinomial distribution for common-cause failures \\
+    in a $k$-component system\vspace*{-1ex}
+    %the number of redundant components in the common-cause component group
+    \begin{align*}
+      p(\vec{n}\mid\vec{\alpha})=\prod_{j=1}^k\alpha^{n_j}
+    \end{align*}
+    where
+    \begin{itemize}
+    \item \alert{alpha-factor}
+      $\alpha_j\coloneqq$
+      \parbox[t]{0.6\textwidth}{%
+        probability of $j$ of the $k$ components \\
+        failing due to a common cause \\
+        given that failure occurs
+      }
+    \item \alert{failure count}
+      $n_j\coloneqq$ corresponding number of failures observed
+    \item $\vec{n}$ denotes $(n_1,\dots,n_k)$ and $\vec{\alpha}$ denotes $(\alpha_1,\dots,\alpha_k)$
+    \end{itemize}
+  \end{definition}
+  (there's much more to this, but the above is all what matters in this talk)
+\end{frame}
 
 
 \end{document}

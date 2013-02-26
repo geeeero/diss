@@ -211,7 +211,7 @@
  \end{center}
 \item All 12 generators (for 6 reactors) at Fukushima Daiichi\\ were not available due to flooding of machine rooms\\
 (Tsunami from T\={o}hoku earthquake)
-\item Include common cause failures in overall system reliability analysis
+\item Include common-cause failures in overall system reliability analysis
 \end{itemize}
 }
 
@@ -238,13 +238,13 @@ Right: Wikimedia Commons,\\[-1.8ex]
 \subsection{Alpha-Factor Model}
 
 \begin{frame}{Alpha-Factor Model: Definition}
-  \begin{definition}[Alpha-Factor Model] %\cite{1988:mosleh::common:cause}]
-    multinomial distribution for common-cause failures \\
+  \begin{block}{Alpha-Factor Model} %\cite{1988:mosleh::common:cause}]
+    Multinomial distribution $\mult(\vec{n}\mid\vec{\alpha})$ for common-cause failures \\
     in a $k$-component system\vspace*{-2ex}
     %the number of redundant components in the common-cause component group
     \begin{align*}
-      p(\vec{n}\mid\vec{\alpha})=\prod_{j=1}^k\alpha_j^{n_j}
-    \end{align*}\vspace*{-0.5ex}
+      p(\vec{n}\mid\vec{\alpha})=\prod_{j=1}^k\alpha_j^{n_j}\\[-5ex]
+    \end{align*}
     where
     \begin{itemize}
     \item \alert{alpha-factor}
@@ -258,7 +258,7 @@ Right: Wikimedia Commons,\\[-1.8ex]
       $n_j\coloneqq$ corresponding number of failures observed
     \item $\vec{n}$ denotes $(n_1,\dots,n_k)$ and $\vec{\alpha}$ denotes $(\alpha_1,\dots,\alpha_k)$
     \end{itemize}
-  \end{definition}
+  \end{block}
   (the model actually serves to estimate failure \emph{rates},\\ but the above is all what matters in this talk)
 \end{frame}
 
@@ -278,7 +278,7 @@ Right: Wikimedia Commons,\\[-1.8ex]
     attractive feature of this model: \\
     $\vec{\alpha}$ can be estimated directly from data, e.g.\ MLE:
     \begin{align*}
-      \alpha_j=\frac{n_j}{\sum_{j=1}^n n_j}
+      \alpha_j &= \frac{n_j}{n},\qquad \text{where $\textstyle\sum_{j=1}^n n_j$}
     \end{align*}
   \end{exampleblock}
   \begin{alertblock}{The Bad News}
@@ -290,6 +290,7 @@ Right: Wikimedia Commons,\\[-1.8ex]
       to produce sensible inferences for this problem
     \end{itemize}
   \end{alertblock}
+  \vspace*{-1ex}
   \begin{center}
     \textbf{\then\ need to rely on \alert{epistemic information}}
   \end{center}
@@ -307,9 +308,9 @@ Right: Wikimedia Commons,\\[-1.8ex]
     \end{align*}
   \end{column}  
   \begin{column}{0.35\textwidth}
-    \rule{0ex}{3ex}where $(\nzg, \byzr)$\\ are hyperparameters
+    \rule{0ex}{3ex}where $(\nzg, \byzr)$\\ are \emph{hyperparameters}
  \end{column}
- \end{columns}\vspace*{-1ex}
+ \end{columns}\vspace*{-1.8ex}
     \begin{align*}
       \nzg &> 0\\[-1ex]
       \byzr &\in \Delta=\Big\{
@@ -317,9 +318,10 @@ Right: Wikimedia Commons,\\[-1.8ex]
       \Big\}
     \end{align*}
   \end{block}
+  \vspace*{-0.5ex}
   \begin{block}{Interpretation}
     \begin{itemize}
-    \item $\byzr$ = \alert{prior expectation of $\vec{\alpha}$}
+    \item $\byzr$ = \alert{prior expectation of $\vec{\alpha}$}, i.e., a prior guess for $\frac{n_j}{n}$ %, $j=1,\ldots,n$
     \item $\nzg$ = determines \alert{spread} and \alert{learning speed} (see next slide)
     \end{itemize}
   \end{block}
@@ -415,7 +417,7 @@ Right: Wikimedia Commons,\\[-1.8ex]
       \E[\alpha_4\mid\nzg,\byzr,\vec{n}]&=0.001
     \end{align*}
   \item 
-  with uniform prior $t_j=0.25$ and $s=4$:
+  with uniform prior $\yzjr=0.25$ and $\nzg=4$:
   \begin{align*}
     \E[\alpha_1\mid\nzg,\byzr,\vec{n}]&=0.9
     &
@@ -426,7 +428,7 @@ Right: Wikimedia Commons,\\[-1.8ex]
     \E[\alpha_4\mid\nzg,\byzr,\vec{n}]&=0.025
   \end{align*}
   \item
-  with Jeffrey's prior $t_j=0.25$ and $s=2$:
+  with Jeffrey's prior $\yzjr=0.25$ and $\nzg=2$:
   \begin{align*}
     \E[\alpha_1\mid\nzg,\byzr,\vec{n}]&=0.9342
     &
@@ -447,10 +449,10 @@ Right: Wikimedia Commons,\\[-1.8ex]
 
 \begin{frame}{Imprecise Dirichlet Model: Definition}
 \begin{block}{Imprecise Dirichlet Model (IDM) for Common-Cause Failure}
-use a \alert{set of hyperparameters}:
+use a \alert{set of hyperparameters}
     % \cite[p.~224, \S 5.4.3]{1991:walley} \cite[p.~32, \S 6]{1996:walley::idm},
     %\cite{1991:walley,1996:walley::idm}
-    (Walley 1991, 1996)
+    (Walley 1991, 1996):
     \begin{align*}
       %\label{eq:hyperparams:boxmodel}
       %\mathcal{H}
@@ -468,8 +470,9 @@ use a \alert{set of hyperparameters}:
 \begin{block}{Interpretation}
 \begin{itemize}
   \item we are doing a \alert{sensitivity analysis} (\'a la robust Bayes) over $(\nzg,\byzr) \in \PZc$
-  \item we consider a \alert{set of priors} $\big\{p(\alpha\mid\nzg,\byzr) \colon (\nzg,\byzr) \in \PZc\big\}$
-  (resp.\ all convex mixtures of them)
+  \item we take a \alert{set of priors} $\text{conv}\big(\big\{p(\alpha\mid\nzg,\byzr) \colon (\nzg,\byzr) \in \PZc\big\}\big)$
+  as model for prior information
+%  (resp.\ all convex mixtures of them)
 \end{itemize}
 \end{block}
 Analyst has to specify \\
@@ -496,7 +499,7 @@ Analyst has to specify \\
   \end{itemize}
   \begin{alertblock}{}
     $\nzug$ = number of one-component failures required \\
-    to reduce the upper probabilities of multi-components failure by half
+    to reduce the upper probabilities of multi-component failure by half
   \end{alertblock}
   \begin{alertblock}{}
     $\nzlg$ = number of multi-component failures required \\
@@ -527,6 +530,7 @@ Analyst has to specify \\
   \begin{center}
     prior bounds + likelihood $\to$ posterior bounds
   \end{center}
+\vspace*{-2ex}
 \begin{block}{}
   \begin{center}
   \begin{tabular}{c|cc||cc}
@@ -536,10 +540,10 @@ Analyst has to specify \\
     $j$ & $\El[\alpha_j\mid\PZc,\vec{n}]$ &$\Eu[\alpha_j\mid\PZc,\vec{n}]$
         & $\El[\alpha_j\mid\PZc,\vec{n}]$ &$\Eu[\alpha_j\mid\PZc,\vec{n}]$ \\
     \hline
-    1 & 0.967   & 0.972   & 0.967   & 0.978\\
-    2 & 0.0278  & 0.0283  & 0.0270  & 0.0283\\
-    3 & 0.00041 & 0.00326 & 0       & 0.00326\\
-    4 & 0.00014 & 0.00109 & 0       & 0.00109
+    1 & 0.967\phantom{00} & 0.972\phantom{00} & 0.967\phantom{0} & 0.978\phantom{00}\\
+    2 & 0.0278\phantom{0} & 0.0283\phantom{0} & 0.0270           & 0.0283\phantom{0}\\
+    3 & 0.00041           & 0.00326           & 0\phantom{0.000}  & 0.00326\\
+    4 & 0.00014           & 0.00109           & 0\phantom{0.000}  & 0.00109
   \end{tabular}
   \end{center}
 \end{block} 
@@ -613,11 +617,11 @@ p(\psib\mid\nng,\ynr) %\hspace*{2ex}
 \end{block}
 
 \begin{example}
-\begin{tabular}{r|ccl}
+\begin{tabular}{r|rcl}
 Data :           & $\vec{x}\mid\mu$   & $\sim$ & $\norm(\mu,\sigma_0^2)$ \quad ($\sigma_0^2$ known)\\[0.5ex]
 conjugate prior: & $\mu\mid\nzg,\yzr$ & $\sim$ & $\norm(\yzr, 1/\nzg)$  \\[0.5ex]
 \cline{1-4}
-posterior:       & $\mu\mid\nng,\ynr$ & $\sim$ & $\norm(\ynr, 1/\nng)$ \quad ($\tau(\vec{x})/n = \bar{\vec{x}}$)\rule{0ex}{2.5ex} %& \\[0.5ex]
+posterior:       & $\mu\mid\nng,\ynr$ & $\sim$ & $\norm(\ynr, 1/\nng)$ \quad ($\frac{\tau(\vec{x})}{n} = \bar{\vec{x}}$)\rule{0ex}{2.5ex} %& \\[0.5ex]
 \end{tabular}
 \end{example}
 }

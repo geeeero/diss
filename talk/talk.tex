@@ -9,6 +9,7 @@
 
 \usepackage{amssymb, amsmath, amsfonts, enumerate}
 %\usepackage{bbold}
+\newcommand\hmmax{0}
 \usepackage{bm}
 %\usepackage{dsfont}
 \usepackage{pxfonts}
@@ -73,6 +74,7 @@
 %\def\then{{\color{lmugreen}$\rhd$}}
 %\def\then{{\color{lmugreen}$\gg\!\!\!\!\!\gg$}}
 %\def\then{{\color{lmugreen}${\mathbf{\gg}}$}}
+\def\play{{\color{lmugreen}$\blacktriangleright$}}
 
 \def\rthen{{\color{lmugreen}$\rule[0.35ex]{0.5ex}{0.95ex}\rule[0.35ex]{1.3ex}{0.5ex}\!\!\!\blacktriangleright$}}
 
@@ -110,6 +112,10 @@
 \def\nzug{\gruen{\nzu}}
 \def\nnlg{\gruen{\nnl}}
 \def\nnug{\gruen{\nnu}}
+
+\def\psib{\blau{\psi}}
+\def\bpsib{\blau{{b}(\psi)}}
+
 
 % ------------ shading start
 \newsavebox{\tempbox}
@@ -164,6 +170,15 @@
 \frame{
 \titlepage
 }
+
+\frame{\frametitle{Outline}
+\begin{enumerate}
+\item Common-cause failure modelling
+\item Bayesian inference with sets of priors
+\item Parameter set shapes
+\end{enumerate}
+}
+
 
 \section{Common-cause Failure Modelling}
 
@@ -512,7 +527,7 @@ Analyst has to specify \\
   \begin{center}
     prior bounds + likelihood $\to$ posterior bounds
   \end{center}
-
+\begin{block}{}
   \begin{center}
   \begin{tabular}{c|cc||cc}
     \multicolumn{1}{c}{}
@@ -527,11 +542,11 @@ Analyst has to specify \\
     4 & 0.00014 & 0.00109 & 0       & 0.00109
   \end{tabular}
   \end{center}
-  
+\end{block} 
   \begin{itemize}
   \item \alert{Bounds}, rather than precise values, are desirable \\
     due to inferences being strongly sensitive to the prior \\
-    particularly when faced with zero counts.
+    particularly when faced with zero counts
   \item Simple ways to elicit the parameters of the model \\
     by \alert{reasoning on hypothetical data} \\
 %    rather than by maximum entropy arguments
@@ -539,5 +554,79 @@ Analyst has to specify \\
   \end{itemize}
 \end{frame}
 
+\section{Bayesian Inference with Sets of Priors}
+
+\subsection{Canonical Conjugate Priors}
+
+\frame{\frametitle{Canonical Conjugate Priors}
+
+The multinomial is an example for a \alert{canonical exponential family} %(Bernardo \& Smith, 2000)
+%Weighted average structure is underneath all common conjugate priors
+%for exponential family sampling distributions!\\[2ex]
+
+\begin{block}%
+{$(x_1, \ldots, x_n) = \vec{x} \stackrel{iid}{\sim}$ canonical exponential family} %(Bernardo and Smith, 1994)
+%, i.e.
+\begin{align*}
+p(\vec{x} \mid \theta) &\propto \exp\big\{\langle \psib, \tau(\vec{x}) \rangle - n \bpsib \big\}
+\qquad \Big[ \psib \text{ transformation of } \theta \Big]
+\end{align*}
+(includes Binomial, Multinomial, Normal, Poisson, Exponential, \ldots )%\\[2ex]
+\end{block}
+
+\begin{align*}
+&\text{\play\ conjugate prior:} &
+p(\psib\mid\nzg,\yzr) \hspace*{2ex}
+&\propto \exp\big\{ \nzg \big[\langle \psib, \yzr \rangle - \bpsib\big]\big\} \\
+&\text{\play\ (conjugate) posterior:} &
+p(\psib\mid\nzg,\yzr,\vec{x})
+%p(\psib\mid\nng,\ynr) \hspace*{2ex}
+&\propto \exp\big\{ \nng \big[\langle \psib, \ynr \rangle - \bpsib\big]\big\} \,,%\quad \mbox{where}
+\end{align*}
+\begin{align*}
+\mbox{where}\quad \ynr &= \frac{\nzg}{\nzg + n} \cdot \yzr + \frac{n}{\nzg + n} \cdot \frac{\tau(\vec{x})}{n}
+& &\mbox{and} & \nng &= \nzg + n
+\end{align*}
+
+}
+
+\frame{\frametitle{Canonical Conjugate Priors}
+
+\vspace*{-2ex}
+\begin{align*}
+&\text{\play\ (conjugate) posterior:} &
+%p(\psib\mid\nzg,\yzr,\vec{x})
+p(\psib\mid\nng,\ynr) %\hspace*{2ex}
+&\propto \exp\big\{ \nng \big[\langle \psib, \ynr \rangle - \bpsib\big]\big\} \,,%\quad \mbox{where}
+\end{align*}
+\vspace*{-2ex}
+\begin{align*}
+\mbox{where}\quad \ynr &= \frac{\nzg}{\nzg + n} \cdot \yzr + \frac{n}{\nzg + n} \cdot \frac{\tau(\vec{x})}{n}
+& &\mbox{and} & \nng &= \nzg + n
+\end{align*}
+
+\begin{block}{Interpretation}
+  \begin{itemize}
+  \item $\nzg$ = determines \alert{spread} and \alert{learning speed}
+  \item $\byzr$ = \alert{prior expectation} of $\tau(\vec{x})/n$ %$\frac{\tau(\vec{x})}{n}$
+  \end{itemize}
+\end{block}
+
+\begin{example}
+\begin{tabular}{r|ccl}
+Data :           & $\vec{x}\mid\mu$   & $\sim$ & $\norm(\mu,\sigma_0^2)$ \quad ($\sigma_0^2$ known)\\[0.5ex]
+conjugate prior: & $\mu\mid\nzg,\yzr$ & $\sim$ & $\norm(\yzr, 1/\nzg)$  \\[0.5ex]
+\cline{1-4}
+posterior:       & $\mu\mid\nng,\ynr$ & $\sim$ & $\norm(\ynr, 1/\nng)$ \quad ($\tau(\vec{x})/n = \bar{\vec{x}}$)\rule{0ex}{2.5ex} %& \\[0.5ex]
+\end{tabular}
+\end{example}
+}
+
+
+
+\subsection{Sets of Conjugate Priors}
+
+
+\section{Parameter Set Shapes}
 
 \end{document}

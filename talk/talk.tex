@@ -570,10 +570,10 @@ The multinomial is an example for a \alert{canonical exponential family} %(Berna
 %for exponential family sampling distributions!\\[2ex]
 
 \begin{block}%
-{$(x_1, \ldots, x_n) = \vec{x} \stackrel{iid}{\sim}$ canonical exponential family} %(Bernardo and Smith, 1994)
+{$(x_1, \ldots, x_n) = \x \stackrel{iid}{\sim}$ canonical exponential family} %(Bernardo and Smith, 1994)
 %, i.e.
 \begin{align*}
-p(\vec{x} \mid \theta) &\propto \exp\big\{\langle \psib, \tau(\vec{x}) \rangle - n \bpsib \big\}
+p(\x \mid \theta) &\propto \exp\big\{\langle \psib, \tau(\x) \rangle - n \bpsib \big\}
 \qquad \Big[ \psib \text{ transformation of } \theta \Big]
 \end{align*}
 (includes Binomial, Multinomial, Normal, Poisson, Exponential, \ldots )%\\[2ex]
@@ -589,7 +589,7 @@ p(\psib\mid\nzg,\yzr,\vec{x})
 &\propto \exp\big\{ \nng \big[\langle \psib, \ynr \rangle - \bpsib\big]\big\} \,,%\quad \mbox{where}
 \end{align*}
 \begin{align*}
-\mbox{where}\quad \ynr &= \frac{\nzg}{\nzg + n} \cdot \yzr + \frac{n}{\nzg + n} \cdot \frac{\tau(\vec{x})}{n}
+\mbox{where}\quad \ynr &= \frac{\nzg}{\nzg + n} \cdot \yzr + \frac{n}{\nzg + n} \cdot \frac{\tau(\x)}{n}
 & &\mbox{and} & \nng &= \nzg + n
 \end{align*}
 
@@ -606,23 +606,23 @@ p(\psib\mid\nng,\ynr) %\hspace*{2ex}
 \end{align*}
 \vspace*{-2ex}
 \begin{align*}
-\mbox{where}\quad \ynr &= \frac{\nzg}{\nzg + n} \cdot \yzr + \frac{n}{\nzg + n} \cdot \frac{\tau(\vec{x})}{n}
+\mbox{where}\quad \ynr &= \frac{\nzg}{\nzg + n} \cdot \yzr + \frac{n}{\nzg + n} \cdot \frac{\tau(\x)}{n}
 & &\mbox{and} & \nng &= \nzg + n
 \end{align*}
 
 \begin{block}{Interpretation}
   \begin{itemize}
   \item $\nzg$ = determines \alert{spread} and \alert{learning speed}
-  \item $\byzr$ = \alert{prior expectation} of $\tau(\vec{x})/n$ %$\frac{\tau(\vec{x})}{n}$
+  \item $\byzr$ = \alert{prior expectation} of $\tau(\x)/n$ %$\frac{\tau(\vec{x})}{n}$
   \end{itemize}
 \end{block}
 
 \begin{example}
 \begin{tabular}{r|lcl}
-Data :           & $\vec{x}\mid\mu$   & $\sim$ & $\norm(\mu,\sigma_0^2)$ \quad ($\sigma_0^2$ known)\\[0.5ex]
+Data :           & $\x\mid\mu$        & $\sim$ & $\norm(\mu,\sigma_0^2)$ \quad ($\sigma_0^2$ known)\\[0.5ex]
 conjugate prior: & $\mu\mid\nzg,\yzr$ & $\sim$ & $\norm(\yzr, 1/\nzg)$  \\[0.5ex]
 \cline{1-4}
-posterior:       & $\mu\mid\nng,\ynr$ & $\sim$ & $\norm(\ynr, 1/\nng)$ \quad ($\frac{\tau(\vec{x})}{n} = \bar{\vec{x}}$)\rule{0ex}{2.5ex} %& \\[0.5ex]
+posterior:       & $\mu\mid\nng,\ynr$ & $\sim$ & $\norm(\ynr, 1/\nng)$ \quad ($\frac{\tau(\x)}{n} = \bar{\x}$)\rule{0ex}{2.5ex} %& \\[0.5ex]
 \end{tabular}
 \end{example}
 }
@@ -660,11 +660,18 @@ Finite convex mixtures of canonical conjugate posteriors\\ defined by set of upd
 
 \frame{\frametitle{Generalised Bayesian Inference with Sets of Priors}
 
-Parameter set $\PZc$ defines set of priors
-
-Bounds for quantities being linear in $p(\psib\mid\nng,\bynr)$\\
-(expectations $\E[g(\psib)\mid\nng,\bynr]$, \ldots)
-are attained at canonical conjugate posteriors and thus \alert{straighforward to calculate}
+\begin{itemize}
+\item Parameter set $\PZc$ defines set of priors $\MZ$
+\item Parameter set $\PNc$ defines set of posteriors $\MN$
+\item $\PZc \to \PNc$ is easy ($\nng = \nzg + n$, $\ynr = \dots$)
+\item Quantities linear in $p(\psib\mid\nng,\bynr)$
+(e.g., $\E[g(\psib)\mid\nng,\bynr]$):\\
+\then\ bounds attained at ``pure'' posteriors $p(\psib\mid\nng,\bynr)$\\
+\then\ \alert{straighforward to calculate:} optimise over $(\nng,\bynr)$ only
+\item Often, optimising over $(\nng,\bynr)$ is also easy:\\
+posterior guess for $\frac{\tau(\x)}{n}$ (think: $\bar{\x}$) = $\ynr$\\
+\then\ \alert{analytic calculations}
+\end{itemize}
 
 }
 
@@ -673,9 +680,16 @@ are attained at canonical conjugate posteriors and thus \alert{straighforward to
 \frame{\frametitle{Parameter Set Shapes}
 
 \begin{itemize}
-\item Parameter set $\PZc$ defines set of priors\
-\item Shape of $\PZc$ influences model behaviour
+\item Shape of $\PZc$ influences shape of $\PNc$
+\item Shape of $\PNc$ influences model behaviour\\
+\then\ shape of $\PZc$ is crucial modelling choice
+\item $\PZc = [\nzlg, \nzug] \times [\yzlr, \yzur]$ (as before)
+is very easy to elicit\\
+and gives good model behaviour for \alert{\pdc}
+\item \alert{\pdc}\ = ****
 \end{itemize}
+
+Example Beta-Binom, show point, line, rectangle
 
 }
 

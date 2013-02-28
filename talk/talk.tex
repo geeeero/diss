@@ -301,7 +301,7 @@ Right: Wikimedia Commons,\\[-1.8ex]
 
 \begin{frame}{Bayesian Analysis: Dirichlet Prior}
   $\vec{\alpha}$ considered as uncertain parameter on which we put\dots
-  \begin{block}{Dirichlet Distribution}
+  \begin{block}{Dirichlet Distribution ($\to$ Dirichlet-Multinomial Model)}
   \begin{columns}
   \begin{column}{0.65\textwidth}
     \begin{align*}
@@ -627,11 +627,30 @@ posterior:       & $\mu\mid\nng,\ynr$ & $\sim$ & $\norm(\ynr, 1/\nng)$ \quad ($\
 \end{example}
 }
 
-
-
 \subsection{Sets of Priors}
 
-\frame{\frametitle{Generalised Bayesian Inference with Sets of Priors}
+\frame{\frametitle{Bayesian Inference with Sets of Priors}
+
+\begin{block}{Standard Bayesian inference procedure}
+\centerline{prior + likelihood = posterior}
+using Bayes' Rule\\
+All inferences are based on the posterior\\
+(e.g., point estimate = $\E[\psib\mid\nng,\ynr]$)
+\end{block}
+
+\centerline{Let hyperparameters $(\nzg, \yzr)$ vary in a set $\PZc$ \then\ \alert{set of priors}}
+
+\begin{block}{Generalised Bayesian inference procedure}
+\centerline{set of priors + likelihood = set of posteriors}
+using \emph{Generalised Bayes' Rule} (GBR, Walley 1991)\\
+All inferences are based on the set of posteriors\\
+(e.g., point estimate = $\big[\El[\psib\mid\nng,\ynr],\Eu[\psib\mid\nng,\ynr]\big]$)
+\end{block}
+
+Lower/upper expectation by min/max over $\PZc$
+}
+
+\frame{\frametitle{Bayesian Inference with Sets of Priors}
 
 \begin{block}{Set of Priors}
 \vspace*{-1ex}
@@ -642,7 +661,8 @@ posterior:       & $\mu\mid\nng,\ynr$ & $\sim$ & $\norm(\ynr, 1/\nng)$ \quad ($\
 %Model for prior information =
 Finite convex mixtures of canonical conjugate priors defined by $\PZc$\\
 Convex set of probability distributions ensures \emph{coherence} {\small(Walley 1991)}\\
-of inference procedure (as in standard Bayesian inference)
+%of inference procedure
+(as in standard Bayesian inference procedure)
 \end{block}
 
 \begin{block}{Set of Posteriors}
@@ -653,24 +673,25 @@ of inference procedure (as in standard Bayesian inference)
 
 where $\PNc = \big\{(\nng,\bynr) \colon (\nzg,\byzr) \in \PZc \big\}$.\\
 %Set of posteriors = 
-Finite convex mixtures of canonical conjugate posteriors\\ defined by set of updated parameters $\PNc$
+Finite convex mixtures of canonical conjugate posteriors\\ defined by set of updated hyperparameters $\PNc$
 \end{block}
 
 }
 
-\frame{\frametitle{Generalised Bayesian Inference with Sets of Priors}
+\frame{\frametitle{Bayesian Inference with Sets of Priors}
 
 \begin{itemize}
-\item Parameter set $\PZc$ defines set of priors $\MZ$
-\item Parameter set $\PNc$ defines set of posteriors $\MN$
-\item $\PZc \to \PNc$ is easy ($\nng = \nzg + n$, $\ynr = \dots$)
+\item Hyperparameter set $\PZc$ defines set of priors $\MZ$
+\item Hyperparameter set $\PNc$ defines set of posteriors $\MN$
+\item $\PZc \to \PNc$ is easy ($\nng = \nzg + n$, $\ynr = \frac{\nzg}{\nzg + n}\yzr + \frac{n}{\nzg + n}\frac{\tau(\x)}{n}$)
+%\frac{\nzg\yzr + \tau(\x)}{\nzg + n}%\dots$)
 \item Quantities linear in $p(\psib\mid\nng,\bynr)$
 (e.g., $\E[g(\psib)\mid\nng,\bynr]$):\\
 \then\ bounds attained at ``pure'' posteriors $p(\psib\mid\nng,\bynr)$\\
-\then\ \alert{straighforward to calculate:} optimise over $(\nng,\bynr)$ only
-\item Often, optimising over $(\nng,\bynr)$ is also easy:\\
-posterior guess for $\frac{\tau(\x)}{n}$ (think: $\bar{\x}$) = $\ynr$\\
-\then\ \alert{analytic calculations}
+\then\ \alert{straighforward to calculate:} optimise over $\PNc$ only
+\item Often, optimising over $(\nng,\bynr) \in \PNc$ is also easy:\\
+posterior `guess' for $\frac{\tau(\x)}{n}$ (think: $\bar{\x}$) = $\ynr$\\
+\then\ \alert{analytic calculations} if $\PNc$ has `nice' shape
 \end{itemize}
 
 }
@@ -679,21 +700,73 @@ posterior guess for $\frac{\tau(\x)}{n}$ (think: $\bar{\x}$) = $\ynr$\\
 
 \frame{\frametitle{Parameter Set Shapes}
 
+graphs line, rectangle, eggplant
+
+}
+
+\frame{\frametitle{Parameter Set Shapes}
+
 \begin{itemize}
 \item Shape of $\PZc$ influences shape of $\PNc$
 \item Shape of $\PNc$ influences model behaviour\\
 \then\ shape of $\PZc$ is crucial modelling choice
-\item $\PZc = [\nzlg, \nzug] \times [\yzlr, \yzur]$ (as before)
+\item $\PZc = [\nzlg, \nzug] \times [\yzlr, \yzur]$ (\emph{rectangle}) %(as before)
 is very easy to elicit\\
 and gives good model behaviour for \alert{\pdc}
-\item \alert{\pdc}\ = ****
+%\item \alert{\pdc}\ = ****
 \end{itemize}
+
+\begin{block}{Prior-Data Conflict}
+\begin{itemize}
+\item \emph{informative prior beliefs} and \emph{trusted data}\\ %\rule{0ex}{3ex}\\
+(sampling model correct, no outliers, etc.) are in conflict%\\%[2ex]
+\item ``[\ldots] the prior [places] its mass primarily on distributions
+in the sampling model for which the observed data is surprising''\\
+(Evans \& Moshonov, 2006)
+\item there are not enough data to overrule the prior
+\end{itemize}
+\end{block}
+
+}
+
+
+\section{Prior-Data Conflict}
+
+\subsection{Example}
+
+\frame{\frametitle{Prior-Data Conflict: Example}
 
 Example Beta-Binom, show point, line, rectangle
 
 }
 
-\section{Prior-Data Conflict}
+\subsection{Parameter Set Shapes}
 
+\frame{\frametitle{Prior-Data Conflict and Parameter Set Shapes}
+
+}
+
+
+\frame{\frametitle{Conclusion}
+
+\begin{itemize}
+\item Conjugate priors are nice, but have some pitfalls
+ \begin{itemize}
+ \item Hyperparameters easy to interpret and elicit
+ \item Averaging property makes calculations simple,\\
+ but inadequate model behaviour in case of \pdc
+ \end{itemize}
+\item Sets of conjugate priors find a sweet spot in between
+ \begin{itemize}
+ \item Hyperparameter set shape is important
+ \item Reasonable choice: \emph{rectangular} $\PZc = [\nzlg, \nzug] \times [\yzlr, \yzur]$
+ \item Bounds for hyperparameters easy to interpret and elicit
+ \item Additional imprecison in case of \pdc\\
+ leads to cautious inferences if, and only if, caution is needed
+ \end{itemize}
+\end{itemize}
+
+
+}
 
 \end{document}

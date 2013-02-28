@@ -643,34 +643,76 @@ All inferences are based on the posterior\\
 \begin{block}{Generalised Bayesian inference procedure}
 \centerline{set of priors + likelihood = set of posteriors}
 using \emph{Generalised Bayes' Rule} (GBR, Walley 1991)\\
+= element-wise application of Bayes' Rule\\
 All inferences are based on the set of posteriors\\
-(e.g., point estimate = $\big[\El[\psib\mid\nng,\ynr],\Eu[\psib\mid\nng,\ynr]\big]$)
+%(e.g., point estimate = $\big[\El[\psib\mid\nng,\ynr],\Eu[\psib\mid\nng,\ynr]\big]$)
 \end{block}
 
-Lower/upper expectation by min/max over $\PZc$
 }
 
-\frame{\frametitle{Bayesian Inference with Sets of Priors}
+\frame{\frametitle{Generalised Bayesian Inference Procedure}
 
-\begin{block}{Set of Priors}
 \vspace*{-1ex}
 \begin{align*}
-\MZ &= \text{conv}\big(\big\{p(\psib\mid\nzg,\byzr) \colon (\nzg,\byzr) \in \PZc\big\}\big)\vspace*{-0.5ex}%
+\text{single prior $(\nzg, \yzr)$}
+ &\quad\mbox{\then }\quad 
+\text{set of priors ($\PZc$)} \\
+\E[\psib\mid\nzg,\yzr,\x]
+ &\quad\mbox{\then }\quad 
+\big[\El[\psib\mid\PZc,\x],\Eu[\psib\mid\PZc,\x]\big] \\
+P(\psib\in A\mid\nzg,\yzr,\x)
+ &\quad\mbox{\then }\quad 
+\big[\Pl[\psib\in A\mid\PZc,\x],\Pu[\psib\in A\mid\PZc,\x]\big]
+%\E[\theta]  &\quad\mbox{\then }\quad \big[\LE[\theta],\, \UE[\theta]\big] \\
+%= \left[ \min_{p \in {\cal M}_\theta} \E_{p}[\theta],\,
+%         \max_{p \in {\cal M}_\theta} \E_{p}[\theta]\right]\\
+%P(\theta\! \in\! A) &\quad\mbox{\then }\quad \big[\ul{P}(\theta\! \in\! A),\, \ol{P}(\theta\! \in\! A)\big]
+%= \big[\! \min P_{\!\!p}(\theta\! \in\! A),\,
+%          \max P_{\!\!p}(\theta\! \in\! A)\big]
 \end{align*}
+\begin{center}
+Lower/upper posterior expectation by min/max over $\PZc$
+\end{center}
+\begin{block}{Interpretation}
+\centerline{Shorter intervals \thenthen\ more precise probability statements}
+\vspace*{1ex}
+\parbox[t]{0.45\textwidth}{\centering \textbf{Lottery A}\\
+                          Number of winning tickets:\\
+                          exactly known as 5 out of 100\\
+                          \then\ $P(\text{win}) = 5/100$}
+\qquad
+\parbox[t]{0.45\textwidth}{\centering \textbf{Lottery B}\\
+                          Number of winning tickets:\\
+                          not exactly known, supposedly\\
+                          between 1 and 7 out of 100\\
+                          \then\ $P(\text{win}) = [1/100,\, 7/100]$}
+\end{block}
 
+}
+
+\frame{\frametitle{Set of Priors must be Convex}
+
+\begin{block}{Set of Priors}
+%\vspace*{-1ex}
+%\begin{align*}
+%\MZ &= \text{conv}\big(\big\{p(\psib\mid\nzg,\byzr) \colon (\nzg,\byzr) \in \PZc\big\}\big)\vspace*{-0.5ex}%
+%\end{align*}
+\centerline{$\MZ = \text{conv}\big(\big\{p(\psib\mid\nzg,\byzr) \colon (\nzg,\byzr) \in \PZc\big\}\big)$}
 %Model for prior information =
 Finite convex mixtures of canonical conjugate priors defined by $\PZc$\\
-Convex set of probability distributions ensures \emph{coherence} {\small(Walley 1991)}\\
+Convex set of probability distributions ensures \emph{coherence} of GBR\\ %{\small(Walley 1991)}\\
 %of inference procedure
 (as in standard Bayesian inference procedure)
 \end{block}
 
-\begin{block}{Set of Posteriors}
-\vspace*{-1ex}
-\begin{align*}
-\MN &= \text{conv}\big(\big\{p(\psib\mid\nng,\bynr) \colon (\nng,\bynr) \in \PNc\big\}\big)\vspace*{-0.5ex}%
-\end{align*}
+Updating \& mixture commute \then\ set of posteriors can be written as\ldots
 
+\begin{block}{Set of Posteriors}
+%\vspace*{-1ex}
+%\begin{align*}
+%\MN &= \text{conv}\big(\big\{p(\psib\mid\nng,\bynr) \colon (\nng,\bynr) \in \PNc\big\}\big)\vspace*{-0.5ex}%
+%\end{align*}
+\centerline{$\MN = \text{conv}\big(\big\{p(\psib\mid\nng,\bynr) \colon (\nng,\bynr) \in \PNc\big\}\big)$}
 where $\PNc = \big\{(\nng,\bynr) \colon (\nzg,\byzr) \in \PZc \big\}$.\\
 %Set of posteriors = 
 Finite convex mixtures of canonical conjugate posteriors\\ defined by set of updated hyperparameters $\PNc$
@@ -678,12 +720,12 @@ Finite convex mixtures of canonical conjugate posteriors\\ defined by set of upd
 
 }
 
-\frame{\frametitle{Bayesian Inference with Sets of Priors}
+\frame{\frametitle{Generalised Bayesian Inference Procedure}
 
 \begin{itemize}
 \item Hyperparameter set $\PZc$ defines set of priors $\MZ$
 \item Hyperparameter set $\PNc$ defines set of posteriors $\MN$
-\item $\PZc \to \PNc$ is easy ($\nng = \nzg + n$, $\ynr = \frac{\nzg}{\nzg + n}\yzr + \frac{n}{\nzg + n}\frac{\tau(\x)}{n}$)
+\item $\PZc \to \PNc$ is easy: $\nng = \nzg + n$, $\ynr = \frac{\nzg}{\nzg + n}\yzr + \frac{n}{\nzg + n}\frac{\tau(\x)}{n}$
 %\frac{\nzg\yzr + \tau(\x)}{\nzg + n}%\dots$)
 \item Quantities linear in $p(\psib\mid\nng,\bynr)$
 (e.g., $\E[g(\psib)\mid\nng,\bynr]$):\\
@@ -691,7 +733,7 @@ Finite convex mixtures of canonical conjugate posteriors\\ defined by set of upd
 \then\ \alert{straighforward to calculate:} optimise over $\PNc$ only
 \item Often, optimising over $(\nng,\bynr) \in \PNc$ is also easy:\\
 posterior `guess' for $\frac{\tau(\x)}{n}$ (think: $\bar{\x}$) = $\ynr$\\
-\then\ \alert{analytic calculations} if $\PNc$ has `nice' shape
+\then\ \alert{analytic calculations} given $\PNc$ has `nice' shape
 \end{itemize}
 
 }
@@ -700,7 +742,14 @@ posterior `guess' for $\frac{\tau(\x)}{n}$ (think: $\bar{\x}$) = $\ynr$\\
 
 \frame{\frametitle{Parameter Set Shapes}
 
-graphs line, rectangle, eggplant
+%graphs line, rectangle, eggplant
+\vspace*{-7ex}
+\begin{tikzpicture}
+\uncover<1>{\node {\includegraphics[scale=0.75]{../R/shape0.pdf}};}
+\uncover<2>{\node {\includegraphics[scale=0.75]{../R/shape1.pdf}};}
+\uncover<3>{\node {\includegraphics[scale=0.75]{../R/shape2.pdf}};}
+\uncover<4>{\node {\includegraphics[scale=0.75]{../R/shape3.pdf}};}
+\end{tikzpicture}
 
 }
 
@@ -736,14 +785,255 @@ in the sampling model for which the observed data is surprising''\\
 
 \frame{\frametitle{Prior-Data Conflict: Example}
 
-Example Beta-Binom, show point, line, rectangle
+%Example Beta-Binom, show point, line, rectangle
+\begin{itemize}[<+->]
+\item Bernoulli observations: 0/1 observations (team wins no/yes)
+\item given: a set of observations (team won 12 out of 16 matches)
+\item additional to observations, we have strong prior information\\ (we are convinced that $P(\text{win})$ should be around $0.75$)
+\item we are, e.g., interested in (predictive) probability $\mbox{P}$ that team wins in the next match
+%(or some other inferences) %(predictive probability!)
+%\item standard statistical model for this situation: Beta-Bernoulli/Binomial Model
+%\item \textbf{\pdc:} if $P(\text{heads})$ for the coin is actually very different from our prior guess
+%(i.e., prior information and data are in conflict), this should show up in the %predictive
+%inferences (probability $\mbox{P}$ and, e.g., confidence intervals)
+\end{itemize}
+\uncover<5->{
+\begin{block}{Beta-Binomial Model}
+\begin{tabular}{r|lcl}
+Data :           & $s\mid p, n$       & $\sim$ & $\bin(p,n)$   \\[0.5ex]
+conjugate prior: & $p\mid \nzg, \yzr$ & $\sim$ & $\be(\nzg,\, \yzr)$  \\[0.5ex] %\qquad \ \ $\gruen{n\uz} = {\textstyle\sum} \alpha_i$\\[0.5ex]
+\cline{1-4}
+posterior:       & $p\mid \nng, \ynr$ & $\sim$ & $\be(\nng,\, \ynr)$ \quad ($\frac{\tau(\x)}{n} = \frac{s}{n}$)\rule{0ex}{2.5ex}
+\end{tabular}
+\end{block}
+s = number of wins
+}
+
+}
+
+\frame{\frametitle{Prior-Data Conflict: Example}
+
+\uncover<1->{
+\begin{block}{Beta-Binomial Model}
+\begin{tabular}{r|lcl}
+Data :           & $s\mid p, n$       & $\sim$ & $\bin(p,n)$   \\[0.5ex]
+conjugate prior: & $p\mid \nzg, \yzr$ & $\sim$ & $\be(\nzg,\, \yzr)$  \\[0.5ex] %\qquad \ \ $\gruen{n\uz} = {\textstyle\sum} \alpha_i$\\[0.5ex]
+\cline{1-4}
+posterior:       & $p\mid \nng, \ynr$ & $\sim$ & $\be(\nng,\, \ynr)$ \quad ($\frac{\tau(\x)}{n} = \frac{s}{n}$)\rule{0ex}{2.5ex}
+\end{tabular}
+\end{block}
+}
+\begin{align*}
+%\uncover<3->{\mbox{P} = }
+\uncover<2->{%
+\rot{\yn}   &= \frac{\gruen{\nz}}{\gruen{\nz} + n} \cdot \rot{\yz} + \frac{n}{\gruen{\nz} + n} \cdot \frac{s}{n}\,, &
+%             &                   &
+\gruen{\nn} &= \gruen{\nz} + n
+}%
+\end{align*}\vspace*{-3ex}
+\begin{align*}
+\uncover<3->{%
+\rot{\yn} &= \E[p\mid s]
+}%
+\uncover<4->{= \mbox{P}}
+\uncover<3->{%
+& \V(p\mid s) &= \frac{\rot{\yn}(1-\rot{\yn})}{\gruen{\nn} + 1}
+}
+\end{align*}
+
+}
+
+\frame{\frametitle{Beta-Binomial Model (BBM)}
+
+\hspace*{-12ex}
+\begin{columns}%[T]
+\begin{column}{0.58\textwidth}
+\begin{tikzpicture}
+\pgftransformscale{0.025}
+\uncover<1>{
+\input{precise01.tex}
+}
+\uncover<2>{
+\input{precise02.tex}
+\draw[-stealth,very thick] (110,175) -- (220,175) node [above,midway] {12 out of 16};
+}
+\uncover<3->{
+\input{precise03.tex}
+\draw[-stealth,very thick,gray] (110,175) -- (220,175) node [above,midway,gray] {12 out of 16};
+}
+\uncover<4->{
+\draw[-stealth,very thick] (110,102) -- (220,167) node [above,midway,sloped] {16 out of 16};
+}
+\end{tikzpicture}
+\end{column}
+\begin{column}{0.52\textwidth}
+\uncover<1->{%
+\begin{block}{no conflict:}
+prior $\gruen{\nz} = 8$, $\rot{\yz} = 0.75$\\
+data $s/n = 12/16 = 0.75$
+\end{block}
+} %
+\uncover<2->{%
+\vspace*{-1.5ex}\centerline{\color{lmugreen} $\blacktriangledown$}\vspace*{-1.5ex}
+\begin{block}{}
+$\gruen{\nn} = 24$, $\rot{\yn} = 0.75$
+\end{block}
+} %
+\uncover<4->{%
+\vspace*{-1.5ex}\centerline{\color{lmugreen} $\blacktriangle$}\vspace*{-1.5ex}
+}
+\uncover<3->{%
+\begin{block}{\pdc:}
+prior $\gruen{\nz} = 8$, $\rot{\yz} = 0.25$\\
+data $s/n = 16/16 = 1$
+\end{block}
+} %
+\uncover<0>{%
+\vspace*{-1.5ex}\centerline{\color{lmugreen} $\blacktriangledown$}\vspace*{-1.5ex}
+\begin{block}{}
+$\gruen{\nn} \in [20, 24]$, $\rot{\yn} \in [0.73, 0.86]$
+\end{block}
+} %
+%\uncover<5->{ %
+%\then\ same predictive prob.\ P!
+%}
+\end{column}
+\end{columns}
 
 }
 
 \subsection{Parameter Set Shapes}
 
-\frame{\frametitle{Prior-Data Conflict and Parameter Set Shapes}
+\frame{\frametitle{Imprecise BBMs: IBBM $\hat{=}$ IDM with prior information}
 
+%gleich mit $\nz$ variabel?
+\hspace*{-12ex}
+\begin{columns}%[T]
+\begin{column}{0.58\textwidth}
+\begin{tikzpicture}
+\pgftransformscale{0.025}
+\uncover<1>{
+\input{line01.tex}
+}
+\uncover<2>{
+\input{line02.tex}
+\draw[-stealth,very thick] (110,175) -- (220,175) node [above,midway] {12 out of 16};
+}
+\uncover<3->{
+\input{line03.tex}
+\draw[-stealth,very thick,gray] (110,175) -- (220,175) node [above,midway,gray] {12 out of 16};
+}
+\uncover<4->{
+\draw[-stealth,very thick] (110,102) -- (220,167) node [above,midway,sloped] {16 out of 16};
+}
+\end{tikzpicture}
+\end{column}
+\begin{column}{0.52\textwidth}
+\uncover<1->{%
+\begin{block}{no conflict:}
+prior $\gruen{\nz} = 8$, $\rot{\yz} \in [0.7, 0.8]$\\
+data $s/n = 12/16 = 0.75$
+\end{block}
+} %
+\uncover<2->{%
+\vspace*{-1.5ex}\centerline{\color{lmugreen} $\blacktriangledown$}\vspace*{-1.5ex}
+\begin{block}{}
+$\gruen{\nn} = 24$, $\rot{\yn} \in [0.73, 0.77]$
+\end{block}
+} %
+\uncover<4->{%
+\vspace*{-1.5ex}\centerline{\color{lmugreen} $\blacktriangle$}\vspace*{-1.5ex}
+}
+\uncover<3->{%
+\begin{block}{\pdc:}
+prior $\gruen{\nz} = 8$, $\rot{\yz} \in [0.2, 0.3]$\\
+data $s/n = 16/16 = 1$
+\end{block}
+} %
+\uncover<0>{%
+\vspace*{-1.5ex}\centerline{\color{lmugreen} $\blacktriangledown$}\vspace*{-1.5ex}
+\begin{block}{}
+$\gruen{\nn} \in [20, 24]$, $\rot{\yn} \in [0.73, 0.86]$
+\end{block}
+} %
+%\uncover<5->{ %
+%\then\ same imprecise predictive prob.\ $[\Pl,\Pu]$!
+%}
+\end{column}
+\end{columns}
+
+}
+
+
+\frame{\frametitle{Imprecise BBMs: pdc-IBBM (Walley 1991, Ch.5.4.3)}
+
+\hspace*{-12ex}
+\begin{columns}%[T]
+\begin{column}{0.58\textwidth}
+\begin{tikzpicture}
+\pgftransformscale{0.025}
+\uncover<1>{
+\input{rect01.tex}
+}
+\uncover<2>{
+\input{rect02.tex}
+\draw[-stealth,very thick] (110,175) -- (193,175) node [above,midway] {12 out of 16};
+}
+\uncover<3>{
+\input{rect03.tex}
+\draw[-stealth,very thick,gray] (110,175) -- (193,175) node [above,midway,gray] {12 out of 16};
+}
+\uncover<4>{
+\input{rect04.tex}
+\draw[-stealth,very thick,gray] (110,175) -- (193,175) node [above,midway,gray] {12 out of 16};
+\draw[-stealth,very thick] (110,102) -- (213,180) node [above,midway,sloped] {16 out of 16};
+%\draw[-stealth,very thick, postaction={decorate,decoration={raise=2pt,text along path, %
+%                                       text={16 out of 16}}}] (110,95) .. controls +(right:30) and +(down:30) .. (210,183);
+%\draw[-stealth,very thick] (110,95) .. controls +(right:10) and +(down:10) .. (210,183) node [below,midway,sloped] {16 out of 16};
+}
+\end{tikzpicture}
+\end{column}
+\begin{column}{0.52\textwidth}
+\uncover<1->{%
+\begin{block}{no conflict:}
+prior $\gruen{\nz} \in [4, 8]$, $\rot{\yz} \in [0.7, 0.8]$\\
+data $s/n = 12/16 = 0.75$
+\end{block}
+} %
+\uncover<2->{%
+\vspace*{-1.5ex}\centerline{\color{lmugreen} $\blacktriangledown$}\vspace*{-1.5ex}
+\begin{block}{}
+%$\gruen{\nn} \in [20, 24]$,
+\centering $\rot{\yn} \in [0.73, 0.77]$
+%\centering ``spotlight'' shape
+\end{block}
+} %
+\uncover<3->{%
+\begin{block}{\pdc:}
+prior $\gruen{\nz} \in [4, 8]$, $\rot{\yz} \in [0.2, 0.3]$\\
+data $s/n = 16/16 = 1$
+\end{block}
+} %
+\uncover<4->{%
+\vspace*{-1.5ex}\centerline{\color{lmugreen} $\blacktriangledown$}\vspace*{-1.5ex}
+\begin{block}{}
+%$\gruen{\nn} \in [20, 24]$,
+\centering $\rot{\yn} \in [0.73, 0.86]$
+%\centering ``banana'' shape
+\end{block}
+} %
+\end{column}
+\end{columns}
+
+}
+
+
+
+\frame{\frametitle{Prior-Data Conflict and Parameter Set Shapes}
+\begin{itemize}
+\item other set shapes
+\item boatshape?***
+\end{itemize}
 }
 
 

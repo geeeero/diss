@@ -175,8 +175,8 @@
 \frame{\frametitle{Outline}
 \begin{enumerate}
 \item Common-cause failure modelling
-\item Bayesian inference with sets of priors
-\item Parameter set shapes
+\item Generalised Bayesian inference with sets of priors
+\item Prior-Data Conflict
 \end{enumerate}
 }
 
@@ -187,12 +187,23 @@
 \frame{
 \frametitle{Common-Cause Failures}
 
-\begin{center}
-\includegraphics[scale=0.4]{./graph/800px-Fukushima_I_by_Digital_Globe.jpg}\\%[-1ex]
-{\tiny Source: Wikimedia Commons, \url{http://commons.wikimedia.org/wiki/File:Fukushima_I_by_Digital_Globe.jpg}}
-\end{center}
+%\begin{center}
+%\includegraphics[scale=0.4]{./graph/800px-Fukushima_I_by_Digital_Globe.jpg}\\%[-1ex]
+%{\tiny Source: Wikimedia Commons, \url{http://commons.wikimedia.org/wiki/File:Fukushima_I_by_Digital_Globe.jpg}}
+%\end{center}
+%\vspace*{-3ex}
+\begin{tikzpicture}
+\uncover<1->{
+\node {\includegraphics[scale=0.4]{./graph/800px-Fukushima_I_by_Digital_Globe.jpg}};
+\node at (0,-3.5) {\tiny Source: Wikimedia Commons, \url{http://commons.wikimedia.org/wiki/File:Fukushima_I_by_Digital_Globe.jpg}};
 }
-
+\uncover<2>{
+\draw[white,fill=white] (-0.2,-3.3) rectangle (6,0.75);
+\node at (3,-1) {\includegraphics[scale=0.3]{./graph/plant-systems-diesel-generator.jpg}};
+\node at (3.05,-3.05) {\parbox{6.2cm}{\tiny Source: \url{http://www.diakont.com/solutions/nuclear-energy/plant-systems/diesel-generator-control-systems/}}};
+}
+\end{tikzpicture}
+}
 
 \frame{
 \frametitle{Common-Cause Failures}
@@ -758,7 +769,7 @@ posterior `guess' for $\frac{\tau(\x)}{n}$ (think: $\bar{\x}$) = $\ynr$\\
 \begin{itemize}
 \item Shape of $\PZc$ influences shape of $\PNc$
 \item Shape of $\PNc$ influences model behaviour\\
-\then\ shape of $\PZc$ is crucial modelling choice
+\then\ shape of $\PZc$ is a crucial modelling choice
 \item $\PZc = [\nzlg, \nzug] \times [\yzlr, \yzur]$ (\emph{rectangle}) %(as before)
 is very easy to elicit\\
 and gives good model behaviour for \alert{\pdc}

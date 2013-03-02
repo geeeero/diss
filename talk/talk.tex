@@ -100,6 +100,7 @@
 \def\yzkr{\rot{y\uz_k}}
 \def\yzlr{\rot{\yzl}}
 \def\yzur{\rot{\yzu}}
+\def\ynjr{\rot{y\un_j}}
 \def\ynlr{\rot{\ynl}}
 \def\ynur{\rot{\ynu}}
 \def\yzjlr#1{\rot{\ul{y}\uz_#1}}
@@ -209,21 +210,22 @@
 \frametitle{Common-Cause Failures}
 
 \begin{itemize}
+\item All 12 generators (for 6 reactors) at Fukushima Daiichi\\ were not available due to flooding of machine rooms\\
+(Tsunami caused by T\={o}hoku earthquake)
+% \begin{center}
+ %\begin{minipage}{0.8\textwidth}
+ \begin{alertblock}{common-cause failure} 
+ \emph{simultaneous failure of several redundant components\\ due to a common or shared root cause}
+ (H{\o}yland \& Rausand, 1994)
+ \end{alertblock}
+ %\end{minipage}
+ %\end{center}
 \item Reliability of redundant systems (emergency diesel generators)
 \item Usually 2 -- 4 generators per reactor
 \item Sufficient cooling of core if one generator works
 %\item Reliability through redundancy is jeopardised by common-cause failure:%\\
-\item Redundant components may not fail independently:
- \begin{center}
- \begin{minipage}{0.8\textwidth}
- \begin{alertblock}{common-cause failure} 
- \emph{simultaneous failure of several redundant components\\ due to a common or shared root cause}
- \end{alertblock}
- \end{minipage}
- \end{center}
-\item All 12 generators (for 6 reactors) at Fukushima Daiichi\\ were not available due to flooding of machine rooms\\
-(Tsunami from T\={o}hoku earthquake)
-\item Include common-cause failures in overall system reliability analysis
+\item Redundant components may not fail independently: common-cause failure
+\item Must include common-cause failures in overall system reliability analysis
 \end{itemize}
 }
 
@@ -274,6 +276,7 @@ Right: Wikimedia Commons,\\[-1.8ex]
   (the model actually serves to estimate failure \emph{rates},\\ but the above is all what matters in this talk)
 \end{frame}
 
+\iffalse
 \begin{frame}{Alpha-Factor Model: Inference ***raus??***}
   \begin{block}{Inference}
     involves rational functions \\
@@ -284,13 +287,14 @@ Right: Wikimedia Commons,\\[-1.8ex]
     \textbf{this talk: focus on $\vec{\alpha}$ only}
   \end{center}
 \end{frame}
+\fi
 
 \begin{frame}{Alpha-Factor Model: Parameter Estimation}
   \begin{exampleblock}{The Good News}
     attractive feature of this model: \\
     $\vec{\alpha}$ can be estimated directly from data, e.g.\ MLE:
     \begin{align*}
-      \alpha_j &= \frac{n_j}{n},\qquad \text{where $\textstyle\sum_{j=1}^n n_j$}
+      \alpha_j &= \frac{n_j}{n},\quad \text{where $\textstyle\sum_{j=1}^n n_j = n$}
     \end{align*}
   \end{exampleblock}
   \begin{alertblock}{The Bad News}
@@ -316,7 +320,7 @@ Right: Wikimedia Commons,\\[-1.8ex]
   \begin{columns}
   \begin{column}{0.65\textwidth}
     \begin{align*}
-      p(\vec{\theta}\mid \nzg,\byzr) \propto \prod_{j=1}^k\theta_j^{\nzg\yzjr-1}
+      p(\vec{\alpha}\mid \nzg,\byzr) \propto \prod_{j=1}^k\alpha_j^{\nzg\yzjr-1}
     \end{align*}
   \end{column}  
   \begin{column}{0.35\textwidth}
@@ -333,7 +337,7 @@ Right: Wikimedia Commons,\\[-1.8ex]
   \vspace*{-0.5ex}
   \begin{block}{Interpretation}
     \begin{itemize}
-    \item $\byzr$ = \alert{prior expectation of $\vec{\alpha}$}, i.e., a prior guess for $\frac{n_j}{n}$ %, $j=1,\ldots,n$
+    \item $\byzr$ = \alert{prior expectation of $\vec{\alpha}$}, i.e., a prior guess for $\frac{n_j}{n}$, $j=1,\ldots,n$
     \item $\nzg$ = determines \alert{spread} and \alert{learning speed} (see next slide)
     \end{itemize}
   \end{block}
@@ -341,22 +345,27 @@ Right: Wikimedia Commons,\\[-1.8ex]
 
 \begin{frame}{Bayesian Analysis: Dirichlet Posterior}
   \begin{itemize}
-  \item posterior density for $\vec{\alpha}$ is again Dirichlet
+  \item posterior density for $\vec{\alpha}$ is again Dirichlet \then\ \alert{conjugacy}\\
+  \alert{update parameters}: $\nzg \to\ \nng$, $\byzr \to \bynr$
     \begin{align*}
       p(\vec{\alpha}\mid\nzg,\byzr,\vec{n})
-%      =:
-%      p(\vec{\alpha}\mid\nng,\bynr)
+      &=
+      p(\vec{\alpha}\mid\nng,\bynr)
       \propto
-      \prod_{j=1}^k\alpha_j^{\nzg\yzjr+n_j-1}.
+%      \prod_{j=1}^k\alpha_j^{\nzg\yzjr+n_j-1}
+      \prod_{j=1}^k\alpha_j^{\nng\ynjr-1}
     \end{align*}
-  \item posterior expectation of $\alpha_j$
+\item posterior expectation of $\alpha_j$:
     \begin{align*}
       %\label{eq:dirichlet:posterior:predictive}
       %\colorbox{red!10!white}{$\displaystyle
       \E[\alpha_j\mid\nzg,\byzr,\vec{n}]
       &=
+      \E[\alpha_j\mid\nng,\bynr] 
+      =
       \int_{\Delta}\alpha_j p(\vec{\alpha}\mid\nzg,\byzr,\vec{n})\dd\vec{\alpha} \\
-      &=
+      &= \ynjr
+      =
       %\frac{n_j+st_j}{N+s}
       %=
       %\textcolor{green!50!black}{\frac{N}{N+s}}
@@ -368,11 +377,11 @@ Right: Wikimedia Commons,\\[-1.8ex]
       \frac{\nzg}{\nzg+n} \cdot \yzjr + \frac{n}{\nzg+n} \cdot \frac{n_j}{n}
       $}
     \end{align*}
-    where $n=\sum_{j=1}^k n_j$ is total number of observations
+%    where $n=\sum_{j=1}^k n_j$ is total number of observations
   \end{itemize}
   %\vspace{1em}
   \begin{center}
-    \textbf{we will focus on $\E[\alpha_j\mid\nzg,\byzr,\vec{n}]$} \\
+    \textbf{we will focus on $\E[\alpha_j\mid\nng,\bynr]$} \\
     (in a decision context, this expectation would typically end up \\
     in expressions for expected utility)
   \end{center}
@@ -418,37 +427,37 @@ Right: Wikimedia Commons,\\[-1.8ex]
 \begin{frame}{Example: Non-Informative Priors}
   \alert{large variation in posterior under different non-informative priors} \\
   \begin{itemize}
-  \item with constrained maximum entropy prior (Kelly and Atwood, 1996): %\cite{1996:atwood,2011:kelly:atwood}):
+  \item with constrained maximum entropy prior\\ (Atwood, 1996; Kelly \& Atwood, 2011): %\cite{1996:atwood,2011:kelly:atwood}):
     \begin{align*}
-      \E[\alpha_1\mid\nzg,\byzr,\vec{n}]&=0.967
+      \E[\alpha_1\mid\nng,\bynr]&=0.967
       &
-      \E[\alpha_2\mid\nzg,\byzr,\vec{n}]&=0.028
+      \E[\alpha_2\mid\nng,\bynr]&=0.028
       \\
-      \E[\alpha_3\mid\nzg,\byzr,\vec{n}]&=0.003
+      \E[\alpha_3\mid\nng,\bynr]&=0.003
       &
-      \E[\alpha_4\mid\nzg,\byzr,\vec{n}]&=0.001
+      \E[\alpha_4\mid\nng,\bynr]&=0.001
     \end{align*}
   \item 
   with uniform prior $\yzjr=0.25$ and $\nzg=4$:
   \begin{align*}
-    \E[\alpha_1\mid\nzg,\byzr,\vec{n}]&=0.9
+    \E[\alpha_1\mid\nng,\bynr]&=0.9
     &
-    \E[\alpha_2\mid\nzg,\byzr,\vec{n}]&=0.05
+    \E[\alpha_2\mid\nng,\bynr]&=0.05
     \\
-    \E[\alpha_3\mid\nzg,\byzr,\vec{n}]&=0.025
+    \E[\alpha_3\mid\nng,\bynr]&=0.025
     &
-    \E[\alpha_4\mid\nzg,\byzr,\vec{n}]&=0.025
+    \E[\alpha_4\mid\nng,\bynr]&=0.025
   \end{align*}
   \item
   with Jeffrey's prior $\yzjr=0.25$ and $\nzg=2$:
   \begin{align*}
-    \E[\alpha_1\mid\nzg,\byzr,\vec{n}]&=0.9342
+    \E[\alpha_1\mid\nng,\bynr]&=0.9342
     &
-    \E[\alpha_2\mid\nzg,\byzr,\vec{n}]&=0.0395
+    \E[\alpha_2\mid\nng,\bynr]&=0.0395
     \\
-    \E[\alpha_3\mid\nzg,\byzr,\vec{n}]&=0.0132
+    \E[\alpha_3\mid\nng,\bynr]&=0.0132
     &
-    \E[\alpha_4\mid\nzg,\byzr,\vec{n}]&=0.0132
+    \E[\alpha_4\mid\nng,\bynr]&=0.0132
   \end{align*}
   \end{itemize}
   % The degree of variation in the posterior under different priors
@@ -460,6 +469,7 @@ Right: Wikimedia Commons,\\[-1.8ex]
 \subsection{Imprecise Dirichlet Model}
 
 \begin{frame}{Imprecise Dirichlet Model: Definition}
+Troffaes, Walter \& Kelly (2012): model vague prior info more cautiously
 \begin{block}{Imprecise Dirichlet Model (IDM) for Common-Cause Failure}
 use a \alert{set of hyperparameters}
     % \cite[p.~224, \S 5.4.3]{1991:walley} \cite[p.~32, \S 6]{1996:walley::idm},
@@ -478,12 +488,13 @@ use a \alert{set of hyperparameters}
         \yzjr\in[\yzjlr{j},\yzjur{j}]
       \right\}
     \end{align*}
-\end{block}
+\end{block}\vspace*{-0.5ex}
 \begin{block}{Interpretation}
 \begin{itemize}
-  \item we are doing a \alert{sensitivity analysis} (\'a la robust Bayes) over $(\nzg,\byzr) \in \PZc$
-  \item we take a \alert{set of priors} $\text{conv}\big(\big\{p(\alpha\mid\nzg,\byzr) \colon (\nzg,\byzr) \in \PZc\big\}\big)$
-  as model for prior information
+  \item we are doing a \alert{sensitivity analysis} (\'a la robust Bayes)\\ over $(\nzg,\byzr) \in \PZc$
+  \item we take a \alert{set of priors} %$\text{conv}\big(\big\{p(\alpha\mid\nzg,\byzr) \colon (\nzg,\byzr) \in \PZc\big\}\big)$
+  based on $\PZc$ \\
+  as model for prior information (details later)
 %  (resp.\ all convex mixtures of them)
 \end{itemize}
 \end{block}

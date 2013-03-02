@@ -505,7 +505,7 @@ Analyst has to specify \\
 
 \begin{frame}{Imprecise Dirichlet Model: Elicitation}
   \begin{itemize}
-  \item   $[\yzjlr{j},\yzjur{j}]$? Cautious interpretation of prior specifications $\mu_{\text{spec},j}$:
+  \item   $[\yzjlr{j},\yzjur{j}]$: Cautious interpretation of prior specifications $\mu_{\text{spec},j}$:
   \begin{align*}
     [\yzjlr{1},\yzjur{1}]&=[0.950,1]
     &
@@ -515,7 +515,7 @@ Analyst has to specify \\
     &
     [\yzjlr{4},\yzjur{4}]&=[0,0.005]
   \end{align*}
-  \item  $[\nzlg,\nzug]$? Good (1965): \\ %\cite{1965:good}: \\
+  \item  $[\nzlg,\nzug]$: Good (1965): \\ %\cite{1965:good}: \\
     \begin{center}
     reason about posterior expectations of hypothetical data
     \end{center}
@@ -531,30 +531,38 @@ Analyst has to specify \\
 \end{frame}
 
 \begin{frame}{Imprecise Dirichlet Model: Elicitation}
+\begin{alertblock}{}
+    $\nzug$ = number of one-component failures required \\
+    to reduce the upper probabilities of multi-component failure by half
+  \end{alertblock}
+  \begin{alertblock}{}
+    $\nzlg$ = number of multi-component failures required \\
+    to reduce the lower probability of one-component failure by half
+  \end{alertblock}
   Reasonable values in example:
   \begin{itemize}
   \item
-    $\nzlg=1$: \\
+    $\nzlg=1$: %\\
     immediate multi-component failure
     \\
     \then\ keen to reduce lower probability for one-component failure
   \item 
-    $\nzug=10$: \\
+    $\nzug=10$: %\\
     after observing $10$ one-component failures \\
     \then\ halve upper probabilities of multi-component failures
   \end{itemize}
-  There is a \alert{difference between $\nzlg$ and $\nzug$} \\
-  as the rate at which we reduce upper probabilities \\
+  \alert{Difference between $\nzlg$ and $\nzug$} reflects a \alert{level of caution}:\\
+  The rate at which we reduce upper probabilities \\
   is less than the rate at which we reduce lower probabilities \\
-  \then\ reflects a \alert{level of caution}
+  %\then\ reflects a \alert{level of caution}
 \end{frame}
 
 \begin{frame}{Imprecise Dirichlet Model: Inference}
-  \begin{center}
-    prior bounds + likelihood $\to$ posterior bounds
-  \end{center}
-\vspace*{-2ex}
-\begin{block}{}
+%  \begin{center}
+%    prior bounds + likelihood $\to$ posterior bounds
+%  \end{center}
+%\vspace*{-2ex}
+\begin{block}{prior bounds + likelihood $\to$ posterior bounds}
   \begin{center}
   \begin{tabular}{c|cc||cc}
     \multicolumn{1}{c}{}
@@ -608,7 +616,7 @@ p(\psib\mid\nzg,\yzr) \hspace*{2ex}
 &\text{\play\ (conjugate) posterior:} &
 p(\psib\mid\nzg,\yzr,\vec{x})
 %p(\psib\mid\nng,\ynr) \hspace*{2ex}
-&\propto \exp\big\{ \nng \big[\langle \psib, \ynr \rangle - \bpsib\big]\big\} \,,%\quad \mbox{where}
+&\propto \exp\big\{ \nng \big[\langle \psib, \ynr \rangle - \bpsib\big]\big\} %\quad \mbox{where}
 \end{align*}
 \begin{align*}
 \mbox{where}\quad \ynr &= \frac{\nzg}{\nzg + n} \cdot \yzr + \frac{n}{\nzg + n} \cdot \frac{\tau(\x)}{n}
@@ -624,7 +632,7 @@ p(\psib\mid\nzg,\yzr,\vec{x})
 &\text{\play\ (conjugate) posterior:} &
 %p(\psib\mid\nzg,\yzr,\vec{x})
 p(\psib\mid\nng,\ynr) %\hspace*{2ex}
-&\propto \exp\big\{ \nng \big[\langle \psib, \ynr \rangle - \bpsib\big]\big\} \,,%\quad \mbox{where}
+&\propto \exp\big\{ \nng \big[\langle \psib, \ynr \rangle - \bpsib\big]\big\} %\quad \mbox{where}
 \end{align*}
 \vspace*{-2ex}
 \begin{align*}
@@ -639,14 +647,14 @@ p(\psib\mid\nng,\ynr) %\hspace*{2ex}
   \end{itemize}
 \end{block}
 
-\begin{example}
+\begin{block}{Example: Scaled Normal Data}
 \begin{tabular}{r|lcl}
-Data :           & $\x\mid\mu$        & $\sim$ & $\norm(\mu,\sigma_0^2)$ \quad ($\sigma_0^2$ known)\\[0.5ex]
+Data :           & $\x\mid\mu$        & $\sim$ & $\norm(\mu,1)$\\[0.5ex] %\sigma_0^2)$ \quad ($\sigma_0^2$ known)\\[0.5ex]
 conjugate prior: & $\mu\mid\nzg,\yzr$ & $\sim$ & $\norm(\yzr, 1/\nzg)$  \\[0.5ex]
 \cline{1-4}
 posterior:       & $\mu\mid\nng,\ynr$ & $\sim$ & $\norm(\ynr, 1/\nng)$ \quad ($\frac{\tau(\x)}{n} = \bar{\x}$)\rule{0ex}{2.5ex} %& \\[0.5ex]
 \end{tabular}
-\end{example}
+\end{block}
 }
 
 \subsection{Sets of Priors}
@@ -665,9 +673,39 @@ All inferences are based on the posterior\\
 \begin{block}{Generalised Bayesian inference procedure}
 \centerline{set of priors + likelihood = set of posteriors}
 using \emph{Generalised Bayes' Rule} (GBR, Walley 1991)\\
-= element-wise application of Bayes' Rule\\
-All inferences are based on the set of posteriors\\
+= element-wise application of Bayes' Rule \emph{\small (set of priors must be convex)}\\
+All inferences are based on the set of posteriors%\\
 %(e.g., point estimate = $\big[\El[\psib\mid\nng,\ynr],\Eu[\psib\mid\nng,\ynr]\big]$)
+\end{block}
+
+}
+
+\frame{\frametitle{Set of Priors must be Convex}
+
+\begin{block}{Set of Priors}
+%\vspace*{-1ex}
+%\begin{align*}
+%\MZ &= \text{conv}\big(\big\{p(\psib\mid\nzg,\byzr) \colon (\nzg,\byzr) \in \PZc\big\}\big)\vspace*{-0.5ex}%
+%\end{align*}
+\centerline{$\MZ = \text{conv}\big(\big\{p(\psib\mid\nzg,\byzr) \colon (\nzg,\byzr) \in \PZc\big\}\big)$}
+%Model for prior information =
+$\MZ$ = {\small finite convex mixtures of canonical conjugate priors defined by} $\PZc$\\
+Convex set of probability distributions ensures \emph{coherence} of GBR\\ %{\small(Walley 1991)}\\
+%of inference procedure
+(as in standard Bayesian inference procedure)
+\end{block}
+
+Updating \& mixture commute \then\ set of posteriors can be written as\ldots
+
+\begin{block}{Set of Posteriors}
+%\vspace*{-1ex}
+%\begin{align*}
+%\MN &= \text{conv}\big(\big\{p(\psib\mid\nng,\bynr) \colon (\nng,\bynr) \in \PNc\big\}\big)\vspace*{-0.5ex}%
+%\end{align*}
+\centerline{$\MN = \text{conv}\big(\big\{p(\psib\mid\nng,\bynr) \colon (\nng,\bynr) \in \PNc\big\}\big)$}
+where $\PNc = \big\{(\nng,\bynr) \colon (\nzg,\byzr) \in \PZc \big\}$.\\
+%Set of posteriors = 
+$\MN$ = finite convex mixtures of canonical conjugate posteriors\\ defined by set of updated hyperparameters $\PNc$
 \end{block}
 
 }
@@ -678,7 +716,7 @@ All inferences are based on the set of posteriors\\
 \begin{align*}
 \text{single prior $(\nzg, \yzr)$}
  &\quad\mbox{\then }\quad 
-\text{set of priors ($\PZc$)} \\
+\text{set of priors $\MZ$ (defined via $\PZc$)} \\
 \E[\psib\mid\nzg,\yzr,\x]
  &\quad\mbox{\then }\quad 
 \big[\El[\psib\mid\PZc,\x],\Eu[\psib\mid\PZc,\x]\big] \\
@@ -693,7 +731,7 @@ P(\psib\in A\mid\nzg,\yzr,\x)
 %          \max P_{\!\!p}(\theta\! \in\! A)\big]
 \end{align*}
 \begin{center}
-Lower/upper posterior expectation by min/max over $\PZc$
+Lower/upper posterior expectation by min/max over set of posteriors %$\PZc$
 \end{center}
 \begin{block}{Interpretation}
 \centerline{Shorter intervals \thenthen\ more precise probability statements}
@@ -712,38 +750,9 @@ Lower/upper posterior expectation by min/max over $\PZc$
 
 }
 
-\frame{\frametitle{Set of Priors must be Convex}
-
-\begin{block}{Set of Priors}
-%\vspace*{-1ex}
-%\begin{align*}
-%\MZ &= \text{conv}\big(\big\{p(\psib\mid\nzg,\byzr) \colon (\nzg,\byzr) \in \PZc\big\}\big)\vspace*{-0.5ex}%
-%\end{align*}
-\centerline{$\MZ = \text{conv}\big(\big\{p(\psib\mid\nzg,\byzr) \colon (\nzg,\byzr) \in \PZc\big\}\big)$}
-%Model for prior information =
-Finite convex mixtures of canonical conjugate priors defined by $\PZc$\\
-Convex set of probability distributions ensures \emph{coherence} of GBR\\ %{\small(Walley 1991)}\\
-%of inference procedure
-(as in standard Bayesian inference procedure)
-\end{block}
-
-Updating \& mixture commute \then\ set of posteriors can be written as\ldots
-
-\begin{block}{Set of Posteriors}
-%\vspace*{-1ex}
-%\begin{align*}
-%\MN &= \text{conv}\big(\big\{p(\psib\mid\nng,\bynr) \colon (\nng,\bynr) \in \PNc\big\}\big)\vspace*{-0.5ex}%
-%\end{align*}
-\centerline{$\MN = \text{conv}\big(\big\{p(\psib\mid\nng,\bynr) \colon (\nng,\bynr) \in \PNc\big\}\big)$}
-where $\PNc = \big\{(\nng,\bynr) \colon (\nzg,\byzr) \in \PZc \big\}$.\\
-%Set of posteriors = 
-Finite convex mixtures of canonical conjugate posteriors\\ defined by set of updated hyperparameters $\PNc$
-\end{block}
-
-}
-
 \frame{\frametitle{Generalised Bayesian Inference Procedure}
 
+\begin{block}{Overview}
 \begin{itemize}
 \item Hyperparameter set $\PZc$ defines set of priors $\MZ$
 \item Hyperparameter set $\PNc$ defines set of posteriors $\MN$
@@ -757,17 +766,19 @@ Finite convex mixtures of canonical conjugate posteriors\\ defined by set of upd
 posterior `guess' for $\frac{\tau(\x)}{n}$ (think: $\bar{\x}$) = $\ynr$\\
 \then\ \alert{analytic calculations} given $\PNc$ has `nice' shape
 \end{itemize}
+\end{block}
 
 }
 
 \subsection{Parameter Set Shapes}
 
-\frame{\frametitle{Parameter Set Shapes}
+\frame{\frametitle{Parameter Set Shapes ***pdfplots normal?}
 
 %graphs line, rectangle, eggplant
 \vspace*{-7ex}
 \begin{tikzpicture}
-\uncover<1>{\node {\includegraphics[scale=0.75]{../R/shape0.pdf}};}
+\uncover<1>{\node {\includegraphics[scale=0.75]{../R/shape0.pdf}};
+            \draw[-stealth,very thick] (0,0) -- (1,1) node [above,midway,sloped] {9 out of 10};}
 \uncover<2>{\node {\includegraphics[scale=0.75]{../R/shape1.pdf}};}
 \uncover<3>{\node {\includegraphics[scale=0.75]{../R/shape2.pdf}};}
 \uncover<4>{\node {\includegraphics[scale=0.75]{../R/shape3.pdf}};}

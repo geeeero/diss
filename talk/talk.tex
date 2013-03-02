@@ -778,10 +778,13 @@ posterior `guess' for $\frac{\tau(\x)}{n}$ (think: $\bar{\x}$) = $\ynr$\\
 \vspace*{-7ex}
 \begin{tikzpicture}
 \uncover<1>{\node {\includegraphics[scale=0.75]{../R/shape0.pdf}};
-            \draw[-stealth,very thick] (0,0) -- (1,1) node [above,midway,sloped] {9 out of 10};}
-\uncover<2>{\node {\includegraphics[scale=0.75]{../R/shape1.pdf}};}
-\uncover<3>{\node {\includegraphics[scale=0.75]{../R/shape2.pdf}};}
-\uncover<4>{\node {\includegraphics[scale=0.75]{../R/shape3.pdf}};}
+            \draw[-stealth,very thick] (-1,-0.4) -- (2.3,1.1) node [above,midway,sloped] {+ data};}
+\uncover<2>{\node {\includegraphics[scale=0.75]{../R/shape1.pdf}};
+            \draw[-stealth,very thick] (-1,-0.4) -- (2.3,1.1) node [above,midway,sloped] {9 out of 10};}
+\uncover<3>{\node {\includegraphics[scale=0.75]{../R/shape2.pdf}};
+            \draw[-stealth,very thick] ( 0,-0.5) -- (2.3,1.1) node [above,midway,sloped] {9 out of 10};}
+\uncover<4>{\node {\includegraphics[scale=0.75]{../R/shape3.pdf}};
+            \draw[-stealth,very thick] ( 0,-0.5) -- (2.3,1.1) node [above,midway,sloped] {9 out of 10};}
 \end{tikzpicture}
 
 }
@@ -823,7 +826,7 @@ in the sampling model for which the observed data is surprising''\\
 \item Bernoulli observations: 0/1 observations (team wins no/yes)
 \item given: a set of observations (team won 12 out of 16 matches)
 \item additional to observations, we have strong prior information\\ (we are convinced that $P(\text{win})$ should be around $0.75$)
-\item we are, e.g., interested in (predictive) probability $\mbox{P}$ that team wins in the next match
+\item we are, e.g., interested in (predictive) probability $P$ that team wins in the next match
 %(or some other inferences) %(predictive probability!)
 %\item standard statistical model for this situation: Beta-Bernoulli/Binomial Model
 %\item \textbf{\pdc:} if $P(\text{heads})$ for the coin is actually very different from our prior guess
@@ -839,12 +842,12 @@ conjugate prior: & $p\mid \nzg, \yzr$ & $\sim$ & $\be(\nzg,\, \yzr)$  \\[0.5ex] 
 posterior:       & $p\mid \nng, \ynr$ & $\sim$ & $\be(\nng,\, \ynr)$ \quad ($\frac{\tau(\x)}{n} = \frac{s}{n}$)\rule{0ex}{2.5ex}
 \end{tabular}
 \end{block}
-s = number of wins
+where $s$ = number of wins in the $n$ matches observed
 }
 
 }
 
-\frame{\frametitle{Prior-Data Conflict: Example}
+\frame{\frametitle{Beta-Binomial Model}
 
 \uncover<1->{
 \begin{block}{Beta-Binomial Model}
@@ -857,26 +860,26 @@ posterior:       & $p\mid \nng, \ynr$ & $\sim$ & $\be(\nng,\, \ynr)$ \quad ($\fr
 \end{block}
 }
 \begin{align*}
-%\uncover<3->{\mbox{P} = }
 \uncover<2->{%
-\rot{\yn}   &= \frac{\gruen{\nz}}{\gruen{\nz} + n} \cdot \rot{\yz} + \frac{n}{\gruen{\nz} + n} \cdot \frac{s}{n}\,, &
-%             &                   &
-\gruen{\nn} &= \gruen{\nz} + n
+P = \E[p\mid\nng,\ynr]
+}%
+\uncover<3->{%
+= \rot{\yn}
+= \frac{\gruen{\nz}}{\gruen{\nz} + n} \cdot \rot{\yz} + \frac{n}{\gruen{\nz} + n} \cdot \frac{s}{n}
 }%
 \end{align*}\vspace*{-3ex}
 \begin{align*}
-\uncover<3->{%
-\rot{\yn} &= \E[p\mid s]
+\uncover<4->{%
+\gruen{\nn} &= \gruen{\nz} + n
 }%
-\uncover<4->{= \mbox{P}}
-\uncover<3->{%
-& \V(p\mid s) &= \frac{\rot{\yn}(1-\rot{\yn})}{\gruen{\nn} + 1}
+\uncover<5->{%
+& \V(p\mid\nng,\ynr) &= \frac{\rot{\yn}(1-\rot{\yn})}{\gruen{\nn} + 1}
 }
 \end{align*}
 
 }
 
-\frame{\frametitle{Beta-Binomial Model (BBM)}
+\frame{\frametitle{Beta-Binomial Model}
 
 \hspace*{-12ex}
 \begin{columns}%[T]
@@ -902,14 +905,14 @@ posterior:       & $p\mid \nng, \ynr$ & $\sim$ & $\be(\nng,\, \ynr)$ \quad ($\fr
 \begin{column}{0.52\textwidth}
 \uncover<1->{%
 \begin{block}{no conflict:}
-prior $\gruen{\nz} = 8$, $\rot{\yz} = 0.75$\\
+prior $\nzg = 8$, $\yzr = 0.75$\\
 data $s/n = 12/16 = 0.75$
 \end{block}
 } %
 \uncover<2->{%
 \vspace*{-1.5ex}\centerline{\color{lmugreen} $\blacktriangledown$}\vspace*{-1.5ex}
 \begin{block}{}
-$\gruen{\nn} = 24$, $\rot{\yn} = 0.75$
+$\nng = 24$, $\ynr = 0.75$
 \end{block}
 } %
 \uncover<4->{%
@@ -917,14 +920,14 @@ $\gruen{\nn} = 24$, $\rot{\yn} = 0.75$
 }
 \uncover<3->{%
 \begin{block}{\pdc:}
-prior $\gruen{\nz} = 8$, $\rot{\yz} = 0.25$\\
+prior $\nzg = 8$, $\yzr = 0.25$\\
 data $s/n = 16/16 = 1$
 \end{block}
 } %
 \uncover<0>{%
 \vspace*{-1.5ex}\centerline{\color{lmugreen} $\blacktriangledown$}\vspace*{-1.5ex}
 \begin{block}{}
-$\gruen{\nn} \in [20, 24]$, $\rot{\yn} \in [0.73, 0.86]$
+$\nng \in [20, 24]$, $\ynr \in [0.73, 0.86]$
 \end{block}
 } %
 %\uncover<5->{ %
@@ -937,7 +940,7 @@ $\gruen{\nn} \in [20, 24]$, $\rot{\yn} \in [0.73, 0.86]$
 
 \subsection{Parameter Set Shapes}
 
-\frame{\frametitle{Imprecise BBMs: IBBM $\hat{=}$ IDM with prior information}
+\frame{\frametitle{Imprecise BBM with $\nzg$ fixed = IDM as in Walley (1996)}
 
 %gleich mit $\nz$ variabel?
 \hspace*{-12ex}
@@ -964,14 +967,14 @@ $\gruen{\nn} \in [20, 24]$, $\rot{\yn} \in [0.73, 0.86]$
 \begin{column}{0.52\textwidth}
 \uncover<1->{%
 \begin{block}{no conflict:}
-prior $\gruen{\nz} = 8$, $\rot{\yz} \in [0.7, 0.8]$\\
+prior $\nzg = 8$, $\yzr \in [0.7, 0.8]$\\
 data $s/n = 12/16 = 0.75$
 \end{block}
 } %
 \uncover<2->{%
 \vspace*{-1.5ex}\centerline{\color{lmugreen} $\blacktriangledown$}\vspace*{-1.5ex}
 \begin{block}{}
-$\gruen{\nn} = 24$, $\rot{\yn} \in [0.73, 0.77]$
+$\nng = 24$, $\ynr \in [0.73, 0.77]$
 \end{block}
 } %
 \uncover<4->{%
@@ -979,14 +982,14 @@ $\gruen{\nn} = 24$, $\rot{\yn} \in [0.73, 0.77]$
 }
 \uncover<3->{%
 \begin{block}{\pdc:}
-prior $\gruen{\nz} = 8$, $\rot{\yz} \in [0.2, 0.3]$\\
+prior $\nzg = 8$, $\yzr \in [0.2, 0.3]$\\
 data $s/n = 16/16 = 1$
 \end{block}
 } %
 \uncover<0>{%
 \vspace*{-1.5ex}\centerline{\color{lmugreen} $\blacktriangledown$}\vspace*{-1.5ex}
 \begin{block}{}
-$\gruen{\nn} \in [20, 24]$, $\rot{\yn} \in [0.73, 0.86]$
+$\nng \in [20, 24]$, $\ynr \in [0.73, 0.86]$
 \end{block}
 } %
 %\uncover<5->{ %
@@ -998,7 +1001,7 @@ $\gruen{\nn} \in [20, 24]$, $\rot{\yn} \in [0.73, 0.86]$
 }
 
 
-\frame{\frametitle{Imprecise BBMs: pdc-IBBM (Walley 1991, Ch.5.4.3)}
+\frame{\frametitle{Imprecise BBM with $[\nzlg,\nzug]$ = Walley (1991), \S 5.4.3}
 
 \hspace*{-12ex}
 \begin{columns}%[T]
@@ -1029,7 +1032,7 @@ $\gruen{\nn} \in [20, 24]$, $\rot{\yn} \in [0.73, 0.86]$
 \begin{column}{0.52\textwidth}
 \uncover<1->{%
 \begin{block}{no conflict:}
-prior $\gruen{\nz} \in [4, 8]$, $\rot{\yz} \in [0.7, 0.8]$\\
+prior $\nzg \in [4, 8]$, $\yzr \in [0.7, 0.8]$\\
 data $s/n = 12/16 = 0.75$
 \end{block}
 } %
@@ -1037,13 +1040,13 @@ data $s/n = 12/16 = 0.75$
 \vspace*{-1.5ex}\centerline{\color{lmugreen} $\blacktriangledown$}\vspace*{-1.5ex}
 \begin{block}{}
 %$\gruen{\nn} \in [20, 24]$,
-\centering $\rot{\yn} \in [0.73, 0.77]$
+\centering $\ynr \in [0.73, 0.77]$
 %\centering ``spotlight'' shape
 \end{block}
 } %
 \uncover<3->{%
 \begin{block}{\pdc:}
-prior $\gruen{\nz} \in [4, 8]$, $\rot{\yz} \in [0.2, 0.3]$\\
+prior $\nzg \in [4, 8]$, $\yzr \in [0.2, 0.3]$\\
 data $s/n = 16/16 = 1$
 \end{block}
 } %
@@ -1051,7 +1054,7 @@ data $s/n = 16/16 = 1$
 \vspace*{-1.5ex}\centerline{\color{lmugreen} $\blacktriangledown$}\vspace*{-1.5ex}
 \begin{block}{}
 %$\gruen{\nn} \in [20, 24]$,
-\centering $\rot{\yn} \in [0.73, 0.86]$
+\centering $\ynr \in [0.73, 0.86]$
 %\centering ``banana'' shape
 \end{block}
 } %
@@ -1061,14 +1064,23 @@ data $s/n = 16/16 = 1$
 }
 
 
-
 \frame{\frametitle{Prior-Data Conflict and Parameter Set Shapes}
 \begin{itemize}
-\item other set shapes
-\item boatshape?***
+\item fixed $\nzg$ very easy model, but no additional imprecision in case of \pdc
+\item $[\nzlg, \nzug]$: flexible weighing of prior and data 
+\item need a range of $\nzg$ values for \pdc\ reaction
+\item other set shapes possible, but more difficult to elicit
+\item near-ignorance stuff?
 \end{itemize}
 }
 
+\frame{\frametitle{Prior-Data Conflict and Parameter Set Shapes}
+\begin{itemize}
+\item Ausblick: boatshape (extra slides?)***
+\end{itemize}
+}
+
+\subsection{Conclusion}
 
 \frame{\frametitle{Conclusion}
 

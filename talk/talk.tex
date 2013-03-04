@@ -752,6 +752,13 @@ Lower/upper posterior expectation by min/max over set of posteriors %$\PZc$
 
 \frame{\frametitle{Generalised Bayesian Inference Procedure}
 
+General properties:
+
+
+}
+
+\frame{\frametitle{Generalised Bayesian Inference Procedure}
+
 %\begin{block}{Overview}
 \begin{itemize}
 \item Hyperparameter set $\PZc$ defines set of priors $\MZ$
@@ -940,7 +947,7 @@ $\nng \in [20, 24]$, $\ynr \in [0.73, 0.86]$
 
 \subsection{Parameter Set Shapes}
 
-\frame{\frametitle{Imprecise BBM with $\nzg$ fixed = IDM as in Walley (1996)}
+\frame{\frametitle{Imprecise BBM with $\nzg$ fixed = IDM (Walley 1996)}
 
 %gleich mit $\nz$ variabel?
 \hspace*{-12ex}
@@ -1001,7 +1008,7 @@ $\nng \in [20, 24]$, $\ynr \in [0.73, 0.86]$
 }
 
 
-\frame{\frametitle{Imprecise BBM with $[\nzlg,\nzug]$ = Walley (1991), \S 5.4.3}
+\frame{\frametitle{Imprecise BBM with $[\nzlg,\nzug]$ (Walley 1991, \S 5.4.3)}
 
 \hspace*{-12ex}
 \begin{columns}%[T]
@@ -1064,23 +1071,23 @@ data $s/n = 16/16 = 1$
 }
 
 
-\frame{\frametitle{Parameter Set Shapes}
+\frame{\frametitle{Parameter Set Shapes: Discussion}
 
 \begin{itemize}
 \item $\PZc = \nzg \times [\yzlr, \yzur]$:\\% \thenthen\
 IDM (Walley 1996), Quaghebeur \& de Cooman (2005)
  \begin{itemize}
- \item simpe model description, posterior parameter set has same form $\PNc = \nng \times [\ynlr, \ynur]$
+ \item posterior parameter set has same form $\PNc = \nng \times [\ynlr, \ynur]$ %simpel model description,
  \item optimise over $[\ynlr, \ynur]$ only %(often, posteriors are stoch.\ ordered along $\ynr$)
- \item no \pdc\ reaction: same imprecision as without conflict (just like precise prior)
+ \item no \pdc\ reaction: same imprecision as without conflict (just like precise priors)
  \end{itemize}
-\item $\PZc = [\nzlg,\nzug] \times [\yzlr, \yzur]$:\ %\thenthen\
-Walley (1991, \S 5.4.3), Walter \& Augustin (2009) \emph{LUCK-models}
+\item $\PZc = [\nzlg,\nzug] \times [\yzlr, \yzur]$:\\ \ %\thenthen\
+Walley (1991, \S 5.4.3), \emph{iLUCK-models} (Walter \& Augustin 2009) 
  \begin{itemize}
  \item still simple to elicit, allows flexible weighing of prior and data
  \item additional imprecision in case of \pdc\\ \then\ more cautious inferences
- \item posterior parameter sets $\PNc$ have non-trivial forms (banana / spotlight)
- \item however, closed form for $\min / \max_{\PNc} \ynr$
+ \item $\PNc$ have non-trivial forms (banana / spotlight) %posterior parameter sets 
+ \item however, closed form for $\min / \max \ynr$ over $\PNc$
  \item general optimisation over $\PNc$ more difficult, but doable
  \item \textbf{R} package \texttt{luck}: do optimisation over $\PZc$ actually 
  \end{itemize}
@@ -1089,7 +1096,7 @@ Walley (1991, \S 5.4.3), Walter \& Augustin (2009) \emph{LUCK-models}
 }
 
 
-\frame{\frametitle{Parameter Set Shapes}
+\frame{\frametitle{Parameter Set Shapes: Discussion}
 
 \begin{itemize}
 \item Need a range of $\nzg$ values for \pdc\ reaction
@@ -1098,9 +1105,10 @@ Walley (1991, \S 5.4.3), Walter \& Augustin (2009) \emph{LUCK-models}
 \item \emph{Near-ignorance priors}: $\PZc$ such that prior inferences are \emph{vacuous},
 but posterior inferences are informative
  \begin{itemize}
- \item IDM (Walley 1996): range of $\yzjr{j} = (0,1)\ \forall j$
- \item Benavoli \& Zaffalon (2012): range of $\yzr = (-\infty,+\infty)$ while $\nzug$ decreasing with $\yzr$ %$\nzg$ bounded above
- to avoid $\nzg |\yzr| = \infty$ \thenthen\ vacuous posterior inferences
+ \item IDM (Walley 1996): range of $\yzjr = (0,1)\ \forall j$
+ \item Benavoli \& Zaffalon (2012): range of $\yzr = (-\infty,+\infty)$\\
+ while $\nzug$ decreasing with $\yzr$\\ %$\nzg$ bounded above
+ (to avoid $\nzg |\yzr| = \infty$, i.e.\ vacuous posterior inferences)
  \end{itemize}
 \end{itemize}
 
@@ -1113,7 +1121,7 @@ Work in progress: parameter set shape enabling
 \item additional imprecision in case of \pdc\ (as before)
 \item less imprecision for \emph{strong prior-data agreement}
 \end{itemize}
-using other parametrisation of priors suggested by Mik Bickis (in preparation)
+This work uses another parametrisation of priors\\ suggested by Mik Bickis (in preparation)
 }
 
 \subsection{Conclusion}

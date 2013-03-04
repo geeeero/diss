@@ -752,7 +752,7 @@ Lower/upper posterior expectation by min/max over set of posteriors %$\PZc$
 
 \frame{\frametitle{Generalised Bayesian Inference Procedure}
 
-\begin{block}{Overview}
+%\begin{block}{Overview}
 \begin{itemize}
 \item Hyperparameter set $\PZc$ defines set of priors $\MZ$
 \item Hyperparameter set $\PNc$ defines set of posteriors $\MN$
@@ -764,15 +764,15 @@ Lower/upper posterior expectation by min/max over set of posteriors %$\PZc$
 \then\ \alert{straighforward to calculate:} optimise over $\PNc$ only
 \item Often, optimising over $(\nng,\bynr) \in \PNc$ is also easy:\\
 posterior `guess' for $\frac{\tau(\x)}{n}$ (think: $\bar{\x}$) = $\ynr$\\
-\then\ \alert{analytic calculations} given $\PNc$ has `nice' shape
+\then\ \alert{closed form solution} given $\PNc$ has `nice' shape
 \end{itemize}
-\end{block}
+%\end{block}
 
 }
 
 \subsection{Parameter Set Shapes}
 
-\frame{\frametitle{Parameter Set Shapes ***pdfplots normal?}
+\frame{\frametitle{Parameter Set Shapes}
 
 %graphs line, rectangle, eggplant
 \vspace*{-7ex}
@@ -780,11 +780,11 @@ posterior `guess' for $\frac{\tau(\x)}{n}$ (think: $\bar{\x}$) = $\ynr$\\
 \uncover<1>{\node {\includegraphics[scale=0.75]{../R/shape0.pdf}};
             \draw[-stealth,very thick] (-1,-0.4) -- (2.3,1.1) node [above,midway,sloped] {+ data};}
 \uncover<2>{\node {\includegraphics[scale=0.75]{../R/shape1.pdf}};
-            \draw[-stealth,very thick] (-1,-0.4) -- (2.3,1.1) node [above,midway,sloped] {9 out of 10};}
+            \draw[-stealth,very thick] (-1,-0.4) -- (2.3,1.1) node [above,midway,sloped] {+ data};}
 \uncover<3>{\node {\includegraphics[scale=0.75]{../R/shape2.pdf}};
-            \draw[-stealth,very thick] ( 0,-0.5) -- (2.3,1.1) node [above,midway,sloped] {9 out of 10};}
+            \draw[-stealth,very thick] ( 0,-0.5) -- (2.3,1.1) node [above,midway,sloped] {+ data};}
 \uncover<4>{\node {\includegraphics[scale=0.75]{../R/shape3.pdf}};
-            \draw[-stealth,very thick] ( 0,-0.5) -- (2.3,1.1) node [above,midway,sloped] {9 out of 10};}
+            \draw[-stealth,very thick] ( 0,-0.5) -- (2.3,1.1) node [above,midway,sloped] {+ data};}
 \end{tikzpicture}
 
 }
@@ -1064,20 +1064,56 @@ data $s/n = 16/16 = 1$
 }
 
 
-\frame{\frametitle{Prior-Data Conflict and Parameter Set Shapes}
+\frame{\frametitle{Parameter Set Shapes}
+
 \begin{itemize}
-\item fixed $\nzg$ very easy model, but no additional imprecision in case of \pdc
-\item $[\nzlg, \nzug]$: flexible weighing of prior and data 
-\item need a range of $\nzg$ values for \pdc\ reaction
-\item other set shapes possible, but more difficult to elicit
-\item near-ignorance stuff?
+\item $\PZc = \nzg \times [\yzlr, \yzur]$:\\% \thenthen\
+IDM (Walley 1996), Quaghebeur \& de Cooman (2005)
+ \begin{itemize}
+ \item simpe model description, posterior parameter set has same form $\PNc = \nng \times [\ynlr, \ynur]$
+ \item optimise over $[\ynlr, \ynur]$ only %(often, posteriors are stoch.\ ordered along $\ynr$)
+ \item no \pdc\ reaction: same imprecision as without conflict (just like precise prior)
+ \end{itemize}
+\item $\PZc = [\nzlg,\nzug] \times [\yzlr, \yzur]$:\ %\thenthen\
+Walley (1991, \S 5.4.3), Walter \& Augustin (2009) \emph{LUCK-models}
+ \begin{itemize}
+ \item still simple to elicit, allows flexible weighing of prior and data
+ \item additional imprecision in case of \pdc\\ \then\ more cautious inferences
+ \item posterior parameter sets $\PNc$ have non-trivial forms (banana / spotlight)
+ \item however, closed form for $\min / \max_{\PNc} \ynr$
+ \item general optimisation over $\PNc$ more difficult, but doable
+ \item \textbf{R} package \texttt{luck}: do optimisation over $\PZc$ actually 
+ \end{itemize}
 \end{itemize}
+
 }
 
-\frame{\frametitle{Prior-Data Conflict and Parameter Set Shapes}
+
+\frame{\frametitle{Parameter Set Shapes}
+
 \begin{itemize}
-\item Ausblick: boatshape (extra slides?)***
+\item Need a range of $\nzg$ values for \pdc\ reaction
+\item Other set shapes are possible, but may be more difficult to elicit
+\item Prior information may be such that range of $\yzr$ changes with $\nzg$ (or vice versa)
+\item \emph{Near-ignorance priors}: $\PZc$ such that prior inferences are \emph{vacuous},
+but posterior inferences are informative
+ \begin{itemize}
+ \item IDM (Walley 1996): range of $\yzjr{j} = (0,1)\ \forall j$
+ \item Benavoli \& Zaffalon (2012): range of $\yzr = (-\infty,+\infty)$ while $\nzug$ decreasing with $\yzr$ %$\nzg$ bounded above
+ to avoid $\nzg |\yzr| = \infty$ \thenthen\ vacuous posterior inferences
+ \end{itemize}
 \end{itemize}
+
+}
+
+\frame{\frametitle{Parameter Set Shapes}
+
+Work in progress: parameter set shape enabling
+\begin{itemize}
+\item additional imprecision in case of \pdc\ (as before)
+\item less imprecision for \emph{strong prior-data agreement}
+\end{itemize}
+using other parametrisation of priors suggested by Mik Bickis (in preparation)
 }
 
 \subsection{Conclusion}
@@ -1085,19 +1121,20 @@ data $s/n = 16/16 = 1$
 \frame{\frametitle{Conclusion}
 
 \begin{itemize}
-\item Conjugate priors are nice, but have some pitfalls
+\item Conjugate priors are convenient but have some pitfalls
  \begin{itemize}
  \item Hyperparameters easy to interpret and elicit
  \item Averaging property makes calculations simple,\\
  but inadequate model behaviour in case of \pdc
  \end{itemize}
-\item Sets of conjugate priors find a sweet spot in between
+\item Sets of conjugate priors use advantages \& avoid pitfalls %find a sweet spot in between
  \begin{itemize}
- \item Hyperparameter set shape is important
+ \item Hyperparameter set shape is important %a crucial modeling choice
  \item Reasonable choice: \emph{rectangular} $\PZc = [\nzlg, \nzug] \times [\yzlr, \yzur]$
  \item Bounds for hyperparameters easy to interpret and elicit
  \item Additional imprecison in case of \pdc\\
  leads to cautious inferences if, and only if, caution is needed
+ \item Shape for less imprecision for strong prior-data agreement is in development
  \end{itemize}
 \end{itemize}
 

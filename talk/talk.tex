@@ -5,7 +5,16 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 
-\usepackage[german]{babel}
+\usepackage[english]{babel}
+\usepackage{url}
+%\usepackage{cite}
+%\usepackage{natbib}
+\usepackage[backend=bibtex,style=authoryear,dashed=false]{biblatex}
+\addbibresource{../bib/eigene.bib}
+\addbibresource{../bib/itip-refs.bib}
+\addbibresource{../bib/other-refs.bib}
+\renewcommand{\bibfont}{\normalfont\scriptsize}
+\setlength{\bibhang}{3ex}
 
 \usepackage{amssymb, amsmath, amsfonts, enumerate}
 %\usepackage{bbold}
@@ -175,9 +184,9 @@
 
 \frame{\frametitle{Outline}
 \begin{enumerate}
-\item Common-cause failure modelling (joint work with Matthias Troffaes and Dana Kelly)
-\item Generalised Bayesian inference with sets of priors (joint work with Thomas Augustin)
-\item Prior-Data Conflict
+\item Common-cause failure modelling\\ (joint work with Matthias Troffaes and Dana Kelly)
+\item Generalised Bayesian inference with sets of priors\\ (joint work with Thomas Augustin)
+\item Prior-Data Conflict\\ (joint work with Thomas Augustin and Frank Coolen)
 \end{enumerate}
 }
 
@@ -1081,8 +1090,8 @@ IDM (Walley 1996), Quaghebeur \& de Cooman (2005)
  \item optimise over $[\ynlr, \ynur]$ only %(often, posteriors are stoch.\ ordered along $\ynr$)
  \item no \pdc\ reaction: same imprecision as without conflict (just like precise priors)
  \end{itemize}
-\item $\PZc = [\nzlg,\nzug] \times [\yzlr, \yzur]$:\\ \ %\thenthen\
-Walley (1991, \S 5.4.3), \emph{iLUCK-models} (Walter \& Augustin 2009) 
+\item $\PZc = [\nzlg,\nzug] \times [\yzlr, \yzur]$: %\thenthen\
+Walley (1991, \S 5.4.3),\\ \emph{generalized iLUCK-models} (Walter \& Augustin 2009) 
  \begin{itemize}
  \item still simple to elicit, allows flexible weighing of prior and data
  \item additional imprecision in case of \pdc\\ \then\ more cautious inferences
@@ -1114,14 +1123,17 @@ but posterior inferences are informative
 
 }
 
-\frame{\frametitle{Parameter Set Shapes}
+\frame{\frametitle{Parameter Set Shapes: Outlook}
 
-Work in progress: parameter set shape enabling
+Work in progress (joint work with Frank Coolen):\\
+parameter set shape enabling\ldots
 \begin{itemize}
 \item additional imprecision in case of \pdc\ (as before)
 \item less imprecision for \emph{strong prior-data agreement}
 \end{itemize}
-This work uses another parametrisation of priors\\ suggested by Mik Bickis (in preparation)
+%This work uses 
+via a different parametrisation of priors suggested by Mik Bickis % (in preparation)
+
 }
 
 \subsection{Conclusion}
@@ -1129,13 +1141,13 @@ This work uses another parametrisation of priors\\ suggested by Mik Bickis (in p
 \frame{\frametitle{Conclusion}
 
 \begin{itemize}
-\item Conjugate priors are convenient but have some pitfalls
+\item Conjugate priors are a convenient tool for Bayesian inference\\ but have some pitfalls
  \begin{itemize}
- \item Hyperparameters easy to interpret and elicit
+ \item Hyperparameters are easy to interpret and elicit
  \item Averaging property makes calculations simple,\\
  but inadequate model behaviour in case of \pdc
  \end{itemize}
-\item Sets of conjugate priors use advantages \& avoid pitfalls %find a sweet spot in between
+\item Sets of conjugate priors maintain advantages \& mitigate pitfalls %find a sweet spot in between
  \begin{itemize}
  \item Hyperparameter set shape is important %a crucial modeling choice
  \item Reasonable choice: \emph{rectangular} $\PZc = [\nzlg, \nzug] \times [\yzlr, \yzur]$
@@ -1146,7 +1158,17 @@ This work uses another parametrisation of priors\\ suggested by Mik Bickis (in p
  \end{itemize}
 \end{itemize}
 
+}
 
+
+\frame{\frametitle{References}
+
+\nocite{Walter2009a-short,1991:walley,1996:walley::idm,2011:kelly:atwood,1996:atwood,Troffaes2013a,2006:evans,2005:quaeghebeurcooman}
+
+\printbibliography[heading=none]
+
+%\bibliographystyle{plainnat}
+%\bibliography{../bib/eigene,../bib/itip-refs,../bib/other-refs}
 }
 
 \end{document}

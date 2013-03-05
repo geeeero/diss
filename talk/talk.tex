@@ -186,7 +186,7 @@
 \begin{enumerate}
 \item Common-cause failure modelling\\ (joint work with Matthias Troffaes and Dana Kelly)
 \item Generalised Bayesian inference with sets of priors\\ (joint work with Thomas Augustin)
-\item Prior-Data Conflict\\ (joint work with Thomas Augustin and Frank Coolen)
+\item Prior-data conflict and Strong prior-data agreement\\ (joint work with Thomas Augustin and Frank Coolen)
 \end{enumerate}
 }
 
@@ -434,7 +434,6 @@ Right: Wikimedia Commons,\\[-1.8ex]
 \end{frame}
 
 \begin{frame}{Example: Non-Informative Priors}
-  \alert{large variation in posterior under different non-informative priors} \\
   \begin{itemize}
   \item with constrained maximum entropy prior\\ (Atwood, 1996; Kelly \& Atwood, 2011): %\cite{1996:atwood,2011:kelly:atwood}):
     \begin{align*}
@@ -469,6 +468,7 @@ Right: Wikimedia Commons,\\[-1.8ex]
     \E[\alpha_4\mid\nng,\bynr]&=0.0132
   \end{align*}
   \end{itemize}
+  \alert{large variation in posterior under different non-informative priors}
   % The degree of variation in the posterior under different priors
   % is evidently somewhat alarming.
   % In the next section, we aim to robustify the model
@@ -526,7 +526,7 @@ Analyst has to specify \\
   \end{align*}
   \item  $[\nzlg,\nzug]$: Good (1965): \\ %\cite{1965:good}: \\
     \begin{center}
-    reason about posterior expectations of hypothetical data
+    reason about posterior expectations for hypothetical data
     \end{center}
   \end{itemize}
   \begin{alertblock}{}
@@ -699,7 +699,7 @@ All inferences are based on the set of posteriors%\\
 \centerline{$\MZ = \text{conv}\big(\big\{p(\psib\mid\nzg,\byzr) \colon (\nzg,\byzr) \in \PZc\big\}\big)$}
 %Model for prior information =
 $\MZ$ = {\small finite convex mixtures of canonical conjugate priors defined by} $\PZc$\\
-Convex set of probability distributions ensures \emph{coherence} of GBR\\ %{\small(Walley 1991)}\\
+Convex set of probability distributions ensures \emph{coherence}\\ %{\small(Walley 1991)}\\
 %of inference procedure
 (as in standard Bayesian inference procedure)
 \end{block}
@@ -761,8 +761,15 @@ Lower/upper posterior expectation by min/max over set of posteriors %$\PZc$
 
 \frame{\frametitle{Generalised Bayesian Inference Procedure}
 
-General properties:
-
+\centerline{\textbf{Shorter intervals \thenthen\ more precise probability statements}}
+\begin{itemize}
+\item larger $\nzg$ values as compared to $n$ \then\ larger $\PNc$\\ \quad\then\ more vague inferences\\
+(more weight on imprecise prior $\MZ$ leads to more imprecise posterior $\MN$)
+\item larger $n$ as compared to (range of) $\nzg$ \then\ smaller $\PNc$\\ \quad\then\ more precise inferences
+\item $n \to \infty$ \then\ $\ynr$ values in $\PNc \to \frac{\tau(\x)}{n}$ \then\ `Bayesian consistency'
+\item larger range of $\yzr$ in $\PZc$ \then\ larger range of $\ynr$ in $\PNc$\\ \quad  \then\ more vague inferences\\
+(more imprecise prior $\MZ$ leads to more imprecise $\MN$)
+\end{itemize}
 
 }
 
@@ -1163,7 +1170,7 @@ via a different parametrisation of priors suggested by Mik Bickis % (in preparat
 
 \frame{\frametitle{References}
 
-\nocite{Walter2009a-short,1991:walley,1996:walley::idm,2011:kelly:atwood,1996:atwood,Troffaes2013a,2006:evans,2005:quaeghebeurcooman}
+\nocite{Walter2009a-short,1994:hoyland,1965:good,1991:walley,1996:walley::idm,2011:kelly:atwood,1996:atwood,Troffaes2013a,2006:evans,2005:quaeghebeurcooman-short}
 
 \printbibliography[heading=none]
 

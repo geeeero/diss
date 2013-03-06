@@ -229,12 +229,12 @@
  \end{alertblock}
  %\end{minipage}
  %\end{center}
-\item Reliability of redundant systems (emergency diesel generators)
-\item Usually 2 -- 4 generators per reactor
+\item Reliability of redundant systems
+\item Usually 2 -- 4 emergency diesel generators per reactor
 \item Sufficient cooling of core if one generator works
 %\item Reliability through redundancy is jeopardised by common-cause failure:%\\
 \item Redundant components may not fail independently: common-cause failure
-\item Must include common-cause failures in overall system reliability analysis
+\item Must include common-cause failures\\ in overall system reliability analysis
 \end{itemize}
 }
 
@@ -669,7 +669,7 @@ p(\psib\mid\nng,\ynr) %\hspace*{2ex}
 \begin{block}{Interpretation}
   \begin{itemize}
   \item $\nzg$ = determines \alert{spread} and \alert{learning speed}
-  \item $\byzr$ = \alert{prior expectation} of $\tau(\x)/n$ %$\frac{\tau(\vec{x})}{n}$
+  \item $\yzr$ = \alert{prior expectation} of $\tau(\x)/n$ %$\frac{\tau(\vec{x})}{n}$
   \end{itemize}
 \end{block}}%
 \uncover<3->{%
@@ -823,13 +823,13 @@ posterior `guess' for $\frac{\tau(\x)}{n}$ (think: $\bar{\x}$) = $\ynr$\\
 %graphs line, rectangle, eggplant
 \vspace*{-7ex}
 \begin{tikzpicture}
-\uncover<1>{\node {\includegraphics[scale=0.75]{../R/shape0.pdf}};
+%\uncover<1>{\node {\includegraphics[scale=0.75]{../R/shape0.pdf}};
+%            \draw[-stealth,very thick] (-1,-0.4) -- (2.3,1.1) node [above,midway,sloped] {+ data};}
+\uncover<1>{\node {\includegraphics[scale=0.75]{../R/shape1.pdf}};
             \draw[-stealth,very thick] (-1,-0.4) -- (2.3,1.1) node [above,midway,sloped] {+ data};}
-\uncover<2>{\node {\includegraphics[scale=0.75]{../R/shape1.pdf}};
-            \draw[-stealth,very thick] (-1,-0.4) -- (2.3,1.1) node [above,midway,sloped] {+ data};}
-\uncover<3>{\node {\includegraphics[scale=0.75]{../R/shape2.pdf}};
+\uncover<2>{\node {\includegraphics[scale=0.75]{../R/shape2.pdf}};
             \draw[-stealth,very thick] ( 0,-0.5) -- (2.3,1.1) node [above,midway,sloped] {+ data};}
-\uncover<4>{\node {\includegraphics[scale=0.75]{../R/shape3.pdf}};
+\uncover<3>{\node {\includegraphics[scale=0.75]{../R/shape3.pdf}};
             \draw[-stealth,very thick] ( 0,-0.5) -- (2.3,1.1) node [above,midway,sloped] {+ data};}
 \end{tikzpicture}
 
@@ -883,7 +883,7 @@ in the sampling model for which the observed data is surprising''\\
 \uncover<5->{
 \begin{block}{Beta-Binomial Model}
 \begin{tabular}{r|lcl}
-Data :           & $s\mid p, n$       & $\sim$ & $\bin(p,n)$   \\[0.5ex]
+Data :           & $s\mid p$          & $\sim$ & $\bin(p)$   \\[0.5ex]
 conjugate prior: & $p\mid \nzg, \yzr$ & $\sim$ & $\be(\nzg,\, \yzr)$  \\[0.5ex] %\qquad \ \ $\gruen{n\uz} = {\textstyle\sum} \alpha_i$\\[0.5ex]
 \cline{1-4}
 posterior:       & $p\mid \nng, \ynr$ & $\sim$ & $\be(\nng,\, \ynr)$ \quad ($\frac{\tau(\x)}{n} = \frac{s}{n}$)\rule{0ex}{2.5ex}
@@ -899,7 +899,7 @@ where $s$ = number of wins in the $n$ matches observed
 \uncover<1->{
 \begin{block}{Beta-Binomial Model}
 \begin{tabular}{r|lcl}
-Data :           & $s\mid p, n$       & $\sim$ & $\bin(p,n)$   \\[0.5ex]
+Data :           & $s\mid p$          & $\sim$ & $\bin(p)$   \\[0.5ex]
 conjugate prior: & $p\mid \nzg, \yzr$ & $\sim$ & $\be(\nzg,\, \yzr)$  \\[0.5ex] %\qquad \ \ $\gruen{n\uz} = {\textstyle\sum} \alpha_i$\\[0.5ex]
 \cline{1-4}
 posterior:       & $p\mid \nng, \ynr$ & $\sim$ & $\be(\nng,\, \ynr)$ \quad ($\frac{\tau(\x)}{n} = \frac{s}{n}$)\rule{0ex}{2.5ex}
@@ -1113,17 +1113,17 @@ data $s/n = 16/16 = 1$
 
 \frame{\frametitle{Parameter Set Shapes: Discussion}
 
-\begin{itemize}[<+->]
-\item $\PZc = \nzg \times [\yzlr, \yzur]$:\\% \thenthen\
+\begin{itemize}%[<+->]
+\item<1-> $\PZc = \nzg \times [\yzlr, \yzur]$:\\% \thenthen\
 IDM (Walley 1996), Quaghebeur \& de Cooman (2005)
- \begin{itemize}[<+->]
+ \begin{itemize}%[<+->]
  \item posterior parameter set has same form $\PNc = \nng \times [\ynlr, \ynur]$ %simpel model description,
  \item optimise over $[\ynlr, \ynur]$ only %(often, posteriors are stoch.\ ordered along $\ynr$)
  \item no \pdc\ reaction: same imprecision as without conflict (just like precise priors)
  \end{itemize}
-\item $\PZc = [\nzlg,\nzug] \times [\yzlr, \yzur]$: %\thenthen\
+\item<2-> $\PZc = [\nzlg,\nzug] \times [\yzlr, \yzur]$: %\thenthen\
 Walley (1991, \S 5.4.3),\\ \emph{generalized iLUCK-models} (Walter \& Augustin 2009) 
- \begin{itemize}[<+->]
+ \begin{itemize}%[<+->]
  \item still simple to elicit, allows flexible weighing of prior and data
  \item additional imprecision in case of \pdc\\ \then\ more cautious inferences
  \item $\PNc$ have non-trivial forms (banana / spotlight) %posterior parameter sets 
@@ -1138,11 +1138,11 @@ Walley (1991, \S 5.4.3),\\ \emph{generalized iLUCK-models} (Walter \& Augustin 2
 
 \frame{\frametitle{Parameter Set Shapes: Discussion}
 
-\begin{itemize}[<+->]
-\item Need a range of $\nzg$ values for \pdc\ reaction
-\item Other set shapes are possible, but may be more difficult to elicit
-\item Prior information may be such that range of $\yzr$ changes with $\nzg$ (or vice versa)
-\item \emph{Near-ignorance priors}: $\PZc$ such that prior inferences are \emph{vacuous},
+\begin{itemize}%[<+->]
+\item<1-> Need a range of $\nzg$ values for \pdc\ reaction
+\item<2-> Other set shapes are possible, but may be more difficult to elicit
+\item<3-> Prior information may be such that range of $\yzr$ changes with $\nzg$ (or vice versa)
+\item<4-> \emph{Near-ignorance priors}: $\PZc$ such that prior inferences are \emph{vacuous},
 but posterior inferences are informative
  \begin{itemize}
  \item IDM (Walley 1996): range of $\yzjr = (0,1)\ \forall j$
@@ -1177,15 +1177,15 @@ via a different parametrisation of priors suggested by Mik Bickis % (in preparat
 
 \frame{\frametitle{Conclusion}
 
-\begin{itemize}[<+->]
-\item Conjugate priors are a convenient tool for Bayesian inference\\ but there are some pitfalls
- \begin{itemize}[<+->]
+\begin{itemize}%[<+->]
+\item<1-> Conjugate priors are a convenient tool for Bayesian inference\\ but there are some pitfalls
+ \begin{itemize}%[<+->]
  \item Hyperparameters are easy to interpret and elicit
  \item Averaging property makes calculations simple,\\
  but inadequate model behaviour in case of \pdc
  \end{itemize}
-\item Sets of conjugate priors maintain advantages \& mitigate issues %find a sweet spot in between
- \begin{itemize}[<+->]
+\item<2-> Sets of conjugate priors maintain advantages \& mitigate issues %find a sweet spot in between
+ \begin{itemize}%[<+->]
  \item Hyperparameter set shape is important %a crucial modeling choice
  \item Reasonable choice: \emph{rectangular} $\PZc = [\nzlg, \nzug] \times [\yzlr, \yzur]$
  \item Bounds for hyperparameters easy to interpret and elicit

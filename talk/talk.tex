@@ -218,7 +218,7 @@
 \frame{
 \frametitle{Common-Cause Failures}
 
-\begin{itemize}
+\begin{itemize}[<+->]
 \item All 12 generators (for 6 reactors) at Fukushima Daiichi\\ were not available due to flooding of machine rooms\\
 (Tsunami caused by T\={o}hoku earthquake)
 % \begin{center}
@@ -299,13 +299,15 @@ Right: Wikimedia Commons,\\[-1.8ex]
 \fi
 
 \begin{frame}{Alpha-Factor Model: Parameter Estimation}
+\uncover<1->{%
   \begin{exampleblock}{The Good News}
     attractive feature of this model: \\
     $\vec{\alpha}$ can be estimated directly from data, e.g.\ MLE:
     \begin{align*}
       \alpha_j &= \frac{n_j}{n},\quad \text{where $\textstyle\sum_{j=1}^n n_j = n$}
     \end{align*}
-  \end{exampleblock}
+  \end{exampleblock}}
+\uncover<2->{%
   \begin{alertblock}{The Bad News}
     \begin{itemize}
     \item typically, for $j\ge 2$, the $n_j$ are very low \\
@@ -314,16 +316,18 @@ Right: Wikimedia Commons,\\[-1.8ex]
       standard techniques such as MLE can struggle \\
       to produce sensible inferences for this problem
     \end{itemize}
-  \end{alertblock}
+  \end{alertblock}}
+\uncover<3>{%
   \vspace*{-1ex}
   \begin{center}
     \textbf{\then\ need to rely on \alert{epistemic information}}
-  \end{center}
+  \end{center}}
 \end{frame}
 
 \subsection{Bayesian Analysis}
 
 \begin{frame}{Bayesian Analysis: Dirichlet Prior}
+\uncover<1->{%
   $\vec{\alpha}$ considered as uncertain parameter on which we put\dots
   \begin{block}{Dirichlet Distribution ($\to$ Dirichlet-Multinomial Model)}
   \begin{columns}
@@ -342,18 +346,19 @@ Right: Wikimedia Commons,\\[-1.8ex]
         (\yzor,\dots,\yzkr)\colon \yzor\ge0,\dots,\yzkr\ge 0,\,\sum_{j=1}^k \yzjr=1
       \Big\}
     \end{align*}
-  \end{block}
+  \end{block}}
+\uncover<2->{%
   \vspace*{-0.5ex}
   \begin{block}{Interpretation}
     \begin{itemize}
     \item $\byzr$ = \alert{prior expectation of $\vec{\alpha}$}, i.e., a prior guess for $\frac{n_j}{n}$, $j=1,\ldots,n$
     \item $\nzg$ = determines \alert{spread} and \alert{learning speed} (see next slide)
     \end{itemize}
-  \end{block}
+  \end{block}}
 \end{frame}
 
 \begin{frame}{Bayesian Analysis: Dirichlet Posterior}
-  \begin{itemize}
+  \begin{itemize}[<+->]
   \item posterior density for $\vec{\alpha}$ is again Dirichlet \then\ \alert{conjugacy}\\
   \alert{update parameters}: $\nzg \to\ \nng$, $\byzr \to \bynr$
     \begin{align*}
@@ -389,11 +394,12 @@ Right: Wikimedia Commons,\\[-1.8ex]
 %    where $n=\sum_{j=1}^k n_j$ is total number of observations
   \end{itemize}
   %\vspace{1em}
+  \uncover<3->{%
   \begin{center}
     \textbf{we will focus on $\E[\alpha_j\mid\nng,\bynr]$} \\
     (in a decision context, this expectation would typically end up \\
     in expressions for expected utility)
-  \end{center}
+  \end{center}}
 \end{frame}
 
 %\subsection{Example}
@@ -434,7 +440,8 @@ Right: Wikimedia Commons,\\[-1.8ex]
 \end{frame}
 
 \begin{frame}{Example: Non-Informative Priors}
-  \begin{itemize}
+  \alert{large variation in posterior under different non-informative priors}
+  \begin{itemize}[<+->]
   \item with constrained maximum entropy prior\\ (Atwood, 1996; Kelly \& Atwood, 2011): %\cite{1996:atwood,2011:kelly:atwood}):
     \begin{align*}
       \E[\alpha_1\mid\nng,\bynr]&=0.967
@@ -467,9 +474,8 @@ Right: Wikimedia Commons,\\[-1.8ex]
     &
     \E[\alpha_4\mid\nng,\bynr]&=0.0132
   \end{align*}
-  \end{itemize}
-  \alert{large variation in posterior under different non-informative priors}
-  % The degree of variation in the posterior under different priors
+  \end{itemize}%
+% The degree of variation in the posterior under different priors
   % is evidently somewhat alarming.
   % In the next section, we aim to robustify the model
   % by using sets of priors from the start.
@@ -478,6 +484,7 @@ Right: Wikimedia Commons,\\[-1.8ex]
 \subsection{Imprecise Dirichlet Model}
 
 \begin{frame}{Imprecise Dirichlet Model: Definition}
+\uncover<1->{%
 Troffaes, Walter \& Kelly (2012): model vague prior info more cautiously
 \begin{block}{Imprecise Dirichlet Model (IDM) for Common-Cause Failure}
 use a \alert{set of hyperparameters}
@@ -497,7 +504,7 @@ use a \alert{set of hyperparameters}
         \yzjr\in[\yzjlr{j},\yzjur{j}]
       \right\}
     \end{align*}
-\end{block}\vspace*{-0.5ex}
+\end{block}\vspace*{-0.5ex}}\uncover<2->{%
 \begin{block}{Interpretation}
 \begin{itemize}
   \item we are doing a \alert{sensitivity analysis} (\'a la robust Bayes)\\ over $(\nzg,\byzr) \in \PZc$
@@ -506,14 +513,14 @@ use a \alert{set of hyperparameters}
   as model for prior information (details later)
 %  (resp.\ all convex mixtures of them)
 \end{itemize}
-\end{block}
+\end{block}}\uncover<3>{%
 Analyst has to specify \\
     bounds $[\nzlg,\nzug]$ and
-    bounds $[\yzjlr{j},\yzjur{j}]$ for each $j\in\{1,\dots,k\}$ %\\
+    bounds $[\yzjlr{j},\yzjur{j}]$ for each $j\in\{1,\dots,k\}$ }%\\
 \end{frame}
 
 \begin{frame}{Imprecise Dirichlet Model: Elicitation}
-  \begin{itemize}
+  \begin{itemize}[<+->]
   \item   $[\yzjlr{j},\yzjur{j}]$: Cautious interpretation of prior specifications $\mu_{\text{spec},j}$:
   \begin{align*}
     [\yzjlr{1},\yzjur{1}]&=[0.950,1]
@@ -529,6 +536,7 @@ Analyst has to specify \\
     reason about posterior expectations for hypothetical data
     \end{center}
   \end{itemize}
+  \uncover<3->{%
   \begin{alertblock}{}
     $\nzug$ = number of one-component failures required \\
     to reduce the upper probabilities of multi-component failure by half
@@ -536,10 +544,11 @@ Analyst has to specify \\
   \begin{alertblock}{}
     $\nzlg$ = number of multi-component failures required \\
     to reduce the lower probability of one-component failure by half
-  \end{alertblock}
+  \end{alertblock}}
 \end{frame}
 
 \begin{frame}{Imprecise Dirichlet Model: Elicitation}
+\uncover<1->{%
 \begin{alertblock}{}
     $\nzug$ = number of one-component failures required \\
     to reduce the upper probabilities of multi-component failure by half
@@ -547,7 +556,8 @@ Analyst has to specify \\
   \begin{alertblock}{}
     $\nzlg$ = number of multi-component failures required \\
     to reduce the lower probability of one-component failure by half
-  \end{alertblock}
+  \end{alertblock}}
+  \uncover<2->{%
   Reasonable values in example:
   \begin{itemize}
   \item
@@ -559,10 +569,11 @@ Analyst has to specify \\
     $\nzug=10$: %\\
     after observing $10$ one-component failures \\
     \then\ halve upper probabilities of multi-component failures
-  \end{itemize}
+  \end{itemize}}
+  \uncover<3->{%
   \alert{Difference between $\nzlg$ and $\nzug$} reflects a \alert{level of caution}:\\
   The rate at which we reduce upper probabilities \\
-  is less than the rate at which we reduce lower probabilities \\
+  is less than the rate at which we reduce lower probabilities \\}
   %\then\ reflects a \alert{level of caution}
 \end{frame}
 
@@ -587,14 +598,14 @@ Analyst has to specify \\
   \end{tabular}
   \end{center}
 \end{block} 
-  \begin{itemize}
-  \item \alert{Bounds}, rather than precise values, are desirable \\
+  \begin{itemize}%[<+->]
+  \item<2-> \alert{Bounds}, rather than precise values, are desirable \\
     due to inferences being strongly sensitive to the prior \\
     particularly when faced with zero counts
-  \item Simple ways to elicit the parameters of the model \\
+  \item<3-> Simple ways to elicit the parameters of the model \\
     by \alert{reasoning on hypothetical data} \\
 %    rather than by maximum entropy arguments
-  \item Is it possible to generalise this method to other problems?
+  \item<4-> Is it possible to generalise this method to other problems?
   \end{itemize}
 \end{frame}
 
@@ -604,6 +615,7 @@ Analyst has to specify \\
 
 \frame{\frametitle{Canonical Conjugate Priors}
 
+\uncover<1->{%
 The multinomial is an example for a \alert{canonical exponential family} %(Bernardo \& Smith, 2000)
 %Weighted average structure is underneath all common conjugate priors
 %for exponential family sampling distributions!\\[2ex]
@@ -616,27 +628,31 @@ p(\x \mid \theta) &\propto \exp\big\{\langle \psib, \tau(\x) \rangle - n \bpsib 
 \qquad \Big[ \psib \text{ transformation of } \theta \Big]
 \end{align*}
 (includes Binomial, Multinomial, Normal, Poisson, Exponential, \ldots )%\\[2ex]
-\end{block}
+\end{block}}
 
 \begin{align*}
+\uncover<2->{%
 &\text{\play\ conjugate prior:} &
 p(\psib\mid\nzg,\yzr) \hspace*{2ex}
-&\propto \exp\big\{ \nzg \big[\langle \psib, \yzr \rangle - \bpsib\big]\big\} \\
+&\propto \exp\big\{ \nzg \big[\langle \psib, \yzr \rangle - \bpsib\big]\big\} \\}
+\uncover<3->{%
 &\text{\play\ (conjugate) posterior:} &
 p(\psib\mid\nzg,\yzr,\vec{x})
 %p(\psib\mid\nng,\ynr) \hspace*{2ex}
-&\propto \exp\big\{ \nng \big[\langle \psib, \ynr \rangle - \bpsib\big]\big\} %\quad \mbox{where}
+&\propto \exp\big\{ \nng \big[\langle \psib, \ynr \rangle - \bpsib\big]\big\} }%\quad \mbox{where}
 \end{align*}
 \begin{align*}
+\uncover<3->{%
 \mbox{where}\quad \ynr &= \frac{\nzg}{\nzg + n} \cdot \yzr + \frac{n}{\nzg + n} \cdot \frac{\tau(\x)}{n}
-& &\mbox{and} & \nng &= \nzg + n
+& &\mbox{and} & \nng &= \nzg + n }
 \end{align*}
 
 }
 
 \frame{\frametitle{Canonical Conjugate Priors}
 
-\vspace*{-2ex}
+\vspace*{-2ex}%
+\uncover<1->{%
 \begin{align*}
 &\text{\play\ (conjugate) posterior:} &
 %p(\psib\mid\nzg,\yzr,\vec{x})
@@ -647,15 +663,16 @@ p(\psib\mid\nng,\ynr) %\hspace*{2ex}
 \begin{align*}
 \mbox{where}\quad \ynr &= \frac{\nzg}{\nzg + n} \cdot \yzr + \frac{n}{\nzg + n} \cdot \frac{\tau(\x)}{n}
 & &\mbox{and} & \nng &= \nzg + n
-\end{align*}
-
+\end{align*}}%
+\vspace*{-2ex}%
+\uncover<2->{%
 \begin{block}{Interpretation}
   \begin{itemize}
   \item $\nzg$ = determines \alert{spread} and \alert{learning speed}
   \item $\byzr$ = \alert{prior expectation} of $\tau(\x)/n$ %$\frac{\tau(\vec{x})}{n}$
   \end{itemize}
-\end{block}
-
+\end{block}}%
+\uncover<3->{%
 \begin{block}{Example: Scaled Normal Data}
 \begin{tabular}{r|lcl}
 Data :           & $\x\mid\mu$        & $\sim$ & $\norm(\mu,1)$\\[0.5ex] %\sigma_0^2)$ \quad ($\sigma_0^2$ known)\\[0.5ex]
@@ -663,34 +680,37 @@ conjugate prior: & $\mu\mid\nzg,\yzr$ & $\sim$ & $\norm(\yzr, 1/\nzg)$  \\[0.5ex
 \cline{1-4}
 posterior:       & $\mu\mid\nng,\ynr$ & $\sim$ & $\norm(\ynr, 1/\nng)$ \quad ($\frac{\tau(\x)}{n} = \bar{\x}$)\rule{0ex}{2.5ex} %& \\[0.5ex]
 \end{tabular}
-\end{block}
+\end{block}}
 }
 
 \subsection{Sets of Priors}
 
 \frame{\frametitle{Bayesian Inference with Sets of Priors}
 
+\uncover<1->{%
 \begin{block}{Standard Bayesian inference procedure}
 \centerline{prior + likelihood = posterior}
 using Bayes' Rule\\
 All inferences are based on the posterior\\
 (e.g., point estimate = $\E[\psib\mid\nng,\ynr]$)
-\end{block}
+\end{block}}
 
-\centerline{Let hyperparameters $(\nzg, \yzr)$ vary in a set $\PZc$ \then\ \alert{set of priors}}
+\uncover<2->{\centerline{Let hyperparameters $(\nzg, \yzr)$ vary in a set $\PZc$ \then\ \alert{set of priors}}}
 
+\uncover<3->{%
 \begin{block}{Generalised Bayesian inference procedure}
 \centerline{set of priors + likelihood = set of posteriors}
 using \emph{Generalised Bayes' Rule} (GBR, Walley 1991)\\
 = element-wise application of Bayes' Rule \emph{\small (set of priors must be convex)}\\
 All inferences are based on the set of posteriors%\\
 %(e.g., point estimate = $\big[\El[\psib\mid\nng,\ynr],\Eu[\psib\mid\nng,\ynr]\big]$)
-\end{block}
+\end{block}}
 
 }
 
 \frame{\frametitle{Set of Priors must be Convex}
 
+\uncover<1->{%
 \begin{block}{Set of Priors}
 %\vspace*{-1ex}
 %\begin{align*}
@@ -702,8 +722,9 @@ $\MZ$ = {\small finite convex mixtures of canonical conjugate priors defined by}
 Convex set of probability distributions ensures \emph{coherence}\\ %{\small(Walley 1991)}\\
 %of inference procedure
 (as in standard Bayesian inference procedure)
-\end{block}
+\end{block}}
 
+\uncover<2->{%
 Updating \& mixture commute \then\ set of posteriors can be written as\ldots
 
 \begin{block}{Set of Posteriors}
@@ -715,13 +736,14 @@ Updating \& mixture commute \then\ set of posteriors can be written as\ldots
 where $\PNc = \big\{(\nng,\bynr) \colon (\nzg,\byzr) \in \PZc \big\}$.\\
 %Set of posteriors = 
 $\MN$ = finite convex mixtures of canonical conjugate posteriors\\ defined by set of updated hyperparameters $\PNc$
-\end{block}
+\end{block}}
 
 }
 
 \frame{\frametitle{Generalised Bayesian Inference Procedure}
 
-\vspace*{-1ex}
+\vspace*{-1ex}%
+\uncover<1->{%
 \begin{align*}
 \text{single prior $(\nzg, \yzr)$}
  &\quad\mbox{\then }\quad 
@@ -741,7 +763,8 @@ P(\psib\in A\mid\nzg,\yzr,\x)
 \end{align*}
 \begin{center}
 Lower/upper posterior expectation by min/max over set of posteriors %$\PZc$
-\end{center}
+\end{center}}
+\uncover<2->{%
 \begin{block}{Interpretation}
 \centerline{Shorter intervals \thenthen\ more precise probability statements}
 \vspace*{1ex}
@@ -755,14 +778,14 @@ Lower/upper posterior expectation by min/max over set of posteriors %$\PZc$
                           not exactly known, supposedly\\
                           between 1 and 7 out of 100\\
                           \then\ $P(\text{win}) = [1/100,\, 7/100]$}
-\end{block}
+\end{block}}
 
 }
 
 \frame{\frametitle{Generalised Bayesian Inference Procedure}
 
 \centerline{\textbf{Shorter intervals \thenthen\ more precise probability statements}}
-\begin{itemize}
+\begin{itemize}[<+->]
 \item larger $\nzg$ values as compared to $n$ \then\ larger $\PNc$\\ \quad\then\ more vague inferences\\
 (more weight on imprecise prior $\MZ$ leads to more imprecise posterior $\MN$)
 \item larger $n$ as compared to (range of) $\nzg$ \then\ smaller $\PNc$\\ \quad\then\ more precise inferences
@@ -776,7 +799,7 @@ Lower/upper posterior expectation by min/max over set of posteriors %$\PZc$
 \frame{\frametitle{Generalised Bayesian Inference Procedure}
 
 %\begin{block}{Overview}
-\begin{itemize}
+\begin{itemize}[<+->]
 \item Hyperparameter set $\PZc$ defines set of priors $\MZ$
 \item Hyperparameter set $\PNc$ defines set of posteriors $\MN$
 \item $\PZc \to \PNc$ is easy: $\nng = \nzg + n$, $\ynr = \frac{\nzg}{\nzg + n}\yzr + \frac{n}{\nzg + n}\frac{\tau(\x)}{n}$
@@ -814,7 +837,7 @@ posterior `guess' for $\frac{\tau(\x)}{n}$ (think: $\bar{\x}$) = $\ynr$\\
 
 \frame{\frametitle{Parameter Set Shapes}
 
-\begin{itemize}
+\begin{itemize}[<+->]
 \item Shape of $\PZc$ influences shape of $\PNc$
 \item Shape of $\PNc$ influences model behaviour\\
 \then\ shape of $\PZc$ is a crucial modelling choice
@@ -824,6 +847,7 @@ and gives good model behaviour for \alert{\pdc}
 %\item \alert{\pdc}\ = ****
 \end{itemize}
 
+\uncover<4->{%
 \begin{block}{Prior-Data Conflict}
 \begin{itemize}
 \item \emph{informative prior beliefs} and \emph{trusted data}\\ %\rule{0ex}{3ex}\\
@@ -833,7 +857,7 @@ in the sampling model for which the observed data is surprising''\\
 (Evans \& Moshonov, 2006)
 \item there are not enough data to overrule the prior
 \end{itemize}
-\end{block}
+\end{block}}
 
 }
 
@@ -1089,17 +1113,17 @@ data $s/n = 16/16 = 1$
 
 \frame{\frametitle{Parameter Set Shapes: Discussion}
 
-\begin{itemize}
+\begin{itemize}[<+->]
 \item $\PZc = \nzg \times [\yzlr, \yzur]$:\\% \thenthen\
 IDM (Walley 1996), Quaghebeur \& de Cooman (2005)
- \begin{itemize}
+ \begin{itemize}[<+->]
  \item posterior parameter set has same form $\PNc = \nng \times [\ynlr, \ynur]$ %simpel model description,
  \item optimise over $[\ynlr, \ynur]$ only %(often, posteriors are stoch.\ ordered along $\ynr$)
  \item no \pdc\ reaction: same imprecision as without conflict (just like precise priors)
  \end{itemize}
 \item $\PZc = [\nzlg,\nzug] \times [\yzlr, \yzur]$: %\thenthen\
 Walley (1991, \S 5.4.3),\\ \emph{generalized iLUCK-models} (Walter \& Augustin 2009) 
- \begin{itemize}
+ \begin{itemize}[<+->]
  \item still simple to elicit, allows flexible weighing of prior and data
  \item additional imprecision in case of \pdc\\ \then\ more cautious inferences
  \item $\PNc$ have non-trivial forms (banana / spotlight) %posterior parameter sets 
@@ -1114,7 +1138,7 @@ Walley (1991, \S 5.4.3),\\ \emph{generalized iLUCK-models} (Walter \& Augustin 2
 
 \frame{\frametitle{Parameter Set Shapes: Discussion}
 
-\begin{itemize}
+\begin{itemize}[<+->]
 \item Need a range of $\nzg$ values for \pdc\ reaction
 \item Other set shapes are possible, but may be more difficult to elicit
 \item Prior information may be such that range of $\yzr$ changes with $\nzg$ (or vice versa)
@@ -1141,10 +1165,11 @@ parameter set shape enabling\ldots
 %This work uses 
 via a different parametrisation of priors suggested by Mik Bickis % (in preparation)
 %\hspace*{-2ex}%
+\uncover<2->{%
 \vspace*{-7ex}%
 \begin{center}
 \includegraphics[scale=0.63]{../../../boatshape/R/boatshape/boatshape-talk130306.pdf}
-\end{center}
+\end{center}}
 
 }
 
@@ -1152,15 +1177,15 @@ via a different parametrisation of priors suggested by Mik Bickis % (in preparat
 
 \frame{\frametitle{Conclusion}
 
-\begin{itemize}
+\begin{itemize}[<+->]
 \item Conjugate priors are a convenient tool for Bayesian inference\\ but there are some pitfalls
- \begin{itemize}
+ \begin{itemize}[<+->]
  \item Hyperparameters are easy to interpret and elicit
  \item Averaging property makes calculations simple,\\
  but inadequate model behaviour in case of \pdc
  \end{itemize}
 \item Sets of conjugate priors maintain advantages \& mitigate issues %find a sweet spot in between
- \begin{itemize}
+ \begin{itemize}[<+->]
  \item Hyperparameter set shape is important %a crucial modeling choice
  \item Reasonable choice: \emph{rectangular} $\PZc = [\nzlg, \nzug] \times [\yzlr, \yzur]$
  \item Bounds for hyperparameters easy to interpret and elicit

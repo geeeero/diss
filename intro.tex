@@ -125,7 +125,7 @@ An \emph{i.i.d.\ sample of size} $n$ (where \emph{i.i.d.}\ abbreviates independe
 \emph{based on the parametric statistical model} %
 $(\mathcal{X}, (p_\vartheta)_{\vartheta \in \Theta})$ is a vector
 \[
-\vec{X} = (X_1, \ldots, X_n)^T %\label{120722-1}
+\vec{X} = (X_1, \ldots, X_n)^\tra %\label{120722-1}
 \]
 of independent random quantities $X_i$ with the same distribution $p_\vartheta$.
 Then $\vec{X}$ is defined on $\mathcal{X}^n$ with probability distribution $p_\vartheta^{\otimes n}$
@@ -151,7 +151,7 @@ Typical examples for data of this kind are scores in intelligence testing, or te
 \footnote{The normal distribution is distinguished by the central limit theorem
 (see, e.g., \cite[\S 7.3]{1993:karr}, or \cite[\S 9]{1968:breiman}), stating that, under regularity conditions,
 the distribution of an appropriately scaled sum of $n$ standardized random variables converges to a normal distribution
-for $n \longrightarrow \infty$.}
+for $n \to \infty$.}
 
 For each observation $x_i$, $i=1,\ldots, n$, the normal probability density is
 \begin{align*}
@@ -233,7 +233,7 @@ where the \emph{posterior distribution}, i.e.\ the distribution of the parameter
 can be calculated by Bayes' Rule.%
 \footnote{\cite{1987:gillies, 2000:gillies} argues that Bayes' Theorem was actually developed
 in order to confront the problem of induction as posed by \cite{1739:hume}.}
-Thus, in the light of the sample $\x= (x_1, \ldots, x_n)$ the prior distribution is updated by Bayes' Rule
+Thus, in the light of the sample $\x= (x_1, \ldots, x_n)$, the prior distribution is updated by Bayes' Rule
 to obtain the posterior distribution with density or mass function
 \begin{align}
 \label{eq:bayesrule}
@@ -257,10 +257,11 @@ which makes calculation of the posterior and thus the whole Bayesian inference e
 \footnote{This motivation for the use of conjugate priors can be founded on formal arguments.
 As will be explained below, posterior expectation of the parameter of interest
 is actually a linear function of a sufficient statistic of the data and the prior expectation.
-It turns out that, under some regularity conditions, requiring linearity of posterior expectation
+It turns out that, under some regularity conditions, requiring such linearity of posterior expectation
 implies the use of conjugate priors \cite[p.~276]{2000:bernardosmith}.}
+% comment Frank: exponential family was known in pre-Bayes days as Kap***-Dar**** family
 
-Fortunately, there are general results guiding the construction of conjugate priors in models used most frequently in practice,
+Fortunately, there are general results guiding the construction of conjugate priors in several models models used most frequently in practice,
 namely in the case where the sample distribution belongs to a so-called \emph{(regular) canonical exponential family}
 \cite[pp.~202 and 272f]{2000:bernardosmith}. %Def.~4.12 and Prop.~5.6
 This indeed covers many sample distributions relevant in a statistician's everyday life,

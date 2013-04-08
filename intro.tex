@@ -324,10 +324,10 @@ with weights $\nz$ and $n$, respectively.%
 we comment on ***later / in Section~\ref{}***.}
 Therefore, $\nz$ can be seen as ``prior strength'' or ``pseudocounts'',
 reflecting the weight one gives to the prior as compared to the sample size $n$.
-To make this more explicit, ``$\nz$ can be interpreted as the size of an imaginary sample
+To make this more explicit, $\nz$ can be interpreted as the size of an imaginary sample
 that corresponds to the trust on the prior information in the same way
 as the sample size of a real sample
-corresponds to the trust in conclusions based on such a real sample'' \cite[p.~258]{Walter2009a}.
+corresponds to the trust in conclusions based on such a real sample \cite[p.~258]{Walter2009a}.
 
 The posterior $p(\psi \mid \nn, \yn)$ can be transformed back to a distribution on $\theta$
 in order to deal with a commonly known parameter or distribution family for it
@@ -339,7 +339,7 @@ f(\x^*\mid\x, \nz, \yz) &= \int f(\x^* \mid \psi) p(\psi \mid \nn, \yn) \dd\psi\
 \end{align}
 the distribution of future samples $\x^*$ after having seen a sample $\x$,
 forms the basis for the different inference tasks. %as listed in Section~\ref{inference:sec:basictasks}.
-Next, we will briefly describe a systematic of inference tasks.
+Next, we will briefly describe a taxonomy of inference tasks.
 
 
 \subsection{Inference Tasks}
@@ -347,7 +347,7 @@ Next, we will briefly describe a systematic of inference tasks.
 
 We may structure the different inference tasks by
 the type of statement one wants to infer from the data.
-As such, this systematic is not exclusive to Bayesian inference methods,
+As such, this taxonomy is not exclusive to Bayesian inference methods,
 and neither to the parametric models considered in Section~\ref{sec:parametricmodels},
 but it will be formulated in terms of parameters in a Bayesian setting here.
 
@@ -371,13 +371,6 @@ where the information is condensed in a certain subset of the parameter space $\
 \item[1c)] \emph{Hypotheses tests},
 where the information in the sample is only used to decide between two mutually exclusive statements about parameter(s) called \emph{hypotheses},
 usually denoted by $H_0$ and $H_1$.
-\item[1e)] \emph{Decision making},
-where, more generally, the conclusion may be to select certain utility maximizing or loss minimizing acts from a set of possible acts.
-Indeed, all three tasks listed before can be formally understood as a special case of decision making,
-by considering an appropriate set of acts and a loss function fitting the inferential objective.
-We will flesh this out to some extent in the examples below.%
-\footnote{For more details, see, e.g., \cite[\S 2]{2007:robert},
-where, e.g., loss functions usually utilized in statistical settings are described in \S 2.5, pp.~77ff.}
 \end{enumerate}
 
 \emph{Predictive conclusions} instead summarize the information by statements on properties of typical further units,
@@ -394,6 +387,14 @@ where instead a certain subset of the sample space $\mathcal{X}$ is determined,
 into which furter sample units are likely to fall.
 An example are prediction bands in regression analysis.
 \end{enumerate}
+
+Both static and predictive conclusions can in fact be formally understood as special cases of \emph{decision making},
+where, more generally, the conclusion is to select certain utility maximizing or loss minimizing acts from a set of possible acts.
+%By considering an appropriate set of acts and a loss function fitting the inferential objective,
+%the tasks listed above 
+We will flesh this out to some extent in the examples below.%
+\footnote{For more details, see, e.g., \cite[\S 2]{2007:robert},
+where, e.g., loss functions usually utilized in statistical settings are described in \S 2.5, pp.~77ff.}
 
 The concretion of the framework for Bayesian inference with canonical conjugate priors
 as presented in Section~\ref{sec:regularconjugates}
@@ -464,6 +465,7 @@ of the prior expectation $\E[\theta\mid\nz, \yz] = \yz$ and the sample proportio
 Taking the \emph{absolute loss function} $l(\hat{\theta}, \theta) = |\hat{\theta}-\theta|$
 leads to the median of the posterior distribution as the point estimator.
 Here, $\med(\theta\mid\nn, \yn)$ has no closed form solution, and must be determined numerically.
+***add comment on estimator for quantiles (check function)***
 The \emph{indicator loss function}
 \begin{align*}
 l(\hat{\theta}, \theta) = \begin{cases} 0 & |\hat{\theta}-\theta| \le \epsilon \\ 1 & \text{else}\end{cases}\,,
@@ -500,7 +502,8 @@ Therefore, it is also possible to express evidence \emph{in favour of} $H_0$,
 whereas frequentist tests are constructed such that they can express conclusive evidence only when $H_0$ is rejected.%
 \footnote{In Neyman-Pearson testing, only the probability
 for the \emph{error of the first kind}, denoted by $\alpha$, of rejecting $H_0$ although it is true, is set to a low predefined level,
-whereas the \emph{error of the second kind}, denoted by $\beta$, of accepting $H_0$ although it is false, may be very large.}
+whereas the probability for the \emph{error of the second kind}, denoted by $\beta$, of accepting $H_0$ although it is false, may be very large.
+$1-\beta$, the probability of correctly rejecting $H_0$, is also known as the \emph{power} of a test.}
 However, \emph{point hypotheses}, where one of $\Theta_0$ or $\Theta_1$
 consists of a single element of the parameter space only (usually, $\Theta_0 = \{\theta_0\}$),%
 \footnote{Such a testing problem is often called \emph{two-sided} in Neyman-Pearson testing.}
@@ -522,9 +525,9 @@ arising when considering odds instead of probability:%
 \end{align*}
 Here, the factor
 \begin{align*}
-B_{10} &:= \frac{f(\vec{x}\mid H_1)}{f(\vec{x}\mid H_0)}
+B_{10} &:= \frac{f(\vec{x}\mid H_1)}{f(\vec{x}\mid H_0)}\,,
 \end{align*}
-translating prior to posterior odds is the Bayes factor for comparing $H_1$ to $H_0$.%
+translating prior to posterior odds, is the Bayes factor for comparing $H_1$ to $H_0$.%
 \footnote{Usually, more than two hypotheses are considered in model selection,
 by comparing competing models $H_1, H_2, \ldots$ to a null model $H_0$
 with help of Bayes factors $B_{10}, B_{20}, \ldots$.}
@@ -567,6 +570,7 @@ known as the \emph{Beta-Binomial distribution}.
 \subsection{The Normal-Normal Model}
 \label{sec:norm-norm}
 
+***add comment on general case $\vartheta=(\mu,\sigma^2)$***\\
 The normal density \eqref{eq:normaldens}, here with the variance $\sigma^2$ known to be $\sigma^2_0$,
 also adheres to the exponential family form:
 \begin{align*}
@@ -679,7 +683,7 @@ p(\btheta\mid n,\vec{y})\, \dd\btheta
  &\propto \exp\Bigg\{n\, \Bigg[ \sum_{j=1}^k y_j \ln\bigg(\frac{\theta_j}{\theta_0}\bigg) - \big(-\ln(\theta_0)\big) \Bigg] \Bigg\}
   \cdot \left| \det\left(\frac{\dd\bpsi}{\dd\btheta}\right) \right|\, \dd\btheta\,,
 \end{align*}
-with the the elements of the Jacobian matrix $\dfrac{\dd\bpsi}{\dd\btheta}$ being
+with the elements of the Jacobian matrix $\dfrac{\dd\bpsi}{\dd\btheta}$ being
 \begin{align*}
 \frac{\dd\psi_i}{\dd\theta_i} &= \frac{1}{d\theta_i} \ln\left(\frac{\theta_i}{1 - \sum_{j=1}^k \theta_j}\right)
                                = \frac{1-\sum_{j=1}^k \theta_j}{\theta_i}
@@ -715,13 +719,14 @@ Thus,
 &= \Bigg( \prod_{j=1}^k \frac{1}{\theta_j}\Bigg) \frac{1}{\theta_0}
  = \prod_{j=0}^k \frac{1}{\theta_j}\,,
 \end{align*}
-where equality ${}^*$ holds by the theorem \cite[Theorem A 16 (x), Appendix A3, p.~494]{MR2370506}
+where equality ${}^*$ holds by the theorem 
 %in Rao, Toutenburg, Shalabh, and Heumann, \emph{Linear models and generalizations}, Springer, Berlin 2008: %bibtex at end of document
-stating that
+%stating that
 \begin{align*}
 \det (\mbf{A} + \vec{a}\, \vec{a}^\tra) &= \det(\mbf{A}) (1+\vec{a}^\tra \mbf{A}^{-1} \vec{a}) & \text{if}& & \det(\mbf{A}) &\neq 0
 \end{align*}
-for all appropriately sized, invertable matrices $\mbf{A}$ and column vectors $\vec{a}$.
+for all appropriately sized, invertable matrices $\mbf{A}$ and column vectors $\vec{a}$
+\cite[Theorem A 16 (x), Appendix A3, p.~494]{MR2370506}.
 
 With $\det\left(\frac{\dd\bpsi}{\dd\btheta}\right) = \prod_{j=0}^k \frac{1}{\theta_j}$, we get
 \begin{align*}
@@ -789,7 +794,7 @@ This will also motivate the use of sets of prior distributions.
 \section{Dirichlet-Multinomial Model for Common-Cause Failure}
 \label{sec:commoncause}
 
-In reliabilty analysis of systems with redundant components,
+In reliability analysis of systems with redundant components,
 \emph{common-cause failure} refers to simultaneous failure of several redundant components due to a common or shared root cause,
 like extreme environmental conditions (e.g., fire, flood, or earthquake) \cite[p.~325]{1994:hoyland}.
 It has been recognized as the dominant factor to the unreliability of redundant systems,
@@ -1173,6 +1178,8 @@ is given in Sections *****.
 
 \subsection{Cautious Epistemic Information for Alpha-Factors}
 \label{sec:imprecise-alpha}
+
+***As a preview on the general concept of Bayesian inference with sets of priors, *****
 
 For Bayesian inference in the Dirichlet-Multinomial model
 when no prior information is available,

@@ -76,7 +76,7 @@ and models that are used to describe random samples.
 Statistical inference is about learning from data.
 It is basically concerned with inductive reasoning,
 i.e.\ establishing a general rule from observations.
-As is long known as the problem of induction \cite{1739:hume},
+As is long known as the problem of induction \parencite{1739:hume},
 it is impossible to justify inductive reasoning by pure reason,
 and therefore one cannot infer general statements (laws) with absolute truth from single observations.
 %***statistical models are built for a certain purpose. (citexxx George P. Box, Kaplan?)\\
@@ -115,7 +115,7 @@ and only some characteristics $\vartheta$ (e.g., the mean) of the distributions 
 Throughout, we will assume (as is the case for all common applications)
 that the underlying candidate distributions $p_\vartheta$ of the random quantity $X$
 are either discrete or absolutely continuous with respect to the Lebesgue measure
-(see, e.g. \cite[pp.~32f, 38]{1993:karr} for some technical details) for every $\vartheta \in \Theta$.
+(see, e.g. \textcite[pp.~32f, 38]{1993:karr} for some technical details) for every $\vartheta \in \Theta$.
 Then it is convenient to express every $p_\vartheta$ in the discrete case by its \emph{mass function} $f_\vartheta$,
 with $f_\vartheta(x):=p_\vartheta(X=x),\forall x \in \mathcal{X}$,
 and in the continuous case by its \emph{probability density function} (pdf) $f_\vartheta$,
@@ -131,7 +131,7 @@ of independent random quantities $X_i$ with the same distribution $p_\vartheta$.
 Then $\vec{X}$ is defined on $\mathcal{X}^n$ with probability distribution $p_\vartheta^{\otimes n}$
 as the $n$-dimensional product measure describing the independent observations.
 For Bayesian approaches as discussed here,
-independence is often replaced by exchangeability (see, e.g., \cite[\S 4.2]{2000:bernardosmith}).
+independence is often replaced by exchangeability (see, e.g., \textcite[\S 4.2]{2000:bernardosmith}).
 $p_\vartheta^{\otimes n}$ thus has the probability mass or density function
 \[
 \prod_{i=1}^{n} f_\vartheta(x_i) =: f_\vartheta(x_1, \ldots, x_n).%\label{120710-2}
@@ -149,7 +149,7 @@ A common model for observations that in principle can assume any value on the re
 is the \emph{normal distribution} with parameters $\mu$ and $\sigma^2$, also called the \emph{Gaussian distribution}.
 Typical examples for data of this kind are scores in intelligence testing, or technical measurements in general.%
 \footnote{The normal distribution is distinguished by the central limit theorem
-(see, e.g., \cite[\S 7.3]{1993:karr}, or \cite[\S 9]{1968:breiman}), stating that, under regularity conditions,
+(see, e.g., \textcite[\S 7.3]{1993:karr}, or \textcite[\S 9]{1968:breiman}), stating that, under regularity conditions,
 the distribution of an appropriately scaled sum of $n$ standardized random variables converges to a normal distribution
 for $n \to \infty$.}
 
@@ -231,8 +231,8 @@ denoted by $f(\x\mid\vartheta)$ and called \emph{likelihood},
 turns the problem of statistical inference into a problem of probabilistic deduction,
 where the \emph{posterior distribution}, i.e.\ the distribution of the parameter given the sample data,
 can be calculated by Bayes' Rule.%
-\footnote{\cite{1987:gillies, 2000:gillies} argues that Bayes' Theorem was actually developed
-in order to confront the problem of induction as posed by \cite{1739:hume}.}
+\footnote{\citeauthor{1987:gillies} \parentext{\citeyear{1987:gillies}, \citeyear{2000:gillies}} argues
+that Bayes' Theorem was in fact developed in order to confront the problem of induction as posed by \textcite{1739:hume}.}
 Thus, in the light of the sample $\x= (x_1, \ldots, x_n)$, the prior distribution is updated by Bayes' Rule
 to obtain the posterior distribution with density or mass function
 \begin{align}
@@ -258,12 +258,12 @@ which makes calculation of the posterior and thus the whole Bayesian inference e
 As will be explained below, posterior expectation of the parameter of interest
 is actually a linear function of a sufficient statistic of the data and the prior expectation.
 It turns out that, under some regularity conditions, requiring such linearity of posterior expectation
-implies the use of conjugate priors \cite[p.~276]{2000:bernardosmith}.}
+implies the use of conjugate priors \parencite[p.~276]{2000:bernardosmith}.}
 % comment Frank: exponential family was known in pre-Bayes days as Kap***-Dar**** family
 
 Fortunately, there are general results guiding the construction of conjugate priors in several models models used most frequently in practice,
 namely in the case where the sample distribution belongs to a so-called \emph{(regular) canonical exponential family}
-\cite[pp.~202 and 272f]{2000:bernardosmith}. %Def.~4.12 and Prop.~5.6
+\parencite[pp.~202 and 272f]{2000:bernardosmith}. %Def.~4.12 and Prop.~5.6
 This indeed covers many sample distributions relevant in a statistician's everyday life,
 like Normal and Multinomial models, Poisson models, or Exponential and Gamma models.
 After presentation of the general framework, we will discuss its instantiation for the Normal
@@ -316,7 +316,7 @@ In this setting, $\yz$ and $\yn$ can be seen as the parameter describing the mai
 and thus we will call them \emph{main prior} and \emph{main posterior parameter}, respectively.
 $\yz$ can also be understood as a prior guess for the random quantity $\ttau(\x) := \tau(\x)/n$ summarizing the sample,
 as $\E[\ttau(\x) \mid \psi] = \nabla\mbf{b}(\psi)$,
-where in turn $\E[\nabla\mbf{b}(\psi) \mid \nz, \yz] = \yz$ \cite[Prop.~5.7, p.~275]{2000:bernardosmith}.
+where in turn $\E[\nabla\mbf{b}(\psi) \mid \nz, \yz] = \yz$ \parencite[Prop.~5.7, p.~275]{2000:bernardosmith}.
 
 Characteristically, $\yn$ is a weighted average of this prior guess $\yz$ and the sample `mean' $\ttau(\x)$,
 with weights $\nz$ and $n$, respectively.%
@@ -327,7 +327,7 @@ reflecting the weight one gives to the prior as compared to the sample size $n$.
 To make this more explicit, $\nz$ can be interpreted as the size of an imaginary sample
 that corresponds to the trust on the prior information in the same way
 as the sample size of a real sample
-corresponds to the trust in conclusions based on such a real sample \cite[p.~258]{Walter2009a}.
+corresponds to the trust in conclusions based on such a real sample \parencite[p.~258]{Walter2009a}.
 
 The posterior $p(\psi \mid \nn, \yn)$ can be transformed back to a distribution on $\theta$
 in order to deal with a commonly known parameter or distribution family for it
@@ -393,7 +393,7 @@ where, more generally, the conclusion is to select certain utility maximizing or
 %By considering an appropriate set of acts and a loss function fitting the inferential objective,
 %the tasks listed above 
 We will flesh this out to some extent in the examples below.%
-\footnote{For more details, see, e.g., \cite[\S 2]{2007:robert},
+\footnote{For more details, see, e.g., \textcite[\S 2]{2007:robert},
 where, e.g., loss functions usually utilized in statistical settings are described in \S 2.5, pp.~77ff.}
 
 The concretion of the framework for Bayesian inference with canonical conjugate priors
@@ -457,7 +457,7 @@ The loss function $l$ gives a functional form for the severity of deviations of 
 here, it values the distance of a point estimator $\hat{\theta}$ to $\theta$.
 The \emph{quadratic loss function} $l(\hat{\theta}, \theta) = (\hat{\theta}-\theta)^2$
 values small deviations relatively low, whereas large deviations are given a high weight.
-As can be shown (see, e.g., \cite[p.~352f]{2002:casella}),
+As can be shown (see, e.g., \textcite{2002:casella}, p.~352f), %\parencite[see, e.g., ][p.~352f]{2002:casella},
 the quadratic loss function leads to the posterior expectation as the Bayesian point estimator.
 Here, $\E[\theta\mid\x, \nz, \yz] = \E[\theta\mid\nn, \yn] = \yn$,
 and so the posterior expectation of $\theta$ is a weighted average
@@ -472,7 +472,7 @@ l(\hat{\theta}, \theta) = \begin{cases} 0 & |\hat{\theta}-\theta| \le \epsilon \
 \end{align*}
 for $\epsilon \rightarrow 0$, leads to the maximum of the posterior,
 often abbreviated as MAP (maximum a posteriori) estimator
-(see, e.g., \cite[\S 5.1.5, p.~257]{2000:bernardosmith}, or \cite[\S 4.1.2, p.~166]{2007:robert}).
+(see, e.g., \textcite{2000:bernardosmith}, \S 5.1.5, p.~257, or \textcite{2007:robert}, \S 4.1.2, p.~166).
 For a $\be(\nn\yn, \nn(1-\yn))$, the mode is
 \begin{align*}
 \modus p(\theta\mid\nn, \yn) &= \frac{\nn\yn - 1}{\nn - 2} = \frac{\nz\yz - 1 + s}{\nz - 2 + n}\,,
@@ -481,7 +481,7 @@ and thus is a weighted average of the prior mode $\frac{\nz\yz - 1}{\nz -2}$ $(\
 and the sample proportion $s/n$, with weights $\nz - 2$ and $n$, respectively.
 
 Note that asymptotic optimality properties of maximum likelihood estimators (consistency, efficiency)
-are usually preserved for these Baysian point estimators \cite[Note~1.8.4, p.~48f]{2007:robert}.
+are usually preserved for these Baysian point estimators \parencite[Note~1.8.4, p.~48f]{2007:robert}.
 
 In the Bayesian approach, \textbf{interval estimation} is rather simple,
 as the posterior distribution delivers a direct measure of probability for arbitrary subsets of the parameter space $\Theta$.
@@ -489,7 +489,7 @@ Mostly, so-called \emph{highest posterior density} (HPD) intervals are considere
 where for a given probability level $\gamma$ the shortest interval covering this probability mass is calculated.
 For unimodal densities, this is equivalent to finding a threshold $\alpha$ such that
 the probability mass for all $\theta$ with $p(\theta\mid\nn, \yn) \ge \alpha$ equals $\gamma$, hence the name.%
-\footnote{See, e.g., \cite[\S 5.1.5, pp.~259f]{2000:bernardosmith}, or \cite[Def.~5.5.3, p.~260]{2007:robert}.}
+\footnote{See, e.g., \textcite{2000:bernardosmith}, \S 5.1.5, pp.~259f, or \textcite{2007:robert}, Def.~5.5.3, p.~260.}
 For the Beta posterior, a HPD interval for $\theta$ must be determined by numeric optimization.
 For approximately symmetric (around $\frac{1}{2}$) Beta posteriors, a good approximation is the symmetric credibility interval,
 delimited by the $\frac{1-\gamma}{2}$- and the $\frac{1+\gamma}{2}$-quantile of the posterior.
@@ -512,14 +512,14 @@ as is the case for the priors \eqref{eq:canonicalprior} considered here,
 because then, $P(\theta \in \Theta_0) = 0$ for any $\theta_0$.
 Such an inference task is considered in terms of a problem of \emph{model selection},
 where $\theta = \theta_0$ vs.\ $\theta \neq \theta_0$ decides between two different statistical models,
-to each of which a prior probability is assigned \cite[\S 5.2.4]{2007:robert}.
+to each of which a prior probability is assigned \parencite[\S 5.2.4]{2007:robert}.
 An overview on Bayesian testing, including a detailed comparison with classical testing procedures,
-is given in \cite[\S 5.2--5.4]{2007:robert}.
+is given in \textcite[\S 5.2--5.4]{2007:robert}.
 
 Especially in model selection problems, evidence against or in favor of a hypothesis
 is often not expressed in posterior probability for hypotheses, but by means of the so-called \emph{Bayes factor},
 arising when considering odds instead of probability:%
-\footnote{See, e.g., \cite[\S 5.2.2, Def.~5.2.5, p.~227]{2007:robert}, or \cite[p.~776]{1995:kass-raftery}.}
+\footnote{See, e.g., \textcite{2007:robert}, \S 5.2.2, Def.~5.2.5, p.~227, or \textcite{1995:kass-raftery}, p.~776.}
 \begin{align*}
 \frac{p(H_1\mid\vec{x})}{p(H_0\mid\vec{x})} &= \frac{f(\vec{x}\mid H_1)}{f(\vec{x}\mid H_0)} \cdot \frac{p(H_1)}{p(H_0)}
 \end{align*}
@@ -532,8 +532,8 @@ translating prior to posterior odds, is the Bayes factor for comparing $H_1$ to 
 by comparing competing models $H_1, H_2, \ldots$ to a null model $H_0$
 with help of Bayes factors $B_{10}, B_{20}, \ldots$.}
 
-Improper priors are problematic in Bayesian testing \cite[\S 5.2.5]{2007:robert}
-and should be avoided for parameters the test decides upon \cite[p.~782]{1995:kass-raftery}.
+Improper priors are problematic in Bayesian testing \parencite[\S 5.2.5]{2007:robert}
+and should be avoided for parameters the test decides upon \parencite[p.~782]{1995:kass-raftery}.
 We see this as a strong argument against the use of improper priors.
 An example where a proper prior is necessary to obtain useful results also for parameter estimation
 will be given in Section~\ref{sec:alpha-factor-prior};
@@ -626,7 +626,7 @@ for the Multinomial model $\mult(\btheta)$ with $k>2$ is more complex than for t
 as covered in Section~\ref{sec:beta-binom}.
 It is a well-known result that this construction leads to the commonly used Dirichlet prior;
 however, in the literature the construction is usually not derived in detail.%
-\footnote{E.g., \cite[Table~1]{2005:quaeghebeurcooman} tabulate, without proof,
+\footnote{E.g., \textcite[Table~1]{2005:quaeghebeurcooman} tabulate, without proof,
 priors constructed for a number of sample models.
 Note that the first version of the paper contains a sign error in the $\mbf{b}(\bpsi)$ column
 for both the Binomial (Bernoulli) and the Multinomial (multivariate Bernoulli) sampling model.}
@@ -726,7 +726,7 @@ where equality ${}^*$ holds by the theorem
 \det (\mbf{A} + \vec{a}\, \vec{a}^\tra) &= \det(\mbf{A}) (1+\vec{a}^\tra \mbf{A}^{-1} \vec{a}) & \text{if}& & \det(\mbf{A}) &\neq 0
 \end{align*}
 for all appropriately sized, invertable matrices $\mbf{A}$ and column vectors $\vec{a}$
-\cite[Theorem A 16 (x), Appendix A3, p.~494]{MR2370506}.
+\parencite[Theorem A 16 (x), Appendix A3, p.~494]{MR2370506}.
 
 With $\det\left(\frac{\dd\bpsi}{\dd\btheta}\right) = \prod_{j=0}^k \frac{1}{\theta_j}$, we get
 \begin{align*}
@@ -780,7 +780,7 @@ we will denote the Dirichlet prior directly in terms of the canonical parameters
 $\btheta \sim \dir(\nz,\byz)$.
 %\end{align*}
 The canonical parameters relate to the commonly used parameter, often denoted by $\bs{\alpha} = (\alpha_1, \ldots, \alpha_k)$, 
-not to be confused with $\vec{alpha}$ as discussed in Section~\ref{sec:alpha-factor-model}, via%
+not to be confused with $\vec{\alpha}$ as discussed in Section~\ref{sec:alpha-factor-model}, via%
 \begin{align*}
 \yz_j &= \frac{\alpha_j}{\sum_{l=1}^k \alpha_l} &
 \nz   &= \sum_{l=1}^k \alpha_l \,.
@@ -796,12 +796,12 @@ This will also motivate the use of sets of prior distributions.
 
 In reliability analysis of systems with redundant components,
 \emph{common-cause failure} refers to simultaneous failure of several redundant components due to a common or shared root cause,
-like extreme environmental conditions (e.g., fire, flood, or earthquake) \cite[p.~325]{1994:hoyland}.
+like extreme environmental conditions (e.g., fire, flood, or earthquake) \parencite[p.~325]{1994:hoyland}.
 It has been recognized as the dominant factor to the unreliability of redundant systems,
 and its modeling has become an important part of reliability analysis
-following the Reactor Safety Study \cite{1975:reactor:safety:study},
+following the Reactor Safety Study \parencite{1975:reactor:safety:study},
 which was prepared in the wake of the Three Mile Island accident,
-where a partial core meltdown in a nuclear power plant took place \cite{2005:walker}.
+where a partial core meltdown in a nuclear power plant took place \parencite{2005:walker}.
 
 \subsection{An Example for the Need to Model Common-Cause Failure}
 
@@ -822,33 +822,33 @@ and subsequently to a possibly catastrophic release of radioactive material.%
 after shutdown of the nuclear chain reaction is called \emph{decay heat}.
 It results from decay processes of fission products produced during normal operation of the power plant.
 Although comprising only a small fraction of the energy output during normal operation
-(where the energy stems from the primary fission process \cite[Module~4, p.~33]{united1993doe}),
+(where the energy stems from the primary fission process \parencite[Module~4, p.~33]{united1993doe}),
 depending on the design of the reactor,
 the decay heat may be enough to damage the core of a reactor significantly
-\cite[p.~VIII-9 and VIII-25f]{1975:reactor:safety:study}.}
+\parencite[p.~VIII-9 and VIII-25f]{1975:reactor:safety:study}.}
 
 Due to their critical role for the functioning of emergency cooling systems,
-and thus for the safety systems of nuclear power plants in general \cite[pp.~1, 4]{csni86-115},
+and thus for the safety systems of nuclear power plants in general \parencite[pp.~1, 4]{csni86-115},
 there are usually several diesel generators installed in a nuclear power plant,
 each of which can supply enough energy to power the cooling systems on its own.
 The number of diesel generators installed is typically in the range of two to four per reactor
 %**EPRI NP-2433 ??***.
-(see, e.g., \cite[pp.~121, 145]{csni86-115}).
-If the nuclear power plant has several reactors, diesel generators may be shared between reactors \cite[p.~7]{2004:iaea::emergencypower}.
+(see, e.g., \textcite{csni86-115}, pp.~121, 145).
+If the nuclear power plant has several reactors, diesel generators may be shared between reactors \parencite[p.~7]{2004:iaea::emergencypower}.
 %i.e., there are four redundant components, of which one is needed for service.
 %with a redundancy in the order of four or 
 The Fukushima Daiichi nuclear disaster is a recent example of an accident
 involving common cause failure of diesel generators.
 In this case, all 12 available diesel generators at reactors 1 to 6 
-ceased to function due to a tsunami wave flooding the rooms where they were installed \cite[p.~31]{2011:iaea::report}.
-The tsunami wave had been caused by the T\={o}hoku earthquake \cite{2012:ritsema},
+ceased to function due to a tsunami wave flooding the rooms where they were installed \parencite[p.~31]{2011:iaea::report}.
+The tsunami wave had been caused by the T\={o}hoku earthquake \parencite{2012:ritsema},
 which had promted the reactors to shutdown automatically, and in doing so,
 switching to the diesel generators for power supply.%
-\footnote{All six off-site power lines were cut off, also due to the earthquake \cite[p.~31]{2011:iaea::report}.}
+\footnote{All six off-site power lines were cut off, also due to the earthquake \parencite[p.~31]{2011:iaea::report}.}
 
 The arguably most widely used model for common-cause failure is the so-called \emph{Basic Parameter Model}.
 The \emph{alpha-factor} parametrisation of this model uses a multinomial distribution
-as its aleatory model for observed failures \cite{1988:mosleh::common:cause}. 
+as its aleatory model for observed failures \parencite{1988:mosleh::common:cause}. 
 As seen in Section~\ref{sec:diri-multi}, the conjugate prior to the multinomial model is the Dirichlet distribution.
 In the standard Bayesian approach, the analyst specifies the parameters $(\nz, \byz)$ of a precise Dirichlet distribution
 to model epistemic uncertainty in the alpha-factors, which are the parameters of the multinomial sample model.
@@ -934,7 +934,7 @@ of parameters that can be more easily estimated, as follows.
 \label{sec:alpha-factor-model}
 
 The alpha-factor parametrisation of the basic parameter model
-\cite{1988:mosleh::common:cause} starts out with
+\parencite{1988:mosleh::common:cause} starts out with
 considering the total failure rate of a component $q_t$,
 which could involve failure of any number of components,
 that is, this is the rate obtained by looking at just one component,
@@ -971,7 +971,7 @@ and the rate at which all components fail is $q_3$.
 Translating these rates into fractions,
 we arrive precisely at Eq.~\eqref{eq:alphaj:in:terms:of:qj}.
 
-It can be shown that \cite[p.~C-10f]{1988:mosleh::common:cause} %:\footnote{Hint: consider $\sum_{j=1}^k j\alpha_j$.}
+It can be shown that \parencite[p.~C-10f]{1988:mosleh::common:cause} %:\footnote{Hint: consider $\sum_{j=1}^k j\alpha_j$.}
 \begin{equation}\label{eq:qj:in:terms:of:qt}
   q_j=\frac{1}{\binom{k-1}{j-1}}\frac{j\alpha_j}{\sum_{\ell=1}^k \ell\alpha_\ell}\,q_t\,.
 \end{equation}
@@ -991,7 +991,7 @@ Estimating the marginal failure rate $q_t$ is possible in the framework from Sec
 when failures are assumed to follow a Poisson process.
 Then, the Gamma prior usually specified for the intensity parameter is of the form \eqref{eq:canonicalprior}.
 We will not cover such a \emph{Gamma-Poisson model} here further,
-but details for this model can be found in \cite{Troffaes2013a}.
+but details for this model can be found in \textcite{Troffaes2013a}.
 There, also the combination of the Dirichlet-Multinomial model for $\vec{\alpha}$
 and the Gamma-Poisson model for $q_t$ to make inferences on $\vec{q}$ is discussed.
 
@@ -1014,11 +1014,11 @@ As mentioned already, in this application of multinomial sample model,
 the $n_j$ are usually very low for $j\ge 2$,
 with zero being quite common for larger $j$.
 In such cases, standard techniques such as maximum likelihood for estimating the alpha-factors fail to produce sensible inferences.
-For any inference to be reasonably possible, it has been recognized \cite{1988:mosleh::common:cause}
+For any inference to be reasonably possible, it has been recognized \parencite{1988:mosleh::common:cause}
 that we have to rely on epistemic information, that is, information which is not just described by the data.
 
 A standard way to include epistemic information in the model is
-through specification of the conjugate Dirichlet prior \eqref{eq:dirichlet-prior} for the alpha-factors \cite{1988:mosleh::common:cause},
+through specification of the conjugate Dirichlet prior \eqref{eq:dirichlet-prior} for the alpha-factors \parencite{1988:mosleh::common:cause},
 i.e., using the Dirichlet-Multinomial model for inferences about $\vec{\alpha}$:
 \begin{equation*}
 %\label{eq:dirichlet-prior-alpha}
@@ -1075,7 +1075,7 @@ and $\E[\alpha_j\mid\nz,\byz,\vec{n}] \to \frac{n_j}{n}$ as $n \to \infty$.
 Crucial to reliable inference in the alpha-factor model
 is proper modelling of epistemic information about failures,
 which is in the above approach expressed through the choice of $(\nz,\byz)$.
-By means of an example taken from \cite{2011:kelly:atwood},
+By means of an example taken from \textcite{2011:kelly:atwood},
 we will demonstrate that posterior inferences rely crucially on this choice of hyperparameters,
 particularly when faced with zero counts.
 
@@ -1106,14 +1106,14 @@ and 1 showed two components failing:
   n_4 &= 0
 \end{align*}
 
-\cite{1996:atwood} studied priors for the binomial model
+\textcite{1996:atwood} studied priors for the binomial model
 which maximise entropy (and whence, are `non-informative'%
 \footnote{We will comment on so-called \emph{non-informative} priors in Section****.})
 whilst constraining the mean to a specific value.
 Although these priors are not conjugate,
-\cite{1996:atwood} showed that they can be well approximated by Beta distributions, which are conjugate.
+\textcite{1996:atwood} showed that they can be well approximated by Beta distributions, which are conjugate.
 %
-\cite{2011:kelly:atwood} applied this approach to the multinomal model with conjugate Dirichlet priors,
+\textcite{2011:kelly:atwood} applied this approach to the multinomal model with conjugate Dirichlet priors,
 by choosing a constrained non-informative prior for the marginals of the Dirichlet---which are Beta.
 This leads to an over-specified system of equalities, which can be solved via least-squares optimisation.
 
@@ -1126,8 +1126,8 @@ In this case, the solution of the least-squares problem turns out to be close to
   s&=\frac{1}{2(1-\mu_{\text{spec},1})}
  \end{split}
 \end{equation}
-For our example, this means that $\nz=10$ \cite[p.~400, \S 3]{2011:kelly:atwood}.
-Using Eq.~\eqref{eq:dirichlet:posterior:predictive}, under this prior \cite[p.~401, \S 3.1]{2011:kelly:atwood}:
+For our example, this means that $\nz=10$ \parencite[p.~400, \S 3]{2011:kelly:atwood}.
+Using Eq.~\eqref{eq:dirichlet:posterior:predictive}, under this prior \parencite[p.~401, \S 3.1]{2011:kelly:atwood}:
 \begin{align*}
   \E[\alpha_1\mid\nz,\byz,\vec{n}] &= \frac{9.5 + 35}{10 + 36} = 0.967
   &
@@ -1137,7 +1137,7 @@ Using Eq.~\eqref{eq:dirichlet:posterior:predictive}, under this prior \cite[p.~4
   &
   \E[\alpha_4\mid\nz,\byz,\vec{n}] &= \frac{0.05 + 0}{10 + 36} = 0.001
 \end{align*}
-\cite[p.~402, \S 4]{2011:kelly:atwood}
+\textcite[p.~402, \S 4]{2011:kelly:atwood}
 compare these results against a large number of other choices of priors,
 and note that the posterior resulting from Eq.~\eqref{eq:constrainednoninformative}
 seems too strongly influenced by the prior, particularly in the presence of zero counts.
@@ -1183,7 +1183,7 @@ is given in Sections *****.
 
 For Bayesian inference in the Dirichlet-Multinomial model
 when no prior information is available,
-\cite{1996:walley::idm} proposes as a so-called \emph{near-ignorance prior}%
+\textcite{1996:walley::idm} proposes as a so-called \emph{near-ignorance prior}%
 \footnote{See Section ***** for a more detailed discussion of near-ignorance priors.}
 a set of Dirichlet priors,
 with hyperparameters constrained to the set:
@@ -1191,13 +1191,13 @@ with hyperparameters constrained to the set:
   \mathcal{H}=\{(\nz,\byz)\colon\byz\in\Delta\}
 \end{equation*}
 for some fixed value of $\nz$, which determines the learning speed of the model
-\cite[p.~218, \S 5.3.2]{1991:walley} \cite[p.~9, \S 2.3]{1996:walley::idm}.%
+\parencites[p.~218, \S 5.3.2]{1991:walley}[p.~9, \S 2.3]{1996:walley::idm}.%
 \footnote{Our notation relates to Walley's as $\nz \leftrightarrow s$, $\yz_j \leftrightarrow t_j$.}
 
 When prior information is available, more generally,
 we may assume that we can specify a subset $\mathcal{H}$ of $(0,+\infty)\times\Delta$.
 Following Walley's suggestions
-\cite[p.~224, \S 5.4.3]{1991:walley} \cite[p.~32, \S 6]{1996:walley::idm},
+\parencites[p.~224, \S 5.4.3]{1991:walley}[p.~32, \S 6]{1996:walley::idm},
 we take
 \begin{equation}
   \label{eq:hyperparams:boxmodel}
@@ -1250,7 +1250,7 @@ The interval $[\yzl_j,\yzu_j]$ simply represents bounds on the prior expectation
 \paragraph{Fixed Learning Parameter}
 
 Typically, the learning parameter $\nz$ is taken to be $2$
-(not without controversy; see insightful discussions in \cite{1996:walley::idm}).
+(not without controversy; see insightful discussions in \textcite{1996:walley::idm}).
 One might therefore be tempted to using the same prior expectations
 $\yz_j$ for the $\alpha_j$ as above (Eq.~\eqref{eq:example:muspec}), with $\nz=2$,
 resulting in the following posterior expectations:
@@ -1345,7 +1345,7 @@ Therefore, it seems logical to pick an interval for $\nz$.
 
 A related argument for choosing an interval for $\nz$,
 in case of an informative set of priors,
-is provided by \cite[p.~225, \S 5.4.4]{1991:walley}:
+is provided by \textcite[p.~225, \S 5.4.4]{1991:walley}:
 a larger value of $\nzu$ ensures that the posterior does not move away too fast from the prior,
 which is particularly important for zero counts,
 and the difference between $\nzl$ and $\nzu$ effectively results in greater posterior
@@ -1363,13 +1363,13 @@ which is nearer to $n_j/n$ due to the lower weight $\nzl$ for the prior bound $\
 The increased imprecision reflects the conflict between the prior assignment
 $[\yzl_j,\yzu_j]$ and the observed fraction $n_j/n$,
 and this is referred to as \emph{prior-data conflict}
-(see Section****, or \cite{Walter2009a} for the paper centered around this idea).
+(see Section****, or \textcite{Walter2009a} for the paper centered around this idea).
 
 \paragraph{Interval for Learning Parameter}
 
-We follow \cite[p.~19]{1965:good} (as suggested by \cite[Note~5.4.1, p.~524]{1991:walley}),
+We follow \textcite[p.~19]{1965:good} (as suggested by \textcite[Note~5.4.1, p.~524]{1991:walley}),
 and reason about posterior expectations of hypothetical data to elicit $\nzl$ and $\nzu$;
-also see \cite[p.~219, \S 5.3.3]{1991:walley} for further
+also see \textcite[p.~219, \S 5.3.3]{1991:walley} for further
 discussion on elicitation on $\nz$---our approach is similar, but simpler for the case under study.
 We assume that $\yzu_1=1$ and $\yzl_j=0$ for all $j\ge 2$.
 

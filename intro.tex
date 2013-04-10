@@ -1540,3 +1540,28 @@ as in Eqs.~\eqref{eq:example:tintervals}, we find similar results:
 \end{align}
 \end{subequations}
 
+\paragraph{Conclusion}
+
+We have seen that choosing bounds, rather than precise values,
+for the hyperparameters of the Dirichlet prior for the alpha-factors
+leads to more cautious inferences.
+This is especially important here,
+as inferences are strongly sensitive to the choice of prior,
+due to the zero counts that are common in this application of the Dirichlet-Multinomial model.
+We also concluded that assigning an interval for the learning parameter was necessary
+to arrive at reasonable posterior expectation intervals.
+Still, the method is relatively easy to use, as
+we identified simple ways to elicit bounds for the hyperparameters
+by reasoning on hypothetical data;
+essentially, the analyst needs to specify how quickly he is willing to learn
+from various sorts of hypothetical data.
+
+\medskip
+
+In the above application, Bayesian inference in the Dirichlet-Multinomial model
+was generalized to imprecise or interval probability methods.
+In the main part of the thesis,
+we will give a general introduction to the methodology of imprecise or interval probability,
+discuss further motivations for the use of interval probability methods for statistical inference,
+and show that inferences in canonical conjugates as described in Section~\ref{sec:regularconjugates}
+can be generalized in the same way as was done above.

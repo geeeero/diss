@@ -25,20 +25,78 @@ In Section ****, \\
 Section **** 
 
 
-\section{Imprecise or Interval Probability Calculus}
+\section{Imprecise or Interval Probability}
 \label{sec:ip-intro}
 
-not single number, but interval: old idea\\
-adding another modeling dimension
+This Section will give a condensed introduction to the main theoretic concepts
+in interval or imprecise probability as needed for the topics discussed in this thesis.
+
+While Section~\ref{sec:ip-general} follows mostly ***IESS -- Imprecise probability***,
+Section~\ref{sec:ip-main} is based mainly on \textcite{1996:walley::expert} and \textcite{2000:walley::towards}.
+
+
+\subsection{General Concept and Basic Interpretation}
+\label{sec:ip-general}
+
+The central idea of imprecise or interval probability \parencite{2011:IESS-ip, 1991:walley, 2001:weichselberger} is
+to replace the usual, precise probability measure $P(A)$ for events $A$%
+\footnote{Events of interest $A$ are taken to be subsets of the sample space $\Omega$,
+forming a $\sigma$-algebra, which is non-empty and includes countable unions and intersections of subsets of $\Omega$.}
+with a \emph{lower} and \emph{upper probability}, denoted by $\Pl(A)$ and $\Pu(A)$, respectively,
+satisfying $0 \le \Pl(A) \le \Pu(A) \le 1$.
+In this setting, a usual probability measure forms the extreme case $\Pl(A) = \Pu(A) = \p(A)$,
+when there is enough information to determine the distribution on the sample space $\Omega$
+in precise stochastic terms.
+On the other extreme, when $\Pl(A) = 0$ and $\Pu(A) = 1$,
+we have no information at all on the probability for $A$ to occur,
+and intermediate cases $0 \le \Pl(A) < \Pu(A) \le 1$ represent
+different degrees of knowledge on this probability.
+
+Therefore, interval or imprecise probability adds another modeling dimension:
+While usual, precise probability measures can be used to model phenomena when there is perfect stochastical information,
+like, e.g., in a lottery where the number of winning tickets (and the total number of tickets) is precisely known,
+imprecise probability measures can account for cases where there is uncertainty about the probabilities themselves,
+just like in a lottery where the number of winning tickets is not exactly known.
+Non-stochastic uncertainty about model features like probabilities is often called \emph{ambiguity},
+forming a crucial part of the human decision process,
+and there are studies suggesting that humans process ambiguity in a different way
+as compared to pure probabilistic reasoning \parencite{2005:hsu-bhatt}.
+
+In contrast to a probability measure $\p(A)$,
+the set functions $\Pl(A)$ and $\Pu(A)$ do not adhere
+to the additivity axiom (countable or finite additivity),
+and thus are also known as \emph{non-additive probabilities}.
+There is also a link to \emph{fuzzy measures}, which are also non-additive measures
+\parencite[see, e.g.,][]{1997:denneberg}.
+
+In general, $\Pl(A)$ may be understood as accounting for evidence certainly in favour of $A$,
+and $\Pu(A)$ accounting for all evidence speaking not strictly against $A$.
+The difference of $\Pu(A)$ and $\Pl(A)$ thus allows for inconclusive evidence
+that may not speak unanimously in favor of or against $A$, respectively.
+As evidence strictly against $A$ can be seen as evidence certainly in favour of $A^\com$,
+the complement of $A$,
+it is mostly assumed that $\Pl(A^\com) = 1 - \Pu(A)$,
+and thus it suffices to determine either of $\Pl$ or $\Pu$,
+the other one being defined through this relation.
+
+Although strictly negated by advocates of Bayesian methods \parencite[e.g., by][]{1987:lindley},
+the need to go beyond usual probability measures has been recognized for a long time,%
+\footnote{\textcite{2009:hampel} and \textcite[Section~1]{2001:weichselberger} give a historical overview on the development of
+ideas related to non-additive measures and interval probability.}
+and in recent times most prominently by scientists involved in the development of expert systems.
+
 
 main monographs: Weichselberger (axiomatic), Walley (subjective Bayesian)
+
+\subsection{Main Formulations}
+\label{sec:ip-main}
 
 lower and upper probabilities or expectations,
 link to sets of probability distributions,
 sets of desirable gambles as mathematical formulation
 
-coherent lower probabilities etc.
 
+\subsection{Related Concepts}
 
 many links to concepts that aim to complement probability theory as tool for handling uncertainty,
 like possibilistic reasoning, fuzzy probabilities, etc.

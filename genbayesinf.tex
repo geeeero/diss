@@ -39,7 +39,7 @@ Section~\ref{sec:ip-main} is based mainly on \textcite{1996:walley::expert} and 
 \label{sec:ip-general}
 
 The central idea of imprecise or interval probability \parencite{2011:IESS-ip, 1991:walley, 2001:weichselberger} is
-to replace the usual, precise probability measure $P(A)$ for events $A$%
+to replace the usual, precise probability measure $\p(A)$ for events $A$%
 \footnote{Events of interest $A$ are taken to be subsets of the sample space $\Omega$,
 forming a $\sigma$-algebra, a non-empty collection of sets including countable unions and intersections of subsets of $\Omega$.}
 with a \emph{lower} and \emph{upper probability}, denoted by $\Pl(A)$ and $\Pu(A)$, respectively,
@@ -91,14 +91,13 @@ There are currently two main approaches to a general theory of statistical infer
 regards probability intervals $[\Pl(A), \Pu(A)]$ for all or some events $A$ as the basic entity
 \parencite[p.~646]{2011:IESS-ip},
 from which an interval-valued distribution on the sample space $\Omega$ is constructed.
-His approach is axiomatic, in the sense that it replaces the additivity axiom by two axioms,%
+His approach is axiomatic, in the sense that it replaces Kolmogorov's \parencite*{1933:kolmogorov} additivity axiom by two axioms,%
 \footnote{The first states that \eqref{eq:0ip1} holds,
-the second that the set $\mathcal{M}$ consisting of usual, precise distributions $\p(\cdot)$
-with $\Pl(A) \le \p(A) \le \Pu(A)$, for all $A \in \Omega$, must be non-empty.
+the second that the set $\mathcal{M}$ consisting of all usual, precise distributions $\p(\cdot)$
+with $\Pl(A) \le \p(A) \le \Pu(A)$, for all $A \in \Omega$, is non-empty.
 The second axiom guarantees that there exists at least one precise probability distribution
 which is compatible with an interval-valued probability distribution,
-and thus rules out the case of contradictory assignments of $[\Pl(A), \Pu(A)]$.
-}
+and thus rules out the case of contradictory assignments of $[\Pl(A), \Pu(A)]$.}
 from which the theory is derived,
 while imposing no specific interpretation on these constructs.
 This theory of interval probability was developed
@@ -107,7 +106,7 @@ where probability is not assigned to events, but to logical conclusions (from a 
 with the aim to arrive at a theory of statistical inference
 which allows for fiducial-like probability statements,
 e.g., probability statements on parameters similar to a posterior distribution in a Bayesian setting
-without the need to specify a prior distribution \parencite{2011:IESS-fiducial}***.
+without the need to specify a prior distribution \parencite{2011:IESS-fiducial}.
 \item In contrast, the theory by Walley \parencite*{1991:walley, 2000:walley::towards}
 aims to generalise the Bayesian approach to statistical inference,
 adopting a strictly subjective interpretation for imprecise probability
@@ -118,9 +117,9 @@ In generalising de Finetti \parencite*{1937:finetti,1970:finetti}, the basic ent
 i.e.\ expectation functionals, for \emph{gambles}, i.e.\ random variables,
 instead of lower and upper probabilities for events.
 This is due to the fact that unlike in precise probability theory%
----where the definition of a distribution via precise previsions
+---where the definition of a distribution via expectations %precise previsions
 (often denoted \emph{linear previsions} in the imprecise probability literature)
-is eqivalent to a definition via precise probability distributions---%
+is eqivalent to a definition via a precise probability distribution---%
 the definition of an imprecise distribution via lower and upper previsions
 is more general than a definition via lower and upper probability for events
 \parencite[p.~132]{2000:walley::towards}.

@@ -126,8 +126,9 @@ is more general than a definition via lower and upper probability for events
 \end{enumerate}
 As this thesis is concerned with a generalization of Bayesian inference
 based on sets of conjugate priors, the approach by Walley,
-and its reliance on a subjective interpretation of (imprecise) probability
+and its reliance on a subjective, epistemic interpretation of (imprecise) probability
 as (bounds for) betting rates, is now described in more detail.***
+
 
 \subsection{Main Formulations}
 \label{sec:ip-main}
@@ -137,6 +138,50 @@ link to sets of probability distributions,
 sets of desirable gambles as mathematical formulation,
 lower and upper betting rates,
 inference procedure (itip)
+
+As mentioned above, the basic entities in the theory by \textcite{1991:walley}
+are lower and upper \emph{previsions}.
+These are functions on \emph{gambles}, or \emph{random variables},
+defined as bounded mappings from $\Omega$ to $\reals$.
+A gamble $X$ can be understood as uncertain reward or payout,
+where the reward $X(\omega)$ depends on $\omega \in \Omega$,
+the unknown `state of the world' from the possibility space $\Omega$.
+
+A \emph{lower prevision} or \emph{lower expectation} is then a mapping
+$\El: \mathcal{K} \to \reals$, where $\mathcal{K}$ is a set of \emph{gambles}.%
+\footnote{In Walley's central monography \parencite{1991:walley},
+his papers and the imprecise probability literature in general,
+lower previsions are usually denoted by $\Pl$.
+There, an event $A \subset \Omega$ is notationally identified with the
+indicator function $I_A(\omega)$, being a gamble with payout $1$ if $\omega \in A$ and else $0$,
+so $\Pl(A)$ denotes also the lower probability of $A$.
+In order to follow conventions in statistical literature, however,
+lower previsions are denoted by $\El$ here,
+and $\Pl$ refers to lower probabilities only.}
+Central to Walley's theory is the interpretation of $\El[X]$
+as the subject's supremum buying price for $X$, that is,
+the subject is disposed to pay at most the fixed amount $\El[X]$
+in exchange for the uncetain reward $X$.
+$\El[X]$ thus expresses the subject's state of knowledge about the value of $X$,
+factoring in the propensity of specific payouts $X(\omega)$
+for all possible $\omega \in \Omega$.
+The \emph{upper prevision} $\Eu[X]$ is the infimum selling price for $X$,
+i.e., the fixed amount the subject is willing to receive in exchange for $X$
+\parencite[p.~9]{1996:walley::expert}.
+The theory allows thus a zone of indeterminacy, $\big[\El[X], \Eu[X]\big]$,
+for prices of $X$ at which the subject is neither willing to buy or to sell $X$.
+This is in contrast to the usual epistemic operationalisation of subjective Bayesian probability,
+which implies that $\El[X]$ and $\Eu[X]$ must coincide at a unique fair price $\E[X]$.
+Walley calls this assumption the \emph{Bayesian dogma of (ideal) precision}
+\parencite[Chapter~5]{1991:walley}.
+
+conjugacy
+
+avoiding sure loss --- coherence
+
+epistemic
+
+
 
 \subsection{Related Concepts}
 

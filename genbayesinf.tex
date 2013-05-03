@@ -109,9 +109,9 @@ e.g., probability statements on parameters similar to a posterior distribution i
 without the need to specify a prior distribution \parencite{2011:IESS-fiducial}.
 \item In contrast, the theory by Walley \parencite*{1991:walley, 2000:walley::towards}
 aims to generalise the Bayesian approach to statistical inference,
-adopting a strictly subjective interpretation for imprecise probability
+adopting a strictly subjective, behavioural interpretation for imprecise probability
 as lower and upper betting rates (see below),
-and extending the Bayesian paradigm (as discussed in Section~\ref{sec:bayes-inference})
+and extending the Bayesian inference paradigm (as discussed in Section~\ref{sec:bayes-inference})
 to imprecise probability distributions.
 In generalising de Finetti \parencite*{1937:finetti,1970:finetti}, the basic entities are lower and upper \emph{previsions},
 i.e.\ expectation functionals, for \emph{gambles}, i.e.\ random variables,
@@ -133,13 +133,34 @@ as (bounds for) betting rates, is now described in more detail.***
 \subsection{Main Formulations}
 \label{sec:ip-main}
 
-lower and upper probabilities or expectations,
-link to sets of probability distributions,
-sets of desirable gambles as mathematical formulation,
-lower and upper betting rates,
-inference procedure (itip)
+%lower and upper probabilities or expectations,
+%link to sets of probability distributions,
+%sets of desirable gambles as mathematical formulation,
+%lower and upper betting rates,
+%inference procedure (itip)
 
-As mentioned above, the basic entities in the theory by \textcite{1991:walley}
+The main mathematical formulations for imprecise distributions
+in the theory by Walley \parencite*{1991:walley, 2000:walley::towards}
+are
+\begin{enumerate}[(i)]
+\item lower previsions,
+\item sets of (precise) probability distributions, and
+\item sets of desirable gambles.
+\end{enumerate}
+It is possible to switch between these formulations,
+although (ii) is slightly more general than (i),
+and in turn, also (iii) is more general than (ii) \parencite{2000:walley::towards}.
+
+We will first introduce lower previsions and the most important rationality requirements
+guiding their set-up and use***,
+then have a brief look at sets of desirable gambles as the most comprehensive formulation.
+Sets of probability distributions, as the formulation used to describe inference models in this theses***,
+are then explained in relation to the other formulations,
+and the generalised Bayesian inference procedure as used in Section~\ref{sec:imprecise-alpha} is justified.
+
+\paragraph{Lower Previsions}
+
+As mentioned in Section~\ref{sec:ip-general}, the basic entities in the theory by \textcite{1991:walley}
 are lower and upper \emph{previsions}.
 These are functions on \emph{gambles}, or \emph{random variables},
 defined as bounded mappings from $\Omega$ to $\reals$.
@@ -147,7 +168,7 @@ A gamble $X$ can be understood as uncertain reward or payout,
 where the reward $X(\omega)$ depends on $\omega \in \Omega$,
 the unknown `state of the world' from the possibility space $\Omega$.
 The reward is measured in units of utility assumed to form a linear scale
-\parencite[Chapter~2.2]{1991:walley}.
+\parencite[\S 2.2]{1991:walley}.
 
 A \emph{lower prevision} or \emph{lower expectation} is then a mapping
 $\El: \mathcal{K} \to \reals$, where $\mathcal{K}$ is a set of \emph{gambles}.%
@@ -167,21 +188,21 @@ in exchange for the uncertain reward $X$.
 $\El[X]$ thus expresses the subject's state of knowledge about the value of $X$,
 factoring in the propensity of all possible $\omega \in \Omega$
 with their specific payouts $X(\omega)$.
-Walley's theory is based on this behavioral, epistemic interpretation
-of previsions  \parencite[Section~4]{1996:walley::expert},
-and all rationality criteria and inference procedures
-are deduced from this root \parencite[p.~5]{1996:walley::expert}.
 The \emph{upper prevision} $\Eu[X]$ is the infimum selling price for $X$,
 i.e., the fixed amount the subject is willing to receive in exchange for $X$
 \parencite[p.~9]{1996:walley::expert}.
+Walley's theory is based on this behavioral, epistemic interpretation of previsions,
+%\parencite[Section~4]{1996:walley::expert},
+and all rationality criteria and inference procedures
+are deduced from this root \parencite[p.~5]{1996:walley::expert}.
 
 The theory allows thus a zone of indeterminacy, by $\El[X] < \Eu[X]$,
 for prices of $X$ at which the subject is neither willing to buy or to sell the gamble $X$,
 as illustrated in Figure~\ref{fig:pricesforgambles}.
 This is in contrast to the usual epistemic operationalisation of subjective Bayesian probability,
 which implies that $\El[X]$ and $\Eu[X]$ must coincide at a unique fair price $\E[X]$.
-This requirement is refuted by Walley, and called by him as the \emph{Bayesian dogma of (ideal) precision}
-\parencite[Chapter~5]{1991:walley}.
+This requirement is refuted by Walley, and called by him \emph{the Bayesian dogma of (ideal) precision}
+\parencite[\S 5]{1991:walley}.
 
 \begin{figure}
 \centering
@@ -217,7 +238,7 @@ as mentioned in Section~\ref{sec:ip-general}.}
 Then, it suffices to consider only either of $\El$ or $\Eu$,
 and in the literature $\El$ is chosen,
 the theory consequently being referred to as the theory of
-\emph{coherent lower previsions} \parencite[See, e.g.,][Chapter~3.2]{itip}.
+\emph{coherent lower previsions} \parencite[See, e.g.,][\S 3.2]{itip}.
 
 Before we explain the concept of \emph{coherence},
 the most basic rationality requirement put forward by Walley is
@@ -231,10 +252,26 @@ should choose $\El$ such that there is no combination of gambles
 %$X_i$, $i=1,\ldots,k$, %of which each is, by $\El$, 
 that would result in a net loss, for all $\omega \in \Omega$.
 
-avoiding sure loss --- coherence --- natural extension
+\paragraph{Coherence}
 
-epistemic/behavioural
+avoiding sure loss --- coherence --- natural extension?
 
+\paragraph{Sets of Desirable Gambles}
+
+***unusual, but mathematically convenient formulation,
+also expressable as partial preference orderings.
+
+***more general than lower previsions,
+but detailed account not necessary for this thesis
+
+
+\paragraph{Sets of Probability Distributions}
+
+link to lower previsions, convexity, coherence.
+
+\paragraph{Inference Procedure}
+
+paragraph from itip
 
 
 \subsection{Related Concepts}
@@ -247,9 +284,9 @@ like possibilistic reasoning, fuzzy probabilities, etc.
 
 Although strictly negated by advocates of Bayesian methods \parencite[e.g., by][]{1987:lindley},
 the need to go beyond usual probability measures has been recognized for a long time,%
-\footnote{\textcite{2009:hampel} and \textcite[Section~1]{2001:weichselberger} give a historical overview on the development of
+\footnote{\textcite{2009:hampel} and \textcite[\S 1]{2001:weichselberger} give a historical overview on the development of
 ideas related to non-additive measures and interval probability.}
-and in recent times most prominently by scientists involved in the development of expert systems.
+and in recent times most prominently by scientists involved in the development of expert systems \parencite{1996:walley::expert}.
 
 ***klir citation (festschrift)***
 

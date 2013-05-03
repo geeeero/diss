@@ -146,6 +146,8 @@ defined as bounded mappings from $\Omega$ to $\reals$.
 A gamble $X$ can be understood as uncertain reward or payout,
 where the reward $X(\omega)$ depends on $\omega \in \Omega$,
 the unknown `state of the world' from the possibility space $\Omega$.
+The reward is measured in units of utility assumed to form a linear scale
+\parencite[Chapter~2.2]{1991:walley}.
 
 A \emph{lower prevision} or \emph{lower expectation} is then a mapping
 $\El: \mathcal{K} \to \reals$, where $\mathcal{K}$ is a set of \emph{gambles}.%
@@ -165,21 +167,73 @@ in exchange for the uncertain reward $X$.
 $\El[X]$ thus expresses the subject's state of knowledge about the value of $X$,
 factoring in the propensity of all possible $\omega \in \Omega$
 with their specific payouts $X(\omega)$.
+Walley's theory is based on this behavioral, epistemic interpretation
+of previsions  \parencite[Section~4]{1996:walley::expert},
+and all rationality criteria and inference procedures
+are deduced from this root \parencite[p.~5]{1996:walley::expert}.
 The \emph{upper prevision} $\Eu[X]$ is the infimum selling price for $X$,
 i.e., the fixed amount the subject is willing to receive in exchange for $X$
 \parencite[p.~9]{1996:walley::expert}.
+
 The theory allows thus a zone of indeterminacy, by $\El[X] < \Eu[X]$,
-for prices of $X$ at which the subject is neither willing to buy or to sell the gamble $X$.
+for prices of $X$ at which the subject is neither willing to buy or to sell the gamble $X$,
+as illustrated in Figure~\ref{fig:pricesforgambles}.
 This is in contrast to the usual epistemic operationalisation of subjective Bayesian probability,
 which implies that $\El[X]$ and $\Eu[X]$ must coincide at a unique fair price $\E[X]$.
 This requirement is refuted by Walley, and called by him as the \emph{Bayesian dogma of (ideal) precision}
 \parencite[Chapter~5]{1991:walley}.
 
-conjugacy
+\begin{figure}
+\centering
+\begin{tikzpicture}[%
+linkline/.style={
+  shorten >= 2pt,
+  shorten <= 3pt
+}%
+]
+\path[fill=gray] (0,0) rectangle (4.5,0.3);
+\path[fill=gray] (6,0) rectangle (10,0.3);
+\draw[very thick,-stealth] (-0.3,0) -- (10.3,0) node[below] {utility};
+\draw[thick] (3,0.1) -- (3,-0.1) node[below] {$0$};
+\draw[thick] (4.5,-0.1) -- (4.5,0.5) node[above] {$\El[X]$};
+\draw[thick] (6,-0.1) -- (6,0.5) node[above] {$\Eu[X]$};
+\node (buy) at (2,1.5) {acceptable buying prices};
+\node (sell) at (8.5,1.5) {acceptable selling prices};
+\draw[linkline] (buy) -- (2.5,0.3);
+\draw[linkline] (sell) -- (8,0.3);
+\end{tikzpicture}
+\caption{\label{fig:pricesforgambles}%
+Illustration of \underline{E} %$\El$ %strange errors occur
+and $\Eu$ as supreme buying and infimum selling prices for a gamble $X$ on a linear utility scale.}
+\end{figure}
 
-avoiding sure loss --- coherence
+A lower and upper prevision are called \emph{conjugate}%
+\footnote{Conjugacy in this sense should not be confused
+with conjugacy of prior distributions as discussed in Section~\ref{sec:regularconjugates}.}
+if the relation $\Eu[X] = -\El[-X]$ holds for all $X \in \mathcal{K}$.%
+\footnote{This implies the relation $\Pl(A^\com) = 1 - \Pu(A)$
+of lower and upper probabilities for events $A \subset \Omega$
+as mentioned in Section~\ref{sec:ip-general}.}
+Then, it suffices to consider only either of $\El$ or $\Eu$,
+and in the literature $\El$ is chosen,
+the theory consequently being referred to as the theory of
+\emph{coherent lower previsions} \parencite[See, e.g.,][Chapter~3.2]{itip}.
 
-epistemic
+Before we explain the concept of \emph{coherence},
+the most basic rationality requirement put forward by Walley is
+that a lower prevision $\El$ should fulfill the property of
+\emph{avoiding sure loss}.
+This means that a subject, whose state of information about the
+occurence of `states of the world' from the possibility space $\Omega$
+is encoded in his or her choice of $\El$,
+acting by buying and selling gambles accordingly,
+should choose $\El$ such that there is no combination of gambles
+%$X_i$, $i=1,\ldots,k$, %of which each is, by $\El$, 
+that would result in a net loss, for all $\omega \in \Omega$.
+
+avoiding sure loss --- coherence --- natural extension
+
+epistemic/behavioural
 
 
 

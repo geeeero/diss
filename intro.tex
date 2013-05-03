@@ -35,28 +35,31 @@ have been written primarily by Matthias Troffaes.
 \section{Notation}
 \label{sec:notation}
 
-scalars: italic letters ($x$, $\theta$);
-vectors: bold italic letters ($\vec{x}$, $\btheta$);
-matrices: bold regular (i.e., non-italic) uppercase letters ($\mbf{X}$, $\mbf{Z}$)
-transposed matrices: raised uppercase sans serif T ($\mbf{X}^\tra$)
+Scalars are denoted by italic letters ($x$, $\theta$),
+whereas vectors are denoted by bold italic letters ($\vec{x}$, $\btheta$).
+Matrices are written in bold regular (i.e., non-italic) uppercase letters, like $\mbf{X}$, $\mbf{Z}$,
+and transposed matrices are marked by a raised uppercase sans serif T ($\mbf{X}^\tra$).
 
-samples, realizations: lowercase letters ($x$, $\x$)
-
-random variables: uppercase letters ($X$, $\vec{X}$);
-however, as this work is mostly concerned with Bayesian methods,
+For statistical models, samples, i.e. realisations of random variables,
+are denoted by lowercase letters ($x$, $\x$),
+random variables by uppercase letters ($X$, $\vec{X}$);
+however, as this thesis is mostly concerned with Bayesian methods,
 the strict distrinction between random variables and `fixed' quantities as made in frequentist statistics
 is not maintained throughout most of the thesis.
 
-sets, spaces: calligraphic uppercase letters ($\mathcal{X}$, $\Y$, $\mathcal{M}$)
+Sets or spaces are given as calligraphic uppercase letters ($\mathcal{X}$, $\Y$, $\mathcal{M}$).
+Some special sets are denoted as follows:
+the real numbers by $\reals$, positive real numbers by $\reals_{>0}$,
+and the space of $q$-dimensional tuples of real numbers by $\reals^q$.
 
-special sets: real numbers $\reals$, positive real numbers $\reals_{>0}$, space of $q$-dimensional tuples of real numbers $\reals^q$
-
-In the Bayesian setting, prior/posterior probability distributions (on parameters) are usually denoted by lowercase letter $p$,
+In the Bayesian setting, prior and posterior probability distributions (on parameters) are usually denoted by lowercase letter $p$,
 while sample models (distributions on observable quantities) are denoted by lowercase letter $f$:
 $f(x)$, $p(\theta)$.
 
-Cumulative distribution functions are denoted by uppercase letter $\cdf$: $\cdf(x) := \int_{-\inf}^x f(u) \dd u$;
-probability measures for subsets $A$ of a sample space $\Omega$ are denoted by uppercase $\p$, i.e.\ $\p(A) = \int_A f(u) \dd u$.
+Cumulative distribution functions are denoted by uppercase letter $\cdf$: $\cdf(x) := \int_{-\infty}^x f(u) \dd u$;
+probability measures, e.g.\ for subsets $A$ of a sample space $\Omega$, are denoted by uppercase $\p$,
+i.e.\ $\p(A) = \sum_{\omega \in A} f(\omega)$ if $\Omega$ is countable,
+and $\p(A) = \int_A f(\omega) \dd \omega$ otherwise.
 
 Expectation and variance of a random quantity $X$ are denoted by $\E[X]$ and $\V(X)$, respectively.
 In a Bayesian setting, quantities identifying the distribution
@@ -726,9 +729,9 @@ where equality ${}^*$ holds by the theorem
 %in Rao, Toutenburg, Shalabh, and Heumann, \emph{Linear models and generalizations}, Springer, Berlin 2008: %bibtex at end of document
 %stating that
 \begin{align*}
-\det (\mbf{A} + \vec{a}\, \vec{a}^\tra) &= \det(\mbf{A}) (1+\vec{a}^\tra \mbf{A}^{-1} \vec{a}) & \text{if}& & \det(\mbf{A}) &\neq 0
+\det (\mbf{A} + \vec{a}\, \vec{a}^\tra) &= \det(\mbf{A}) (1+\vec{a}^\tra \mbf{A}^{-1} \vec{a}) %& \text{if}& & \det(\mbf{A}) &\neq 0
 \end{align*}
-for all appropriately sized, invertable matrices $\mbf{A}$ and column vectors $\vec{a}$
+for all column vectors $\vec{a}$ and appropriately sized, invertible matrices $\mbf{A}$ 
 \parencite[Theorem A 16 (x), Appendix A3, p.~494]{MR2370506}.
 
 With $\det\left(\frac{\dd\bpsi}{\dd\btheta}\right) = \prod_{j=0}^k \frac{1}{\theta_j}$, we get
@@ -828,7 +831,7 @@ Although comprising only a small fraction of the energy output during normal ope
 (where the energy stems from the primary fission process \parencite[Module~4, p.~33]{united1993doe}),
 depending on the design of the reactor,
 the decay heat may be enough to damage the core of a reactor significantly
-\parencite[p.~VIII-9 and VIII-25f]{1975:reactor:safety:study}.}
+\parencite[pp.~VIII-9 and VIII-25f]{1975:reactor:safety:study}.}
 
 Due to their critical role for the functioning of emergency cooling systems,
 and thus for the safety systems of nuclear power plants in general \parencite[pp.~1, 4]{csni86-115},

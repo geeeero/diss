@@ -151,12 +151,12 @@ It is possible to switch between these formulations,
 although (ii) is slightly more general than (i),
 and in turn, also (iii) is more general than (ii) \parencite{2000:walley::towards}.
 
-We will first introduce lower previsions and the most important rationality requirements
-guiding their set-up and use***,
+We will first introduce lower previsions
+and the most important rationality requirements guiding their set-up and use***,
 then have a brief look at sets of desirable gambles as the most comprehensive formulation.
-Sets of probability distributions, as the formulation used to describe inference models in this theses***,
+Sets of probability distributions, as the formulation used to describe inference models in this thesis,
 are then explained in relation to the other formulations,
-and the generalised Bayesian inference procedure as used in Section~\ref{sec:imprecise-alpha} is justified.
+and the generalised Bayesian inference procedure as used in Section~\ref{sec:imprecise-alpha} is justified formally.
 
 \paragraph{Lower Previsions}
 
@@ -184,7 +184,11 @@ and $\Pl$ refers to lower probabilities only.}
 Central to Walley's theory is the interpretation of $\El[X]$
 as the subject's supremum buying price for $X$, that is,
 the subject is disposed to pay at most the fixed amount $\El[X]$
-in exchange for the uncertain reward $X$.
+in exchange for the uncertain reward $X$.%
+\footnote{More precisely, the price the subject is disposed to pay for $X$ is strictly less than $\El[X]$.
+For sake of readability,
+this mathematically important distinction is not rigorously maintained in this brief overview,
+as it is hardly relevant for the interpretation of the results in the later parts of this thesis.}
 $\El[X]$ thus expresses the subject's state of knowledge about the value of $X$,
 factoring in the propensity of all possible $\omega \in \Omega$
 with their specific payouts $X(\omega)$.
@@ -224,13 +228,13 @@ linkline/.style={
 \draw[linkline] (sell) -- (8,0.3);
 \end{tikzpicture}
 \caption{\label{fig:pricesforgambles}%
-Illustration of \underline{E}\ and $\Eu$ as supreme buying and infimum selling prices for a gamble $X$ on a linear utility scale.}
+Illustration of \underline{E}\ and $\Eu$ as supremum buying and infimum selling prices for a gamble $X$ on a linear utility scale.}
 %$\El$ %strange errors occur
 \end{figure}
 
 A lower and upper prevision are called \emph{conjugate}%
 \footnote{Conjugacy in this sense should not be confused
-with conjugacy of prior distributions as discussed in Section~\ref{sec:regularconjugates}.}
+with conjugacy for prior distributions as discussed in Section~\ref{sec:regularconjugates}.}
 if the relation $\Eu[X] = -\El[-X]$ holds for all $X \in \mathcal{K}$.%
 \footnote{This implies the relation $\Pl(A^\com) = 1 - \Pu(A)$
 of lower and upper probabilities for events $A \subset \Omega$
@@ -240,21 +244,73 @@ and in the literature $\El$ is chosen,
 the theory consequently being referred to as the theory of
 \emph{coherent lower previsions} \parencite[See, e.g.,][\S 3.2]{itip}.
 
-Before we explain the concept of \emph{coherence},
-the most basic rationality requirement put forward by Walley is
+\paragraph{Coherence and Avoiding Sure Loss}
+
+Before we come to the concept of \emph{coherence},
+a weaker rationality requirement put forward by Walley is
 that a lower prevision $\El$ should fulfill the property of
-\emph{avoiding sure loss}.
+\emph{avoiding sure loss} \parencite[\S 2.4]{1991:walley}.
 This means that a subject, whose state of information about the
 occurence of `states of the world' from the possibility space $\Omega$
 is encoded in his or her choice of $\El$,
 acting by buying and selling gambles accordingly,
 should choose $\El$ such that there is no combination of gambles
 %$X_i$, $i=1,\ldots,k$, %of which each is, by $\El$, 
-that would result in a net loss, for all $\omega \in \Omega$.
+that would result in a net loss, whatever $\omega \in \Omega$.
+As an analogy, \emph{avoiding sure loss} can be regarded
+like a logical inconsistency in a set of propositions,
+i.e., there exist two propositions in the set of propositions
+(the analogy to $\El$) which are contradictory
+\parencite[\S 2.4, footnote~1]{1991:walley}.
 
-\paragraph{Coherence}
+Continuing this analogy, $\El$ violating the stronger property of \emph{coherence}
+is like the ``failure to deduce all [\ldots] logical implications''
+\parencite[\S 2.4, footnote~1]{1991:walley} from the set of propositions.
+As an example, if a subject assesses $\El$ such that $\El[X] = \El[Y] = \frac{1}{2}$,
+and also that $\El[X+Y] = \frac{1}{2}$, $\El$ avoids sure loss, but is not coherent,
+because one can imply from $\El[X] = \El[Y] = \frac{1}{2}$ that
+$\El[X+Y]$ must be larger than $\frac{1}{2}$ \parencite[p.~67]{1991:walley}.
+Coherence is a ``normative requirement of consistency'' \parencite[p.~130]{2000:walley::towards}
+that is a consequence of few basic rationality requirements.
+In fact, if $\mathcal{K}$ is a linear space of gambles,
+i.e., $\mathcal{K}$ is closed with respect to addition and multiplication with constants,
+then coherence is equivalent to the three following conditions
+\parencite[e.g.,][p.~11]{1996:walley::expert}:
+\begin{enumerate}[(i)]
+\item $\El[X] \ge \inf_{\omega \in \Omega} X(\omega)$,
+i.e., one is always prepared to pay less for a gamble than its minimum possible reward.
+(Being prepared to pay more than $\inf_{\omega \in \Omega} X(\omega)$ amounts to make a commitment to the
+possibility that other states $\omega'$ with $X(\omega') > \inf_{\omega \in \Omega} X(\omega)$ may occur.)
+\item $\El[\lambda X] = \lambda \El[X]$ for all $X \in \mathcal{K}$, $\lambda > 0$.
+$\El$ should be such that if it postulates that one should be prepared to buy a gamble $X$ at a price
+of at most $\El[X]$, then one should also buy gambles that are fractions or multiples of $X$
+at prices of at most the original price divided or multiplied accordingly.
+This illustrates that prices are to be understood on a linear utility scale
+(as mentioned above) and should not be considered as plain monetary prices,
+for which this condition may not be reasonable.
+\item $\El[X+Y] \ge \El[X] + \El[Y]$.
+This property of superlinearity implies that the supremum acceptable buying price for $X$ and $Y$ combined
+should be higher than the supremum acceptable buying prices for each of them individually.
+It could be, e.g., that $X$ and $Y$ balance out each other in a way that
+buying both of them at once makes the transaction less risky than buying the two separately,
+such that a higher price limit for $X + Y$ is acceptable.
+Usual precise expectations, for which additivity $\E[X+Y] = \E[X] + \E[Y]$ must hold,
+cannot directly accommodate such reasoning.
+\end{enumerate}
 
-avoiding sure loss --- coherence --- natural extension?
+Consequently, in analogy to deducing all logical implications from
+a set of propositions, there is a technique, %for lower previsions,
+called \emph{natural extension}, that adjusts
+a given assessment of lower previsions (on some set of gambles $\mathcal{K}$, which avoids sure loss)
+to make it coherent, in the least committal way as possible%
+\footnote{This means that there may be other adjustments of $\El$ that are compatible
+with the initial assessments, but are less conservative,
+i.e., give higher supremum buying prices.}
+\parencite[see, e.g.,][pp.~15ff]{1996:walley::expert}.
+This is accomplished by a linear program,
+and may involve raising $\El[X]$ for some $X \in \mathcal{K}$ in order to make them
+coherent to the values of $\El[Y]$, supremum buying prices for some other gambles $Y \in \mathcal{K}$ as previously assessed,
+or newly defining $\El[Z]$ for gambles $Z$ not considered so far---explaining the name `extension'.
 
 \paragraph{Sets of Desirable Gambles}
 
@@ -268,6 +324,8 @@ but detailed account not necessary for this thesis
 \paragraph{Sets of Probability Distributions}
 
 link to lower previsions, convexity, coherence.
+
+lower envelope theorem: itip Prop.~3.7, p.~58, 1991:walley Prop.~3.3.3
 
 \paragraph{Inference Procedure}
 

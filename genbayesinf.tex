@@ -314,18 +314,79 @@ or newly defining $\El[Z]$ for gambles $Z$ not considered so far---explaining th
 
 \paragraph{Sets of Desirable Gambles}
 
-***unusual, but mathematically convenient formulation,
-also expressable as partial preference orderings.
+Sets of desirable gambles \parencite[\S 6]{2000:walley::towards} are an alternative formulation
+for probability assessments as expressed by a lower prevision $\El$.
+They are a mathematically convenient formulation
+and as such a central and very useful tool in the development of the theory of imprecise probability.
+However, a detailed understanding of this concept is not necessary for the purpose of this thesis,
+and the account below is inteded to complete the overview on the theory of imprecise probability.
 
-***more general than lower previsions,
-but detailed account not necessary for this thesis
+The \emph{gambles} here are again a description of an uncertain reward as above, 
+all bounded functions from $\Omega$ to $\reals$
+forming the space $\mathcal{L}$ of all gambles.
+The assessment in this formulation lies in the designation of a subset $\mathcal{D}$
+of all gambles $\mathcal{L}$ as \emph{desirable},
+i.e., as supplying a potential reward (in utilities) which,
+from the subject's state of information
+about the propensity of occurence of the different $\omega \in \Omega$,
+at least balances out potential losses with potential benefits.
+Thus, all gambles $X$ that will never incur a loss,
+$\{X: X \ge 0\}$, where $X \ge 0$ denotes that $X(\omega) \ge 0\ \forall \omega \in \Omega$,
+should be contained in a coherent set of desirable gambles $\mathcal{D}$.
+Indeed, the notion of \emph{coherence} for lower previsions translates to sets of desirable gambles as follows:
+$\mathcal{D} \subset \mathcal{L}$ is coherent if and only if
+\parencite[p.~137]{2000:walley::towards}
+\begin{enumerate}[(D1)]
+\item $0 \notin \mathcal{D}$ ($0$ is the gamble $X$ with $X(\omega) = 0\ \forall \omega \in \Omega$),
+\item if $X \in \mathcal{L}$ and $X > 0$ then $X \in \mathcal{D}$\\
+($X > 0$ denotes that $X \ge 0$ and $\exists \omega \in \Omega: X(\omega) > 0$),
+\item if $X \in \mathcal{D}$ and $c \in \posreals$ then $cX \in \mathcal{D}$,
+\item if $X \in \mathcal{D}$ and $Y \in \mathcal{D}$ then $X+Y \in \mathcal{D}$.
+\end{enumerate}
+A coherent $\mathcal{D}$ is thus a convex cone containing all positive gambles
+$\{X: X > 0\}$ but not the zero gamble.%
+\footnote{As the weaker property, a set of gambles $\mathcal{D}$ avoids sure loss
+if $\posi(\mathcal{D}) \cap \{X: X(\omega) < 0\ \forall \omega \in \Omega\} = \emptyset$.
+Here, $\posi(\mathcal{D}) := \{ \sum_{i=1}^n c_i X_i : c_i \in \posreals, X_i \in \mathcal{D}, n \in \naturals \}$
+is the positive hull of $\mathcal{D}$, 
+i.e.\ the set of gambles resulting from application of (D3) and (D4) on $\mathcal{D}$.}
 
+A coherent set of desirable gambles can be derived from a coherent lower prevision $\El$ by
+\parencite[p.~139]{2000:walley::towards}
+\begin{align*}
+\mathcal{D} = \left\{ X \in \mathcal{L} :
+X > \sum_{i=1}^n c_i (X_i - \El[X_i] + \epsilon) \text{ for some } n \in \naturals, c_i > 0, \epsilon > 0, X_i \in \mathcal{L} \right\}\,.
+\end{align*}
+If we adopt $\El$ as the lower prevision expressing our beliefs about $\Omega$,
+gambles $X_i - \El[X_i] + \epsilon$ should be desirabe for us;
+considering the price $\El[X_i]$ as the supremum acceptable buying price for $X_i$,
+the gamble $X_i - \El[X_i]$ should---in the subject's view---be at least as good as the zero gamble.
+
+Conversely, a coherent lower prevision can be deduced from a coherent set of desirable gambles by
+$\El[X] := \sup\{c: X - c \in \mathcal{D}\}$.
+%\parencite[p.~139]{2000:walley::towards}
+If we make $c$ as large as possible such that the gamble $X-c$ is still acceptable to us,
+then $\El[X]$ simply is our supremum acceptable buying price for $X$.
+
+As already mentioned, sets of desirable gambles are a more general formulation
+as compared to lower previsions, stemming from the fact that there can be
+several sets $\mathcal{D}$ leading to the same $\El$ \parencite[p.~139]{2000:walley::towards}.%
+\footnote{Another formulation equivalent to sets of desirable gambles is the description as \emph{partial preference orderings},
+where a partial ordering of the gambles in $\mathcal{L}$ is given to express beliefs on $\Omega$
+\parencite[p.~138]{2000:walley::towards}.}
 
 \paragraph{Sets of Probability Distributions}
+
+We turn now to the formulation of imprecise probability distributions
+as sets of (precise) probability distributions,
+the formulation applied in thsi thesis.
+
 
 link to lower previsions, convexity, coherence.
 
 lower envelope theorem: itip Prop.~3.7, p.~58, 1991:walley Prop.~3.3.3
+
+itip sec.3.2.2, 3.3.3
 
 \paragraph{Inference Procedure}
 

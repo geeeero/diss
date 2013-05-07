@@ -700,18 +700,19 @@ All inferences are based on the posterior\\
 \uncover<3->{%
 \begin{block}{Generalised Bayesian inference procedure}
 \centerline{set of priors + likelihood = set of posteriors}
-using \emph{Generalised Bayes' Rule} (GBR, Walley 1991)\\
-= element-wise application of Bayes' Rule \emph{\small (set of priors must be convex)}\\
-All inferences are based on the set of posteriors%\\
+All inferences are based on the set of posteriors\\
+\emph{Coherence} (consistency of inferences) ensured by using\\
+\emph{Generalised Bayes' Rule} (GBR, Walley 1991)\\
+= element-wise application of Bayes' Rule\\ %\emph{\small (set of priors must be convex)}\\
 %(e.g., point estimate = $\big[\El[\psib\mid\nng,\ynr],\Eu[\psib\mid\nng,\ynr]\big]$)
 \end{block}}
 
 }
 
-\frame{\frametitle{Set of Priors must be Convex}
+\frame{\frametitle{Set of Priors can be Convex}
 
 \uncover<1->{%
-\begin{block}{Set of Priors}
+\begin{block}{Convex Set of Priors}
 %\vspace*{-1ex}
 %\begin{align*}
 %\MZ &= \text{conv}\big(\big\{p(\psib\mid\nzg,\byzr) \colon (\nzg,\byzr) \in \PZc\big\}\big)\vspace*{-0.5ex}%
@@ -719,15 +720,15 @@ All inferences are based on the set of posteriors%\\
 \centerline{$\MZ = \text{conv}\big(\big\{p(\psib\mid\nzg,\byzr) \colon (\nzg,\byzr) \in \PZc\big\}\big)$}
 %Model for prior information =
 $\MZ$ = {\small finite convex mixtures of canonical conjugate priors defined by} $\PZc$\\
-Convex set of probability distributions ensures \emph{coherence}\\ %{\small(Walley 1991)}\\
+%Convex set of probability distributions %\\ %{\small(Walley 1991)}\\
 %of inference procedure
-(as in standard Bayesian inference procedure)
+%(as in standard Bayesian inference procedure)
 \end{block}}
 
 \uncover<2->{%
 Updating \& mixture commute \then\ set of posteriors can be written as\ldots
 
-\begin{block}{Set of Posteriors}
+\begin{block}{Convex Set of Posteriors}
 %\vspace*{-1ex}
 %\begin{align*}
 %\MN &= \text{conv}\big(\big\{p(\psib\mid\nng,\bynr) \colon (\nng,\bynr) \in \PNc\big\}\big)\vspace*{-0.5ex}%
@@ -738,6 +739,10 @@ where $\PNc = \big\{(\nng,\bynr) \colon (\nzg,\byzr) \in \PZc \big\}$.\\
 $\MN$ = finite convex mixtures of canonical conjugate posteriors\\ defined by set of updated hyperparameters $\PNc$
 \end{block}}
 
+\uncover<3->{%
+Convex sets make the procedure very general (mixture distributions),\\
+but useful only for inferences that are \emph{linear} in the posteriors\\
+{\small (expectations: yes, variances: no)}}
 }
 
 \frame{\frametitle{Generalised Bayesian Inference Procedure}

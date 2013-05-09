@@ -148,11 +148,11 @@ are
 \item sets of desirable gambles.
 \end{enumerate}
 It is possible to switch between these formulations,
-although (ii) is slightly more general than (i),
-and in turn, also (iii) is more general than (ii) \parencite{2000:walley::towards}.
+although (ii) can be slightly more general than (i),
+and to a greater extent, (iii) is more general than (ii) \parencite{2000:walley::towards}.
 
 We will first introduce lower previsions
-and the most important rationality requirements guiding their set-up and use***,
+and the most important rationality requirements guiding their assessment and use,
 then have a brief look at sets of desirable gambles as the most comprehensive formulation.
 Sets of probability distributions, as the formulation used to describe inference models in this thesis,
 are then explained in relation to the other formulations,
@@ -278,7 +278,7 @@ then coherence is equivalent to the three following conditions
 \parencite[e.g.,][p.~11]{1996:walley::expert}:
 \begin{enumerate}[(i)]
 \item $\El[X] \ge \inf_{\omega \in \Omega} X(\omega)$,
-i.e., one is always prepared to pay less for a gamble than its minimum possible reward.
+i.e., one is always prepared to buy a gamble for less than its minimum possible reward.
 (Being prepared to pay more than $\inf_{\omega \in \Omega} X(\omega)$ amounts to make a commitment to the
 possibility that other states $\omega'$ with $X(\omega') > \inf_{\omega \in \Omega} X(\omega)$ may occur.)
 \item $\El[\lambda X] = \lambda \El[X]$ for all $X \in \mathcal{K}$, $\lambda > 0$.
@@ -290,7 +290,7 @@ This illustrates that prices are to be understood on a linear utility scale
 for which this condition may not be reasonable.
 \item $\El[X+Y] \ge \El[X] + \El[Y]$.
 This property of superlinearity implies that the supremum acceptable buying price for $X$ and $Y$ combined
-should be higher than the supremum acceptable buying prices for each of them individually.
+should be at least the sum of supremum acceptable buying prices for each of $X$ and $Y$ individually.
 It could be, e.g., that $X$ and $Y$ balance out each other in a way that
 buying both of them at once makes the transaction less risky,
 such that a higher price limit for $X + Y$ is acceptable.
@@ -301,7 +301,7 @@ cannot directly accommodate such reasoning.
 Consequently, in analogy to deducing all logical implications from
 a set of propositions, there is a technique, %for lower previsions,
 called \emph{natural extension}, that adjusts
-a given assessment of lower previsions (on some set of gambles $\mathcal{K}$, which avoids sure loss)
+a given assessment of lower and upper previsions (on some set of gambles $\mathcal{K}$, which must avoid sure loss)
 to make it coherent, in the least committal way as possible%
 \footnote{This means that there may be other adjustments of $\El$ that are compatible
 with the initial assessments, but are less conservative,
@@ -310,7 +310,7 @@ i.e., give higher supremum buying prices.}
 This is accomplished by a linear program,
 and may involve raising $\El[X]$ for some $X \in \mathcal{K}$ in order to make them
 coherent to the values of $\El[Y]$, supremum buying prices for some other gambles $Y \in \mathcal{K}$ as previously assessed,
-or newly defining $\El[Z]$ for gambles $Z$ not considered so far---explaining the name `extension'.
+or newly defining $\El[Z]$ for gambles $Z$ not considered during assessment---explaining the name `extension'.
 
 \paragraph{Sets of Desirable Gambles}
 
@@ -322,14 +322,14 @@ However, a detailed understanding of this concept is not necessary for the purpo
 and the account below is inteded to complete the overview on the theory of imprecise probability.
 
 The \emph{gambles} here are again a description of an uncertain reward as above, 
-all bounded functions from $\Omega$ to $\reals$
-forming the space $\mathcal{L}$ of all gambles.
+and all bounded functions from $\Omega$ to $\reals$
+are forming the space $\mathcal{L}$ of all gambles.
 The assessment in this formulation lies in the designation of a subset $\mathcal{D}$
-of all gambles $\mathcal{L}$ as \emph{desirable},
-i.e., as supplying a potential reward (in utilities) which,
+of all gambles $\mathcal{L}$ as \emph{desirable gambles},
+i.e., as supplying an uncertain reward (in utilities) for which,
 from the subject's state of information
 about the propensity of occurence of the different $\omega \in \Omega$,
-at least balances out potential losses with potential benefits.
+the potential benefits outweigh the potential losses.
 Thus, all gambles $X$ that will never incur a loss,
 $\{X: X \ge 0\}$, where $X \ge 0$ denotes that $X(\omega) \ge 0\ \forall \omega \in \Omega$,
 should be contained in a coherent set of desirable gambles $\mathcal{D}$.
@@ -343,8 +343,8 @@ $\mathcal{D} \subset \mathcal{L}$ is coherent if and only if
 \item if $X \in \mathcal{D}$ and $c \in \posreals$ then $cX \in \mathcal{D}$,
 \item if $X \in \mathcal{D}$ and $Y \in \mathcal{D}$ then $X+Y \in \mathcal{D}$.
 \end{enumerate}
-A coherent $\mathcal{D}$ is thus a convex cone containing all positive gambles
-$\{X: X > 0\}$ but not the zero gamble.%
+In $\mathcal{L}$, a coherent set of gambles $\mathcal{D}$ is thus a convex cone
+containing all positive gambles $\{X: X > 0\}$ but not the zero gamble.%
 \footnote{As the weaker property, a set of gambles $\mathcal{D}$ avoids sure loss
 if $\posi(\mathcal{D}) \cap \{X: X(\omega) < 0\ \forall \omega \in \Omega\} = \emptyset$.
 Here, $\posi(\mathcal{D}) := \{ \sum_{i=1}^n c_i X_i : c_i \in \posreals, X_i \in \mathcal{D}, n \in \naturals \}$
@@ -360,7 +360,7 @@ X > \sum_{i=1}^n c_i (X_i - \El[X_i] + \epsilon) \text{ for some } n \in \natura
 If we adopt $\El$ as the lower prevision expressing our beliefs about $\Omega$,
 gambles $X_i - \El[X_i] + \epsilon$ should be desirabe for us;
 considering the price $\El[X_i]$ as the supremum acceptable buying price for $X_i$,
-the gamble $X_i - \El[X_i]$ should---in the subject's view---be at least as good as the zero gamble.
+the gamble $X_i - \El[X_i]$ should---in our view---be at least as good as the zero gamble.
 
 Conversely, a coherent lower prevision can be deduced from a coherent set of desirable gambles by
 $\El[X] := \sup\{c: X - c \in \mathcal{D}\}$.
@@ -369,7 +369,7 @@ If we make $c$ as large as possible such that the gamble $X-c$ is still acceptab
 then $\El[X]$ simply is our supremum acceptable buying price for $X$.
 
 As already mentioned, sets of desirable gambles are a more general formulation
-as compared to lower previsions, stemming from the fact that there can be
+as compared to lower previsions, illustrated by the fact that there can be
 several sets $\mathcal{D}$ leading to the same $\El$ \parencite[p.~139]{2000:walley::towards}.%
 \footnote{Another formulation equivalent to sets of desirable gambles is the description as \emph{partial preference orderings},
 where a partial ordering of the gambles in $\mathcal{L}$ is given to express beliefs on $\Omega$
@@ -377,18 +377,74 @@ where a partial ordering of the gambles in $\mathcal{L}$ is given to express bel
 
 \paragraph{Sets of Probability Distributions}
 
-We now turn to the formulation of an imprecise probability assessments
-as sets of (precise) probability distributions,
-the formulation applied in this thesis.
+We now turn to the formulation of imprecise probability assessments
+applied in this thesis, 
+sets of (precise) probability distributions,
+which are also called \emph{credal sets} \parencite[p.~136]{2000:walley::towards}.
+
+There is a one-to-one correspondence between lower coherent previsions
+and non-empty, closed and convex sets of (precise) probability distributions
+\parencite[\S 3.6.1]{1991:walley}.
+When dropping the conditions of convexity and closure,
+sets of probability distributions can be slightly more general
+than coherent lower previsions \parencite[\S 5]{2000:walley::towards}.
+However, the nature of this slight increase in generality is not relevant here,
+although we will consider the question of convexity more closely later.
+
+Given a coherent lower prevision $\El$,
+the corresponding set of distributions $\mathcal{M}$
+is closed and convex, and consists of all probability distributions
+whose expectations $\E_p$ dominate $\El$, i.e.,
+\begin{align*}
+\mathcal{M} &= \{ p(\omega) : \E_p[X] \ge \El[X]\ \forall X \in \mathcal{L}\}\,.
+\end{align*}
+In fact, for all $p \in \mathcal{M}$ and $X \in \mathcal{L}$,
+the relation $\El[X] \le \E_p[X] \le \Eu[X]$ holds;
+the set $\mathcal{M}$ consists of all probability distributions
+whose expectations are compatible with the bounds defined by
+the lower prevision $\El$ and its conjugate upper prevision $\Eu$.
+
+Conversely, given a non-empty set of probability distributions $\mathcal{M}$,
+where $\mathcal{M}$ needs not necessarily be closed or convex,
+the corresponding coherent lower prevision, for any gamble $X \in \mathcal{L}$,
+is defined by
+\begin{align*}
+\El[X] &= \inf_{p \in \mathcal{M}} \E_p[X]\,,
+\end{align*}
+and in this case, $\El$ is called the \emph{lower envelope} of $\E_p$, $p \in \mathcal{M}$
+\parencite[p.~132]{1991:walley}.
+
+There are very important relations between the notions of avoiding sure loss and coherence on the one hand,
+and the formulation of imprecise probability assessments via sets of probability distributions on the other hand.
+The two equivalences below are known as the \emph{lower envelope theorem} \cite[\S 3.3.3]{1991:walley}.
+\begin{enumerate}[(a)]
+\item $\El$ avoids sure loss if and only if the corresponding set $\mathcal{M}$ is non-empty.
+Thus, an assessment $\El$ for which there is no compatible probability distribution
+must incur a sure loss, and cannot be considered as reasonable.
+On the contrary, any imprecise probability distribution defined by assigning
+a set $\mathcal{M}$ of probability distributions avoids sure loss.
+\item Furthermore, $\El$ is coherent if and only if it can be
+described as the lower envelope based on its corresponding $\mathcal{M}$.
+Therefore, all coherent lower previsions are characterised as
+lower envelopes based on some set of precise distributions $\mathcal{M}$,
+and imprecise probability assignments established via a such set $\mathcal{M}$
+are coherent.
+\end{enumerate}
+
+Although the one-to-one correspondence mentioned above holds only for closed and convex sets $\mathcal{M}$,
+there is nothing in the theory preventing us to consider open or non-convex sets $\mathcal{M}$ as the initial assessment,
+because lower and upper previsions derived from $\mathcal{M}$ are automatically coherent.
 
 
-link to lower previsions, convexity, coherence.
-
-lower envelope theorem: itip Prop.~3.7, p.~58, 1991:walley Prop.~3.3.3
-
-itip sec.3.2.2, 3.3.3
+%link to lower previsions, convexity
+%
+%lower envelope theorem: itip Prop.~3.7, p.~58, 1991:walley Prop.~3.3.3
+%
+%itip sec.3.2.2, 3.3.3
 
 \paragraph{Inference Procedure}
+
+GBR: coherence of prior and posterior
 
 paragraph from itip
 

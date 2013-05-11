@@ -18,6 +18,9 @@
 \item boatshape?
 \end{itemize}
 
+Sec.~\ref{sec:imprecisebayes} is based on \textcite[\S 8.4.2]{itip-statinf}
+
+
 After having seen a detailed example for Bayesian inference using sets of conjugate priors in Section~\ref{sec:commoncause},
 in the main chapter of this thesis,
 we will give now a general introduction to the methodology of Bayesian inference with sets of conjugate priors.
@@ -432,9 +435,9 @@ are coherent.
 \end{enumerate}
 
 Although the one-to-one correspondence mentioned above holds only for closed and convex sets $\mathcal{M}$,
-there is nothing in the theory preventing us to consider open or non-convex sets $\mathcal{M}$ as the initial assessment,
-because lower and upper previsions derived from $\mathcal{M}$ are automatically coherent.
-
+there is nothing in the theory preventing us to consider
+open or non-convex sets $\mathcal{M}$ as our probability model, %the initial assessment,
+because lower and upper previsions derived from $\mathcal{M}$ are nevertheless coherent.
 
 %link to lower previsions, convexity
 %
@@ -442,17 +445,81 @@ because lower and upper previsions derived from $\mathcal{M}$ are automatically 
 %
 %itip sec.3.2.2, 3.3.3
 
-\subsection{Inference Procedure}
+\paragraph{Conditioning and the Generalised Bayes' Rule}
 
-GBR: coherence of prior and posterior
+To use imprecise probability distributions for statistical inference
+in the same way as usual Bayesian inference employs precise probability distributions,
+we need a notion of \emph{conditioning} or \emph{updating} for imprecise probability distributions.
+In analogy to the procedure described in Section~\ref{sec:bayes-inference},
+the objective is to express prior knowledge on a parameter of interest $\vartheta$
+by an imprecise prior distribution,
+and all inferences shall be based on a (imprecise) posterior distribution derived from it.
+As in Bayesian inference with precise distributions,
+the now imprecise prior should be conditioned on the observed data $\x$.
 
-paragraph from itip
+A coherent lower prevision can be conditioned on an event $B$
+by using the so-called \emph{Generalised Bayes' Rule} \parencite[\S 6.4]{1991:walley},
+by which the conditioned coherent lower prevision $\El[X\mid B]$
+based on a lower prevision $\El[X]$ can be derived.
+$\El[X\mid B]$ is then also coherent to $\El[X]$, i.e.,
+it is a model satisfying the rationality criteria as discussed for $\El[X]$
+now also for the beliefs expressed in $\El[X]$ contingent on $B$.
+
+In the formulation via a credal set, the Generalised Bayes' Rule
+is equivalent to conditioning each distribution in the credal set on $B$
+\parencite[\S 6.4.2]{1991:walley},
+and the set of conditioned distributions is thus an equivalent model for $\El[X\mid B]$.
+This result is known as the \emph{lower envelope theorem for conditional previsions}.
+
+%GBR: coherence of prior and posterior
+
+\subsection{Imprecise Bayesian Inference Procedure}
+\label{sec:imprecisebayes}
+
+%paragraph from itip
+
+Walley has thus established a general framework for coherent statistical inference under imprecise probabilities.
+It allows to transfer the basic aspects of traditional Bayesian inference to the generalized setting,
+as the fundamental paradigms of Bayesian inference as discussed in Section~\ref{sec:bayes-inference} are maintained.
+Prior knowledge on the parameter, expressed by a now imprecise prior distribution $\Pi(\cdot)$ with credal set $\mathcal{M}$,
+is updated in the light of the observed sample $\x$ to the posterior $\Pi(\cdot \mid \x)$,
+with the credal set $\mathcal{M}_{\vert \x}$,
+and this statistical inference is again understood as a deductive process,
+obtained directly by conditioning on the observed sample,
+now according to the Generalized Bayes' Rule that ensures coherence of this inferential process.
+For practical implementation of the Generalized Bayes' Rule, the lower envelope theorem for conditional 
+previsions mentioned above %\parencite[\S~6.4.2]{1991:walley}
+is of particular relevance.
+The prior credal set $\mathcal{M}$ is updated element by element to obtain the posterior credal set %$\mathcal{M}_{\vert \mbf{x}}$
+\begin{align*}
+\mathcal{M}_{\vert \mbf{x}} = \left\{ p(\cdot \mid \x) :  p(\cdot) \in \mathcal{M} \right\}\,,
+\end{align*}
+consisting of all posterior distributions obtained
+by traditional Bayesian updating of elements of the prior credal set.
+
+Walley's lower envelope theorem also establishes a close connection to robust Bayesian approaches and Bayesian sensitivity analysis
+(see, e.g.\ \parencite{2000:rios, 2005:ruggeri}) based on sets of distributions.
+The basic difference is in the interpretation of the underlying sets of probability distributions.
+While in the imprecise probability context a credal set is understood as an entity of its own,
+the robust Bayesian approach emphasizes the single elements in the set,
+and very often discusses the effects of deviations from a certain central element.
+%As a consequence, for the robust Bayesian point of view it is quite natural and common
+%to impose some further regularity conditions on the elements in the set of distributions,
+%like additional smoothness constraints or unimodality of the underlying densities.
+%Since lower and upper posterior probabilities are determined by the extreme points of the underlying credal sets, this distinction may indeed matter substantially in practice.
+%\bigskip
+Robust Bayesian inference and Bayesian sensitivity analysis
+understand robustness and insensitivity mostly as desirable properties,
+while the imprecise probability framework may use such behavior actively in modelling,
+in particular in the context of prior-data conflict (see Section~\ref{sec:imprecisebayes-conjugate})***.
 
 
 \subsection{Related Concepts}
 
 many links to concepts that aim to complement probability theory as tool for handling uncertainty,
 like possibilistic reasoning, fuzzy probabilities, etc.
+
+
 
 
 \section{***Motivations for IP}
@@ -471,6 +538,14 @@ and in recent times most prominently by scientists involved in the development o
 
 
 \subsection{Other Motives}
+
+
+\section{Generalised Bayesian Inference for Sets of Conjugate Priors in Exponential Families}
+\label{sec:imprecisebayes-conjugate}
+
+section itip / JSTP paper
+
+
 
 %for later in IDM/IBBM discussion:\\
 %we use Walley's \cite[\S 7.7.3, p.~395]{1991:walley} $(s,\vec{t})$ notation for the hyperparameters.

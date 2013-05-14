@@ -122,20 +122,20 @@ The inferential task is to learn the true element $\p^* \in \mathcal{Q}$ from mu
 In this thesis, generally, so-called \emph{parameteric models} are considered,
 where $\mathcal{Q}$ is pa\-ra\-me\-trized by a parameter $\vartheta$ of finite dimension,
 assuming values in the so-called \emph{parameter space} $\Theta$, $\Theta \subseteq \reals^q, \ q < \infty$,
-i.e.\ ${\cal Q}=\left(p_\vartheta\right)_{\vartheta \in \Theta}$.
-Here, the different sampling distributions $p_\vartheta$ are implicitly understood as belonging to a specific class of distributions
+i.e.\ ${\cal Q}=\left(\p_\vartheta\right)_{\vartheta \in \Theta}$.
+Here, the different sampling distributions $\p_\vartheta$ are implicitly understood as belonging to a specific class of distributions
 (e.g., normal distributions, as in Section~\ref{sec:normaldist} below),
 the basic type of which is assumed to be known completely,
 and only some characteristics $\vartheta$ (e.g., the mean) of the distributions are unknown.
 
 Throughout, we will assume (as is the case for all common applications)
-that the underlying candidate distributions $p_\vartheta$ of the random quantity $X$
+that the underlying candidate distributions $\p_\vartheta$ of the random quantity $X$
 are either discrete or absolutely continuous with respect to the Lebesgue measure
-(see, e.g. \textcite[pp.~32f, 38]{1993:karr} for some technical details) for every $\vartheta \in \Theta$.
-Then it is convenient to express every $p_\vartheta$ in the discrete case by its \emph{mass function} $f_\vartheta$,
-with $f_\vartheta(x):=p_\vartheta(X=x),\forall x \in \mathcal{X}$,
+\parencite[see, e.g., ][pp.~32f, 38 for some technical details]{1993:karr} for every $\vartheta \in \Theta$.
+Then it is convenient to express every $\p_\vartheta$ in the discrete case by its \emph{mass function} $f_\vartheta$,
+with $f_\vartheta(x):=\p_\vartheta(X=x),\forall x \in \mathcal{X}$,
 and in the continuous case by its \emph{probability density function} (pdf) $f_\vartheta$,
-where $f_\vartheta$ is such that $p_\vartheta(X \in [a,b]) = \int_a^b f_\vartheta(x) \dd x$.
+where $f_\vartheta$ is such that $\p_\vartheta(X \in [a,b]) = \int_a^b f_\vartheta(x) \dd x$.
 
 An \emph{i.i.d.\ sample of size} $n$ (where \emph{i.i.d.}\ abbreviates independent, identically distributed)
 \emph{based on the parametric statistical model} %
@@ -143,14 +143,14 @@ $(\mathcal{X}, (p_\vartheta)_{\vartheta \in \Theta})$ is a vector
 \[
 \vec{X} = (X_1, \ldots, X_n)^\tra %\label{120722-1}
 \]
-of independent random quantities $X_i$ with the same distribution $p_\vartheta$.
-Then $\vec{X}$ is defined on $\mathcal{X}^n$ with probability distribution $p_\vartheta^{\otimes n}$
+of independent random quantities $X_i$ with the same distribution $\p_\vartheta$.
+Then $\vec{X}$ is defined on $\mathcal{X}^n$ with probability distribution $\p_\vartheta^{\otimes n}$
 as the $n$-dimensional product measure describing the independent observations.
 For Bayesian approaches as discussed here,
-independence is often replaced by exchangeability (see, e.g., \textcite[\S 4.2]{2000:bernardosmith}).
-$p_\vartheta^{\otimes n}$ thus has the probability mass or density function
+independence is often replaced by exchangeability \parencite[see, e.g.,][\S 4.2]{2000:bernardosmith}.
+$\p_\vartheta^{\otimes n}$ thus has the probability mass or density function
 \[
-\prod_{i=1}^{n} f_\vartheta(x_i) =: f_\vartheta(x_1, \ldots, x_n).%\label{120710-2}
+f_\vartheta(x_1, \ldots, x_n) := \prod_{i=1}^{n} f_\vartheta(x_i)\,.%\label{120710-2}
 \]
 The term \emph{sample} is then also used for the concretely observed value(s) $\x=(x_1, \ldots, x_n)^T$.%
 %\footnote{Throughout, random quantities are denoted by capital letters, their values, or realizations, by small letters.}
@@ -165,7 +165,7 @@ A common model for observations that in principle can assume any value on the re
 is the \emph{normal distribution} with parameters $\mu$ and $\sigma^2$, also called the \emph{Gaussian distribution}.
 Typical examples for data of this kind are scores in intelligence testing, or technical measurements in general.%
 \footnote{The normal distribution is distinguished by the central limit theorem
-(see, e.g., \textcite[\S 7.3]{1993:karr}, or \textcite[\S 9]{1968:breiman}), stating that, under regularity conditions,
+(see, e.g., \cite[\S 7.3]{1993:karr}, or \cite[\S 9]{1968:breiman}), stating that, under regularity conditions,
 the distribution of an appropriately scaled sum of $n$ standardized random variables converges to a normal distribution
 for $n \to \infty$.}
 
@@ -241,7 +241,11 @@ we will now give a short introduction to the basic principles of Bayesian infere
 
 The Bayesian approach requires (possibly subjective) knowledge on the parameter $\vartheta$ to be expressed by a probability distribution on%
 \footnote{Again we implicitly assume that $\Theta$ is complemented by an appropriate $\sigma$-field $\sigma(\Theta)$.}
-$\Theta$, with probability mass or density function $p(\vartheta)$ called \emph{prior distribution}.
+$\Theta$, with the probability mass or density function $p(\vartheta)$ called \emph{prior distribution}.
+Indeed, the basic assumption in the Bayesian approach is that \emph{any} prior information about $\Theta$
+can be sufficiently expressed by a (precise) prior $p(\theta)$.%
+\footnote{This assumption is refuted most prominently by \textcite{1991:walley},
+whose theory of Bayesian inference without a need for precise priors will be discussed in Section~\ref{sec:ip-intro}.}
 Interpreting the elements $f_\vartheta(\x)$ of the sampling model as conditional distributions of the sample given the parameter,
 denoted by $f(\x\mid\vartheta)$ and called \emph{likelihood},
 turns the problem of statistical inference into a problem of probabilistic deduction,
@@ -279,14 +283,14 @@ implies the use of conjugate priors \parencite[p.~276]{2000:bernardosmith}.}
 
 Fortunately, there are general results guiding the construction of conjugate priors in several models models used most frequently in practice,
 namely in the case where the sample distribution belongs to a so-called \emph{(regular) canonical exponential family}
-\parencite[pp.~202 and 272f]{2000:bernardosmith}. %Def.~4.12 and Prop.~5.6
+\parencite[e.g.,][pp.~202 and 272f]{2000:bernardosmith}. %Def.~4.12 and Prop.~5.6
 This indeed covers many sample distributions relevant in a statistician's everyday life,
 like Normal and Multinomial models, Poisson models, or Exponential and Gamma models.
 After presentation of the general framework, we will discuss its instantiation for the Normal
 and the Multinomial sampling models as introduced in Sections~\ref{sec:normaldist} and \ref{sec:multinomdist} above.
 
 A sample distribution
-(from now on understood directly as the distribution $p_\vartheta^{\otimes n}$ of an i.i.d.\ sample $\x$ of size $n$)
+(from now on understood directly as the distribution $\p_\vartheta^{\otimes n}$ of an i.i.d.\ sample $\x$ of size $n$)
 is said to belong to the \emph{(regular) canonical exponential family} if its density or mass function satisfies the decomposition
 \begin{align}
 \label{eq:expofam-sampledens}
@@ -332,7 +336,7 @@ In this setting, $\yz$ and $\yn$ can be seen as the parameter describing the mai
 and thus we will call them \emph{main prior} and \emph{main posterior parameter}, respectively.
 $\yz$ can also be understood as a prior guess for the random quantity $\ttau(\x) := \tau(\x)/n$ summarizing the sample,
 as $\E[\ttau(\x) \mid \psi] = \nabla\mbf{b}(\psi)$,
-where in turn $\E[\nabla\mbf{b}(\psi) \mid \nz, \yz] = \yz$ \parencite[Prop.~5.7, p.~275]{2000:bernardosmith}.
+where in turn $\E[\nabla\mbf{b}(\psi) \mid \nz, \yz] = \yz$ \parencite[e.g.,][Prop.~5.7, p.~275]{2000:bernardosmith}.
 
 Characteristically, $\yn$ is a weighted average of this prior guess $\yz$ and the sample `mean' $\ttau(\x)$,
 with weights $\nz$ and $n$, respectively.%
@@ -347,7 +351,7 @@ corresponds to the trust in conclusions based on such a real sample \parencite[p
 
 The posterior $p(\psi \mid \nn, \yn)$ can be transformed back to a distribution on $\theta$
 in order to deal with a commonly known parameter or distribution family for it
-(as we will do, e.g., in Section~\ref{sec:beta-binom} below)..
+(as we will do, e.g., in Section~\ref{sec:beta-binom} below).
 Besides the posterior itself, also the posterior predictive distribution
 \begin{align}
 \label{eq:posteriorpredictive}
@@ -390,7 +394,7 @@ usually denoted by $H_0$ and $H_1$.
 \end{enumerate}
 
 \emph{Predictive conclusions} instead summarize the information by statements on properties of typical further units,
-either by describing the whole distribution (as with the posterior predictive \eqref{eq:posteriorpredictive},
+either by describing the whole distribution (as with the posterior predictive \eqref{eq:posteriorpredictive}),
 or by certain summary measures.
 Similar to static conclusions, one can thus consider, e.g.,
 \begin{enumerate}
@@ -411,6 +415,8 @@ where, more generally, the conclusion is to select certain utility maximizing or
 We will flesh this out to some extent in the examples below.%
 \footnote{For more details, see, e.g., \textcite[\S 2]{2007:robert},
 where, e.g., loss functions usually utilized in statistical settings are described in \S 2.5, pp.~77ff.}
+
+\medskip
 
 The concretion of the framework for Bayesian inference with canonical conjugate priors
 as presented in Section~\ref{sec:regularconjugates}
@@ -532,10 +538,10 @@ to each of which a prior probability is assigned \parencite[\S 5.2.4]{2007:rober
 An overview on Bayesian testing, including a detailed comparison with classical testing procedures,
 is given in \textcite[\S 5.2--5.4]{2007:robert}.
 
-Especially in model selection problems, evidence against or in favor of a hypothesis
+Especially in model selection problems, evidence against, or in favor of, a hypothesis
 is often not expressed in posterior probability for hypotheses, but by means of the so-called \emph{Bayes factor},
 arising when considering odds instead of probability:%
-\footnote{See, e.g., \textcite{2007:robert}, \S 5.2.2, Def.~5.2.5, p.~227, or \textcite{1995:kass-raftery}, p.~776.}
+\footnote{See, e.g., \textcite[\S 5.2.2, Def.~5.2.5, p.~227]{2007:robert}, or \textcite[p.~776]{1995:kass-raftery}.}
 \begin{align*}
 \frac{p(H_1\mid\vec{x})}{p(H_0\mid\vec{x})} &= \frac{f(\vec{x}\mid H_1)}{f(\vec{x}\mid H_0)} \cdot \frac{p(H_1)}{p(H_0)}
 \end{align*}

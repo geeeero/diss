@@ -40,9 +40,9 @@ whereas vectors are denoted by bold italic letters ($\vec{x}$, $\btheta$).
 Matrices are written in bold regular (i.e., non-italic) uppercase letters, like $\mbf{X}$, $\mbf{Z}$,
 and transposed matrices are marked by a raised uppercase sans serif T ($\mbf{X}^\tra$).
 
-For statistical models, samples, i.e. realisations of random variables,
+For statistical models, samples, i.e.\ realisations of random variables,
 are denoted by lowercase letters ($x$, $\x$),
-random variables by uppercase letters ($X$, $\vec{X}$);
+random quantities by uppercase letters ($X$, $\vec{X}$);
 however, as this thesis is mostly concerned with Bayesian methods,
 the strict distrinction between random variables and `fixed' quantities as made in frequentist statistics
 is not maintained throughout most of the thesis.
@@ -52,20 +52,27 @@ Some special sets are denoted as follows:
 the real numbers by $\reals$, positive real numbers by $\posreals$,
 and the space of $q$-dimensional tuples of real numbers by $\reals^q$.
 
-In the Bayesian setting, prior and posterior probability distributions (on parameters) are usually denoted by lowercase letter $p$,
-while sample models (distributions on observable quantities) are denoted by lowercase letter $f$:
+In the Bayesian setting, prior and posterior probability distribution functions, i.e.\ densities on parameters,
+are usually denoted by lowercase letter $p$;
+sample model densities (probability distribution functions on observable quantities)
+are denoted by lowercase letter $f$:
 $f(x)$, $p(\theta)$.
 
-Cumulative distribution functions are denoted by uppercase letter $\cdf$: $\cdf(x) := \int_{-\infty}^x f(u) \dd u$;
-probability measures, e.g.\ for subsets $A$ of a sample space $\Omega$, are denoted by uppercase $\p$,
+This distinction for densities on parameters or samples
+is not maintained for the associated probability measures and cumulative distribution functions:
+cumulative distribution functions are denoted by uppercase letter $\cdf$,
+e.g., $\cdf(x) := \int_{-\infty}^x f(u) \dd u$, or $\cdf(\theta) := \int_{-\infty}^\theta f(\psi) \dd \psi$;
+probability measures, e.g.\ for subsets $A$ of a sample space $\Omega$,
+or a subset $\Theta_1$ of the parameter space $\Theta$,
+are denoted by uppercase $\p$,
 i.e.\ $\p(A) = \sum_{\omega \in A} f(\omega)$ if $\Omega$ is countable,
-and $\p(A) = \int_A f(\omega) \dd \omega$ otherwise.
+or $\p(\Theta_1) = \int_{\Theta_1} p(\theta) \dd \theta$ for continuous $\Theta$.
 
 Expectation and variance of a random quantity $X$ are denoted by $\E[X]$ and $\V(X)$, respectively.
 In a Bayesian setting, quantities identifying the distribution
-with respect to which expectation and variance are calculated
-are added in the argument, seperated by a vertical line, as in $f(x\mid\theta)$, $\E[\theta\mid\nz, \yz]$.
-(This notation refers to the auffassung in Bayesian statistics that ****)
+(with respect to which expectation and variance are calculated)
+are added in the argument, seperated by a vertical line, as in $f(x\mid\theta)$, or $\E[\theta\mid\nz, \yz]$.
+%(This notation refers to the auffassung in Bayesian statistics that ****)
 
 Other notational conventions are declared upon introduction of the concepts they are representing.
 

@@ -2,14 +2,17 @@
 
 \chapter*{Summary}
 
-This thesis is concerned with the generalization of Bayesian inference towards the use of imprecise or interval probability,
+This thesis is concerned with the generalisation of Bayesian inference towards the use of imprecise or interval probability,
 with a focus on model behaviour in case of prior-data conflict.
 
 Bayesian inference is one of the main approaches to statistical inference.
-It requires to express (subjective) knowledge on the parameter(s) of interest not incorporated in the data by a so-called prior distribution,
-and the adequate choice of priors has always been an intensive matter of debate in the Bayesian literature.
+It requires to express (subjective) knowledge on the parameter(s) of interest not incorporated in the data by a so-called prior distribution.
+All inferences are then based on the so-called posterior distribution,
+the synthesis*** of prior knowledge and the information in the data calculated via Bayes' Rule.
+
+The adequate choice of priors has always been an intensive matter of debate in the Bayesian literature.
 While a considerable part of the literature is concerned with so-called non-informative priors
-aiming to eliminate (or, so-to-say, standardize) the influence of priors on posterior inferences,
+aiming to eliminate (or, so-to-say, standardise) the influence of priors on posterior inferences,
 inclusion of specific prior information into the model may be necessary if data are scarce,
 or do not contain much information about the parameter(s) of interest;
 also, shrinking estimators, common in frequentist approaches, can be considered as Bayesian estimators based on informative priors.
@@ -17,10 +20,11 @@ also, shrinking estimators, common in frequentist approaches, can be considered 
 When substantial information is used to elicit the prior distribution through, e.g, an expert's assessment,
 and the sample size is not large enough to eliminate the influence of the prior, \emph{prior-data conflict} can occur,
 i.e., information from outlier-free data suggests parameter values which are surprising from the viewpoint of prior information,
-and it may not be clear whether the prior specifications or the integrity of the data collecting method should be questioned.
+and it may not be clear whether the prior specifications or the integrity of the data collecting method
+(the measurement procedure could, e.g., be systematically biased) should be questioned.
 In any case, such a conflict should be reflected in the posterior, leading to very cautious inferences,
 and most statisticians would thus expect to observe, e.g., wider credibility intervals for parameters in case of prior-data conflict.
-However, when modelling is based on conjugate priors, prior-data conflict is in most cases completely averaged out,
+However, at least when modelling is based on conjugate priors, prior-data conflict is in most cases completely averaged out,
 giving a false certainty in posterior inferences.
 
 %i.e., data may be observed that are very unlikely from the standpoint of the prior,
@@ -37,7 +41,7 @@ Here, imprecise or interval probability methods offer sound strategies to counte
 by mapping parameter uncertainty over \emph{sets} of priors resp.\ posteriors instead over single distributions.
 This approach is supported by recent research in economics, risk analysis and artificial intelligence,
 corroborating the multi-dimensional nature of uncertainty and concluding that standard probability theory
-as founded on Kolmogorov's or de Finetti's axioms may be too restrictive,
+as founded on Kolmogorov's or de Finetti's framework may be too restrictive,
 being appropriate only for describing one dimension, namely ideal stochastic phenomena.
 
 The thesis studies how to efficiently describe sets of priors in the setting of samples from an exponential family. 

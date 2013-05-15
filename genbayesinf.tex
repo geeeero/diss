@@ -33,15 +33,19 @@ Section ****
 
 This Section will give a condensed introduction to the main theoretic concepts
 in interval or imprecise probability as needed for the topics discussed in this thesis.
+Here, we take a decidedly epistemic view on interval or imprecise probability,
+as we will argue in Section~\ref{sec:motivation} that often,
+imprecise probability distributions are a better tool for expressing prior beliefs
+than precise probability distributions.
 
-While Section~\ref{sec:ip-general} follows mostly \textcite{2011:IESS-ip},
-Section~\ref{sec:ip-main} is based mainly on \textcite{1996:walley::expert} and \textcite{2000:walley::towards}.
+%While Section~\ref{sec:ip-general} follows mostly \textcite{2011:IESS-ip},
+%Section~\ref{sec:ip-main} is based mainly on \textcite{1996:walley::expert} and \textcite{2000:walley::towards}.
 
 
 \subsection{General Concept and Basic Interpretation}
 \label{sec:ip-general}
 
-The central idea of imprecise or interval probability \parencite{2011:IESS-ip, 1991:walley, 2001:weichselberger} is
+The central idea of imprecise or interval probability \parencite{1991:walley, 2001:weichselberger, 2011:IESS-ip} is
 to replace the usual, precise probability measure $\p(A)$ for events $A$%
 \footnote{Events of interest $A$ are taken to be subsets of the sample space $\Omega$,
 forming a $\sigma$-algebra, a non-empty collection of sets including countable unions and intersections of subsets of $\Omega$.}
@@ -90,7 +94,7 @@ the other one being defined through this relation.
 
 There are currently two main approaches to a general theory of statistical inference with interval or imprecise probability:
 \begin{enumerate}[(i)]
-\item The theory by \textcite{2000:weichselberger, 2001:weichselberger}
+\item The theory by Weichselberger \parencite*{2000:weichselberger, 2001:weichselberger}
 regards probability intervals $[\Pl(A), \Pu(A)]$ for all or some events $A$ as the basic entity
 \parencite[p.~646]{2011:IESS-ip},
 from which an interval-valued distribution on the sample space $\Omega$ is constructed.
@@ -108,8 +112,8 @@ as the foundation of a concept of \emph{logical probability} \parencite{2007:wei
 where probability is not assigned to events, but to logical conclusions (from a premise to a consequence),
 with the aim to arrive at a theory of statistical inference
 which allows for fiducial-like probability statements,
-e.g., probability statements on parameters similar to a posterior distribution in a Bayesian setting
-without the need to specify a prior distribution \parencite{2011:IESS-fiducial}.
+e.g., probability statements on parameters similar to those derived from a posterior distribution in a Bayesian setting,
+but without the need to specify a prior distribution \parencite[see, e.g.,][]{2011:IESS-fiducial}.
 \item In contrast, the theory by Walley \parencite*{1991:walley, 2000:walley::towards}
 aims to generalise the Bayesian approach to statistical inference,
 adopting a strictly subjective, behavioural interpretation for imprecise probability
@@ -117,9 +121,9 @@ as lower and upper betting rates (see below),
 and extending the Bayesian inference paradigm (as discussed in Section~\ref{sec:bayes-inference})
 to imprecise probability distributions.
 In generalising de Finetti \parencite*{1937:finetti,1970:finetti}, the basic entities are lower and upper \emph{previsions},
-i.e.\ expectation functionals, for \emph{gambles}, i.e.\ random variables,
+i.e.\ expectation functionals, for \emph{gambles}, i.e.\ random quantities,
 instead of lower and upper probabilities for events.
-This is due to the fact that unlike in precise probability theory%
+This is due to the fact that unlike in the theory of precise probability%
 ---where the definition of a distribution via expectations %precise previsions
 (often denoted \emph{linear previsions} in the imprecise probability literature)
 is eqivalent to a definition via a precise probability distribution---%
@@ -130,7 +134,7 @@ is more general than a definition via lower and upper probability for events
 As this thesis is concerned with a generalization of Bayesian inference
 based on sets of conjugate priors, the approach by Walley,
 and its reliance on a subjective, epistemic interpretation of (imprecise) probability
-as (bounds for) betting rates, is now described in more detail.***
+as (bounds for) betting rates, is now described in more detail.
 
 
 \subsection{Main Formulations}
@@ -174,7 +178,7 @@ The reward is measured in units of utility assumed to form a linear scale
 \parencite[\S 2.2]{1991:walley}.
 
 A \emph{lower prevision} or \emph{lower expectation} is then a mapping
-$\El: \mathcal{K} \to \reals$, where $\mathcal{K}$ is a set of \emph{gambles}.%
+$\El: \mathcal{K} \to \reals$, where $\mathcal{K}$ is a set of gambles.%
 \footnote{In Walley's central monography \parencite{1991:walley},
 his papers and the imprecise probability literature in general,
 lower previsions are usually denoted by $\Pl$.
@@ -190,7 +194,7 @@ the subject is disposed to pay at most the fixed amount $\El[X]$
 in exchange for the uncertain reward $X$.%
 \footnote{More precisely, the price the subject is disposed to pay for $X$ is strictly less than $\El[X]$.
 For sake of readability,
-this mathematically important distinction is not rigorously maintained in this brief overview,
+this mathematically important distinction is not rigorously maintained in this brief treatment,
 as it is hardly relevant for the interpretation of the results in the later parts of this thesis.}
 $\El[X]$ thus expresses the subject's state of knowledge about the value of $X$,
 factoring in the propensity of all possible $\omega \in \Omega$
@@ -204,11 +208,11 @@ and all rationality criteria and inference procedures
 are deduced from this root \parencite[p.~5]{1996:walley::expert}.
 
 The theory allows thus a zone of indeterminacy, by $\El[X] < \Eu[X]$,
-for prices of $X$ at which the subject is neither willing to buy or to sell the gamble $X$,
+for prices of $X$ at which the subject is neither willing to buy nor to sell the gamble $X$,
 as illustrated in Figure~\ref{fig:pricesforgambles}.
 This is in contrast to the usual epistemic operationalisation of subjective Bayesian probability,
 which implies that $\El[X]$ and $\Eu[X]$ must coincide at a unique fair price $\E[X]$.
-This requirement is refuted by Walley, and called by him \emph{the Bayesian dogma of (ideal) precision}
+This requirement is refuted by Walley, and called by him \emph{the Bayesian dogma of precision}
 \parencite[\S 5]{1991:walley}.
 
 \begin{figure}
@@ -245,7 +249,7 @@ as mentioned in Section~\ref{sec:ip-general}.}
 Then, it suffices to consider only either of $\El$ or $\Eu$,
 and in the literature $\El$ is chosen,
 the theory consequently being referred to as the theory of
-\emph{coherent lower previsions} \parencite[See, e.g.,][\S 3.2]{itip}.
+\emph{coherent lower previsions} \parencite[see, e.g.,][\S 3.2]{itip}.
 
 \paragraph{Coherence and Avoiding Sure Loss}
 
@@ -282,7 +286,7 @@ then coherence is equivalent to the three following conditions
 \begin{enumerate}[(i)]
 \item $\El[X] \ge \inf_{\omega \in \Omega} X(\omega)$,
 i.e., one is always prepared to buy a gamble for less than its minimum possible reward.
-(Being prepared to pay more than $\inf_{\omega \in \Omega} X(\omega)$ amounts to make a commitment to the
+(Being prepared to pay more than $\inf_{\omega \in \Omega} X(\omega)$ amounts to making a commitment to the
 possibility that other states $\omega'$ with $X(\omega') > \inf_{\omega \in \Omega} X(\omega)$ may occur.)
 \item $\El[\lambda X] = \lambda \El[X]$ for all $X \in \mathcal{K}$, $\lambda > 0$.
 $\El$ should be such that if it postulates that one should be prepared to buy a gamble $X$ at a price
@@ -292,7 +296,7 @@ This illustrates that prices are to be understood on a linear utility scale
 (as mentioned above) and should not be considered as plain monetary prices,
 for which this condition may not be reasonable.
 \item $\El[X+Y] \ge \El[X] + \El[Y]$.
-This property of superlinearity implies that the supremum acceptable buying price for $X$ and $Y$ combined
+This property of superlinearity or superadditivity implies that the supremum acceptable buying price for $X$ and $Y$ combined
 should be at least the sum of supremum acceptable buying prices for each of $X$ and $Y$ individually.
 It could be, e.g., that $X$ and $Y$ balance out each other in a way that
 buying both of them at once makes the transaction less risky,
@@ -317,12 +321,12 @@ or newly defining $\El[Z]$ for gambles $Z$ not considered during assessment---ex
 
 \paragraph{Sets of Desirable Gambles}
 
-Sets of desirable gambles \parencite[\S 6]{2000:walley::towards} are an alternative formulation
+Sets of desirable gambles \parencites[\S 6]{2000:walley::towards}{itip-desirable} are an alternative formulation
 for probability assessments as expressed by a lower prevision $\El$.
 They are a mathematically convenient formulation
-and as such a central and very useful tool in the development of the theory of imprecise probability.
+and as such a very useful tool in the development of the theory of imprecise probability.
 However, a detailed understanding of this concept is not necessary for the purpose of this thesis,
-and the account below is inteded to complete the overview on the theory of imprecise probability.
+and the account below is intended to give some insight into this central concept in the theory of imprecise probability.
 
 The \emph{gambles} here are again a description of an uncertain reward as above, 
 and all bounded functions from $\Omega$ to $\reals$
@@ -383,7 +387,7 @@ where a partial ordering of the gambles in $\mathcal{L}$ is given to express bel
 We now turn to the formulation of imprecise probability assessments
 applied in this thesis, 
 sets of (precise) probability distributions,
-which are also called \emph{credal sets} \parencite[p.~136]{2000:walley::towards}.
+which are also called \emph{credal sets} \parencite[e.g.,][p.~136]{2000:walley::towards}.
 
 There is a one-to-one correspondence between lower coherent previsions
 and non-empty, closed and convex sets of (precise) probability distributions
@@ -397,7 +401,11 @@ although we will consider the question of convexity more closely later.
 Given a coherent lower prevision $\El$,
 the corresponding set of distributions $\mathcal{M}$
 is closed and convex, and consists of all probability distributions
-whose expectations $\E_p$ dominate $\El$, i.e.,
+whose expectations $\E_p$ dominate $\El$, i.e.,%
+\footnote{The probability distributions contained in a credal set $\mathcal{M}$
+will be referred to by their probability density or mass functions $p(\cdot)$
+in place of their probability measures $\p(\cdot)$, as we will consider mostly the densities
+in our later discussions***.}
 \begin{align*}
 \mathcal{M} &= \{ p(\omega) : \E_p[X] \ge \El[X]\ \forall X \in \mathcal{L}\}\,.
 \end{align*}
@@ -431,7 +439,7 @@ described as the lower envelope based on its corresponding $\mathcal{M}$.
 Therefore, all coherent lower previsions are characterised as
 lower envelopes based on some set of precise distributions $\mathcal{M}$,
 and imprecise probability assignments established via a such set $\mathcal{M}$
-are coherent.
+are, by design, coherent.
 \end{enumerate}
 
 Although the one-to-one correspondence mentioned above holds only for closed and convex sets $\mathcal{M}$,
@@ -466,7 +474,7 @@ it is a model satisfying the rationality criteria as discussed for $\El[X]$
 now also for the beliefs expressed in $\El[X]$ contingent on $B$.
 
 In the formulation via a credal set, the Generalised Bayes' Rule
-is equivalent to conditioning each distribution in the credal set on $B$
+is equivalent to conditioning each distribution in the credal set on $B$ via Bayes' Rule
 \parencite[\S 6.4.2]{1991:walley},
 and the set of conditioned distributions is thus an equivalent model for $\El[X\mid B]$.
 This result is known as the \emph{lower envelope theorem for conditional previsions}.
@@ -498,7 +506,7 @@ consisting of all posterior distributions obtained
 by traditional Bayesian updating of elements of the prior credal set.
 
 Walley's lower envelope theorem also establishes a close connection to robust Bayesian approaches and Bayesian sensitivity analysis
-(see, e.g.\ \parencite{2000:rios, 2005:ruggeri}) based on sets of distributions.
+\parencite[see, e.g.,][]{2000:rios, 2005:ruggeri} based on sets of distributions.
 The basic difference is in the interpretation of the underlying sets of probability distributions.
 While in the imprecise probability context a credal set is understood as an entity of its own,
 the robust Bayesian approach emphasizes the single elements in the set,

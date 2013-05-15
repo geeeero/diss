@@ -823,7 +823,7 @@ It has been recognized as the dominant factor to the unreliability of redundant 
 and its modeling has become an important part of reliability analysis
 following the Reactor Safety Study \parencite{1975:reactor:safety:study},
 which was prepared in the wake of the Three Mile Island accident,
-where a partial core meltdown in a nuclear power plant took place \parencite{2005:walker}.
+where a partial core meltdown in a nuclear power plant took place \parencite[e.g.,][]{2005:walker}.
 
 \subsection{An Example for the Need to Model Common-Cause Failure}
 
@@ -842,7 +842,8 @@ which could lead to a (partial) core meltdown,
 and subsequently to a possibly catastrophic release of radioactive material.%
 \footnote{The residual heat that is present in the core of a nuclear power plant
 after shutdown of the nuclear chain reaction is called \emph{decay heat}.
-It results from decay processes of fission products produced during normal operation of the power plant.
+It results from secondary decay processes,
+i.e.\ from the decay of fission products produced during normal operation of the power plant.
 Although comprising only a small fraction of the energy output during normal operation
 (where the energy stems from the primary fission process \parencite[Module~4, p.~33]{united1993doe}),
 depending on the design of the reactor,
@@ -863,7 +864,7 @@ The Fukushima Daiichi nuclear disaster is a recent example of an accident
 involving common cause failure of diesel generators.
 In this case, all 12 available diesel generators at reactors 1 to 6 
 ceased to function due to a tsunami wave flooding the rooms where they were installed \parencite[p.~31]{2011:iaea::report}.
-The tsunami wave had been caused by the T\={o}hoku earthquake \parencite{2012:ritsema},
+The tsunami wave had been caused by the T\={o}hoku earthquake \parencite[e.g.,][]{2012:ritsema},
 which had promted the reactors to shutdown automatically, and in doing so,
 switching to the diesel generators for power supply.%
 \footnote{All six off-site power lines were cut off, also due to the earthquake \parencite[p.~31]{2011:iaea::report}.}
@@ -877,7 +878,7 @@ to model epistemic uncertainty in the alpha-factors, which are the parameters of
 %This Dirichlet prior is then updated with observed data to obtain a precise posterior distribution, also Dirichlet.
 
 We will first describe the Basic Parameter Model in its standard form,
-and subsequently present its reparametrization in terms of alpha-factors.
+and subsequently present its reparametrisation in terms of alpha-factors.
 
 
 \subsection{The Basic Parameter Model}
@@ -933,7 +934,9 @@ to accommodate specific asymmetric cases.
 For example, when components are in different state of health,
 single failures would clearly not have identical failure rates.
 Because the formulas become a lot more complicated,
-we stick to the exchangeable case here.
+we stick to the exchangeable case here.%
+\footnote{A discussion of the asymmetric case, i.e., without the assumption of exchangeability of components,
+can be found in ****ISIPTA'13 Matthias***.}
 
 Clearly, to answer typical reliability questions, such as for instance
 ``what is the probability that two or more components fail in the next month?'',
@@ -993,7 +996,7 @@ and the rate at which all components fail is $q_3$.
 Translating these rates into fractions,
 we arrive precisely at Eq.~\eqref{eq:alphaj:in:terms:of:qj}.
 
-It can be shown that \parencite[p.~C-10f]{1988:mosleh::common:cause} %:\footnote{Hint: consider $\sum_{j=1}^k j\alpha_j$.}
+It can be shown that \parencite[e.g.,][p.~C-10f]{1988:mosleh::common:cause} %:\footnote{Hint: consider $\sum_{j=1}^k j\alpha_j$.}
 \begin{equation}\label{eq:qj:in:terms:of:qt}
   q_j=\frac{1}{\binom{k-1}{j-1}}\frac{j\alpha_j}{\sum_{\ell=1}^k \ell\alpha_\ell}\,q_t\,.
 \end{equation}
@@ -1003,7 +1006,7 @@ establish a one-to-one link between the basic parameter model (with parameters $
 and the alpha-factor model (with parameters $q_t$, $\vec{\alpha}$).
 The benefit of the alpha-factor model over the basic parameter model
 lies in its distinction between the total failure rate of a component $q_t$,
-for which there is generally have a lot of information,
+for which there is generally a lot of information,
 and common-cause failures modelled by $\vec{\alpha}$,
 for which there is generally very little information.
 
@@ -1144,8 +1147,8 @@ In this case, the solution of the least-squares problem turns out to be close to
 \begin{equation}
  \label{eq:constrainednoninformative}
  \begin{split}
-  t_j&=\mu_{\text{spec},j} \text{ for all $j\in\{1,\dots,k\}$} \\
-  s&=\frac{1}{2(1-\mu_{\text{spec},1})}
+  \yz_j &= \mu_{\text{spec},j} \text{ for all $j\in\{1,\dots,k\}$} \\
+  \nz   &= \frac{1}{2(1-\mu_{\text{spec},1})}
  \end{split}
 \end{equation}
 For our example, this means that $\nz=10$ \parencite[p.~400, \S 3]{2011:kelly:atwood}.
@@ -1195,7 +1198,7 @@ assigning an interval for the learning parameter $\nz$ is especially important.
 This effects to using the imprecise probability models that are at the core of this thesis.
 A systematic presentation of these models,
 together with more arguments for employing them in important statistical inference tasks,
-is given in Sections *****.
+is given in Chapter~\ref{cha:gbi} ***more detailed?***.
 
 
 \subsection{Cautious Epistemic Information for Alpha-Factors}
@@ -1208,7 +1211,7 @@ considering sets of priors based on sets of hyperparameters.
 For Bayesian inference in the Dirichlet-Multinomial model
 when no prior information is available,
 \textcite{1996:walley::idm} proposes as a so-called \emph{near-ignorance prior}%
-\footnote{See Section ***** for a more detailed discussion of near-ignorance priors.}
+\footnote{See Section~\ref{sec:motivation:near-ignorance} ***** for a more detailed discussion of near-ignorance priors.}
 a set of Dirichlet priors,
 with hyperparameters constrained to the set:
 \begin{equation*}
@@ -1306,7 +1309,7 @@ However, even if we interpret the prior expectations~\eqref{eq:example:muspec} a
 \end{subequations}
 we still find:
 \begin{subequations}
-\begin{align}
+\begin{align*}
   \big[
   \El[\alpha_1\mid\mathcal{H},\vec{n}] %=\frac{35+1.9}{36+2}
   ,
@@ -1354,7 +1357,7 @@ we still find:
   ,
   0.0002
   ]
-\end{align}
+\end{align*}
 \end{subequations}
 Clearly, only the posterior inferences about $\alpha_1$ (and perhaps also $\alpha_2$) seem reasonable.
 We conclude that \emph{the imprecise Dirichlet model with $\nz=2$ learns too fast from the data in case of zero counts}.
@@ -1362,7 +1365,7 @@ We conclude that \emph{the imprecise Dirichlet model with $\nz=2$ learns too fas
 On the one hand, when counts are sufficiently far from zero,
 the posterior probability with $\nz=2$, and perhaps even $\nz=1$ or $\nz=0$,%
 \footnote{As mentioned on page~\pageref{eq:canonicalprior},
-a taking $\nz \le 0$ would result in an improper prior.}
+taking $\nz \le 0$ would result in an improper prior.}
 seem appropriate.
 For zero counts, however, a larger value of $\nz$ seems mandatory.
 Therefore, it seems logical to pick an interval for $\nz$.
@@ -1375,7 +1378,7 @@ which is particularly important for zero counts,
 and the difference between $\nzl$ and $\nzu$ effectively results in greater posterior
 imprecision if $n_j/n \notin [\yzl_j,\yzu_j]$.% %in case of prior-data conflict.
 \footnote{We will show in Section **** that this argument makes sense
-also for the general case of canonically constructed priors \eqref{eq:canonicalprior}.}
+also for the general case of canonically constructed priors in Eq.~\eqref{eq:canonicalprior}.}
 
 To see this, note that, if $\yzl_j \le n_j/n \le \yzu_j$, it follows from
 Eqs.~\eqref{eq:idm-update-lower} and \eqref{eq:idm-update-upper}
@@ -1391,7 +1394,7 @@ and this is referred to as \emph{prior-data conflict}
 
 \paragraph{Interval for Learning Parameter}
 
-We follow \textcite[p.~19]{1965:good} (as suggested by \textcite[Note~5.4.1, p.~524]{1991:walley}),
+We follow \textcite[p.~19]{1965:good} \parencite[as suggested by][Note~5.4.1, p.~524]{1991:walley},
 and reason about posterior expectations of hypothetical data to elicit $\nzl$ and $\nzu$;
 also see \textcite[p.~219, \S 5.3.3]{1991:walley} for further
 discussion on elicitation on $\nz$---our approach is similar, but simpler for the case under study.
@@ -1400,7 +1403,7 @@ We assume that $\yzu_1=1$ and $\yzl_j=0$ for all $j\ge 2$.
 The upper probability of multiple ($j\ge 2$) failed components in trial $m+1$,
 given single-component failures ($j=1$) in all of the first $m$ trials, is
 \begin{equation*}
-  \Eu[\alpha_j\mid\mathcal{H}, n_1=m, n=m] = \frac{\nzu\yzu_j}{\nzu + m}
+  \Eu[\alpha_j\mid\mathcal{H}, n_1=m, n=m] = \frac{\nzu\yzu_j}{\nzu + m}\,, \quad j \ge 2\,.
 \end{equation*}
 (Note: there is no prior-data conflict in this case.)
 Whence, for the above probability to reduce to $\yzu_j/2$
@@ -1412,7 +1415,7 @@ Conversely, the lower probability of single-component failure ($j=1$) in trial $
 given only multiple ($j\ge 2$) failed components in the first $m$ trials,
 is
 \begin{equation*}
-  \El[\alpha_1\mid\mathcal{H}, n_1=0, n=m] = \frac{\nzl\yzl_1}{\nzl + m}
+  \El[\alpha_1\mid\mathcal{H}, n_1=0, n=m] = \frac{\nzl\yzl_1}{\nzl + m}\,.
 \end{equation*}
 (Note: there is strong prior-data conflict in this case.)
 %
@@ -1422,7 +1425,7 @@ to reduce the lower probability of one-component failure by half}.
 Note that, in this case, a few alternative interpretations present themselves.
 First, for $j \ge 2$,
 \begin{equation*}
-  \Eu[\alpha_j\mid\mathcal{H}, n_j=m, n=m] = \frac{\nzl\yzu_j + m}{\nzl + m}
+  \Eu[\alpha_j\mid\mathcal{H}, n_j=m, n=m] = \frac{\nzl\yzu_j + m}{\nzl + m}\,.
 \end{equation*}
 In other words, \emph{$\nzl$ is also the number of $j$-component failures required
 to increase the upper probability of $j$ components failing to $(1+\yzu_j)/2$}
@@ -1430,7 +1433,7 @@ to increase the upper probability of $j$ components failing to $(1+\yzu_j)/2$}
 %
 Secondly, as $\yzl_j = 0$ for $j \ge 2$, we get, for $j \ge 2$,
 \begin{equation*}
-  \El[\alpha_j\mid\mathcal{H}, n_j=m, n=m] = \frac{m}{m+\nzu}
+  \El[\alpha_j\mid\mathcal{H}, n_j=m, n=m] = \frac{m}{m+\nzu}\,.
 \end{equation*}
 so \emph{$\nzu$ is also the number of multi-component failures required
 to increase the lower probability of multi-component failures from zero to a half}.
@@ -1456,7 +1459,7 @@ multi-component failures after observing $10$ one-component failures).
 With these values, when taking for $\yz_j$ the values given in Eq.~\eqref{eq:example:muspec},
 we find the following posterior lower and upper expectations of $\alpha_j$:
 \begin{subequations}
-\begin{align}
+\begin{align*}
   \big[
   \El[\alpha_1\mid\mathcal{H},\vec{n}] %=\frac{35+9.5}{36+10}
   ,
@@ -1504,7 +1507,7 @@ we find the following posterior lower and upper expectations of $\alpha_j$:
   ,
   0.00109
   ]
-\end{align}
+\end{align*}
 \end{subequations}
 These bounds indeed reflect caution in inferences where zero counts have occurred ($j=3$ and $j=4$),
 with upper expectations considerably larger as compared to the model with fixed $s$,
@@ -1512,8 +1515,8 @@ while still giving a reasonable expectation interval for the probability of one-
 
 If we desire to specify our initial bounds for $\yz_j$ more conservatively,
 as in Eqs.~\eqref{eq:example:tintervals}, we find similar results:
-\begin{subequations}\label{eq:alphabounds}
-\begin{align}
+\begin{subequations}%\label{eq:alphabounds}
+\begin{align*}
   \big[
   \El[\alpha_1\mid\mathcal{H},\vec{n}] %=\frac{35+9.5}{36+10}
   ,
@@ -1561,7 +1564,7 @@ as in Eqs.~\eqref{eq:example:tintervals}, we find similar results:
   ,
   0.00109
   ]
-\end{align}
+\end{align*}
 \end{subequations}
 
 \paragraph{Conclusion}
@@ -1584,7 +1587,7 @@ from various sorts of hypothetical data.
 
 In the above application, Bayesian inference in the Dirichlet-Multinomial model
 was generalized to imprecise or interval probability methods.
-Next, in the main part of the thesis,
+Next, in the main chapter of the thesis,
 we will give a general introduction to the methodology of imprecise or interval probability,
 discuss further motivations for the use of interval probability methods for statistical inference,
 and show that inferences in canonical conjugates as described in Section~\ref{sec:regularconjugates}

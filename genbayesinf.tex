@@ -525,20 +525,41 @@ in particular in the context of prior-data conflict (see Section~\ref{sec:imprec
 \subsection{Related Concepts}
 
 The theory outlined*** in Sections~\ref{sec:ip-main} and \ref{sec:imprecisebayes}
-is not the only attempt to complement probability theory as tool for handling uncertainty;
+is of course not the only attempt to complement probability theory as tool for handling uncertainty;
 there are many other concepts with a similar aim,
-like possibilistic reasoning, fuzzy (probability) measures, which are also known as capacities,
-or different sorts of neighbourhood models considered in robust Bayesian approaches. ***citations?*** %***(itip-ch.\ 5,6)***
+like possibilistic reasoning, fuzzy probability measures (which are also known as capacities),
+or different sorts of neighbourhood models as considered in robust Bayesian approaches. ***citations?*** %\parencite[e.g.,][]{1994:berger}.
 
 In fact, many of these concepts are closely linked to
 lower previsions or sets of probability distributions,
-and a large part can be seen as special cases of generic lower previsions, 
+and a large part can indeed be seen as special cases of generic lower previsions, 
 or sets of probability distributions with certain restrictions%
 \footnote{A considerable part of the imprecise probability literature
 explores these links, of which \textcite{itip-special,itip-other}
 give a good overview.}. %***(itip-ch.\ 5,6)***
 
-example for link?***
+As an example, consider the density-ratio class model
+\parencites{1981:derobertis}{1990:berger}, which defines
+a set of (prior) distributions $\mathcal{M}_{l,u}$ through restricting
+the densities $p(\vartheta)$ in $\mathcal{M}_{l,u}$ to
+\begin{align*}
+%\mathcal{M}_{l,u} = \left\{ p \right\}
+\exists c: l(\vartheta) \le c p(\vartheta) \le u(\vartheta)\,,
+\end{align*}
+where $l(\vartheta)$ and $u(\vartheta)$ are non-normalised densities
+for which $l(\vartheta) \le u(\vartheta)\ \forall\ \vartheta$.
+It is a special case of a credal set derived from generic lower previsions
+\parencite[Figure~5.5]{itip-special}***,
+with the important property that the set of posteriors derived from $\mathcal{M}_{l,u}$
+can again be expressed as a density ratio class \parencite{1981:derobertis}.
+
+
+***\cite{2011:rinderknecht}
+
+
+
+
+
 
 nevertheless useful, as more easy to handle, elicit,
 more easy to understand.

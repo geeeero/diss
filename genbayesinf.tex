@@ -527,42 +527,20 @@ in particular in the context of prior-data conflict (see Section~\ref{sec:imprec
 The theory outlined in Sections~\ref{sec:ip-main} and \ref{sec:imprecisebayes}
 is of course not the only attempt to complement probability theory as tool for handling uncertainty;
 there are many other concepts with a similar aim,
-like possibilistic reasoning, fuzzy probability measures (which are also known as capacities),
-or different sorts of neighbourhood models as considered in robust Bayesian approaches. ***citations?*** %\parencite[e.g.,][]{1994:berger}.
+like possibilistic reasoning (Dempster-Safer theory),
+or fuzzy probability measures, which are also known as capacities.
 
 In fact, many of these concepts are closely linked to
 lower previsions or sets of probability distributions,
 and a large part can indeed be seen as special cases of generic lower previsions, 
-or sets of probability distributions with certain restrictions%
-\footnote{A considerable part of the imprecise probability literature
+or sets of probability distributions with certain restrictions.%
+A considerable part of the imprecise probability literature
 explores these links, of which Destercke and Dubois \parencite*{itip-other,itip-special}
-give a good overview.}. %***(itip-ch.\ 5,6)***
+give a good overview.
 
-As an example, consider the density-ratio class model
-\parencites{1981:derobertis}{1990:berger}, which defines
-a set of (prior) distributions on $\vartheta$ by %$\mathcal{M}_{l,u}$ by 
-%through restricting the densities $p(\vartheta)$ in $\mathcal{M}_{l,u}$ to
-\begin{align*}
-\mathcal{M}_{l,u} = \left\{ p(\vartheta) :
-\exists c: l(\vartheta) \le c p(\vartheta) \le u(\vartheta)\right\}\,,
-\end{align*}
-where $l(\vartheta)$ and $u(\vartheta)$ are bounded non-negative functions (i.e., non-normalised densities)	
-for which $l(\vartheta) \le u(\vartheta)\ \forall\ \vartheta$.
-The density ratio class is a special case of the credal sets discussed in Section~\ref{sec:ip-main}
-%(derived from generic lower previsions)
-\parencite[Figure~5.5]{itip-special}***,
-with the important property that the set of posteriors derived from $\mathcal{M}_{l,u}$
-can again be expressed as a density ratio class \parencite{1981:derobertis}.
-Other neighbourhood models, like e.g., the $\epsilon$-contamination class,
-**** are not closed under Bayesian updating.
+Capacities, or fuzzy measures, are set functions
 
-***\cite{2011:rinderknecht}
-
-IP gives thus a formal framework for robust Bayesian inference models.
-
-
-
-
+	
 nevertheless useful, as more easy to handle, elicit,
 more easy to understand.
 
@@ -579,6 +557,64 @@ interpretation as likelihood, profile lik (itip-inference)
 
 
 
+
+
+***Later, comparison with other approaches based on sets of probability distributions:***
+
+or different sorts of neighbourhood models as considered in robust Bayesian approaches. ***citations?*** %\parencite[e.g.,][]{1994:berger}.
+
+
+As an example, consider the \emph{odds-ratio model}.
+As a neighbourhood model,
+it serves to model approximate adherence to a central probability law with distribution $\p_0$,
+by giving the following constraints for pairs of events $A$ and $B$:
+\begin{align*}
+\frac{\p(A)}{\p(B)} \le (1-\epsilon)\frac{\p_0(A)}{\p_0(B)}\,,\quad A, B \subseteq \Omega
+\end{align*}
+The set of distributions $\p$ compatible with these restrictions
+forms then an odds-ratio model with parameter $\epsilon$,
+and can be represented by a lower prevision $\El_\epsilon$.
+When such a model is taken as an imprecise prior in Bayesian inference,
+the set of posteriors can again be expressed as an odds-ratio model
+\parencite[\S 7.2]{itip-special}.
+Other neighbourhood models, like, e.g., the $\epsilon$-contamination class
+\parencite[see, e.g.,][\S 4.3.2]{1994:berger},
+may instead not be closed under Bayesian updating.
+
+In short, the theory of lower previsions or sets of probability distributions
+provides a formal framework for robust Bayesian inference models
+\parencite{1994:berger}.
+
+***To other section? with boratynska, whitcomb, coolen1993 (diplomarbeit?)***\\
+Another interesting model that could be considered
+as an alternative to the sets of conjugate priors discussed in this thesis
+is the \emph{density-ratio class} model,
+also known as \emph{interval of measures}
+\parencites{1981:derobertis}{1990:berger}.
+Here, a set of (prior) distributions on $\vartheta$ is defined by %$\mathcal{M}_{l,u}$ by 
+%through restricting the densities $p(\vartheta)$ in $\mathcal{M}_{l,u}$ to
+\begin{align*}
+\mathcal{M}_{l,u} = \left\{ p(\vartheta) :
+\exists c: l(\vartheta) \le c p(\vartheta) \le u(\vartheta)\right\}\,,
+\end{align*}
+where $l(\vartheta)$ and $u(\vartheta)$ are bounded non-negative functions (i.e., non-normalised densities)	
+for which $l(\vartheta) \le u(\vartheta)\ \forall\ \vartheta$.
+The density ratio class thus can be seen as a certain type of credal sets as discussed in Section~\ref{sec:ip-main},
+%(derived from generic lower previsions)
+%\parencite[Figure~5.5]{itip-special}***,
+with the important property that the set of posteriors derived from $\mathcal{M}_{l,u}$
+can again be expressed as a density ratio class \parencite{1981:derobertis}.
+A very accessible presentation of density-ratio classes with
+parametric bounding shapes $l(\vartheta)$ and $u(\vartheta)$,
+along with a method for elicition from an expert
+providing quantiles (or quantile ranges) for a number of probability values,
+is given in \cite{2011:rinderknecht}.
+***end to other section?***
+
+
+
+
+
 \section{***Motivations for IP}
 \label{sec:motivation}
 
@@ -590,10 +626,10 @@ and in recent times most prominently by scientists involved in the development o
 
 ***klir citation (festschrift)***
 
-We agree with \textcite[\S 1.1]{1990:berger} in the view that there are very strong foundational arguments
+We agree with \textcite[\S 1.1]{1994:berger} in the view that there are very strong foundational arguments
 for the subjective Bayesian approach, which, however, hold only
 ``if it is assumed that one can make arbitrarily fine discriminations
-in judgement about unknowns and utilities'' \parencite[p.~303]{1990:berger}. 
+in judgement about unknowns and utilities'' \parencite[p.~303]{1994:berger}. 
 It is the implications of this extremely challenging requirement
 which advocates of Bayesian inference with precise priors
 like \textcite{1987:lindley} do not seem to appreciate enough,

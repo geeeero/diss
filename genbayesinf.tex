@@ -519,39 +519,45 @@ and very often discusses the effects of deviations from a certain central elemen
 Robust Bayesian inference and Bayesian sensitivity analysis
 understand robustness and insensitivity mostly as desirable properties,
 while the imprecise probability framework may use such behavior actively in modelling,
-in particular in the context of prior-data conflict (see Section~\ref{sec:imprecisebayes-conjugate})***.
+in particular in the context of prior-data conflict
+(see Sections~\ref{sec:motivation:pdc} and \ref{sec:imprecisebayes-conjugate})***.
 
 
 \subsection{Related Concepts}
 
-The theory outlined in Sections~\ref{sec:ip-main} and \ref{sec:imprecisebayes}
+The theory outlined in Sections~\ref{sec:ip-main} and \ref{sec:imprecisebayes} above
 is of course not the only attempt to complement probability theory as tool for handling uncertainty;%
-\footnote{Some motives for going beyond usual probability measures will be discussed in Section~\refsec:motivation.}
+\footnote{A number of motives for going beyond usual probability measures will be discussed in Section~\ref{sec:motivation}.}
 there are many other concepts with a similar aim,
-like possibility distributions (which often take the form of a fuzzy interval,
-or fuzzy probability measures, which are also known as capacities.
+like possibility distributions (which often take the form of a fuzzy interval),
+or fuzzy probability measures, which are also known as capacities (see Section~\ref{sec:motivation} below).
 
 In fact, many of these concepts are closely linked to
 lower previsions or sets of probability distributions,
 and a large part can indeed be seen as special cases of generic lower previsions, 
 or sets of probability distributions with certain restrictions
-\parencite[Fig.~5.5]{itip-special}.%
+\parencite[Fig.~5.5]{itip-special}.
 A considerable part of the imprecise probability literature
 explores these links, of which Destercke and Dubois \parencite*{itip-other,itip-special}
 give a good overview.
 
 %Capacities, or fuzzy measures, are set functions
 
-Although less expressive than coherent lower previsions,
+Although generally less expressive than coherent lower previsions,
 these special cases can nevertheless be useful tools,
 as they may be more easy to handle or elicit for the problem at hand,
-or simply be more easy to understand.
+or simply be more easy to communicate to the practitioners involved
+\parencite[\S 1]{itip-special}.
 
 %It should be stressed that there is always the possibility
 %that these concepts are used in a way that does not warrant
 %the step beyond precise probability distributions.
 %e.g., fuzzy sets with certain combination rule is same as probability.***
 
+***par on belief functions and Dempster-Shafer Theory?*** \parencite[\S 2]{itip-other}
+
+
+***somewhere else?***\\
 hierarchical Bayes, distribution over intervals:
 uncertainty is averaged out for inferences,
 posterior state of knowledge is again expressed via precise distribution (was sagt Walley?)\\
@@ -562,10 +568,124 @@ interpretation as likelihood, profile lik (itip-inference)
 
 
 
+\section{Motives for the Use of Imprecise Probability Methods}
+\label{sec:motivation}
+
+Although strictly negated by advocates of Bayesian methods \parencite[e.g., by][]{1987:lindley},
+the need to go beyond usual probability measures has been recognized for a long time,%
+\footnote{\textcite{2009:hampel} and \textcite[\S 1]{2001:weichselberger} give a historical overview on the development of
+ideas related to non-additive measures and interval probability.}
+and in more recent times most prominently by scientists involved in the development of \emph{expert systems}
+\parencite[see, e.g.,][]{1996:walley::expert}.%
+
+Expert systems have the task to formally represent the knowledege of one or several experts in a field,
+properly modeling the reasoning of these experts in order to aid non-experts in their decisions.
+A protoptypical example is MYCIN \parencite{1976:shortliffe},
+which was developed to assist physicians in diagnosing bacterial infections.
+The reasoning to be modeled by expert systems typically involes
+``uncertainty, partial ignorance and incomplete or conflicting information'', and thus provides
+``an especially good testing ground for theories of uncertainty
+because they aim to formalise and automate as much as possible
+of the reasoning process'' \parencite[p.~2]{1996:walley::expert}.
+
+The fundamental motive at play in expert systems and the in the study of uncertainty in artificial intelligence
+in general ***cite journal?*** is that usual probability measures
+are not expressive enough to model such reasoning,
+and that, in fact, probability is fit to cover only one aspect of the uncertainty involved.
+The exclusive role of probability as a methodology for handling uncertainty has eloquently been rejected,
+e.g., by \textcite{1999:klir}: 
+\begin{quotation}
+%``
+For three hundred years [\ldots] uncertainty was conceived solely in
+terms of probability theory. This seemingly unique connection
+between uncertainty and probability is now challenged [\ldots by several
+other] theories, which are demonstrably capable of characterizing
+situations under uncertainty. [\ldots]
+
+[\ldots] it has become clear that there are several distinct types of
+uncertainty. That is, it was realized that uncertainty is a
+multidimensional concept. [\ldots\ That] multidimensional nature of
+uncertainty was obscured when uncertainty was conceived solely in
+terms of probability theory, in which it is manifested by only one
+of its dimensions.
+\end{quotation}
+
+\textcite[\S 1.4]{2001:weichselberger} identifies this multidimensionality as a \emph{meta motive},
+which underlies a number of more manifest motives for the use of imprecise probability tools
+\parencite[p~92]{2001:weichselberger}:
+\begin{enumerate}[I.]
+\item The existence of pairs of events that may be not comparable in terms of probability measures,
+as neither one of them can be seen as more probable than the other,
+nor should they be seen as excactly equiprobable.
+\item Incomplete information with respect to a probability measure
+leads naturally to lower and upper bounds for probabilities of events.
+These bounds may be, however, already informative enough to decide upon
+the substantive question at hand.%
+\footnote{An important example for such an approach is the theory of \emph{nonparametric predictive inference}
+(NPI, see ****), where minimal model assumptions (based on exchangeability of observations)
+lead to a nonparametric model supplying lower and upper probability bounds for arbitrary events.
+A striking application of this theory is a nonparametric generalisation of the
+Nelson-Aalen estimator for survival functions **cite****,
+which effectively expresses the uncertainty inherent in the estimation
+by lower and upper bounds **cite***.}
+\item Uncertainty in subjective probability assessments,
+which may manifest in differing buying and selling prices
+(as discussed in Section~\ref{sec:ip-main}).
+\item The provision of basic tools generalising probability measures,
+namely capacities \parencite{1954:choquet}, also known as fuzzy measures \parencite[e.g.,][]{1989:murofushi}.
+\item The need to model approximate adherence to a central probability distribution,
+which is often done through \emph{neighbourhood models} (see Section~\ref{}***).
+This is the dominant model type in robust Bayesian approaches \parencite[see, e.g.,][]{1994:berger}.
+\item The available data may not be sufficient to excactly determine the parameters of a usual proability model.
+Instead, only ranges for these parameters can be identified.
+A fastly growing literature, especially in econometrics,
+is devoted to an approach along these lines, called \emph{partial identification} ***cite manski***.
+\item Sequences of experiments that do not warrant the assumption of convergence
+for relative frequencies, because, e.g., the notion of replication may not be
+strictly fulfilled as necessary for the classical theory.***rephrase***
+\end{enumerate}
+
+
+***now risk versus ambiguity, also ip=probability+modal logic?***
+
+***central motive for use in Bayesian inference:***\\
+We agree with \textcite[\S 1.1]{1994:berger} in the view that there are very strong foundational arguments
+for the subjective Bayesian approach, which, however, hold only
+``if it is assumed that one can make arbitrarily fine discriminations
+in judgement about unknowns and utilities'' \parencite[p.~303]{1994:berger}. 
+It is the implications of this extremely challenging requirement
+which advocates of Bayesian inference with precise priors
+like \textcite{1987:lindley} do not seem to appreciate enough.
+In fact, it is hardly imaginable how such ``arbitrarily fine discriminations''
+could be made in practice even for the most basic inference tasks.
+The foundational arguments for Bayesian inference are thus worthless,
+unless the requirement of arbitrarily fine precision can be relaxed.
+Indeed, the framework by \textcite{1991:walley} does just that:
+preserving the foundational arguments, especially the notion of coherence,
+while allowing for incomplete and imprecise prior judgements.
+
+
+***The following two subsections are devoted to motives directly related to important issues in Bayesian inference.
+
+\subsection{\pdc }
+\label{sec:motivation:pdc}
+
+\subsection{Weakly Informative Priors}
+\label{sec:motivation:near-ignorance}
+
+%\subsection{Other Motives}
+
+
+\section{Generalised Bayesian Inference for Sets of Conjugate Priors in Exponential Families}
+\label{sec:imprecisebayes-conjugate}
+
+section itip / JSTP paper
+
+\section{***Other Models Based on Sets of Priors***}
 
 ***Later, comparison with other approaches based on sets of probability distributions:***
 
-or different sorts of neighbourhood models as considered in robust Bayesian approaches. ***citations?*** %\parencite[e.g.,][]{1994:berger}.
+different sorts of neighbourhood models as considered in robust Bayesian approaches \parencite[e.g.,][]{1994:berger}.
 
 
 As an example, consider the \emph{odds-ratio model}.
@@ -616,51 +736,6 @@ is given in \cite{2011:rinderknecht}.
 ***end to other section?***
 
 
-
-
-
-\section{***Motivations for IP}
-\label{sec:motivation}
-
-Although strictly negated by advocates of Bayesian methods \parencite[e.g., by][]{1987:lindley},
-the need to go beyond usual probability measures has been recognized for a long time,%
-\footnote{\textcite{2009:hampel} and \textcite[\S 1]{2001:weichselberger} give a historical overview on the development of
-ideas related to non-additive measures and interval probability.}
-and in recent times most prominently by scientists involved in the development of expert systems \parencite{1996:walley::expert}.
-
-***klir citation (festschrift)***
-
-We agree with \textcite[\S 1.1]{1994:berger} in the view that there are very strong foundational arguments
-for the subjective Bayesian approach, which, however, hold only
-``if it is assumed that one can make arbitrarily fine discriminations
-in judgement about unknowns and utilities'' \parencite[p.~303]{1994:berger}. 
-It is the implications of this extremely challenging requirement
-which advocates of Bayesian inference with precise priors
-like \textcite{1987:lindley} do not seem to appreciate enough,
-and in fact, it is hardly imaginable how such ``arbitrarily fine discriminations''
-could be made in practice even for the most basic inference tasks.
-The foundational arguments for Bayesian inference are thus worthless,
-unless the requirement of arbitrarily fine precision can be relaxed.
-Indeed, the framework by \textcite{1991:walley} does just that:
-preserving the foundational arguments,
-while allowing for imprecise prior judgements.
-
-
-
-
-
-\subsection{\pdc }
-
-\subsection{Weakly Informative Priors}
-\label{sec:motivation:near-ignorance}
-
-\subsection{Other Motives}
-
-
-\section{Generalised Bayesian Inference for Sets of Conjugate Priors in Exponential Families}
-\label{sec:imprecisebayes-conjugate}
-
-section itip / JSTP paper
 
 
 

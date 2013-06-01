@@ -588,8 +588,9 @@ The reasoning to be modeled by expert systems typically involes
 because they aim to formalise and automate as much as possible
 of the reasoning process'' \parencite[p.~2]{1996:walley::expert}.
 
-The fundamental motive at play in expert systems and the in the study of uncertainty in artificial intelligence
-in general ***cite journal?*** is that usual probability measures
+The fundamental motive at play in expert systems,
+and in the study of uncertainty in artificial intelligence in general \parencite[see, e.g.,][]{2006:lawry},
+is the view that usual probability measures
 are not expressive enough to model such reasoning,
 and that, in fact, probability is fit to cover only one aspect of the uncertainty involved.
 The exclusive role of probability as a methodology for handling uncertainty has eloquently been rejected,
@@ -622,27 +623,28 @@ leads naturally to lower and upper bounds for probabilities of events.
 These bounds may be, however, already informative enough to decide upon
 the substantive question at hand.%
 \footnote{An important example for such an approach is the theory of \emph{nonparametric predictive inference}
-(NPI, see ****), where minimal model assumptions (based on exchangeability of observations)
+\parencite[NPI, see ][]{2011:IESS-npi}, where minimal model assumptions %(based on exchangeability of observations)
 lead to a nonparametric model supplying lower and upper probability bounds for arbitrary events.
-A striking application of this theory is a nonparametric generalisation of the
-Nelson-Aalen estimator for survival functions **cite****,
+A striking application of this theory is a generalisation of the
+Kaplan-Meier estimator for survival functions \parencite{1958:kaplan},
 which effectively expresses the uncertainty inherent in the estimation
-by lower and upper bounds **cite***.}
+by lower and upper bounds \parencite{2004:Coolen:Yan}.}
 \item Uncertainty in subjective probability assessments,
 which may manifest in differing buying and selling prices
 (as discussed in Section~\ref{sec:ip-main}).
-\item The provision of basic tools generalising probability measures,
+\item The provision of basic tools that generalise probability measures,
 namely capacities \parencite{1954:choquet}, also known as fuzzy measures \parencite[e.g.,][]{1989:murofushi}.
 \item The need to model approximate adherence to a central probability distribution,
 which is often done through \emph{neighbourhood models} (see Section~\ref{}***).
 This is the dominant model type in robust Bayesian approaches \parencite[see, e.g.,][]{1994:berger}.
 \item The available data may not be sufficient to excactly determine the parameters of a usual proability model.
 Instead, only ranges for these parameters can be identified.
-A fastly growing literature, especially in econometrics,
-is devoted to an approach along these lines, called \emph{partial identification} ***cite manski***.
+A fastly growing literature is devoted to approaches along these lines,
+especially in econometrics, where it is called \emph{partial identification} \parencite[e.g.,][]{2003:manski},
+and in biometrics, where it is known as \emph{systematic sensitivity analysis} \parencite[e.g.,][]{vansteelandt2006}.
 \item Sequences of experiments that do not warrant the assumption of convergence
 for relative frequencies, because, e.g., the notion of replication may not be
-strictly fulfilled as necessary for the classical theory.***rephrase***
+satisfied closely enough as necessary for validity of classical theory.***rephrase***
 \end{enumerate}
 
 

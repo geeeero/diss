@@ -556,15 +556,11 @@ or simply be more easy to communicate to the practitioners involved
 
 ***par on belief functions and Dempster-Shafer Theory?*** \parencite[\S 2]{itip-other}
 
-
-***somewhere else?***\\
-hierarchical Bayes, distribution over intervals:
-uncertainty is averaged out for inferences,
-posterior state of knowledge is again expressed via precise distribution (was sagt Walley?)\\
-better alternative: hierarchical model by Cattaneo,
-where a possibility distribution is used for info about parameters,
-interpretation as likelihood, profile lik (itip-inference)
-
+***link belief functions to lower previsions \parencite[\S 2.1, p~126]{itip-other}:
+If $m(\emptyset) = 0$, then belief functions coincide with $\infty$-monotone capacities,
+which are a special case of lower previsions.
+Only if $m(\emptyset) > 0$, which does not seem a reasonable choice in our view anyhow,
+the set of corresponding distributions $\mathcal{M}$ is empty.
 
 
 
@@ -588,13 +584,15 @@ The reasoning to be modeled by expert systems typically involes
 because they aim to formalise and automate as much as possible
 of the reasoning process'' \parencite[p.~2]{1996:walley::expert}.
 
+\subsection{Fundamental Motive}
+
 The fundamental motive at play in expert systems,
 and in the study of uncertainty in artificial intelligence in general \parencite[see, e.g.,][]{2006:lawry},
 is the view that usual probability measures
 are not expressive enough to model such reasoning,
 and that, in fact, probability is fit to cover only one aspect of the uncertainty involved.
 The exclusive role of probability as a methodology for handling uncertainty has eloquently been rejected,
-e.g., by \textcite{1999:klir}: 
+e.g., by \textcite[p.~1]{1999:klir}: 
 \begin{quotation}
 %``
 For three hundred years [\ldots] uncertainty was conceived solely in
@@ -614,7 +612,8 @@ of its dimensions.
 \textcite[\S 1.4]{2001:weichselberger} identifies this multidimensionality as a \emph{meta motive},
 which underlies a number of more manifest motives for the use of imprecise probability tools
 \parencite[p~92]{2001:weichselberger}:
-\begin{enumerate}[I.]
+\begin{itemize}
+%\begin{enumerate}[I.]
 \item The existence of pairs of events that may be not comparable in terms of probability measures,
 as neither one of them can be seen as more probable than the other,
 nor should they be seen as excactly equiprobable.
@@ -624,7 +623,8 @@ These bounds may be, however, already informative enough to decide upon
 the substantive question at hand.%
 \footnote{An important example for such an approach is the theory of \emph{nonparametric predictive inference}
 \parencite[NPI, see ][]{2011:IESS-npi}, where minimal model assumptions %(based on exchangeability of observations)
-lead to a nonparametric model supplying lower and upper probability bounds for arbitrary events.
+lead to a nonparametric model supplying lower and upper probability bounds for events
+involving future observations.
 A striking application of this theory is a generalisation of the
 Kaplan-Meier estimator for survival functions \parencite{1958:kaplan},
 which effectively expresses the uncertainty inherent in the estimation
@@ -644,13 +644,58 @@ especially in econometrics, where it is called \emph{partial identification} \pa
 and in biometrics, where it is known as \emph{systematic sensitivity analysis} \parencite[e.g.,][]{vansteelandt2006}.
 \item Sequences of experiments that do not warrant the assumption of convergence
 for relative frequencies, because, e.g., the notion of replication may not be
-satisfied closely enough as necessary for validity of classical theory.***rephrase***
-\end{enumerate}
+satisfied closely enough as necessary for the validity of classical probability theory.
+\end{itemize}
+%\end{enumerate}
+
+\subsection{Risk and Ambiguity}
+
+This multidimensionality of uncertainty is most often accounted for
+by distinguishing two specific dimensions,
+commonly denoted by \emph{risk} and \emph{ambiguity}. ***citation??***
+\begin{itemize}
+\item Risk is the uncertainty involved in ideal lotteries,
+i.e., when the stochastic mechanism driving the phenomenon under uncertainty
+(the data generating process) is known completely.
+Precise probability distributions are the adequate tool to model such uncertainty,
+arising, e.g., in a lottery where the number of winning tickets is exactly known.
+\item Ambiguity arises when there is insufficient information about the stochastic mechanism,
+or information about it is lacking completely, and covers thus non-stochastic uncertainty.
+Uncertain phenomena where there is no information at all
+about ocurrence or no-ocurrence would constitute a situation of pure ambiguity,
+e.g., a lottery where there is no information whatsoever about the number of winning tickets.
+\end{itemize}
+
+Of course, in real-life situations usually mixtures of risk and ambiguity occur,
+and these can be adequately modeled by lower previsions or sets of probability distributions.
+In the latter formulation,
+the stochastic aspect is dealt with by the single distributions included in the set,
+whereas ambiguity is expressed by the magnitude of the set itself,
+which manifests, e.g., in the length of intervals for probabilities of events derived from the set.
+Sets of probability distributions are thus, in our view,
+an adequate model to characterise, e.g.,
+a lottery where there is some limited information about the number of winning tickets,
+like the information that there should be about 5 to 10 winning tickets per 100 tickets.%
+\footnote{We will comment on the seemingly attractive alternative
+of putting a distribution on such an interval-valued winning probability at **** (hierarchical Bayes).}
+
+***somewhere else?***\\
+hierarchical Bayes, distribution over intervals:
+uncertainty is averaged out for inferences,
+posterior state of knowledge is again expressed via precise distribution (was sagt Walley?)\\
+better alternative: hierarchical model by Cattaneo,
+where a possibility distribution is used for info about parameters,
+interpretation as likelihood, profile lik (itip-inference)
 
 
-***now risk versus ambiguity, also ip=probability+modal logic?***
+\subsection{Bayesian Perspective}
+\label{sec:motivation:bayesian}
 
-***central motive for use in Bayesian inference:***\\
+%***central motive for use in Bayesian inference:***\\
+From a decidedly Bayesian perspective as taken in this thesis,
+we first want to point out a very fundamental motive for the use of imprecise probability methods,
+before we come to more specific motives.
+
 We agree with \textcite[\S 1.1]{1994:berger} in the view that there are very strong foundational arguments
 for the subjective Bayesian approach, which, however, hold only
 ``if it is assumed that one can make arbitrarily fine discriminations
@@ -666,10 +711,40 @@ Indeed, the framework by \textcite{1991:walley} does just that:
 preserving the foundational arguments, especially the notion of coherence,
 while allowing for incomplete and imprecise prior judgements.
 
+Indeed,
+the flexible, multidimensional perspective on uncertainty makes imprecise probabilities capable of mirroring the quality of knowledge.
+Only well supported knowledge is expressed by comparatively precise models,
+including the traditional concept of probability as the special case of perfect stochastic information,
+while highly imprecise (or even vacuous) models are used in the situation of scarce (or no) prior knowledge.
+This power to differentiate between different degrees of partial knowledge
+distinguishes imprecise probabilities as an attractive modelling tool in statistics.
+In particular it allows to overcome two severe practical limitations inherent to Bayesian inference based on precise probabilities.
 
-***The following two subsections are devoted to motives directly related to important issues in Bayesian inference.
+%Here we focus on two aspects within the Bayesian framework,
+%which will be considered in detail in Section~\ref{inference:sec:setsofconjugatepriors}.
+A first important issue is the proper modelling of no (or extremely vague) prior knowledge.
+In traditional statistics, so-called \emph{non-informative priors} have been proposed, which, by different criteria,
+eventually all select a single traditional prior distribution,
+turning ignorance into a problem with rather precise probabilistic information.
+We will comment on this issue in more detail in Section~\ref{sec:motivation:near-ignorance}.
 
-\subsection{\pdc }
+Moreover, increasing imprecision to make the conclusions more cautious
+is the natural way to handle \emph{prior-data conflict},
+i.e.\ when outlier-free data are observed that nevertheless are rather unexpected under the prior assumptions.
+For instance, \cite[p.~893]{2006:evans} warns that if
+``[\ldots] the observed data is surprising in the light of the sampling model and the prior,
+then we must be at least suspicious about the validity of inferences drawn.''
+While there is no way to express this caution (`being suspicious') in precise probabilistic models,
+the imprecise probability model at the core of this thesis was developed specifically to take care of this issue
+(see Section~\ref{sec:imprecisebayes-conjugate}) in an appropriate way.
+A more detailed discussion on the issue prior-data conflict will be given in Section~\ref{sec:motivation:pdc}.
+
+***As a related topic, decreasing imprecision in sequential learning
+expresses naturally that the accumulating information is non-conflicting and stable.***
+
+%***The following two subsections are devoted to motives directly related to important issues in Bayesian inference.
+
+\subsection{Prior-Data Conflict}
 \label{sec:motivation:pdc}
 
 \subsection{Weakly Informative Priors}

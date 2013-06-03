@@ -1,4 +1,4 @@
-\chapter{Generalized Bayesian Inference with Sets of Priors}
+\chapter{Generalised Bayesian Inference with Sets of Priors}
 \label{cha:gbi}
 
 \begin{itemize}
@@ -486,7 +486,7 @@ This result is known as the \emph{lower envelope theorem for conditional previsi
 
 %GBR: coherence of prior and posterior
 
-\subsection{Imprecise Bayesian Inference Procedure}
+\subsection{Generalised Bayesian Inference Procedure}
 \label{sec:imprecisebayes}
 
 %paragraph from itip
@@ -595,7 +595,7 @@ The reasoning to be modeled by expert systems typically involes
 because they aim to formalise and automate as much as possible
 of the reasoning process'' \parencite[p.~2]{1996:walley::expert}.
 
-\subsection{Fundamental Motive}
+\subsection{The Fundamental Motive}
 
 The fundamental motive at play in expert systems,
 and in the study of uncertainty in artificial intelligence in general \parencite[see, e.g.,][]{2006:lawry},
@@ -699,13 +699,15 @@ where a possibility distribution is used for info about parameters,
 interpretation as likelihood, profile lik (itip-inference)
 
 
-\subsection{Bayesian Perspective}
+\subsection{Motives from a Bayesian Perspective}
 \label{sec:motivation:bayesian}
 
 %***central motive for use in Bayesian inference:***\\
 From a decidedly Bayesian perspective as taken in this thesis,
-we first want to point out a very fundamental motive for the use of imprecise probability methods,
+we first want to point out a foundational motive for the use of imprecise probability methods,
 before we come to more specific motives.
+
+\paragraph{Foundational Motive.}
 
 We agree with \textcite[\S 1.1]{1994:berger} in the view that there are very strong foundational arguments
 for the subjective Bayesian approach, which, however, hold only
@@ -729,15 +731,20 @@ including the traditional concept of probability as the special case of perfect 
 while highly imprecise (or even vacuous) models are used in the situation of scarce (or no) prior knowledge.
 This power to differentiate between different degrees of partial knowledge
 distinguishes imprecise probabilities as an attractive modelling tool in statistics.
-In particular it allows to overcome two severe practical limitations inherent to Bayesian inference based on precise probabilities.
+In particular it allows to overcome two severe practical limitations inherent to Bayesian inference based on precise probabilities,
+that will be discussed in more detail in Sections~*** and ****.
 
 %Here we focus on two aspects within the Bayesian framework,
 %which will be considered in detail in Section~\ref{inference:sec:setsofconjugatepriors}.
+\paragraph{Weakly Informative Priors.}
+
 A first important issue is the proper modelling of no (or extremely vague) prior knowledge.
 In traditional statistics, so-called \emph{non-informative priors} have been proposed, which, by different criteria,
 eventually all select a single traditional prior distribution,
 turning ignorance into a problem with rather precise probabilistic information.
 We will comment on this issue in more detail in Section~\ref{sec:motivation:near-ignorance}.
+
+\paragraph{Prior-Data Conflict.}
 
 Moreover, increasing imprecision to make the conclusions more cautious
 is the natural way to handle \emph{prior-data conflict},
@@ -748,7 +755,9 @@ then we must be at least suspicious about the validity of inferences drawn.''
 While there is no way to express this caution (`being suspicious') in precise probabilistic models,
 the imprecise probability model at the core of this thesis was developed specifically to take care of this issue
 (see Section~\ref{sec:imprecisebayes-conjugate}) in an appropriate way.
-A more detailed discussion on the issue of prior-data conflict will be given in Section~\ref{sec:motivation:pdc}.
+A more detailed discussion on the issue of prior-data conflict will be given in Section~\ref{sec:motivation:pdc},
+some toy examples can be found in Section ****,
+while the effect of prior-data conflict on Bayesian linear regression is discussed in Section ****.
 
 ***As a related topic, decreasing imprecision in sequential learning
 expresses naturally that the accumulating information is non-conflicting and stable.*** to outlook??***

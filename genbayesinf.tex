@@ -467,7 +467,8 @@ the objective is to express prior knowledge on a parameter of interest $\varthet
 by an imprecise prior distribution,
 and all inferences shall be based on a (imprecise) posterior distribution derived from it.
 As in Bayesian inference with precise distributions,
-the now imprecise prior should be conditioned on the observed data $\x$.
+the now imprecise prior should be conditioned on the observed data $\x$.%
+\footnote{***footnote on updating and conditioning, from itip chapter***}
 
 A coherent lower prevision can be conditioned on an event $B$
 by using the so-called \emph{Generalised Bayes' Rule} \parencite[\S 6.4]{1991:walley},
@@ -493,8 +494,8 @@ This result is known as the \emph{lower envelope theorem for conditional previsi
 Walley has thus established a general framework for coherent statistical inference under imprecise probabilities.
 It allows to transfer the basic aspects of traditional Bayesian inference to the generalized setting,
 as the fundamental paradigms of Bayesian inference as discussed in Section~\ref{sec:bayes-inference} are maintained.
-Prior knowledge on the parameter, expressed by a now imprecise prior distribution $\Pi(\cdot)$ with credal set $\mathcal{M}$,
-is updated in the light of the observed sample $\x$ to the posterior $\Pi(\cdot \mid \x)$,
+Prior knowledge on the parameter, expressed by a now imprecise prior distribution $\El(\cdot)$ with credal set $\mathcal{M}$,
+is updated in the light of the observed sample $\x$ to the posterior $\El(\cdot \mid \x)$,
 with the credal set $\mathcal{M}_{\vert \x}$,
 and this statistical inference is again understood as a deductive process,
 obtained directly by conditioning on the observed sample,
@@ -503,9 +504,10 @@ For practical implementation of the Generalized Bayes' Rule, the lower envelope 
 previsions mentioned above %\parencite[\S~6.4.2]{1991:walley}
 is of particular relevance.
 The prior credal set $\mathcal{M}$ is updated element by element to obtain the posterior credal set %$\mathcal{M}_{\vert \mbf{x}}$
-\begin{align*}
+\begin{align}
+\label{eq:posteriorcredalset}
 \mathcal{M}_{\vert \mbf{x}} = \left\{ p(\cdot \mid \x) :  p(\cdot) \in \mathcal{M} \right\}\,,
-\end{align*}
+\end{align}
 consisting of all posterior distributions obtained
 by traditional Bayesian updating of elements of the prior credal set.
 
@@ -787,6 +789,93 @@ Section **** another attempt to refine ****ISIPTA'11***
 ***more structure of section?*** 
 
 \subsection{The General Model}
+
+\paragraph{The Basic Setting.}
+
+Consider inference based on samples from a regular canonical exponential family \eqref{eq:expofam-sampledens}
+using the conjugate prior \eqref{eq:canonicalprior} as discussed in Section~\ref{sec:regularconjugates}.
+One specifies a prior parameter set $\PZ$ of $(\nz,\yz)$ values
+and takes as imprecise prior---described via the credal set $\MZ$---the set of traditional priors with $(\nz, \yz) \in \PZ$.
+The credal set $\MN$ of posterior distributions,%
+\footnote{To emphasize the dependence of the sample size $n$,
+the posterior credal set is denoted by $\MN$ instead of $\mathcal{M}_{\vert \mbf{x}}$ in \eqref{eq:posteriorcredalset}.}
+obtained by updating each element of $\MZ$ via Bayes' Rule,
+then can be described as the set of parametric distributions
+with parameters varying in the set of updated parameters $\PN = \{(\nn,\yn) \vert (\nz, \yz) \in \PZ\}$.
+
+Alternatively, $\MZ$ can be defined as the set of all convex mixtures of parametric priors with $(\nz, \yz) \in \PZ$.
+In this case, the set of priors corresponding to $\PZ$ considered above gives the set of extreme points for the actual convex set $\MZ$.
+Updating this convex prior credal set with the Generalized Bayes' Rule results in a set $\MN$ of posterior distributions that is again convex,
+and $\MN$ conveniently can be obtained by taking the convex hull of the set of posteriors
+defined by the set of updated parameters $\PN$.
+
+Taking $\MZ$ to be the convex hull of parametric priors with $(\nz, \yz) \in \PZ$
+makes the inference procedure very general,
+as $\MZ$ then contains, through the mixture distributions, a wealth of distributional shapes.%
+\footnote{Indeed, if the parametric distributions are normal distributions
+and $\PZ$ is large enough,
+it can be assumed that $\MZ$ contains a very wide range of priors,
+as mixtures of normal distributions are dense in the space of well-behaved probability distributions
+\parencite[see, e.g.,][p.~44]{2000:priebe}***other citation****.}
+The downside with this approach is that extremes for prior and posterior quantities of interest under such an $\MZ$
+may be very difficult to obtain,
+as minimisation and maximisation must be conducted over an infinite number of (finite-component) mixture distributions.
+Still, minimisation and maximisation over $\MZ$ or $\MN$ are feasible
+for quantities that are \emph{linear} in the prior or the posterior, respectively.
+For these quantities, extremes are attained at the extreme points of the credal set,
+which are the parameric distributions.
+Expectations are such linear quantities, while variances are not.
+****footnote: loss minimising / utility maximising acts, decision making tasks often rely on expectations only****
+
+For both cases, the relationship between the parameter sets $\PZ$ and $\PN$ and the credal sets $\MZ$ and $\MN$
+will allow us to discuss different models $\MZ$ and $\MN$
+by considering the corresponding parameter sets $\PZ$ and $\PN$.%
+\footnote{Note that, although, by the general framework, the credal sets $\MZ$ and $\MN$ may be defined as convex hulls,
+the parameter sets $\PZ$ and $\PN$ generating them need not necessarily be so, and typically are not convex, indeed.
+See, e.g., Figure~***** on page~****.}
+
+
+As an example, in the precise Beta-Bernoulli model as discussed in Section~\ref{sec:beta-binom},
+the posterior predictive probability %$[\lpr,\upr]$
+for the event that a future single draw is a success is equal to $\yn$, and so we get,
+for an imprecise model with $\MZ = \{p(\theta\mid\nz, \yz) \vert (\nz, \yz) \in \PZ\}$,
+the lower and upper probability
+\begin{align*}
+\ynl &:= \inf_{\PN} \yn = \inf_{\PZ} \frac{\nz\yz + s}{\nz +n}\,, \\
+%  & = \min_{\nz \in [\nzl, \nzu]} \frac{\nz\yzl + s}{\nz +n} & &\text{and} \nonumber\\
+\ynu &:= \sup_{\PN} \yn = \sup_{\PZ} \frac{\nz\yz + s}{\nz +n}\,.
+%  & = \max_{\nz \in [\nzl, \nzu]} \frac{\nz\yzu + s}{\nz +n}. \nonumber
+\end{align*}
+
+Special imprecise probability models are now obtained by specific choices of $\PZ$.
+We distinguish the following types of models:
+\begin{enumerate}[(a)]
+\item $\nz$ is fixed, while $\yz$ varies in a set $\YZ$.\\
+The IDM \parencite{1996:walley::idm},
+as well as its generalisation to all sample distributions of the canonical exponential form \eqref{eq:expofam-sampledens}
+by \textcite{2005:quaeghebeurcooman} are of this type.
+The approach by \textcite{1997:Boratynska} also belongs to this category,
+as she specifies bounds for $\nz \yz$ while holding $\nz$ constant \parencite[see][p.~1973]{2012:benavolizaffalon}.
+\item $\nz$ varies in a set $\NZ$, while $\yz$ is fixed.\\
+This type of model is rarely discussed in the literature,
+but is mentioned by \textcite{1991:walley} in {\S 7.8.3} and in {\S 1.1.4}, footnote no.~10.
+Both instances assume the Normal-Normal model as described in Section~\ref{sec:norm-norm},
+where the set of priors is spanned by normal distributions with a fixed mean $\yz$ and a range of variances $\sigma_0^2 / \nz$.
+\item Both $\nz$ and $\yz$ vary in a set $\{ (\nz, \yz) \vert \nz \in \NZ, \yz \in \YZ \}$.\\
+%$\nz \in \NZ \times \yz \in \YZ$.\\
+This type of model is first discussed in \textcite[\S 5.4.3]{1991:walley} for the Beta-Bernoulli model,
+and was later generalised by \textcite{Walter2009a}
+to sample distributions of the canonical exponential form \eqref{eq:expofam-sampledens}.
+We will discuss and ilustrate this model in Section~****.
+It should be noted here that while the prior parameter set is a Cartesian product of $\NZ = [\nzl, \nzu]$ and $\YZ$,
+the posterior parameter set is not.
+This is due to Eq.~\eqref{eq:canonicalupdate},
+which results in different ranges for $\yn$ depending on the value of $\nz$ used in the update step.%
+\footnote{This is illustrated, e.g., in Figure~****, page~****.}
+\item Both $\nz$ and $\yz$ vary in other sets $\PZ \subset (\reals_{>0} \times \Y)$.\\
+In this type, also in the prior parameter set the range of $\yz$ may depend on $\nz$ as in \textcite[\S 2.3]{Walter2011a},
+or, vice versa, the range of $\nz$ may depend on the value of $\yz$, as in \textcite{2012:benavolizaffalon}.
+\end{enumerate}
 
 
 

@@ -506,17 +506,22 @@ consisting of all posterior distributions obtained
 by traditional Bayesian updating of elements of the prior credal set.
 
 Walley's lower envelope theorem also establishes a close connection to robust Bayesian approaches and Bayesian sensitivity analysis
-\parencite[see, e.g.,][]{2000:rios, 2005:ruggeri} based on sets of distributions.
-The basic difference is in the interpretation of the underlying sets of probability distributions.
+\parencite[see, e.g.,][]{1994:berger, 2000:rios, 2005:ruggeri} based on sets of distributions.
+In fact, Walley's theory of lower previsions can be seen as
+providing a formal framework for these approaches.
+However, there is a basic difference in the interpretation of the underlying sets of probability distributions.
 While in the imprecise probability context a credal set is understood as an entity of its own,
 the robust Bayesian approach emphasizes the single elements in the set,
-and very often discusses the effects of deviations from a certain central element.
-%As a consequence, for the robust Bayesian point of view it is quite natural and common
-%to impose some further regularity conditions on the elements in the set of distributions,
-%like additional smoothness constraints or unimodality of the underlying densities.
-%Since lower and upper posterior probabilities are determined by the extreme points of the underlying credal sets, this distinction may indeed matter substantially in practice.
-%\bigskip
-Robust Bayesian inference and Bayesian sensitivity analysis
+and very often discusses the effects of deviations from a certain central element.%
+\footnote{These so-called \emph{neighbourhood models} are briefly discussed in Section~\ref{sec:alternatives}****.}
+
+As a consequence, for the robust Bayesian point of view it is quite natural and common
+to impose some further regularity conditions on the elements in the set of distributions,
+like additional smoothness constraints or unimodality of the underlying densities.
+Since lower and upper posterior probabilities are determined by the extreme points of the underlying credal sets,
+this distinction may indeed matter substantially in practice.
+
+In essence, robust Bayesian inference and Bayesian sensitivity analysis
 understand robustness and insensitivity mostly as desirable properties,
 while the imprecise probability framework may use such behavior actively in modelling,
 in particular in the context of prior-data conflict
@@ -539,7 +544,7 @@ or sets of probability distributions with certain restrictions
 \parencite[Fig.~5.5]{itip-special}.
 A considerable part of the imprecise probability literature
 explores these links, of which Destercke and Dubois \parencite*{itip-other,itip-special}
-give a good overview.
+give a concise overview.
 
 %Capacities, or fuzzy measures, are set functions
 
@@ -737,10 +742,10 @@ then we must be at least suspicious about the validity of inferences drawn.''
 While there is no way to express this caution (`being suspicious') in precise probabilistic models,
 the imprecise probability model at the core of this thesis was developed specifically to take care of this issue
 (see Section~\ref{sec:imprecisebayes-conjugate}) in an appropriate way.
-A more detailed discussion on the issue prior-data conflict will be given in Section~\ref{sec:motivation:pdc}.
+A more detailed discussion on the issue of prior-data conflict will be given in Section~\ref{sec:motivation:pdc}.
 
 ***As a related topic, decreasing imprecision in sequential learning
-expresses naturally that the accumulating information is non-conflicting and stable.***
+expresses naturally that the accumulating information is non-conflicting and stable.*** to outlook??***
 
 %***The following two subsections are devoted to motives directly related to important issues in Bayesian inference.
 
@@ -758,11 +763,41 @@ expresses naturally that the accumulating information is non-conflicting and sta
 
 section itip / JSTP paper
 
-\section{***Other Models Based on Sets of Priors***}
+\section{Alternative Models Based on Sets of Priors}
+\label{sec:alternatives}
 
 ***Later, comparison with other approaches based on sets of probability distributions:***
 
-different sorts of neighbourhood models as considered in robust Bayesian approaches \parencite[e.g.,][]{1994:berger}.
+\bigskip
+
+par on withcomb, then rewrite this:
+
+``Some computational aspects'' from \textcite[\S 4.2]{itip-statinf} on discretized models (Withcomb!)***
+
+In the case of discrete prior distributions (i.e., distributions with a finite support of size $k$.)
+%(where the unknown parameter can only assume a fixed number $k$ of values, $k < \infty$),
+the computation of posterior credal sets is often done
+via the alternative model formulation as conditional lower previsions
+\parencite[see, e.g.,][]{itip-computation}.
+For large $k$, the algorithms described there may easily become infeasible.
+In traditional statistics, absolutely continuous distributions are employed
+when inference using discrete distributions becomes too complex,
+typically approximating a non-parametric model with a parametric one.%
+\footnote{As an example, consider the test for independence in contingency tables.
+Fisher's exact test, a non-parametric test using a permutation argument (thus resulting in a discrete distribution),
+can become difficult to calculate for large samples.
+An alternative is then the chi-squared test that is based on the continuous, one-parametric $\chi^2(df)$ distribution,
+which, for large samples, is a good approximation of the distribution of the $\chi^2$ test statistic then used to determine the test decision.}
+The same path can be followed in generalized Bayesian inference,
+by considering sets of continuous distributions.
+Furthermore, before the advent of Markov Chain Monte Carlo (MCMC) techniques \parencite[see, e.g.,][]{1998:gilks}
+to determine posterior distributions in complex settings by simulation,
+Bayesian inference was mostly confined to conjugate prior distributions
+because posteriors derived from non-conjugate priors are very often intractable analytically.
+
+\bigskip
+
+***different sorts of neighbourhood models as considered in robust Bayesian approaches \parencite[e.g.,][]{1994:berger}.
 
 
 As an example, consider the \emph{odds-ratio model}.

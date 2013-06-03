@@ -169,7 +169,7 @@ Sets of probability distributions, as the formulation used to describe inference
 are then explained in relation to the other formulations,
 and the generalised Bayesian inference procedure as used in Section~\ref{sec:imprecise-alpha} is justified formally.
 
-\paragraph{Lower Previsions}
+\subsubsection{Lower Previsions}
 
 As mentioned in Section~\ref{sec:ip-general}, the basic entities in the theory by \textcite{1991:walley}
 are lower and upper \emph{previsions}.
@@ -255,7 +255,7 @@ and in the literature $\El$ is chosen,
 the theory consequently being referred to as the theory of
 \emph{coherent lower previsions} \parencite[see, e.g.,][\S 3.2]{itip}.
 
-\paragraph{Coherence and Avoiding Sure Loss}
+\subsubsection{Coherence and Avoiding Sure Loss}
 
 Before we come to the concept of \emph{coherence},
 a weaker rationality requirement put forward by Walley is
@@ -323,7 +323,7 @@ and may involve raising $\El[X]$ for some $X \in \mathcal{K}$ in order to make t
 coherent to the values of $\El[Y]$, supremum buying prices for some other gambles $Y \in \mathcal{K}$ as previously assessed,
 or newly defining $\El[Z]$ for gambles $Z$ not considered during assessment---explaining the name `extension'.
 
-\paragraph{Sets of Desirable Gambles}
+\subsubsection{Sets of Desirable Gambles}
 
 Sets of desirable gambles \parencites[\S 6]{2000:walley::towards}{itip-desirable} are an alternative formulation
 for probability assessments as expressed by a lower prevision $\El$.
@@ -386,7 +386,7 @@ several sets $\mathcal{D}$ leading to the same $\El$ \parencite[p.~139]{2000:wal
 where a partial ordering of the gambles in $\mathcal{L}$ is given to express beliefs on $\Omega$
 \parencite[p.~138]{2000:walley::towards}.}
 
-\paragraph{Sets of Probability Distributions}
+\subsubsection{Sets of Probability Distributions}
 
 We now turn to the formulation of imprecise probability assessments
 applied in this thesis, 
@@ -442,7 +442,7 @@ a set $\mathcal{M}$ of probability distributions avoids sure loss.
 described as the lower envelope based on its corresponding $\mathcal{M}$.
 Therefore, all coherent lower previsions are characterised as
 lower envelopes based on some set of precise distributions $\mathcal{M}$,
-and imprecise probability assignments established via a such set $\mathcal{M}$
+and imprecise probability assignments established via such a set $\mathcal{M}$
 are, by design, coherent.
 \end{enumerate}
 
@@ -457,7 +457,7 @@ because lower and upper previsions derived from $\mathcal{M}$ are nevertheless c
 %
 %itip sec.3.2.2, 3.3.3
 
-\paragraph{Conditioning and the Generalised Bayes' Rule}
+\subsubsection{Conditioning and the Generalised Bayes' Rule}
 
 To use imprecise probability distributions for statistical inference
 in the same way as usual Bayesian inference employs precise probability distributions,
@@ -482,7 +482,7 @@ In the formulation via a credal set, the Generalised Bayes' Rule
 is equivalent to conditioning each distribution in the credal set on $B$ via Bayes' Rule
 \parencite[\S 6.4.2]{1991:walley},
 and the set of conditioned distributions is thus an equivalent model for $\El[X\mid B]$.
-This result is known as the \emph{lower envelope theorem for conditional previsions}.
+This important result is known as the \emph{lower envelope theorem for conditional previsions}.
 
 %GBR: coherence of prior and posterior
 
@@ -595,7 +595,14 @@ The reasoning to be modeled by expert systems typically involes
 because they aim to formalise and automate as much as possible
 of the reasoning process'' \parencite[p.~2]{1996:walley::expert}.
 
+We will first discuss a central, or fundamental, motive in Section~\ref{sec:motivation-fundamental},
+along with a number of motives that can be seen as derived from this central motive.
+Before we discuss motives specific to the Bayesian approach in Section~\ref{sec:motivation:bayesian},
+we briefly discern, in consequence of the central motive, the notions of \emph{risk} and \emph{ambiguity}
+in Section~\ref{sec:motivation-riskambiguity}.
+
 \subsection{The Fundamental Motive}
+\label{sec:motivation-fundamental}
 
 The fundamental motive at play in expert systems,
 and in the study of uncertainty in artificial intelligence in general \parencite[see, e.g.,][]{2006:lawry},
@@ -660,6 +667,7 @@ satisfied closely enough as necessary for the validity of classical probability 
 %\end{enumerate}
 
 \subsection{Risk and Ambiguity}
+\label{sec:motivation-riskambiguity}
 
 This multidimensionality of uncertainty is most often accounted for
 by distinguishing two specific dimensions,
@@ -707,7 +715,7 @@ From a decidedly Bayesian perspective as taken in this thesis,
 we first want to point out a foundational motive for the use of imprecise probability methods,
 before we come to more specific motives.
 
-\paragraph{Foundational Motive.}
+\subsubsection{Foundational Motive}
 
 We agree with \textcite[\S 1.1]{1994:berger} in the view that there are very strong foundational arguments
 for the subjective Bayesian approach, which, however, hold only
@@ -736,7 +744,7 @@ that will be discussed in more detail in Sections~*** and ****.
 
 %Here we focus on two aspects within the Bayesian framework,
 %which will be considered in detail in Section~\ref{inference:sec:setsofconjugatepriors}.
-\paragraph{Weakly Informative Priors.}
+\subsubsection{Weakly Informative Priors}
 
 A first important issue is the proper modelling of no (or extremely vague) prior knowledge.
 In traditional statistics, so-called \emph{non-informative priors} have been proposed, which, by different criteria,
@@ -744,7 +752,7 @@ eventually all select a single traditional prior distribution,
 turning ignorance into a problem with rather precise probabilistic information.
 We will comment on this issue in more detail in Section~\ref{sec:motivation:near-ignorance}.
 
-\paragraph{Prior-Data Conflict.}
+\subsubsection{Prior-Data Conflict}
 
 Moreover, increasing imprecision to make the conclusions more cautious
 is the natural way to handle \emph{prior-data conflict},
@@ -799,7 +807,9 @@ Section **** another attempt to refine ****ISIPTA'11***
 
 \subsection{The General Model}
 
-\paragraph{The Basic Setting.}
+***structure of subsection: here comes the important part!****
+
+\subsubsection{The Basic Setting}
 
 Consider inference based on samples from a regular canonical exponential family \eqref{eq:expofam-sampledens}
 using the conjugate prior \eqref{eq:canonicalprior} as discussed in Section~\ref{sec:regularconjugates}.
@@ -887,6 +897,7 @@ or, vice versa, the range of $\nz$ may depend on the value of $\yz$, as in \text
 \end{enumerate}
 
 
+\subsubsection{Properties and criteria regarding the models}
 
 
 

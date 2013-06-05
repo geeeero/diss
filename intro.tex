@@ -481,7 +481,7 @@ The loss function $l$ gives a functional form for the severity of deviations of 
 here, it values the distance of a point estimator $\hat{\theta}$ to $\theta$.
 The \emph{quadratic loss function} $l(\hat{\theta}, \theta) = (\hat{\theta}-\theta)^2$
 values small deviations relatively low, whereas large deviations are given a high weight.
-As can be shown (see, e.g., \textcite{2002:casella}, p.~352f), %\parencite[see, e.g., ][p.~352f]{2002:casella},
+As can be shown \parencite[see, e.g.,][pp.~352f]{2002:casella}, %(see, e.g., \textcite{2002:casella}, p.~352f),
 the quadratic loss function leads to the posterior expectation as the Bayesian point estimator.
 Here, $\E[\theta\mid\x, \nz, \yz] = \E[\theta\mid\nn, \yn] = \yn$,
 and so the posterior expectation of $\theta$ is a weighted average
@@ -496,7 +496,7 @@ l(\hat{\theta}, \theta) = \begin{cases} 0 & |\hat{\theta}-\theta| \le \epsilon \
 \end{align*}
 for $\epsilon \rightarrow 0$, leads to the maximum of the posterior,
 often abbreviated as MAP (maximum a posteriori) estimator
-(see, e.g., \textcite{2000:bernardosmith}, \S 5.1.5, p.~257, or \textcite{2007:robert}, \S 4.1.2, p.~166).
+(see, e.g., \cite{2000:bernardosmith}, \S 5.1.5, p.~257, or \cite{2007:robert}, \S 4.1.2, p.~166).
 For a $\be(\nn\yn, \nn(1-\yn))$, the mode is
 \begin{align*}
 \modus p(\theta\mid\nn, \yn) &= \frac{\nn\yn - 1}{\nn - 2} = \frac{\nz\yz - 1 + s}{\nz - 2 + n}\,,
@@ -505,7 +505,7 @@ and thus is a weighted average of the prior mode $\frac{\nz\yz - 1}{\nz -2}$ $(\
 and the sample proportion $s/n$, with weights $\nz - 2$ and $n$, respectively.
 
 Note that asymptotic optimality properties of maximum likelihood estimators (consistency, efficiency)
-are usually preserved for these Baysian point estimators \parencite[Note~1.8.4, p.~48f]{2007:robert}.
+are usually preserved for these Baysian point estimators \parencite[e.g.,][Note~1.8.4, pp.~48f]{2007:robert}.
 
 In the Bayesian approach, \textbf{interval estimation} is rather simple,
 as the posterior distribution delivers a direct measure of probability for arbitrary subsets of the parameter space $\Theta$.

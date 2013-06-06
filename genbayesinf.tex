@@ -740,17 +740,19 @@ while highly imprecise (or even vacuous) models are used in the situation of sca
 This power to differentiate between different degrees of partial knowledge
 distinguishes imprecise probabilities as an attractive modelling tool in statistics.
 In particular it allows to overcome two severe practical limitations inherent to Bayesian inference based on precise probabilities,
-that will be discussed in more detail in Sections~*** and ****.
+briefly discussed below and in more detail in Sections~*** and ****.
 
 %Here we focus on two aspects within the Bayesian framework,
 %which will be considered in detail in Section~\ref{inference:sec:setsofconjugatepriors}.
 \subsubsection{Weakly Informative Priors}
+\label{sec:motivation:near-ignorance}
 
 A first important issue is the proper modelling of no (or extremely vague) prior knowledge.
 In traditional statistics, so-called \emph{non-informative priors} have been proposed, which, by different criteria,
 eventually all select a single traditional prior distribution,
 turning ignorance into a problem with rather precise probabilistic information.
-We will comment on this issue in more detail in Section~\ref{sec:motivation:near-ignorance}.
+We will comment on this issue in more detail in Section~\ref{sec:gbicp-properties-criteria},
+item \ref{enum:noninformative}.
 
 \subsubsection{Prior-Data Conflict}
 
@@ -775,8 +777,8 @@ expresses naturally that the accumulating information is non-conflicting and sta
 \subsection{Prior-Data Conflict}
 \label{sec:motivation:pdc}
 
-\subsection{Weakly Informative Priors}
-\label{sec:motivation:near-ignorance}
+%\subsection{Weakly Informative Priors}
+%\label{sec:motivation:near-ignorance}
 
 %\subsection{Other Motives}
 
@@ -914,6 +916,7 @@ or, vice versa, the range of $\nz$ may depend on the value of $\yz$, as in \text
 
 
 \subsubsection{Properties and criteria regarding the models}
+\label{sec:gbicp-properties-criteria}
 
 Before discussing the approaches mentioned above in some detail,
 we will describe some properties that all of them have in common.
@@ -925,7 +928,7 @@ with weights $\nz$ and $n$, respectively.
 Thus, while the (absolute) stretch of $\PN$ in the $\nz$ resp.\ $\nn$ dimension will not change during updating,
 the stretch in the $\yz$ resp.\ $\yn$ dimension will do so.
 When speaking of the size of $\PN$, we will thus refer to the stretch in the main parameter dimension, also denoted by $\Delta_y(\PN)$.
-\begin{itemize}
+\begin{enumerate}[I.]
 \item The larger $n$ relative to (values in the range of) $\nz$,
 ceteris paribus (c.p.) the smaller $\PN$, i.e.\ the more precise the inferences.
 Vice versa, the larger the $\nz$ value(s) as compared to $n$, c.p.\ the larger $\PN$, and the more imprecise the inferences.
@@ -947,13 +950,14 @@ is similar to the consistency property often employed in frequentist statistics.
 \item The larger $\Delta_y(\PZ)$, the larger c.p.\ $\Delta_y(\PN)$;
 %The larger the stretch in the $\yz$ dimension a priori, the larger c.p.\ the stretch of the $\yn$ values obtained a posteriori.
 a more imprecise prior $\MZ$ will naturally lead to a more imprecise posterior $\MN$, which carries over to the inferences.
-\end{itemize}
+\end{enumerate}
 
 Apart from the above properties that are guaranteed in all of the four model types %(a) -- (d),
 \eqref{enum:modeltypes-a} -- \eqref{enum:modeltypes-d},
 one might want the models to adhere to (either of) the following additional criteria:
-\begin{itemize}
-\item \textbf{Prior-data conflict sensitivity.}
+\begin{enumerate}[I.]
+\setcounter{enumi}{3}
+\item \textbf{Prior-data conflict sensitivity.}\label{enum:pdc}
 In order to mirror the state of posterior information,
 posterior inferences should, all other things equal, be more imprecise in the case of prior-data conflict.
 Reciprocally, if prior information and data coincide especially well, an additional gain in posterior precision may be warranted.
@@ -977,7 +981,7 @@ In the imprecise Bayesian framework as discussed here,
 prior-data conflict sensitivity translates into having a larger $\PN$ (leading to a larger $\MN$) in case of prior-data conflict,
 and, mutatis mutandis, into a smaller $\PN$ if prior and data coincide especially well.
 
-\item \textbf{Possibility of weakly or non-informative priors.}
+\item \textbf{Possibility of weakly or non-informative priors.}\label{enum:noninformative}
 When only very weak or (almost) no prior information is available on the parameter(s) one wishes to learn about,
 it should be possible to model this situation adequately.
 The traditional Bayesian approach to this problem, so-called \emph{non-informative priors},
@@ -1006,7 +1010,7 @@ and the closely related discussion of weak and strong invariance in \textcite[\S
 For a critique on non-informative priors from an imprecise probability viewpoint see, e.g., \textcite[\S 5.5]{1991:walley};
 their partition dependence is also discussed in the context of elicitation \parencite[see][\S 3]{itip-elicitation}.}
 %\item ***further desirable properties??***
-\end{itemize}
+\end{enumerate}
 
 The approaches mentioned in (a) -- (d) are now discussed in detail,
 sorted according to two basic scenarios regarding the intended use:
@@ -1022,6 +1026,109 @@ This could be useful in the area of \emph{statistical surveillance},
 where, e.g., the number of cases of a certain infectious disease is continuously monitored,
 with the aim to detect epidemic outbreaks in their early stages.}
 
+
+\subsubsection{The IDM and other Prior Near-Ignorance Models}
+\label{sec:idm-and-near-ignorance}
+
+The \emph{Imprecise Dirichlet model} (IDM) was developed by \textcite{1996:walley::idm}
+as a model for inferences from multinomial data when no prior information is available.%
+\footnote{The imprecise Beta-Binomial model from \textcite[\S 5.3.2]{1991:walley}
+can be seen as a precursor to the IDM, covering the special case of two categories.}
+As indicated by its name, it uses as imprecise prior a (near-) noninformative set of Dirichlet priors,
+which is obtained by choosing $\YZ$ as the whole interior of the unit simplex $\Delta$, with $\nz$ fixed,%
+\footnote{Our notation relates to Walley's \parencite*{1996:walley::idm} as
+$t_j \leftrightarrow \yz_j$, $s \leftrightarrow \nz$, $t^*_j \leftrightarrow \yn_j$.}
+\begin{align*}
+\MZ &= \left\{ p(\theta \mid \nz, \yz) \left| 0 < \yz_j < 1\ \forall j, \sum_{j=1}^k \yz_j = 1 \right. \right\}\,.
+\end{align*}
+The prior credal set is thus determined by the choice of $\nz$.
+\Textcite{1996:walley::idm} argues for choosing $\nz = 1$ or $\nz = 2$, where, in the latter case,
+inferences from the IDM encompass both frequentist and Bayesian results based on standard choices for noninformative priors.
+For any choice of $\nz$, this imprecise prior expresses a state of ignorance about $\theta$,
+as, for all $j = 1,\ldots, k$,
+\begin{align*}
+\El[\theta_j] &= \yzl_j = \inf_{\yz_j \in \YZ} \yz_j = 0\,,\\
+\Eu[\theta_j] &= \yzu_j = \sup_{\yz_j \in \YZ} \yz_j = 1\,,
+\end{align*}
+and probabilities for events regarding $\theta_j$ are vacuous, i.e.\
+$[\Pl,\Pu](\theta_j \in A) = (0,1)$, for any $A \subset [0, 1]$.%
+%****also true for $\theta \in A \subset \Delta$?***%
+\footnote{However, the IDM may give non-vacuous prior probabilities for some more elaborate events.
+An example \parencite[p.~14]{1996:walley::idm} is the event $(A_J, A_K)$
+that the next observation belongs to a category subset $J \subseteq\{1, \ldots, k\}$,
+and the observation following that belongs to a category subset $K$,
+where $J \cap K = \emptyset$ and $|n(A_J) - n(A_K)| < \nz$.}
+
+The posterior credal set $\MN$ is then the set of all Dirichlet distributions
+with parameters $\nn$ and $\yn$ obtained by \eqref{eq:canonicalupdate},
+\begin{align*}
+\MN &= \left\{ p(\theta \mid \nn, \yn) \ \left| \  0 < \yz_j < 1\ \forall j, \sum_{j=1}^k \yz_j = 1 \right. \right\} \,.
+\end{align*}
+For any event $A_J$ that the next observation belongs to a subset $J$ of the categories, $J \subseteq\{1, \ldots, k\}$,
+the posterior lower and upper probabilities calculate as
+\begin{align*}
+\Pl(A_J) &= \frac{n(A_J)}{\nz + n} &
+\Pu(A_J) &= \frac{\nz + n(A_J)}{\nz + n}\,,
+\end{align*}
+where $n(A_J) = \sum_J n_j$ is the number of observations from the category subset $J$.
+
+The IDM is motivated by a number of inference principles put forward by \textcite[\S 1]{1996:walley::idm},
+most notably the \emph{representation invariance principle} \parencite[RIP, see][\S 2.9]{1996:walley::idm}:
+Inferences based on the IDM are invariant under different numbers of categories considered in the sample space.%
+\footnote{In the example discussed in \textcite{1996:walley::idm},
+where colored marbles are drawn from a bag,
+it does not matter, e.g., for prior and posterior probabilities for ``red'' as the next draw,
+whether one considers the categorization $\{$red, other$\}$ or $\{$red, blue, other$\}$.}
+The usefulness of the RIP has been controversially discussed \parencite[see, e.g., the discussion to][]{1996:walley::idm},
+and alternative imprecise probability models that do not rely on it have been developed.%
+\footnote{See, e.g., Coolen and Augustin \parencite*{2005:Coolen:Augustin, 2009:Coolen:Augustin}
+***and the brief discussion at the end of Section ***{NonparametricPredictive-Inference-Overview}***
+for an alternative based on the NPI approach.}
+
+%The IDM can be shown to lead to $\infty$-monotone lower probabilities \parencite[see, e.g.,][\S 5]{itip-special},
+%and its credal set is already completely determined by the lower and upper probabilities of the singletons,
+%i.e., the corresponding lower and upper probabilities constitute a probability interval \parencite[see, e.g.,][\S 4]{itip-special}.
+
+%***other properties of IDM: embeddig principle, symmetry principle?\\
+
+Due to its tractability, the IDM has been employed in a number of applications.
+\textcite{1996:walley::idm} offers an application to data from medical studies;
+\textcite{2005:bernard} details an extension of the IDM to contingency table data that was briefly covered in \textcite{1996:walley::idm}.
+In 2009, a special issue of the \emph{International Journal of Approximate Reasoning} \parencite{2009:bernard} was devoted to the IDM.
+Since its introduction, the IDM has found applications in, e.g.,
+reliability analysis (e.g., \cite{1997:Coolen, 2010:utkin:kozine, 2010:utkin:zatenko:coolen, 2011:li:chen:yi:tao}),
+or operations research (e.g., \cite{2006:utkin::expertjudgements});
+% 152 citations according to "web of knowledge",
+however, the IDM has had an especially strong impact in the area of artificial intelligence,
+namely in the construction of classification methods (including, e.g., pattern recognition) and in inference based on graphical models,
+see, e.g., \textcite{itip-classification} and \textcite{itip-ipgms} and their references.
+These IDM-based methods, in turn, are used in a vast variety of tasks from all kinds of subjects,
+such as medicine \parencite[e.g.,][]{2003:zaffalon::dementia},
+agriculture \parencite[e.g.,][]{2005:zaffalon::environment},
+or geology \parencite[e.g.,][]{2007:antonucci}.
+The IDM can be regarded as the most influential imprecise probability model so far.
+
+In the IDM, satisfying near-ignorance for the prior and still having non-vacuous posterior probabilities is possible
+because the domain of the prior main parameter $\yz$ is bounded ($\Y = \text{int}(\Delta)$).
+For most conjugate priors to exponential family distributions, $\Y$ is not bounded,
+and thus, trying to reach prior ignorance in the same way as in the IDM,
+by taking $\YZ = \Y$ for a fixed $\nz$, would lead to vacuous posterior probabilities.%
+\footnote{From \eqref{eq:canonicalupdate}, it follows that for $\yz \rightarrow \infty$ we get $\yn \rightarrow \infty$ if $\nz$ is fixed.}
+Instead, as was shown by \textcite{2012:benavolizaffalon}, for conjugate priors to one-parameter exponential family distributions,
+one needs to vary $\nz$ in conjunction with $\yz$ to get both prior near-ignorance and non-vacuous posterior probabilities.
+In essence, the term $\nz \yz$ appearing in \eqref{eq:canonicalupdate} must be bounded while letting $\YZ = \Y$,
+which effects to a prior parameter set $\PZ$ where the range of $\nz$ depends on $\yz$.
+
+To summarize, imprecise probability methods allow for a much more adequate modeling of prior ignorance
+than non-informative priors, the traditional Bayesian approach to this problem, can deliver.
+Instead of the somehow awkward choice of a certain non-informativeness approach,
+to define an imprecise non-informative prior, the analyst just needs to specify one parameter
+(or two, as partly in \cite{2012:benavolizaffalon})
+determining the learning speed of the model, namely $\nz$ for the IDM.
+
+
+\subsubsection{Substantial Prior Information and Sensitivity to Prior-Data Conflict}
+\label{sec:pdc-sensitivity}
 
 \section{Alternative Models Based on Sets of Priors}
 \label{sec:alternatives}

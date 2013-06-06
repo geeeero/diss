@@ -752,7 +752,7 @@ In traditional statistics, so-called \emph{non-informative priors} have been pro
 eventually all select a single traditional prior distribution,
 turning ignorance into a problem with rather precise probabilistic information.
 We will comment on this issue in more detail in Section~\ref{sec:gbicp-properties-criteria},
-item \ref{enum:noninformative}.
+item \ref{enum:noninformative}, and in Section~\ref{sec:idm-and-near-ignorance}.
 
 \subsubsection{Prior-Data Conflict}
 
@@ -765,8 +765,9 @@ then we must be at least suspicious about the validity of inferences drawn.''
 While there is no way to express this caution (`being suspicious') in precise probabilistic models,
 the imprecise probability model at the core of this thesis was developed specifically to take care of this issue
 (see Section~\ref{sec:imprecisebayes-conjugate}) in an appropriate way.
-A more detailed discussion on the issue of prior-data conflict will be given in Section~\ref{sec:motivation:pdc},
-some toy examples can be found in Section ****,
+A more detailed discussion on the issue of prior-data conflict will be given in Section~\ref{sec:gbicp-properties-criteria},
+item \ref{enum:pdc}, and in Section~\ref{sec:pdc-sensitivity};
+some illustrative examples can be found in Section ****,
 while the effect of prior-data conflict on Bayesian linear regression is discussed in Section ****.
 
 ***As a related topic, decreasing imprecision in sequential learning
@@ -774,8 +775,8 @@ expresses naturally that the accumulating information is non-conflicting and sta
 
 %***The following two subsections are devoted to motives directly related to important issues in Bayesian inference.
 
-\subsection{Prior-Data Conflict}
-\label{sec:motivation:pdc}
+%\subsection{Prior-Data Conflict}
+%\label{sec:motivation:pdc}
 
 %\subsection{Weakly Informative Priors}
 %\label{sec:motivation:near-ignorance}
@@ -812,6 +813,7 @@ Section **** another attempt to refine ****ISIPTA'11***
 ***structure of subsection: here comes the important part!****
 
 \subsubsection{The Basic Setting}
+\label{sec:basicsetting}
 
 Consider inference based on samples from a regular canonical exponential family \eqref{eq:expofam-sampledens}
 using the conjugate prior \eqref{eq:canonicalprior} as discussed in Section~\ref{sec:regularconjugates}.
@@ -893,11 +895,13 @@ The approach by \textcite{1997:Boratynska} also belongs to this category,
 as she specifies bounds for $\nz \yz$ while holding $\nz$ constant \parencite[see][p.~1973]{2012:benavolizaffalon}.
 \label{enum:modeltypes-a}
 \item $\nz$ varies in a set $\NZ$, while $\yz$ is fixed.\\
+\label{enum:varyn}%
 This type of model is rarely discussed in the literature,
 but is mentioned by \textcite{1991:walley} in {\S 7.8.3} and in {\S 1.1.4}, footnote no.~10.
 Both instances assume the Normal-Normal model as described in Section~\ref{sec:norm-norm},
 where the set of priors is spanned by normal distributions with a fixed mean $\yz$ and a range of variances $\sigma_0^2 / \nz$.
-\item Both $\nz$ and $\yz$ vary in a set $\{ (\nz, \yz) \vert \nz \in \NZ, \yz \in \YZ \}$.\\
+\item Both $\nz$ and $\yz$ vary in a set $\{ (\nz, \yz) \mid \nz \in \NZ, \yz \in \YZ \}$.\\
+\label{enum:rectangular}%
 %$\nz \in \NZ \times \yz \in \YZ$.\\
 This type of model is first discussed in \textcite[\S 5.4.3]{1991:walley} for the Beta-Bernoulli model,
 and was later generalised by \textcite{Walter2009a}
@@ -1129,6 +1133,162 @@ determining the learning speed of the model, namely $\nz$ for the IDM.
 
 \subsubsection{Substantial Prior Information and Sensitivity to Prior-Data Conflict}
 \label{sec:pdc-sensitivity}
+
+Models intended specifically for use in situations with substantial prior information are presented in
+\textcite[footnote no.~10 in \S 1.1.4, and \S 7.8.3]{1991:walley}, \textcite{2005:quaeghebeurcooman}, and \textcite{Walter2009a};%
+\footnote{See Section **** for a more detailed coverage and examples*****.}
+the IDM can be modified by not taking $\YZ = \text{int}(\Delta)$, but a smaller set $\YZ$ fitting the prior information.
+
+Generalizing the IDM approach to conjugate priors for sample distributions of the canonical form \eqref{eq:expofam-sampledens},
+\textcite{2005:quaeghebeurcooman} proposed an imprecise prior $\MZ$ based on $\PZ = \YZ \times \nz$.
+E.g., in the Normal-Normal model as described in Section~\ref{sec:norm-norm},
+one can take as imprecise prior all convex mixtures of normals with mean in $\YZ = [\yzl, \yzu]$ and a fixed variance $\sigma_0^2/\nz$.
+$\YN$, the posterior set of expectations (or modes, or medians) of $\mu$, is then bounded by
+\begin{align}
+\label{eq:qdc-ynl}
+\ynl &= \inf_{\PZ} \yn = \inf_{\YZ} \frac{\nz\yz + n\bar{\x}}{\nz + n} = \frac{\nz\yzl + n\bar{\x}}{\nz + n}\\
+\label{eq:qdc-ynu}
+\ynu &= \sup_{\PZ} \yn = \sup_{\YZ} \frac{\nz\yz + n\bar{\x}}{\nz + n} = \frac{\nz\yzu + n\bar{\x}}{\nz + n}\,.
+\end{align}
+The lower (upper) posterior expectation of $\mu$ is thus a weighted average of the lower (upper) prior expectation and the sample mean,
+with weights $\nz$ and $n$, respectively.
+As mentioned above, Quaeghebeur and de Cooman's \parencite*{2005:quaeghebeurcooman} model for Bernoulli or multinomial data leads to the IDM;
+because $\Y$, the domain of $\yz$, is not bounded in the general case,
+the model is normally used to express substantial prior information.%
+\footnote{However, it could be used for near-ignorance prior situations
+in case of other sampling models where $\YZ$ can encompass the whole domain without causing posterior vacuousness.
+This applies, e.g., to circular distributions like the von Mises distribution,
+where the mean direction angle $\mu$ has the domain $(-\pi, \pi]$,
+see \textcite[\S B.1.4]{2009:quaeghebeur::phd} and \textcite{1976:mardiaelatoum}.}
+
+More generally in case of a one-parameter exponential family,
+$\PZ$ is fully described by the three real parameters $\yzl$, $\yzu$, and $\nz$,
+which are straightforward to elicit; furthermore, also $\PN$ is fully described by $\ynl$, $\ynu$, and $\nn$,
+and many inferences will be expressible in terms of these three parameters only.
+Models of this kind allow for a simple yet powerful imprecise inference calculus,
+where the amount of ambiguity in the prior information can be represented by the magnitude of the set $\YZ$,
+with $\nz$ determining the learning speed.
+
+The downside of this easily manageable model is that it is insensitive to prior-data conflict,
+as the imprecision for the main posterior parameter,
+\begin{align}
+\label{eq:deltay}
+\Delta_y(\PN) &=  \ynu - \ynl = \frac{\nz (\yzu - \yzl)}{\nz +n}\,,
+\end{align}
+does not depend on the sample $\x$.
+Imprecision is thus the same for any sample $\x$ of size $n$,
+whenever prior information about $\mu$ as encoded in $\YZ$ is in accordance with data information $\ttau(\x)$ or not.
+The relation of $\Delta_y(\PN)$ (which determines the precision of posterior inferences) to the inferential situation at hand is loosened,
+as possible conflict between prior and data is not reflected by increased imprecision.
+In that sense, the IDM with prior information and the model by \textcite{2005:quaeghebeurcooman}
+do not utilize the full expressive power of imprecise probability models,
+behaving similar to precise conjugate models by basically ignoring prior-data conflict.
+
+To counter this unwanted behaviour,
+\textcite{Walter2009a} suggested that imprecise priors to canonical sample distributions \eqref{eq:expofam-sampledens}
+should be based on parameter sets $\PZ = [\nzl, \nzu] \times \YZ$,
+as \textcite[\S 5.4.3]{1991:walley} had already implemented for the Beta-Binomial model.
+Then, \eqref{eq:qdc-ynl} and \eqref{eq:qdc-ynu} become
+\begin{align*}
+\ynl &= \begin{cases} \dfrac{\nzu\yzl + n\bar{\x}}{\nzu + n} & \bar{\x} \geq \yzl \\[2ex]
+                      \dfrac{\nzl\yzl + n\bar{\x}}{\nzl + n} & \bar{\x} <    \yzl \end{cases}\,, &
+\ynu &= \begin{cases} \dfrac{\nzu\yzu + n\bar{\x}}{\nzu + n} & \bar{\x} \leq \yzu \\[2ex]
+                      \dfrac{\nzl\yzu + n\bar{\x}}{\nzl + n} & \bar{\x} >    \yzu \end{cases}\,.
+\end{align*}
+If $\yzl < \bar{\x} < \yzu$, both $\ynl$ and $\ynu$ are calculated using $\nzu$;
+when $\bar{\x}$ falls into $[\yzl, \yzu]$, the range of prior expectations for the mean,
+prior information gets maximal weight $\nzu$ in the update step \eqref{eq:canonicalupdate},
+leading to the same results as for a model with fixed $\nz = \nzu$.
+If, however, $\bar{\x} < \yzl$, then $\ynl$ is calculated using $\nzl$,
+giving less weight to the prior information that turned out to be in conflict with the data.
+Thus, as $\ynl$ is a weighted average of $\yzl$ and $\bar{\x}$, with weights $\nz$ and $n$, respectively,
+$\ynl$ will be lower (nearer towards $\bar{\x}$) as compared to an update using $\nzu$,
+resulting in increased imprecision $\Delta_y(\PN)$ compared to the situation with $\yzl < \bar{\x} < \yzu$.
+In the same way, there is additional imprecision $\Delta_y(\PN)$ if $\bar{\x} > \yzu$.%
+\footnote{In the above, $\bar{\x}$ can be replaced by $\ttau(\x)$
+to hold for canonical priors \eqref{eq:canonicalprior} in general.}
+
+Indeed, \eqref{eq:deltay} can then be written as
+\begin{align*}
+\Delta_y(\PN) &= \frac{\nzu (\yzu - \yzl)}{\nzu + n} + \inf_{\yz \in \YZ} |\ttau(\x) - \yz| \frac{n (\nzu - \nzl)}{(\nzl + n)(\nzu + n)}\,,
+\end{align*}
+such that we have the same $\Delta_y(\PN)$ as for a model with $\PZ = \YZ \times \nzu$ when $\ttau(\x) \in \YZ$,
+whereas $\Delta_y(\PN)$ increases if $\ttau(\x) \notin \YZ$, the increase depending on the distance of $\ttau(\x)$ to $\YZ$,
+as well as on $\nzl$, $\nzu$, and $n$.
+This model is described in more detail in Section ***, along with illustrative examples
+(see Figure~*** for the Dirichlet-Multinomial model, and Figure~*** for the Normal-Normal model).
+
+%\begin{figure}
+%\centering
+%\includegraphics[width=\textwidth]{inference-scalednormal.pdf}
+%\caption{\label{inference:fig:normalnormal}
+%Illustration of prior-data conflict sensitivity in the normal-normal model\myindex{Normal-Normal model}.
+%Displayed are sets of normal cdfs, where the graphs in the upper row show the update step if $\bar{\x} \in [\yzl, \yzu]$,
+%and the graphs in the lower row show a situation with prior-data conflict.
+%The black bars below the cdfs denote the unions of prior resp.\ posterior highest density intervals,
+%while the position of $\bar{\x}$ used in the update step is indicated by the lower point of the triangle.
+%Note how prior-data conflict in the example depicted in the lower row leads to increased imprecision,
+%as reflected by the larger set of posteriors and the longer union of HPD intervals.
+%Graph taken from \textcite[p.~267]{2009:walteraugustin}.} %\textbf{***comment by Frank: depict also prior/posterior parameter sets?***}}
+%\end{figure}
+
+The model with $\PZ = \NZ \times \YZ$ is sensitive to prior-data conflict,
+where prior-data conflict is operationalised as $\ttau(\x) \notin \YZ$.
+There is no such direct mechanism for a gain in precision when prior and data information coincide especially well.
+However, $\YZ$ could be chosen relatively small such that it mirrors this situation,
+considering as the neutral situation $\ttau(\x)$ being not too far away from $\YZ$,
+and taking as prior-data conflict situations when $\ttau(\x)$ is in a greater distance to $\YZ$.
+
+As mentioned in Section~\ref{sec:basicsetting}, item~\eqref{enum:rectangular}, page~\pageref{enum:rectangular},
+the parameter set $\PN$ resulting from the update step \eqref{eq:canonicalupdate} is not a Cartesian product of $\YN$ and $\NN$,
+i.e., a \emph{rectangle} set in case of one-dimensional $\yz$, as was the case for $\PZ$.
+It might therefore be necessary to minimize and maximize over $\PN$ itself if inferences depend on $\yn$ and $\nn$ simultaneously.
+If, e.g., $\nn\yn$ must be minimized to determine the posterior lower bound of a characteristic of interest,
+$\min_{\PN} \nn\yn$ may not be found at $\yzl$, i.e., $\min_{\PN} \nn\yn \not = \min_{\NZ} \nn\ynl$.
+
+The model of type~\eqref{enum:varyn}, where $\PZ = \NZ \times \yz$,
+briefly mentioned only in \textcite[footnote no.~10 in \S 1.1.4, and \S 7.8.3]{1991:walley},
+also leads to a more complex description of $\PN$ as compared to the models with $\PZ = \nz \times \YZ$.
+
+In principle, $\PZ$ could have any form fitting the prior information at hand.
+On close inspection, a rectangular shape for $\PZ$ may not be appropriate in many situations.
+One could, e.g., argue that the $\yz$ interval should be narrower at $\nzl$ than at $\nzu$,
+because we might be able to give quite a precise $\yz$ interval for a low prior strength $\nzl$,
+whereas for a high prior strength $\nzu$, we should be more cautious with our elicitation of $\yz$ and thus give a wider interval;
+interestingly, one could also argue the other way round based on similarly convincing arguments.
+To fully specify $\PZ$ along these lines,
+lower and upper bounds for $\yz$ must be given for all intermediate values of $\nz$ between $\nzl$ and $\nzu$,
+e.g., by some functional form $\yzl(\nz)$ and $\yzu(\nz)$.
+The choice of such general forms is not straightforward,
+as it may heavily influence the posterior inferences (see Section~**** and \cite{Walter2011a}),
+and it may be very difficult to elicit as a whole.
+One such choice is discussed in Section~**** / \textcite{Walter2011a} for the Binomial case,
+developed with the intention to create a smoother reaction to prior-data conflict than in the model with rectangle $\PZ$.
+
+In summary, there is a trade-off between easy description and handling of $\PZ$ on one side,
+and modeling accuracy and fulfillment of desired properties on the other:
+\begin{enumerate}[(i)]
+\item The model in \textcite{2005:quaeghebeurcooman}, which takes $\PZ = \nz \times \YZ$, is very easy to handle,
+as the posterior parameter set $\PN = \nn \times \YN$ has the same form as $\PZ$,
+and it often suffices to consider the two elements $(\nz, \yzl)$ and $(\nz, \yzu)$ to find posterior bounds for inferences.
+It is, however, insensitive to prior-data conflict.
+\item The model by \textcite{Walter2009a} is sensitive to prior-data conflict,
+but this advantage is payed for by a more complex description of $\PN$.
+\item More general set shapes $\PZ \subset \reals_{>0} \times \Y$ are possible,
+but may be difficult to elicit and complex to handle.
+\end{enumerate}
+
+To conclude, when substantial prior information is available, that, however,
+is not permitting the identification of a single prior distribution,
+imprecise models allow for adequate modeling of partial information and prior-data conflict sensitivity,
+and will ultimately result in more reliable inferences.
+
+
+\section{***JSTP paper***}
+
+
+\section{***Isipta'11 paper***}
+
 
 \section{Alternative Models Based on Sets of Priors}
 \label{sec:alternatives}

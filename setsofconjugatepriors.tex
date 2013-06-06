@@ -231,7 +231,7 @@ their partition dependence is also discussed in the context of elicitation \pare
 %\item ***further desirable properties??***
 \end{enumerate}
 
-The approaches mentioned in (a) -- (d) are now discussed in detail,
+The approaches mentioned in \eqref{enum:modeltypes-a} -- \eqref{enum:modeltypes-d} are now discussed in detail,
 sorted according to two basic scenarios regarding the intended use:
 When no prior information on $\vartheta$ is available (or nearly so),
 so-called \emph{near-ignorance priors} are used to model the state of prior ignorance.
@@ -401,7 +401,11 @@ behaving similar to precise conjugate models by basically ignoring prior-data co
 
 To counter this unwanted behaviour,
 \textcite{Walter2009a} suggested that imprecise priors to canonical sample distributions \eqref{eq:expofam-sampledens}
-should be based on parameter sets $\PZ = [\nzl, \nzu] \times \YZ$,
+should be based on parameter sets of the form
+\begin{align}
+\label{equ:rectparamset}
+\PZ &= [\nzl, \nzu] \times \YZ\,,
+\end{align}
 as \textcite[\S 5.4.3]{1991:walley} had already implemented for the Beta-Binomial model.
 Then, \eqref{eq:qdc-ynl} and \eqref{eq:qdc-ynu} become
 \begin{align*}
@@ -447,42 +451,45 @@ This model is described in more detail in Section ***, along with illustrative e
 %Graph taken from \textcite[p.~267]{2009:walteraugustin}.} %\textbf{***comment by Frank: depict also prior/posterior parameter sets?***}}
 %\end{figure}
 
-The model with $\PZ = \NZ \times \YZ$ is sensitive to prior-data conflict,
+Models with $\PZ$ as in \eqref{equ:rectparamset}, %= \{ (\nz, \yz) \mid [\nzl, \nzu], \yz \in \YZ \}$
+i.e., belonging to model type~\eqref{enum:rectangular},
+are sensitive to prior-data conflict,
 where prior-data conflict is operationalised as $\ttau(\x) \notin \YZ$.
 There is no such direct mechanism for a gain in precision when prior and data information coincide especially well.
 However, $\YZ$ could be chosen relatively small such that it mirrors this situation,
 considering as the neutral situation $\ttau(\x)$ being not too far away from $\YZ$,
 and taking as prior-data conflict situations when $\ttau(\x)$ is in a greater distance to $\YZ$.
 
-As mentioned in Section~\ref{sec:basicsetting}, item~\eqref{enum:rectangular}, page~\pageref{enum:rectangular},
-the parameter set $\PN$ resulting from the update step \eqref{eq:canonicalupdate} is not a Cartesian product of $\YN$ and $\NN$,
+As mentioned in Section~\ref{sec:basicsetting}, page~\pageref{enum:rectangular},
+the parameter set $\PN$ resulting from updating $\PZ$ as in \eqref{equ:rectparamset}
+by \eqref{eq:canonicalupdate} is not a Cartesian product of $\YN$ and $\NN$,
 i.e., a \emph{rectangle} set in case of one-dimensional $\yz$, as was the case for $\PZ$.
 It might therefore be necessary to minimize and maximize over $\PN$ itself if inferences depend on $\yn$ and $\nn$ simultaneously.
-If, e.g., $\nn\yn$ must be minimized to determine the posterior lower bound of a characteristic of interest,
+If, e.g., $\nn\yn$ must be minimised to determine the posterior lower bound of a characteristic of interest,
 $\min_{\PN} \nn\yn$ may not be found at $\yzl$, i.e., $\min_{\PN} \nn\yn \not = \min_{\NZ} \nn\ynl$.
 
 The model of type~\eqref{enum:varyn}, where $\PZ = \NZ \times \yz$,
 briefly mentioned only in \textcite[footnote no.~10 in \S 1.1.4, and \S 7.8.3]{1991:walley},
-also leads to a more complex description of $\PN$ as compared to the models with $\PZ = \nz \times \YZ$.
+also leads to a more complex description of $\PN$ as compared to the models with $\PZ = \nz \times \YZ$ (type~\eqref{enum:modeltypes-a}).
 
-In principle, $\PZ$ could have any form fitting the prior information at hand.
+In principle, $\PZ$ could have any form fitting the prior information at hand (type~\eqref{enum:modeltypes-d}).
 On close inspection, a rectangular shape for $\PZ$ may not be appropriate in many situations.
 One could, e.g., argue that the $\yz$ interval should be narrower at $\nzl$ than at $\nzu$,
 because we might be able to give quite a precise $\yz$ interval for a low prior strength $\nzl$,
 whereas for a high prior strength $\nzu$, we should be more cautious with our elicitation of $\yz$ and thus give a wider interval;
-interestingly, one could also argue the other way round based on similarly convincing arguments.
+interestingly, one could also argue the other way round based on similarly convincing arguments.****isipta'11??***
 To fully specify $\PZ$ along these lines,
 lower and upper bounds for $\yz$ must be given for all intermediate values of $\nz$ between $\nzl$ and $\nzu$,
 e.g., by some functional form $\yzl(\nz)$ and $\yzu(\nz)$.
 The choice of such general forms is not straightforward,
-as it may heavily influence the posterior inferences (see Section~**** and \cite{Walter2011a}),
+as it may heavily influence the posterior inferences,
 and it may be very difficult to elicit as a whole.
 One such choice is discussed in Section~**** / \textcite{Walter2011a} for the Binomial case,
 developed with the intention to create a smoother reaction to prior-data conflict than in the model with rectangle $\PZ$.
 
 In summary, there is a trade-off between easy description and handling of $\PZ$ on one side,
 and modeling accuracy and fulfillment of desired properties on the other:
-\begin{enumerate}[(i)]
+\begin{itemize}%[(i)]
 \item The model in \textcite{2005:quaeghebeurcooman}, which takes $\PZ = \nz \times \YZ$, is very easy to handle,
 as the posterior parameter set $\PN = \nn \times \YN$ has the same form as $\PZ$,
 and it often suffices to consider the two elements $(\nz, \yzl)$ and $(\nz, \yzu)$ to find posterior bounds for inferences.
@@ -491,11 +498,11 @@ It is, however, insensitive to prior-data conflict.
 but this advantage is payed for by a more complex description of $\PN$.
 \item More general set shapes $\PZ \subset \reals_{>0} \times \Y$ are possible,
 but may be difficult to elicit and complex to handle.
-\end{enumerate}
+\end{itemize}
 
 To conclude, when substantial prior information is available, that, however,
 is not permitting the identification of a single prior distribution,
-imprecise models allow for adequate modeling of partial information and prior-data conflict sensitivity,
+imprecise probability models allow for adequate modeling of partial information and prior-data conflict sensitivity,
 and will ultimately result in more reliable inferences.
 
 

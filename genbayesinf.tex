@@ -576,6 +576,29 @@ which are a special case of lower previsions.
 Only if $m(\emptyset) > 0$, which does not seem a reasonable choice in our view anyhow,
 the set of corresponding distributions $\mathcal{M}$ is empty.
 
+***hierarchical Bayes, distribution over intervals:
+uncertainty is averaged out for inferences,
+posterior state of knowledge is again expressed via precise distribution (was sagt Walley?)\\
+better alternative: hierarchical model by Cattaneo,
+where a possibility distribution is used for info about parameters,
+interpretation as likelihood, profile lik***
+
+***from itip-statinf, \S 4.4:\\
+like the model suggested by \textcite{2008:cattaneo} in the (profile) likelihood context,
+a variant of which also allows to incorporate prior information by using a so-called prior likelihood.
+
+***from itip-statinf, \S 7:\\
+\textcite{2008:cattaneo} suggests to use a slightly extended notion of likelihood as relative plausibility to construct a hierarchical model.
+It consists of a credal set $\mathcal{P}$ and of the likelihood function $\text{lik}: {\cal P} \to \reals_0^+$ as a second level,
+describing the plausibility of its elements based on the sample.
+Inference on certain deduced quantities $\vartheta=g\left(p\right), p \in \mathcal{P}$
+then can be based on the so-called \emph{profile likelihood}
+$\text{proflik} \left(\vartheta\right) = \sup_{\{p \in P \vert g\left(p\right)=\vartheta\}} \text{lik}\left(p\right)$.
+The approach has up to now not often been used, but shows some promising behavior as an updating rule,
+and as a basis for a direct likelihood based decision theory \parencite{2007a:cattaneo, 2012:cattaneo-technicalRep}.
+Moreover, it has been successfully applied in graphical models (e.g., \cite{2011:4:isipta},
+see also \cite[\S 4.3]{itip-classification}, and in the context of data imprecision
+(see, e.g., \cite[\S 8.1]{itip-statinf}).
 
 
 \section{Motives for the Use of Imprecise Probability Methods}
@@ -656,7 +679,7 @@ which may manifest in differing buying and selling prices
 \item The provision of basic tools that generalise probability measures,
 namely capacities \parencite{1954:choquet}, also known as fuzzy measures \parencite[e.g.,][]{1989:murofushi}.
 \item The need to model approximate adherence to a central probability distribution,
-which is often done through \emph{neighbourhood models} (see Section~\ref{}***).
+which is often done through \emph{neighbourhood models} (see Section~***).
 This is the dominant model type in robust Bayesian approaches \parencite[see, e.g.,][]{1994:berger}.
 \item The available data may not be sufficient to excactly determine the parameters of a usual proability model.
 Instead, only ranges for these parameters can be identified.
@@ -701,14 +724,6 @@ like the information that there should be about 5 to 10 winning tickets per 100 
 \footnote{We will comment on the seemingly attractive alternative
 of putting a distribution on such an interval-valued winning probability at **** (hierarchical Bayes).}
 
-***somewhere else?***\\
-hierarchical Bayes, distribution over intervals:
-uncertainty is averaged out for inferences,
-posterior state of knowledge is again expressed via precise distribution (was sagt Walley?)\\
-better alternative: hierarchical model by Cattaneo,
-where a possibility distribution is used for info about parameters,
-interpretation as likelihood, profile lik (itip-inference)
-
 
 \subsection{Motives from a Bayesian Perspective}
 \label{sec:motivation:bayesian}
@@ -743,7 +758,7 @@ while highly imprecise (or even vacuous) models are used in the situation of sca
 This power to differentiate between different degrees of partial knowledge
 distinguishes imprecise probabilities as an attractive modelling tool in statistics.
 In particular it allows to overcome two severe practical limitations inherent to Bayesian inference based on precise probabilities,
-briefly discussed below and in more detail in Sections~*** and ****.
+briefly discussed below.
 
 %Here we focus on two aspects within the Bayesian framework,
 %which will be considered in detail in Section~\ref{inference:sec:setsofconjugatepriors}.

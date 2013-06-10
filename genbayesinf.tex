@@ -470,16 +470,18 @@ the objective is to express prior knowledge on a parameter of interest $\varthet
 by an imprecise prior distribution,
 and all inferences shall be based on a (imprecise) posterior distribution derived from it.
 As in Bayesian inference with precise distributions,
-the now imprecise prior should be conditioned on the observed data $\x$.%
-\footnote{\label{foot:updating}***footnote on updating and conditioning, from itip chapter***}
+the now imprecise prior should be conditioned on the observed data $\x$.
 
 A coherent lower prevision can be conditioned on an event $B$
-by using the so-called \emph{Generalised Bayes' Rule} \parencite[\S 6.4]{1991:walley},
+by using the so-called \emph{Generalised Bayes' Rule} \parencite[GBR,][\S 6.4]{1991:walley},
 by which the conditioned coherent lower prevision $\El[X\mid B]$
 based on a lower prevision $\El[X]$ can be derived.
 $\El[X\mid B]$ is then also coherent to $\El[X]$, i.e.,
 it is a model satisfying the rationality criteria as discussed for $\El[X]$
-now also for the beliefs expressed in $\El[X]$ contingent on $B$.
+now also for the beliefs expressed in $\El[X]$ contingent on $B$.%
+\footnote{The adequacy of the Generalised Bayes' Rule for statistical inference procedures has been questioned in the literature,
+and there is doubt that it may reasonably represent learning.
+We will comment on these topics in Section~\ref{sec:updating}.}
 
 In the formulation via a credal set, the Generalised Bayes' Rule
 is equivalent to conditioning each distribution in the credal set on $B$ via Bayes' Rule
@@ -514,6 +516,8 @@ The prior credal set $\mathcal{M}$ is updated element by element to obtain the p
 consisting of all posterior distributions obtained
 by traditional Bayesian updating of elements of the prior credal set.
 
+\subsubsection{Relation to Bayesian Sensitivity Analysis}
+
 Walley's lower envelope theorem also establishes a close connection to robust Bayesian approaches and Bayesian sensitivity analysis
 \parencite[see, e.g.,][]{1994:berger, 2000:rios, 2005:ruggeri} based on sets of distributions.
 In fact, Walley's theory of lower previsions can be seen as
@@ -536,6 +540,45 @@ while the imprecise probability framework may use such behavior actively in mode
 in particular in the context of prior-data conflict
 (see Sections~\ref{sec:motivation:pdc} and \ref{sec:pdc-sensitivity})***.
 
+\subsubsection{Critique}
+\label{sec:updating}
+
+***on updating and conditioning; also conditioning versus belief revision (itip-special, other?)***
+
+In the literature the seemingly self-evident character of the Generalized Bayes Rule has been questioned.
+Indeed, \textcite[p.~335]{1991:walley} notes that, although the theory of coherence suggests that
+``[\ldots the GBR] is a reasonable updating strategy,
+[\ldots] there is nothing in the theory that requires You to [\ldots] construct conditional previsions [\ldots] through the GBR''
+and to ``[\ldots] adopt [\ldots them ] as Your new unconditional prevision''.
+He is also very clear about the fact \parencite[see][p.~334]{1991:walley} that
+``there is a role for other updating strategies, not because the updated beliefs constructed through the GBR are unjustified,
+but because they are often indeterminate''.
+Indeed, \textcite[\S 6.11.1]{1991:walley} lists twelve items summarizing
+``[\ldots] the reasons for which the GBR may fail to be applicable or useful as an updating strategy.''
+
+***conditioning versus belief revision***
+
+Firstly, it has been shown that the decision theoretic justification of the Bayes' Rule
+as producing prior risk minimizing decision functions does not extend to the case of sets of priors.
+Updating by Generalized Bayes' Rule does no longer necessarily lead to optimal decision functions and thus, as one could argue,
+also not to optimal inference procedures; see, in particular, \textcite{2003:augustin} for a detailed discussion, 
+\textcite{2001:NoubiapSeidel} and \textcite{Augustin5:2004} for algorithms to calculate optimal decision functions.
+
+Secondly, it has been debated that---intuitively---in the case of no prior-data conflict
+the resulting interval limits may be too wide, and in this sense posterior inferences are too imprecise.
+Such possibly counterintuitive bounds result from elements in the prior credal set under which the observed sample is rather unlikely.
+In order to maintain the understanding of updating as conditioning on the sample,
+several authors therefore suggested to reduce the prior sets in dependence on the sample.
+A radical way to achieve this is to consider in the conditioning process only those priors
+under which the observed sample has highest probability, e.g., \textcite{2007:held}, see also \textcite{1982:walley},
+resulting in a procedure that is related to Dempster's rule of conditioning \parencite[see, e.g.,][\S 3.2]{itip-other}.
+Other ways to address this issue are update rules where imprecision is updated in accordance with an information measure 
+\parencite{1993:coolen, 1994:coolen}, see also \textcite{1994:coolen::phd} or hierarchical models,
+like the model suggested by \textcite{2008:cattaneo} in the (profile) likelihood context (see the short note in Section~****),
+a variant of which also allows to incorporate prior information by using a so-called prior likelihood.
+
+Despite these criticisms, we will stick to ***
+***end with stressing that work here relies on GBR nevertheless.***
 
 \subsection{Related Concepts}
 
@@ -749,7 +792,9 @@ The foundational arguments for Bayesian inference are thus worthless,
 unless the requirement of arbitrarily fine precision can be relaxed.
 Indeed, the framework by \textcite{1991:walley} does just that:
 preserving the foundational arguments, especially the notion of coherence,
-while allowing for incomplete and imprecise prior judgements.
+while allowing for incomplete and imprecise prior judgements.%
+\footnote{However, keep in mind the caveats for an inference procedure based on the Generalised Bayes' Rule
+as adressed in Section~\ref{sec:updating}.}
 
 Indeed,
 the flexible, multidimensional perspective on uncertainty makes imprecise probabilities capable of mirroring the quality of knowledge.

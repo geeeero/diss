@@ -509,9 +509,20 @@ imprecise probability models allow for adequate modeling of partial information 
 and will ultimately result in more reliable inferences.
 
 
-****more on parameter set shapes?****
+***from \textcite[\S 4.4]{itip-statinf}:\\
+As a direct extension of the models discussed in Section~\ref{sec:generalmodel},
+it may be stressed that their central properties rely on the specific form of the update step \eqref{canonicalupdate} only.
+Thus, they can be generalized to settings that are not based on i.i.d.\ observations from canonical exponential family distributions,
+but nevertheless follow the same update step.
+This is elaborated in Section~**** \parencite{Walter2009a} by the definition of so-called LUCK-models,
+which were already used in \textcite{Walter2007a} to generalize Bayesian linear regression.
+
+
+****more on parameter set shapes? refer to ISIPTA'11 and boatshape sections****
 
 ***Festschrift paper \parencite{Walter2010a} somewhere here or in Appendix?***
+
+
 
 
 
@@ -522,9 +533,34 @@ and will ultimately result in more reliable inferences.
 
 \bigskip
 
+***par from \textcite[\S 4.4]{itip-statinf}:
+
+In Section~\ref{sec:generalmodel},
+we have discussed a specific class of models based on sets of conjugate priors,
+and illustrated in an exemplary way the main ideas and potential of generalized Bayesian inference.
+Other work on exponential family sampling models includes \textcite{1993:coolen}, ***discuss in detail???***
+who uses a different type of imprecise conjugate prior densities,
+and \textcite{2009:bickis}, who suggests the logit-normal model as an alternative to the IDM.
+Many other models have been investigated and applied, in particular neighborhood models
+(see, e.g., the surveys \cite{2000:bergerinsuaruggeri} and \cite{2005:ruggeri}).
+By studying credibility intervals, \textcite{1991:pericchi} give a neat overview on a number of approaches based on sets of priors,
+while \textcite{2011:rinderknecht} is an example of a study on elicitation for a certain class of priors that is both rigorous and accessible.
+
+Most models in generalized Bayesian inference rely on a precise sampling model,
+but the general framework also allows for imprecise sampling models \parencite[see, in particular,][\S 8.5]{1991:walley},
+also discussed under the notion of \emph{likelihood robustness} \parencite[e.g.,][]{2000:shyamalkumar} in the robust Bayesian framework.
+
+
+***discusse these approaches some more?***
+
+
+
+
+\bigskip
+
 par on whitcomb, then rewrite this:
 
-``Some computational aspects'' from \textcite[\S 4.2]{itip-statinf} on discretized models (Whitcomb!)***
+``Some computational aspects'' from \textcite[\S 4.2]{itip-statinf} on discrete models (Whitcomb!)***
 
 In the case of discrete prior distributions (i.e., distributions with a finite support of size $k$)
 %(where the unknown parameter can only assume a fixed number $k$ of values, $k < \infty$),
@@ -546,6 +582,9 @@ Furthermore, before the advent of Markov Chain Monte Carlo (MCMC) techniques \pa
 to determine posterior distributions in complex settings by simulation,
 Bayesian inference was mostly confined to conjugate prior distributions
 because posteriors derived from non-conjugate priors are very often intractable analytically.
+
+
+
 
 \bigskip
 

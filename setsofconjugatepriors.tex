@@ -151,14 +151,14 @@ Thus, while the (absolute) stretch of $\PN$ in the $\nz$ resp.\ $\nn$ dimension 
 the stretch in the $\yz$ resp.\ $\yn$ dimension will do so.
 When speaking of the size of $\PN$, we will thus refer to the stretch in the main parameter dimension, also denoted by $\Delta_y(\PN)$.
 \begin{enumerate}[I.]
-\item The larger $n$ relative to (values in the range of) $\nz$,
+\item \label{enum:n0vsn}The larger $n$ relative to (values in the range of) $\nz$,
 ceteris paribus (c.p.) the smaller $\PN$, i.e.\ the more precise the inferences.
 Vice versa, the larger the $\nz$ value(s) as compared to $n$, c.p.\ the larger $\PN$, and the more imprecise the inferences.
 Thus, a high weight on the imprecise prior $\MZ$ will lead to a more imprecise posterior $\MN$.%
 \footnote{For model types with fixed $\nz$, if $\nz = n$, then $\Delta_y(\PN) = \Delta_y(\PZ) / 2$,
 i.e.\ the width of the posterior expectation interval is half the width of the prior interval.
 This fact may also guide the choice of $\nz$.}
-\item In particular, for $n \to \infty$, the stretch of $\yn$ in $\PN$ will converge towards zero,
+\item \label{enum:ntoinfty}In particular, for $n \to \infty$, the stretch of $\yn$ in $\PN$ will converge towards zero,
 i.e.\ $\Delta_y(\PN) \to 0$, with the limit located at $\ttau(\x)$.
 For inferences based mainly on $\yn$, this leads to a convergence towards the `correct' conclusions.
 This applies, e.g., to point estimators like the posterior mean or median, which converge to the `true' parameter,
@@ -511,7 +511,7 @@ and will ultimately result in more reliable inferences.
 
 ***from \textcite[\S 4.4]{itip-statinf}:\\
 As a direct extension of the models discussed in Section~\ref{sec:generalmodel},
-it may be stressed that their central properties rely on the specific form of the update step \eqref{canonicalupdate} only.
+it may be stressed that their central properties rely on the specific form of the update step \eqref{eq:canonicalupdate} only.
 Thus, they can be generalized to settings that are not based on i.i.d.\ observations from canonical exponential family distributions,
 but nevertheless follow the same update step.
 This is elaborated in Section~**** \parencite{Walter2009a} by the definition of so-called LUCK-models,

@@ -14,20 +14,24 @@ to allow in addition an elegant handling of prior-data conflict.
 Section~\ref{sec:generalmodel} attempts to give a systematic overview on the different models discussed in the literature,
 illustrating some characteristic modelling opportunities of generalised Bayesian inference.
 
+Section~\ref{sec:alternatives} briefly discusses some alternative models based on sets of priors.
+
 Section **** then investigates one model in detail *** or presents examples???*** ***JSTP***,
 
 Section **** another attempt to refine ****ISIPTA'11***
 
 ***more structure of section?*** 
 
-\section{The General Model}
+\section{Model Overview and Discussion}
+%\section{The General Model}
 \label{sec:generalmodel}
 
 ***consists of \textcite[\S 4.3]{itip-statinf}****
 
 ***structure of section: here comes the important part!****
 
-\subsection{The Basic Setting}
+\subsection{The General Framework}
+%\subsection{The Basic Setting}
 \label{sec:basicsetting}
 
 Consider inference based on samples from a regular canonical exponential family \eqref{eq:expofam-sampledens}
@@ -36,7 +40,7 @@ One specifies a prior parameter set $\PZ$ of $(\nz,\yz)$ values
 and takes as imprecise prior---described via the credal set $\MZ$---the set of traditional priors with $(\nz, \yz) \in \PZ$.
 The credal set $\MN$ of posterior distributions,%
 \footnote{To emphasize the dependence of the sample size $n$,
-the posterior credal set is denoted by $\MN$ instead of $\mathcal{M}_{\vert \mbf{x}}$ in \eqref{eq:posteriorcredalset}.}
+the posterior credal set is denoted by $\MN$ instead of $\mathcal{M}_{\vert \x}$ in \eqref{eq:posteriorcredalset}.}
 obtained by updating each element of $\MZ$ via Bayes' Rule,
 then can be described as the set of parametric distributions
 with parameters varying in the set of updated parameters $\PN = \{(\nn,\yn) \vert (\nz, \yz) \in \PZ\}$.
@@ -134,7 +138,7 @@ or, vice versa, the range of $\nz$ may depend on the value of $\yz$, as in \text
 \end{enumerate}
 
 
-\subsection{Properties and criteria regarding the models}
+\subsection{Properties and Criteria}
 \label{sec:gbicp-properties-criteria}
 
 Before discussing the approaches mentioned above in some detail,
@@ -511,22 +515,11 @@ and will ultimately result in more reliable inferences.
 ***Festschrift paper \parencite{Walter2010a} somewhere here or in Appendix?***
 
 
-\section{***JSTP paper***}
-
-
-\section{***BA Norbert Krautenbacher?***}
-
-
-\section{***Isipta'11 paper***}
-
-
-\section{***boatshape stuff?***}
-
 
 \section{***Alternative Models Based on Sets of Priors}
 \label{sec:alternatives}
 
-***Later as own chapter (?), comparison with other approaches based on sets of probability distributions:***
+***comparison with other approaches based on sets of probability distributions:***
 
 \bigskip
 
@@ -608,8 +601,22 @@ is given in \cite{2011:rinderknecht}.
 ***end to other section?***
 
 
+\section{***JSTP paper***}
+
+
+\section{***BA Norbert Krautenbacher?***}
+
+
+\section{***Software***}
+
+
+\section{***Isipta'11 paper***}
+
+
+\section{***boatshape stuff?***}
 
 
 
-%for later in IDM/IBBM discussion:\\
-%we use Walley's \cite[\S 7.7.3, p.~395]{1991:walley} $(s,\vec{t})$ notation for the hyperparameters.
+
+
+

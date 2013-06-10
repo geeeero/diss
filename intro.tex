@@ -1,41 +1,48 @@
 \chapter{Introduction}
 
 
-\begin{itemize}
-\item overview/outline, which paper used where\ldots
-\item statistical inference (\textbf{StatInf chapter}, \cite{itip-statinf})
-\item Bayesian inference, conjugate priors, etc. (\textbf{TechRep Dirichlet}, \cite{Walter2012b})
-\item motivate priors etc.\ with ress paper: \cite{Troffaes2013a}
-\item short part on decision theory, updating rules? --- probably not
+%\begin{itemize}
+%\item overview/outline, which paper used where\ldots
+%\item statistical inference (\textbf{StatInf chapter}, \cite{itip-statinf})
+%\item Bayesian inference, conjugate priors, etc. (\textbf{TechRep Dirichlet}, \cite{Walter2012b})
+%\item motivate priors etc.\ with ress paper: \cite{Troffaes2013a}
+%\item short part on decision theory, updating rules? --- probably not
 %\item other motivations for IP? --- later
-\end{itemize}
+%\end{itemize}
 
 \section{Overview / Outline***}
 
-***structure, which papers where***
+***structure, sources, which papers where***
 
-Sec.~\ref{sec:stat-inference}: parts of \cite{itip-statinf}
+Sec.~\ref{sec:stat-inference}: parts of \textcite[\S\S 1.1, 1.2, 1.5]{itip-statinf}
 
-Sec.~\ref{sec:bayes-inference} uses parts of \cite{itip-statinf},
-except Sec.~\ref{sec:diri-multi}, which is based on \cite{Walter2012b}.
+Sec.~\ref{sec:bayes-inference} uses parts of \textcite[\S\S 1.3, 1.4, 4.1]{itip-statinf},
+except Sec.~\ref{sec:diri-multi}, which is based on \textcite{Walter2012b}.
 
 %Sec.~\ref{sec:inferencetasks}: parts of \cite{itip-statinf}
 %Sec.~\ref{sec:beta-binom}: parts of \cite{itip-statinf}
 %Sec.~\ref{sec:norm-norm}: parts of \cite{itip-statinf}
 
 
-Sec.~\ref{sec:commoncause} is based on parts of \cite{Troffaes2013a},
+Sec.~\ref{sec:commoncause} is based on parts of \textcite{Troffaes2013a},
 where in particular Sec.~\ref{sec:basic-param-model} and Sec.~\ref{sec:alpha-factor-model}
 have been written primarily by Matthias Troffaes.
+However, Section~\ref{sec:commoncause-motivation} was newly written for this thesis.
 
 %Sec.~\ref{sec:alpha-factor-prior}: parts of \cite{Troffaes2013a}
 
 Sec.~\ref{sec:ip-intro} was newly written for this thesis,
-except Sec.~\ref{sec:imprecisebayes}, which is based on \textcite[\S 8.4.2]{itip-statinf}.
+except Sec.~\ref{sec:imprecisebayes}, which is based on \textcite[\S 4.2]{itip-statinf},
+and footnote no.~\ref{foot:updating} on page~\pageref{foot:updating},
+which is based on parts of \textcite[\S 4.4]{itip-statinf}.
 
 Also Sec.~\ref{sec:motivation} was devised especially for the thesis,
-under use of \textcite[\S 8.2.3]{itip-statinf} for some paragraphs in
-Sec.~\ref{sec:motivation:bayesian}, and ***
+under use of \textcite[\S 2.3]{itip-statinf} for the last paragraph in
+Sec.~\ref{sec:motivation:bayesian-foundational},
+and Sections~\ref{sec:motivation:near-ignorance} and \ref{sec:motivation:pdc}.
+
+Section~\ref{sec:generalmodel} consists of \textcite[\S 4.3]{itip-statinf},
+which was written primarily by Gero Walter.****
 
 \section{Notation}
 \label{sec:notation}
@@ -828,6 +835,7 @@ which was prepared in the wake of the Three Mile Island accident,
 where a partial core meltdown in a nuclear power plant took place \parencite[e.g.,][]{2005:walker}.
 
 \subsection{An Example for the Need to Model Common-Cause Failure}
+\label{sec:commoncause-motivation}
 
 For a nuclear power plant, a common-cause failure analysis can relate to, e.g.,
 the diesel generators that, if in an emergency the off-site power supply is cut off,

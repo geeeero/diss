@@ -509,7 +509,7 @@ is of particular relevance.
 The prior credal set $\mathcal{M}$ is updated element by element to obtain the posterior credal set %$\mathcal{M}_{\vert \mbf{x}}$
 \begin{align}
 \label{eq:posteriorcredalset}
-\mathcal{M}_{\vert \mbf{x}} = \left\{ p(\cdot \mid \x) :  p(\cdot) \in \mathcal{M} \right\}\,,
+\mathcal{M}_{\vert \x} = \left\{ p(\cdot \mid \x) :  p(\cdot) \in \mathcal{M} \right\}\,,
 \end{align}
 consisting of all posterior distributions obtained
 by traditional Bayesian updating of elements of the prior credal set.
@@ -534,7 +534,7 @@ In essence, robust Bayesian inference and Bayesian sensitivity analysis
 understand robustness and insensitivity mostly as desirable properties,
 while the imprecise probability framework may use such behavior actively in modelling,
 in particular in the context of prior-data conflict
-(see Sections~\ref{sec:motivation:pdc} and \ref{sec:imprecisebayes-conjugate})***.
+(see Sections~\ref{sec:motivation:pdc} and \ref{sec:pdc-sensitivity})***.
 
 
 \subsection{Related Concepts}
@@ -773,6 +773,7 @@ We will comment on this issue in more detail in Section~\ref{sec:gbicp-propertie
 item \ref{enum:noninformative}, and in Section~\ref{sec:idm-and-near-ignorance}.
 
 \subsubsection{Prior-Data Conflict}
+\label{sec:motivation:pdc}
 
 Moreover, increasing imprecision to make the conclusions more cautious
 is the natural way to handle \emph{prior-data conflict},

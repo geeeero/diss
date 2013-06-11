@@ -2,18 +2,18 @@
 \label{cha:gbi}
 
 \begin{itemize}
-\item Short introduction to IP (sets of priors, lower/upper prevision/probability)
+%\item Short introduction to IP (sets of priors, lower/upper prevision/probability)
 %\item motivate imprecise priors with ress paper: \cite{Troffaes2013a} --- now in intro
 \item \pdc\ (Evans \& Moshonov, Fuquene-Cook-Pericchi), examples (Festschrift paper: \cite{Walter2010a})
-\item further motivations for IP (ITIP chapter \cite{itip-statinf}) 
-\item Generalized Bayesian inference
-\item Generalized Bayesian inference with sets of priors
- \begin{itemize}
- \item sets of priors, GBR, robust Bayes
- \item sets of conjugate priors in general
- \item parameter set shapes
- \end{itemize}
-\item IDM
+%\item further motivations for IP (ITIP chapter \cite{itip-statinf}) 
+%\item Generalized Bayesian inference
+%\item Generalized Bayesian inference with sets of priors
+% \begin{itemize}
+% \item sets of priors, GBR, robust Bayes
+% \item sets of conjugate priors in general
+% \item parameter set shapes
+% \end{itemize}
+%\item IDM
 \item JSTP paper \cite{Walter2009a}
 \item isipta11 paper \cite{Walter2011a}
 \item boatshape?
@@ -24,15 +24,16 @@
 After having seen a detailed example for Bayesian inference using sets of conjugate priors in Section~\ref{sec:commoncause},
 in this chapter we will now give a general introduction to the methodology of generalised Bayesian inference,
 before we give a systematic discussion of models for generalised Bayesian inference with sets of conjugate priors
-in the central chapter~\ref{cha:imprecisebayes-conjugate}*** of this thesis.
+in the central Section~\ref{sec:generalmodel} of this thesis.
 
 In Section~\ref{sec:ip-intro} below, we will try to outline the general theory of imprecise or interval probability,
-describing its main formulations and interpretations.
+describing its main formulations and interpretations, and discuss the generalised Bayesian inference procedure.
 Section~\ref{sec:motivation} then gives at first some general motives for the use of imprecise probability methodology,
 concluding with the motives especially relevant in the context of the Bayesian approach to statistical inference,
-among which prior-data conflict recieves special*** attention.
+among which prior-data conflict and weakly informative priors will recieve special attention
+in the model discussion in Chapter~\ref{cha:imprecisebayes-conjugate}.
 
-***Section~\ref{sec:alternatives} ****
+%***Section~\ref{sec:alternatives} ****
 
 
 \section{Imprecise or Interval Probability}
@@ -41,8 +42,8 @@ among which prior-data conflict recieves special*** attention.
 This Section will give a condensed introduction to the main theoretic concepts
 in interval or imprecise probability as needed for the topics discussed in this thesis.
 Here, we take a decidedly epistemic view on interval or imprecise probability,
-as we will argue in Section~\ref{sec:motivation} that often,
-imprecise probability distributions are a better tool for expressing prior beliefs
+as we will argue in Section~\ref{sec:motivation}
+that imprecise probability distributions are often a better tool for expressing prior beliefs
 than precise probability distributions.
 
 %While Section~\ref{sec:ip-general} follows mostly \textcite{2011:IESS-ip},
@@ -83,7 +84,7 @@ differing from pure probabilistic reasoning \parencite{2005:hsu-bhatt}.
 In contrast to a probability measure $\p(A)$,
 the set functions $\Pl(A)$ and $\Pu(A)$ do not adhere
 to the additivity axiom of Kolmogorov's \parencite*{1933:kolmogorov}
-formalization of probability as a normed measure,
+formalisation of probability as a normed measure,
 %(countable or finite additivity),
 and thus are also known as \emph{non-additive probabilities}.
 There is also a link to \emph{fuzzy measures}, which are also non-additive measures
@@ -265,7 +266,7 @@ a weaker rationality requirement put forward by Walley is
 that a lower prevision $\El$ should fulfill the property of
 \emph{avoiding sure loss} \parencite[\S 2.4]{1991:walley}.
 This means that a subject, whose state of information about the
-occurence of `states of the world' from the possibility space $\Omega$
+occurrence of `states of the world' from the possibility space $\Omega$
 is encoded in his or her choice of $\El$,
 acting by buying and selling gambles accordingly,
 should choose $\El$ such that there is no combination of gambles
@@ -396,7 +397,7 @@ applied in this thesis,
 sets of (precise) probability distributions,
 which are also called \emph{credal sets} \parencite[e.g.,][p.~136]{2000:walley::towards}.
 
-There is a one-to-one correspondence between lower coherent previsions
+There is a one-to-one correspondence between coherent lower previsions
 and non-empty, closed and convex sets of (precise) probability distributions
 \parencite[\S 3.6.1]{1991:walley}.
 When dropping the conditions of convexity and closure,
@@ -468,7 +469,7 @@ we need a notion of \emph{conditioning} or \emph{updating} for imprecise probabi
 In analogy to the procedure described in Section~\ref{sec:bayes-inference},
 the objective is to express prior knowledge on a parameter of interest $\vartheta$
 by an imprecise prior distribution,
-and all inferences shall be based on a (imprecise) posterior distribution derived from it.
+and all inferences shall be based on the (imprecise) posterior distribution derived from it.
 As in Bayesian inference with precise distributions,
 the now imprecise prior should be conditioned on the observed data $\x$.
 
@@ -497,7 +498,7 @@ This important result is known as the \emph{lower envelope theorem for condition
 %paragraph from itip
 
 Walley has thus established a general framework for coherent statistical inference under imprecise probabilities.
-It allows to transfer the basic aspects of traditional Bayesian inference to the generalized setting,
+It allows to transfer the basic aspects of traditional Bayesian inference to the generalised setting,
 as the fundamental paradigms of Bayesian inference as discussed in Section~\ref{sec:bayes-inference} are maintained.
 Prior knowledge on the parameter, expressed by a now imprecise prior distribution $\El(\cdot)$ with credal set $\mathcal{M}$,
 is updated in the light of the observed sample $\x$ to the posterior $\El(\cdot \mid \x)$,
@@ -556,7 +557,7 @@ but because they are often indeterminate''.
 Indeed, \textcite[\S 6.11.1]{1991:walley} lists twelve items summarizing
 ``[\ldots] the reasons for which the GBR may fail to be applicable or useful as an updating strategy.''
 
-One argument is that the notion of coherence, of which the GBR is a consequence,
+One central argument is that the notion of coherence, of which the GBR is a consequence,
 may not be adequate to represent learning, especially when observed data is rather surprising.
 As posterior beliefs derived from the GBR must be coherent with both prior beliefs and data,
 they may be rather imprecise in case of very vague prior beliefs or unexpected data.

@@ -30,7 +30,7 @@ In Section~\ref{sec:ip-intro} below, we will try to outline the general theory o
 describing its main formulations and interpretations, and discuss the generalised Bayesian inference procedure.
 Section~\ref{sec:motivation} then gives at first some general motives for the use of imprecise probability methodology,
 concluding with the motives especially relevant in the context of the Bayesian approach to statistical inference,
-among which prior-data conflict and weakly informative priors will recieve special attention
+among which prior-data conflict and weakly informative priors will receive special attention
 in the model discussion in Chapter~\ref{cha:imprecisebayes-conjugate}.
 
 %***Section~\ref{sec:alternatives} ****
@@ -139,7 +139,7 @@ the definition of an imprecise distribution via lower and upper previsions
 is more general than a definition via lower and upper probability for events
 \parencite[p.~132]{2000:walley::towards}.
 \end{enumerate}
-As this thesis is concerned with a generalization of Bayesian inference
+As this thesis is concerned with a generalisation of Bayesian inference
 based on sets of conjugate priors, the approach by Walley,
 and its reliance on a subjective, epistemic interpretation of (imprecise) probability
 as (bounds for) betting rates, is now described in more detail.
@@ -166,6 +166,8 @@ It is possible to switch between these formulations,
 although (ii) can be slightly more general than (i),
 and to a greater extent, (iii) is more general than (ii) \parencite{2000:walley::towards}.
 
+\medskip
+
 We will first introduce lower previsions
 and the most important rationality requirements guiding their assessment and use,
 then have a brief look at sets of desirable gambles as the most comprehensive formulation.
@@ -190,12 +192,12 @@ $\El: \mathcal{K} \to \reals$, where $\mathcal{K}$ is a set of gambles.%
 \footnote{In Walley's central monography \parencite{1991:walley},
 his papers and the imprecise probability literature in general,
 lower previsions are usually denoted by $\Pl$.
-There, an event $A \subset \Omega$ is notationally identified with the
+Furthermore, events $A \subset \Omega$ are notationally identified with the
 indicator function $I_A(\omega)$, being a gamble with payout $1$ if $\omega \in A$ and else $0$,
 such that $\Pl(A)$ denotes the lower probability of $A$.
 In order to follow conventions in statistical literature, however,
 lower previsions are denoted by $\El$ here,
-and $\Pl$ refers to lower probabilities only.}
+and $\Pl$ refers exclusively to lower probabilities.}
 Central to Walley's theory is the interpretation of $\El[X]$
 as the subject's supremum buying price for $X$, that is,
 the subject is disposed to pay at most the fixed amount $\El[X]$
@@ -475,14 +477,14 @@ the now imprecise prior should be conditioned on the observed data $\x$.
 
 A coherent lower prevision can be conditioned on an event $B$
 by using the so-called \emph{Generalised Bayes' Rule} \parencite[GBR,][\S 6.4]{1991:walley},
-by which the conditioned coherent lower prevision $\El[X\mid B]$
+by which the conditional coherent lower prevision $\El[X\mid B]$
 based on a lower prevision $\El[X]$ can be derived.
 $\El[X\mid B]$ is then also coherent to $\El[X]$, i.e.,
 it is a model satisfying the rationality criteria as discussed for $\El[X]$
 now also for the beliefs expressed in $\El[X]$ contingent on $B$.%
 \footnote{The adequacy of the Generalised Bayes' Rule for statistical inference procedures has been questioned in the literature,
 and there is doubt that it may reasonably represent learning.
-We will comment on these topics in Section~\ref{sec:updating}.}
+We will comment on this topic in Section~\ref{sec:updating}.}
 
 In the formulation via a credal set, the Generalised Bayes' Rule
 is equivalent to conditioning each distribution in the credal set on $B$ via Bayes' Rule
@@ -514,8 +516,8 @@ The prior credal set $\mathcal{M}$ is updated element by element to obtain the p
 \label{eq:posteriorcredalset}
 \mathcal{M}_{\vert \x} = \left\{ p(\cdot \mid \x) :  p(\cdot) \in \mathcal{M} \right\}\,,
 \end{align}
-consisting of all posterior distributions obtained
-by traditional Bayesian updating of elements of the prior credal set.
+consisting of all posterior distributions (represented by their density or mass functions $p(\cdot \mid \x)$)
+obtained by traditional Bayesian updating of elements of the prior credal set.
 
 \subsubsection{Relation to Bayesian Sensitivity Analysis}
 
@@ -531,7 +533,9 @@ and very often discusses the effects of deviations from a certain central elemen
 
 As a consequence, for the robust Bayesian point of view it is quite natural and common
 to impose some further regularity conditions on the elements in the set of distributions,
-like additional smoothness constraints or unimodality of the underlying densities.
+like additional smoothness constraints or unimodality of the underlying densities.%
+\footnote{In Section~\ref{sec:generalmodel}, in the case of $\mathcal{M}$ being a set of parametric distributions,
+we will follow a similar route, however.}
 Since lower and upper posterior probabilities are determined by the extreme points of the underlying credal sets,
 this distinction may indeed matter substantially in practice.
 
@@ -539,7 +543,7 @@ In essence, robust Bayesian inference and Bayesian sensitivity analysis
 understand robustness and insensitivity mostly as desirable properties,
 while the imprecise probability framework may use such behavior actively in modelling,
 in particular in the context of prior-data conflict
-(see Sections~\ref{sec:motivation:pdc} and \ref{sec:pdc-sensitivity})***.
+(see Sections~\ref{sec:motivation:pdc} and \ref{sec:pdc-sensitivity}).
 
 \subsubsection{Critique}
 \label{sec:updating}
@@ -558,7 +562,8 @@ Indeed, \textcite[\S 6.11.1]{1991:walley} lists twelve items summarizing
 ``[\ldots] the reasons for which the GBR may fail to be applicable or useful as an updating strategy.''
 
 One central argument is that the notion of coherence, of which the GBR is a consequence,
-may not be adequate to represent learning, especially when observed data is rather surprising.
+may not be adequate to represent learning, especially when observed data is rather surprising,
+and should overturn prior beliefs about the data generating process.
 As posterior beliefs derived from the GBR must be coherent with both prior beliefs and data,
 they may be rather imprecise in case of very vague prior beliefs or unexpected data.
 Essentially, the GBR does not allow to abandon prior beliefs in the light of new data,
@@ -566,7 +571,8 @@ and both too vague or specific, but (in the light of the data) inappropriate pri
 may influence posterior beliefs to an intolerable extent.%
 \footnote{However, as we will see in Section~\ref{sec:gbicp-properties-criteria},
 items~\ref{enum:n0vsn}. and \ref{enum:ntoinfty}.,
-in our model, data can outweigh prior beliefs.}
+in our model, data can outweigh prior beliefs,
+leading to reasonable inferences.}
 
 Indeed, it has been debated that---intuitively---posterior inferences derived via the GBR are often too imprecise.
 As such possibly counterintuitive bounds result from elements in the prior credal set under which the observed sample is rather unlikely,
@@ -595,10 +601,15 @@ These important criticisms notwithstanding,
 the models discussed in this thesis will rely on the inference procedure described above, based on the Generalised Bayes' Rule.
 As will be discussed in Section~\ref{sec:generalmodel},
 the suggested models nevertheless provide very attractive inference features.
+Furthermore, we will discuss in Section ****boatshape***
+how models along this approach can be modified to cater for `bonus precision'
+if prior and data coincide especially well.****
 
 
 \subsection{Related Concepts}
 \label{sec:ip-related}
+
+****as separate section 2.3?****
 
 The theory outlined in Sections~\ref{sec:ip-main} and \ref{sec:imprecisebayes} above
 is of course not the only attempt to complement probability theory as tool for handling uncertainty;%
@@ -635,11 +646,49 @@ or simply be more easy to communicate to the practitioners involved
 If $m(\emptyset) = 0$, then belief functions coincide with $\infty$-monotone capacities,
 which are a special case of lower previsions.
 Only if $m(\emptyset) > 0$, which does not seem a reasonable choice in our view anyhow,
-the set of corresponding distributions $\mathcal{M}$ is empty.
+the set of corresponding distributions $\mathcal{M}$ is empty.***
 
 ***hierarchical Bayes, distribution over intervals:
 uncertainty is averaged out for inferences,
-posterior state of knowledge is again expressed via precise distribution (was sagt Walley?)\\
+posterior state of knowledge is again expressed via precise distribution (was sagt Walley?)***
+
+\cite[\S 5.6, footnote~16, p.~531]{1991:walley}:
+``Note, however, that the decisions which result from definite rules
+such as maximising entropy or assigning a `noninformaive' second-order distribution
+will depend on the arbitrary choice of a possibility space $\Omega$.''
+
+The strife to obtain precise probabilities is unnecessary,
+as often, imprecise probability will suffice to determine an optimal decision,
+and if not, they reflect the lack of information inherent in the decision problem.
+Then, precise decisions are in fact based on some arbitrary choices,
+but this arbitrariness is obscured by the method,
+and the precision of the method is merely a spurious one.
+Then, it is better to acknowledge indecision,
+instead of hiding it, as---if it must---a decision can be made nevertheless,
+in the same arbitrary way as with a spuriously precise method
+\parencite[\S 5.7]{1991:walley}.
+
+Although precise Bayesian methods will be adequate in many inference settings,
+``[...] we need a theory of imprecise probabilites to tell us when precision is a poor idealisation''
+\parencite[\S 5.8.1, item~3, p.~250]{1991:walley}.
+
+\parencite[\S 5.8.2]{1991:walley}: arguments against the objection of `two numbers instead of one'.
+In the subjective Bayesian inference paradigm,
+prior probabilities must be elicited,
+e.g., by questioning an expert in the field under study.
+To me it seems hardly questionable that it will be easier for such an expert
+to provide ranges instead of precise numbers.%
+\footnote{See a simple illustration of this in \parencite[\S 5.8, footnote~7, p.~535]{1991:walley}.}
+What happens in practice already is that experts often provide ranges,
+and again, it seems misguided and unnecessary to derive precise probability statements
+from such imprecise assessments.
+(See, e.g., the study by \textcite{2011:rinderknecht},
+where the imprecision naturally present in experts' assessments is not ignored,
+but adequately modeled.)
+
+\parencite[\S 5.10]{1991:walley}: second-order probabilities
+
+
 better alternative: hierarchical model by Cattaneo,
 where a possibility distribution is used for info about parameters,
 interpretation as likelihood, profile lik***

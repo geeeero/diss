@@ -423,7 +423,7 @@ where, more generally, the conclusion is to select certain utility maximising or
 %the tasks listed above 
 We will flesh this out to some extent in the examples below.%
 \footnote{For more details, see, e.g., \textcite[\S 2]{2007:robert},
-where, e.g., loss functions usually utilized in statistical settings are described in \S 2.5, pp.~77ff.}
+where,loss functions typical for statistical settings are described in \S 2.5, pp.~77ff.}
 
 \medskip
 
@@ -486,6 +486,7 @@ A \textbf{point estimator} for $\theta$ can be extracted from the posterior dist
 by considering $\Theta$ as the set of possible acts, and choosing a \emph{loss function}.
 The loss function $l$ gives a functional form for the severity of deviations of an estimator to its goal;
 here, it values the distance of a point estimator $\hat{\theta}$ to $\theta$.
+
 The \emph{quadratic loss function} $l(\hat{\theta}, \theta) = (\hat{\theta}-\theta)^2$
 values small deviations relatively low, whereas large deviations are given a high weight.
 As can be shown \parencite[see, e.g.,][pp.~352f]{2002:casella}, %(see, e.g., \textcite{2002:casella}, p.~352f),
@@ -493,15 +494,23 @@ the quadratic loss function leads to the posterior expectation as the Bayesian p
 Here, $\E[\theta\mid\x, \nz, \yz] = \E[\theta\mid\nn, \yn] = \yn$,
 and so the posterior expectation of $\theta$ is a weighted average
 of the prior expectation $\E[\theta\mid\nz, \yz] = \yz$ and the sample proportion $s/n$, with weights $\nz$ and $n$, respectively.
+
 Taking the \emph{absolute loss function} $l(\hat{\theta}, \theta) = |\hat{\theta}-\theta|$
 leads to the median of the posterior distribution as the point estimator.
 Here, $\med(\theta\mid\nn, \yn)$ has no closed form solution, and must be determined numerically.
-***add comment on estimator for quantiles (check function)***
+More generally, taking the \emph{check function} as the loss function,
+\begin{align*}
+l(\hat{\theta}, \theta) &= \begin{cases} q (\hat{\theta}-\theta)     & \text{if } x \ge 0 \\
+                                         (q-1) (\hat{\theta}-\theta) & \text{if } x < 0 \end{cases}\,,
+\end{align*}
+a tilted version of the absolute loss function, 
+leads to the quantile $q \in (0,1)$ of the posterior as point estimate.
+
 The \emph{indicator loss function}
 \begin{align*}
 l(\hat{\theta}, \theta) = \begin{cases} 0 & |\hat{\theta}-\theta| \le \epsilon \\ 1 & \text{else}\end{cases}\,,
 \end{align*}
-for $\epsilon \rightarrow 0$, leads to the maximum of the posterior,
+for $\epsilon \to 0$, leads to the maximum of the posterior,
 often abbreviated as MAP (maximum a posteriori) estimator
 (see, e.g., \cite{2000:bernardosmith}, \S 5.1.5, p.~257, or \cite{2007:robert}, \S 4.1.2, p.~166).
 For a $\be(\nn\yn, \nn(1-\yn))$, the mode is
@@ -541,9 +550,9 @@ consists of a single element of the parameter space only (usually, $\Theta_0 = \
 require a special treatment if the prior on $\Theta$ is absolutely continuous,
 as is the case for the priors \eqref{eq:canonicalprior} considered here,
 because then, $\p(\theta \in \Theta_0) = 0$ for any $\theta_0$.
-Such an inference task is considered in terms of a problem of \emph{model selection},
+Such an inference task can be considered in terms of a problem of \emph{model selection},
 where $\theta = \theta_0$ vs.\ $\theta \neq \theta_0$ decides between two different statistical models,
-to each of which a prior probability is assigned \parencite[\S 5.2.4]{2007:robert}.
+to each of which a prior probability is assigned \parencite[e.g.,][\S 5.2.4]{2007:robert}.
 An overview on Bayesian testing, including a detailed comparison with classical testing procedures,
 is given in \textcite[\S 5.2--5.4]{2007:robert}.
 
@@ -564,11 +573,17 @@ by comparing competing models $H_1, H_2, \ldots$ to a null model $H_0$
 with help of Bayes factors $B_{10}, B_{20}, \ldots$.}
 
 Improper priors are problematic in Bayesian testing \parencite[\S 5.2.5]{2007:robert}
-and should be avoided for parameters the test decides upon \parencite[p.~782]{1995:kass-raftery}.
+and should be avoided for parameters the test decides upon \parencite[p.~782]{1995:kass-raftery}.%
+\footnote{\Textcite[\S 5.5.4 (j)]{1991:walley} gives an instructing example for the problems
+that arise in testing with so-called non-informative priors.}
 We see this as a strong argument against the use of improper priors.
-An example where a proper prior is necessary to obtain useful results also for parameter estimation
+An example where improper priors seem inadequate also for parameter estimation
 will be given in Section~\ref{sec:alpha-factor-prior};
-a note on improper priors from the viewpoint of generalized Bayesian inference is given in Section~* *****.
+comments on improper priors from the viewpoint of generalized Bayesian inference
+are given in Section~\ref{sec:gbicp-properties-criteria},
+item \ref{enum:noninformative}, and in Section~\ref{sec:idm-and-near-ignorance}.
+
+%Sections~\ref{sec:motivation:near-ignorance}, .
 \iffalse
 \cite[p.~235f]{2007:robert}
 \begin{quote}
@@ -601,7 +616,7 @@ known as the \emph{Beta-Binomial distribution}.
 \subsection{The Normal-Normal Model}
 \label{sec:norm-norm}
 
-***add comment on general case $\vartheta=(\mu,\sigma^2)$***\\
+%***add comment on general case $\vartheta=(\mu,\sigma^2)$***\\
 The normal density \eqref{eq:normaldens}, here with the variance $\sigma^2$ known to be $\sigma^2_0$,
 also adheres to the exponential family form:
 \begin{align*}
@@ -620,7 +635,16 @@ p(\mu \mid \nz, \yz) \dd\mu
  &\propto \frac{1}{\sigma_0^2} \exp\Big\{ -\frac{\nz}{2\sigma_0^2} (\mu - \yz)^2 \Big\} \dd\mu\,,
 \end{align*}
 is a normal distribution with mean $\yz$ and variance $\frac{\sigma_0^2}{\nz}$,
-i.e.\ $\mu \sim \norm(\yz, \frac{\sigma_0^2}{\nz})$.
+i.e.\ $\mu \sim \norm(\yz, \frac{\sigma_0^2}{\nz})$.%
+\footnote{The conjugate prior if both $\mu$ and $\sigma^2$ are unknown
+is the so-called normal-inverse gamma distribution,
+a combination of the normal distribution above and the inverse gamma distribution
+\parencite[see, e.g.,][pp.~119, 431]{2000:bernardosmith}.
+This prior is a special case of the priors for Bayesian regression discussed in ****festschrift****,
+where $\X = (1, \ldots, 1)^\tra$****.
+When instead of the variance $\sigma^2$ the precision $\kappa = 1/\sigma^2$ is considered,
+this prior is can be written as a normal-gamma prior
+\parencite[see, e.g.,][pp.~136, 434]{2000:bernardosmith}.}
 
 With \eqref{eq:canonicalupdate}, the parameters for the posterior distribution are
 \begin{align}
@@ -1143,7 +1167,9 @@ and 1 showed two components failing:
 
 \textcite{1996:atwood} studied priors for the binomial model
 which maximise entropy (and whence, are `non-informative'%
-\footnote{We will comment on so-called \emph{non-informative} priors in Section****.})
+\footnote{We will comment on so-called \emph{non-informative} priors in
+Section~\ref{sec:gbicp-properties-criteria}, item \ref{enum:noninformative},
+and in Section~\ref{sec:idm-and-near-ignorance}.})
 whilst constraining the mean to a specific value.
 Although these priors are not conjugate,
 \textcite{1996:atwood} showed that they can be well approximated by Beta distributions, which are conjugate.
@@ -1208,7 +1234,7 @@ assigning an interval for the learning parameter $\nz$ is especially important.
 This effects to using the imprecise probability models that are at the core of this thesis.
 A systematic presentation of these models,
 together with more arguments for employing them in important statistical inference tasks,
-is given in Chapter~\ref{cha:gbi} ***more detailed?***.
+is given in Chapter~\ref{cha:imprecisebayes-conjugate}.
 
 
 \subsection{Cautious Epistemic Information for Alpha-Factors}
@@ -1598,8 +1624,9 @@ from various sorts of hypothetical data.
 
 In the above application, Bayesian inference in the Dirichlet-Multinomial model
 was generalized to imprecise or interval probability methods.
-Next, in the main chapter of the thesis,
+Next, in Chapter~\ref{cha:gbi},
 we will give a general introduction to the methodology of imprecise or interval probability,
 discuss further motivations for the use of interval probability methods for statistical inference,
-and show that inferences in canonical conjugates as described in Section~\ref{sec:regularconjugates}
-can be generalized in the same way as was done above.
+and demonstrate in Chapter~\ref{cha:imprecisebayes-conjugate} that inferences in canonical conjugates
+as described in Section~\ref{sec:regularconjugates}
+can be generalised in the same way as was done above.

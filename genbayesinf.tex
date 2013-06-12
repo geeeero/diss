@@ -594,7 +594,7 @@ Updating by Generalized Bayes' Rule does no longer necessarily lead to optimal d
 also not to optimal inference procedures; see, in particular, \textcite{2003:augustin} for a detailed discussion, 
 \textcite{2001:NoubiapSeidel} and \textcite{Augustin5:2004} for algorithms to calculate optimal decision functions.
 
-***something on conditioning versus belief revision???***
+***something on conditioning versus belief revision, temporal coherence???***
 
 %Despite these criticisms, we will stick to ***
 These important criticisms notwithstanding, 
@@ -606,10 +606,10 @@ how models along this approach can be modified to cater for `bonus precision'
 if prior and data coincide especially well.****
 
 
-\subsection{Related Concepts and Alternatives***}
+\subsection{Related Concepts}
 \label{sec:ip-related}
 
-****as separate section 2.3?****
+%****as separate section 2.3?****
 
 The theory of imprecise probability outlined in Sections~\ref{sec:ip-main} and \ref{sec:imprecisebayes} above
 is of course not the only attempt to complement probability theory as tool for handling uncertainty;%
@@ -640,66 +640,14 @@ or simply be more easy to communicate to the practitioners involved
 %the step beyond precise probability distributions.
 %e.g., fuzzy sets with certain combination rule is same as probability.***
 
-***par on belief functions and Dempster-Shafer Theory?*** \parencite[\S 2]{itip-other}
+***as example, par on belief functions and Dempster-Shafer Theory?*** \parencite[\S 2]{itip-other}
 
-***link belief functions to lower previsions \parencite[\S 2.1, p~126]{itip-other}:
+***link between belief functions and lower previsions \parencite[\S 2.1, p~126]{itip-other}:
 If $m(\emptyset) = 0$, then belief functions coincide with $\infty$-monotone capacities,
 which are a special case of lower previsions.
 Only if $m(\emptyset) > 0$, which does not seem a reasonable choice in our view anyhow,
 the set of corresponding distributions $\mathcal{M}$ is empty.***
 
-***hierarchical Bayes, distribution over intervals:
-uncertainty is averaged out for inferences,
-posterior state of knowledge is again expressed via precise distribution (was sagt Walley?)***
-
-\cite[\S 5.6, footnote~16, p.~531]{1991:walley}:
-``Note, however, that the decisions which result from definite rules
-such as maximising entropy or assigning a `noninformative' second-order distribution
-will depend on the arbitrary choice of a possibility space $\Omega$.''
-
-
-
-Although precise Bayesian methods can be adequate in many inference settings,
-``[...] we need a theory of imprecise probabilites to tell us when precision is a poor idealisation''
-\parencite[\S 5.8.1, item~3, p.~250]{1991:walley}.
-
-\parencite[\S 5.8.2]{1991:walley}: arguments against the objection of `two numbers instead of one'.
-In the subjective Bayesian inference paradigm,
-prior probabilities must be elicited,
-e.g., by questioning an expert in the field under study.
-To me it seems hardly questionable that it will be easier for such an expert
-to provide ranges instead of precise numbers.%
-\footnote{See a simple illustration of this in \textcite[\S 5.8, footnote~7, p.~535]{1991:walley}.}
-What happens in practice already is that experts often provide ranges,
-and again, it seems misguided and unnecessary to derive precise probability statements
-from such imprecise assessments.
-(See, e.g., the study by \textcite{2011:rinderknecht},
-where the imprecision naturally present in experts' assessments is not ignored,
-but adequately modeled.)
-
-\parencite[\S 5.10]{1991:walley}: second-order probabilities
-
-
-better alternative: hierarchical model by Cattaneo,
-where a possibility distribution is used for info about parameters,
-interpretation as likelihood, profile lik***
-
-***from itip-statinf, \S 4.4:\\
-like the model suggested by \textcite{2008:cattaneo} in the (profile) likelihood context,
-a variant of which also allows to incorporate prior information by using a so-called prior likelihood.
-
-***from itip-statinf, \S 7:\\
-\textcite{2008:cattaneo} suggests to use a slightly extended notion of likelihood as relative plausibility to construct a hierarchical model.
-It consists of a credal set $\mathcal{P}$ and of the likelihood function $\text{lik}: {\cal P} \to \reals_0^+$ as a second level,
-describing the plausibility of its elements based on the sample.
-Inference on certain deduced quantities $\vartheta=g\left(p\right), p \in \mathcal{P}$
-then can be based on the so-called \emph{profile likelihood}
-$\text{proflik} \left(\vartheta\right) = \sup_{\{p \in P \vert g\left(p\right)=\vartheta\}} \text{lik}\left(p\right)$.
-The approach has up to now not often been used, but shows some promising behavior as an updating rule,
-and as a basis for a direct likelihood based decision theory \parencite{2007a:cattaneo, 2012:cattaneo-technicalRep}.
-Moreover, it has been successfully applied in graphical models (e.g., \cite{2011:4:isipta},
-see also \cite[\S 4.3]{itip-classification}, and in the context of data imprecision
-(see, e.g., \cite[\S 8.1]{itip-statinf}).
 
 
 \section{Motives for the Use of Imprecise Probability Methods}
@@ -839,8 +787,7 @@ a lottery where there is some limited information about the number of winning ti
 like the information that there should be about 5 to 10 winning tickets per 100 tickets.%
 \footnote{We will comment on the seemingly attractive alternative
 of putting a second-order distribution on the set of winning probabilities %such an interval-valued winning probability
-at **** (hierarchical Bayes).}
-
+at Section~\ref{sec:ip-alternatives}.}
 
 \subsection{Motives from a Bayesian Perspective}
 \label{sec:motivation:bayesian}
@@ -873,14 +820,26 @@ as adressed in Section~\ref{sec:updating}.}
 In fact, Walley consequently concludes that precise priors are unnecessary for coherent inference,
 and that even the assumption of an underlying `ideal' precise prior
 (unobtainable because of, e.g., time constraints in elicitation) is unjustified, %misguided,
-and calls this the \emph{dogma of ideal precision} \parencite[\S 5.9]{1991:walley}.
+and calls this the \emph{dogma of ideal precision} \parencite[\S 5.9]{1991:walley}.%
+\footnote{When disagreeing with such a view, remarking that
+precise Bayesian methods can be adequate in many inference settings,
+Walley replies that nevertheless,
+``[...] we need a theory of imprecise probabilites to tell us when precision is a poor idealisation''
+\parencite[\S 5.8.1, item~3, p.~250]{1991:walley}.}
 
 In a decision theoretic context
 (which can be seen as a superstructure for statistical inference tasks, see Section~\ref{sec:inferencetasks}),
-he argues that the strife to obtain precise prior distributions is unnecessary
+Walley argues that the strife to obtain precise prior distributions is unnecessary
 also because often, imprecise probability will suffice to determine an optimal decision,
 and in the contrary case, they adequately reflect the lack of information inherent in the decision problem.
-Then, precise decisions are in fact based on some arbitrary modelling choices,
+Then, precise decisions are in fact based on some arbitrary modelling choices,%
+\footnote{E.g., %``Note, however, that
+``the decisions which result from definite rules
+such as maximising entropy or assigning a `noninformative' second-order distribution
+will depend on the arbitrary choice of a possibility space $\Omega$''
+\parencite[\S 5.6, footnote~16, p.~531]{1991:walley}.
+We will comment on second-order distributions and hierarchical Bayesian models
+in Section~\ref{sec:ip-alternatives}.}
 but this arbitrariness is obscured by the method insisting on precision,
 such that the precision of the method is merely a spurious one.
 Consequently, it is better to acknowledge indecision instead of hiding it,
@@ -925,23 +884,103 @@ some illustrative examples can be found in Section ****,
 while the effect of prior-data conflict on Bayesian linear regression is discussed in Section ****.
 
 As a topic related to prior-data conflict, decreasing imprecision in sequential learning
-expresses naturally that the accumulating information is non-conflicting and stable.%
+may expresse naturally that the accumulating information is non-conflicting and stable.%
 \footnote{See the comment in footnote~\ref{foot:sequential}, page~\pageref{foot:sequential}.}
+
+
+\subsection{Critique and Discussion of Some Alternatives}
+\label{sec:ip-alternatives}
+
+We will breifly discuss here some critique on imprecise probability methods,
+and touch on some suggested alternative models.***
+
+It is often argued that imprecise probability methods are more difficult to apply,
+and lead to complicated and cumbersome inference procedures.
+
+While the criticism of higher complexity is certainly true for the mathematical foundations
+(e.g., lower previsions are indeed more complex than linear previsions or precise probability distributions),
+we believe that increased effort in modeling and application (if there is any substantial)
+for imprecise probability methods
+is rewarded with a more realistic description of the uncertainty involved.
+Imprecise probability models lead to more reliable conclusions,
+by explicitely communicating the uncertainties inherent in the model or the data,
+in contrast to the seemingly precise results that are characteristic for many precise methods,
+which are often obtained due to a multitude of, often heroic, model assumptions. %***footnote or par on manski?***
+This `overprecision' is often offset in statistical practice by `taking models not too seriously',
+and to understand them as crude approximations to reality only.
+Box and Draper's statement ``Essentially, all models are wrong, but some of them are useful'' \parencite[p.~424]{1987:box}
+has become a frequently cited dictum, often understood as a guiding paradigm to statistical modeling.
+Taking aside the problematic assumption of `continuity' of statistical procedures inherent in this thinking,%
+\footnote{`Continuity' is understood here in the sense that small perturbations of the underlying model
+do not destroy the substantive conclusions drawn from the data.
+Results about the robustness of statistical models have undermined this assumption of `model continuity'
+(see \textcite{1981:huber} and \textcite{1986:hampel} for monographs on robust statistics).}
+employing precise models and then discounting their precise results
+seems somehow circuitous.
+
+We think models are preferable that, by allowing for imprecision, can be taken seriously in their implications.
+This is also the position of Manski, whose ``Law of decreasing credibility'',%
+\footnote{``Credibility'' is used here in a non-technical sense.}
+\begin{quote}
+``The credibility of inferences decreases with the strength of the assumptions maintained'' \parencite[p. 1]{2003:manski}
+\end{quote}
+can be understood as a compelling motto for statistical inference with imprecise probabilities,
+bringing credibility, or reliability, of conclusions explicitly into the argument.
+%Specifically, they allow to study the role of model assumptions
+%employed in traditional statistics to arrive at a precise solution.
+
+Furthermore, the perceived difficulty of applying imprecise probability methods in practice
+is, in the subjective Bayesian inference paradigm, often non-existent.
+Here, prior probabilities must be elicited,
+e.g., by questioning an expert in the field under study.
+To us it seems hardly questionable that it will be easier for such an expert
+to provide ranges instead of precise numbers.%
+\footnote{See a simple illustration of this in \textcite[\S 5.8, footnote~7, p.~535]{1991:walley}.}
+What happens in practice already is that experts often provide ranges,%
+\footnote{See, e.g., the study by \textcite{2011:rinderknecht},
+where the imprecision naturally present in experts' assessments is not ignored,
+but adequately modelled.}
+and again, it seems unnecessary and circuitous to derive precise probability statements
+from such imprecise assessments.
+We thus consider the common objection to imprecise Bayesian approaches
+that eliciting two numbers instead of one must be more difficult as a misconception.%
+\footnote{See, e.g., \textcite[\S 5.8.2]{1991:walley} for a more detailed discussion of this objection.}
+
+
+
+***hierarchical Bayes, distribution over intervals ****model averaging???***: 
+uncertainty is averaged out for inferences,
+posterior state of knowledge is again expressed via precise distribution***
+\parencite[\S 5.10]{1991:walley}: second-order probabilities
+
+
+better alternative: hierarchical model by Cattaneo,
+where a possibility distribution is used for info about (hyper-)parameters,
+interpretation as likelihood, profile lik***
+
+***from itip-statinf, \S 4.4:\\
+like the model suggested by \textcite{2008:cattaneo} in the (profile) likelihood context,
+a variant of which also allows to incorporate prior information by using a so-called prior likelihood.
+
+***from itip-statinf, \S 7:\\
+\textcite{2008:cattaneo} suggests to use a slightly extended notion of likelihood as relative plausibility to construct a hierarchical model.
+It consists of a credal set $\mathcal{P}$ and of the likelihood function $\text{lik}: {\cal P} \to \reals_0^+$ as a second level,
+describing the plausibility of its elements based on the sample.
+Inference on certain deduced quantities $\vartheta=g\left(p\right), p \in \mathcal{P}$
+then can be based on the so-called \emph{profile likelihood}
+$\text{proflik} \left(\vartheta\right) = \sup_{\{p \in P \vert g\left(p\right)=\vartheta\}} \text{lik}\left(p\right)$.
+The approach has up to now not often been used, but shows some promising behavior as an updating rule,
+and as a basis for a direct likelihood based decision theory \parencite{2007a:cattaneo, 2012:cattaneo-technicalRep}.
+Moreover, it has been successfully applied in graphical models (e.g., \cite{2011:4:isipta},
+see also \cite[\S 4.3]{itip-classification}, and in the context of data imprecision
+(see, e.g., \cite[\S 8.1]{itip-statinf}).***
+
 
 \medskip
 
 After describing the theoretical foundations of and motivating the switch to imprecise probability models in general,
-in Chapter~\ref{cha:imprecisebayes-conjugate} we will present 
+in Chapter~\ref{cha:imprecisebayes-conjugate} we will now present 
 models for Bayesian inference with imprecise proability
 that are practicable and implement the modelling opportunities discussed.*** % the motives discussed
 
-%***The following two subsections are devoted to motives directly related to important issues in Bayesian inference.
-
-%\subsection{Prior-Data Conflict}
-%\label{sec:motivation:pdc}
-
-%\subsection{Weakly Informative Priors}
-%\label{sec:motivation:near-ignorance}
-
-%\subsection{Other Motives}
 

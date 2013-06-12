@@ -606,12 +606,12 @@ how models along this approach can be modified to cater for `bonus precision'
 if prior and data coincide especially well.****
 
 
-\subsection{Related Concepts}
+\subsection{Related Concepts and Alternatives***}
 \label{sec:ip-related}
 
 ****as separate section 2.3?****
 
-The theory outlined in Sections~\ref{sec:ip-main} and \ref{sec:imprecisebayes} above
+The theory of imprecise probability outlined in Sections~\ref{sec:ip-main} and \ref{sec:imprecisebayes} above
 is of course not the only attempt to complement probability theory as tool for handling uncertainty;%
 \footnote{A number of motives for going beyond usual probability measures will be discussed in Section~\ref{sec:motivation}.}
 there are many other concepts with a similar aim,
@@ -654,19 +654,10 @@ posterior state of knowledge is again expressed via precise distribution (was sa
 
 \cite[\S 5.6, footnote~16, p.~531]{1991:walley}:
 ``Note, however, that the decisions which result from definite rules
-such as maximising entropy or assigning a `noninformaive' second-order distribution
+such as maximising entropy or assigning a `noninformative' second-order distribution
 will depend on the arbitrary choice of a possibility space $\Omega$.''
 
-The strife to obtain precise probabilities is unnecessary,
-as often, imprecise probability will suffice to determine an optimal decision,
-and if not, they reflect the lack of information inherent in the decision problem.
-Then, precise decisions are in fact based on some arbitrary choices,
-but this arbitrariness is obscured by the method,
-and the precision of the method is merely a spurious one.
-It is better to acknowledge indecision instead of hiding it,
-as---if it must---a decision can be made nevertheless,
-with the same arbitrariness as is hidden in a spuriously precise method
-\parencite[\S 5.7]{1991:walley}.
+
 
 Although precise Bayesian methods can be adequate in many inference settings,
 ``[...] we need a theory of imprecise probabilites to tell us when precision is a poor idealisation''
@@ -743,7 +734,7 @@ in Section~\ref{sec:motivation-riskambiguity}.
 The fundamental motive at play in expert systems,
 and in the study of uncertainty in artificial intelligence in general \parencite[see, e.g.,][]{2006:lawry},
 is the view that usual probability measures
-are not expressive enough to model such reasoning,
+are not expressive enough to model reasoning under uncertainty,
 and that, in fact, probability is fit to cover only one aspect of the uncertainty involved.
 The exclusive role of probability as a methodology for handling uncertainty has eloquently been rejected,
 e.g., by \textcite[p.~1]{1999:klir}: 
@@ -765,7 +756,7 @@ of its dimensions.
 
 \textcite[\S 1.4]{2001:weichselberger} identifies this multidimensionality as a \emph{meta motive},
 which underlies a number of more manifest motives for the use of imprecise probability tools
-\parencite[p~92]{2001:weichselberger}:
+\parencite[p.~92]{2001:weichselberger}:
 \begin{itemize}
 %\begin{enumerate}[I.]
 \item The existence of pairs of events that may be not comparable in terms of probability measures,
@@ -775,7 +766,7 @@ nor should they be seen as excactly equiprobable.
 leads naturally to lower and upper bounds for probabilities of events.
 These bounds may be, however, already informative enough to decide upon
 the substantive question at hand.%
-\footnote{An important example for such an approach is the theory of \emph{nonparametric predictive inference}
+\footnote{\label{foot:npi}An important example for such an approach is the theory of \emph{nonparametric predictive inference}
 \parencite[NPI, see ][]{2011:IESS-npi}, where minimal model assumptions %(based on exchangeability of observations)
 lead to a nonparametric model supplying lower and upper probability bounds for events
 involving future observations.
@@ -786,8 +777,15 @@ by lower and upper bounds \parencite{2004:Coolen:Yan}.}
 \item Uncertainty in subjective probability assessments,
 which may manifest in differing buying and selling prices
 (as discussed in Section~\ref{sec:ip-main}).
+Indeed, Walley's \parencite*{1991:walley} central motive is that
+subjective beliefs to be modelled by a prior are usually imprecise,
+such that lower previsions, rather than probability distributions,
+are the adequate model (see Section~\ref{sec:motivation:bayesian-foundational}).
 \item The provision of basic tools that generalise probability measures,
-namely capacities \parencite{1954:choquet}, also known as fuzzy measures \parencite[e.g.,][]{1989:murofushi}.
+namely capacities \parencite{1954:choquet}, also known as fuzzy measures \parencite[e.g.,][]{1989:murofushi},
+and the Choquet integral, which allows integration according to capacities.
+These tools open up a wealth of modelling opportunities.%
+\footnote{In fact, certain subclasses of capacities are a special case of lower previsions \parencite[see, e.g.,][Fig.~5.5]{itip-special}.}
 \item The need to model approximate adherence to a central probability distribution,
 which is often done through \emph{neighbourhood models} (see Section~***).
 This is the dominant model type in robust Bayesian approaches \parencite[see, e.g.,][]{1994:berger}.
@@ -798,9 +796,17 @@ especially in econometrics, where it is called \emph{partial identification} \pa
 and in biometrics, where it is known as \emph{systematic sensitivity analysis} \parencite[e.g.,][]{vansteelandt2006}.
 \item Sequences of experiments that do not warrant the assumption of convergence
 for relative frequencies, because, e.g., the notion of replication may not be
-satisfied closely enough as necessary for the validity of classical probability theory.
+satisfied closely enough as necessary for the validity of results from classical probability theory.
+In similar veins, imprecise probability may allow to model
+imperfect randomisation schemes, where, e.g., ``symmetry of sample units cannot be fully established''
+\parencite[\S 2.5]{itip-statinf}.
 \end{itemize}
 %\end{enumerate}
+In summary,
+the flexible, multidimensional perspective on uncertainty makes imprecise probabilities capable of mirroring the quality of knowledge.
+Only well supported knowledge is expressed by comparatively precise models,
+including the traditional concept of probability as the special case of perfect stochastic information,
+while highly imprecise (or even vacuous) models are used in the situation of scarce (or no) prior knowledge.
 
 \subsection{Risk and Ambiguity}
 \label{sec:motivation-riskambiguity}
@@ -841,14 +847,14 @@ at **** (hierarchical Bayes).}
 
 %***central motive for use in Bayesian inference:***\\
 From a decidedly Bayesian perspective as taken in this thesis,
-we first want to point out a foundational motive for the use of imprecise probability methods,
-before we come to more specific motives.
+we first want to point out foundational motives for the use of imprecise probability methods,
+before we come to two specific motives in Sections~\ref{sec:motivation:near-ignorance} and \ref{sec:motivation:pdc}.
 
-\subsubsection{Foundational Motive}
+\subsubsection{Foundational Motives}
 \label{sec:motivation:bayesian-foundational}
 
 We agree with \textcite[\S 1.1]{1994:berger} in the view that there are very strong foundational arguments
-for the subjective Bayesian approach, which, however, hold only
+for the subjective Bayesian approach to statistical inference, which, however, hold only
 ``if it is assumed that one can make arbitrarily fine discriminations
 in judgement about unknowns and utilities'' \parencite[p.~303]{1994:berger}. 
 It is the implications of this extremely challenging requirement
@@ -864,12 +870,25 @@ while allowing for incomplete and imprecise prior judgements.%
 \footnote{However, keep in mind the caveats for an inference procedure based on the Generalised Bayes' Rule
 as adressed in Section~\ref{sec:updating}.}
 
-Indeed,
-the flexible, multidimensional perspective on uncertainty makes imprecise probabilities capable of mirroring the quality of knowledge.
-Only well supported knowledge is expressed by comparatively precise models,
-including the traditional concept of probability as the special case of perfect stochastic information,
-while highly imprecise (or even vacuous) models are used in the situation of scarce (or no) prior knowledge.
-This power to differentiate between different degrees of partial knowledge
+In fact, Walley consequently concludes that precise priors are unnecessary for coherent inference,
+and that even the assumption of an underlying `ideal' precise prior
+(unobtainable because of, e.g., time constraints in elicitation) is unjustified, %misguided,
+and calls this the \emph{dogma of ideal precision} \parencite[\S 5.9]{1991:walley}.
+
+In a decision theoretic context
+(which can be seen as a superstructure for statistical inference tasks, see Section~\ref{sec:inferencetasks}),
+he argues that the strife to obtain precise prior distributions is unnecessary
+also because often, imprecise probability will suffice to determine an optimal decision,
+and in the contrary case, they adequately reflect the lack of information inherent in the decision problem.
+Then, precise decisions are in fact based on some arbitrary modelling choices,
+but this arbitrariness is obscured by the method insisting on precision,
+such that the precision of the method is merely a spurious one.
+Consequently, it is better to acknowledge indecision instead of hiding it,
+as---if it must---a decision can be made nevertheless,
+with the same arbitrariness as is hidden in a spuriously precise method
+\parencite[\S 5.7]{1991:walley}.
+
+Concretely, the power to differentiate between different degrees of partial knowledge
 distinguishes imprecise probabilities as an attractive modelling tool in statistics.
 In particular it allows to overcome two severe practical limitations inherent to Bayesian inference based on precise probabilities,
 briefly discussed below.
@@ -905,8 +924,16 @@ item \ref{enum:pdc}, and in Section~\ref{sec:pdc-sensitivity};
 some illustrative examples can be found in Section ****,
 while the effect of prior-data conflict on Bayesian linear regression is discussed in Section ****.
 
-***As a related topic, decreasing imprecision in sequential learning
-expresses naturally that the accumulating information is non-conflicting and stable.*** to outlook??***
+As a topic related to prior-data conflict, decreasing imprecision in sequential learning
+expresses naturally that the accumulating information is non-conflicting and stable.%
+\footnote{See the comment in footnote~\ref{foot:sequential}, page~\pageref{foot:sequential}.}
+
+\medskip
+
+After describing the theoretical foundations of and motivating the switch to imprecise probability models in general,
+in Chapter~\ref{cha:imprecisebayes-conjugate} we will present 
+models for Bayesian inference with imprecise proability
+that are practicable and implement the modelling opportunities discussed.*** % the motives discussed
 
 %***The following two subsections are devoted to motives directly related to important issues in Bayesian inference.
 

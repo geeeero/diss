@@ -1,7 +1,210 @@
-\section{***JSTP paper***}
+\section{***Generalised iLUCK-models (JSTP paper)***}
 \label{sec:jstp}
 
-short intro from intro and abstract, examples already in Chapter~\ref{cha:intro}
+****short intro from intro and abstract, examples already in Chapter~\ref{cha:intro}
+
+
+\medskip
+
+***The section is structured as follows:
+In Section~\ref{070517-sec2-1} we provide the formal background
+by distinguishing a wide class of classical, precise probability models
+where Bayesian inference has a particular form, being directly
+suitable to a generalization to imprecise probabilities by varying
+the linearly updated main parameter (Section~\ref{sec:3}).
+We illustrate these models and then show in Section~\ref{sec:4-gw-071216}
+how these models can be extended to deal with prior-data conflict in a more sensible way
+by additionally varying another parameter.
+Section~\ref{sec:illu} illustrates our procedure in two important special cases:
+inferences on the mean of a normal distribution and in the IDM.***
+
+
+\subsection{Traditional Bayesian inference and LUCK-models}\label{070517-sec2-1}
+
+%\section{Bayesian Inference and \textsc{luck}-models}\label{070516-sec2}
+%\subsection{Classical Bayesian Inference and \textsc{luck}-models}\label{070517-sec2-1}
+In most cases, traditional Bayesian inference is based on so-called
+conjugate priors (related to a specific likelihood). These
+distributions have the convenient property that the posterior
+resulting from~\eqref{eq:bayesrule} belongs to the same class of parametric
+distributions as the prior. The posterior thus remains easily
+tractable, and updating can be described in terms of parameters
+only. For describing the imprecise probability model used later on more easily, we want to
+%For the intended application presented later on, it is quite convenient to
+distinguish certain standard situations (called
+\emph{models with `Linearly Updated Conjugate prior Knowledge'
+(LUCK)} here) of Bayesian updating with classical (traditional, precise)
+probabilities, where prior and posterior fit nicely together in the sense that
+(i) they belong to the same class of parametric distributions, and, in addition,
+(ii) the updating of one parameter ($\yz$ below) of the prior is
+linear given a second parameter ($\nz$).
+%\begin{enumerate}%
+%\vspace*{-1.2ex}%
+%\item[i)] they belong to the same class of parametric distributions,
+%and, in addition,\vspace*{-1.2ex}
+%\item[ii)] the updating of one parameter ($y^{(0)}$ below) of the prior is
+%linear given a second parameter ($n^{(0)}$).
+%\end{enumerate}
+%\vspace*{-1.2ex}%
+More precisely, we return to the following definition,
+originally introduced in \textcite{Walter2007a}:%\vspace*{-0.5ex}
+\footnote{Compare to the model presented in Section~\ref{sec:regularconjugates}.
+Here, the likelihood $f(\x\mid\vartheta)$ may have any form,
+given that the update step from prior to posterior distribution
+adheres to Equations~\eqref{070305-2} -- \eqref{070305-4}.
+The model discussed in Section~\ref{sec:regularconjugates} is a special case,
+as Equations~\eqref{070305-2} and \eqref{070305-4} are the same as
+Equations~\eqref{eq:canonicalprior} and \eqref{eq:canonicalupdate}, respectively.
+See Example~\ref{ex:jstp-1} below.}
+
+\begin{definition}[LUCK-models]\label{070503-defin1}
+Consider traditional Bayesian inference on a parameter $\vartheta$
+based on a sample $\x$ as described in Section~\ref{sec:bayes-inference} (Equation~\eqref{eq:bayesrule}),
+and let the prior $p(\vartheta)$ be characterized by the (vectorial) parameter
+$\vartheta\uz$. The pair $\big(p(\vartheta),
+p(\vartheta\mid\x)\big)$ is said to constitute a
+\emph{LUCK-model of size $n\in \naturals$ with respect to the
+likelihood $f(\x\mid\vartheta)$ in the natural parameter $\psi$ with
+prior parameters $\nz \in \posreals$ and $\yz$ and sample
+statistic $\tau(\x)$} iff $p(\vartheta)$ and $p(\vartheta\mid\x)$
+can be rewritten in the following way:%
+%\footnote{$\langle a,b \rangle$ denotes the scalar product of $a$ and $b$.}%\vspace*{-1.2ex}
+\begin{equation}\label{070305-2}
+p(\vartheta) \propto \exp\big\{ \nz \big[\langle \psi, \yz \rangle - \mbf{b}(\psi)\big]\big\} %\vspace*{-1.5ex} %\label{equ:QdCpriori}
+\end{equation}%
+and %\vspace*{-1.0ex}
+\begin{equation}\label{070305-3}
+p(\vartheta\mid\x) \propto \exp\big\{ \nn \big[\langle \psi, \yn \rangle - \mbf{b}(\psi)\big]\big\}\,,%\vspace*{-1.5ex} %\label{equ:QdCpriori}
+\end{equation}
+with
+\begin{align}\label{070305-4}
+%n^{(1)} &= n^{(0)}+n & &\mbox{and}  & y^{(1)} &= \frac{n^{(0)}y^{(0)}+\tau(x)}{n^{(0)}+n}\,,\vspace*{-3.5ex}  %\label{equ:QdCupdate}
+\yn &= \frac{\nz}{\nz + n} \cdot \yz + \frac{n}{\nz + n} \cdot \frac{\tau(\x)}{n}\,, &
+\nn &= \nz + n\,,
+\end{align}%\vspace*{-1.0ex}%
+where $\vartheta$ is transformed to $\psi$ and $\mbf{b}(\psi)$,
+and $\vartheta\uz$ to $\nz$ and $\yz$.
+\end{definition}%\vspace*{-0.5ex}%\vspace*{-1.9ex}%
+%
+$\yz$ and $\yn$ can be seen as the parameter describing
+the main characteristics of the prior and the posterior,
+respectively, and so later on, $\yz$ and $\yn$ will be
+called \emph{main prior} and \emph{main posterior parameter}.
+In the models considered here, $\yz$ can also be understood as a prior
+guess for the random quantity $\ttau(\x) := \tau(\x)/n$
+summarizing the sample. According to the left
+part of \eqref{070305-4} these two different sources of information
+are linearly combined to obtain the main posterior parameter:
+%\vspace*{-1.3ex}
+\begin{equation}\label{071214-2}
+\yn = \frac{\nz}{\nz + n} \cdot \yz + \frac{n}{\nz + n} \cdot \ttau(\x)\,. %\vspace*{-1.0ex}%\frac{1}{q}\tau(w).
+\end{equation}
+This relation also equips $\nz$ with a vivid interpretation as ``prior strength''
+or as ``pseudocounts'',
+%which will become clearer in Section~\ref{070514-secImpPriorLUCK-QdC}.
+reflecting the weight one gives to the prior with respect to the sample.
+So, $\nz$ can be
+interpreted as the size of an imaginary sample that corresponds to
+the trust on the prior information in the same way as the sample
+size of a real sample corresponds to the trust in conclusions based
+on such a real sample. %
+%
+%\altrev{This interpretation is supported by the left part of
+%(\ref{070305-4}): If in consecutive Bayes learning the posterior is
+%used as the new prior, then the new main prior parameter $y\uo$ gets
+%prior strength $n\uo = n\uz + n$.}%\gwc[mehr zu pseudocounts in BernardoSmith?]{}
+%\gwc[hier schon was zu vektoriellen Größen?]{}
+%\sidenote{Absatz zu $\vartheta\uz$ vectorial auskommentiert}
+%where consistently throughout the paper vectors are evaluated component
+%by component, here possibly leading to a vector-valued quantity.
+%
+%If $\vartheta\uz$ is vectorial, it is possible that $y\uz$ and
+%$\tilde{\tau}(w)$ are vectors as well. In this case all functionals
+%of vectors in this paper \thccc{are} evaluated component by
+%component, leading to a vector-valued quantity.
+%
+As a preparation for the generalizations considered later, let us
+turn to some characteristic examples, also illustrating the
+interpretations of $\yz$ and $\nz$.
+
+\begin{example}[Bayesian Inference in Exponential Families]
+\label{ex:jstp-1}
+%\noident\textbf{Example 1: Bayesian Inference in Exponential Families.}
+In the case of independently and identically
+distributed (i.i.d.) observations $\x = (x_1,\ldots, x_n)$ from
+\emph{regular canonical exponential families} \parencite[p.~202 and p.~272f]{2000:bernardosmith},
+a general result (see, e.g., ibid., Proposition~5.4) is available on how
+to construct conjugate priors. A prior obtained by this method then
+constitutes a LUCK-model of size $n$ (the sample size)
+with the sample statistic of the whole sample being the sum of
+statistics for each sample element (which can be concluded from the
+canonical form of the likelihood), so $\tau(\x) = \sum_{i=1}^n \tau^*(x_i)$,
+and $\ttau(\x) = \frac{1}{n}\sum_{i=1}^n \tau^*(x_i)$.%
+\footnote{\textcite{2005:quaeghebeurcooman} consider this special case of LUCK-models in
+their seminal work motivating the generalisations presented here.}
+This is effectively the framework of Bayesian inference with regular conjugate priors
+as presented in Section~\ref{sec:regularconjugates}.
+To perceive the generality of this result, recall that many of the
+sample models most often used in practice form an exponential family,
+as shown earlier in this thesis
+for the Binomial distribution (Section~\ref{sec:beta-binom}),
+the Normal or Gaussian distribution (Section~\ref{sec:norm-norm}),
+and the Multinomial distribution (Section~\ref{sec:diri-multi}).
+%For samples from a scaled normal and from a
+%multinomial distribution, the derived priors are presented explicitly here:
+\end{example}
+
+\iffalse
+\noindent\textbf{Example 1a: Samples from a scaled Normal $\mbox{N}(\mu,1)$.}
+The conjugate distribution to an i.i.d.-sample of size $n$ from a
+scaled normal distribution with mean $\mu$, denoted by $\mbox{N}(\mu,1)$,
+as constructed by this method is a normal distribution with
+mean $y\uz$ and variance $\frac{1}{n\uz}$. Here, we have $\psi = \mu$,
+$\mbf{b}(\psi) = \frac{\mu^2}{2}$, and $\tau(x_i) = x_i$,
+thus $\tilde{\tau}(x) = \bar{x}$, and\vspace*{-1.5ex}
+\begin{eqnarray*}
+p(\mu) &\propto& \exp \left\{ -\frac{n\uz}{2} \left(\mu - y\uz\right)^2 \right\}
+        \propto  \exp \left\{ n\uz \left[ \mu \cdot y\uz - \frac{\mu^2}{2} \right] \right\}\,.
+%      \,\hat{=}\, \exp \big\{ n\uz \big[ \langle \psi, y\uz \rangle - \mbf{b}(\psi) \big] \big\}\,.
+\end{eqnarray*}
+%\begin{eqnarray*}
+%\prod_{i=1}^n p(w_i\,|\,\mu) &=& \prod_{i=1}^n \frac{1}{\sqrt{2 \pi }} \exp \{ -\frac{1}{2}(w_i - \mu)^2 \} \\
+%                             &=& \frac{1}{(2 \pi)^\frac{n}{2}} \exp \{ -\frac{1}{2} \sum_{i=1}^n (w_i - \mu)^2 \}
+%\end{eqnarray*}
+%\medskip
+\textbf{Example 1b: Samples from a Multinomial $\mbox{M}(\btheta)$.}
+Given a sample of size $n$ from a multinomial distribution with
+probabilities $\theta_j$ for categories $j= 1,\ldots,k$, subsumed in
+the vectorial parameter $\btheta$ (with $\sum_{j=1}^k \theta_j =1$),
+the conjugate prior on $\btheta$ constructed along the general
+method \thcc{can be shown to be} the Dirichlet distribution
+$\mbox{Dir}(\bs{\alpha})$. Written in terms of
+Walley's \citeyearpar{Walley-IDM} reparameterization
+$\alpha_j = s\cdot t_j$ as used later on, it holds that $n\uz = s$
+and $y\uz = \mbf{t}=(t_1,\ldots,t_k)^\tra$. Note in
+particular that here the components of $y^{(0)}$ have a direct
+interpretation as class probabilities. This so-called
+Dirichlet-Multinomial model provides the basis of the Imprecise
+Dirichlet Model (IDM), introduced by \cite{Walley-IDM}, that is
+considered in the continuation of this example in Section~\ref{sec:3}.%
+\fi
+
+\begin{example}[Bayesian Inference in Linear Regression]
+%\noindent\textbf{Example 2: Bayesian Inference in Linear Regression.}
+As shown by \textcite{Walter2006a,Walter2007a,Walter2007b},
+the importance of LUCK-models is not limited to the i.i.d.\ case
+but also provides a formal superstructure containing in particular
+the practically important case of linear regression
+models, modelling the (linear) influence of certain variables (called covariates,
+confounders, regressors, stimulus or independent variables) on a
+certain outcome (also called response or dependent variable).%
+\footnote{See Chapter~\ref{cha:festschrift} (Appendix~1) for alternative models
+that adhere to the regular conjugate framework of Section~\ref{sec:regularconjugates}.}
+\end{example}
+
+
+
+
 
 
 

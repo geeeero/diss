@@ -660,10 +660,10 @@ this prior is can be written as a normal-gamma prior
 
 With \eqref{eq:canonicalupdate}, the parameters for the posterior distribution are
 \begin{align}
-\yn &= \E[\mu\mid\nn, \yn] = \frac{\nz}{\nz + n} \cdot \yz + \frac{n}{\nz + n} \cdot \bar{\x} \label{eq:normalposte}\\
+\yn &= \E[\mu\mid\nn, \yn] = \frac{\nz}{\nz + n} \cdot \yz + \frac{n}{\nz + n} \cdot \bar{x} \label{eq:normalposte}\\
 \frac{\sigma_0^2}{\nn} &= \V(\mu\mid\nn, \yn) = \frac{\sigma_0^2}{\nz + n}\,. \label{eq:normalpostvar}
 \end{align}
-The posterior expectation of $\mu$ thus is a weighted average of the prior expectation $\yz$ and the sample mean $\bar{\x}$,
+The posterior expectation of $\mu$ thus is a weighted average of the prior expectation $\yz$ and the sample mean $\bar{x}$,
 with weights $\nz$ and $n$, respectively.
 The effect of the update step on variance is that it decreases by the factor $\nz/(\nz+n)$.
 

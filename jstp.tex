@@ -549,6 +549,100 @@ and, as studied in more detail in the next subsection, therefore
 insensitive to prior-data conflict.
 
 
+\subsubsection{\ymodel s and Prior-Data Conflict}
+\label{section:fixednschlecht}
+In the linear setting of \ymodel s, the generic concept of prior-data conflict
+can be formalized by considering the distance of the observed quantity $\ttau(\x)$ to
+its nearest prior guess $\yz \in \YZ$:
+%
+\begin{definition}[(Degree of) Prior-Data Conflict]\label{080307-defin-pdc}
+For \ymodel s, the degree of prior-data conflict can be defined %naturally
+as
+\begin{equation}\label{se-071217}
+%\Delta \left(\frac{\tau^n(x)}{n};\, \ul{y}\uz,\,\ol{y}\uz\right)
+%= \inf \left\{ \left| \frac{\tau^n(x)}{n} - y\uz \right|: \ul{y}\uz \leq y\uz \leq \ol{y}\uz \right\}\,.
+\Delta \left(\ttau(\x);\, \yzl,\,\yzu\right)
+:= \inf \left\{ \left| \ttau(\x) - \yz \right|: \yzl \le \yz \le \yzu \right\}\,.
+\end{equation}
+Consequently, if
+$\Delta \left(\ttau(\x);\, \yzl,\,\yzu\right) > 0$,
+we have an instance of prior-data conflict.%
+\footnote{Instead of $\Delta(\;\;) > 0$, one could also consider some
+threshold $\Delta(\;\;) > \varepsilon > 0$ as a criterion for prior-data conflict, making
+Definition~\ref{080307-defin-pdc} also reasonable for \model s.
+However, with respect to Remark~\ref{remark8} below, we prefer $\varepsilon = 0$.}
+\end{definition}
+This Definition can be illustrated by, e.g., Example~\ref{ex:ymodel-nv}, where $\ttau(\x) = \bar{x}$
+is the sample mean. A sample mean outside $\YZ$, the a priori assumed interval
+of means for the normal distribution on $\mu$, is an instance of prior-data conflict.
+If a sample mean of $8$ was observed in the numerical example discussed above, where
+$[\yzl ; \yzu] =[3;4]$ had been assumed, we would obtain $\Delta(\;) = 4$,
+formalizing our intuition that prior-data conflict is at hand.
+
+As we argued in Sections~\ref{sec:motivation:pdc} and **intro-here**,
+imprecise probability models that allow to take prior information into account
+should lead to more imprecision if prior-data
+conflict is present than in situations where it is not.
+%
+It is easy to see that \ymodel s do not fulfill this property
+because the main parameter posterior imprecision in
+\eqref{equ:ymodel-ydiff} does not depend on the sample statistic
+$\ttau(\x)$. Thus, for any sample of size $n$, an \ymodel\ leads
+to the same main parameter posterior precision gain
+whether the sample supports the prior assumptions modelled in
+$\YZ$ or it confronts them. As a consequence of the
+Bayesian paradigm that all inference is only allowed to depend on
+the posterior, this holds also for all derived quantities
+like HD intervals. To make this concrete,
+let us continue Examples~\ref{ex:ymodel-nv} and \ref{ex:ymodel-idm}.
+
+
+\begin{figure}
+%\fbox{%
+\caption{In \ymodel s, an observation contrary to prior beliefs leads to
+the same amount of imprecision as an observation in accordance with prior
+beliefs (see Figure~\ref{fig:nv-nfest-nopdc}).  Generalized \ymodel s overcome this
+deficiency, as visualized in Figure~\ref{fig:nv-nvar-vertfu}.}
+\includegraphics*[height=\textwidth,angle=-90,bb = 165 60 440 765]{fig/jstp-paper_nv_nfest_02-080331.ps}%
+%\includegraphics*[height=\textwidth,angle=-90,bb = 170 90 415 770]{../../../R/Workspace/lokal/jstp-paper_nv_nfest_02-071220.ps}%
+%}
+%Illustration of an update step in Example~1a in case of prior-data conflict
+\label{fig:nv-nfest-pdc}
+\end{figure}
+%
+\begin{example}[Normal-Normal Model, continued]
+%\noindent\textbf{Example 1a (continued).}
+Assume, in the situation considered in Section~\ref{070514-secImpPriorLUCK-QdC},
+that the sample had led to $\ttau(\x) = 8$,
+%Consider an observation again of size $10$ but with \gwc{$\tilde{\tau}(x) = 8$},
+suggesting the mean $\mu$ to be nearer to $8$ than to the range $[3;4]$ assumed
+for it before having seen the sample.
+Then $\YN = [\frac{95}{15} ; \frac{100}{15}] \approx [6.33 ; 6.67]$ and again
+$\nn = 15$. The posterior range of expected values for $\mu$ has now moved
+towards the value suggested by the sample, but we have the same
+posterior main parameter imprecision $\frac{1}{3}$ as in the
+case with $\ttau(\x) = 4$, which was not conflicting with the prior
+assumptions. Intuitively, this fact gets maybe more perplexing when
+considering the union of posterior HD intervals: For $\ttau(\x) = 4$,
+it is $[3.161;\, 4.506]$, covering a length of $1.345$; for
+$\ttau(\x) = 8$, it is $[5.827;\,7.172]$, covering the very same
+length, and therefore -- although being completely surprised by the
+outcome of the sample -- we would not be more cautious.
+These disturbing results are illustrated in Figure~\ref{fig:nv-nfest-pdc}.
+\end{example}
+
+\begin{example}[Dirichlet-Multinomial Model, continued]
+%\noindent\textbf{Example 1b (continued).}
+Here, the same phenomenon occurs:
+Having observed categories 1 to 3 now $0$, $1$, and $4$
+times, respectively, $\YN$ covers the same area, despite of the clear conflict of these
+observations with the prior knowledge expressed in $\YZ$,
+and has only moved in location, as can be seen
+in the right graph of Figure~\ref{fig:idm-nfest-nopdc}.
+\end{example}
+
+
+
 \section{***Software***}
 
 seperate section, or integrate into jstp?

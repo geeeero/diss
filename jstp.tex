@@ -203,6 +203,29 @@ that adhere to the regular conjugate framework of Section~\ref{sec:regularconjug
 \end{example}
 
 
+\subsection{Imprecise priors for inference in LUCK-models}\label{sec:3}%\label{070514-secImpPriorLUCK-QdC}
+
+Our definition of LUCK-models was inspired by the work of
+\textcite{2005:quaeghebeurcooman}, who develop a general approach for inference with
+imprecise priors, which was proven in \textcite{Walter2007a} to be
+generalisable to arbitrary LUCK-models. Quaeghebeur
+and de Cooman's seminal idea was that the seemingly strange
+parameterization in terms of $\yz$ and $\nz$ in
+\eqref{070305-2} and \eqref{070305-3} is perfectly suitable to be
+generalized to credal sets of priors. The crucial point is that
+$\yz$, the main prior parameter%
+%\footnote{Example 1a: the prior mean for $\mu$;
+%Example 1b: the vector of prior expected values for probabilities $\btheta$}
+\footnote{In the Normal-Normal model: the prior mean for $\mu$;
+in the Dirichlet-Multinomial model: the vector of prior expected values
+for the category probabilities $\btheta$.}
+is updated \emph{linearly}, when
+the prior strength $\nz$ is taken as fixed. This makes an
+easily tractable imprecise calculus possible: When sets of priors
+are defined via sets of main parameters $\yz$, and these sets of
+$\yz$ are defined by lower and upper bounds, the lower and upper
+bounds of the sets of posterior main parameters $\yn$ can be
+obtained directly from \eqref{070305-4}.
 
 
 

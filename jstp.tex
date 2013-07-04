@@ -162,11 +162,11 @@ as constructed by this method is a normal distribution with
 mean $y\uz$ and variance $\frac{1}{n\uz}$. Here, we have $\psi = \mu$,
 $\mbf{b}(\psi) = \frac{\mu^2}{2}$, and $\tau(x_i) = x_i$,
 thus $\tilde{\tau}(x) = \bar{x}$, and\vspace*{-1.5ex}
-\begin{eqnarray*}
-p(\mu) &\propto& \exp \left\{ -\frac{n\uz}{2} \left(\mu - y\uz\right)^2 \right\}
+\begin{align*}
+p(\mu) &\propto \exp \left\{ -\frac{n\uz}{2} \left(\mu - y\uz\right)^2 \right\}
         \propto  \exp \left\{ n\uz \left[ \mu \cdot y\uz - \frac{\mu^2}{2} \right] \right\}\,.
 %      \,\hat{=}\, \exp \big\{ n\uz \big[ \langle \psi, y\uz \rangle - \mbf{b}(\psi) \big] \big\}\,.
-\end{eqnarray*}
+\end{align*}
 %\begin{eqnarray*}
 %\prod_{i=1}^n p(w_i\,|\,\mu) &=& \prod_{i=1}^n \frac{1}{\sqrt{2 \pi }} \exp \{ -\frac{1}{2}(w_i - \mu)^2 \} \\
 %                             &=& \frac{1}{(2 \pi)^\frac{n}{2}} \exp \{ -\frac{1}{2} \sum_{i=1}^n (w_i - \mu)^2 \}
@@ -504,6 +504,49 @@ only in location, in contrast to the ones depicted in Figure~\ref{fig:idm-nvar-n
 \end{figure}%
 \end{example}
 
+\begin{remark} \label{remark:i-v}
+%The following list contains important properties of
+%inference in \emph{\ymodel s}, \thc{where the first three items} in
+%essence \thcc{generalize results} that have been discussed in
+%the literature for the IDM, where, as already said above, $n\uz$
+%usually is denoted by $s$.\vspace*{-1.5ex}
+Inference in \emph{\ymodel s} has the following important properties,
+where the first three items in essence generalize results that have
+been discussed in the literature for the IDM, where, as already said
+above, $\nz$ usually is denoted by $s$.%
+\footnote{See the discussion in Section~\ref{sec:gbicp-properties-criteria}.***}
+\begin{enumerate}[i)]
+\item The larger $\nz$ relative to $n$, the more weight is placed on
+the prior knowledge expressed by $\YZ$, resulting in wider
+posterior expectation intervals and larger ${\rm MPI}\un$.
+\item For growing sample sizes $n$, the set $\YN$ will
+converge towards a one-element set, as the weight of the `imprecise'
+$\YZ$ decreases with respect to the `precise' sample
+$\ttau(\x)$, ultimately resulting in an (almost)
+precise posterior with ${\rm MPI}\un=0$ just as in
+classical methods.
+\item In particular, for $\nz = n$, the width of the posterior
+expectation interval is half the width of the prior interval,
+i.e., ${\rm MPI}\un = \frac{1}{2}{\rm MPI}\uz$.
+This property is easily derived from \eqref{equ:ymodel-ydiff}
+below, and provides another vivid interpretation of $\nz$.
+\item Ceteris paribus, a smaller choice of $\YZ$ will result
+in a smaller $\YN$, leading to more precise inference
+statements as opposed to the choice of a larger $\YZ$.%
+\footnote{This item has not been widely considered in
+the context of the IDM, which typically is used to
+describe inference from a state of prior ignorance.}
+\item For the main posterior parameter imprecision, we obtain:
+\begin{align}\label{equ:ymodel-ydiff}
+{\rm MPI}\un &= \frac{\nz \left( \yzu - \yzl \right)}{\nz + n}.
+\end{align}
+\end{enumerate}
+\end{remark}%\vspace*{-1.5ex}
+While items i) -- iv) demonstrate the intuitively appealing
+behavior of \ymodel s, we are seriously concerned with %respect to
+the fact that ${\rm MPI}\un$ is independent of $\ttau(\x)$,
+and, as studied in more detail in the next subsection, therefore
+insensitive to prior-data conflict.
 
 
 \section{***Software***}

@@ -19,7 +19,7 @@ Section~\ref{sec:illu} illustrates our procedure in two important special cases:
 inferences on the mean of a normal distribution and in the IDM.***
 
 
-\subsection{Traditional Bayesian inference and LUCK-models}\label{070517-sec2-1}
+\subsection{Traditional Bayesian Inference and LUCK-models}\label{070517-sec2-1}
 
 %\section{Bayesian Inference and \textsc{luck}-models}\label{070516-sec2}
 %\subsection{Classical Bayesian Inference and \textsc{luck}-models}\label{070517-sec2-1}
@@ -203,16 +203,16 @@ that adhere to the regular conjugate framework of Section~\ref{sec:regularconjug
 \end{example}
 
 
-\subsection{Imprecise priors for inference in LUCK-models}\label{sec:3}%\label{070514-secImpPriorLUCK-QdC}
+\subsection{Imprecise Priors for Inference in LUCK-models}\label{sec:3}%\label{070514-secImpPriorLUCK-QdC}
 
 Our definition of LUCK-models was inspired by the work of
 \textcite{2005:quaeghebeurcooman}, who develop a general approach for inference with
 imprecise priors, which was proven in \textcite{Walter2007a} to be
 generalisable to arbitrary LUCK-models. Quaeghebeur
 and de Cooman's seminal idea was that the seemingly strange
-parameterization in terms of $\yz$ and $\nz$ in
+parameterisation in terms of $\yz$ and $\nz$ in
 \eqref{070305-2} and \eqref{070305-3} is perfectly suitable to be
-generalized to credal sets of priors. The crucial point is that
+generalised to credal sets of priors. The crucial point is that
 $\yz$, the main prior parameter%
 %\footnote{Example 1a: the prior mean for $\mu$;
 %Example 1b: the vector of prior expected values for probabilities $\btheta$}
@@ -227,6 +227,130 @@ $\yz$ are defined by lower and upper bounds, the lower and upper
 bounds of the sets of posterior main parameters $\yn$ can be
 obtained directly from \eqref{070305-4}.
 
+\subsubsection{\ymodel s}\label{070514-secImpPriorLUCK-QdC}
+%\kom{erster Satz auch eher in Introduction?\\} Several powerful
+%approaches have been proposed to overcome the ``dogma of ideal
+%precision'' (Walley) underlying classical Bayesian inference (cf.,
+%in particular, \mycite{PericchiWalley, Coolen-Artikel,
+%QdC[2], QdC}; see also Section~\ref{070306-ConRem}).\\
+
+In constructing a conjugate prior to a given likelihood,
+Quaeghebeur and de Cooman strictly rely on the method described in Section~\ref{sec:regularconjugates}
+(Example~\ref{ex:jstp-1}), but their technique to construct an \emph{imprecise}
+conjugate prior, i.e.\ a set of priors, by considering a set of
+$\yz$, does not depend on this derivation, but rather on the
+linearity of the updating of values of $\yz$ given $\nz$ when
+the set of posterior distributions is calculated. As the
+LUCK-models capture exactly this property, it is possible
+to construct \emph{imprecise} conjugate priors for arbitrary
+LUCK-models according to Quaeghebeur and de Cooman's
+technique.\footnote{See \textcite{Walter2006a,Walter2007a,Walter2007b}
+for an application of this idea to obtain
+linear regression models with imprecise prior distributions.} We
+give a general exposition of this model class, illustrate it by
+continuing the previous examples, and elaborate their serious
+deficiency with respect to the handling of prior-data conflict,
+which then will be overcome in Section~\ref{sec:4-gw-071216}.
+
+Due to the linearity of the updating for fixed $\nz$, minimisation and maximisation problems on the set of
+posteriors can be reduced to minimisation and maximisation problems
+on the set of priors when the parameter $\yn$ (or a linear function of it) is the quantity of interest. This
+very same update procedure is used in the Imprecise Dirichlet Model
+(IDM), which is based on the Dirichlet-Multinomial model as
+presented in Section~\ref{sec:diri-multi}.
+Just as Walley required $s$ to be fixed in the IDM, Quaeghebeur
+and de Cooman consider sets of $\yz$ but only a single value for
+the other prior parameter, denoted by $\nz$ here. As we will show
+in detail in Section~\ref{section:fixednschlecht}, the resulting models
+necessarily ignore prior-data conflict. However, as a
+preparation for our generalisation presented in
+Section~\ref{sec:4-gw-071216}, we want to present the model with
+varying $\yz$ but fixed $\nz$, which will be called \ymodel\ (for
+\emph{imprecise} LUCK-model), in more detail:
+%
+%
+%
+\begin{definition}[iLUCK-models]\label{071219-def2}
+Consider the situation of Definition~\ref{070503-defin1},
+and a set of LUCK-models $\big(p(\vartheta),p(\vartheta\mid\x)\big)$
+(with respect to the likelihood $f(\x\mid\vartheta)$ in the natural
+parameter $\psi$ with prior parameters $\nz \in \posreals$ and
+$\yz$ and sample statistic $\tau(\x)$), produced by $\yz$
+varying in some set $\YZ \subset \Y$, where the
+parameter space $\Y$ is taken as the convex hull (without
+the boundary) of the range of $\tau(\x)$. Let furthermore the credal
+sets ${\cal M}$ and ${\cal M}_{|\x}$ consist of all convex mixtures
+obtained by this variation of $p(\vartheta)$ and $p(\vartheta\mid\x)$.
+Then $\big({\cal M}, {\cal M}_{|\x}\big)$ is called the corresponding
+\emph{imprecise LUCK-model (\ymodel)} based on $\YZ$ and $\nz$.
+\end{definition}
+
+\begin{remark}
+Note that if ${\cal M}$ is used as an imprecise prior, by
+construction, ${\cal M}_{|\x}$ is the corresponding imprecise
+posterior. Although the imprecise prior contains not only
+the parametric distributions, but also arbitrary convex mixtures of them,
+it is nevertheless easy to obtain the imprecise posterior: Since it
+is sufficient to update the extreme points and the updating process
+is linear in $\YZ$, the imprecise posterior ${\cal M}_{|\x}$ is simply
+obtained as the set of all convex mixtures of posteriors
+$p(\vartheta\mid\x)$ arising from \eqref{070305-3} by varying
+$\yn$ in $\YN$,
+where%\vspace*{-0.7ex}%
+\begin{alignat}{3}
+\YN &= \left\{ \left.\frac{\nz\yz
+                  + \tau(\x)}{\nz+n} \;\right|\; \yz \in \YZ \right\}
+%                    \subset {\cal Y}\,. %\label{equ:QdCYk}
+               &\,=\, \frac{\nz}{\nz + n} \cdot \YZ
+                + \frac{n}{\nz + n} \cdot \ttau(\x)\,.
+\label{equ:shifttrans}%\vspace*{-2.5ex}%
+\end{alignat}%\vspace*{-3.5ex}%
+\end{remark}
+%
+%
+In generalisation of (\ref{071214-2}), $\YN$ can
+actually be seen as a shifted and rescaled version of $\YZ$,
+which allows us to keep the vivid interpretation of  $\nz$ as
+``prior strength'' or as ``pseudocounts'', as it plays again the same role
+for the prior as $n$ for the sample.\footnote{$\YZ$ must be
+bounded, as for any $\yzu = \infty$, it holds that
+$\ynu = \infty$ as well. For the IDM, introducing explicit
+bounds is not necessary, as the parameter space $\Y$ itself
+is already bounded, being the unit simplex.}
+%
+%
+%
+\begin{remark}\label{071221-remark}
+In iLUCK-models, the ``magnitude'' of $\YZ$ and $\YN$ naturally reflects
+the imprecision in the prior and the posterior, respectively.
+Consequently, we will define\footnote{If the main parameter is
+multidimensional (denoted by $\byi, i=0,n$), then, throughout the paper, the infimum, the
+supremum, and the measure ${\rm MPI}\ui$ and related quantities,
+are to be understood as defined component by component. Natural
+choices for real-valued measures derived from vector-valued ${\rm MPI}\ui$
+would be to consider appropriate norms.}, with%\vspace*{-0.8ex}
+\begin{equation}\label{071214-3}
+\yil := \inf\!\left\{\left.\! \yi\,\right|\, \yi\!\in \YI \!\right\}\;%\;
+%\ul{y}^{(i)}:= \inf\!\left\{\left.\! y^{(i)}\,\right|\, y^{(i)}\!\in {\cal Y}^{(i)} \!\right\}\;%\;
+\text{and}\;\;
+\yiu := \sup\!\left\{\left.\! \yi\,\right|\, \yi\!\in \YI \!\right\}\!, \; i=0,n\,,%\vspace*{-0.7ex}
+%\ol{y}^{(i)}:= \sup\!\left\{\left.\! y^{(i)}\,\right|\, y^{(i)}\!\in {\cal Y}^{(i)} \!\right\}\!, \; i=0,1\,,\vspace*{-0.7ex}
+\end{equation}
+the main parameter prior imprecision and main parameter
+posterior imprecision ${\rm MPI}\uz$ and ${\rm MPI}\un$ by%\vspace*{-0.3ex}
+\begin{equation}\label{071214-4}
+{\rm MPI}\ui := \yiu - \yil,\quad i=0,\,n.%\vspace*{-0.3ex}%
+\end{equation}
+%%MPI$^{(0)}$ and MPI$^{(1)}$ are called .
+A natural tool to summarize basic properties of the updating process is to look at%\vspace*{-0.8ex}
+%\gwc[oder doch als Quotient?]{
+\begin{equation}
+{\rm PG}:= {\rm MPI}\uz - {\rm MPI}\un \,,%\vspace*{-1.0ex}%
+\end{equation}%}
+which is called \emph{main parameter precision gain} here.
+\end{remark}
+Continuing the Normal-Normal and the Dirichlet-Multinomial model as examples,
+inference with \ymodel s will be illustrated.
 
 
 

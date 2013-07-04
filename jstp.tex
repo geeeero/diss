@@ -642,6 +642,179 @@ in the right graph of Figure~\ref{fig:idm-nfest-nopdc}.
 \end{example}
 
 
+\subsection{Improved imprecise priors for inference in \model s}
+\label{sec:4-gw-071216}
+
+There do exist some imprecise probability models that react on
+prior-data conflict in reasonable ways. The approaches by
+\textcite{1991:pericchi} and \textcite{1994:coolen}
+are restricted to specific one-parameter situations with a different type
+of models for the prior. \textcite{2005:whitcomb}, on
+the other hand, by partially relying on models from the exponential
+family, considers closely related classes of underlying
+distributions without using their specific structure. The important
+hint for properly handling prior-data conflict in
+\model s is again obtained from \textcite{1991:walley}.
+In \S 5.4, he discusses prior-data conflict in the imprecise
+Beta-Binomial model,%
+\footnote{See Section~\ref{sec:beta-binom}.}
+which is a special case of the Imprecise
+Dirichlet Model recalled in Example~\ref{ex:ymodel-idm}. His successful idea is to
+vary the hyperparameter $s$ in addition. Additionally, he also
+briefly mentions the normal case underlying Example~\ref{ex:ymodel-nv}
+\parencite[\S 1.1.5 (k)]{1991:walley}, where he suggests to use an
+imprecise prior with an imprecise variance. In the light of the
+general framework of \model s, both exemplary solutions
+can be subsumed under the idea to use an imprecise prior strength,
+thus weighting prior and sample information in
+\eqref{equ:shifttrans} in a more flexible way, i.e.\ to vary
+additionally the prior strength parameter $\nz$ in some set $\NZ$.
+Indeed this way to proceed will turn out to be successful.
+We start by describing the powerful generalization we want to
+propose in more detail and then discuss some of its basic
+properties.
+%
+%
+%
+%
+\begin{definition}[\nymodel s]\label{071221-def}%
+%Consider the Imprecise Probability model as described in \mycite{QdC} %Quaeghebeur and de Cooman (2005),
+%or, more generally, a \textsc{LUCK}-model,
+Consider the situation of Definitions~\ref{070503-defin1}
+and \ref{071219-def2}, and a set of LUCK-models
+$\big(p(\vartheta),p(\vartheta\mid\x)\big)$ that is produced by
+$\yz$ varying in some set $\YZ \subset \Y$
+and, in addition, $\nz$ varying in a set $\NZ \subset \posreals$.
+Let furthermore again the credal sets ${\cal M}$ and ${\cal M}_{|\x}$ consist
+of all convex mixtures obtained from this variation of $p(\vartheta)$ and
+$p(\vartheta\mid\x)$. Then $\big({\cal M}, {\cal M}_{|\x}\big)$ is
+called the corresponding \emph{\nymodel } based on $\YZ$ and $\NZ$.
+\end{definition}
+
+\begin{remark}
+Again, by construction, when ${\cal M}$ is used as an
+imprecise prior,  ${\cal M}_{|\x}$ is the corresponding posterior. It is obtained %here
+as the set of all convex mixtures of
+distributions defined by the parameter set
+\begin{equation*}
+%\left\{\!\! \left. \left(\!n\uo,\, y\uo\! \right) \; \right| \; n\uo = n\uz + n,\, y\uo = \frac{n\uz y\uz + \tau(x)}{n\uz+n},\,
+%n\uz \in {\cal N}\uz,\, y\uz \in {\cal Y}\uz \!\right\}
+\left\{ \left. \left(\nn,\yn\right) \; \right| \, \nn = \nz + n,\, \yn = \frac{\nz\yz + \tau(\x)}{\nz + n},\,
+\nz \in \NZ,\, \yz \in \YZ \right\}\,.
+\end{equation*}
+Note that the set of posterior parameters is not a cartesian product, i.e., rectangular. However,
+extreme values for the main posterior parameter $\yn$ are still easy to derive:%
+\footnote{As $\frac{d}{d \yz}\, \yn = \frac{\nz}{\nz + n} \ge 0 \;
+\forall\, n,\, \nz,\,\tau(\x)$, it holds that $\yn$ is growing in
+$\yz$ regardless of the value of $\nz$, and thus, for obtaining
+$\ynu$, we must insert $\yzu$, and for obtaining
+$\ynl$, we must insert $\yzl$ in \eqref{070305-4}, just as
+in \ymodel s, where $\nz$ is fixed. Then, with
+$\frac{d}{d \nz}\, \yn  = \frac{\yz n - \tau(\x)}{(\nz + n)^2}$, we see that $\yn$
+is growing in $\nz$ if $\yz > \ttau(\x)$ and decreasing in
+$\nz$ if $\yz < \ttau(\x)$, leading to
+Equations~\eqref{equ:uly1-071206} and \eqref{equ:oly1-071206}.}
+
+\begin{align}
+\ynl &= \label{equ:uly1-071206}
+\begin{cases}
+\frac{\nzu \yzl + \,\tau(\x)}{\nzu + n} & \text{if}\quad \ttau(\x) \ge \yzl\\[1.5ex]
+\frac{\nzl \yzl + \,\tau(\x)}{\nzl + n} & \text{if}\quad \ttau(\x) <   \yzl
+\quad\Longleftrightarrow\quad \text{prior-data conflict}
+\end{cases} \\[1ex]
+\ynu &= \label{equ:oly1-071206}
+\begin{cases}
+\frac{\nzu \yzu + \,\tau(\x)}{\nzu + n} & \text{if}\quad \ttau(\x) \le \yzu\\[1.5ex]
+\frac{\nzl \yzu + \,\tau(\x)}{\nzl + n} & \text{if}\quad \ttau(\x) >   \yzu
+\quad\Longleftrightarrow\quad \text{prior-data conflict}.
+\end{cases}
+\end{align}
+
+\end{remark}
+%
+%
+For minimizing and maximizing $\yn$, the value $\nzl$ is
+used only in the situation of prior-data conflict, that is, if
+$\ttau(\x) \notin \YZ$.
+%%GW081202%% When no prior-data conflict occurs, only $\ol{n}\uz$ is used for updating ${\cal Y}\uz$.
+When no prior-data conflict occurs, the extreme values are attained for $\nzu$.
+%
+Therefore, the fixed value of $\nz$ in \ymodel s in the spirit of \textcite{2005:quaeghebeurcooman} can be
+seen as the upper border of an implicit set $\NZ$, and
+considering only a fixed $\nz$ means that prior-data conflict is neglected.
+%
+On the other hand, if observations are such that
+$\ttau(\x) \in \left[\yzl;\,\yzu\right]$, then
+no prior-data conflict is present, and inference in \nymodel s
+leads to very similar results as inference in \ymodel s.%
+\footnote{From \eqref{equ:uly1-071206} and \eqref{equ:oly1-071206}
+it gets clear why varying $\nz$ in addition does change the
+update step in the desired way. When $\ttau(\x) < \yzl$,
+then $\nzu$ is still used to calculate $\ynu$, but
+$\nzl$ to calculate $\ynl$. The use of $\nzl$ instead
+of $\nzu$ results in a lower value for $\yzl$, as then
+more weight is given to $\ttau(\x)$ with respect to
+$\yzl$. (Equation~\eqref{equ:shifttrans} makes this most
+visible.) The same type of reasoning applies for the case
+$\ttau(\x) > \yzu$, where $\nzu$ is still used to
+calculate $\ynl$, but $\nzl$ to calculate $\ynu$.}
+%****hier noch mehr Text sonst fliegt alles auseinander***
+
+\begin{remark}\label{remark8}
+By construction, the attractive properties of inferences by
+\ymodel s formulated in i) to iv) of Remark~\ref{remark:i-v}
+are still satisfied in our extended model. Now
+also in addition prior-data conflict is handled in a
+convincing way: Considering the relationship between the main
+parameter posterior imprecision defined as in
+\emph{\eqref{071214-4}} and the degree of prior-data conflict
+as defined in \emph{\eqref{se-071217}},%
+\footnote{Remark~\ref{071221-remark} and Definition~\ref{080307-defin-pdc} can directly be applied also to \nymodel s.}
+the very same results as derived by \textcite[p.~224]{1991:walley}
+for the two-category Dirichlet-Multinomial model hold in general
+for any \nymodel: %\vspace*{-1.0ex}
+
+%Using the update rules for varying $n\uz$, we get,
+%just as described in Walley (1991, p.~224) for a two-category IDM,
+%a posterior range of
+%\vspace*{-3.0ex}
+\begin{align*}
+{\rm MPI}\un &= \frac{\nzu (\yzu - \yzl)}{\nzu + n}
+                + \Delta \left(\ttau(\x);\, \yzl,\,\yzu\right)
+                  \, \frac{n (\nzu - \nzl)}{(\nzu + n)(\nzl + n)}\,.%
+\end{align*}
+%\vspace*{-1.0ex}
+It is only through $\Delta(\;)$ that ${\rm MPI}\un$ is 
+depending on the actual shape of observation $\x$ besides its size
+$n$, and increasing it if prior-data conflict occurs. When no
+prior-data conflict is present, $\Delta \left(\ttau(\x);\,\yzl,\,\yzu\right) = 0$,
+and we have the same amount of posterior imprecision in substantial parameters as in \emph{\ymodel s},
+given by \emph{\eqref{equ:ymodel-ydiff}}.
+%
+Consequently, Walley's \parencite*[\S 5.4, footnote~3]{1991:walley} observation
+that the factor to $\Delta(\;)$ gets maximal if $n = \big(\nzl\nzu\big){}^\frac{1}{2}$
+remains valid. Then, the main parameter posterior imprecision
+is maximal for a given degree of conflict, implicitly telling that
+then the weight of the prior and sample must be the same, as more
+weight on any of them compared to the other (preferring one source
+of information to the other) would lead to a less wide $\YN$.
+This fact gives additional orientation for choosing $\NZ$,
+by considering the global strength of prior knowledge,
+being equivalent to $\ul{\ol{n}}\uz := \big(\nzl\nzu\big){}^\frac{1}{2}$.
+\end{remark}
+
+\begin{figure}
+%\fbox{%
+\caption{Prior (left) and posterior (right) credal sets for samples from
+$\norm(\mu,1)$ in accordance with (upper) and contrary to (lower)
+prior beliefs. With \nymodel s, the posterior set in the latter case is
+significantly larger than in the former, leading to more cautious inference as desired.}
+\includegraphics*[height=\textwidth,angle=-90,bb = 90 60 515 770]{fig/jstp-paper_nv_nvar_vertfu01_081128.ps}%
+%}
+\label{fig:nv-nvar-vertfu}
+\end{figure}
+
+
 
 \section{***Software***}
 

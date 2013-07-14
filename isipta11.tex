@@ -1,8 +1,71 @@
-\section{***Isipta'11 paper***}
+\section{On Prior-Data Conflict in Predictive Bernoulli Inferences}
 \label{sec:isipta11}
 
+%***with Frank's weighting model!***
+***abstract***
 
-***with Frank's weighting model!***
+By its capability to deal with the multidimensional nature of
+uncertainty, imprecise probability provides a powerful methodology
+to sensibly handle \pdc\ in Bayesian inference. When there is
+strong conflict between sample observations and prior knowledge, the posterior model should be more imprecise
+than in the situation of mutual agreement or compatibility. Focusing
+presentation on the prototypical example of Bernoulli
+trials, we discuss the ability of different approaches to deal with \pdc.
+
+We study a generalised Bayesian setting, including Walley's Imprecise Beta-Binomial model
+and his extension to handle prior data conflict (called pdc-IBBM here).
+We investigate alternative shapes of prior parameter sets, chosen in a way that shows improved
+behaviour in the case of \pdc\ and their influence on the posterior predictive distribution.
+Thereafter we present a new approach, consisting of an
+imprecise weighting of two originally separate inferences, one of which is based on an informative
+imprecise prior, whereas the other one is based on an uninformative imprecise prior. This approach
+deals with \pdc\ in a fascinating way.
+
+***end of abstract***
+
+\medskip
+
+***from introduction***
+
+In this paper a deeper investigation of the issue of \pdc\ is undertaken,
+focusing on the prototypic special case of predictive inference in Bernoulli trials:%
+\footnote{See also the discussion of the Beta-Binomial model in Section~\ref{sec:beta-binom},
+and the imprecise Dirichlet-Multinomial model discussed in several examples in Section~\ref{sec:jstp}.}
+We are interested in the posterior predictive
+probability for the event that a future Bernoulli random quantity
+will have the value $1$, also called a `success'. This event is not
+explicitly included in the notation, i.e.\ we simply denote its lower
+and upper probabilities by $\Pl$ and $\Pu$, respectively. This future Bernoulli random
+quantity is assumed to be exchangeable with the Bernoulli random
+quantities whose observations are summarised in the data, consisting
+of the number $n$ of observations and the number $s$ of these that are
+successes. In our analysis of this model, we
+will often consider $s$ as a a real-valued observation in $[0,n]$,
+keeping in mind that in reality it can only take on
+integer values, but the continuous representation is convenient for
+our discussions, in particular in our predictive probability plots (PPP),
+where for given $n$, $\Pl$ and $\Pu$ are discussed as functions of $s$.
+
+\medskip
+
+Section~\ref{sec:ibbm-framework} describes a general framework for
+generalized Bayesian inference in this setting. The method presented in \textcite[\S 5.4.3]{1991:walley},
+called `pdc-IBBM' in this paper, is considered in detail in Section~\ref{sec:ibbm-walley}
+and we show that its reaction to \pdc\ can be improved
+by suitable modifications of the underlying imprecise
+priors. A basic proposal along these lines is discussed in
+Section~\ref{sec:othershapes} with further alternatives
+sketched in Section~\ref{sec:ibbm-resume}.
+Section~\ref{sec:weightedinf} addresses the problem of \pdc\ from a
+completely different angle. There, we combine two originally separate
+inferences, one based on an informative imprecise prior and one
+on an uninformative imprecise prior, by an imprecise weighting
+scheme. The ***paper*** concludes with a brief comparison of the different
+approaches.
+
+
+
+
 
 
 \section{***boatshape stuff in outlook?***}

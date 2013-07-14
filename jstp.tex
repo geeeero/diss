@@ -374,16 +374,14 @@ Updating this prior with the i.i.d.\ sample $\x \in \reals^n$ yields%\vspace*{-0
 \ynu &= \frac{\nz\yzu + \sum_{i=1}^n x_i}{\nz + n}, &%\hspace*{-1.5ex}
 \nn &= \nz + n\,.%\vspace*{-3.1ex}%
 \end{align*}
-%
+
 \begin{figure}
-%\fbox{%
 \caption{Prior (left) and posterior (right) credal sets for a sample
 from $\norm(\mu,1)$ drawn as sets of normal cdfs. (Example~\ref{ex:ymodel-nv} in the
 situation of no prior data conflict.)} \label{fig:nv-nfest-nopdc}
 \includegraphics*[height=\textwidth,angle=-90,bb = 165 60 440 765]{fig/jstp-paper_nv_nfest_01-080331.ps}%
-%\includegraphics*[\textwidth]{fig/jstp-paper_nv_nfest_01-080331}%
-%}
-\end{figure}%
+\end{figure}
+
 To make this concrete, consider a sample of size $n = 10$
 with $\ttau(\x) = \bar{x} = 4$.
 Then $\YN = [\frac{55}{15} ; \frac{60}{15}] \approx [3.67 ; 4]$,
@@ -611,6 +609,7 @@ deficiency, as visualized in Figure~\ref{fig:nv-nvar-vertfu}.}
 \end{figure}
 %
 \begin{example}[Normal-Normal Model, continued]
+\label{ex:jstp-5}
 %\noindent\textbf{Example 1a (continued).}
 Assume, in the situation considered in Section~\ref{070514-secImpPriorLUCK-QdC},
 that the sample had led to $\ttau(\x) = 8$,
@@ -632,6 +631,7 @@ These disturbing results are illustrated in Figure~\ref{fig:nv-nfest-pdc}.
 \end{example}
 
 \begin{example}[Dirichlet-Multinomial Model, continued]
+\label{ex:jstp-6}
 %\noindent\textbf{Example 1b (continued).}
 Here, the same phenomenon occurs:
 Having observed categories 1 to 3 now $0$, $1$, and $4$
@@ -813,6 +813,144 @@ significantly larger than in the former, leading to more cautious inference as d
 %}
 \label{fig:nv-nvar-vertfu}
 \end{figure}
+
+
+\subsection{Illustration of the \nymodel} \label{sec:illu} 
+
+The theoretical considerations in Section~\ref{sec:4-gw-071216} are now
+illustrated by means of Examples~\ref{ex:ymodel-nv} -- \ref{ex:jstp-6},
+and some simulated data for larger sample sizes.
+
+\begin{example}[Normal-Normal model, continued]
+\label{ex:jstp-7}
+For the case of the Normal-Normal Model (Examples~\ref{ex:ymodel-nv} and \ref{ex:jstp-5}),
+the behavior of an appropriate \nymodel\ is shown for the situations previously
+modeled with an \ymodel\ as depicted in
+Figures~\ref{fig:nv-nfest-nopdc} and \ref{fig:nv-nfest-pdc}. In
+Figure~\ref{fig:nv-nvar-vertfu}, the top row shows the updating in
+absence of prior-data conflict, whereas the lower row displays
+the update step in presence of prior-data conflict.
+Again, the vertices of the credal set, the set of normal
+distribution functions, is represented by the shaded area,
+and the lines indicate the distributions that are obtained by updating the four
+extreme distributions from $\NZ \times \YZ$.
+
+Contrary to the \ymodel, also a range of variances is considered in the
+prior, allowing for reasonable posterior inference, as can be seen
+in the right hand graphs: when the prior model is consistent with
+the observation $\ttau(\x) = \bar{x}$, a similar union of posterior HD
+intervals is obtained as for the model displayed in
+Figure~\ref{fig:nv-nfest-nopdc}; when instead prior assumptions and
+data are conflicting, the posterior credal set reflects our
+uncertainty on which to trust, being substantially larger than the
+prior credal set. Therefore, the union of posterior HD intervals as
+indicated by the thick line in the lower right graph is not only
+wider than in the absence of prior-data conflict as seen in the top
+right graph, but not much shorter than its prior counterpart which is $[1.040;\, 5.960]$.
+In order to give comparable results, $\NZ$ was chosen to give the same global prior strength as the
+\ymodel\ for Example~\ref{ex:ymodel-nv} by fixing $\ul{\ol{n}}\uz=5$ and a minimal prior strength
+$\nzl = 1$, resulting in $\nzu = 25$.
+\end{example}
+
+\begin{figure}
+%\fbox{%
+\caption{
+Prior (left) and posterior (center, right) credal sets for samples from
+$\mult(\btheta)$ in accordance with (center) and contrary to (right)
+prior beliefs. As in Figure~\ref{fig:nv-nvar-vertfu}, with \nymodel s
+the sets differ in size according to the degree of prior-data conflict
+induced by the observations.
+}
+\begin{tabular}{ccc}%
+\hspace*{-1.2ex}%
+\includegraphics*[height=0.33\textwidth,angle=-90,bb = 100 65 520 385]{fig/jstp-paper_idm_nvar_zeile1-080331.ps}%
+\hspace*{-1.2ex}%
+&%
+\hspace*{-1.2ex}%
+\includegraphics*[height=0.33\textwidth,angle=-90,bb = 100 470 520 790]{fig/jstp-paper_idm_nvar_zeile1-080331.ps}%
+\hspace*{-1.2ex}%
+&%
+\hspace*{-1.2ex}%
+\includegraphics*[height=0.33\textwidth,angle=-90,bb = 100 470 520 790]{fig/jstp-paper_idm_nvar_zeile2-081205.ps}%
+\hspace*{-1.2ex}%
+\end{tabular}%
+\label{fig:idm-nvar-nopdc}
+\end{figure}
+
+\begin{example}[Dirichlet-Multinomial model, continued]
+\label{ex:jstp-8}
+For the Dirichlet-Multinomial model (Examples~\ref{ex:ymodel-idm} and \ref{ex:jstp-6}),
+the behavior of the \nymodel\ is visualized in Figure~\ref{fig:idm-nvar-nopdc}. Here, the same set
+of main parameters as in Figure~\ref{fig:idm-nfest-nopdc} is updated, leading
+to plane cutouts (symbolizing posterior parameter sets) that
+differ not only in location as before, but also in size (and shape) for the
+two cases. For the center graph, prior assumptions on the category
+probabilities are in accordance with the observations 3, 2 and 0
+for category one, two, and three, respectively, and thus the
+posterior plane cutout is a subset of the prior plane. In
+contrast, when observations 0, 1, and 4 are made, being in
+conflict with the prior assumptions for category one and three,
+the resulting posterior parameter intervals for those two
+categories do actually get wider, as can be seen in the right
+graph, and thus, inference drawn in this case is more cautious.
+\end{example}
+
+\begin{figure}
+\caption{(Unions of) 95\%-posterior HD intervals (vertical lines) for
+observations in accordance (upper row, drawn from $\mbox{N}(4,1)$)
+and in conflict (lower row, drawn from $\mbox{N}(8,1)$) with prior assumptions
+based on a single prior (left), an \ymodel\ (center) and a \nymodel\ (right)
+in dependence on the sample size $n$. The development of the sample mean is
+indicated by the wiggly line. Through the averaging, the HD intervals in the
+lower left and center graph are not enlarged but only shifted and thus do not cover the sample mean.}
+\begin{center}
+\includegraphics*[height=0.99\textwidth,angle=-90,bb = 20 15 575 825]{fig/jstp-paper_nv_nvar_HPD_n-infty_081201.ps}%
+\end{center}
+\label{fig:nv-nvar-kinfty}
+\end{figure}
+
+\begin{example}[Larger sample sizes]
+\label{ex:jstp-9}
+Still, sufficiently precise inference can be drawn when the sample
+size gets much larger with respect to the prior strength, giving
+data more weight than the prior guess. When no prior-data conflict
+occurs, the imprecision obtained with \nymodel s is not
+substantially larger than obtained with \ymodel s or even with a
+classical, precise prior. These three model classes are compared by means
+of the Normal-Normal model (Examples~\ref{ex:ymodel-nv}, \ref{ex:jstp-7} and \ref{ex:jstp-7})
+in Figure~\ref{fig:nv-nvar-kinfty}, where the first
+column gives posterior HD (further denoted by HPD) intervals for a
+precise prior, the second column unions of HPD intervals for the
+\ymodel, and the third column unions of HPD intervals for the
+\nymodel, in all three cases drawn as vertical black lines for
+sample sizes $n=2,4,6,\ldots,100$.
+
+In the upper row, these prior models are updated successively with
+observations drawn from a $\norm(4,1)$ being in accordance with the prior assumptions,
+whereas for the lower row, observations in conflict with the prior
+assumptions were simulated by observations drawn from a $\norm(8,1)$.
+In the upper row, the (unions of)
+intervals tend to the sample mean indicated by the wiggly line
+more or less uniformly for all three models. Naturally, the most
+precise prior gives the most precise posterior inferences, but the
+HPD interval lengths do not differ excessively between the model classes, especially
+when the sample size $n$ approaches $100$.
+
+The lower row demonstrates the deficiency that the classical and
+the \ymodel\ unfortunately share. For them, observations confronting
+the prior assumptions lead only to an adjustment in location of
+the intervals through the averaging, but not in their length, giving
+a false certainty in posterior inference. Here, the \nymodel\ is
+more truthful to the character of the situation, giving very wide
+unions of HPD intervals for low sample sizes covering both the a priori
+assumed range and the sample mean. With growing sample size, more
+confidence is given to the data, and thus, the unions of HPD intervals
+tend the more to the sample mean the larger the sample gets.
+\end{example}
+
+
+\subsection{Concluding remarks}
+
 
 
 

@@ -635,7 +635,7 @@ in the right graph of Figure~\ref{fig:idm-nfest-nopdc}.
 \end{example}
 
 
-\subsection{Improved imprecise priors for inference in \model s}
+\subsection{Improved Imprecise Priors for Inference in \model s}
 \label{sec:4-gw-071216}
 
 There do exist some imprecise probability models that react on
@@ -663,7 +663,7 @@ thus weighting prior and sample information in
 \eqref{equ:shifttrans} in a more flexible way, i.e.\ to vary
 additionally the prior strength parameter $\nz$ in some set $\NZ$.
 Indeed this way to proceed will turn out to be successful.
-We start by describing the powerful generalization we want to
+We start by describing the powerful generalisation we want to
 propose in more detail and then discuss some of its basic
 properties.
 %
@@ -724,7 +724,7 @@ Equations~\eqref{equ:uly1-071206} and \eqref{equ:oly1-071206}.}
 \end{align}
 \end{remark}
 
-For minimizing and maximizing $\yn$, the value $\nzl$ is
+For minimising and maximising $\yn$, the value $\nzl$ is
 used only in the situation of prior-data conflict, that is, if
 $\ttau(\x) \notin \YZ$.
 When no prior-data conflict occurs, the extreme values are attained for $\nzu$.
@@ -779,7 +779,7 @@ $n$, and increasing it if prior-data conflict occurs. When no
 prior-data conflict is present, $\Delta \left(\ttau(\x);\,\yzl,\,\yzu\right) = 0$,
 and we have the same amount of posterior imprecision in substantial parameters as in \emph{\ymodel s},
 given by \emph{\eqref{equ:ymodel-ydiff}}.
-%
+
 Consequently, Walley's \parencite*[\S 5.4, footnote~3]{1991:walley} observation
 that the factor to $\Delta(\;)$ gets maximal if $n = \big(\nzl\nzu\big){}^\frac{1}{2}$
 remains valid. Then, the main parameter posterior imprecision
@@ -803,7 +803,7 @@ significantly larger than in the former, leading to more cautious inference as d
 \end{figure}
 
 
-\subsection{Illustration of the \nymodel} \label{sec:illu} 
+\subsection{Illustration of the Generalised \ymodel} \label{sec:illu} 
 
 The theoretical considerations in Section~\ref{sec:4-gw-071216} are now
 illustrated by means of Examples~\ref{ex:ymodel-nv} -- \ref{ex:jstp-6},
@@ -834,7 +834,7 @@ uncertainty on which to trust, being substantially larger than the
 prior credal set. Therefore, the union of posterior HD intervals as
 indicated by the thick line in the lower right graph is not only
 wider than in the absence of prior-data conflict as seen in the top
-right graph, but not much shorter than its prior counterpart which is $[1.040;\, 5.960]$.
+right graph, but not much shorter than its prior counterpart, which is $[1.040;\, 5.960]$.
 In order to give comparable results, $\NZ$ was chosen to give the same global prior strength as the
 \ymodel\ for Example~\ref{ex:ymodel-nv} by fixing $\ul{\ol{n}}\uz=5$ and a minimal prior strength
 $\nzl = 1$, resulting in $\nzu = 25$.
@@ -874,7 +874,7 @@ induced by the observations.
 For the Dirichlet-Multinomial model (Examples~\ref{ex:ymodel-idm} and \ref{ex:jstp-6}),
 the behavior of the \nymodel\ is visualized in Figure~\ref{fig:idm-nvar-nopdc}. Here, the same set
 of main parameters as in Figure~\ref{fig:idm-nfest-nopdc} is updated, leading
-to plane cutouts (symbolizing posterior parameter sets) that
+to plane cutouts (symbolising posterior parameter sets) that
 differ not only in location as before, but also in size (and shape) for the
 two cases. For the center graph, prior assumptions on the category
 probabilities are in accordance with the observations 3, 2 and 0
@@ -902,7 +902,7 @@ lower left and center graph are not enlarged but only shifted and thus do not co
 
 \begin{example}[Larger sample sizes]
 \label{ex:jstp-9}
-Still, sufficiently precise inference can be drawn when the sample
+Sufficiently precise inference can be drawn nevertheless when the sample
 size gets much larger with respect to the prior strength, giving
 data more weight than the prior guess. When no prior-data conflict
 occurs, the imprecision obtained with \nymodel s is not
@@ -940,19 +940,19 @@ tend the more to the sample mean the larger the sample gets.
 \end{example}
 
 
-\subsection{Concluding remarks}
+\subsection{Concluding Remarks}
 \label{sec:6-gw-071216}
 
 ***change it or leave it? draw links to other chapters and sections?***
 
-In this ***paper*** we considered generalized Bayesian inference
+In this ***paper*** we considered generalised Bayesian inference
 in a wide class of imprecise probability models. We first
 demonstrated that, in their originally proposed form, these models
-do not react to prior-data conflict and so do not utilize
+do not react to prior-data conflict and so do not utilise
 the full expressive power of imprecise probabilities. We
 extended these models such that the natural relationship between
 knowledge and imprecision is reestablished: the higher the
-discrepancy between prior assumptions and sample observations the
+discrepancy between prior assumptions and sample observations, the
 more cautious the posterior inference. We compare the previous
 modelling and our extension in two running examples covering two
 widely used situations, inference from a scaled normal and
@@ -963,23 +963,23 @@ Further research will start with a more detailed study of
 the behavior of the proposed model, also taking into consideration
 that it may have some problems with dealing with very extreme
 degrees of conflict. Then careful attention should also be paid to
-other approaches for generalized Bayesian inference in exponential
+other approaches for generalised Bayesian inference in exponential
 families \parencite{1993:coolen, 1997:boratynska} under prior data
 conflict, as well as to a thorough comparison of the inference
-developed here with the discretization-based models considered by
+developed here with the discretisation-based models considered by
 \textcite{2005:whitcomb}, and with the approaches of \textcite{1991:pericchi}
 and \textcite{1994:coolen}, who use different prior classes.
 
 Far beyond these further developments, it should well be
 remembered that this ***paper*** consciously confined the whole
 argumentation to a certain Bayesian setting: we studied how far
-one can go \emph{if} one relies strictly on the generalized Bayes
+one can go \emph{if} one relies strictly on the generalised Bayes
 rule, transferring sets of priors to sets of posteriors element by
 element via Bayes rule. Alternative learning
 rules, including the approaches enumerated at Section~***paper intro*** %\ref{sec:intro},
 could prove very important as, to use one of the referees'
 felicitous words, ``Bayesian methods cannot allow for surprise, the same is
-true for robustified or generalized Bayesian methods, although these
+true for robustified or generalised Bayesian methods, although these
 may hide this shortcoming better. One could argue, therefore, that
 they cannot be used to represent learning.''
 

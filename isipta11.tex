@@ -64,6 +64,86 @@ scheme. The ***paper*** concludes with a brief comparison of the different
 approaches.
 
 
+\subsection{Imprecise Beta-Binomial Models}
+\label{sec:ibbm}
+
+\subsubsection{The Framework}
+\label{sec:ibbm-framework}
+
+***change notation for success probability from $p$ to $\theta$!!!***
+
+The traditional Bayesian approach for our basic problem is the Beta-Binominal model, which expresses prior
+beliefs about the probability $\theta$ of observing a `success' by a Beta
+distribution. With\footnote{Our notation relates to
+Walley's \parencite*{1991:walley} as $\nz \leftrightarrow s_0$, $\yz \leftrightarrow t_0$.}
+$f(\theta\mid\nz, \yz) \propto \theta^{\nz\yz -1} (1-\theta)^{\nz(1-\yz)-1}$,
+$\yz = \E[\theta\mid\nz,\yz]$ can be interpreted as prior guess of
+$\theta$, while $\nz$ governs the concentration of
+probability mass around $\yz$, also known as `pseudo counts' or
+`prior strength'.\footnote{${}\uz$ denotes prior parameters; ${}\un$ posterior parameters.}
+These denominations are due to the
+role of $\nz$ in the update step: With $s$ successes in $n$ draws observed, the
+posterior parameters are\footnote{The model is prototypic for conjugate Bayesian
+analysis in canonical exponential families, for which updating
+of the parameters $\nz$ and $\yz$ can be
+written as (\ref{equ:update-nn-yn-precise}).}%\vspace*{-1.3ex}
+\begin{align}\label{equ:update-nn-yn-precise}
+%\nn &= \nz + n, & \yn &= \frac{\nz}{\nz + n}\,\yz + \frac{n}{\nz + n}\, \frac{s}{n}.
+\nn &= \nz + n, & \yn &= \frac{\nz\yz + s}{\nz + n}\,.
+\end{align}
+Thus $\yn$ is a weighted average of the prior parameter $\yz$ and
+the sample proportion $s/n$, and potential prior data conflict is simply averaged out.
+
+Overcoming the dogma of precision, formulating generalised Bayes
+updating in this setting is straightforward. By Walley's Generalised
+Bayes Rule \parencite[\S 6]{1991:walley}%
+\footnote{For more details on the Generalised Bayes' Rule and the generalised Bayesian inference procedure,
+see Sections~\ref{sec:gbr} and \ref{sec:imprecisebayes}, respectively.}
+the imprecise prior $\MZ$, described by convex sets of precise prior distributions,
+is updated to the imprecise posterior $\MN$ obtained by updating $\MZ$ element-wise.
+In particular, the convenient conjugate analysis used above can be extended:
+One specifies a prior parameter set
+$\PZ$ of $(\nz,\yz)$ values and takes as imprecise
+prior the set $\MZ$ consisting of  all convex mixtures of Beta
+priors with $(\nz, \yz) \in \PZ$. In this sense, the set of Beta
+priors corresponding to $\PZ$ gives the set of extreme points for
+the actual convex set of priors $\MZ$. Updating $\MZ$ with the
+Generalised Bayes' Rule results in the convex set $\MN$ of posterior
+distributions, that conveniently can be obtained by taking the
+convex hull of the set of Beta posteriors, which in turn are defined
+by the set of updated parameters
+$\PN = \{(\nn,\yn) \mid (\nz, \yz) \in \PZ\}$.
+This relationship between the sets $\PZ$ and $\PN$ and the sets $\MZ$
+and $\MN$ will allow us to discuss different models $\MZ$ and $\MN$ by depicting
+the corresponding parameter sets $\PZ$ and $\PN$. When interpreting our results,
+care will be needed with respect to convexity. Although
+$\MZ$ and $\MN$ are convex, the parameter sets $\PZ$ and $\PN$
+generating them need not necessarily be so. %convex.
+Indeed, convexity of the parameter set is not necessarily preserved in the update
+step: Convexity of $\PZ$ does not imply convexity of $\PN$.
+
+Throughout, we are interested in the posterior predictive
+probability $[\Pl,\Pu]$ for the event that a
+future draw is a success. In the Beta-Bernoulli model, this
+probability is equal to $\yn$, and we get\footnote{%
+\textcite{2005:quaeghebeurcooman}, \textcite{Walter2009a}, and \textcite{Walter2007a} use the prototypical character of
+(\ref{equ:update-nn-yn-precise}) underlying (\ref{equ:General-Pl}) and
+(\ref{equ:General-Pu}) to generalise this inference to models based on
+canonical exponential families. ***leave this out here??***}
+%
+\begin{align}
+\Pl = \ynl &:= \min_{\PN} \yn = \min_{\PZ} \frac{\nz\yz + s}{\nz +n}\,, \label{equ:General-Pl}\\
+%           & = \min_{\nz \in [\nzl, \nzu]} \frac{\nz\yzl + s}{\nz +n} & &\text{and} \nonumber\\
+\Pu = \ynu &:= \max_{\PN} \yn = \max_{\PZ} \frac{\nz\yz + s}{\nz +n}\,. \label{equ:General-Pu}
+%           & = \max_{\nz \in [\nzl, \nzu]} \frac{\nz\yzu + s}{\nz +n}. \nonumber
+\end{align}
+%\begin{align*}
+%\Pl(S^* = 1\mid s) &= \min_{(\nn, \yn) \in \PN} \yn \quad \text{and}\\
+%\Pu(S^* = 1\mid s) &= \max_{(\nn, \yn) \in \PN} \yn.
+%\end{align*}
+%$\Pl(S^* = 1\mid s) = \min_{(\nn, \yn) \in \PN} \yn$ and
+%$\Pu(S^* = 1\mid s) = \max_{(\nn, \yn) \in \PN} \yn$.
+
 
 
 

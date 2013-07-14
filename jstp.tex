@@ -352,6 +352,16 @@ which is called \emph{main parameter precision gain} here.
 Taking the Normal-Normal and the Dirichlet-Multinomial model as concretisations
 of Example~\ref{ex:jstp-1}, inference with \ymodel s is now illustrated.
 
+\begin{figure}
+%\includegraphics[height=\textwidth,angle=-90,bb = 165 60 440 765]{fig/jstp-paper_nv_nfest_01-080331.ps}%
+\includegraphics[trim = 20mm 50mm 20mm 50mm, clip, width=\textwidth]{fig/jstp-paper_nv_nfest_01-080331}%
+\caption{Prior (left) and posterior (right) credal sets for a sample
+from $\norm(\mu,1)$ drawn as sets of normal cdfs. (Example~\ref{ex:ymodel-nv} in the
+situation of no prior data conflict.)}
+\label{fig:nv-nfest-nopdc}
+\end{figure}
+
+
 \begin{example}[Normal-Normal Model]
 \label{ex:ymodel-nv}
 %\noindent\textbf{Example 1a (continued).}
@@ -374,13 +384,6 @@ Updating this prior with the i.i.d.\ sample $\x \in \reals^n$ yields%\vspace*{-0
 \ynu &= \frac{\nz\yzu + \sum_{i=1}^n x_i}{\nz + n}, &%\hspace*{-1.5ex}
 \nn &= \nz + n\,.%\vspace*{-3.1ex}%
 \end{align*}
-
-\begin{figure}
-\caption{Prior (left) and posterior (right) credal sets for a sample
-from $\norm(\mu,1)$ drawn as sets of normal cdfs. (Example~\ref{ex:ymodel-nv} in the
-situation of no prior data conflict.)} \label{fig:nv-nfest-nopdc}
-\includegraphics*[height=\textwidth,angle=-90,bb = 165 60 440 765]{fig/jstp-paper_nv_nfest_01-080331.ps}%
-\end{figure}
 
 To make this concrete, consider a sample of size $n = 10$
 with $\ttau(\x) = \bar{x} = 4$.
@@ -469,38 +472,33 @@ certain combination of $\yz_1$, $\yz_2$, and $\yz_3$ by the
 magnitude of coordinates. The same applies for the posterior set
 depicted in the center graph. Some additional lines were drawn to
 make locating the cutouts in space more easy.
-%
-\begin{figure}%\hspace*{3.5ex}%
-%\begin{center}%
-%\fbox{%
+\end{example}
+
+\begin{figure}
+\begin{tabular}{ccc}%
+\hspace*{-1.2ex}% trim = l b r t
+%\includegraphics[height=0.33\textwidth,angle=-90,bb = 100 65 520 385]{fig/jstp-paper_idm_nfest_01-080331.ps}%
+\includegraphics[trim =  20mm 25mm 150mm 20mm, clip, width=0.33\textwidth]{fig/jstp-paper_idm_nfest_01-080331}%
+\hspace*{-1.2ex}%
+&%
+\hspace*{-1.2ex}%
+%\includegraphics[height=0.33\textwidth,angle=-90,bb = 100 470 520 790]{fig/jstp-paper_idm_nfest_01-080331.ps}%
+\includegraphics[trim = 150mm 25mm  20mm 20mm, clip, width=0.33\textwidth]{fig/jstp-paper_idm_nfest_01-080331}%
+\hspace*{-1.2ex}%
+&%
+\hspace*{-1.2ex}%
+%\includegraphics[height=0.33\textwidth,angle=-90,bb = 100 470 520 790]{fig/jstp-paper_idm_nfest_02-080331.ps}%
+\includegraphics[trim = 150mm 25mm  20mm 20mm, clip, width=0.33\textwidth]{fig/jstp-paper_idm_nfest_02-080331}%
+\hspace*{-1.2ex}%
+\end{tabular}%
 \caption{Prior (left) and posterior (center, right) credal sets for samples from
 $\mult(\btheta)$ in accordance with (center) and, as studied in
 Section~\ref{section:fixednschlecht}, contrary to (right) prior
 beliefs. Note that both posterior sets have the same shape and size and differ
 only in location, in contrast to the ones depicted in Figure~\ref{fig:idm-nvar-nopdc}.}
-\begin{tabular}{ccc}%
-\hspace*{-1.2ex}%\fbox{%
-\includegraphics*[height=0.33\textwidth,angle=-90,bb = 100 65 520 385]{fig/jstp-paper_idm_nfest_01-080331.ps}%
-%}
-\hspace*{-1.2ex}%
-&%
-\hspace*{-1.2ex}%\fbox{%
-\includegraphics*[height=0.33\textwidth,angle=-90,bb = 100 470 520 790]{fig/jstp-paper_idm_nfest_01-080331.ps}%
-%}
-\hspace*{-1.2ex}%
-&%
-\hspace*{-1.2ex}%\fbox{%
-\includegraphics*[height=0.33\textwidth,angle=-90,bb = 100 470 520 790]{fig/jstp-paper_idm_nfest_02-080331.ps}%
-%}
-\hspace*{-1.2ex}%
-\end{tabular}%
-%}%
-%Illustration of an update step for Example~1b (IDM / \ymodel).}
 \label{fig:idm-nfest-nopdc}
-%\end{center}%
-%\hfill
-\end{figure}%
-\end{example}
+\end{figure}
+
 
 \begin{remark} \label{remark:i-v}
 %The following list contains important properties of
@@ -594,26 +592,21 @@ the posterior, this holds also for all derived quantities
 like HD intervals. To make this concrete,
 let us continue Examples~\ref{ex:ymodel-nv} and \ref{ex:ymodel-idm}.
 
-
 \begin{figure}
-%\fbox{%
+%\includegraphics[height=\textwidth,angle=-90,bb = 165 60 440 765]{fig/jstp-paper_nv_nfest_02-080331.ps}%
+\includegraphics[trim = 20mm 50mm 20mm 50mm, clip, width=\textwidth]{fig/jstp-paper_nv_nfest_02-080331}%
 \caption{In \ymodel s, an observation contrary to prior beliefs leads to
 the same amount of imprecision as an observation in accordance with prior
 beliefs (see Figure~\ref{fig:nv-nfest-nopdc}).  Generalized \ymodel s overcome this
 deficiency, as visualized in Figure~\ref{fig:nv-nvar-vertfu}.}
-\includegraphics*[height=\textwidth,angle=-90,bb = 165 60 440 765]{fig/jstp-paper_nv_nfest_02-080331.ps}%
-%\includegraphics*[height=\textwidth,angle=-90,bb = 170 90 415 770]{../../../R/Workspace/lokal/jstp-paper_nv_nfest_02-071220.ps}%
-%}
-%Illustration of an update step in Example~1a in case of prior-data conflict
 \label{fig:nv-nfest-pdc}
 \end{figure}
-%
+
 \begin{example}[Normal-Normal Model, continued]
 \label{ex:jstp-5}
 %\noindent\textbf{Example 1a (continued).}
 Assume, in the situation considered in Section~\ref{070514-secImpPriorLUCK-QdC},
 that the sample had led to $\ttau(\x) = 8$,
-%Consider an observation again of size $10$ but with \gwc{$\tilde{\tau}(x) = 8$},
 suggesting the mean $\mu$ to be nearer to $8$ than to the range $[3;4]$ assumed
 for it before having seen the sample.
 Then $\YN = [\frac{95}{15} ; \frac{100}{15}] \approx [6.33 ; 6.67]$ and again
@@ -693,7 +686,7 @@ called the corresponding \emph{\nymodel } based on $\YZ$ and $\NZ$.
 
 \begin{remark}
 Again, by construction, when ${\cal M}$ is used as an
-imprecise prior,  ${\cal M}_{|\x}$ is the corresponding posterior. It is obtained %here
+imprecise prior,  ${\cal M}_{|\x}$ is the corresponding posterior. It is obtained
 as the set of all convex mixtures of
 distributions defined by the parameter set
 \begin{equation*}
@@ -729,20 +722,17 @@ Equations~\eqref{equ:uly1-071206} and \eqref{equ:oly1-071206}.}
 \quad\Longleftrightarrow\quad \text{prior-data conflict}.
 \end{cases}
 \end{align}
-
 \end{remark}
-%
-%
+
 For minimizing and maximizing $\yn$, the value $\nzl$ is
 used only in the situation of prior-data conflict, that is, if
 $\ttau(\x) \notin \YZ$.
-%%GW081202%% When no prior-data conflict occurs, only $\ol{n}\uz$ is used for updating ${\cal Y}\uz$.
 When no prior-data conflict occurs, the extreme values are attained for $\nzu$.
 %
 Therefore, the fixed value of $\nz$ in \ymodel s in the spirit of \textcite{2005:quaeghebeurcooman} can be
 seen as the upper border of an implicit set $\NZ$, and
 considering only a fixed $\nz$ means that prior-data conflict is neglected.
-%
+
 On the other hand, if observations are such that
 $\ttau(\x) \in \left[\yzl;\,\yzu\right]$, then
 no prior-data conflict is present, and inference in \nymodel s
@@ -758,7 +748,6 @@ $\yzl$. (Equation~\eqref{equ:shifttrans} makes this most
 visible.) The same type of reasoning applies for the case
 $\ttau(\x) > \yzu$, where $\nzu$ is still used to
 calculate $\ynl$, but $\nzl$ to calculate $\ynu$.}
-%****hier noch mehr Text sonst fliegt alles auseinander***
 
 \begin{remark}\label{remark8}
 By construction, the attractive properties of inferences by
@@ -804,13 +793,12 @@ being equivalent to $\ul{\ol{n}}\uz := \big(\nzl\nzu\big){}^\frac{1}{2}$.
 \end{remark}
 
 \begin{figure}
-%\fbox{%
+%\includegraphics[height=\textwidth,angle=-90,bb = 90 60 515 770]{fig/jstp-paper_nv_nvar_vertfu01_081128.ps}%
+\includegraphics[trim = 20mm 20mm 20mm 25mm, clip, width=\textwidth]{fig/jstp-paper_nv_nvar_vertfu01_081128}%
 \caption{Prior (left) and posterior (right) credal sets for samples from
 $\norm(\mu,1)$ in accordance with (upper) and contrary to (lower)
 prior beliefs. With \nymodel s, the posterior set in the latter case is
 significantly larger than in the former, leading to more cautious inference as desired.}
-\includegraphics*[height=\textwidth,angle=-90,bb = 90 60 515 770]{fig/jstp-paper_nv_nvar_vertfu01_081128.ps}%
-%}
 \label{fig:nv-nvar-vertfu}
 \end{figure}
 
@@ -854,6 +842,22 @@ $\nzl = 1$, resulting in $\nzu = 25$.
 
 \begin{figure}
 %\fbox{%
+\begin{tabular}{ccc}%
+\hspace*{-1.2ex}%
+%\includegraphics[height=0.33\textwidth,angle=-90,bb = 100 65 520 385]{fig/jstp-paper_idm_nvar_zeile1-080331.ps}%
+\includegraphics[trim =  20mm 25mm 150mm 20mm, clip, width=0.33\textwidth]{fig/jstp-paper_idm_nvar_zeile1-080331}%
+\hspace*{-1.2ex}%
+&%
+\hspace*{-1.2ex}%
+%\includegraphics[height=0.33\textwidth,angle=-90,bb = 100 470 520 790]{fig/jstp-paper_idm_nvar_zeile1-080331.ps}%
+\includegraphics[trim = 150mm 25mm  20mm 20mm, clip, width=0.33\textwidth]{fig/jstp-paper_idm_nvar_zeile1-080331}%
+\hspace*{-1.2ex}%
+&%
+\hspace*{-1.2ex}%
+%\includegraphics[height=0.33\textwidth,angle=-90,bb = 100 470 520 790]{fig/jstp-paper_idm_nvar_zeile2-081205.ps}%
+\includegraphics[trim = 150mm 25mm  20mm 20mm, clip, width=0.33\textwidth]{fig/jstp-paper_idm_nvar_zeile2-081205}%
+\hspace*{-1.2ex}%
+\end{tabular}%
 \caption{
 Prior (left) and posterior (center, right) credal sets for samples from
 $\mult(\btheta)$ in accordance with (center) and contrary to (right)
@@ -861,21 +865,9 @@ prior beliefs. As in Figure~\ref{fig:nv-nvar-vertfu}, with \nymodel s
 the sets differ in size according to the degree of prior-data conflict
 induced by the observations.
 }
-\begin{tabular}{ccc}%
-\hspace*{-1.2ex}%
-\includegraphics*[height=0.33\textwidth,angle=-90,bb = 100 65 520 385]{fig/jstp-paper_idm_nvar_zeile1-080331.ps}%
-\hspace*{-1.2ex}%
-&%
-\hspace*{-1.2ex}%
-\includegraphics*[height=0.33\textwidth,angle=-90,bb = 100 470 520 790]{fig/jstp-paper_idm_nvar_zeile1-080331.ps}%
-\hspace*{-1.2ex}%
-&%
-\hspace*{-1.2ex}%
-\includegraphics*[height=0.33\textwidth,angle=-90,bb = 100 470 520 790]{fig/jstp-paper_idm_nvar_zeile2-081205.ps}%
-\hspace*{-1.2ex}%
-\end{tabular}%
 \label{fig:idm-nvar-nopdc}
 \end{figure}
+
 
 \begin{example}[Dirichlet-Multinomial model, continued]
 \label{ex:jstp-8}
@@ -895,7 +887,9 @@ categories do actually get wider, as can be seen in the right
 graph, and thus, inference drawn in this case is more cautious.
 \end{example}
 
-\begin{figure}
+\begin{figure} %trim = l b r t
+%\includegraphics[height=0.99\textwidth,angle=-90,bb = 20 15 575 825]{fig/jstp-paper_nv_nvar_HPD_n-infty_081201.ps}%
+\includegraphics[trim = 5mm 5mm 5mm 5mm, clip, width=\textwidth]{fig/jstp-paper_nv_nvar_HPD_n-infty_081201}%
 \caption{(Unions of) 95\%-posterior HD intervals (vertical lines) for
 observations in accordance (upper row, drawn from $\mbox{N}(4,1)$)
 and in conflict (lower row, drawn from $\mbox{N}(8,1)$) with prior assumptions
@@ -903,9 +897,6 @@ based on a single prior (left), an \ymodel\ (center) and a \nymodel\ (right)
 in dependence on the sample size $n$. The development of the sample mean is
 indicated by the wiggly line. Through the averaging, the HD intervals in the
 lower left and center graph are not enlarged but only shifted and thus do not cover the sample mean.}
-\begin{center}
-\includegraphics*[height=0.99\textwidth,angle=-90,bb = 20 15 575 825]{fig/jstp-paper_nv_nvar_HPD_n-infty_081201.ps}%
-\end{center}
 \label{fig:nv-nvar-kinfty}
 \end{figure}
 
@@ -952,6 +943,7 @@ tend the more to the sample mean the larger the sample gets.
 \subsection{Concluding remarks}
 
 
+\clearpage
 
 
 \section{***Software***}

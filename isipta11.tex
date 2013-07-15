@@ -178,7 +178,7 @@ $\ynl$ and $\ynu$, and thus $\Pl$ and $\Pu$,
 are marked with a circle.
 
 %\begin{verbatim}
-\begin{figure}[t]
+\begin{figure}%[t]
 \begin{tikzpicture}
 %\pgftransformscale{0.475}
 \pgftransformscale{0.04}
@@ -452,7 +452,7 @@ for the \emph{anteater} shape if $n < n^h$.}
 %
 %
 
-\begin{figure}[h]
+\begin{figure}%[h]
 \begin{tikzpicture}
 %\pgftransformscale{0.475}
 \pgftransformscale{0.04}
@@ -627,6 +627,413 @@ roles: Now, two separate models for predictive inference, each
 resulting in different precision as governed by $\nz$,
 are combined with an imprecise weight $\alpha$ %, with $\alpha$
 taking the role of regulating prior-data agreement.
+
+
+\subsection{Weighted Inference}
+\label{sec:weightedinf}
+
+We propose a variation of the Beta-Binomial model
+that is attractive for prior-data conflict
+and has small yet fascinating differences with the models in
+Sections~\ref{sec:ibbm-walley} and \ref{sec:othershapes}. We present a basic
+version of the model in Section~\ref{wi-basic}, followed by an
+extended version in Section~\ref{wi-ext}. Opportunities to
+generalize the model are mentioned in
+Section~\ref{wi-prop}.
+%In line with the other sections of this paper,
+%we focus on the event that, following $s$ successes in $n$
+%observations, the next observation is a success. The model proposed
+%here is motivated by two main observations related to the models discussed in Sections ********************** 2 and 3.
+
+
+\subsubsection{The Basic Model}
+\label{wi-basic}
+
+The idea for the proposed model is to combine the inferences
+based on two models, each part of an imprecise
+Bayesian inferential framework using sets of prior distributions,
+although the inferences can also result from alternative inferential
+methods. The combination is not achieved by
+combining the two sets of prior distributions into a single set, but
+by combining the posterior predictive \emph{inferences}
+by imprecise weighted averaging. When the weights assigned to the
+two models can vary over the whole range $[0,1]$ we actually return
+to imprecise Bayesian inference with a prior set, as considered in this subsection.
+In Section~\ref{wi-ext} we
+restrict the values of the model weights. The basic model
+turns out to be relevant from many perspectives, in
+particular to highlight similarities and differences with the
+methods presented in Sections~\ref{sec:ibbm-walley} and
+\ref{sec:othershapes}, and it is a suitable starting point for more
+general models. These aspects will be discussed in
+Subsection~\ref{wi-prop}.
+
+We consider the combination of the imprecise posterior
+predictive probabilities $[\Pl^i, \Pu^i]$ and $[\Pl^u, \Pu^u]$ for
+the event that the next observation is a success with
+\begin{align}
+\Pl^i &= \frac{s^i+s}{n^i+n+1} & \text{and }& & \Pu^i &= \frac{s^i+s+1}{n^i+n+1}\,,  \label{ilowupp} \\
+\Pl^u &= \frac{s}{n+1}         & \text{and }& & \Pu^u &= \frac{s+1}{n+1}        \,.  \label{ulowupp}
+\end{align}
+The superscript $i$ indicates `informative', in the sense
+that these lower and upper probabilities relate to an `informative'
+prior distribution reflecting prior
+beliefs of similar value as $s^i$ successes in $n^i$ observations.
+The superscript $u$ indicates `uninformative', which can be interpreted
+as absence of prior beliefs. These
+lower and upper probabilities can for example result from
+Walley's IBBM, with $\Pl^i$ and $\Pu^i$ based on the prior set with
+$\nz = n^i+1$ and $\yz \in \left[\frac{s^i}{n^i+1},\frac{s^i+1}{n^i+1}\right]$,
+and $\Pl^u$ and $\Pu^u$ on the prior set with $\nz = 1$ and $\yz \in [0,1]$.
+There are other methods for imprecise statistical inference that
+lead to these same lower and upper probabilities, including
+Nonparametric Predictive Inference for Bernoulli quantities
+\parencite{1998:coolen}\footnote{See also \url{www.npi-statistics.com}.},
+where the $s^i$ and $n^i$ would only be included if they were actual
+observations, for example resulting from a second data set that one
+may wish to include in the `informative' model but not in the `uninformative' model.
+
+The proposed method combines these
+lower and upper predictive probabilities by imprecise weighted averaging.
+Let $\alpha \in [0,1]$, we define%\vspace*{-1.0ex}
+%\begin{align} %\label{alpha-lowupp}
+%\Pl_{\alpha} &= \alpha \Pl^i + (1-\alpha) \Pl^u \label{alpha-low} \,,\\
+%\Pu_{\alpha} &= \alpha \Pu^i + (1-\alpha) \Pu^u \label{alpha-upp} \,,
+%\end{align}
+\begin{align} \label{alpha-lowupp}
+\Pl_{\alpha}\! &= \alpha \Pl^i + (1-\alpha) \Pl^u, &
+\Pu_{\alpha}\! &= \alpha \Pu^i + (1-\alpha) \Pu^u,
+\end{align}
+and as lower and upper predictive probabilities for the event that
+the next Bernoulli random quantity is a success,\footnote{%
+While in \eqref{equ:General-Pl} and \eqref{equ:General-Pu}, prior
+and sample information are imprecisely weighted, here informative
+and uninformative models are combined.}%\vspace*{-1.0ex}
+%
+\begin{align*}
+\Pl &= \min_{\alpha \in [0,1]} \Pl_{\alpha} & \text{and}& & % \label{P-low} \\
+\Pu &= \max_{\alpha \in [0,1]} \Pu_{\alpha} \,.             % \label{P-upp}
+\end{align*}
+Allowing $\alpha$ to take on any value in $[0,1]$ reduces
+this method to the IBBM %imprecise Beta-Binomial model
+with a single prior set, as discussed in Section~\ref{sec:ibbm}, with the prior
+set simply generated by the union of the two prior sets for the
+`informative' and the `uninformative' models as described above.
+For all $s$ these minimum and maximum values
+are obtained at either $\alpha=0$
+or $\alpha=1$. With switch points $S_1=(n+1)\frac{s^i}{n^i}-1$ and
+$S_2=(n+1)\frac{s^i}{n^i}$, they are equal to%\vspace*{-0.5ex}
+%\begin{eqnarray*}
+%\Pl &=& \left\{
+%  \begin{array}{ll}
+%    \Pl^u = \frac{s}{n+1}          \;\; &\mbox{ if } s \leq S_2  \\
+%    \Pl^i = \frac{s^i+s}{n^i+n+1}  \;\; &\mbox{ if } s \geq S_2
+%  \end{array} \right. \\
+%\Pu &=& \left\{
+%  \begin{array}{ll}
+%    \Pu^i = \frac{s^i+s+1}{n^i+n+1} \;\; &\mbox{ if } s \leq S_1  \\
+%    \Pu^u = \frac{s+1}{n+1}         \;\; &\mbox{ if } s \geq S_1
+%  \end{array} \right.
+%\end{eqnarray*}
+\begin{align*}
+\Pl &=
+  \begin{cases}
+    \Pl^u = \frac{s}{n+1}           & \text{if } s \leq S_2  \\
+    \Pl^i = \frac{s^i+s}{n^i+n+1}   & \text{if } s \geq S_2 
+  \end{cases}\,, & 
+\Pu &=
+  \begin{cases}
+    \Pu^i = \frac{s^i+s+1}{n^i+n+1} & \text{if } s \leq S_1  \\
+    \Pu^u = \frac{s+1}{n+1}         & \text{if } s \geq S_1 
+  \end{cases} \,.
+\end{align*}
+%Figure~\ref{fig:weighted-generic} presents such lower and upper
+%probabilities as functions of $s$ (represented as a continuous
+%variable on $[0,n]$) in a generic way.
+The PPP graph for this model is displayed %presented
+in Figure~\ref{fig:weighted-generic}.
+%***the following par can be shortened*** Note that the lower probability
+%$\Pl$ is made up of two line segments, one from $s=0$ to $s=S_2$ and
+%a second line segment, with smaller slope, for the larger values
+%until $s=n$. The upper probability $\Pu$ is also made up of two line
+%segments, one from $s=0$ to $s=S_1$ and a second line segment, with
+%larger slope, for the larger values until $s=n$. These switch points
+%are the same for the special cases of the weighted inference method
+%as discussed in detail in this section.
+The upper probability for $s=S_1$ and the lower probability for
+$s=S_2$ are both equal to $\frac{s^i}{n^i}$. The TPDA
+contains only a single possible value of $s$ (except if $S_1$ and $S_2$ are
+integer), namely the one that is nearest to $\frac{s^i}{n^i}$. The specific
+values for this basic case are %\vspace*{-0.5ex}
+%$A=0$, $B=\frac{s^i+1}{n^i+n+1}$,
+%$C=\frac{s^i+n}{n^i+n+1}$, $D=1$, $E=\frac{s^i}{n^i}-\frac{1}{n+1}$,
+%$F=\frac{s^i}{n^i}+\frac{1}{n+1}$, $\text{sl.~1}=\frac{1}{n^i+n+1}$,
+%$\text{sl.~2}=\frac{1}{n+1}$.
+\begin{align*}
+A &= 0 &
+B &= \frac{s^i+1}{n^i+n+1} &
+C &= \frac{s^i+n}{n^i+n+1} \\
+D &= 1 &
+E &= \frac{s^i}{n^i}-\frac{1}{n+1} &
+F &= \frac{s^i}{n^i}+\frac{1}{n+1} \\
+& &
+\text{sl.~1} &= \frac{1}{n^i+n+1} &
+\text{sl.~2} &= \frac{1}{n+1}\,.
+\end{align*}
+If $s$ is in the TPDA, it reflects optimal
+agreement of the `prior data' $(n^i,s^i)$ and the (really
+observed) data $(n,s)$, so it may be a surprise that both the
+lower and upper probabilities in this case correspond to $\alpha=0$,
+so they are fully determined by the `uninformative' part of the
+model. This is an important aspect, it will be discussed in more
+detail and compared to the methods of Section~\ref{sec:ibbm} in
+Subsection \ref{wi-prop}. For $s$ in the TPDA, both
+$\Pl$ and $\Pu$ increase with slope $\frac{1}{n+1}$, and imprecision $\Delta = \frac{1}{n+1}$.
+
+Figure~\ref{fig:weighted-generic}, with the specific values for this
+basic case given above, illustrates what happens for values of $s$
+outside this TPDA. Moving away from the TPDA in
+either direction, the imprecision increases, as was also the case in
+the models in Section~\ref{sec:ibbm}. For $s$ decreasing towards
+$0$, this is effectively due to the smaller slope of the upper
+probability, while for $s$ increasing towards 1 it is due to the
+smaller slope of the lower probability. For $s\in [0,S_1]$, the
+imprecision is $\Delta = \frac{s^i+1}{n^i+n+1} - \frac{sn^i}{(n^i+n+1)(n+1)}$.
+For $s\in [S_2,n]$, the imprecision is $\Delta = \frac{1}{n+1} - \frac{s^i}{n^i+n+1} + \frac{sn^i}{(n^i+n+1)(n+1)}$.
+For the two extreme possible cases of prior data conflict, with
+either $s^i=n^i$ and $s=0$ or $s^i=0$ and $s=n$, the imprecision is
+$\Delta = \frac{n^i+1}{n^i+n+1}$. For this combined model with
+$\alpha \in [0,1]$, we have $\Pl \leq \frac{s}{n} \leq \Pu$ for all
+$s$, which is attractive from the perspective of objective inference.
+
+\begin{figure}%[h]
+\centering %
+\begin{tikzpicture}
+%\pgftransformscale{0.475}
+\pgftransformscale{0.8}
+\draw[thick] (15,10) -- (0,10) node[left] {1} -- (0,0) node[left] {\small 0} node[below] (Zero) {\small 0} -- node[below,pos=0.3] {\tikz\draw[-stealth,thick] (0,0) -- (1,0) node[right] {\small $s$};} (15,0) -- cycle; %node[below] {n}
+\node[node distance=11.6, base right=of Zero] {\small n};
+\coordinate (A) at (0,1);
+\coordinate (B) at (0,5);
+\foreach \point in {A, B}
+ \draw[fill] (\point) node[left] {\small $\point$} circle (2pt) ;
+\coordinate (sini) at (0,6);
+\coordinate (S1) at (8,0);
+\coordinate (S2) at (10,0);
+\foreach \point/\name in {S1/S_1, S2/S_2}
+ \draw[dashed] (\point) node[below] {\small $\name$} -- ++(0,10);
+%
+\coordinate (Eu) at ($(S1) + (sini)$);
+%\draw[fill] (Eu) node[above] {Eu} circle (3pt) ;
+\coordinate (Fl) at ($(S2) + (sini)$);
+%\draw[fill] (Fl) node[above] {Fl} circle (3pt) ;
+\coordinate (El) at ($(A)!{8/10}!(Fl)$);
+\draw[fill] (El) node[above  left=-3pt and -2pt] {\small $E$} circle (2pt) ;
+\coordinate (Fu) at ($(Fl) + (0,1)$);
+\draw[fill] (Fu) node[below right=-3pt and -2pt] {\small $F$} circle (2pt) ;
+%
+%\begin{scope}[label distance=-2.5mm]
+%\draw[fill] (El) node[label=160:$E$] {} circle (2pt) ;
+%\draw[fill] (Fu) node[label=-20:$F$] {} circle (2pt) ;
+%\end{scope}
+%
+\coordinate (D) at ($(Fu) + (5,2.5)$);
+\coordinate (C) at ($(Fl) + (5,5/8)$);
+\foreach \point in {C, D}
+ \draw[fill] (\point) node[right] {\small $\point$} circle (2pt) ;
+%
+\draw[dashed] (Fl) -- (sini) node[left] {\small $\frac{s^i}{n^i}$};
+%
+\draw (B) -- node[sloped,below] {\small sl.~1} (Eu) -- node[sloped,above,pos=0.6] {\small sl.~2} (Fu) -- node[sloped,above] {\small sl.~2} (D);
+\draw (A) -- node[sloped,below] {\small sl.~2} (El) -- node[sloped,below,pos=0.4] {\small sl.~2} (Fl) -- node[sloped,above] {\small sl.~1} (C);
+\end{tikzpicture}
+\caption{%$\Pl$ and $\Pu$
+Lower and upper predictive probability of success
+for the weighted inference model.}
+\label{fig:weighted-generic}
+\end{figure}
+
+There are important further aspects of this model to be discussed,
+in particular how to meaningfully choose $s^i$ and $n^i$, but this
+is postponed until Section~\ref{wi-prop}, where we will start
+discussing these aspects by again focussing first on this basic
+model followed by discussion of an extended version of this model,
+which is introduced next.
+
+
+\subsubsection{The Extended Model}
+\label{wi-ext}
+
+We extend the basic model from Subsection~\ref{wi-basic}, perhaps
+remarkably by reducing the interval for the weighting variable
+$\alpha$. We assume that $\alpha \in [\alpha_l,\alpha_r]$ with $0
+\leq \alpha_l \leq \alpha_r \leq 1$. We consider this an extended
+version of the basic model as there are two more parameters that
+provide increased modelling flexibility. It is important to remark
+that, with such a restricted interval for the values of $\alpha$,
+this weighted model is no longer identical to an IBBM
+with a single set of prior distributions. One
+motivation for this extended model is that the basic
+model seemed very cautious by not using the
+informative prior part if $s$ is in the TPDA. For $\alpha_l>0$,
+the informative part of the model influences the
+inferences for all values of $s$, including the one in the TPDA. As
+a consequence of taking $\alpha_l>0$, however, the line segment
+$(s,\frac{s}{n})$ with $s\in [0,n]$ will not always be in between the lower and upper
+probabilities anymore, specifically not at, and close to, $s=0$ and
+$s=n$, as follows from the results presented below.
+
+The lower and upper probabilities resulting from the two models that
+are combined by taking an imprecise weighted average are again as
+given by formulae \eqref{ilowupp}--\eqref{ulowupp}, with the weighted
+averages $\Pl_{\alpha}$ and $\Pu_{\alpha}$, for any
+$\alpha \in [\alpha_l,\alpha_r]$, again given by %(\ref{alpha-low}) and (\ref{alpha-upp}).
+\eqref{alpha-lowupp}. This leads to the lower and
+upper probabilities for the combined inference
+\begin{align*}
+\Pl &= \min_{\alpha \in [\alpha_l,\alpha_r]} \Pl_{\alpha} & \text{and}& & % \label{ext-P-low} \\
+\Pu &= \max_{\alpha \in [\alpha_l,\alpha_r]} \Pu_{\alpha} \,.             % \label{ext-P-upp}
+\end{align*}
+The lower and upper probabilities have, as function of $s$,
+the generic forms presented in Figure~\ref{fig:weighted-generic},
+with
+$[S_1,S_2]=\left[(n+1)\frac{s^i}{n^i}-1, (n+1)\frac{s^i}{n^i}\right]$ as in Section~\ref{wi-basic}.
+The specific values for Figure~\ref{fig:weighted-generic} are
+%$A=\frac{\alpha_l s^i}{n^i+n+1}$,
+%$B=\frac{1}{n+1} + \frac{\alpha_r [s^i(n+1)-n^i]}{(n^i+n+1)(n+1)}$,
+%$C=\frac{n}{n+1}-\frac{\alpha_r[(n^i-s^i)(n+1)-n^i]}{(n^i+n+1)(n+1)}$,
+%$D=1-\frac{\alpha_l(n^i-s^i)}{n^i+n+1}$,
+%$E=\frac{s^i}{n^i}-\frac{1}{n+1}\left[1-\frac{\alpha_l n^i}{n^i+n+1}\right]$,
+%$F=\frac{s^i}{n^i}+\frac{1}{n+1}\left[1-\frac{\alpha_l n^i}{n^i+n+1}\right]$,
+%$\text{sl.~1}=\frac{n^i+n+1-\alpha_r n_i}{(n^i+n+1)(n+1)}$,
+%$\text{sl.~2}=\frac{n^i+n+1-\alpha_l n_i}{(n^i+n+1)(n+1)}$.
+\begin{align*}
+A &= \textstyle \frac{\alpha_l s^i}{n^i+n+1} &
+B &= \textstyle \frac{1}{n+1} + \frac{\alpha_r [s^i(n+1)-n^i]}{(n^i+n+1)(n+1)} \\
+D &= \textstyle 1-\frac{\alpha_l(n^i-s^i)}{n^i+n+1} &
+C &= \textstyle \frac{n}{n+1}-\frac{\alpha_r[(n^i-s^i)(n+1)-n^i]}{(n^i+n+1)(n+1)} \\
+\text{sl.~1} &= \textstyle \frac{n^i+n+1-\alpha_r n_i}{(n^i+n+1)(n+1)} &
+E &= \textstyle \frac{s^i}{n^i}-\frac{1}{n+1}\left[1-\frac{\alpha_l n^i}{n^i+n+1}\right] \\
+\text{sl.~2} &= \textstyle \frac{n^i+n+1-\alpha_l n_i}{(n^i+n+1)(n+1)} &
+F &= \textstyle \frac{s^i}{n^i}+\frac{1}{n+1}\left[1-\frac{\alpha_l n^i}{n^i+n+1}\right] \,.
+\end{align*}
+The increase in imprecision when $s$ moves away from the TPDA can again be
+considered as caused by the informative part of the model, which is logical as the uninformative part of the model cannot
+exhibit prior-data conflict.
+Maximum prior-data conflict occurs again if $s^i=0$ and $s=n$, in which case
+$\Pl = \frac{n}{n+1} - \frac{\alpha_r n^i n}{(n^i+n+1)(n+1)}$ and
+$\Pu = 1 - \frac{\alpha_l n^i}{n^i+n+1}$, or if $s^i=n^i$ and $s=0$,
+when $\Pl = \frac{\alpha_l n^i}{n^i+n+1}$ and
+$\Pu = \frac{1}{n+1} + \frac{\alpha_r n^in}{(n^i+n+1)(n+1)}$.
+
+The possibility to choose values for $\alpha_l$ and $\alpha_r$
+provides substantially more modelling flexibility compared to the
+basic model presented in Section~\ref{wi-basic}. One may, for
+example, wish to enable inferences solely based on the informative
+part of the model, hence choose $\alpha_r=1$, but ensure that this
+part has influence on the inferences in all situations, with equal
+influence to the uninformative part in case of TPDA. This latter
+aspect can be realized by choosing $\alpha_l=0.5$. When compared to
+the situation in Section~\ref{wi-basic}, this choice moves, in
+Figure~\ref{fig:weighted-generic}, $A$ and $D$ away
+from 0 and 1, respectively, but does not affect $B$ and $C$. It also
+brings $E$ and $F$ a bit closer to the corresponding upper and lower
+probabilities, respectively, hence reducing imprecision in the TPDA.
+
+
+\subsubsection{Weighted Inference Model Properties}
+\label{wi-prop}
+
+The basic model presented in Section~\ref{wi-basic} fits in the Bayesian framework, but
+its use of prior information is different to the usual way in Bayesian
+statistics. The lower and upper probabilities are mainly driven by the uninformative part, which, e.g.,
+implies that $\Pl \leq \frac{s}{n} \leq \Pu$ for all values
+of $s$. While in (imprecise, generalised) Bayesian statistics any
+part of the model that uses an informative prior can be
+regarded as adding information to the data, the informative part of the basic model
+leads to more careful inferences when there is prior-data conflict.
+Figure~\ref{fig:weighted-generic} shows that, for the basic case of
+Section~\ref{wi-basic}, the points $A$ and $D$ are based
+only on the uninformative part of the model, but the points $B$ and $C$ are based on the
+informative part of the model.
+
+Prior-data conflict can be of different strength, one would expect
+to only talk about `conflict' if consideration is required, hence the information in the prior
+and in the data should be sufficiently strong. The proposed method
+in Section~\ref{wi-basic} takes as starting point inference that is
+fully based on the data, it uses the informative prior part of
+the model to widen the interval of lower and upper
+probabilities in the direction of the value $\frac{s^i}{n^i}$. For
+example, if one observed $s=0$, the upper probability of a success
+at the next observation is equal to $\frac{s^i+1}{n^i+n+1}$, which
+reflects inclusion of the information in the prior set for the
+informative part of the model that is most supportive for this
+event, equivalent to $s^i+1$ successes in $n^i+1$
+observations. As such, the effect of the prior information is to weaken
+the inferences by increasing imprecision in case of prior-data conflict.
+
+One possible way in which to view this weighted inference model is
+as resulting from a multiple expert or information source problem,
+where one wishes to combine the inferences resulting individually
+from each source. The basic model of Section~\ref{wi-basic} leads to
+the most conservative inference such that no individual model or
+expert disagrees, while the restriction on weights provides a
+guaranteed minimum level for the individual contributions to the combined
+inference.
+
+It should be emphasized that the weighted inference model has wide applicability. The key idea is to combine,
+by imprecise weighting, the actual inferences resulting from
+multiple models, and as such there is much scope for the use and
+further development of this approach. The individual models could
+even be models such as those described in
+Sections~\ref{sec:ibbm-walley} and \ref{sec:othershapes}, although
+that would lead to more complications. If the individual models
+are coherent lower and upper probabilities, i.e.\ provide separately
+coherent inferences, then the combined inference via weighted
+averaging and taking the lower and upper envelopes is also
+separately coherent\footnote{This follows, e.g., from\textcite[\S 2.6.3f]{1991:walley}}.
+
+In applications, it is often important to determine a sample size
+(or more general design issues) before data are collected. If one
+uses a model that can react to prior-data conflict, this is likely
+to lead to a larger data requirement. One very cautious approach is to choose $n$ such that the maximum possible resulting
+imprecision does not exceed a chosen threshold. In the models
+presented in this paper, this maximum imprecision will always occur
+for either $s=0$ or $s=n$, whichever is further away from the TPDA.
+In such cases, a preliminary study has shown an attractive feature if one can actually
+sample sequentially. If some data are obtained with success proportion close to $s^i/n^i$, %then
+the total data requirement (including these first observations) %in order
+to ensure that the resulting maximum
+imprecision cannot exceed the same threshold level is substantially less
+than had been the case before any data were available.
+This would be in line with intuition, and further
+research into this and related aspects is ongoing, including of
+course the further data need in case first sampled data is in
+conflict with $(n^i,s^i)$, and the behaviour of the models of Section~\ref{sec:ibbm} in such cases.
+
+The weighted inference method combines the inferences based on two
+models, and can be generalized to allow more than two models and
+different inferential methods. It is also possible to allow more
+imprecision in each of the models that are combined, leading to more
+parameters in the overall model that can be used to control the
+behaviour of the inferences. Similar post-inference combination via
+weighted averaging, but with precise weights, has been presented in the
+frequentist statistics literature \parencite{2003:hjort,2003:longford}, where the
+weights are actually determined based on the data and a chosen
+optimality criterion for the combined inference. In Bayesian
+statistics, estimation or prediction inferences based on different
+models can be similarly combined using Bayes factors \parencite{1995:kass-raftery},
+which are based on both the data (via the likelihood function) and
+prior weightings for the different models.%
+\footnote{See also the brief characterisation of Bayes factors in Section~\ref{sec:beta-binom}.}
+In our approach, we do not use the data or prior beliefs about the models to derive precise
+weights for the models, instead we cautiously base our combined
+lower and upper predictive probabilities on those of the individual
+models with a range of possible weights. This range is set by the
+analyst and does not explicitly take the data or prior beliefs into
+account, but it provides flexibility with regard to the relative
+importance given to the individual models.
+
 
 
 

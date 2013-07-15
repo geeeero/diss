@@ -14,11 +14,19 @@ to allow in addition an elegant handling of prior-data conflict.
 Section~\ref{sec:generalmodel} attempts to give a systematic overview on the different models discussed in the literature,
 illustrating some characteristic modelling opportunities of generalised Bayesian inference.
 
-Section~\ref{sec:alternatives} briefly discusses some alternative models based on sets of priors.
+Section~\ref{sec:alternatives} briefly discusses some alternative models based on sets of priors.***
 
-Section **** then investigates one model in detail *** or presents examples???*** ***JSTP***,
+Section~\ref{sec:jstp} then investigates one model in detail, namely the model developed in \parencite{Walter2009a},
+and discusses its application to the Normal-Normal and Dirichlet-Multinomial models in more detail. ***JSTP***
 
-Section **** another attempt to refine ****ISIPTA'11***
+***software?***
+
+***isipta07?***
+
+Section~\ref{sec:isipta11} presents further attempts to refine inference behaviour in the presence of \pdc,
+by two fundamentally different approaches, whose inferences nevertheless show facinating similarities. ***ISIPTA'11***
+
+***football example?***
 
 ***more structure of section?*** 
 
@@ -29,7 +37,7 @@ Section **** another attempt to refine ****ISIPTA'11***
 
 ***structure of section: here comes the important part!****
 
-***check refs to own papers included in diss are to be switched to diss sections*** 
+***check if refs to own papers included in diss are to be switched to diss sections*** 
 
 \subsection{The General Framework}
 %\subsection{The Basic Setting}
@@ -41,7 +49,7 @@ One specifies a prior parameter set $\PZ$ of $(\nz,\yz)$ values
 and takes as imprecise prior---described via the credal set $\MZ$---the set of traditional priors with $(\nz, \yz) \in \PZ$.
 The credal set $\MN$ of posterior distributions,%
 \footnote{To emphasize the dependence of the sample size $n$,
-the posterior credal set is denoted by $\MN$ instead of $\mathcal{M}_{\vert \x}$ in \eqref{eq:posteriorcredalset}.}
+the posterior credal set is denoted by $\MN$ instead of $\mathcal{M}_{\vert \x}$ as in \eqref{eq:posteriorcredalset}.}
 obtained by updating each element of $\MZ$ via Bayes' Rule,
 then can be described as the set of parametric distributions
 with parameters varying in the set of updated parameters $\PN = \{(\nn,\yn) \vert (\nz, \yz) \in \PZ\}$.
@@ -89,7 +97,7 @@ will allow us to discuss different models $\MZ$ and $\MN$
 by considering the corresponding parameter sets $\PZ$ and $\PN$.%
 \footnote{Note that, although, by the general framework, the credal sets $\MZ$ and $\MN$ may be defined as convex hulls,
 the parameter sets $\PZ$ and $\PN$ generating them need not necessarily be so, and typically are not convex, indeed.
-See, e.g., Figure~***** on page~****.}
+See, e.g., Figure~\ref{fig:spot-banana} on page~\pageref{fig:spot-banana}.}
 
 
 As an example, in the precise Beta-Bernoulli model as discussed in Section~\ref{sec:beta-binom},
@@ -131,9 +139,10 @@ It should be noted here that while the prior parameter set is a Cartesian produc
 the posterior parameter set is not.
 This is due to Eq.~\eqref{eq:canonicalupdate},
 which results in different ranges for $\yn$ depending on the value of $\nz$ used in the update step.%
-\footnote{This is illustrated, e.g., in Figure~****, page~****.}
+\footnote{This is illustrated, e.g., in Figure~\ref{fig:spot-banana}, page~\pageref{fig:spot-banana}.}
 \item Both $\nz$ and $\yz$ vary in other sets $\PZ \subset (\reals_{>0} \times \Y)$.\\
-In this type, also in the prior parameter set the range of $\yz$ may depend on $\nz$ as in \textcite[\S 2.3]{Walter2011a},
+In this type, also in the prior parameter set the range of $\yz$ may depend on $\nz$,
+as in \textcite[\S 2.3, see Section~\ref{sec:othershapes}]{Walter2011a},
 or, vice versa, the range of $\nz$ may depend on the value of $\yz$, as in \textcite{2012:benavolizaffalon}.
 \label{enum:modeltypes-d}
 \end{enumerate}
@@ -357,19 +366,19 @@ determining the learning speed of the model, namely $\nz$ for the IDM.
 
 Models intended specifically for use in situations with substantial prior information are presented in
 \textcite[footnote no.~10 in \S 1.1.4, and \S 7.8.3]{1991:walley}, \textcite{2005:quaeghebeurcooman}, and \textcite{Walter2009a};%
-\footnote{See Section **** for a more detailed coverage and examples*****.}
+\footnote{See Section~\ref{sec:jstp} for a more detailed coverage and examples.}
 the IDM can be modified by not taking $\YZ = \text{int}(\Delta)$, but a smaller set $\YZ$ fitting the prior information.
 
-Generalizing the IDM approach to conjugate priors for sample distributions of the canonical form \eqref{eq:expofam-sampledens},
+Generalising the IDM approach to conjugate priors for sample distributions of the canonical form \eqref{eq:expofam-sampledens},
 \textcite{2005:quaeghebeurcooman} proposed an imprecise prior $\MZ$ based on $\PZ = \YZ \times \nz$.
 E.g., in the Normal-Normal model as described in Section~\ref{sec:norm-norm},
 one can take as imprecise prior all convex mixtures of normals with mean in $\YZ = [\yzl, \yzu]$ and a fixed variance $\sigma_0^2/\nz$.
 $\YN$, the posterior set of expectations (or modes, or medians) of $\mu$, is then bounded by
 \begin{align}
 \label{eq:qdc-ynl}
-\ynl &= \inf_{\PZ} \yn = \inf_{\YZ} \frac{\nz\yz + n\bar{\x}}{\nz + n} = \frac{\nz\yzl + n\bar{\x}}{\nz + n}\\
+\ynl &= \inf_{\PZ} \yn = \inf_{\YZ} \frac{\nz\yz + n\bar{x}}{\nz + n} = \frac{\nz\yzl + n\bar{x}}{\nz + n}\\
 \label{eq:qdc-ynu}
-\ynu &= \sup_{\PZ} \yn = \sup_{\YZ} \frac{\nz\yz + n\bar{\x}}{\nz + n} = \frac{\nz\yzu + n\bar{\x}}{\nz + n}\,.
+\ynu &= \sup_{\PZ} \yn = \sup_{\YZ} \frac{\nz\yz + n\bar{x}}{\nz + n} = \frac{\nz\yzu + n\bar{x}}{\nz + n}\,.
 \end{align}
 The lower (upper) posterior expectation of $\mu$ is thus a weighted average of the lower (upper) prior expectation and the sample mean,
 with weights $\nz$ and $n$, respectively.
@@ -415,23 +424,24 @@ should be based on parameter sets of the form
 as \textcite[\S 5.4.3]{1991:walley} had already implemented for the Beta-Binomial model.
 Then, \eqref{eq:qdc-ynl} and \eqref{eq:qdc-ynu} become
 \begin{align*}
-\ynl &= \begin{cases} \dfrac{\nzu\yzl + n\bar{\x}}{\nzu + n} & \bar{\x} \geq \yzl \\[2ex]
-                      \dfrac{\nzl\yzl + n\bar{\x}}{\nzl + n} & \bar{\x} <    \yzl \end{cases}\,, &
-\ynu &= \begin{cases} \dfrac{\nzu\yzu + n\bar{\x}}{\nzu + n} & \bar{\x} \leq \yzu \\[2ex]
-                      \dfrac{\nzl\yzu + n\bar{\x}}{\nzl + n} & \bar{\x} >    \yzu \end{cases}\,.
+\ynl &= \begin{cases} \dfrac{\nzu\yzl + n\bar{x}}{\nzu + n} & \bar{x} \geq \yzl \\[2ex]
+                      \dfrac{\nzl\yzl + n\bar{x}}{\nzl + n} & \bar{x} <    \yzl \end{cases}\,, &
+\ynu &= \begin{cases} \dfrac{\nzu\yzu + n\bar{x}}{\nzu + n} & \bar{x} \leq \yzu \\[2ex]
+                      \dfrac{\nzl\yzu + n\bar{x}}{\nzl + n} & \bar{x} >    \yzu \end{cases}\,.
 \end{align*}
-If $\yzl < \bar{\x} < \yzu$, both $\ynl$ and $\ynu$ are calculated using $\nzu$;
-when $\bar{\x}$ falls into $[\yzl, \yzu]$, the range of prior expectations for the mean,
+If $\yzl < \bar{x} < \yzu$, both $\ynl$ and $\ynu$ are calculated using $\nzu$;
+when $\bar{x}$ falls into $[\yzl, \yzu]$, the range of prior expectations for the mean,
 prior information gets maximal weight $\nzu$ in the update step \eqref{eq:canonicalupdate},
 leading to the same results as for a model with fixed $\nz = \nzu$.
-If, however, $\bar{\x} < \yzl$, then $\ynl$ is calculated using $\nzl$,
+If, however, $\bar{x} < \yzl$, then $\ynl$ is calculated using $\nzl$,
 giving less weight to the prior information that turned out to be in conflict with the data.
-Thus, as $\ynl$ is a weighted average of $\yzl$ and $\bar{\x}$, with weights $\nz$ and $n$, respectively,
-$\ynl$ will be lower (nearer towards $\bar{\x}$) as compared to an update using $\nzu$,
-resulting in increased imprecision $\Delta_y(\PN)$ compared to the situation with $\yzl < \bar{\x} < \yzu$.
-In the same way, there is additional imprecision $\Delta_y(\PN)$ if $\bar{\x} > \yzu$.%
-\footnote{In the above, $\bar{\x}$ can be replaced by $\ttau(\x)$
-to hold for canonical priors \eqref{eq:canonicalprior} in general.}
+Thus, as $\ynl$ is a weighted average of $\yzl$ and $\bar{x}$, with weights $\nz$ and $n$, respectively,
+$\ynl$ will be lower (nearer towards $\bar{x}$) as compared to an update using $\nzu$,
+resulting in increased imprecision $\Delta_y(\PN)$ compared to the situation with $\yzl < \bar{x} < \yzu$.
+In the same way, there is additional imprecision $\Delta_y(\PN)$ if $\bar{x} > \yzu$.%
+\footnote{In the above, $\bar{x}$ can be replaced by $\ttau(\x)$
+to hold for canonical priors \eqref{eq:canonicalprior} in general.
+See Section~\ref{sec:4-gw-071216} for an definition in general terms.}
 
 Indeed, \eqref{eq:deltay} can then be written as
 \begin{align*}
@@ -465,7 +475,9 @@ where prior-data conflict is operationalised as $\ttau(\x) \notin \YZ$.
 There is no such direct mechanism for a gain in precision when prior and data information coincide especially well.
 However, $\YZ$ could be chosen relatively small such that it mirrors this situation,
 considering as the neutral situation $\ttau(\x)$ being not too far away from $\YZ$,
-and taking as prior-data conflict situations when $\ttau(\x)$ is in a greater distance to $\YZ$.
+and taking as prior-data conflict situations when $\ttau(\x)$ is in a greater distance to $\YZ$.%
+\footnote{See also Section~\ref{sec:insights} for this idea.}
+***link to boatshape material in outlook?***
 
 As mentioned in Section~\ref{sec:basicsetting}, page~\pageref{enum:rectangular},
 the parameter set $\PN$ resulting from updating $\PZ$ as in \eqref{equ:rectparamset}
@@ -484,14 +496,15 @@ On close inspection, a rectangular shape for $\PZ$ may not be appropriate in man
 One could, e.g., argue that the $\yz$ interval should be narrower at $\nzl$ than at $\nzu$,
 because we might be able to give quite a precise $\yz$ interval for a low prior strength $\nzl$,
 whereas for a high prior strength $\nzu$, we should be more cautious with our elicitation of $\yz$ and thus give a wider interval;
-interestingly, one could also argue the other way round based on similarly convincing arguments.****isipta'11??***
+interestingly, one could also argue the other way round based on similarly convincing arguments.%
+\footnote{See, e.g., the rationale discussed at the beginning of Section~\ref{sec:othershapes}.}
 To fully specify $\PZ$ along these lines,
 lower and upper bounds for $\yz$ must be given for all intermediate values of $\nz$ between $\nzl$ and $\nzu$,
 e.g., by some functional form $\yzl(\nz)$ and $\yzu(\nz)$.
 The choice of such general forms is not straightforward,
 as it may heavily influence the posterior inferences,
 and it may be very difficult to elicit as a whole.
-One such choice is discussed in Section~**** / \textcite{Walter2011a} for the Binomial case,
+One such choice is discussed in Section~\ref{sec:isipta11} \parencite{Walter2011a} for the Binomial case,
 developed with the intention to create a smoother reaction to prior-data conflict than in the model with rectangle $\PZ$.
 
 In summary, there is a trade-off between easy description and handling of $\PZ$ on one side,
@@ -504,7 +517,9 @@ It is, however, insensitive to prior-data conflict.
 \item The model by \textcite{Walter2009a} is sensitive to prior-data conflict,
 but this advantage is payed for by a more complex description of $\PN$.
 \item More general set shapes $\PZ \subset \reals_{>0} \times \Y$ are possible,
-but may be difficult to elicit and complex to handle.
+but may be difficult to elicit and complex to handle.%
+\footnote{For an example see, as mentioned above, the work in Section~\ref{sec:isipta11}, specifically in Section~\ref{sec:othershapes},
+or, alternatively, ***boatshape material***.}
 \end{itemize}
 
 To conclude, when substantial prior information is available, that, however,
@@ -512,17 +527,18 @@ is not permitting the identification of a single prior distribution,
 imprecise probability models allow for adequate modeling of partial information and prior-data conflict sensitivity,
 and will ultimately result in more reliable inferences.
 
+\medskip
 
 ***from \textcite[\S 4.4]{itip-statinf}:\\
 As a direct extension of the models discussed in Section~\ref{sec:generalmodel},
 it may be stressed that their central properties rely on the specific form of the update step \eqref{eq:canonicalupdate} only.
-Thus, they can be generalized to settings that are not based on i.i.d.\ observations from canonical exponential family distributions,
+Thus, they can be generalised to settings that are not based on i.i.d.\ observations from canonical exponential family distributions,
 but nevertheless follow the same update step.
-This is elaborated in Section~**** \parencite{Walter2009a} by the definition of so-called LUCK-models,
-which were already used in \textcite{Walter2007a} to generalize Bayesian linear regression.
+This is elaborated in Section~\ref{sec:jstp} \parencite{Walter2009a} by the definition of so-called LUCK-models,
+which were already used in \textcite{Walter2007a} to generalise Bayesian linear regression.
 
 
-****more on parameter set shapes? refer to ISIPTA'11 and boatshape sections****
+****more on parameter set shapes? refer to boatshape material****
 
 
 

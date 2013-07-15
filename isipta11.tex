@@ -1035,6 +1035,105 @@ account, but it provides flexibility with regard to the relative
 importance given to the individual models.
 
 
+\subsection{Insights and Challenges}
+\label{sec:insights}
+
+We have discussed two different classes of inferential
+methods to handle \pdc\ in the Bernoulli case. These can be
+generalised to the multinomial case corresponding to the IDM.
+It also seems possible to extend the approaches to continuous sampling models like the normal
+or the gamma distribution, by utilizing the fact that the basic form
+of the updating of $\nz$ and $\yz$ in
+\eqref{equ:update-nn-yn-precise} underlying \eqref{equ:General-Pl}
+and \eqref{equ:General-Pu} is valid for arbitrary canonical
+exponential families \parencite[see][and Section~\ref{sec:generalmodel}]{2005:quaeghebeurcooman,Walter2009a}.
+Further insight into the weighting method may also be provided by
+comparing it to generalised Bayesian analysis based on sets of
+conjugate priors consisting of nontrivial mixtures of two Beta
+distributions. There, however, the posterior mixture parameter depends
+on the other parameters.
+%It is also interesting to investigate the application of
+%our methods with coarse data, in an analogous way to \cite{UtkinAugustin1:2007}
+%and \cite{TroffaesCoolen2009}, which may provide further insights into
+%prior-data conflict. ***Text von Thomas zu contamination***
+For a deeper understanding of prior-data conflict, it may also be helpful
+to extend our methods to coarse data, in an analogous way to \textcite{2007:utkinaugustin} and
+\textcite{2009:Troffaes:Coolen}, and to look at other model classes of prior distributions, most
+notably at contamination neighbourhoods. Of particular interest here may
+be to combine both types of prior models, considering contamination
+neighbourhoods of our exponential family based-models with sets of
+parameters, as developed in the Neyman-Pearson setting by
+\textcite[\S~5]{2002:augustin}.
+
+The models presented here address \pdc\
+in different ways, either by fully utilizing the prior information in a way that is close to the
+traditional Bayesian method, where this information is added to data
+information, or by not including them initially as in
+Section~\ref{sec:weightedinf}. All these models show the desired increase of
+imprecision in case of prior-data conflict. It may be of
+interest to derive methods that explicitly respond to (perhaps
+surprisingly) strong prior-data agreement. ***link to boatshape material in outlook***
+One possibility to achieve this with the methods presented here is to
+consider the TPDA as this situation of strong agreement in which one wants
+imprecision reduced further than compared to an `expected'
+situation, and to choose the prior set (Section~\ref{sec:ibbm}) or the two
+inferential models (Section~\ref{sec:weightedinf}) in such a way to create this effect.
+This raises interesting questions for elicitation, but both approaches
+provide opportunities for this and we consider it as an important topic for further
+study. %, which we also expect will suggest useful generalizations of these methods.
+
+Far beyond further extensions %along these lines,
+one has, from the foundational point of view, to be aware that there are
+many ways in which people might react to prior-data conflict, and we
+may perhaps at best hope to catch some of these in a specific
+model and inferential method.
+This is especially important when the conflict is very strong, and
+indeed has to be considered as full contradiction of modeling
+assumptions and data, which may lead to a revision of the whole
+system of background knowledge in the light of surprising
+observations, as Hampel argues.\footnote{See in particular the discussion of the
+structure and role of background knowledge in \textcite{2009:hampel:knowledge}.}
+In this context applying the weighting approach to the NPI-based model
+for categorical data \parencite{2009:Coolen:Augustin} may provide some
+interesting opportunities, as it explicitly allows to consider not yet observed and
+even undefined categories \parencite{2005:Coolen:Augustin}.
+
+There is another intriguing way in which one may react to prior-data
+conflict, namely by considering the combined information to be of
+less value than either the real data themselves or than both
+information sources. Strong prior beliefs about
+a high success rate could be strongly contradicted by data, as such
+leading to severe doubt about what is actually going on. The increase of
+imprecision in case of \pdc\ in the methods presented in this paper
+might be interpreted as reflecting this, but there may be other
+opportunities to model such an effect. It may be possible to link these
+methods to some popular approaches in frequentist statistics, where some robustness
+can be achieved or where variability of inferences can be studied by
+%effectively deleting some of the real observations.%
+%deleting some of the real observations in turns. %
+round robin deletion of some of the real observations. %
+This idea may open up interesting research challenges for imprecise probability
+models, where the extent of data reduction could perhaps be
+related to the level of prior-data conflict. Of course, such
+approaches would only be of use in situations with substantial
+amounts of real data, but as mentioned before, these are typically
+the situations where prior-data conflict is most likely to be of
+sufficient relevance to take its modelling seriously. As (imprecise,
+generalised) Bayesian methods all work essentially by \emph{adding}
+information to the real data, it is unlikely that such new methods
+can be developed within the Bayesian framework, although there may
+be opportunities if one restricts the inferences to situations where
+one has at least a pre-determined number of observations to ensure
+that posterior inferences are proper. For example, one could
+consider allowing the prior strength parameter
+$\nz$ in the IBBM to take on negative values, opening up a rich
+field for research and discussions.
+
+
+\subsection*{Acknowledgements}%\vspace*{-1.0ex}%
+
+We thank the referees for very helpful comments.
+
 
 
 

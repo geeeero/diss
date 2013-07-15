@@ -145,6 +145,489 @@ canonical exponential families. ***leave this out here??***}
 %$\Pu(S^* = 1\mid s) = \max_{(\nn, \yn) \in \PN} \yn$.
 
 
+\subsubsection{Walley's pdc-IBBM}
+\label{sec:ibbm-walley}
+
+Special imprecise probability models are now obtained by specific
+choices of $\PZ$. If one fixes $\nz$ and varies $\yz$ in an interval $[\yzl,\yzu]$,
+Walley's \parencite*[\S 5.3]{1991:walley} model with learning parameter $\nz$ is obtained, which typically
+is used in its near-ignorance form $[\yzl, \yzu] \to (0,1)$,
+denoted as the imprecise Beta (Binomal/Bernoulli) model (IBBM)%
+\footnote{We use `IBBM' also for the model with prior information.},
+which is a special case of the popular Imprecise Dirichlet (Multinomial) Model
+\parencite{1996:walley::idm,1999:walleybernard}. Unfortunately, in this basic form with fixed $\nz$, the model is
+insensitive to prior-data conflict \parencite[p.~263]{Walter2009a} ****.
+\textcite[\S 5.4]{1991:walley} therefore generalised this
+model by additionally varying $\nz$. In his extended model,
+called \emph{pdc-IBBM} in this ***paper***, the set of priors is defined via the
+set of prior parameters $\PZ = [\nzl, \nzu] \times [\yzl, \yzu]$,
+being a two-dimensional interval, or a rectangle set.
+Studying inference in this model, it is important to note that the set of posterior parameters
+%$\PN = \{(\nn,\yn) \mid [\nzl, \nzu] \times [\yzl, \yzu]\}$
+%$\PN = \{(\nn,\yn) \mid (\nz, \yz) \in \PZero\}$ defining the set
+%of ***vertex*** posterior distributions is not rectangular anymore.
+$\PN$ is not rectangular anymore. The resulting shapes are illustrated in Figure~\ref{fig:spot-banana}: For the
+prior set $\PZ = [1, 5 ] \times  [0.4, 0.7]$---thus assuming a priori the
+fraction of successes to be between 40\% and 70\% and rating these assumptions
+with at least $1$ and at most $5$ pseudo observations---the resulting posterior parameter sets $\PN$
+are shown for data consisting of 3 successes in 6 draws (left) and with all 6 draws successes (right). %***TPDA***. On the right, ***PDC***.
+We call the left shape \emph{spotlight}, and the right shape
+\emph{banana}. In both graphs, the elements of $\PN$ yielding
+%the minimal and maximal $\yn$, $\ynl = \LE[p\mid s]$ and $\ynu = \UE[p\mid s]$,
+$\ynl$ and $\ynu$, and thus $\Pl$ and $\Pu$,
+are marked with a circle.
+
+%\begin{verbatim}
+\begin{figure}[t]
+\begin{tikzpicture}
+%\pgftransformscale{0.475}
+\pgftransformscale{0.04}
+%\include{simpleEx.tex}
+\input{fig/spotbanana.tex}
+%
+\end{tikzpicture}
+\caption{Posterior parameter sets $\PN$ for rectangular $\PZ$. Left: \emph{spotlight} shape; right: \emph{banana} shape.}
+\label{fig:spot-banana}
+\end{figure}
+%\end{verbatim}
+
+The transition point between the \emph{spotlight} and the \emph{banana} shape in Figure~\ref{fig:spot-banana}
+is the case when $\frac{s}{n} = \yzu$. Then $\ynu$, being a weighted average
+of $\yzu$ and $\frac{s}{n}$, is attained for all $\nz \in [\nzl, \nzu]$,
+and the top border of $\PN$ in the graphical representation of Figure~\ref{fig:spot-banana} is constant.
+Likewise, $\ynl$ is constant if $\frac{s}{n} = \yzl$.
+Therefore, \eqref{equ:General-Pl} and \eqref{equ:General-Pu} can be subsumed as
+\begin{align*}
+\Pl &= \begin{cases} \frac{\nzu\yzl + s}{\nzu + n} & \text{if } s \geq n \cdot \yzl =: S_1 \\[2ex]
+                     \frac{\nzl\yzl + s}{\nzl + n} & \text{if } s \leq n \cdot \yzl =: S_1\end{cases}\,, \\[2ex]
+\Pu &= \begin{cases} \frac{\nzu\yzu + s}{\nzu + n} & \text{if } s \leq n \cdot \yzu =: S_2 \\[2ex]
+                     \frac{\nzl\yzl + s}{\nzl + n} & \text{if } s \geq n \cdot \yzu =: S_2 \end{cases}\,.
+\end{align*}
+The interval $[S_1, S_2]$ gives the range of expected successes $[n \cdot \yzl, n \cdot \yzu]$ and
+will be called `Total Prior-Data Agreement' interval, or TPDA. For $s$ in the TPDA,
+%For the observed number of successes $s$ within the range of expected successes $[n \cdot \yzl, n \cdot \yzu]$,
+we are `spot on': $\ynl$ and $\ynu$ are attained for $\nzu$ and $\PN$ has the \emph{spotlight} shape.
+But if the observed number of successes is outside TPDA, %the range of expected successes,
+$\PN$ goes \emph{bananas} and either $\Pl$ or $\Pu$
+%(resulting from updating the one of $\yzl$ and $\yzu$ being nearer to $\frac{s}{n}$***)
+is calculated with $\nzl$. %attained for $\nzl$.
+
+\begin{figure}%[h]
+\centering %
+\begin{tikzpicture}
+%\pgftransformscale{0.475}
+\pgftransformscale{0.8}
+\draw[thick] (15,10) -- (0,10) node[left] {\small 1} -- (0,0) node[left] {\small 0} node[below] (Zero) {\small 0} -- node[below,pos=0.3] {\tikz\draw[-stealth,thick] (0,0) -- (1,0) node[right] {\small $s$};} (15,0) -- cycle; %node[below] {n}
+\node[node distance=11.6, base right=of Zero] {\small n};
+\coordinate (A) at (0,1);
+\coordinate (B) at (0,4.5);
+\foreach \point in {A, B}
+ \draw[fill] (\point) node[left] {\small $\point$} circle (2pt) ;
+%\coordinate (sini) at (0,6);
+\coordinate (S1) at (8,0);
+\coordinate (S2) at (10,0);
+\foreach \point/\name in {S1/S_1, S2/S_2}
+ \draw[dashed] (\point) node[below] {\small $\name$} -- ++(0,10);
+%
+\coordinate (El) at ($(S1) + (0,5)$);
+\coordinate (Fu) at ($(S2) + (0,6.5)$);
+\coordinate (C) at ($(El) + (7,7/5)$);
+\coordinate (D) at ($(Fu) + (5,2.5)$);
+\foreach \point in {C, D}
+ \draw[fill] (\point) node[right] {\small $\point$} circle (2pt) ;
+%
+\coordinate (Eu) at ($(B)!{8/10}!(Fu)$);
+\foreach \point/\name in {El/E_1, Eu/E_2}
+ \draw[fill] (\point) node[above  left=-3pt and -2pt] {\small $\name$} circle (2pt) ;
+\coordinate (Fl) at ($(El)!{2/7}!(C)$);
+\foreach \point/\name in {Fl/F_1, Fu/F_2}
+ \draw[fill] (\point) node[below right=-3pt and -2pt] {\small $\name$} circle (2pt) ;
+%
+%\draw (B) -- (Fu) -- (D);
+%\draw (A) -- (El) -- (C);
+\draw (B) -- node[sloped,below] {\small sl.~1} (Eu) -- node[sloped,above,pos=0.55] {\small sl.~1} (Fu) -- node[sloped,above] {\small sl.~2} (D);
+\draw (A) -- node[sloped,below] {\small sl.~2} (El) -- node[sloped,below,pos=0.45] {\small sl.~1} (Fl) -- node[sloped,above] {\small sl.~1} (C);
+\end{tikzpicture}
+%\caption{***error***}
+%\caption{$\Pl$ and $\Pu$ for models in Sections~*** }% \ref{sec:ibbm-walley} and \ref{sec:othershapes}.}
+\caption{%$\Pl$ and %$\Pu$
+Lower and upper predictive probability of success
+for models in Sections~\ref{sec:ibbm-walley} and \ref{sec:othershapes}.}
+\label{fig:priorset-generic}
+\end{figure}
+
+To summarise, the predictive probability plot (PPP),
+displaying $\Pl$ and $\Pu$ for $s \in [0, n]$,
+is given in Figure~\ref{fig:priorset-generic}.
+For the pdc-IBBM, the specific values are
+\begin{align*}
+S_1 &= n\yzl &
+A   &= \frac{\nzl \yzl}{\nzl + n} & 
+C   &= \frac{\nzu \yzl + n}{\nzu + n} \\
+S_2 &= n\yzu &
+B   &= \frac{\nzu \yzu}{\nzu + n} & 
+D   &= \frac{\nzl \yzu + n}{\nzl + n} \\
+E_1 &= \yzl &
+E_2 &= \frac{\nzu \yzu + n \yzl}{\nzu + n} &
+\text{sl.~1} &= \frac{1}{\nzu + n} \\
+F_2 &= \yzu &
+F_1 &= \frac{\nzu \yzl + n \yzu}{\nzu + n} &
+\text{sl.~2} &= \frac{1}{\nzl + n} \,.
+\end{align*}
+As noted by \textcite[p.~224]{1991:walley}, the posterior predictive imprecision $\Delta = \Pu - \Pl$ can be calculated as
+\begin{align*}
+\Delta &= \frac{\nzu (\yzu - \yzl)}{\nzu + n} + \frac{\nzu - \nzl}{(\nzl + n)(\nzu + n)} \Delta(s, \PZ)\,,
+\end{align*}
+where $\Delta(s, \PZ) = \inf\{ |s - n \yz| : \yz \in [\yzl, \yzu] \}$ is the distance of
+$s$ to the TPDA.
+If $\Delta(s, \PZ) \neq 0$, we have an effect of additional imprecision as desired,
+increasing linearly in $s$, because $\PN$ is going \emph{bananas}.
+However, when considering the fraction of observed successes instead
+of $s$, the onset of this additional imprecision immediately if
+$\frac{s}{n} \not\in [\yzl, \yzu]$ seems very abrupt. Moreover, and even more severe,
+it happens irrespective of the number of trials $n$. When updating successively, this means that all single
+Bernoulli observations, being either $0$ or $1$, have to be treated as if being in conflict
+(except if $\yzu = 1$ and $s=n$ or if $\yzl = 0$ and $s=0$). Furthermore, regarding $s/n = 7/10$ %the observation of 7 out of 10 trials
+as an instance of \pdc\ when $\yzu = 0.6$ had been assumed seems somewhat picky.
+To explore possibilities to amend this behaviour, alternative
+approaches are explored next.
+
+
+\subsubsection{\emph{Anteater} Shape Prior Sets}
+\label{sec:othershapes}
+
+Choosing a two-dimensional interval $\PZ$ seems logical,
+but the resulting inference is not fully satisfactory in case of prior data conflict.
+Recall that $\PZ$ is used to produce $\MZ$, %****the set of prior distributions***,
+which then is processed by the Generalised Bayes rule. Any shape can be chosen for $\PZ$,
+including the composure of single pairs $(\nz, \yz)$. %In this Section, 
+Here, we investigate
+an alternative shape, with $\yz$ a function of $\nz$, aiming at a more advanced behaviour in the case of \pdc.
+To elicit $\PZ$, one could consider a thought experiment:%
+\footnote{This strategy is also known as `pre-posterior' analysis in the Bayesian literature.}
+Given the hypothetical observation of $s^h$ successes in $n^h$ trials,
+which values should $\Pl$ and $\Pu$ take? In other words, what
+would one like to learn from data $s^h/n^h$ in accordance with
+prior beliefs? As a simple approach, we can define $\PZ$ such
+that $\Pl = \cl$ and $\Pu = \cu$ are constants in $\nn = \nz + n^h$.
+Then, the lower and upper bounds for $\yz$ must be %\vspace*{-0.5ex}
+\begin{equation} \label{equ:anteater-y0}
+\begin{aligned}
+&
+\yzl(\nz) &= \frac{(n^h + \nz)\cl - s^h}{\nz}\,, \\
+%\yzl(\nz) &= \big((n^h + \nz)\cl - s^h\big)/\nz\,, \\
+&
+\yzu(\nz) &= \frac{(n^h + \nz)\cu - s^h}{\nz}\,,
+%\yzu(\nz) &= \big((n^h + \nz)\cu - s^h\big)/\nz\,,
+\end{aligned}
+\end{equation}
+%for $\nz$ in an interval $[\nzl, \nzu]$ that must be elicited as well.
+for $\nz$ in an interval $[\nzl, \nzu]$ derived by the range $[\nnl, \nnu]$ one wishes to attain for $\Pl$ and $\Pu$
+given the $n^h$ hypothetical observations.%
+\footnote{For the rest of the ***paper***, we tacitly assume that $n^h$, $s^h$, $\nz$ and $\cl$/$\cu$
+are chosen such that $\yzl \geq 0$ resp.\ $\yzu \leq 1$ to generate Beta distributions as priors.}
+% or by its own right as prior range of confidence.
+The resulting shape of $\PZ$ is as in Figure~\ref{fig:anteater-ex1} (left) and called \emph{anteater} shape.
+%
+\begin{figure}%[h]
+\begin{tikzpicture}
+%\pgftransformscale{0.475}
+\pgftransformscale{0.04}
+%\include{simpleEx.tex}
+\input{fig/anteater1a.tex}
+%
+\end{tikzpicture}
+\caption{ $\PZ$ and $\PN$ for the \emph{anteater} shape.}
+\label{fig:anteater-ex1}
+\end{figure}
+%
+Rewriting \eqref{equ:anteater-y0}, $\PZ$ is now defined by %\vspace*{-1ex}
+%\begin{multline*}
+\begin{align*}
+%\{ (\nz, \yz) \mid \nz &\in [\nzl, \nzu],\,\\
+%                   \yz &\in [ \cl - \frac{n^h}{\nz}\Big(\frac{s^h}{n^h} - \cl\Big),
+%                              \cu + \frac{n^h}{\nz}(\cu -\frac{s^h}{n^h})  ] \}\,,
+%\hspace*{-2ex}%
+\PZ &= 
+\Big\{ \Big. (\nz, \yz) \,\Big|\, \nz \in [\nzl, \nzu],\, %\\
+%\hspace*{3ex}     
+                  \yz(\nz) \in \Big[ \cl - \frac{n^h}{\nz}\Big(\frac{s^h}{n^h} - \cl\Big),\,
+                                     \cu + \frac{n^h}{\nz}\Big(\cu - \frac{s^h}{n^h}\Big)  \Big] \Big\}\,.
+\end{align*}
+%\end{multline*}
+With the reasonable choice of $\cl$ and $\cu$ such that $\cl \leq s^h/n^h \leq \cu$,
+$\PZ$ can be interpreted as follows: The range of $\yz$
+protrudes over $[\cl, \cu]$
+on either side far enough to ensure $\Pl = \cl$ and $\Pu = \cu$ if
+updated with $s = s^h$ for $n = n^h$, the amount of protrusion
+decreasing in $\nz$ as the movement of $\yz(\nz)$ towards $s^h/n^h$ is slower
+for larger values of $\nz$. As there is a considerable difference in behaviour if
+$n > n^h$ or $n < n^h$, these two cases are discussed separately.
+
+If $n > n^h$, the PPP graph in Figure~\ref{fig:priorset-generic}
+holds again, now with the values
+\begin{align*}
+A   &= \frac{\cl (\nzl + n^h) - s^h}    {\nzl + n} & % \frac{\nzl \yzl}{\nzl + n} &
+S_1 &= s^h + \cl (n - n^h) \\ % n\yzl &
+B   &= \frac{\cu (\nzu + n^h) - s^h}    {\nzu + n} & % \frac{\nzu \yzu}{\nzu + n} \\
+S_2 &= s^h + \cu (n - n^h) \\ % n\yzu \\
+%\end{align*}%\vspace*{-4ex}
+%\begin{align*}
+C   &= \frac{\cl (\nzu + n^h) - s^h + n}{\nzu + n} & % \frac{\nzu \yzl + n}{\nzu + n} &
+\text{sl.~1} &= 1/(\nzu + n) \\
+D   &= \frac{\cu (\nzl + n^h) - s^h + n}{\nzl + n} &  % \frac{\nzl \yzu + n}{\nzl + n} \\
+\text{sl.~2} &= 1/(\nzl + n)
+%\text{sl.~1} &= \frac{1}{\nzu + n} &
+%\text{sl.~2} &= \frac{1}{\nzl + n}
+\end{align*}%\vspace*{-4ex}
+\begin{align*}
+E_1 &= \cl &
+E_2 &= \cl + \frac{\nzu + n^h }{\nzu + n} (\cu - \cl) %&
+     = \cu - \frac{ n   - n^h }{\nzu + n} (\cu - \cl) \\ % \frac{\nzu \yzu + n \yzl}{\nzu + n} \\
+F_2 &= \cu &
+F_1 &= \cu - \frac{\nzu + n^h }{\nzu + n} (\cu - \cl) %&
+     = \cl + \frac{ n   - n^h }{\nzu + n} (\cu - \cl) \,.% \frac{\nzu \yzl + n \yzu}{\nzu + n} &
+\end{align*}
+As for the pdc-IBBM, the TPDA boundaries $S_1$ and $S_2$ mark the transition points
+where either $\ynl$ or $\ynu$ are constant in $\nz$. We now have
+\begin{align*}
+\frac{S_1}{n} &= \cl + \frac{n^h}{n}\Big( \frac{s^h}{n^h} - \cl \Big), &
+\frac{S_2}{n} &= \cu - \frac{n^h}{n}\Big( \cu - \frac{s^h}{n^h} \Big),
+\end{align*}
+so this TPDA is a subset of $[\cl, \cu]$. The \emph{anteater}
+shape is, for $n>n^h$, even more strict than the pdc-IBBM, as, e.g.,
+$\yzl(\nzu) = \cl - \frac{n^h}{\nzu}\big( \frac{s^h}{n^h} - \cl \big) < \frac{S_1}{n}$.
+
+
+The situation for $n < n^h$ is illustrated in Figure~\ref{fig:anteater-nsmall},
+where $A$, $B$, $C$, $D$, $E_1$, $F_2$ and slopes 1 and 2 are the same as for $n > n^h$, but
+\begin{align*}
+E_2 &= \cl + \frac{\nzl + n^h }{\nzl + n} (\cu - \cl) %&
+     = \cu + \frac{ n^h - n   }{\nzl + n} (\cu - \cl) \,,\\ % \frac{\nzu \yzu + n \yzl}{\nzu + n} \\
+F_1 &= \cu - \frac{\nzl + n^h }{\nzl + n} (\cu - \cl) %&
+     = \cl - \frac{ n^h - n   }{\nzl + n} (\cu - \cl) \,.%    \frac{\nzu \yzl + n \yzu}{\nzu + n} &
+\end{align*}
+Note that now $S_2<S_1$, so the TPDA is $[S_2, S_1]$. In this interval, $\Pl$ and $\Pu$ are now
+calculated with $\nzl$; for $s \not\in [S_2, S_1]$ the same situation
+as for $n > n^h$ applies, with the bound nearer to $s/n$
+calculated with $\nzl$ and the other with $\nzu$.
+
+\begin{figure}%[h]
+\centering %
+\begin{tikzpicture}
+\pgftransformscale{0.8}
+%\pgftransformscale{0.475}
+\draw[thick] (15,10) -- (0,10) node[left] {\small 1} -- (0,0) node[left] {\small 0} node[below] (Zero) {\small 0} -- node[below,pos=0.3] {\tikz\draw[-stealth,thick] (0,0) -- (1,0) node[right] {\small $s$};} (15,0) -- cycle; %node[below] {n}
+\node[node distance=11.6, base right=of Zero] {n};
+\coordinate (S2) at (8,0);
+\coordinate (S1) at (10,0);
+\foreach \point/\name in {S1/S_1, S2/S_2}
+ \draw[dashed] (\point) node[below] {\small $\name$} -- ++(0,10);
+\coordinate (A) at (0,0.5);
+\coordinate (El) at ($(S1) + (0,5.5)$);
+\coordinate (C) at ($(El) + (5,1)$);
+\coordinate (Fl) at ($(A)!{8/10}!(El)$);
+%
+\coordinate (D) at (15,9.5);
+\coordinate (Fu) at ($(S2) + (0,6)$);
+\coordinate (B) at ($(Fu) + (-8,-8/5)$);
+\coordinate (Eu) at ($(Fu)!{2/7}!(D)$);
+%
+\draw[fill] (A) node[above left=-3pt and 0pt] {\small $A$} circle (2pt) ;
+\draw[fill] (B) node[left] {\small $B$} circle (2pt) ;
+\foreach \point in {C, D}
+ \draw[fill] (\point) node[right] {\small $\point$} circle (2pt) ;
+\foreach \point/\name in {El/E_1, Eu/E_2}
+ \draw[fill] (\point) node[below right=-3pt and -2pt] {\small $\name$} circle (2pt) ;
+\foreach \point/\name in {Fl/F_1, Fu/F_2}
+ \draw[fill] (\point) node[above  left=-3pt and -2pt] {\small $\name$} circle (2pt) ;
+\draw (B) -- node[sloped,below] {\small sl.~1} (Fu) -- node[sloped,above,pos=0.55] {\small sl.~2} (Eu) -- node[sloped,above] {\small sl.~2} (D);
+\draw (A) -- node[sloped,below] {\small sl.~2} (Fl) -- node[sloped,below,pos=0.45] {\small sl.~2} (El) -- node[sloped,above] {\small sl.~1} (C);
+\end{tikzpicture}
+\caption{%$\Pl$ and $\Pu$
+Lower and upper predictive probability of success
+for the \emph{anteater} shape if $n < n^h$.}
+\label{fig:anteater-nsmall}
+\end{figure}
+%
+%
+
+\begin{figure}[h]
+\begin{tikzpicture}
+%\pgftransformscale{0.475}
+\pgftransformscale{0.04}
+%\include{simpleEx.tex}
+\input{fig/anteater2a.tex}
+\draw[-stealth, thick] (70,115) -- (180,115);
+%\draw (0,0) rectangle (400, 220);
+%
+\end{tikzpicture}
+\caption{Posterior parameter sets $\PN$ for \emph{anteater} prior sets $\PZ$.
+Left: the transition point where %$\ynl$
+the lower contour of the posterior parameter set 
+is attained for all $\nn$, right: the \emph{banana} shape.}
+\label{fig:anteater-ex2}
+\end{figure}
+
+
+
+%The case of $n < n^h$ seems the most useful,
+%Considering the upper switch point $S_1$ (analogue findings hold for $S_2$),
+The upper transition point $S_1$ can now be between $\yzu(\nzl)$ and $\yzu(\nzu)$, and having
+$S_1$ decreasing in $n$ now makes sense: the smaller $n$, the larger $S_1$, i.e.\
+the more tolerant is the \emph{anteater} set.
+The switch over $S_1$ (with $s/n$ increasing)
+%The switch over the upper transition point $S_1$ (with $s/n$ increasing) \com{in the case of $n < n^h$}
+is illustrated in the three graphs
+in Figures~\ref{fig:anteater-ex1} (right) and \ref{fig:anteater-ex2} (left, right):
+First, $\PZ$ from Figure~\ref{fig:anteater-ex1} (left) is updated with
+$s/n = 3/6 < S_1/n$, leading again to an \emph{anteater} shape, %\com{ (albeit less pronounced)},
+%($\PN$ would retain the \emph{anteater} shape only if $n < n^h$, and be rectangle with $n = n^h$ and $s = s^h$),
+and so we get $\Pl$ and $\Pu$ from the elements of $\PN$ at $\nnl$, as marked with circles.
+Second, the transition point is reached for $s = S_1 = 4.27$,
+and now $\Pl$ is attained for any $\nn \in [\nnl, \nnu]$, as emphasized by the arrow.
+Third, as soon as $s$ exceeds $S_1$ (in the graph: $s/n = 6/6$),
+it holds that $\ynl(\nnl) > \ynl(\nnu)$, and $\Pl$ is now attained at $\nnu$.
+As for the pdc-IBBM, for $s$ outside the TPDA $\PN$ goes \emph{bananas},
+leading to additional imprecision.
+The imprecision $\Delta = \Pu - \Pl$ if $n < n^h$ is
+\begin{align*}
+\Delta &= \frac{\nzl\! + n^h}{\nzl\! + n} (\cu - \cl) + \frac{\nzu - \nzl}{(\nzl\! + n)(\nzu\! + n)} \Delta(s, n, \vec{c}),
+\end{align*}
+where $\Delta(s, n, \vec{c}) = n \big|c^* - \frac{s}{n} \big| - n^h \big| c^* - \frac{s^h}{n^h} \big|$,
+and $c^* =  \arg\max_{c \in [\cl, \cu]} |\frac{s}{n} - c|$ is the boundary of $\vec{c} := [\cl, \cu]$ with the largest distance to $s/n$.
+For $s \in [S_2, S_1]$, $\Delta(s, n, \vec{c}) = 0$,
+giving a similar structure as for the pdc-IBBM, except that
+$\Delta(s, n,\vec{c})$ does not directly give the distance of $s/n$ to $\PZ$ but is based on $[\cl, \cu]$.
+The imprecision increases again linearly with $s$,
+but now also with $n$. The distance of $s/n$ to the opposite bound of $[\cl, \cu]$
+(weighted with $n$) is discounted by the distance of $s^h/n^h$ to the same bound
+(weighted with $n^h$). In essence, $\Delta(s, n, \vec{c})$ is thus a reweighted distance of $s/n$ to $s^h/n^h$.
+The more dissimilar these fractions are, the larger the posterior predictive imprecision is.
+
+% now again $n \geq n^h$:
+
+For $n = n^h$, $S_1 = S_2 = s^h$, so the TPDA is reduced to a single point. In this case, the \emph{anteater}
+shape can be considered as an equilibrium point,
+with any $s \neq s^h$ leading to increased posterior imprecision.
+In this case, the weights in $\Delta(s, n, \vec{c})$ coincide, and so
+the posterior imprecision depends directly on $|s-s^h|$.
+
+For $n > n^h$ the transition behaviour is as for the pdc-IBBM:
+As long as $s \in [S_1, S_2]$, $\PN$ has the \emph{spotlight} shape,
+where both $\Pl$ and $\Pu$ are calculated with $\nnu$; $\Delta$ for $s \in [S_1, S_2]$ is
+thus calculated with $\nnu$ as well.
+If, e.g.,\ $s > S_2$, $\Pu$ is attained with $\nnl$, and $\Delta(s, n, \vec{c})$
+gives directly the distance of $s/n$ to $s^h/n^h$, the part of which is
+inside $[\cl, \cu]$ is weighted with $n$, and the remainder with $n^h$.
+Table~\ref{tab:anteater-shapes} provides an overview of the possible shapes of $\PN$.
+
+%When instead $s \neq [S_2, S_1]$ (or $s \neq [S_1, S_2]$ if $n > n^h$),
+%$\PN$ is `going bananas' just as $\PN$ in the pdc-IBBM.
+%
+%***The posterior parameter set $\PN$ may have the following shapes:
+\begin{table}
+\centering
+\begin{tabular}{c|ccc}
+%          & $s \in$ \parbox{6ex}{left\\
+%                                 zone} & $s \in$ \parbox{6ex}{center\\
+%                                                              zone} & $s \in$ \parbox{6ex}{right\\
+%                                                                                           zone} \\
+%\hline
+%$n > n^h$ & \parbox{07ex}{\centering $s < S_1$\\
+%                          banana}      & \parbox{12ex}{\centering $s \in [S_1, S_2]$\\
+%                                                       spotlight}   & \parbox{07ex}{\centering $s > S_2$\\
+%                                                                                    banana} \\
+%\hline
+%$n = n^h$ & \parbox{07ex}{\centering $s < s^h$\\
+%                          banana}      & \parbox{12ex}{\centering $s = s^h$\\
+%                                                       rectangular} & \parbox{07ex}{\centering $s > s^h$\\
+%                                                                                    banana}\\
+%\hline
+%$n < n^h$ & \parbox{07ex}{\centering $s < S_2$\\
+%                          banana}      & \parbox{12ex}{\centering $s \in [S_2, S_1]$\\
+%                                                       anteater}    & \parbox{07ex}{\centering $s > S_1$\\
+%                                                                                    banana}
+\multirow{2}{*}{$n > n^h$} & $s < S_1$ & $s \in [S_1, S_2]$ & $s > S_2$ \\
+                           & banana    & spotlight          & banana \\
+\hline
+\multirow{2}{*}{$n = n^h$} & $s < s^h$ & $s = s^h$          & $s > s^h$ \\
+                           & banana    &  rectangular       &  banana \\
+\hline
+\multirow{2}{*}{$n < n^h$} & $s < S_2$ & $s \in [S_2, S_1]$ & $s > S_1$ \\
+                           & banana    & anteater           &  banana
+\end{tabular}
+\caption{Shapes of $\PN$ if $\PZ$ has the \emph{anteater} shape.}
+\label{tab:anteater-shapes}
+\end{table}
+
+
+\subsubsection{Intermediate R\'{e}sum\'{e}}
+\label{sec:ibbm-resume}
+
+%***also here two slopes, dead flamingo, other shapes possible.
+%conjecture: arbitrary number of slopes are possible with careful selection of shape:
+Despite the (partly) different behaviour inside the TPDA, both %the
+pdc-IBBM and the \emph{anteater} shape display only two different slopes in their PPPs
+(Figures~\ref{fig:priorset-generic} and \ref{fig:anteater-nsmall}),
+with either $\nnl$ or $\nnu$ used to calculate $\Pl$ and $\Pu$.
+It is possible to have shapes such that for some $s$ other
+values from $[\nnl, \nnu]$ are used. As a toy example, consider
+$\PZ = \{ (1, 0.4), (3, 0.6), (5, 0.4) \}$, so consisting only of
+three parameter combinations $(\nz, \yz)$. $\Pu$ is then derived
+as $\ynu = \max \{ \frac{0.4 + s}{1 + n}, \frac{1.8 + s}{3 + n}, \frac{2 + s}{5 + n} \}$,
+leading to
+\begin{align*}
+\ynu &= \begin{cases} \frac{0.4 + s}{1 + n} & \text{if }               s > 0.7 n + 0.3 \\
+                      \frac{1.8 + s}{3 + n} & \text{if } 0.1 n - 1.5 < s < 0.7 n + 0.3 \\
+                      \frac{2 + s}{5 + n}   & \text{if } s < 0.1 n - 1.5 \end{cases}\,.
+\end{align*}
+So, in a PPP %graph like Figure~\ref{fig:priorset-generic} or \ref{fig:anteater-nsmall},
+we would observe the three different slopes $1/(1+n)$, $1/(3+n)$ and $1/(5+n)$
+depending on the value of s. Our conjecture is therefore that with carefully tailored
+sets $\PZ$, an arbitrary number of slopes is possible, and so even smooth curvatures.
+Using a thought experiment as for the \emph{anteater} shape, $\PZ$ shapes can be derived to
+fit any required behaviour. Another approach for constructing a $\PZ$ that is more tolerant
+with respect to \pdc\ could be as follows: As the onset of additional
+imprecision in the pdc-IBBM is caused by the fact that $\ynu(\nnl) > \ynu(\nnu)$
+as soon as $s/n > \yzu$, we could define the $\yz$ interval at $\nzl$ %$[\yzl(\nzl), \yzu(\nzl)]$
+to be narrower than the $\yz$ interval at $\nzu$, %$[\yzl(\nzu), \yzu(\nzu)]$,
+so that the \emph{banana} shape results only when $s/n$ exceeds $\yzu(\nzu)$ far enough.
+Having a narrower $\yz$ interval at $\nzl$ than at $\nzu$ could also make
+sense from an elicitation point of view: We might be able
+to give quite a precise $\yz$ interval for a low prior strength $\nzl$,
+whereas for a high prior strength $\nzu$ we must be more cautious
+with our elicitation of $\yz$, i.e.\ giving a wider interval.
+The rectangular shape for $\PZ$ as discussed in
+Section~\ref{sec:ibbm-walley} seems thus somewhat peculiar. One
+could also argue that if one has substantial prior information, but
+acknowledges that this information may be wrong, one should not
+reduce the weight of the prior $\nz$ on the posterior while keeping
+the same informative interval of values of $\yz$.
+%the proportion of successes reflecting the prior information.
+
+Generally, the actual shape of a set $\PZ$ influences the inferences,
+but for a specific inference, only a few aspects of the set are relevant. So, while
+a detailed shape of a prior set may be very difficult to elicit, it may not
+even be that relevant for a specific inference. A further general issue seems unavoidable in the
+generalised Bayesian setting as developed here, namely the dual role of $\nz$. On the one
+hand, $\nz$ governs the weighting of prior information $\yz$ with
+respect to the data $s/n$, as mentioned in
+Section~\ref{sec:ibbm-framework}: The larger $\nz$, the more
+$\Pl$ and $\Pu$ are dominated by $\yzl$ and $\yzu$. On
+the other hand, $\nz$ governs also the degree of posterior
+imprecision: the larger $\nz$, the larger c.p.\ $\Delta$. A larger
+$\nz$ thus leads to more imprecise posterior inferences, although a
+high weight on the supplied prior information should boost the trust
+in posterior inferences if $s$ in the TPDA, i.e.\ the prior
+information turned out to be appropriate. In the next section,
+we thus develop a different approach separating these two
+roles: Now, two separate models for predictive inference, each
+%weighting prior and data information with $\nz$,
+resulting in different precision as governed by $\nz$,
+are combined with an imprecise weight $\alpha$ %, with $\alpha$
+taking the role of regulating prior-data agreement.
+
 
 
 

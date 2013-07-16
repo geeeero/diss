@@ -355,7 +355,9 @@ of Example~\ref{ex:jstp-1}, inference with \ymodel s is now illustrated.
 \begin{figure}
 %\includegraphics[height=\textwidth,angle=-90,bb = 165 60 440 765]{fig/jstp-paper_nv_nfest_01-080331.ps}%
 \includegraphics[trim = 20mm 50mm 20mm 50mm, clip, width=\textwidth]{fig/jstp-paper_nv_nfest_01-080331}%
-\caption{Prior (left) and posterior (right) credal sets for a sample
+\caption[\ymodel\ for samples from $\norm(\mu,1)$:
+prior and posterior credal sets for data in accordance with prior beliefs.]%
+{Prior (left) and posterior (right) credal sets for a sample
 from $\norm(\mu,1)$ drawn as sets of normal cdfs. (Example~\ref{ex:ymodel-nv} in the
 situation of no prior data conflict.)}
 \label{fig:nv-nfest-nopdc}
@@ -491,7 +493,9 @@ make locating the cutouts in space more easy.
 \includegraphics[trim = 150mm 25mm  20mm 20mm, clip, width=0.33\textwidth]{fig/jstp-paper_idm_nfest_02-080331}%
 \hspace*{-1.2ex}%
 \end{tabular}%
-\caption{Prior (left) and posterior (center, right) credal sets for samples from
+\caption[\ymodel\ for samples from $\mult(\btheta)$: prior and posterior credal sets
+for data in accordance with and contrary to prior beliefs.]%
+{Prior (left) and posterior (center, right) credal sets for samples from
 $\mult(\btheta)$ in accordance with (center) and, as studied in
 Section~\ref{section:fixednschlecht}, contrary to (right) prior
 beliefs. Note that both posterior sets have the same shape and size and differ
@@ -595,7 +599,8 @@ let us continue Examples~\ref{ex:ymodel-nv} and \ref{ex:ymodel-idm}.
 \begin{figure}
 %\includegraphics[height=\textwidth,angle=-90,bb = 165 60 440 765]{fig/jstp-paper_nv_nfest_02-080331.ps}%
 \includegraphics[trim = 20mm 50mm 20mm 50mm, clip, width=\textwidth]{fig/jstp-paper_nv_nfest_02-080331}%
-\caption{In \ymodel s, an observation contrary to prior beliefs leads to
+\caption[\ymodel\ for samples from $\norm(\mu,1)$: prior and posterior credal sets for data contrary to prior beliefs.]%
+{In \ymodel s, an observation contrary to prior beliefs leads to
 the same amount of imprecision as an observation in accordance with prior
 beliefs (see Figure~\ref{fig:nv-nfest-nopdc}).  Generalized \ymodel s overcome this
 deficiency, as visualized in Figure~\ref{fig:nv-nvar-vertfu}.}
@@ -795,7 +800,9 @@ being equivalent to $\ul{\ol{n}}\uz := \big(\nzl\nzu\big){}^\frac{1}{2}$.
 \begin{figure}
 %\includegraphics[height=\textwidth,angle=-90,bb = 90 60 515 770]{fig/jstp-paper_nv_nvar_vertfu01_081128.ps}%
 \includegraphics[trim = 20mm 20mm 20mm 25mm, clip, width=\textwidth]{fig/jstp-paper_nv_nvar_vertfu01_081128}%
-\caption{Prior (left) and posterior (right) credal sets for samples from
+\caption[Generalised \ymodel\ for samples from $\norm(\mu,1)$:
+prior and posterior credal sets for data in accordance with and contrary to prior beliefs.]%
+{Prior (left) and posterior (right) credal sets for samples from
 $\norm(\mu,1)$ in accordance with (upper) and contrary to (lower)
 prior beliefs. With \nymodel s, the posterior set in the latter case is
 significantly larger than in the former, leading to more cautious inference as desired.}
@@ -859,8 +866,9 @@ $\nzl = 1$, resulting in $\nzu = 25$.
 \includegraphics[trim = 150mm 25mm  20mm 20mm, clip, width=0.33\textwidth]{fig/jstp-paper_idm_nvar_zeile2-081205}%
 \hspace*{-1.2ex}%
 \end{tabular}%
-\caption{
-Prior (left) and posterior (center, right) credal sets for samples from
+\caption[Generalised \ymodel\ for samples from $\mult(\btheta)$:
+prior and posterior credal sets for data in accordance with and contrary to prior beliefs.]%
+{Prior (left) and posterior (center, right) credal sets for samples from
 $\mult(\btheta)$ in accordance with (center) and contrary to (right)
 prior beliefs. As in Figure~\ref{fig:nv-nvar-vertfu}, with \nymodel s
 the sets differ in size according to the degree of prior-data conflict
@@ -891,7 +899,9 @@ graph, and thus, inference drawn in this case is more cautious.
 \begin{figure} %trim = l b r t
 %\includegraphics[height=0.99\textwidth,angle=-90,bb = 20 15 575 825]{fig/jstp-paper_nv_nvar_HPD_n-infty_081201.ps}%
 \includegraphics[trim = 5mm 5mm 5mm 5mm, clip, width=\textwidth]{fig/jstp-paper_nv_nvar_HPD_n-infty_081201}%
-\caption{(Unions of) 95\%-posterior HD intervals (vertical lines) for
+\caption[Comparison of (unions of) HPD intervals based on a single prior,
+an \ymodel\ and a \nymodel.]%
+{(Unions of) 95\%-posterior HD intervals (vertical lines) for
 observations in accordance (upper row, drawn from $\mbox{N}(4,1)$)
 and in conflict (lower row, drawn from $\mbox{N}(8,1)$) with prior assumptions
 based on a single prior (left), an \ymodel\ (center) and a \nymodel\ (right)

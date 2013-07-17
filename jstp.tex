@@ -3,30 +3,217 @@
 
 ****short intro from intro and abstract, examples already in Chapter~\ref{cha:intro}
 
+This section reproduces the work
+``Imprecision and Prior-Data Conflict in Generalised Bayesian Inference'',
+published as an article in the \emph{Journal of Statistical Theory and Practice},
+and reprinted as a book chapter in \emph{Imprecision in Statistical Theory and Practice}
+\parencite{Walter2009a}.
+As such, it is reproduced here verbatim,
+except for some minor shortenings, especially in the Introduction (Section~\ref{sec:jstp-intro}),
+and the addition of some comments and footnotes linking this work to other parts of this thesis.
+Furthermore, the notation was changed slightly towards the one introduced in Section~\ref{sec:regularconjugates}
+(most importantly, writing $\nn$ and $\yn$ for the canonical posterior parameters
+instead of $n^{(1)}$ and $y^{(1)}$, respectively),
+and citations were updated and changed to the style employed throughout this thesis.
+
+\subsubsection*{Abstract}
+%***abstract***
+
+A great advantage of imprecise probability models over models
+based on precise, traditional probabilities is the potential to
+reflect the amount of knowledge they stand for. Consequently,
+imprecise probability models promise to offer a vivid tool for
+handling situations of prior-data conflict in (generalised) Bayesian
+inference. In this paper, we consider a general class of recently
+studied imprecise probability models, including the Imprecise
+Dirichlet Model \parencite[IDM,][]{1996:walley::idm} under prior information, and more generally the
+framework of \textcite{2005:quaeghebeurcooman} for imprecise inference in
+canonical exponential families. We demonstrate that such models, in
+their originally proposed form, prove to be insensitive to the
+extent of prior-data conflict. We propose an extension
+reestablishing the natural relationship between knowledge and
+imprecision: the higher the discrepancy between the observed sample
+and what was expected from prior knowledge, the higher the
+imprecision in the posterior, producing cautious inferences if, and
+only if, caution is needed. Our approach is illustrated by some
+examples and simulation results.
+
+%***end of abstract***
+
+\subsection{Introduction}
+\label{sec:jstp-intro}
+
+As discussed in Sections~\ref{sec:ip-intro} and \ref{sec:motivation},
+imprecise probability %\citep{wall91,weichselberger2000,weichselberger2001,DBLP:conf/isipta/2005,DBLP:conf/isipta/2007}
+provides a powerful methodology to handle the multidimensional
+nature of uncertainty %\citep[p.1]{Klir1999}, %\sidenote{ref: Klir1999}
+neglected by the traditional concept of probability. The most common
+-- closely related -- mathematical tools in that theory are
+non-additive set-functions, interval-valued probabilities and sets
+of classical probabilities (often called credal sets).%
+\footnote{See Section~\ref{sec:ip-main} for a short exposition of these mathematical tools and their relations.}
+The width of the interval or the ``magnitude'' of the set are then seen as a
+measure for the imprecision in the probabilistic assignment,
+allowing to take into account ambiguity (non-stochastic uncertainty)
+in statistical inference and decision making, where in the
+tradition of Ellsberg's \parencite*{1961:ellsberg} seminal
+experiments ambiguity has proven to be a constitutive element.%
+\footnote{See the distinction of \emph{risk} and \emph{ambiguity} in Section~\ref{sec:motivation-riskambiguity}.}
+
+Many imprecise probability models are constructed by a
+generalisation of Bayes\-ian approaches.%
+\footnote{See the discussion of the Bayesian approach to statistical inference in
+Section~\ref{sec:bayes-inference}.}
+The Bayesian paradigm
+relies on the assumption that the complete knowledge on the
+parameter $\vartheta$ of a statistical model can be expressed by a
+probability distribution on the parameter space $\Theta$. Learning
+from a sample observation $\x$ is then performed by updating the
+\emph{prior distribution}, describing the knowledge before having
+seen the sample $\x$, to obtain the \emph{posterior distribution} via
+Bayes' rule. The posterior distribution, often shortened to
+`posterior', then is understood to subsume the complete
+knowledge on $\vartheta$ after having seen the sample, and therefore
+it underlies exclusively all inferences drawn from the data. If the
+prior $p(\vartheta)$ is a precise probability distribution, then the
+posterior $p(\vartheta\,|\,x)$ can be directly calculated via Bayes'
+rule\footnote{See Equation~\eqref{eq:bayesrule}.} %\vspace*{-1.5ex}
+\begin{equation*}%\label{eq:BR}
+p(\vartheta\mid\x) \propto f(\x\mid\vartheta) \cdot p(\vartheta)\,,%\vspace*{-1.0ex}
+\end{equation*}
+where $f(\x\mid\vartheta)$ denotes the sample model, also called
+\emph{likelihood} in this context.
+
+%%\medskip
+
+Imprecise probabilities allow to overcome the ``dogma of
+precision'' \parencite[\S 5]{1991:walley}
+underlying common statistical models, in particular with respect to the often rather arbitrary
+choice of the prior distribution.%
+\footnote{See the description of lower previsions,
+Walley's central formulation of imprecise probability, in Section~\ref{sec:lowerprevisions},
+and the motives from a Bayesian perspective in Section~\ref{sec:motivation}.}
+The ambiguity in the prior
+specification, or positively formulated, the quality of prior
+knowledge, can be modelled by considering sets ${\cal M}$ of prior distributions.
+The most straightforward way to proceed is then to update this set ${\cal M}$
+element by element via Bayes' rule %\eqref{eq:BR}
+to obtain the set ${\cal M}_{|\x}$ of posterior distributions. This
+updating procedure is understood as self-evident in the robust
+Bayesian framework \parencite[e.g.,][]{2000:rios}, and can be moreover
+justified by deriving it from general coherence arguments in the
+theory developed by \textcite{1991:walley}.%
+\footnote{See Sections~\ref{sec:gbr} and \ref{sec:imprecisebayes}.}
+Although there are some
+strong arguments for a plurality of learning rules,%
+\footnote{See, e.g.,
+\textcite{2009:Coolen:Augustin}, \textcite{2007:weichselberger}, \textcite{2007a:cattaneo},
+\textcite{2007:held}, \textcite{2007:held-isipta07}, \textcite{2009:Coolen:Augustin},
+\textcite{2004:augustin:coolen}, \textcite{2003:augustin}, and Section~\ref{sec:updating}.} we
+%, Coolen and Augustin:2007, see also the debate on different concepts of
+%conditional probability: Weichselberger03, D???, F???H???})
+will strictly rely on this approach throughout ***this Section*** when we
+speak of \emph{generalised Bayesian inference}.
+
+%%\medskip
+
+Probably the most popular model along this line is the Imprecise
+Dirichlet Model (IDM) for handling categorical data, introduced by
+\textcite{1996:walley::idm}%
+\footnote{See Section~\ref{sec:idm-and-near-ignorance}.}
+(see in particular \textcite{2005:bernard} and \textcite{2009:bernard} %\sidenote{hinten checken}
+for an overview on further developments). This model has been
+extended by \textcite{2005:quaeghebeurcooman} to generalised Bayesian inference from
+canonical exponential families, not only covering the
+omnipresent Normal and Multinomial models as described in the
+Examples below, starting with Examples~\ref{ex:ymodel-nv} and \ref{ex:ymodel-idm},
+but also almost all other sample distributions relevant in a Statistician's everyday life, such as
+Poisson models, often used in ecology and insurance mathematics, or
+exponential models and gamma models common in reliability and
+survival analysis. In \textcite{Walter2007a}, Quaeghebeur and de
+Cooman's model was further generalised to a class of models (called
+LUCK-models there and throughout this paper) which includes
+linear regression models.
+
+While up to now the main focus in generalized Bayesian inference
+has been on robustness issues given perturbations of an ideal
+prior \parencite[e.g.,][]{2000:rios} or
+on models for prior near ignorance (as in the IDM), the present
+paper is devoted to the important problem of handling
+prior-data conflict. \emph{Prior-data conflict}%
+\footnote{See also the discussion of prior-data conflict
+in Sections~\ref{sec:motivation:pdc} and \ref{sec:pdc-sensitivity}.}
+is a generic term
+to name situations in which informative prior beliefs and
+trusted data\footnote{Our development neglects here
+the additional problems of outliers. So we simply assume that the
+data are not spoilt by outliers, or that outliers have been
+removed in advance.} are conflicting. %in conflict with each other.
+A formalisation of this concept for the models considered
+in this paper is given in Definition~\ref{080307-defin-pdc}.
+If prior and likelihood are precise, then in updating via
+Bayes' rule, prior-data conflict is averaged out, and there
+is no way to see whether the posterior arose from a
+situation with or without substantial prior-data conflict.%
+\footnote{See also the comment in Section~\ref{sec:regularconjugates}
+on this central averaging property evident from Equation~\eqref{eq:canonicalupdate}.}
+
+Generalised Bayesian models, in contrast, promise to solve this
+problem in an elegant way: With the magnitude
+of the set ${\cal M}_{|\x}$ mapping the posterior ambiguity,
+high prior-data conflict should, ceteris paribus, lead to a large
+${\cal M}_{|\x}$ resulting in high imprecision in the
+posterior probabilities, while in the case of no prior-data conflict
+${\cal M}_{|\x}$, and thus the imprecision,
+should be much smaller.%
+
+Although \textcite[\S 5.2.2]{1991:walley} explicitly emphasizes this possibility to
+express prior-data conflict as one of the main motivations for the
+paradigmatic change from precise to imprecise probability,
+surprisingly little attention has been paid to this issue. The very
+rare exceptions include two short sections in \textcite{1991:walley}, and
+the papers by \textcite{1991:pericchi}, \textcite{1994:coolen} and
+\textcite{2005:whitcomb}. Moreover, even the powerful models mentioned
+above, including the IDM under prior information and Quaeghebeur and
+de Cooman's extension, are, in their originally proposed form, not
+able to take into account prior-data conflict, and therefore do not
+fully utilize the expressive power of imprecise probabilities.
+
+By extending these models, and some of their generalizations in this
+paper, we overcome their serious deficiency with respect to
+prior-data conflict. We arrive at powerful inferences where the
+degree of prior-data conflict is transferred into a corresponding
+amount of imprecision in the posterior quantities, resulting in
+reliable inferences by being cautious whenever caution is needed,
+also providing a neat basis for decision making.%
+\footnote{See \textcite{2007:troffaes} for a review of decision criteria based
+on imprecise probabilities.}
+Our method can be shown to extend the
+basic ingredients used in \textcite{1991:walley} for the normal case and the
+IDM to the general class considered here.
 
 \medskip
 
-***The section is structured as follows:
-In Section~\ref{070517-sec2-1} we provide the formal background
+***The remainder of ***this section*** is structured as follows:
+In Section~\ref{070517-sec2-1}, we provide the formal background
 by distinguishing a wide class of classical, precise probability models
 where Bayesian inference has a particular form, being directly
-suitable to a generalization to imprecise probabilities by varying
+suitable to a generalisation to imprecise probabilities by varying
 the linearly updated main parameter (Section~\ref{sec:3}).
 We illustrate these models and then show in Section~\ref{sec:4-gw-071216}
-how these models can be extended to deal with prior-data conflict in a more sensible way
+how these models can be extended to deal with prior-data conflict in a more sensible way,
 by additionally varying another parameter.
 Section~\ref{sec:illu} illustrates our procedure in two important special cases:
 inferences on the mean of a normal distribution and in the IDM.***
 
 
-\subsection{Traditional Bayesian Inference and LUCK-models}\label{070517-sec2-1}
+\subsection{Traditional Bayesian Inference and LUCK-models}
+\label{070517-sec2-1}
 
-%\section{Bayesian Inference and \textsc{luck}-models}\label{070516-sec2}
-%\subsection{Classical Bayesian Inference and \textsc{luck}-models}\label{070517-sec2-1}
-In most cases, traditional Bayesian inference is based on so-called
+In many cases, traditional Bayesian inference is based on so-called
 conjugate priors (related to a specific likelihood). These
 distributions have the convenient property that the posterior
-resulting from~\eqref{eq:bayesrule} belongs to the same class of parametric
+resulting from Bayes' Rule \eqref{eq:bayesrule} belongs to the same class of parametric
 distributions as the prior. The posterior thus remains easily
 tractable, and updating can be described in terms of parameters
 only. For describing the imprecise probability model used later on more easily, we want to

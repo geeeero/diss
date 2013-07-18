@@ -1,8 +1,20 @@
 \section{On Prior-Data Conflict in Predictive Bernoulli Inferences}
 \label{sec:isipta11}
 
+This section reproduces the work
+``On Prior-Data Conflict in Predictive Bernoulli Inferences'',
+published as a peer-reviewed contribution to
+\emph{ISIPTA'11: Proceedings of the Seventh International Symposium on
+Imprecise Probabilities: Theories and Applications} \parencite{Walter2011a}.
+As such, it is reproduced here verbatim,
+except for some minor shortenings, especially in the Introduction (Section~\ref{sec:isipta11-intro}),
+and the addition of some comments and footnotes linking this work to other parts of this thesis.
+Furthermore, the notation was changed slightly to assure consistency with the rest of the material presented in this thesis.
+Specifically, the success probability in Bernoulli trials is denoted by $\theta$ instead of $p$.
+
 %***with Frank's weighting model!***
-***abstract***
+\subsubsection*{Abstract}
+%***abstract***
 
 By its capability to deal with the multidimensional nature of
 uncertainty, imprecise probability provides a powerful methodology
@@ -20,14 +32,54 @@ Thereafter we present a new approach, consisting of an
 imprecise weighting of two originally separate inferences, one of which is based on an informative
 imprecise prior, whereas the other one is based on an uninformative imprecise prior. This approach
 deals with \pdc\ in a fascinating way.
+%***end of abstract***
 
-***end of abstract***
+\subsection{Introduction}
+\label{sec:isipta11-intro}
 
-\medskip
+Imprecise probability has shown to be a
+powerful methodology to cope with the multidimensional nature of
+uncertainty (see the discussion in Sections~\ref{sec:ip-intro} and \ref{sec:motivation}).
+Imprecision allows the quality of information, on which probability statements are
+based, to be modeled. Well supported knowledge is expressed by comparatively
+precise models, while highly imprecise (or even vacuous) models reflect scarce (or no) knowledge
+on probabilities. This flexible, multidimensional perspective on uncertainty
+modeling has intensively been utilized in generalised Bayesian
+inference to overcome the criticism of the arbitrariness of
+the choice of single prior distributions in traditional Bayesian inference.%
+\footnote{%See the basic discussion of the Bayesian approach to statistical inference in Section~\ref{sec:bayes-inference},
+This criticism, subsumed by \textcite[\S 5]{1991:walley} as the ``dogma of precision'',
+is discussed more detailed in Section~\ref{sec:motivation:bayesian}.}
+In addition, only imprecise probability models react reliably to the presence of
+\pdc, i.e.\ situations  where ``the prior [places] its mass primarily on
+distributions in the sampling model for which the observed data is
+surprising'' \parencite[p.~894]{2006:evans}. Lower and upper probabilities%
+\footnote{See Section~\ref{sec:ip-main} for a short exposition of lower and upper previsions,
+and related mathematical tools for handling uncertainty in statistical inference.}
+allow a specific reaction to \pdc, and offer reasonable inferences if the analyst wishes to
+stick to his prior assumptions: starting with the same level of ambiguity in the prior
+specification, wide posterior intervals can
+reflect conflict between prior and data, while
+no \pdc\ will lead to narrow intervals.%
+\footnote{See the discussions in Sections~\ref{sec:motivation:pdc} and \ref{sec:pdc-sensitivity},
+and the ***work*** on \pdc\ in Section~\ref{sec:jstp}.}
+Ideally, the model could provide an extra `bonus' of precision if prior %specifications had been `spot on'.
+assumptions are very strongly supported by the data.
+Such a model would have the advantage
+of (relatively) precise answers when the data confirm prior assumptions,
+while still rendering more cautionary answers in the case of \pdc,
+thus leading to cautious inferences if, and only if, caution is needed.
 
-***from introduction***
+Although \textcite[p.~6]{1991:walley} explicitly emphasizes this possibility to
+express prior-data conflict as one of the main motivations for imprecise probability,
+it has received surprisingly little attention. Rare exceptions include two short sections in \textcite[p.~6 and \S 5.4]{1991:walley}
+and the papers by \textcite{1991:pericchi}, \textcite{1994:coolen} and
+\textcite{2005:whitcomb}. The popular IDM \parencite{1996:walley::idm, 2009:bernard}
+and its generalisation to exponential families \parencite{2005:quaeghebeurcooman} do not reflect prior-data conflict.
+\textcite{Walter2009a} used the basic ideas of \textcite[\S 5.4]{1991:walley} to extend the approach of
+\textcite{2005:quaeghebeurcooman} to models that show sensitivity to \pdc.
 
-In this paper a deeper investigation of the issue of \pdc\ is undertaken,
+In this ***paper***, a deeper investigation of the issue of \pdc\ is undertaken,
 focusing on the prototypic special case of predictive inference in Bernoulli trials:%
 \footnote{See also the discussion of the Beta-Binomial model in Section~\ref{sec:beta-binom},
 and the imprecise Dirichlet-Multinomial model discussed in several examples in Section~\ref{sec:jstp}.}
@@ -49,19 +101,19 @@ where for given $n$, $\Pl$ and $\Pu$ are discussed as functions of $s$.
 \medskip
 
 Section~\ref{sec:ibbm-framework} describes a general framework for
-generalized Bayesian inference in this setting. The method presented in \textcite[\S 5.4.3]{1991:walley},
+generalised Bayesian inference in this setting. The method presented in \textcite[\S 5.4.3]{1991:walley},
 called `pdc-IBBM' in this paper, is considered in detail in Section~\ref{sec:ibbm-walley}
 and we show that its reaction to \pdc\ can be improved
 by suitable modifications of the underlying imprecise
 priors. A basic proposal along these lines is discussed in
-Section~\ref{sec:othershapes} with further alternatives
+Section~\ref{sec:othershapes}, with further alternatives
 sketched in Section~\ref{sec:ibbm-resume}.
 Section~\ref{sec:weightedinf} addresses the problem of \pdc\ from a
 completely different angle. There, we combine two originally separate
 inferences, one based on an informative imprecise prior and one
 on an uninformative imprecise prior, by an imprecise weighting
 scheme. The ***paper*** concludes with a brief comparison of the different
-approaches.
+approaches in Section~\ref{sec:insights}.
 
 
 \subsection{Imprecise Beta-Binomial Models}
@@ -70,7 +122,7 @@ approaches.
 \subsubsection{The Framework}
 \label{sec:ibbm-framework}
 
-***change notation for success probability from $p$ to $\theta$!!!***
+%***change notation for success probability from $p$ to $\theta$!!!***
 
 The traditional Bayesian approach for our basic problem is the Beta-Binominal model, which expresses prior
 beliefs about the probability $\theta$ of observing a `success' by a Beta
@@ -80,13 +132,15 @@ $f(\theta\mid\nz, \yz) \propto \theta^{\nz\yz -1} (1-\theta)^{\nz(1-\yz)-1}$,
 $\yz = \E[\theta\mid\nz,\yz]$ can be interpreted as prior guess of
 $\theta$, while $\nz$ governs the concentration of
 probability mass around $\yz$, also known as `pseudo counts' or
-`prior strength'.\footnote{${}\uz$ denotes prior parameters; ${}\un$ posterior parameters.}
+`prior strength'.\footnote{As in previous parts of the thesis, ${}\uz$ denotes prior parameters; ${}\un$ posterior parameters.}
 These denominations are due to the
 role of $\nz$ in the update step: With $s$ successes in $n$ draws observed, the
-posterior parameters are\footnote{The model is prototypic for conjugate Bayesian
+posterior parameters are\footnote{Compare to Section~\ref{sec:regularconjugates},
+Equation~\eqref{eq:canonicalupdate}:
+the model is prototypic for conjugate Bayesian
 analysis in canonical exponential families, for which updating
 of the parameters $\nz$ and $\yz$ can be
-written as (\ref{equ:update-nn-yn-precise}).}%\vspace*{-1.3ex}
+written as \eqref{equ:update-nn-yn-precise}.} %\vspace*{-1.3ex}
 \begin{align}\label{equ:update-nn-yn-precise}
 %\nn &= \nz + n, & \yn &= \frac{\nz}{\nz + n}\,\yz + \frac{n}{\nz + n}\, \frac{s}{n}.
 \nn &= \nz + n, & \yn &= \frac{\nz\yz + s}{\nz + n}\,.
@@ -101,7 +155,9 @@ Bayes Rule \parencite[\S 6]{1991:walley}%
 see Sections~\ref{sec:gbr} and \ref{sec:imprecisebayes}, respectively.}
 the imprecise prior $\MZ$, described by convex sets of precise prior distributions,
 is updated to the imprecise posterior $\MN$ obtained by updating $\MZ$ element-wise.
-In particular, the convenient conjugate analysis used above can be extended:
+In particular, the convenient conjugate analysis used above can be extended:%
+\footnote{See the discussion of the general framework for generalised Bayesian inference
+based on sets of conjugate priors in Section~\ref{sec:basicsetting}.}
 One specifies a prior parameter set
 $\PZ$ of $(\nz,\yz)$ values and takes as imprecise
 prior the set $\MZ$ consisting of  all convex mixtures of Beta
@@ -128,8 +184,8 @@ future draw is a success. In the Beta-Bernoulli model, this
 probability is equal to $\yn$, and we get\footnote{%
 \textcite{2005:quaeghebeurcooman}, \textcite{Walter2009a}, and \textcite{Walter2007a} use the prototypical character of
 (\ref{equ:update-nn-yn-precise}) underlying (\ref{equ:General-Pl}) and
-(\ref{equ:General-Pu}) to generalise this inference to models based on
-canonical exponential families. ***leave this out here??***}
+(\ref{equ:General-Pu}) to generalise this inference to models based on canonical exponential families.
+See Section~\ref{sec:generalmodel} and \ref{sec:jstp}. ***leave this out here??***}
 %
 \begin{align}
 \Pl = \ynl &:= \min_{\PN} \yn = \min_{\PZ} \frac{\nz\yz + s}{\nz +n}\,, \label{equ:General-Pl}\\
@@ -995,7 +1051,7 @@ that would lead to more complications. If the individual models
 are coherent lower and upper probabilities, i.e.\ provide separately
 coherent inferences, then the combined inference via weighted
 averaging and taking the lower and upper envelopes is also
-separately coherent\footnote{This follows, e.g., from\textcite[\S 2.6.3f]{1991:walley}}.
+separately coherent.\footnote{This follows, e.g., from\textcite[\S 2.6.3f]{1991:walley}.}
 
 In applications, it is often important to determine a sample size
 (or more general design issues) before data are collected. If one
@@ -1029,7 +1085,8 @@ statistics, estimation or prediction inferences based on different
 models can be similarly combined using Bayes factors \parencite{1995:kass-raftery},
 which are based on both the data (via the likelihood function) and
 prior weightings for the different models.%
-\footnote{See also the brief characterisation of Bayes factors in Section~\ref{sec:beta-binom}.}
+\footnote{See also the brief characterisation of Bayes factors
+in the context of hypotheses testing and model selection in Section~\ref{sec:beta-binom}.}
 In our approach, we do not use the data or prior beliefs about the models to derive precise
 weights for the models, instead we cautiously base our combined
 lower and upper predictive probabilities on those of the individual
@@ -1097,7 +1154,7 @@ assumptions and data, which may lead to a revision of the whole
 system of background knowledge in the light of surprising
 observations, as Hampel argues.\footnote{See in particular the discussion of the
 structure and role of background knowledge in \textcite{2009:hampel:knowledge}.}
-In this context applying the weighting approach to the NPI-based model
+In this context, applying the weighting approach to the NPI-based model
 for categorical data \parencite{2009:Coolen:Augustin} may provide some
 interesting opportunities, as it explicitly allows to consider not yet observed and
 even undefined categories \parencite{2005:Coolen:Augustin}.
@@ -1136,7 +1193,7 @@ field for research and discussions.
 
 \subsection*{Acknowledgements}%\vspace*{-1.0ex}%
 
-We thank the referees for very helpful comments.
+The authors thank the referees for very helpful comments.
 
 
 

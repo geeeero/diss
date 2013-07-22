@@ -10,8 +10,204 @@ This section reproduces the work
 published as technical report no.~69 at the Department of Statistics of Ludwig-Maximilians-University Munich (LMU)
 \parencite{Walter2009b}. This technical report is a substantially extended version of a contribution to
 ``Statistical Modelling and Regression Structures: Festschrift in Honour of Ludwig Fahrmeir'' \parencite{Walter2010a}.
-As such, it is reproduced here verbatim, ****
+As such, it is reproduced here verbatim, except for some minor rewording,
+and the addition of some comments and footnotes linking this work to other parts of this thesis.
+***Furthermore, the notation was changed slightly towards the one introduced in Section~\ref{sec:regularconjugates}
+(most importantly, writing $\nn$ and $\yn$ for the canonical posterior parameters
+instead of $n^{(1)}$ and $y^{(1)}$, respectively),
+and citations were updated and changed to the style employed throughout this thesis.***
 
 \subsubsection*{Abstract}
+
+The paper is concerned with Bayesian analysis under
+prior-data conflict, i.e.\ the situation when observed data are
+rather unexpected under the prior (and the sample size is not large
+enough to eliminate the influence of the prior). Two approaches for
+Bayesian linear regression modeling based on conjugate priors are
+considered in detail, namely the standard approach, described, e.g., in
+\textcite{2013:fahrmeier-kneib-lang-marx}, and an alternative adoption of the
+general construction procedure for exponential family sampling
+models. We recognize that -- in contrast to some standard i.i.d.\
+models like the scaled normal model and the Beta-Binomial /
+Dirichlet-Multinomial model, where prior-data conflict is completely
+ignored -- the models may show some reaction to prior-data conflict,
+however in a rather unspecific way. Finally we briefly sketch the
+extension to a corresponding imprecise probability model, where,
+%by enlarging the underlying set of distributions and the imprecision of the resulting interval-valued probabilities,
+by considering sets of prior distributions instead of a single prior,
+prior-data conflict can be handled in a very appealing and intuitive way.
+
+
+\subsection{Introduction}
+\label{sec:festschrift-intro}
+
+Regression analysis is a central tool in applied statistics that
+aims to answer the omnipresent question how certain variables
+(called covariates / confounders, regressors, stimulus or
+independent variables, here denoted by $\x$) influence a certain
+outcome (called response or dependent variable, here denoted by $z$).
+Due to the complexity of real-life data situations, basic linear
+regression models, where the expectation of the outcome $z_i$ simply equals the linear predictor $\x_i^\tra\bbeta$,
+have been generalized in numerous ways, ranging from generalised linear
+models (\cite{2001:fahrmeier-tutz}, see also \cite{1985:fahrmeir-kaufmann} for classical work on asymptotics)
+for non-normal distributions of $z_i\mid \x_i$, or linear mixed models %(LMM, ***zitate)
+allowing the inclusion of clustered observations, over semi- and nonparametric models
+\parencite{2009:kauermann,2007:fahrmeir,2007:scheipl}, up to
+generalised additive (mixed) models and structured
+additive regression \parencite{2009:fahrmeir,2006:fahrmeir,2007:kneib}.
+
+Estimation in such highly complex models may be based on
+different estimation techniques such as (quasi-) likelihood, general
+estimation equations (GEE) or Bayesian methods. Especially the
+latter offer in some cases the only way to attain a reasonable
+estimate of the model parameters, due to the possibility to include
+some sort of prior knowledge about these parameters, for instance by
+``borrowing strength'' \parencite[e.g.,][]{1996:higgins}.
+
+The tractability of large scale models with their ever increasing complexity
+of the underlying models and data sets should not obscure that
+still many methodological issues are a matter of debate.
+Since the early days of modern Bayesian inference one central issue has,
+of course, been the potentially strong dependence of the inferences on the prior.
+In particular in situations where data is scarce or unreliable, the
+actual estimate obtained by Bayesian techniques may rely heavily on
+the shape of prior knowledge, expressed as prior probability
+distributions on the model parameters. %parameters of interest.
+Recently, new arguments came into this debate by new methods
+for detecting and investigating \emph{prior-data conflict} \parencite{2006:evans,2008:bousquet},
+i.e. situations where  ``[\ldots] the observed data is surprising
+in the light of the sampling model and the prior,
+[so that] we must be at least suspicious about the validity
+of inferences drawn.'' \parencite[p.~893]{2006:evans}%
+\footnote{See also the discussion on prior-data conflict in
+Sections~\ref{sec:motivation:pdc}, \ref{sec:pdc-sensitivity},
+and in the paper reproduced in Section~\ref{sec:jstp}.}
+
+The present contribution investigates the sensitivity of inferences on potential prior-data conflict:
+What happens in detail to the posterior distribution, and the estimates derived from it, if prior knowledge and
+what the data indicates are severely conflicting?
+If the sample size $n$ is not sufficiently large to discard the
+possibly erroneous prior knowledge and thus to rely on data only,
+prior-data conflict should affect the inference and
+should  -- intuitively and informally --  result in an increased degree
+of uncertainty in posterior inference. Probably most statisticians would thus expect
+a higher variance of the posterior distribution in situations of prior-data conflict.
+
+However, this is by no means automatically the case,
+in particular when adopting conjugate prior models,
+which are often used when data are
+scarce, where only strong prior beliefs allow for a reasonably
+precise answer in inference. Two simple and prominent examples
+of complete insensitivity to prior-data conflict are recalled in
+Section~\ref{sec:iid}: i.i.d.\ inferences on the mean of a scaled normal distribution
+and on the probability distribution of a categorical variable by the Dirichlet-Multinomial model.%
+\footnote{See the description of these two models in Sections~\ref{sec:norm-norm} and \ref{sec:diri-multi}, respectively.}
+
+Sections~\ref{sec:scp} and \ref{sec:cccp} extend
+the question of (in)sensitivity to prior-data to regression models.
+We confine attention to linear regression analysis with conjugate priors,
+because -- contrary to the more advanced regression model classes --
+the linear model still allows a fully analytical access, making it possible to understand
+potential restrictions imposed by the model in detail.
+We discuss and compare two different conjugate models:
+\begin{enumerate}[(i)]
+\item the standard conjugate prior (SCP, Section~\ref{sec:scp}) as described in \textcite{2013:fahrmeier-kneib-lang-marx} or,
+in more detail, in \textcite{1994:ohagan}; and
+\item a conjugate prior, called ``canonically constructed conjugate prior'' (CCCP, Section~\ref{sec:cccp}) in the following,
+which is derived by a general method used to construct conjugate priors to sample distributions that
+belong to a certain class of exponential families, described, e.g., in \textcite{2000:bernardosmith}.%
+\footnote{This is the regular conjugate framework of Section~\ref{sec:regularconjugates}.}
+\end{enumerate}
+Whereas the former is the more general prior model, allowing for
+a very flexible modeling of prior information (which might be welcome or not),
+the latter allows only a strongly restricted covariance structure for $\bbeta$,
+however offering a clearer insight in some aspects of the update process.
+
+In a nutshell, the result is that both conjugate models do react
+to prior-data conflict by an enlarged factor to the variance-covariance matrix
+of the distribution on the regression coefficients $\bbeta$; however, this reaction is unspecific, as it affects the
+variance and covariances of all components of $\bbeta$ in a uniform way
+-- even if the conflict occurs only in one single component.
+
+Probably such an unspecific reaction of the variance is the most a (classical)
+Bayesian statistician can hope for, and traditional probability theory based on precise probabilities can offer.
+Indeed, \textcite{1987:kyburg:ess} notes that
+\begin{quotation}
+\begin{small}
+%``
+[\ldots] there appears to be no way, within the theory, of
+distinguishing between the cases in which there are good statistical grounds
+for accepting a prior distribution, and cases in which the prior distribution
+reflects merely ungrounded personal opinion.%''\\
+\end{small}
+\end{quotation}
+and the same applies, in essence, to the posterior distribution.
+
+A more sophisticated modeling would need a more elaborated concept
+of imprecision than is actually provided by looking at the variance
+(or other characteristics) of a (precise) probability distribution.
+Indeed, recently the theory of imprecise probabilities \parencite{1991:walley,2001:weichselberger}
+is gaining strong momentum.%
+\footnote{See Section~\ref{sec:ip-intro} for a short exposition of the theoretical foundations
+and motivations for the use of imprecise probability in statistical inference.}
+It emerged as a general methodology to cope
+with the multidimensional character of uncertainty, also reacting
+to recent insights and developments in decision theory\footnote{See
+\textcite{2005:hsu-bhatt} for a neuro science corroboration of the constitutive
+difference of stochastic and non-stochastic aspects of uncertainty
+in human decision making, in the tradition of Ellsberg's \parencite*{1961:ellsberg} seminal experiments.}
+and artificial intelligence,\footnote{See, e.g., \textcite{1996:walley::expert}
+for the use of imprecise probability methods in expert systems.}
+where the exclusive role of probability
+as a methodology for handling uncertainty has eloquently been rejected \cite{1999:klir}:
+\begin{quotation}
+\begin{small}
+%``
+For three hundred years [\ldots] uncertainty was conceived solely in
+terms of probability theory. This seemingly unique connection
+between uncertainty and probability is now challenged [\ldots by several
+other] theories, which are demonstrably capable of characterizing
+situations under uncertainty. [\ldots]
+
+[\ldots] it has become clear that there are several distinct types of
+uncertainty. That is, it was realized that uncertainty is a
+multidimensional concept. [\ldots\ That] multidimensional nature of
+uncertainty was obscured when uncertainty was conceived solely in
+terms of probability theory, in which it is manifested by only one
+of its dimensions.
+\end{small}
+\end{quotation}
+
+Current applications include, among many other, risk analysis,
+reliability modeling and decision theory, see \textcite{2009:ISIPTA},
+\textcite{2011:ISIPTA} and \textcite{2009:CoolenSchrijner} for recent collections on the subject.%
+\footnote{See also, e.g., the list of applications of the IDM given in Section~\ref{sec:idm-and-near-ignorance}.}
+As a welcome byproduct, imprecise probability models also provide
+a formal superstructure on models considered in robust Bayesian analysis \parencite{2000:rios}, and
+frequentist robust statistic in the tradition of \textcite{1973:huberstrassen},
+see also \textcite{2009:augustin-hable} for a review.
+
+By considering \emph{sets} of distributions, and corresponding
+interval-valued probabilities for events, imprecise probability models allow
+to express the quality of the underlying knowledge in an elegant way.
+The higher the ambiguity, the larger c.p.\ the sets.
+The traditional concept of probability is contained as a special case,
+appropriate if and only if there is perfect stochastic information.
+This methodology allows also for a natural handling of prior-data conflict.
+If prior and data are in conflict, the set of posterior distributions are enlarged,
+and inferences become more cautious.%
+\footnote{For more details on the topic of imprecision and \pdc, see Section~\ref{sec:jstp}.}
+
+In Section~\ref{sec:discussion}, we briefly report that the CCCP model has a structure
+that allows a direct extension to an imprecise probability model
+along the lines of Quaeghebeur and de Cooman's \parencite*{2005:quaeghebeurcooman} imprecise probability models
+for i.i.d.\ exponential family models. Extending the models further
+by applying arguments from \textcite{Walter2009a}%
+\footnote{Reproduced in Section~\ref{sec:jstp}.}
+yields a powerful generalisation
+of the linear regression model that is also capable of a component-specific reaction to prior-data conflict.
+
+\subsection{Prior-data Conflict in the i.i.d.\ Case}
+\label{sec:iid}
 
 

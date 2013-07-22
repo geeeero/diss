@@ -210,4 +210,121 @@ of the linear regression model that is also capable of a component-specific reac
 \subsection{Prior-data Conflict in the i.i.d.\ Case}
 \label{sec:iid}
 
+As a simple demonstration that conjugate models might not react to
+prior-data conflict reasonably, inference on the mean of data from a
+scaled normal distribution and inference on the category
+probabilities in multinomial sampling will be described in the
+%following examples~\ref{ex:scn} and \ref{ex:mult}. %\\
+following two subsections.
+
+\subsubsection{Samples from a scaled Normal distribution} %$\norm(\mu,1)$}
+\label{sec:ex-scn}
+The conjugate distribution to an i.i.d.-sample $\x$ of
+size $n$ from a scaled normal distribution with mean $\mu$, denoted
+by $\norm(\mu,1)$ %as constructed by this method
+is a normal distribution with mean $\mu\uz$ and variance ${\sigma\uz}^2$\footnote{Here, and in the
+following, parameters of a prior distribution will be denoted by an upper index ${}\uz$, whereas
+parameters of the respective posterior distribution by an upper index ${}\un$.}.
+The posterior is then again a normal distribution with the following updated parameters:%\vspace*{-4ex}
+\footnote{This is the Normal-Normal model from Section~\ref{sec:norm-norm}, where
+$\sigma_0^2 = 1$, $\yz = \mu\uz$, and $\nz = 1/{\sigma\uz}^2$.}
+\begin{align}
+\mu\un &=  \frac{ \frac{1}{n}   }{ \frac{1}{n} + {\sigma\uz}^2 } \mu\uz
+          +\frac{ {\sigma\uz}^2 }{ \frac{1}{n} + {\sigma\uz}^2 } \bar{x}
+        =  \frac{ \frac{1}{{\sigma\uz}^2} }{ \frac{1}{{\sigma\uz}^2} + n } \mu\uz
+          +\frac{ n }                      { \frac{1}{{\sigma\uz}^2} + n } \bar{x} \label{equ:scn-mu1}\\
+{\sigma\un}^2 &= \frac{ {\sigma\uz}^2 \cdot \frac{1}{n} }{ {\sigma\uz}^2 + \frac{1}{n} }
+               = \frac{1}{ \frac{1}{{\sigma\uz}^2} + n }\,. \label{equ:scn-sig1}
+\end{align}
+The posterior expectation (and mode) is thus a simple weighted average of the prior mean
+$\mu\uz$ and the estimation from data $\bar{x}$, with weights
+%$\frac{1}{{\sigma\uz}^2}$
+$1/{\sigma\uz}^2$ and $n$, respectively.%
+\footnote{The reason for using these seemingly strange weights will become clear later.}
+The variance of the posterior distribution is getting smaller automatically.
+
+Now, in a situation where data is scarce, but with prior information one is very confident about,
+one would choose a low value for ${\sigma\uz}^2$, thus resulting in a high weight
+for the prior mean $\mu\uz$ in the calculation of $\mu\un$.
+The posterior distribution will be centered around a mean between $\mu\uz$
+and $\bar{x}$, and it will be even more pointed as the prior, because
+${\sigma\un}^2$ is considerably smaller than ${\sigma\uz}^2$, the factor to
+${\sigma\uz}^2$ in \eqref{equ:scn-sig1} being quite smaller than one.
+
+The posterior basically would thus say that one can be quite sure that the mean $\mu$
+is around $\mu\un$, regardless if $\mu\uz$ and $\bar{x}$ were near to each other
+or not, where the latter would be a strong hint for prior-data conflict.
+The posterior variance does not depend on this; the posterior distribution is thus
+insensitive to prior-data conflict.
+
+Even if one is not so confident about one's prior knowledge and thus assigning a
+relatively large variance to the prior, the posterior mean is less strongly influenced
+by the prior mean, but the posterior variance still is getting smaller, no matter
+if the data support the prior information or not.
+%and this is the point: it gets smaller by the same ***amount / factor no matter
+%if the prior knowledge
+%\end{example}
+
+The same insensitivity appears also in the widely used Dirichlet-Multinomial model
+as presented in the following subsection:
+
+\subsubsection{Samples from a Multinomial distribution} %$\mult(\btheta)$}
+\label{sec:ex-mult}
+Given a sample of size $n$ from a multinomial distribution, with
+probabilities $\theta_j$ for categories or classes $j= 1,\ldots,k$, subsumed in
+the vectorial parameter $\btheta$ (with $\sum_{j=1}^k \theta_j = 1$),
+the conjugate prior on $\btheta$ is a Dirichlet distribution $\dir(\balpha)$.
+%Written in terms of a reparameterisation used in , e.g. in \textcite{1996:walley::idm},
+Written in terms of the canonical parameters $\nz$ and $\yz$ as in Section~\ref{sec:diri-multi},
+%$\alpha\uz_j = s\uz \cdot t\uz_j$, such that $\sum_{j=1}^k t\uz_j = 1$, $(t\uz_1,\ldots,t\uz_k)^\tra =: t\uz$,
+$\alpha_j = \nz \cdot \yz_j$, such that $\sum_{j=1}^k \yz_j = 1$, $(\yz_1,\ldots,\yz_k)^\tra =: \byz$.
+Recall that the components of $\byz$ have a direct
+interpretation as prior class probabilities, whereas $\nz$ is a parameter
+indicating the confidence in the values of $\byz$, similar to the inverse
+variance as in Section~\ref{sec:ex-scn}
+(the quantity $\nz$ will appear also in Section \ref{sec:cccp}).%
+\footnote{If $\btheta \sim \dir(\nz, \byz)$, then
+$\V(\theta_j) = \frac{\yz_j (1-\yz_j)}{\nz+1}$. If $\nz$ is high,
+then the variances of $\btheta$ will become low, thus indicating high
+confidence in the chosen values of $\byz$.}
+
+As seen in Section~\ref{sec:diri-multi},
+the posterior distribution, obtained after updating via Bayes' Rule with a sample vector $\vec{n} = (n_1,\ldots,n_k)$,
+$\sum_{j=1}^k n_j = n$ collecting the observed counts in each category,
+is a Dirichlet distribution with parameters
+\begin{align*}
+\yn_j &= \frac{\nz}{\nz + n} \yz_j + \frac{n}{\nz + n} \cdot \frac{n_j}{n}\,, &
+\nn   &= \nz + n \,.
+\end{align*}
+The posterior class probabilities $\byn$ are calculated as a weighted mean
+of the prior class probabilities $\byz$ and $\frac{n_j}{n}$, the proportion in the sample,
+with weights $\nz$ and $n$, respectively; the confidence parameter $\nz$ is
+incremented by the sample size $n$.
+
+Also here, there is no systematic reaction to prior-data conflict. The posterior
+variance for each class probability $\theta_j$ is %calculates as
+\begin{align*}
+\V(\theta_j\mid \vec{n}) &= \frac{\yn_j (1 - \yn_j)}{\nn+1}
+                          = \frac{\yn_j (1 - \yn_j)}{\nz+n+1}\,.
+\end{align*}
+The posterior variance depends heavily on $\yn_j (1 - \yn_j)$,
+having values between $0$ and $\frac{1}{4}$, which do not change
+specifically to prior data conflict. The denominator increases from
+$\nz+1$ to $\nz+n+1$.
+
+Imagine a situation with strong prior information suggesting a value of $\yz_j = 0.25$,
+so one could choose $\nz = 5$, resulting in a prior class variance of $\frac{1}{32}$.
+Consider a sample of size $n=10$ with all observations belonging to class $j$ (thus $n_j=10$),
+being in clear contrast to the prior information. The posterior class probability
+is then $\yn_j = 0.75$, resulting the enumerator value of the class variance to remain constant.
+Therefore, due to the increasing denominator, the variance decreases to $\frac{3}{256}$,
+in spite of the clear conflict between prior and sample information.
+Of course, one can also construct situations where the variance increases, but this
+happens only in case of an update of $\yz_j$ towards $\frac{1}{2}$.
+If $\yz_j = \frac{1}{2}$, the variance will decrease for any degree of prior-data conflict.
+
+
+\subsection{The Standard Approach for Bayesian Linear Regression (SCP)}
+\label{sec:scp}
+
 

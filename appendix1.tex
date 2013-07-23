@@ -413,3 +413,146 @@ by inserting the updated parameters into \eqref{equ:scp-priori_betasigma}
 and \eqref{equ:scp-priori_beta}.
 
 
+\subsubsection{Update of $\beta\mid\sigma^2$}
+\label{sec:scp-update1}
+
+The normal distribution part of the joint prior is updated as follows:%\vspace*{-0.5ex}
+\begin{align*}
+\E[\bbeta\mid\sigma^2, \z] &= \mn \\
+                           &= \big( {\Mz}^{-1} + \XtX \big)^{-1} \!\big( {\Mz}^{-1} \mz + \Xtz \big) \\
+                           &= (\mbf{I} - \mbf{A})\, \mz + \mbf{A}\, \bls\,,
+\end{align*}
+where $\mbf{A} = \big({\Mz}^{-1} + \XtX\big)^{-1} \XtX$. The posterior estimate of $\bbeta\mid\sigma^2$
+thus can be seen as a matrix-weighted mean of the prior guess and the least-squares estimate $\bls$.
+The larger the diagonal elements of $\Mz$ (i.e., the weaker the prior information),
+the smaller the elements of ${\Mz}^{-1}$ and thus the `nearer' is $\mbf{A}$ to the identity matrix,
+so that the posterior estimate is nearer to the least-squares estimate.
+
+The posterior variance of $\bbeta\mid\sigma^2$ is %calculates as
+\begin{align*}
+\V(\bbeta\mid\sigma^2, \z) &= \sigma^2 \Mn = \sigma^2 \left( {\Mz}^{-1} + \XtX \right)^{-1}\,.
+\end{align*}
+As the elements of ${\Mn}^{-1}$ get larger with as compared to ${\Mz}^{-1}$,
+the elements of $\Mn$ will, roughly speaking, become smaller than those of $\Mz$,
+so that the variance of $\bbeta\mid\sigma^2$ decreases.
+
+Therefore, the updating of $\bbeta\mid\sigma^2$ is obviously insensitive to prior-data conflict,
+because the posterior distribution will not become flatter in case of a large
+distance between $\E[\bbeta]$ and $\bls$. %due to this automatic reduction of variances.
+Actually, as \textcite{1994:ohagan} derives,
+for any $\phi = \vec{a}^\tra \bbeta$, $\vec{a} \in \reals^p$, i.e., any linear combination of elements of $\bbeta$, it holds that
+$\V(\phi\mid\sigma^2,\z) \leq \V(\phi\mid\sigma^2)$, becoming a strict inequality if
+$\X$ has full rank. In particular, the variance of each $\beta_i$ decreases
+automatically with the update step.
+
+
+\subsubsection{Update of $\sigma^2$}
+\label{sec:scp-update2}
+
+It can be shown \parencite{1994:ohagan} that
+\begin{align}
+\E[\sigma^2\mid \z] &= \frac{2\az - 2}{2\az + n - 2} \E[\sigma^2]
+                     + \frac{n - p}   {2\az + n - 2} \sls
+                     + \frac{p}       {2\az + n - 2} \spdc\,,
+\label{equ:scp-decomposition}
+\end{align}
+where $\sls = \frac{1}{n-p} (\z - \X\bls)^\tra (\z - \X\bls)$ is
+the least-squares based estimate for $\sigma^2$, and
+\begin{align*}
+\spdc &= \frac{1}{p} (\mz - \bls)^\tra \big(\Mz + (\XtX)^{-1} \big)^{-1} (\mz - \bls)\,.
+\end{align*}
+
+For the latter it holds that $\E[\spdc\mid\sigma^2] = \sigma^2$;
+the posterior expectation of $\sigma^2$ can thus be seen
+as a weighted mean of three estimates:
+\begin{enumerate}[(i)]
+\item the prior expectation for $\sigma^2$,
+\item the least-squares estimate, and
+\item an estimate based on a weighted squared difference of the prior mean $\mz$ and $\bls$,
+the least-squares estimate for $\bbeta$.
+\end{enumerate}
+%
+The weights depend on $\az$ (one prior parameter for the inverse gamma part),
+the sample size $n$, and the dimension of $\bbeta$, respectively.
+The role of the first weight gets more plausible when remembering the formula for the prior variance of $\sigma^2$
+in \eqref{equ:scp-priori_betasigma}, where $\az$ appears in the denominator. A larger value of $\az$ means
+thus smaller prior variance, in turn giving a higher weight for $\E[\sigma^2]$
+in the calculation of $\E[\sigma^2\mid \z]$.
+The weight to $\sls$ corresponds to the classical degrees of freedom, $n-p$. With the
+the sample size approaching infinity, this weight will dominate the others, such that
+$\E[\sigma^2\mid \z]$ approaches $\sls$.%, indeed ******.
+
+Similar results hold for the posterior mode instead of the posterior expectation.
+
+Here, the estimate $\spdc$ allows some reaction to prior-data conflict:
+it measures the distance between $\mz$ (prior) and $\bls$ (data)
+estimates for $\bbeta$, with a large distance resulting basically in a large value of $\spdc$
+and thus an enlarged posterior estimate for $\sigma^2$.
+
+The weighting matrix for the distances is playing an important role as well.
+%
+The influence of $\Mz$ is as follows: for components of $\bbeta$
+one is quite certain about the assignment of $\mz$, the respective diagonal elements
+of $\Mz$ will be low, so that these diagonal elements of the weighting matrix
+will be high. Therefore, large distances in these dimensions will increase $\spdc$ strongly.
+An erroneously high confidence in the prior assumptions on $\bbeta$ is thus
+penalised by an increasing posterior estimate for $\sigma^2$.
+%
+The influence of $\XtX$ interprets as follows: covariates with a low spread
+in $x$-values, giving an unstable base for the estimate $\bls$,
+will result in low diagonal elements of $\XtX$.
+%(for centered $\X$, the diagonals are the covariate's variances).
+Via the double inverting, those diagonal elements of the weighting matrix
+will remain low and thus give the difference a low weight.
+Therefore, $\spdc$ will not excessively increase due to a large difference
+in dimensions where the location of $\bls$ is to be taken cum grano salis.
+
+As to be seen in the following subsection, the behavior of $\E[\sigma\mid \z]$ is of high
+importance for posterior inferences on $\bbeta$.
+
+
+\subsubsection{Update of $\beta$}
+\label{sec:scp-update3}
+
+The posterior distribution of $\bbeta$ is again a multivariate $t$, with expectation
+\begin{align*}
+\E[\bbeta\mid \z] &= \E\big[ \E[\bbeta\mid\sigma^2, \z] \mid \z \big]= \mn
+\end{align*}
+as described in Section~\ref{sec:scp-update1},
+and variance %\vspace*{-2ex}
+\begin{align}
+\V[\beta\mid \z]
+                  &= \frac{\bn}{\an - 1} \Mn \nonumber\\
+                  &= \E[\sigma^2\mid \z]\, \Mn  \label{equ:scp-varbeta}\\
+                  &= \bigg( \frac{2\az - 2}{2\az + n - 2} \E[\sigma^2]
+                           +\frac{n - p}   {2\az + n - 2} \sls
+                           +\frac{p}       {2\az + n - 2} \spdc \bigg) \nonumber\\
+                  & \hspace*{5ex}\cdot
+                     \left( {\Mz}^{-1} + \XtX \right)^{-1} \nonumber\\
+                  &= \bigg( \frac{2\az - 2}{2\az + n - 2} \E[\sigma^2]
+                           +\frac{n - p}   {2\az + n - 2} \sls
+                           +\frac{p}       {2\az + n - 2} \spdc \bigg) \nonumber\\
+                  & \hspace*{5ex}\cdot
+                     \Big( \Mz - \Mz \X^\tra (\mbf{I} + \X \Mz \X^\tra)^{-1} \X \Mz \Big) \,, \nonumber%
+%\vspace*{-2ex}%
+\end{align}
+not being directly expressible as a function of $\E[\sigma^2] \Mz$,
+the prior variance of $\beta$. %\\ %, due to the double inversion of $\bs{M}\uz$.
+%\begin{align*}
+%\left( {\bs{M}\uz}^{-1} + \XtX \right)^{-1}
+% &= \bs{M}\uz - \bs{M}\uz \X^\tra (\mbf{I} + \X \bs{M}\uz \X^\tra)^{-1} \X \bs{M}\uz
+%\end{align*}
+
+Due to the effect of $\E[\sigma^2\mid \z]$, the posterior variance-covariance matrix
+of $\bbeta$ can increase in case of prior data conflict, if the rise of $\E[\bbeta\mid \z]$
+(due to an even stronger rise of $\spdc$) can overcompensate the decrease in the elements of $\Mn$.
+However, we see that the effect of prior-data conflict on the posterior variance of $\bbeta$ %distribution
+is \emph{globally} and not component-specific; it influences the variances for \emph{all} components of $\bbeta$
+with the same amount, even if the conflict was confined only to some or even just one single component.
+Taking it to the extremes, if the prior assignment $\mz$ was (more or less) correct in all but one component,
+with that one being far out, the posterior variances will increase for all components,
+also for the ones with prior assignments that have turned out to be basically correct.
+
+
+
+

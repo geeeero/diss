@@ -327,4 +327,89 @@ If $\yz_j = \frac{1}{2}$, the variance will decrease for any degree of prior-dat
 \subsection{The Standard Approach for Bayesian Linear Regression (SCP)}
 \label{sec:scp}
 
+The regression model is noted as follows:
+\begin{equation*}
+z_i = \x_i^\tra\bbeta + \varepsilon_i \,,\quad \x_i \in \reals^{p} \,,\;
+\bbeta \in \reals^p \,,\; \varepsilon_i \sim \norm(0,\sigma^2)\,,
+\end{equation*}
+where $z_i$ is the response, $\x_i$ the vector of the $p$ covariates for observation $i$,
+and $\bbeta$ is the $p$-dimensional vector of adjacent regression coefficients.
+
+The vector of regressors $\x_i$ for each observation $i$ is generally
+considered to be non-stochastic, thus it holds that $z_i \sim \norm(\x_i^\tra\bbeta,\sigma^2)$,
+or, for $n$ i.i.d.\ samples, $\z \sim \norm_n(\X\bbeta,\sigma^2 \mbf{I})$,
+i.e., $\z \in \reals^n$, the column vector of the responses $z_i$,
+has a multivariate normal distribution with vector of expectations $\X\bbeta$,
+where $\X \in \reals^{n \times p}$ is the \emph{design matrix}
+(of which row $i$ is the vector of covariates $\x_i^\tra$ for observation $i$),
+and matrix of variances and covariances $\sigma^2 \mbf{I}$,
+where $\mbf{I}$ is the identity or unit matrix of size $n$.%\\
+
+Without loss of generality, one can either assume $x_{i1} = 1 \; \forall i$ such that
+the first component of $\bbeta$ is the intercept parameter,%
+\footnote{usually denoted by $\beta_0$; however,
+we stay with the numbering $1,\ldots, p$ for the components of $\bbeta$.}
+or consider only centered responses $\z$ and standardized covariates
+to make the estimation of an intercept unnecessary.
+
+%***vorher allgemein: $p(\beta,\,\sigma^2) = p(\beta\mid\sigma^2) p(\sigma^2)$, klassische conjugierte Priori ist NIG, etc...
+In Bayesian linear regression analysis, the distribution of the response $\z$ is interpreted as
+a distribution of $\z$ given the parameters $\bbeta$ and $\sigma^2$, and %a (class of)
+prior distributions on $\bbeta$ and $\sigma^2$ must be considered.
+For this, it is convenient to split the joint prior on $\beta$ and $\sigma^2$ as %follows
+%\begin{align*}
+%p(\beta,\,\sigma^2) &= p(\beta\mid\sigma^2) p(\sigma^2)
+%\end{align*}
+$p(\bbeta,\sigma^2) = p(\bbeta\mid\sigma^2) p(\sigma^2)$
+and to consider conjugate distributions for both parts, respectively.
+
+%\section{**Standard-Modell wie in O'Hagan / FKL***}
+
+In the literature, the proposed conjugate prior for $\bbeta\mid\sigma^2$
+is a normal distribution with expectation vector $\mz \in \reals^p$ and variance-covariance
+matrix $\sigma^2 \Mz$, where $\Mz$ is a symmetric positive definite matrix of
+size $p \times p$. The prior on $\sigma^2$ is an inverse gamma distribution
+(i.e., $1/\sigma^2$ is gamma distributed) with parameters $\az$ and $\bz$, in the sense that
+\begin{align*}
+p(\sigma^2) \propto \frac{1}{(\sigma^2)^{\az + 1}} \exp\Big\{ -\frac{\bz}{\sigma^2} \Big\}\,.
+\end{align*}
+%$p(\sigma^{-2}) \propto (\sigma^{-2})^{a\uz + 1} \exp\{-b\uz \sigma^{-2} \}$.
+The joint prior on $\btheta = (\bbeta,\, \sigma^2)^\tra$ is then denoted as a normal-inverse gamma (NIG) distribution.
+The derivation of this prior and the proof of its
+conjugacy can be found, e.g., in \textcite{2013:fahrmeier-kneib-lang-marx}, or in \textcite{1994:ohagan},
+the latter using a different parameterisation of the inverse gamma part,
+where $\az = \frac{d}{2}$ and $\bz = \frac{a}{2}$.
+
+For the prior model, it holds thus that (if $\az > 1$ resp.\ $\az > 2$)
+\begin{align}
+\begin{aligned}
+\E[\bbeta\mid\sigma^2] &= \mz \,,                  & \V(\bbeta\mid\sigma^2) &= \sigma^2  \Mz \,, \\
+\E[\sigma^2]           &= \frac{\bz}{\az - 1} \,,  & \V(\sigma^2)           &= \frac{(\bz)^2}{(\az - 1)^2 (\az - 2)}\,.
+\end{aligned}
+\label{equ:scp-priori_betasigma}
+\end{align}
+
+As $\sigma^2$ is considered as nuisance parameter, the unconditional distribution
+on $\bbeta$ is of central interest, because it subsumes the shape of prior knowledge on $\bbeta$
+as expressed by the choice of parameters $\mz$, $\Mz$, $\az$ and $\bz$.
+It can be shown that $p(\bbeta)$ is a multivariate noncentral $t$ distribution
+with $2\az$ degrees of freedom, location parameter $\mz$ and dispersion parameter $\frac{\bz}{\az} \Mz$,
+such that
+\begin{align}
+\E[\bbeta] &= \mz \,, &  \V(\bbeta) &= \frac{\bz}{\az - 1} \Mz = \E[\sigma^2] \Mz\,.
+\label{equ:scp-priori_beta}
+\end{align}
+
+The joint posterior distribution $p(\btheta\mid z)$, due to conjugacy, is then
+again a normal-inverse gamma distribution with the updated parameters
+\begin{align*}
+\mn &= \left( {\Mz}^{-1} + \XtX \right)^{-1} \left( {\Mz}^{-1} \mz + \Xtz \right) \,, \\
+\Mn &= \left( {\Mz}^{-1} + \XtX \right)^{-1} \,, \\
+\an &= \az + \frac{n}{2} \,, \\ %\qquad
+\bn &= \bz + \frac{1}{2} \left( \ztz + {\mz}^\tra {\Mz}^{-1} \mz  - {\mn}^\tra {\Mn}^{-1} \mn \right) \,.
+\end{align*}
+The properties of the posterior distributions can thus be analyzed
+by inserting the updated parameters into \eqref{equ:scp-priori_betasigma}
+and \eqref{equ:scp-priori_beta}.
+
 

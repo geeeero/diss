@@ -2,7 +2,7 @@
 %\label{cha:festschrift}
 
 
-\section{Bayesian Linear Regression: Different Conjugate Models and Their (In)Sensitivity to Prior-Data Conflict}
+\section{Bayesian Linear Regression: Different Conjugate Models and Their (In)Sensi\-ti\-vi\-ty to Prior-Data Conflict}
 \label{sec:festschrift}
 
 This section reproduces the work
@@ -413,7 +413,7 @@ by inserting the updated parameters into \eqref{equ:scp-priori_betasigma}
 and \eqref{equ:scp-priori_beta}.
 
 
-\subsubsection{Update of $\beta\mid\sigma^2$}
+\subsubsection{Update of \texorpdfstring{$\bbeta\mid\sigma^2$}{beta|sigma2}}
 \label{sec:scp-update1}
 
 The normal distribution part of the joint prior is updated as follows:%\vspace*{-0.5ex}
@@ -446,7 +446,7 @@ $\X$ has full rank. In particular, the variance of each $\beta_i$ decreases
 automatically with the update step.
 
 
-\subsubsection{Update of $\sigma^2$}
+\subsubsection{Update of \texorpdfstring{$\sigma^2$}{sigma2}}
 \label{sec:scp-update2}
 
 It can be shown \parencite{1994:ohagan} that
@@ -511,7 +511,7 @@ As to be seen in the following subsection, the behavior of $\E[\sigma\mid \z]$ i
 importance for posterior inferences on $\bbeta$.
 
 
-\subsubsection{Update of $\beta$}
+\subsubsection{Update of \texorpdfstring{$\bbeta$}{beta}}
 \label{sec:scp-update3}
 
 The posterior distribution of $\bbeta$ is again a multivariate $t$, with expectation
@@ -809,7 +809,7 @@ $\bbeta\mid\sigma^2$, $\sigma^2$, and $\beta$, and compare these results
 with those for the SCP. %in Section~\ref{sec:discussion-festschrift}.
 
 
-\subsubsection{Update of $\beta\mid\sigma^2$}
+\subsubsection{Update of \texorpdfstring{$\bbeta\mid\sigma^2$}{beta|sigma2}}
 \label{sec:cccp-update1}
 
 As $\byz$ and $\byn$ are not directly interpretable, it is certainly easier 
@@ -859,7 +859,7 @@ automatically smaller than the prior variances, just as in the SCP model.
 %while the fixed covariance structure will remain.
 %
 
-\subsubsection{Update of $\sigma^2$}
+\subsubsection{Update of \texorpdfstring{$\sigma^2$}{sigma2}}
 \label{sec:cccp-update2}
 
 For the assignment of the parameters $\taz$ and $\tbz$ to define the inverse gamma part
@@ -905,7 +905,7 @@ interesting interpretations of the update step of $\sigma^2$.
 The three decompositions are presented in the following.
 
 
-\paragraph{Decomposition Including an Estimate of $\sigma^2$ Through the Null Model.}
+\paragraph{Decomposition Including an Estimate of \texorpdfstring{$\sigma^2$}{sigma2} Through the Null Model.}
 
 In a first decomposition, the posterior variance of $\sigma^2$ can be written as:
 \begin{align}
@@ -1069,7 +1069,7 @@ With this in mind, we can now derive
 \end{align*}
 such that the factor $\frac{n}{\nz + n} \frac{1}{p}$ in $\tspdc$ cancels out, and indeed $\E[\tspdc\mid\sigma^2] = \sigma^2$.
 
-\paragraph{Decomposition with Estimates of $\sigma^2$ Through Prior and Posterior Residuals.}
+\paragraph{Decomposition with Estimates of \texorpdfstring{$\sigma^2$}{sigma2} Through Prior and Posterior Residuals.}
 
 A third interpretation of $\E[\sigma^2\mid \z]$
 can be derived by another reformulation of the third term in \eqref{equ:cccp-sigma1}:
@@ -1125,7 +1125,7 @@ that is corrected back to a ``single'' estimate
 with the posterior-based estimate ${\sigma\un}^2$.
 
 
-\subsubsection{Update of $\beta$}
+\subsubsection{Update of \texorpdfstring{$\bbeta$}{beta}}
 \label{sec:cccp-update3}
 
 As for the SCP model, the posterior on $\bbeta$,

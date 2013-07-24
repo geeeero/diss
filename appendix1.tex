@@ -1129,35 +1129,35 @@ with the posterior-based estimate ${\sigma\un}^2$.
 \label{sec:cccp-update3}
 
 As for the SCP model, the posterior on $\bbeta$,
-being the most important distribution for inference, is a multivariate $t$
+being the most relevant distribution for inferences, is a multivariate $t$
 with expectation $\tmn$ as described in Section~\ref{sec:cccp-update1}.
-For $\V(\beta\mid \z)$, one gets different formulations depending
+For $\V(\beta\mid \z)$, one gets different formulations, depending
 on the formula for $\E[\sigma^2\mid \z]$:
 \begin{align}
 \V(\bbeta\mid \z)
-                   &\stackrel{\phantom{(\ref{equ:cccp-sigma1})}}{=}
+                   &\stackrel{\phantom{\eqref{equ:cccp-sigma1}}}{=}
   \frac{\tbn}{\tan - 1} \tMn %
      = \E[\sigma^2\mid \z]\, \frac{n}{\nn}(\XtX)^{-1} \label{equ:cccp-varbeta} \\
 \nonumber\\
 % ------------- 4.2.1 -------------
-                   &\stackrel{(\ref{equ:cccp-sigma1})}{=}
+                   &\stackrel{\eqref{equ:cccp-sigma1}}{=}
   \frac{\nz + p}{\nz + n + p} \frac{\nz}{\nn} \underbrace{\E[\sigma^2] \frac{n}{\nz} (\XtX)^{-1}}_{\V(\bbeta)}
-    + \frac{n-1}{\nz + n + p}   \frac{n}{\nn} \frac{1}{n-1} \ztz (\XtX)^{-1} \nonumber\\ & \hspace*{15ex}
+    + \frac{n-1}{\nz + n + p}   \frac{n}{\nn} \frac{1}{n-1} \ztz (\XtX)^{-1} \nonumber\\ & \hspace*{10ex}
       + \frac{1}{\nz + n + p}   \frac{n}{\nn} \Big( {\tmz}^\tra {\tMz}^{-1} \tmz
                                                       - {\tmn}^\tra {\tMn}^{-1} \tmn \Big) (\XtX)^{-1} \nonumber\\
 \nonumber\\
 % ------------- 4.2.2 -------------
-                   &\stackrel{(\ref{equ:cccp-sigma2})}{=}
+                   &\stackrel{\eqref{equ:cccp-sigma2}}{=}
   \frac{\nz + p}{\nz + n + p} \frac{\nz}{\nn} \underbrace{\E[\sigma^2] \frac{n}{\nz} (\XtX)^{-1}}_{\V(\bbeta)}
- +\frac{n - p}  {\nz + n + p}   \frac{n}{\nn} \underbrace{\sls (\XtX)^{-1}}_{\V(\bls)} \nonumber\\ & \hspace*{15ex}
+ +\frac{n - p}  {\nz + n + p}   \frac{n}{\nn} \underbrace{\sls (\XtX)^{-1}}_{\V(\bls)} \nonumber\\ & \hspace*{10ex}
  +\frac{p}      {\nz + n + p}   \frac{n}{\nn} \tspdc (\XtX)^{-1} \nonumber\\
 \nonumber\\
 % ------------- 4.2.3 -------------
-                   &\stackrel{(\ref{equ:cccp-sigma3})}{=}
+                   &\stackrel{\eqref{equ:cccp-sigma3}}{=}
   \frac{\nz + p} {\nz + n + p} \frac{\nz}{\nn} \underbrace{\E[\sigma^2] \frac{n}{\nz} (\XtX)^{-1}}_{\V(\bbeta)}
- +\frac{\nz + p} {\nz + n + p} \frac{\nz}{\nn} \underbrace{{\sigma\uz}^2 \frac{n}{\nz} (\XtX)^{-1}}_{=:\V\uz(\bbeta)} \nonumber\\ & \hspace*{15ex}
+ +\frac{\nz + p} {\nz + n + p} \frac{\nz}{\nn} \underbrace{{\sigma\uz}^2 \frac{n}{\nz} (\XtX)^{-1}}_{=:\V\uz(\bbeta)} \nonumber\\ & \hspace*{10ex}
  +\frac{2(n - p)}{\nz + n + p}   \frac{n}{\nn} \underbrace{\sls (\XtX)^{-1}}_{\V(\bls)}
- -\frac{n\uo + p}{\nz + n + p}                 \underbrace{{\sigma\uo}^2 \frac{n}{\nn} (\XtX)^{-1}}_{=:\V\un(\bbeta)} \,. \nonumber
+ -\frac{\nn + p} {\nz + n + p}                 \underbrace{{\sigma\un}^2 \frac{n}{\nn} (\XtX)^{-1}}_{=:\V\un(\bbeta)} \,. \nonumber
 \end{align}
 
 In these equations, it is possible to isolate $\V(\bbeta)$, $\V(\bls)$ and,
@@ -1166,10 +1166,10 @@ $\V\uz(\bbeta)$ and $\V\un(\bbeta)$.
 However, all three versions do not constitute a weighted average,
 even when the corresponding formula for $\E[\sigma^2\mid \z]$ has this property.
 
-Just as in the SCP model, $\V(\beta\mid \z)$ can increase if the automatic abatement of the elements
+Just as in the SCP model, $\V(\beta\mid \z)$ can increase if the automatic decrease of the elements
 in $\tMn$ is overcompensated by a strong increase of $\E[\sigma^2\mid\z]$.
 Again, this reaction to prior-data conflict is unspecific
-because it depends on $\E[\sigma^2\mid z]$ alone,
+because it depends on $\E[\sigma^2\mid \z]$ alone,
 and affects all elements of variance-covariance matrix in the same way.
 
 

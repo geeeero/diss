@@ -198,7 +198,7 @@ If prior and data are in conflict, the set of posterior distributions are enlarg
 and inferences become more cautious.%
 \footnote{For more details on the topic of imprecision and \pdc, see Section~\ref{sec:jstp}.}
 
-In Section~\ref{sec:discussion}, we briefly report that the CCCP model has a structure
+In Section~\ref{sec:discussion-festschrift}, we briefly report that the CCCP model has a structure
 that allows a direct extension to an imprecise probability model
 along the lines of Quaeghebeur and de Cooman's \parencite*{2005:quaeghebeurcooman} imprecise probability models
 for i.i.d.\ exponential family models. Extending the models further
@@ -553,6 +553,260 @@ Taking it to the extremes, if the prior assignment $\mz$ was (more or less) corr
 with that one being far out, the posterior variances will increase for all components,
 also for the ones with prior assignments that have turned out to be basically correct.
 
+\subsection{An Alternative Approach for Conjugate Priors in Bayesian Linear Regression (CCCP)}
+\label{sec:cccp}
+
+%***erst allgemein: wie kann priori zu lik konstruiert werden.\\
+%***dann verkuerzte konstruktion\\
+%***alles noch be-tilde-n und ent-fett-en\\
+
+In this section, a prior model for $\btheta = (\bbeta,\,\sigma^2)$ will be constructed
+along the general construction method for sample distributions that form a
+linear, canonical exponential family
+\parencite[see the canical conjugates framework in Section~\ref{sec:regularconjugates}, and, e.g.,][]{2000:bernardosmith}.
+%
+As shown for the examples in Sections~\ref{sec:beta-binom}, \ref{sec:norm-norm} and \ref{sec:diri-multi},
+the method is typically used for the i.i.d.\ case, but the likelihood arising from
+$\z \sim \norm(\X\bbeta, \sigma^2\mbf{I})$ will be shown to follow the specific
+exponential family form as well.
+
+The canonically constructed conjugate prior (CCCP) model will
+%The prior constructed along the general method \cite{BernardoSmith}*** in the following will
+%result in the same parametric class of prior distributions, but with a different parametrization and other differences.
+%Comments on these differences will be made after the derivation.***
+also result in a normal-inverse gamma distribution, but with a fixed variance-covariance structure.
+The CCCP model is thus a special case of the SCP model, which -- as will be detailed in this subsection --
+offers some interesting further insights into the structure of the update step.
+
+%***nur andere parametrisierung, und struktur der var-covar-matrix nicht frei w\"{a}hlbar.
+%w\"{u}rde aber auch sehr schwierig, Menge von var-covar-matrizen zu definieren, bei denen
+%die pos.def. garantiert ist...***
+
+%\subsubsection{Derivation of the Conjugate Prior}
+
+The likelihood arising from the distribution of $\z$,
+\begin{align*}
+\lefteqn{f(\z \mid \bbeta, \sigma^2)}\hspace{5ex}\\
+               &= \prod_{i=1}^n f(z_i \mid \bbeta, \sigma^2)\\
+               &= \frac{1}{(2\pi)^{\frac{n}{2}} (\sigma^2)^{\frac{n}{2}}}
+                  \exp\left\{ -\frac{1}{2 \sigma^2} \sum_{i=1}^n (z_i - \x_i^\tra\bbeta)^2  \right\}\\
+               &= \frac{1}{(2\pi)^{\frac{n}{2}} (\sigma^2)^{\frac{n}{2}}}
+                  \exp \Big\{ -\frac{1}{2 \sigma^2} (\z -\X\bbeta)^\tra (\z -\X\bbeta) \Big\}\\
+               &= \frac{1}{(2\pi)^{\frac{n}{2}}}
+                  \exp \Big\{ -\frac{n}{2}\log(\sigma^2) \Big\} \\ 
+               & \hspace*{9.4ex}%
+                  \exp \Big\{ -\frac{1}{2 \sigma^2} \ztz
+                              +\frac{1}{2 \sigma^2} \z^\tra \X\bbeta
+                              +\frac{1}{2 \sigma^2} (\X\bbeta)^\tra \z
+                              -\frac{1}{2 \sigma^2} (\X\bbeta)^\tra (\X\bbeta) \Big\}\\
+               &= \underbrace{ \frac{1}{(2\pi)^{\frac{n}{2}}} }_{ \mbf{a}(\bs{z}) = \prod_{i=1}^n \mbf{a}(z_i)}
+                  \exp \Big\{ \underbrace{ \left(\frac{\bbeta}{\sigma^2}\right)^\tra}_{\bpsi_1}
+                              \underbrace{ \X^\tra \z }_{ \tau_1(\z) } \,
+                              \underbrace{-\frac{1}{\sigma^2}}_{\psi_2}
+                              \underbrace{ \frac{1}{2} \ztz }_{\tau_2(\z)} \,
+                              \underbrace{-\Big(\frac{1}{2 \sigma^2} \bbeta^\tra \XtX \bbeta
+                                          +\frac{n}{2} \log(\sigma^2) \Big)}_{n \mbf{b}(\psi)} \Big\}\,,
+\end{align*}
+
+indeed corresponds to the canonical exponential family form%
+\footnote{In Equation~\ref{eq:expofam-sampledens}, the integration constant $\mbf{a}(\cdot)$
+was omitted.}
+\begin{align*}
+f(\z\mid\bpsi) &= \mbf{a}(z) \cdot \exp \{\langle \psi, \tau(z) \rangle - n \cdot \mbf{b}(\bpsi)\}\,,
+%\label{equ:likelihood}
+\end{align*}
+where $\bpsi=\bpsi(\bbeta, \sigma^2)$ is a certain function of $\bbeta$ and $\sigma^2$,
+the parameters of interest. $\tau(\z)$ is a $p+1$-dimensional sufficient statistic of $\z$ used in the update step. 
+Here, we have
+\begin{align}
+\bpsi          &= \begin{pmatrix} \frac{\bbeta}{\sigma^2} \\ -\frac{1}{\sigma^2} \end{pmatrix}\,, &
+\tau(\z)       &= \begin{pmatrix} \Xtz \\ \frac{1}{2} \ztz \end{pmatrix}\,, &
+\mbf{b}(\bpsi) &= \frac{1}{2n\sigma^2} \bbeta^\tra \XtX \bbeta + \frac{1}{2}\log(\sigma^2)\,.
+\label{equ:cccp-psi}
+\end{align}
+
+According to the general construction method, a conjugate prior %(and posterior)
+for $\bpsi$ can be obtained from these ingredients by the following equation:%
+\footnote{See Equation~\ref{eq:canonicalprior}, where the integration constant $\mbf{c}(\cdot)$ was omitted as well.}
+\begin{align}
+p(\bpsi) &= \mbf{c}(\nz,\byz)\cdot \exp\left\{ \nz \cdot [\langle \bpsi, \byz \rangle - \mbf{b}(\bpsi)] \right\}\,,
+\label{eq:canonicalconjugate-festschrift}
+\end{align}
+where $\nz$ and $\byz$ are the parameters that define the concrete prior distribution of its distribution family;
+%(The parameters for the posterior distribution on $\psi$ will be denoted by an upper index ${}\uo$.)
+whereas $\bpsi$ and $\mbf{b}(\bpsi)$ were identified in \eqref{equ:cccp-psi}.
+$\mbf{c}(\cdot)$ corresponds to a normalisation factor for the prior.%
+\footnote{When applying the general construction method to the two examples from Section~\ref{sec:iid},
+the priors as presented there will result,
+where $\yz = \mu\uz$ and $\nz = 1/{\sigma\uz}^2$ for the prior to the scaled normal model.
+For details of the derivation, see Sections~\ref{sec:norm-norm} and \ref{sec:diri-multi}, respectively.}
+
+Here, the conjugate prior writes as
+\begin{align*}
+%p(\beta) &= \mbf{c}(n\uz,y\uz)\cdot \exp\left\{ n\uz \cdot [\langle \beta, y\uz \rangle - \mbf{b}(\beta)] \right\}\,.
+p(\bpsi) d\bpsi &= \mbf{c}(\nz, \byz) \exp\Big\{ \nz \big[ {\byz}^\tra \begin{pmatrix} \frac{\bbeta}{\sigma^2} \\
+                                                                                      -\frac{1}{\sigma^2} \end{pmatrix}
+                                                -\frac{1}{2n\sigma^2} \bbeta^\tra \XtX \bbeta
+                                                -\frac{1}{2} \log(\sigma^2) \big]\Big\} d\bpsi\,.
+\end{align*}
+As this is a prior on $\bpsi$, but we want to arrive at a prior on $\btheta = (\bbeta^\tra,\, \sigma^2)^\tra$,
+we must transform the density $p(\bpsi)$:
+\begin{align*}
+p(\btheta) d\btheta &= p(\bpsi) d\bpsi \cdot \left| \mbox{det}\left( \frac{d\bpsi}{d\btheta} \right) \right|
+\end{align*}
+For the transformation, we need the determinant of the Jacobian matrix $\frac{d\bpsi}{d\btheta}$. 
+As it holds that
+\begin{align*}
+\frac{d\psi_i}{d\theta_j}         &= \frac{1}{d\beta_j}\, \frac{\beta_i}{\sigma^2}
+                                   = \begin{cases} 0                  & i \neq j \\
+                                                   \frac{1}{\sigma^2} & i = j \end{cases}      & &\forall i,\, j \in \{1,\ldots,p\}\,,\\
+\frac{d\psi_{p+1}}{d\theta_j}     &= \frac{1}{d\beta_j}\, \left(-\frac{1}{\sigma^2}\right) = 0 & &\forall j \in \{1,\ldots,p\}\,,\\
+\frac{d\psi_i}{d\theta_{p+1}}     &= \frac{1}{d\sigma^2}\, \frac{\beta_i}{\sigma^2} = -\frac{\beta_i}{(\sigma^2)^2} & &\forall i \in \{1,\ldots,p\}\,,\\
+\frac{d\psi_{p+1}}{d\theta_{p+1}} &= \frac{1}{d\sigma^2} \, \left(-\frac{1}{\sigma^2}\right)
+                                   = \frac{1}{(\sigma^2)^{2}}\,,
+\end{align*}
+we get
+\begin{align*}
+\left| \mbox{det}\left( \frac{d\bpsi}{d\btheta} \right) \right| &=
+\left| \mbox{det}\left(\begin{array}{cc} \frac{1}{\sigma^2} \mbf{I} &\; -\frac{\bbeta}{(\sigma^2)^{2}} \\[1.5ex] %\hline
+                                         \mbf{0}                    &\;  \frac{1}{(\sigma^2)^{2}} \end{array}\right) \right|
+ = \frac{1}{(\sigma^2)^{p+2}}\,,
+\end{align*}
+where $\mbf{I}$ is the $p \times p$ identity matrix, and $\mbf{0}$ a $p$-dimensional row vector of zeroes.
+Therefore, the prior on $\btheta = (\bbeta,\, \sigma^2)^\tra$ is
+\begin{align}
+\begin{split}
+\lefteqn{p(\btheta) d\btheta} \hspace{0ex}\\
+                   &= p(\bpsi) d\bpsi \cdot \left| \mbox{det}\left( \frac{d\bpsi}{d\btheta} \right) \right| \\
+                   &= \mbf{c}(\nz, \byz) \\
+                   & \hspace*{3ex}        \exp\Big\{ \nz {\byz_1}^\tra \frac{\bbeta}{\sigma^2}
+                                                    -\nz  \yz_2 \frac{1}{\sigma^2}
+                                                    -\frac{\nz}{2n\sigma^2} \bbeta^\tra \XtX \bbeta
+                                                    -\frac{\nz}{2} \log(\sigma^2)
+                                                    - (p+2)        \log(\sigma^2) \Big\}\,, %\nonumber
+\end{split}
+\label{equ:cccp-ptheta}
+\end{align}
+where $\byz = \Big({\byz_1}^\tra, \yz_2\Big)^\tra$, and $\byz_1 \in \reals^p$, $\yz_2 \in \posreals$.
+
+$\btheta$ can now be shown to follow a normal-inverse gamma distribution by comparing coefficients.
+In doing that, some attention must be paid to the terms proportional to $-1/\sigma^2$ (appearing as $-\log(\sigma^2)$ in the exponent),
+because these can appear in both the normal distribution $p(\bbeta\mid\sigma^2)$ and in the inverse gamma $p(\sigma^2)$ distribution.
+Furthermore, it is necessary to complete the square for the normal part, resulting in an additional term for the inverse gamma part.
+
+The density of a normal distribution on $\bbeta\mid\sigma^2$ with a mean vector%
+\footnote{We will denote the parameters of the canonically constructed prior (CCCP)
+by an overlined version of the parameters of the standard conjugate prior (SCP)
+in order to emphasise the different meanings.}
+$\tmz = \tmz(\nz,\byz)$ and a variance-covariance matrix $\sigma^2 \tMz = \sigma^2 \tMz(\nz,\byz)$,
+both to be seen as functions of the canonical parameters $\nz$ and $\byz$,
+has the following form:
+\begin{align*}
+p(\bbeta\mid\sigma^2) &= \frac{1}{(2\pi)^{\frac{p}{2}} (\sigma^2)^{\frac{p}{2}}}
+                         \exp \Big\{ -\frac{1}{2 \sigma^2} \big(\bbeta - \tmz\big)^\tra {\tMz}^{-1}
+                                                           \big(\bbeta - \tmz\big) \Big\}\\
+                      &= \frac{1}{(2\pi)^{\frac{p}{2}}}
+                         \exp\Big\{ {\tmz}^\tra {\tMz}^{-1} \,\frac{\bbeta}{\sigma^2}
+                                   -\frac{1}{2\sigma^2} \bbeta^\tra {\tMz}^{-1}\, \bbeta \\ & \hspace*{15ex}
+                                   -\frac{1}{2\sigma^2} {\tmz}^\tra {\tMz}^{-1} \tmz
+                                   -\frac{p}{2} \log(\sigma^2)\Big\}\,.
+\end{align*}
+Comparing coefficients with the terms from \eqref{equ:cccp-ptheta} depending on $\bbeta$, we get
+\begin{align*}
+{\tMz}^{-1} &= %\ol{\bs{M}}(n\uz)^{-1} =
+               \frac{\nz}{n}\, \XtX\,, &
+       \tmz &= %\ol{m}(y\uz) =
+               n\, (\XtX)^{-1}\, \byz_1\,,
+\end{align*}
+where the latter derives from
+\begin{alignat*}{2}
+& &
+\nz {\byz_1}^\tra \frac{\bbeta}{\sigma^2} &\stackrel{!}{=} {\tmz}^\tra\, \frac{\nz}{n\sigma^2}\, \XtX \bbeta \\
+&\Longleftrightarrow\quad &
+\nz {\byz_1}^\tra                         &\stackrel{!}{=} {\tmz}^\tra\, \frac{\nz}{n}\, \XtX \\
+&\Longleftrightarrow\quad &
+{\byz_1}^\tra (\XtX)^{-1}\, n             &\stackrel{!}{=} {\tmz}^\tra\,.
+\end{alignat*}
+
+We must thus complete the square in the exponent with
+%\begin{align*}
+\begin{multline*}
+    -\frac{1}{2\sigma^2} {\tmz}^\tra {\tMz}^{-1} \tmz
+    +\frac{1}{2\sigma^2} {\tmz}^\tra {\tMz}^{-1} \tmz \\
+  = -\frac{1}{2\sigma^2}\left( n \cdot \nz {\byz_1}^\tra (\XtX)^{-1} \byz_1 \right)
+    -\frac{1}{\sigma^2} \left(-\frac{\nz n}{2} {\byz_1}^\tra (\XtX)^{-1} \byz_1 \right)\,,
+\end{multline*}
+%\end{align*}
+
+such that the joint density of $\bbeta$ and $\sigma^2$ reads as
+
+\begin{align}
+%\lefteqn{
+p(\bbeta,\sigma^2) &= \mbf{c}(\nz, \byz) \nonumber\\ & \hspace*{3ex} 
+                      \exp\Big\{\underbrace{\!\! \nz {\byz_1}^{\!\tra}\! \frac{\bbeta}{\sigma^2}
+                                            -\frac{\nz}{2n\sigma^2} \bbeta^\tra\! \XtX \bbeta
+                                            -\frac{1}{2\sigma^2} \Big(\! n\cdot \nz {\byz_1}^{\!\tra }\!\! (\XtX)^{-1} \byz_1\! \Big)
+                                            -\frac{p}{2} \log(\sigma^2)}_{\text{to }p(\bbeta\mid\sigma^2) \text{ (normal distribution)}}
+                                                  \nonumber\\ & \hspace*{9ex}
+                                \underbrace{-\frac{1}{\sigma^2} \Big(\!\!-\frac{\nz n}{2} {\byz_1}^{\!\tra}\!\! (\XtX)^{-1} \byz_1\! \Big)\!
+                                            -\nz  \yz_2 \frac{1}{\sigma^2}
+                                            -\Big(\!\frac{\nz + p}{2} + 2\!\Big) \log(\sigma^2)\!\!}_{\text{to } p(\sigma^2) \text{ (inverse gamma distribution)}} \Big\} \,.
+\label{equ:priori_betasigma}
+\end{align}
+Therefore, one part of the conjugate prior \eqref{equ:priori_betasigma} reveals as a
+multivariate normal distribution with mean vector
+$\tmz = n\,(\XtX)^{-1}\, \byz_1$ and
+variance-covariance matrix $\sigma^2\tMz = \frac{n\sigma^2}{\nz}\, (\XtX)^{-1}$, i.e.\
+\begin{align}\label{equ:priori_betaggsigma}
+\bbeta\mid\sigma^2 &\sim \norm_p \left( n\,(\XtX)^{-1}\, \byz_1\,,\ \frac{n\sigma^2}{\nz}\, (\XtX)^{-1} \right)\,.
+\end{align}
+The other terms in \eqref{equ:priori_betasigma} can be directly identified with the core of
+an inverse gamma distribution with parameters
+\begin{align*}
+\taz &= \frac{\nz + p}{2} + 1 \qquad \text{and}\\ %\label{equ:a0} \\
+\tbz &= \nz \yz_2 -\frac{\nz}{2} {\byz_1}^\tra n(\XtX)^{-1} \byz_1
+      = \nz \yz_2 -\frac{1}{2} {\tmz}^\tra {\tMz}^{-1} \tmz\,,%\label{equ:b0}
+\end{align*}
+\begin{align}\label{equ:priori_sigma}
+\text{i.e., }\quad
+\sigma^2 &\sim \ig \bigg( \frac{\nz + p + 2}{2}\,,\ \nz \yz_2 - \frac{\nz}{2} {\byz_1}^\tra n(\XtX)^{-1} \byz_1  \bigg)\,.
+\end{align}
+
+We have thus derived the CCCP distribution on $(\bbeta,\sigma^2)$,
+which can be expressed either in terms of the canonical prior parameters $\nz$ and $\byz$,
+or in terms of the prior parameters from Section~\ref{sec:scp}, $\tmz$, $\tMz$, $\taz$ and $\tbz$.
+
+As already noted, $\tMz = \frac{n}{\nz}(\XtX)^{-1}$ can be seen as a restricted version of $\Mz$.
+$(\XtX)^{-1}$ is known as the variance-covariance structure from the least squares estimate $\V(\bbeta) = \sls(\XtX)^{-1}$,
+and is here the fixed prior variance-covariance structure for $\bbeta\mid\sigma^2$.
+Confidence in the prior assignment is expressed by the choice of $\nz$:
+With $\nz$ chosen large relative to $n$, strong confidence in the prior assignment
+of $\tmz$ can be expressed, whereas a low value of $\nz$ will result in a less pointed
+prior distribution on $\bbeta\mid\sigma^2$.
+
+$\tmz$ can be chosen freely from $\reals^p$, just like $\mz$ for the SCP,
+because $\byz_1 \in \reals^p$;
+values for $\taz$ are instead restricted by $\taz > p/2 + 1$, as $\nz$ must be postive.
+
+The condition $\yz_2 > 0$ does not actually restrict the choice of $\tbz$,
+as the second term $-\frac{1}{2} {\tmz}^\tra {\tMz}^{-1} \tmz$,
+containing a quadratic form with a postive definite matrix,
+is always negative, such that the first term $\nz\yz_2$ must be positive anyway
+in order to allow a positive value for $\tbz$ (which is needed to make the prior proper).
+
+As seen in Section~\ref{sec:regularconjugates},
+the update step for a canonically constructed prior, expressed in terms of $\nz$ and $\byz$,
+possesses a convenient form: In the prior \eqref{eq:canonicalconjugate-festschrift},
+the parameters $\nz$ and $\byz$ must simply be replaced
+by their updated versions $\nn$ and $\byn$, which calculate as
+\begin{align*}
+\yn_j &= \frac{\nz \yz_j + \tau(\z)_j}{\nz + n}\,, \quad \forall j \in \{1, \ldots, p+1\}\,, \\
+\nn   &= \nz + n \,.
+\end{align*}
+
+In the following, we will describe what this means for the update steps of
+$\bbeta\mid\sigma^2$, $\sigma^2$, and $\beta$, and compare these results
+with those for the SCP in Section~\ref{sec:discussion-festschrift}.
 
 
 

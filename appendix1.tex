@@ -2,7 +2,7 @@
 %\label{cha:festschrift}
 
 
-\section{Bayesian Linear Regression --- Different Conjugate Models and Their (In)Sensitivity to Prior-Data Conflict}
+\section{Bayesian Linear Regression: Different Conjugate Models and Their (In)Sensitivity to Prior-Data Conflict}
 \label{sec:festschrift}
 
 This section reproduces the work
@@ -12,10 +12,10 @@ published as technical report no.~69 at the Department of Statistics of Ludwig-M
 ``Statistical Modelling and Regression Structures: Festschrift in Honour of Ludwig Fahrmeir'' \parencite{Walter2010a}.
 As such, it is reproduced here verbatim, except for some minor rewording,
 and the addition of some comments and footnotes linking this work to other parts of this thesis.
-***Furthermore, the notation was changed slightly towards the one introduced in Section~\ref{sec:regularconjugates}
-(most importantly, writing $\nn$ and $\yn$ for the canonical posterior parameters
-instead of $n^{(1)}$ and $y^{(1)}$, respectively),
-and citations were updated and changed to the style employed throughout this thesis.***
+Furthermore, the notation was changed slightly towards the one introduced in Section~\ref{sec:regularconjugates}
+(most importantly, denoting posterior parameters with upper index ${}\un$ instead of ${}^{(1)}$,
+e.g., writing $\yn$ instead of $y^{(1)}$),
+and citations were updated and changed to the style employed throughout this thesis.
 
 \subsubsection*{Abstract}
 
@@ -806,7 +806,324 @@ by their updated versions $\nn$ and $\byn$, which calculate as
 
 In the following, we will describe what this means for the update steps of
 $\bbeta\mid\sigma^2$, $\sigma^2$, and $\beta$, and compare these results
-with those for the SCP in Section~\ref{sec:discussion-festschrift}.
+with those for the SCP. %in Section~\ref{sec:discussion-festschrift}.
+
+
+\subsubsection{Update of $\beta\mid\sigma^2$}
+\label{sec:cccp-update1}
+
+As $\byz$ and $\byn$ are not directly interpretable, it is certainly easier 
+to express prior beliefs on $\bbeta$ via the mean vector $\tmz$ of the prior distribution of
+$\beta\mid\sigma^2$ just as in the SCP model.
+As the transformation $\tmz \mapsto \byz$ is linear, this poses no problem:
+\begin{align}
+\E[\bbeta\mid\sigma^2,\z]
+ &= \tmn %\nonumber\\
+  = n (\XtX)^{-1}\, \byn_1 \nonumber\\
+ &= n (\XtX)^{-1} \bigg(\frac{\nz}{\nz + n}\,\byz_1 + \frac{n}{\nz + n}\cdot \frac{1}{n}(\Xtz) \bigg) \nonumber\\
+ &= n (\XtX)^{-1} \frac{\nz}{\nz + n} \cdot \frac{1}{n}(\XtX) \tmz
+  + n (\XtX)^{-1} \frac{n}  {\nz + n} \cdot \frac{1}{n}(\Xtz) \nonumber\\
+% &= \frac{n\uz}{n\uz + n} \cdot \underbrace{\tmz}_{\ewt[\beta\mid\sigma^2]}
+%  + \frac{n}   {n\uz + n} \cdot \underbrace{(\XtX)^{-1}\Xtz}_{\bls}\,.
+ &= \frac{\nz}{\nz + n} \E[\bbeta\mid\sigma^2]
+  + \frac{n}  {\nz + n} \bls\,.
+  \label{equ:update_beta}
+\end{align}
+
+The posterior expectation for $\bbeta\mid\sigma^2$ is here a
+scalar-weighted mean of the prior expectation and the least squares
+estimate, with weights $\nz$ and $n$, respectively. The role of
+$\nz$ in the prior variance of $\bbeta\mid\sigma^2$ is directly
+mirrored here. As described for the generalised setting in
+Section~\ref{sec:regularconjugates} (see also Section~\ref{070517-sec2-1}), $\nz$ can
+be seen as a parameter describing the ``prior strength'' or
+expressing ``pseudocounts''. In line with this interpretation, high
+values of $\nz$ as compared to $n$ result here in a strong
+influence of $\tmz$ for the calculation of $\tmn$, whereas for small
+values of $\nz$, $\E[\bbeta\mid\sigma^2,\z]$ %the posterior expectation of $\beta\mid\sigma^2$
+will be dominated by the value of $\bls$.
+
+The variance of $\bbeta\mid\sigma^2$ is updated as follows:
+\begin{align}
+\V(\bbeta\mid\sigma^2,\z) &= \frac{n\sigma^2}{\nn}(\XtX)^{-1} %\nonumber\\
+                           = \frac{n\sigma^2}{\nz + n}(\XtX)^{-1}\,. \nonumber%\vspace*{-5ex}
+\end{align}
+
+Here, $\nz$ is updated to $\nn$, and thus the posterior variances are
+automatically smaller than the prior variances, just as in the SCP model.
+%
+%However, modelling of the covariance structure seems a bit simplistic, as only $n\uz$ is
+%updated to $n\uo$, while no other prior specifications can be made. Due to the fixed
+%choice of $n\uz$ in the \ymodel\ calculus, (co-) variances are not interval-valued
+%but real numbers. By the use of the \nymodel\ calculus, the latter point could be relaxed,
+%while the fixed covariance structure will remain.
+%
+
+\subsubsection{Update of $\sigma^2$}
+\label{sec:cccp-update2}
+
+For the assignment of the parameters $\taz$ and $\tbz$ to define the inverse gamma part
+of the joint prior, only $\yz_2$ is left to choose,
+as $\nz$ and $\byz_1$ are already assigned via the choice of $\tmz$ and $\tMz$.
+To choose $\yz_2$, it is convenient to consider the prior expectation of $\sigma^2$
+(alternatively, the prior mode of $\sigma^2$ could be considered as well):
+
+%The update step on the inverse gamma part of the joint prior (i.e., the distribution of $\sigma^2$)
+%is done by updating the parameters $a\uz$ and $b\uz$ from (\ref{equ:priori_sigma}) to $a\uo$ and $b\uo$,
+%which are derived by replacing $n\uz$ and $y\uz$ by $n\uo$ and $y\uo$ in the formulae
+%(\ref{equ:a0}) and (\ref{equ:b0}).
+\begin{align*}
+\E[\sigma^2] &= \frac{\tbz}{\taz - 1}
+              = \frac{\nz \yz_2 -\frac{1}{2} {\tmz}^\tra {\tMz}^{-1}\tmz}{\frac{\nz + p}{2}+1-1} \\
+             &= \frac{2}{\nz + p}\Big(\nz \yz_2 -\frac{\nz}{2} {\byz_1}^\tra n(\XtX)^{-1} \byz_1\Big) \\
+             &= \frac{2 \nz}{\nz + p} \yz_2 - \frac{1}{\nz + p} {\tmz}^\tra {\tMz}^{-1}\tmz\,.
+\end{align*}
+A value of $\yz_2$ dependent on the value of $\E[\sigma^2]$ can thus be chosen by the linear mapping
+
+%Eliciting the remaining prior parameter $y\uz_2$ directly via $b\uz$ ($a\uz$ contains
+%only $n\uz$ which should be elicited at equation~\ref{equ:update_beta}) might be difficult and
+%it is maybe more easy to consider the prior expected value of $\sigma^2$:
+%It follows that a value given for $\mathds{E}[\sigma^2]$ leads to a value of $y\uz_2$
+%through the linear mapping
+\begin{align*}
+\yz_2 &= \frac{\nz + p}{2 \nz} \E[\sigma^2] + \frac{1}{2\nz} {\tmz}^\tra {\tMz}^{-1}\tmz\,.
+\end{align*}
+%bounds can be given for $\mathds{E}[\sigma^2]$ which are leading to bounds for $y\uz_2$, provided that
+%the value of $n\uz$ was already chosen when eliciting the prior beliefs on $\mathds{V}(\beta\mid\sigma^2)$.
+%
+%The prior variance of $\sigma^2$ then calculates as
+%\begin{align*}
+%\var(\sigma^2) &= \frac{{\tbz}^2}{(\taz-1)^2(\taz-2)}
+%                = \frac{1}{\frac{n\uz + p}{2} +1 - 2}\big( \ewt[\sigma^2] \big)^2 %\\
+%                = \frac{2}{n\uz + p -2} \big(\ewt[\sigma^2]\big)^2 \,,
+%\end{align*}
+%and might be of interest for assessing one's choice regarding $n\uz$ and $y\uz_2$***.\\
+
+For the posterior expected value of $\sigma^2$, there is a similar decomposition
+as for the SCP model, and furthermore two other possible decompositions offering
+interesting interpretations of the update step of $\sigma^2$.
+The three decompositions are presented in the following.
+
+
+\paragraph{Decomposition Including an Estimate of $\sigma^2$ Through the Null Model.}
+
+In a first decomposition, the posterior variance of $\sigma^2$ can be written as:
+\begin{align}
+\E[\sigma^2\mid \z] &= \frac{\tbn}{\tan - 1} %\nonumber\\
+                     = \frac{2 \nn}{\nn + p} \yn_2 - \frac{1}{\nn + p} {\tmn}^\tra {\tMn}^{-1} \tmn \nonumber\\
+                    &= \frac{2 \nz}{\nz + n + p} \yz_2
+                     + \frac{1}{\nz + n + p} \ztz
+                     - \frac{1}{\nz + n + p} {\tmn}^\tra {\tMn}^{-1} \tmn \nonumber\\
+                    &= \frac{\nz + p}{\nz + n + p} \E[\sigma^2]
+                         + \frac{n-1}{\nz + n + p} \frac{1}{n-1} \ztz \nonumber\\ & \hspace*{20.6ex}
+                         +   \frac{1}{\nz + n + p} \Big( {\tmz}^\tra {\tMz}^{-1} \tmz
+                                                       - {\tmn}^\tra {\tMn}^{-1} \tmn \Big)\,,
+\label{equ:cccp-sigma1}
+%
+%                                = \frac{2n\uz y\uz_2 + \ztz}{n\uz + n + p}
+%                                = \frac{2 n\uz}{n\uz + n + p} y\uz_2 + \frac{1}{n\uz +n + p} \ztz\\
+%                               &= \frac{n\uz + p}{n\uz + n + p} \mathds{E}[\sigma^2] + \frac{n}{n\uz +n + p} \frac{1}{n}\ztz\,,
+\end{align}
+and so can be seen as a weighted average of the prior expected value,
+$\frac{1}{n-1}\ztz$, and a term depending on %standardized %inversely weighted
+prior and posterior estimates for $\bbeta$, with weights $\nz + p$, $n-1$ and $1$, respectively.
+When adopting the centered $\z$, standardized $\X$ approach,
+$\frac{1}{n-1}\ztz$ is the estimate for $\sigma^2$ under the null model, that is, if $\bbeta = \vec{0}$.
+
+Contrary to what a cursory inspection might suggest,
+the third term's influence, having the constant weight of $1$,
+will not vanish for $n \to \infty$, %growing sample sizes,
+as the third term does not approach a constant.%
+\footnote{Although $\tmn$ approaches $\bls$, and $\tmz$ is a constant,
+${\tMz}^{-1}$ and ${\tMn}^{-1}$ are increasing for growing $n$,
+with ${\tMn}^{-1}$ increasing faster than ${\tMz}^{-1}$.
+The third term will thus eventually turn negative, reducing the null model variance that has weight $n-1$.}
+
+The third term reflects the change in information about $\bbeta$:
+\begin{enumerate}[(i)]
+\item If we are very uncertain about the prior beliefs on $\bbeta$ as expressed in $\tmz$
+and thus assign a small value for $\nz$ as compared to $n$,
+we will get relatively large variances and covariances in $\tMz$ by the factor $n/\nz > 1$ %\raisebox{0ex}[0ex][0ex]{$\frac{n}{n\uz} > 1$}
+to $(\XtX)^{-1}$, resulting in a small term ${\tmz}^\tra {\tMz}^{-1} \tmz$. After updating, the %variances and covariances
+elements in $\tMn$ become smaller automatically
+due to the updated factor $n/(\nz+n)$ %\raisebox{0ex}[0ex][0ex]{$\frac{n}{n\uz + n}$}
+to $(\XtX)^{-1}$.
+
+If the values of $\tmn$ do not differ much from the values in $\tmz$,
+then the term ${\tmn}^\tra {\tMn}^{-1} \tmn$ would be larger than
+its prior counterpart ${\tmz}^\tra {\tMz}^{-1} \tmz$, ultimately reducing the posterior expectation for $\sigma^2$
+through the third term being negative.
+
+If $\tmn$ does significantly differ from $\tmz$,
+then the term ${\tmn}^\tra {\tMn}^{-1} \tmn$ can actually be smaller than
+${\tmz}^\tra {\tMz}^{-1} \tmz$, and thus give a larger value of $\E[\sigma^2\mid \z]$ 
+as compared with the situation $\tmn \approx \tmz$.
+
+\item On the contrary, large values for $\nz$ as compared to $n$, indicating
+high trust in prior beliefs on $\bbeta$, %(expressed in $\tmz$)
+lead to small variances and covariances in $\tMz$ by the factor $n/\nz$ %\raisebox{0ex}[0ex][0ex]{$\frac{n}{\nz} < 1$}
+to $(\XtX)^{-1}$,
+resulting in a larger term ${\tmz}^\tra {\tMz}^{-1} \tmz$ as compared to the case with low $\nz$.
+After updating, variances and covariances in $\tMn$ will become even smaller,
+amplifying the term ${\tmn}^\tra {\tMn}^{-1} \tmn$ even more if
+%the values of $\tmo$ do not differ much from the values of $\tmz$,
+$\tmn \approx \tmz$,
+ultimately reducing the posterior expectation for $\sigma^2$ more than in the situation with low $\nz$.
+
+If, however, the values of $\tmn$ do differ significantly from the values in $\tmz$,
+the term ${\tmn}^\tra {\tMn}^{-1} \tmn$ can be smaller than
+${\tmz}^\tra {\tMz}^{-1} \tmz$ also here, and even more so as compared to the situation with low $\nz$,
+giving eventually an even larger posterior expectation for $\sigma^2$.
+\end{enumerate}
+
+
+\paragraph{Decomposition Similar to the SCP Model.}
+
+%Interestingly, this is not the only useful interpretation of $\mathds{E}[\sigma^2\mid\bs{z}]$.
+%The formula (\ref{equ:posteriori_sigma}) can be shown to convert in other two different forms
+%that offer an intuitive interpretation for the update step of $\sigma^2$,
+%where one gives an interpretation similar to the one for the SCP** model in ***gleichung***.\\
+
+A decomposition similar to the one in Section~\ref{sec:scp-update2} can be derived
+by considering the third term from \eqref{equ:cccp-sigma1} in more detail:
+
+\begin{align*}
+\lefteqn{
+    {\tmz}^\tra {\tMz}^{-1} \tmz
+  - {\tmn}^\tra {\tMn}^{-1} \tmn } \hspace*{3ex} \\
+ &= \nz \cdot n \cdot {\byz_1}^\tra (\XtX)^{-1} \byz_1
+  - \nn \cdot n \cdot {\byn_1}^\tra (\XtX)^{-1} \byn_1 \\
+ &= \nz \cdot n \cdot {\byz_1}^\tra (\XtX)^{-1} \byz_1
+  - (\nz + n) \cdot n \frac{\nz {\byz_1}^\tra + \ztX}{\nz + n} (\XtX)^{-1} \frac{\nz \byz_1 + \Xtz}{\nz + n} \\
+ &= \left(\nz \cdot n - \frac{n \cdot {\nz}^2}{\nz + n}\right) {\byz_1}^\tra (\XtX)^{-1} \byz_1
+  - \frac{2\nz \cdot n}{\nz + n}                               {\byz_1}^\tra (\XtX)^{-1} \Xtz \\ & \hspace*{42ex}
+  - \frac{n}{\nz + n}                                                   \ztX (\XtX)^{-1} \Xtz \\
+ &= \frac{n}{\nz + n} \Big[               {\tmz}^\tra {\tMz}^{-1} \tmz
+                           - 2            {\tmz}^\tra {\tMz}^{-1} \bls
+                           -\frac{n}{\nz} {\bls}^\tra {\tMz}^{-1} \bls \Big] \\
+ &= \frac{n}{\nz + n} \Big[ \big(\tmz - \bls\big)^\tra {\tMz}^{-1} \big(\tmz - \bls\big)
+                           -\big(\frac{n}{\nz}+1\big)  {\bls}^\tra {\tMz}^{-1} \bls \Big] \\
+ &= \frac{n}{\nz + n}       \big(\tmz - \bls\big)^\tra {\tMz}^{-1} \big(\tmz - \bls\big)
+                           - \ztX (\XtX)^{-1} \Xtz\,.
+\end{align*}
+
+Thus, we get
+\begin{align}
+\E[\sigma^2\mid\z] &= \frac{\nz + p}{\nz + n + p} \E[\sigma^2]
+                     +\frac{1}      {\nz + n + p} \Big( \ztz - \ztX (\XtX)^{-1} \Xtz \Big) \nonumber\\ & \hspace*{5ex}
+                     +\frac{1}      {\nz + n + p} \cdot \frac{n}{\nz + n} (\tmz - \bls)^\tra {\tMz}^{-1} (\tmz - \bls) \nonumber\\
+                   &= \frac{\nz + p}{\nz + n + p} \E[\sigma^2]
+                     +\frac{n - p}  {\nz + n + p} \cdot \underbrace{\frac{1}{n-p} %
+                                                          (z - \X\bls)^\tra (z - \X\bls)}_{\sls} \nonumber\\ & \hspace*{5ex}
+                     +\frac{p}      {\nz + n + p} \cdot \underbrace{\frac{n}{\nz + n} %
+                                                          \frac{1}{p} (\tmz - \bls)^\tra {\tMz}^{-1} (\tmz - \bls)}_{=:\tspdc}\,.
+\label{equ:cccp-sigma2}
+\end{align}
+
+The posterior expectation for $\sigma^2$ can therefore be seen also here as
+a weighted average of the prior expected value,
+the estimation $\sls$ resulting from least squares methods,
+and $\tspdc$, an estimate for $\sigma^2$ similar to $\spdc$,%
+\footnote{$\E[\tspdc\mid\sigma^2]=\sigma^2$ computes very similar to the
+calculations given in \textcite[p.~249]{1994:ohagan} and is given below.}
+with weights $\nz + p$, $n-p$ and $p$, respectively.
+
+As in the update step for $\beta\mid\sigma^2$, $\nz$ is guarding the
+influence of the prior expectation on the posterior expectation.
+Just as in the decomposition for the SCP model,
+the weight for $\sls$ will dominate the others when the sample size approaches infinity.
+%
+%Just as in the decomposition in Section\ref{sec:scp-update2},
+Also for the CCCP model, $\tspdc$ %the estimate based on weighted squares of $\tmz - \bls$
+is getting large if prior beliefs on $\beta$ are skewed with respect to ``what the data says'',
+eventually inflating the posterior expectation of $\sigma^2$.
+The weighting of the differences is similar as well: High prior confidence
+in the chosen value of $\tmz$ as expressed by a high value of $\nz$ will
+give a large ${\tMz}^{-1}$, and thus penalising erroneous assignments stronger
+as compared to a lower value of $\nz$.
+Again, $\XtX$, the matrix structure in ${\tMz}^{-1}$, weighs the differences
+for components with covariates having a low spread weaker
+due to the instability of the respective component of $\bls$ under such conditions.
+
+Now we give the proof that $\E[\tspdc\mid\sigma^2] = \sigma^2$.
+As a preparation, it holds that
+\begin{align*}
+\E[\bls\mid\sigma^2] &= \E\big[ \E[\bls\mid\bbeta, \sigma^2] \big| \sigma^2 \big]
+                      = \E[\beta\mid\sigma^2] = \tmz\,, \quad\text{and} \\
+\V(\bls\mid\sigma^2) &= \E\big[ \V(\bls\mid\bbeta, \sigma^2) \big| \sigma^2 \big]
+                       +\V\big( \E[\bls\mid\bbeta, \sigma^2] \big| \sigma^2 \big) \\
+                     &= \E[\sigma^2 (\XtX)^{-1} \mid\sigma^2]
+                       +\V(\bbeta\mid\sigma^2) \\
+                     &= \sigma^2 (\XtX)^{-1} + \frac{n\sigma^2}{\nz} (\XtX)^{-1}
+                      = \frac{\nz + n}{\nz} \sigma^2 (\XtX)^{-1} \,.
+\end{align*}
+
+With this in mind, we can now derive
+\begin{align*}
+\lefteqn{
+\E\big[ \big(\tmz - \bls\big)^\tra {\tMz}^{-1} \big(\tmz - \bls\big) \big| \sigma^2 \big] } \hspace*{3ex} \\
+    &= \E\Big[ \tr\Big({\tMz}^{-1} \big(\tmz - \bls\big) \big(\tmz - \bls\big)^\tra \Big) \big| \sigma^2 \Big] \\
+    &= \tr\Big( {\tMz}^{-1} \E\big[ \big(\tmz - \bls\big) \big(\tmz - \bls\big)^\tra \big| \sigma^2 \big] \Big) \\
+    &= \tr\Big( \frac{\nz}{n}(\XtX) \cdot \frac{\nz + n}{\nz} \sigma^2 (\XtX)^{-1} \Big) \\
+    &= \tr\Big( \frac{\nz + n}{n} \sigma^2 \mbf{I}_p \Big) = \frac{\nz + n}{n} \cdot p \cdot \sigma^2 \,,
+\end{align*}
+such that the factor $\frac{n}{\nz + n} \frac{1}{p}$ in $\tspdc$ cancels out, and indeed $\E[\tspdc\mid\sigma^2] = \sigma^2$.
+
+\paragraph{Decomposition with Estimates of $\sigma^2$ Through Prior and Posterior Residuals.}
+
+A third interpretation of $\E[\sigma^2\mid \z]$
+can be derived by another reformulation of the third term in \eqref{equ:cccp-sigma1}:
+\begin{align*}
+\lefteqn{
+    {\tmz}^\tra {\tMz}^{-1} \tmz
+  - {\tmn}^\tra {\tMn}^{-1} \tmn }\hspace*{3ex} \\
+&=  \frac{\nz}{n} {\tmz}^\tra \XtX \tmz
+  - \frac{\nn}{n} {\tmn}^\tra \XtX \tmn \\
+&=  \frac{\nz}{n} (\z - \X\tmz)^\tra (\z - \X\tmz)
+  - \frac{\nn}{n} (\z - \X\tmn)^\tra (\z - \X\tmn) \\ & \hspace*{3ex}
+  + \frac{\nn}{n} \ztz      - \frac{\nz}{n} \ztz
+  + \frac{\nz}{n} 2\ztX\tmz - \frac{\nn}{n} 2\ztX\tmn \\
+&=  \frac{\nz}{n} (z - \X\tmz)^\tra (z - \X\tmz)
+  - \frac{\nn}{n} (z - \X\tmn)^\tra (z - \X\tmn) %\\ & \hspace*{3ex}
+  + \ztz
+  - 2\ztX\bls \,. % (\XtX)^{-1} \Xtz \,.
+\end{align*}
+
+With this, we get
+\begin{align}
+\E[\sigma^2\mid \z] &= \frac{\nz + p} {\nz + n + p} \E[\sigma^2]
+                      +\frac{\nz + p} {\nz + n + p}
+                        \underbrace{\frac{\nz}{n} \cdot \frac{1}{\nz + p}
+                                    (\z - \X\tmz)^\tra (\z - \X\tmz)}_{=: {\sigma\uz}^2, \text{ as }
+                                                                       \E[{\sigma\uz}^2\mid\sigma^2] = \sigma^2} \nonumber\\ & \hspace*{2ex}
+                      +\frac{2(n - p)}{\nz + n + p} \sls
+                      -\frac{\nn + p} {\nz + n + p}
+                        \underbrace{\frac{\nn}{n} \cdot \frac{1}{\nn + p}
+                                    (\z - \X\tmn)^\tra (\z - \X\tmn)}_{=: {\sigma\un}^2, \text{ as }
+                                                                       \E[{\sigma\un}^2\mid\sigma^2,\z] = \E[{\sigma\un}^2\mid\sigma^2] = \sigma^2} %\nonumber\\ & \hspace*{19ex}
+                                                                         .
+\label{equ:cccp-sigma3}%\vspace*{-1.5ex}
+\end{align}
+
+Here, the calculation of $\E[\sigma^2\mid \z]$ is based
+again on $\E[\sigma^2]$ and $\sls$, but now complemented with
+two special estimates:
+${\sigma\uz}^2$, an estimate based on the ``prior residuals'' $z - \X\tmz$,
+and a respective posterior version ${\sigma\un}^2$, based on $z - \X\tmn$.
+
+However, $\E[\sigma^2\mid \z]$ is only ``almost'' a weighted average of these ingredients,
+as the weights sum up to $\nz - p + n$ instead of $\nz + p + n$.
+Especially strange is the negative weight for ${\sigma\un}^2$,
+actually making the factor to ${\sigma\un}^2$ in \eqref{equ:cccp-sigma3} result to $-1$.
+
+A possible interpretation would be to group $\E[\sigma^2]$ and ${\sigma\uz}^2$
+as prior-based estimations with joint weight $2(\nz + p)$,
+and $\sls$ as data-based estimation with weight $2(n-p)$.
+Together, these estimations have a weight of $2(\nz + n)$,
+being almost (neglecting the missing $2p$) a ``double estimate''
+that is corrected back to a ``single'' estimate
+with the posterior-based estimate ${\sigma\un}^2$.
+
 
 
 

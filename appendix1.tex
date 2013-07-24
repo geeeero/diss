@@ -1173,4 +1173,105 @@ because it depends on $\E[\sigma^2\mid \z]$ alone,
 and affects all elements of variance-covariance matrix in the same way.
 
 
+\subsection{Discussion and Outlook}
+\label{sec:discussion-festschrift}
+
+
+For both the SCP and CCCP model, $\E[\bbeta\mid \z]$ can be seen as a weighted average
+of $\E[\bbeta]$ and $\bls$, such that the posterior distribution on $\bbeta$ will be
+centered around a mean somewhere between $\E[\bbeta]$ and $\bls$, with the location
+depending on the respective weights. The weights for the CCCP model appear especially intuitive:
+$\bls$ is weighted with the sample size $n$, whereas $\E[\bbeta]$ has the weight $\nz$,
+reflecting the ``prior strength'' or ``pseudocounts''.
+
+Due to this, prior-data conflict may at most affect the variances only. Indeed, for both prior models,
+$\E[\sigma^2\mid \z]$ can increase in the presence of prior-data conflict, as shown by the decompositions
+in Sections~\ref{sec:scp-update2} and \ref{sec:cccp-update2}.
+
+Through the formulations \eqref{equ:scp-varbeta} and \eqref{equ:cccp-varbeta} for $\V(\bbeta\mid \z)$,
+respectively, it can be seen that the posterior distribution on $\bbeta$ can in fact
+become less pointed than the prior when prior-data conflict is present.
+Nevertheless, the effect might be not be as strong as desired: In the formulations
+\eqref{equ:scp-decomposition} and \eqref{equ:cccp-sigma2}, respectively, the effect is based only on one term of the decomposition,
+and furthermore may be foiled through the automatic decrease of $\Mn$ and $\tMn$.
+Probably the most problematic finding is that this (possibly weak) reaction affects the whole
+variance-covariance matrix uniformally, and thus, in both models, the reaction
+to prior-data conflict is by no means component-specific.
+
+Therefore, the prior models lack the capability to %have not any capability to
+mirror the appropriateness of the prior assignments for each covariate individually.
+As the SCP model is already the most general approach in the class of conjugate priors,
+this non-specificity feature seems inevitable in Bayesian linear regression based on precise conjugate priors.
+
+
+In fact, as argued in Section~\ref{sec:festschrift-intro}, a more sophisticated and specific reaction to prior-data conflict
+is only possible by extending considerations beyond the traditional concept of probability.
+Imprecise probabilities, as a general methodology to cope with the multidimensional nature of uncertainty, appears promising here.
+For generalised Bayesian approaches, the possibility to mirror the quality of prior knowledge
+is one of the main reasons for the paradigmatic skip from classical probability to interval or imprecise probability.%
+\footnote{See the discussion of this motive in Section~\ref{sec:motivation:pdc}.}
+In this framework, ambiguity in the prior specification
+can be modeled by considering sets ${\cal M}$ of prior distributions.
+In the most common approach based on Walley's \parencite*{1991:walley} Generalised Bayes' Rule (see Section~\ref{sec:gbr}),
+posterior inference is then based on a set of posterior distributions ${\cal M}_{\vert \z}$,
+resulting from updating the distributions in the prior set element by element.%
+\footnote{See Section~\ref{sec:imprecisebayes}.}
+
+Of particular computational convenience are again models based on conjugate priors, as developed
+for the Dirichlet-Multinomial model by \textcite{1996:walley::idm}, see also \textcite{2009:bernard},%
+\footnote{The IDM is discussed in more detail in Section~\ref{sec:idm-and-near-ignorance}.}
+and for i.i.d.\ exponential family sampling models by \textcite{2005:quaeghebeurcooman},
+which were extended by \textcite{Walter2009a}%
+\footnote{See Section~\ref{sec:jstp} for a reproduction of this work.}
+to allow an elegant handling of prior-data conflict:
+With the magnitude of the set ${\cal M}_{\vert \z}$ mapping the posterior ambiguity,
+high prior-data conflict leads, ceteris paribus, to a large
+${\cal M}_{\vert \z},$ resulting in high imprecision in the
+posterior probabilities, and cautious inferences based on it, while in the case of no prior-data conflict
+${\cal M}_{\vert \z}$, and thus the imprecision, is much smaller.%
+\footnote{See the overview on imprecise probability models based on this class of conjugate priors in Section~\ref{sec:generalmodel}.}
+
+The essential technical ingredient to derive this class of models is the general construction principle,
+described in Section~\ref{sec:regularconjugates},
+underlying the CCCP model from Section~\ref{sec:cccp}, and thus that model can be extended directly to
+a powerful corresponding imprecise probability model.\footnote{For $\sigma^2$ fixed, the model from
+Section~\ref{sec:scp} can also be comprised under the more general structure described in Section~\ref{070517-sec2-1},
+that also can be extended to imprecise probabilities, see \textcite{Walter2007a} and \textcite{Walter2006a} for details.}
+A detailed development is beyond the scope of this contribution. %, but the basic steps may finally be sketched:
+
+\iffalse
+***aus sec~\ref{sec:cccp}, noch be-tilde-n und ent-fett-en***\\
+To make inference on $\beta$ using the \nymodel\ calculus, thus one can choose (elementwise) lower
+and upper bounds for $\bs{m}(y\uz)$ based on one's prior knowledge on $\beta$; $n\uz$ must be chosen fix and
+determines the prior covariance matrix for $\beta\mid\sigma^2$, as $\mathds{V}(\beta\mid\sigma^2) = \frac{n\sigma^2}{n\uz}(\XtX)^{-1}$.
+The bounds for $\bs{m}(y\uz_1)$ can then be translated into bounds for $y\uz_1$ by the linear
+mapping $y\uz = \frac{1}{n}(\XtX) \bs{m}(y\uz)$.
+Then, through the linear update step on $n\uz$ and on the bounds for
+$y\uz_1$, the updated parameter $n\uo$ and the (updated) bounds for $y\uo_1$ can be obtained.
+Finally, these updated bounds can be retranslated into interpretable bounds for $\bs{m}(y\uo_1)$, which is
+the mean vector of the posterior distribution for $\beta\mid\sigma^2$. The updated $n\uo$ is used to calculate the
+posterior covariance matrix for $\beta\mid\sigma^2$.
+
+In short terms:
+\begin{enumerate}
+\item fix lower and upper bounds for $\bs{m}(y\uz_1)$ based on prior
+knowledge on $\beta$; $n\uz$ must be chosen fix %($\rightarrow$ Friday)
+and determines the prior covariance matrix for $\beta\mid\sigma^2$:
+$\mathds{V}(\beta\mid\sigma^2) = \frac{n\sigma^2}{n\uz}(\XtX)^{-1}$;
+\item `translate' bounds for $\bs{m}(y\uz_1)$ into bounds for $y\uz_1$ by
+$y\uz_1 = \frac{1}{n}(\XtX) \bs{m}(y\uz_1)$;
+\item perform the linear update step on $n\uz$ and the bounds for
+$y\uz_1$ to obtain $n\uo$ and bounds for $y\uo_1$;
+\item `retranslate' the bounds for $y\uo_1$ into interpretable
+bounds for $\bs{m}(y\uo_1)$ by $\bs{m}(y\uo_1) = n (\XtX)^{-1} y\uo_1$.
+\end{enumerate}
+
+As all transformations are linear, the passing from $\bs{m}({\cal Y}\uz_1)$ to $\bs{m}({\cal Y}\uo_1)$) is easy.
+Finally, $n\uz$ has to be varied along the lines of Walter \& Augustin (2009, Section~4), to allow proper handling of prior data conflict.
+\fi
+
+\subsubsection*{Acknowledgements}
+
+The authors are very grateful to Erik Quaeghebeur and Frank Coolen for intensive discussions on foundations of generalised Bayesian
+inference, and to Thomas Kneib for help at several stages of writing this paper.
 

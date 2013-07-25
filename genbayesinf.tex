@@ -1,10 +1,10 @@
 \chapter{Generalised Bayesian Inference}
 \label{cha:gbi}
 
-\begin{itemize}
+%\begin{itemize}
 %\item Short introduction to IP (sets of priors, lower/upper prevision/probability)
 %\item motivate imprecise priors with ress paper: \cite{Troffaes2013a} --- now in intro
-\item \pdc\ (Evans \& Moshonov, Fuquene-Cook-Pericchi) somewhere???*** %, examples (Festschrift paper: \cite{Walter2010a})
+%\item \pdc\ (Evans \& Moshonov, Fuquene-Cook-Pericchi) somewhere???*** %, examples (Festschrift paper: \cite{Walter2010a})
 %\item further motivations for IP (ITIP chapter \cite{itip-statinf}) 
 %\item Generalized Bayesian inference
 %\item Generalized Bayesian inference with sets of priors
@@ -16,8 +16,8 @@
 %\item IDM
 %\item JSTP paper \cite{Walter2009a}
 %\item isipta11 paper \cite{Walter2011a}
-\item boatshape?
-\end{itemize}
+%\item boatshape?
+%\end{itemize}
 
 
 
@@ -547,7 +547,7 @@ while the imprecise probability framework may use such behavior actively in mode
 in particular in the context of prior-data conflict
 (see Sections~\ref{sec:motivation:pdc} and \ref{sec:pdc-sensitivity}).
 
-\subsubsection{Critique}
+\subsubsection{Critique***}
 \label{sec:updating}
 
 %***on updating and conditioning; also conditioning versus belief revision (itip-special, other?)***
@@ -589,10 +589,10 @@ like the model suggested by \textcite{2008:cattaneo} in the (profile) likelihood
 (see the short note in Section~\ref{sec:ip-related} below),
 a variant of which also allows to incorporate prior information by using a so-called prior likelihood.
 
-Another important critique of the Generalized Bayes' Rule relates to issues from a decision theoretic point of view.
+Another important critique of the Generalised Bayes' Rule relates to issues from a decision theoretic point of view.
 It has been shown that the decision theoretic justification of Bayes' Rule
 as producing prior risk minimising decision functions does not extend to the case of sets of priors.
-Updating by Generalized Bayes' Rule does no longer necessarily lead to optimal decision functions and thus, as one could argue,
+Updating by Generalised Bayes' Rule does no longer necessarily lead to optimal decision functions and thus, as one could argue,
 also not to optimal inference procedures; see, in particular, \textcite{2003:augustin} for a detailed discussion, 
 \textcite{2001:NoubiapSeidel} and \textcite{Augustin5:2004} for algorithms to calculate optimal decision functions.
 
@@ -603,12 +603,12 @@ These important criticisms notwithstanding,
 the models discussed in this thesis will rely on the inference procedure described above, based on the Generalised Bayes' Rule.
 As will be discussed in Section~\ref{sec:generalmodel},
 the suggested models nevertheless provide very attractive inference features.
-Furthermore, we will discuss in Section ****boatshape***
+Furthermore, we will sketch in Section ****boatshape***
 how models along this approach can be modified to cater for `bonus precision'
 if prior and data coincide especially well.****
 
 
-\subsection{Related Concepts}
+\subsection{***Related Concepts}
 \label{sec:ip-related}
 
 %****as separate section 2.3?****
@@ -762,11 +762,9 @@ while highly imprecise (or even vacuous) models are used in the situation of sca
 \subsection{Risk and Ambiguity}
 \label{sec:motivation-riskambiguity}
 
-This multidimensionality of uncertainty is most often accounted for
+The multidimensionality of uncertainty is most often accounted for
 by distinguishing two specific dimensions,
-commonly denoted by \emph{risk} and \emph{ambiguity}. ***citation??***
-
-***\parencite{1961:ellsberg} here, some words on decision making? cite again \parencite{2005:hsu-bhatt}??***
+commonly denoted by \emph{risk} and \emph{ambiguity} \parencite[e.g., by][]{1961:ellsberg}.
 
 \begin{itemize}
 \item Risk is the uncertainty involved in ideal lotteries,
@@ -777,12 +775,22 @@ arising, e.g., in a lottery where the number of winning tickets is exactly known
 \item Ambiguity arises when there is insufficient information about the stochastic mechanism,
 or information about it is lacking completely, and covers thus non-stochastic uncertainty.
 Uncertain phenomena where there is no information at all
-about ocurrence or no-ocurrence would constitute a situation of pure ambiguity,
-e.g., a lottery where there is no information whatsoever about the number of winning tickets.
+about ocurrence or no-ocurrence of events would constitute a situation of pure ambiguity,
+like a lottery for which there is no information whatsoever about the number of winning tickets.
 \end{itemize}
 
-Of course, in real-life situations usually mixtures of risk and ambiguity occur,
-and these can be adequately modeled by lower previsions or sets of probability distributions.
+Ellsberg's \parencite*{1961:ellsberg} seminal experiment demonstrated
+that, in contrast to the then dominant theoretical frameworks
+for rational decisions under uncertainty \parencite[most prominently,][]{1954:savage},
+not all decisions can be framed in terms of \emph{risk},
+and that aspects of \emph{ambiguity} do form a crucial part of the decision process
+and should not be glossed over.%
+\footnote{More recently, the study by \textcite{2005:hsu-bhatt}
+even suggests that decision problems involving ambiguity are processed
+by different cerebral mechanisms as those involving pure risk.}
+
+Indeed, in our view, real-life situations often pose mixtures of risk and ambiguity,
+and should be modeled by lower previsions or sets of probability distributions.
 In the latter formulation,
 the stochastic aspect is dealt with by the single distributions included in the set,
 whereas ambiguity is expressed by the magnitude of the set itself,
@@ -868,7 +876,7 @@ In traditional statistics, so-called \emph{non-informative priors} have been pro
 eventually all select a single traditional prior distribution,
 turning ignorance into a problem with rather precise probabilistic information.
 Furthermore, these `non-informative' priors are usually improper,
-leading to severe problems in hypotheses testing (as mentioned in Section~\ref{sec:beta-binom})
+leading to severe problems in hypotheses testing (as mentioned in Section~\ref{sec:beta-binom}).
 We will comment on this issue in more detail in Section~\ref{sec:gbicp-properties-criteria},
 item \ref{enum:noninformative}, and in Section~\ref{sec:idm-and-near-ignorance}.
 
@@ -882,12 +890,13 @@ For instance, \textcite[p.~893]{2006:evans} warn that if
 ``[\ldots] the observed data is surprising in the light of the sampling model and the prior,
 then we must be at least suspicious about the validity of inferences drawn.''
 While there is no way to express this caution (`being suspicious') in precise probabilistic models,
-the imprecise probability model at the core of this thesis was developed specifically to take care of this issue
-(see Section~\ref{cha:imprecisebayes-conjugate}) in an appropriate way.
+the imprecise probability models at the core of this thesis (see Chapter~\ref{cha:imprecisebayes-conjugate})
+were developed specifically to take care of this issue in an appropriate way.
 A more detailed discussion on the issue of prior-data conflict will thus be given in Section~\ref{sec:gbicp-properties-criteria},
 item \ref{enum:pdc}, and in Section~\ref{sec:pdc-sensitivity};
-some illustrative examples can be found in Section ****,
-while the effect of prior-data conflict on Bayesian linear regression is discussed in Section ****.
+these treatments are in turn based on the studies in Sections~\ref{sec:jstp} and \ref{sec:isipta11}.
+Some illustrative examples of \pdc\ can be found in Section~\ref{sec:iid},
+while the effect on Bayesian linear regression estimates is discussed in Sections~\ref{sec:scp} and \ref{sec:cccp}.
 
 As a topic related to prior-data conflict, decreasing imprecision in sequential learning
 may express naturally that the accumulating information is non-conflicting and stable.%
@@ -931,7 +940,7 @@ We think models are preferable that, by allowing for imprecision, can be taken s
 This is also the position of Manski, whose ``Law of decreasing credibility'',%
 \footnote{``Credibility'' is used here in a non-technical sense.}
 \begin{quote}
-``The credibility of inferences decreases with the strength of the assumptions maintained'' \parencite[p. 1]{2003:manski}
+``The credibility of inferences decreases with the strength of the assumptions maintained'' \parencite[p. 1]{2003:manski},
 \end{quote}
 can be understood as a compelling motto for statistical inference with imprecise probabilities,
 bringing credibility, or reliability, of conclusions explicitly into the argument,
@@ -942,7 +951,7 @@ and encouraging us to impose justified assumptions only.
 Furthermore, the perceived difficulty of applying imprecise probability methods in practice
 is, at least in the subjective Bayesian inference paradigm, often negligible.
 Sets of prior distributions are relatively easy to handle (see, e.g., the models in Section~\ref{sec:generalmodel}),
-and the crucial point in practical analyses is often the choice of the prior.
+and the crucial point in practical analyses instead is often the choice of the prior.
 For this, e.g., probabilities or quantiles must be elicited
 by questioning an expert in the field under study.
 To us it seems hardly questionable that it will be easier for such an expert
@@ -982,7 +991,7 @@ when the priors in $\mathcal{M}$ are meant to model behavioural dispositions,
 as is the case for subjective Bayesian approaches.
 
 Leaving aside the serious problems that can arise when ignorance about $\phi$ is modelled by a non-informative prior,
-a second-order distribution approach actually defines, via averaging / integrating *** over the elements in $\mathcal{M}$,
+a second-order distribution approach actually defines, via averaging over the elements in $\mathcal{M}$,
 a precise prior on the first level, leading to precise posterior inferences,
 thus obscuring the uncertainty in the model that was the reason
 for devising a second-order distribution in the first place.
@@ -990,7 +999,7 @@ for devising a second-order distribution in the first place.
 %better alternative: hierarchical model by \textcite{2008:cattaneo} .
 %where a possibility distribution is used for info about (hyper-)parameters,
 %interpretation as likelihood, profile lik***
-A much better alternative*** for hierarchical modelling was suggested by \textcite{2008:cattaneo}.
+In our view, a much better alternative for hierarchical modelling was suggested by \textcite{2008:cattaneo}.
 Here, information on the plausibility of elements in $\mathcal{M}$ is modelled
 by a possibility distribution, such that uncertainty in posterior inferences is reflected
 again by a possibility distribution, which takes the form of a normalised likelihood function
@@ -1004,20 +1013,20 @@ In a non-Bayesian context, the model consists of a set of sample distributions $
 (it is possible to take a whole family of sample distributions as $\mathcal{M}$),
 and of the likelihood function $\lik: \mathcal{M} \to \reals_0^+$ as the second level,
 describing the plausibility of its elements based on the sample.
-Inference on certain deduced quantities $\vartheta=g\left(p\right), p \in \mathcal{P}$
+Inference on certain deduced quantities $\vartheta=g\left(p\right), p \in \mathcal{M}$
 then can be based on the so-called \emph{profile likelihood}
 $\text{proflik}(\vartheta) = \sup_{\{p \in \mathcal{M} \mid g(p)=\vartheta\}} \lik(p)$.
 A variant of this model allows to incorporate prior information by using a so-called prior likelihood.
 The approach can serve as a basis for a direct likelihood-based decision theory \parencite{2007a:cattaneo, 2012:cattaneo-technicalRep}.
 It has been successfully applied in graphical models (e.g., \cite{2011:4:isipta},
-see also \cite[\S 4.3]{itip-classification}), and in the context of data imprecision
-(see, e.g., \cite[\S 8.1]{itip-statinf}).***other citation?***
+see also \cite[\S 4.3]{itip-classification}), and in the context of regression with imprecise data
+\parencite{2012:cattaneo-wiencierz}.
 
 \medskip
 
 After describing the theoretical foundations of and motivating the switch to imprecise probability models in general,
 in Chapter~\ref{cha:imprecisebayes-conjugate} we will now present 
 models for Bayesian inference with imprecise proabilities
-that are practicable and account for the modelling opportunities discussed.*** % the motives discussed
+that are practicable and account for the modelling opportunities discussed above. % the motives discussed
 
 

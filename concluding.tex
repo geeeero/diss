@@ -4,7 +4,27 @@
 
 \section{***Summary / Discussion***}
 
-***comparison with other approaches here?***
+write again about general model framework (Section~\ref{})
+
+discussion of shapes as at end of ***
+
+emphasise modeling opportunities, and realistic description and treatment
+of model uncertainty as in \ref{sec:objections}
+
+
+
+
+***comparison with other approaches here or in Section~\ref{sec:alternatives}?***
+
+study by ***krautenbacher*** shows that elicitation of $\MZ$ can be difficult,
+compares with \textcite{2005:whitcomb}, similar results****
+
+more studies for comparison with **** to be done
+
+
+\ref{sec:generalmodel}
+
+
 
 
 
@@ -12,6 +32,76 @@
 
 ***avenues for further research***
 
-***boatshape stuff: strong prior-data agreement***
+***\textbf{first: model as is, use for\dots }
 
-***useful in surveillance?*** (comment in footnote~\ref{foot:sequential}, page~\pageref{foot:sequential})
+***model could be vey useful in statistical surveillance, cite IESS:surveillance?***,
+as mentioned in footnote~\ref{foot:sequential}, page~\pageref{foot:sequential}),
+write here some more: optimal stopping rules, outbreak detection is usually(?)
+framed as a testing problem (will new data refute the current model?),
+but can also be seen similar to \pdc\ (is new data in conflict with current (prior) model?).
+it might be interesting to see if rectangular sets or other shapes are good for this.  
+
+***use regression framework from Section~\ref{sec:cccp} in situations prone to \pdc.
+
+
+***\textbf{then: extend the model, but keep GBR framework}
+
+***extend to coarse or imprecise data, which is a very important field:
+do not idealise also the data (we stopped idealising the prior already)!
+
+from isipta11 concluding:
+\begin{small}
+For a deeper understanding of prior-data conflict, it may also be helpful
+to extend our methods to coarse data, in an analogous way to \textcite{2007:utkinaugustin} and
+\textcite{2009:Troffaes:Coolen}, and to look at other model classes of prior distributions, most
+notably at contamination neighbourhoods. Of particular interest here may
+be to combine both types of prior models, considering contamination
+neighbourhoods of our exponential family based-models with sets of
+parameters, as developed in the Neyman-Pearson setting by
+\textcite[\S~5]{2002:augustin}.
+\end{small}
+
+
+***boatshape stuff: cater also for strong prior-data agreement***
+
+as mentioned in ***isipta'11***, shape of $\MZ$ has a crucial influence on inferences,
+and it might be very difficult to elicit a set \emph{shape} and ascertain*** the consequences of a certain shape.
+
+although the updating of the canonical parameters \eqref{eq:canonicalupdate},
+i.e., the weighted average update step for $\yz$, and the increment step for $\nz$,
+seems very intuitive (and is central to the behaviour of the model,
+see the list of inference properties in Section~\ref{sec:gbicp-properties-criteria}),
+the shape change of $\MZ$ to $\MN$ through this updating is difficult to grasp.
+
+although update of a single coordinate $(\nz,\yz)$ is a simple shift,
+this shift is different for different coordinates.
+
+as shape change is so problematic for understanding,
+is there a different parametrisation such that shape remains constant,
+i.e., not only single coordinates shift, but also entire shapes
+(same shift for all coordinates)?
+
+yes, there is, see preliminary results by Mik Bickis (``personal communication'' if no citable work?***).
+there, update step for $\nz$ is the same, and shift for parameter replacing $\yz$ is the same for all. 
+
+describe some more?
+
+rays of constant expectation (i.e., $\approx \yn$)
+
+this parametrisation allows to tailor shapes for desired inference behaviour much easier.
+indeed, GW and FC have thought of a shape that has \pdc\ sensitivity,
+and gives `bonus precision' if prior and data agree especially well,
+as mentioned a desirable property in Section~\ref{sec:insights}
+and in the discussion of GBR in Section~\ref{sec:updating}
+
+very appealing first results for Beta-Binomial model and Normal-Normal model,
+hope for a joint publication of GW, FC and MB explaining this in detail.
+
+
+\textbf{finally, general thoughts about updating, learning, etc}
+
+elaborate thoughts in Section~\ref{sec:updating} again, some more?***
+
+questions on (data) robustness, see isipta13 paper by Marco,
+
+

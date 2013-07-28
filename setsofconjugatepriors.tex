@@ -11,6 +11,8 @@ based on i.i.d.\ exponential family sampling models by \textcite{2005:quaeghebeu
 These models were extended by \textcite[see Section~\ref{sec:jstp}]{Walter2009a} and \textcite[see Section~\ref{sec:isipta11}]{Walter2011a}
 to allow in addition an elegant handling of prior-data conflict.
 
+\medskip
+
 Section~\ref{sec:generalmodel} attempts to give a systematic overview on these models, %the different models discussed in the literature,
 and illustrates some characteristic modelling opportunities of generalised Bayesian inference.
 
@@ -21,14 +23,15 @@ Section~\ref{sec:jstp} then presents one model in detail, namely the so-called
 and illustrates its application to the Normal-Normal and Dirichlet-Multinomial models. % in more detail. %***JSTP***
 
 Section~\ref{sec:luck} gives a short overview on a software implementation of \nymodel s,
-the add-on package \texttt{luck} ***citation*** for the statistical programming environment \textbf{R}. ***citation***
+the add-on package \texttt{luck} ***citation*** for the statistical programming environment \textbf{R} \parencite{2013:r}.
 
 %***isipta07 summary in appendix?***
 
 Section~\ref{sec:isipta11} presents attempts to further refine inference behaviour in the presence of \pdc,
 one by considering more sophisticated shapes for prior parameter sets,
 the other by a fundamentally different approach of combining inferences from two arbitrary distinct models.
-Interestingly, the inferences from the two models in Section~\ref{sec:isipta11} show nevertheless fascinating similarities. %***ISIPTA'11***
+Interestingly, the inferences from the two approaches in Section~\ref{sec:isipta11} show nevertheless fascinating similarities.
+%***ISIPTA'11***
 
 %***football example?***
 
@@ -40,7 +43,23 @@ Interestingly, the inferences from the two models in Section~\ref{sec:isipta11} 
 
 ***structure of section: here comes the important part!****
 
-***check if refs to own papers included in diss are to be switched to diss sections*** 
+This section attempts to give a systematic overview on imprecise probability models
+for inference in canonical exponential families
+based on sets of canonical conjugate priors.
+
+\medskip
+
+In Section~\ref{sec:basicsetting}, a ***general framework*** that characterises these models is elaborated,
+and the models discussed in the literature that can be subsumed*** under this framework are named/given/enumerated***.
+%
+Section~\ref{sec:gbicp-properties-criteria} presents a number of inference properties that this framework provides,
+along with two further criteria characterising the unique modelling opportunities that
+generalised Bayesian inference can offer: sensitivity to \pdc, and the case of weakly informative priors.
+%
+The models from Section~\ref{sec:basicsetting} are then discussed in the light of the two criteria in
+Sections~\ref{sec:idm-and-near-ignorance} and \ref{sec:pdc-sensitivity},
+providing a summary of model strengths and weaknesses.***
+
 
 \subsection{The General Framework}
 %\subsection{The Basic Setting}

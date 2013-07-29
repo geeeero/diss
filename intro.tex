@@ -1480,7 +1480,8 @@ a larger value of $\nzu$ ensures that the posterior does not move away too fast 
 which is particularly important for zero counts,
 and the difference between $\nzl$ and $\nzu$ effectively results in greater posterior
 imprecision if $n_j/n \notin [\yzl_j,\yzu_j]$.% %in case of prior-data conflict.
-\footnote{We will show in Section **** that this argument makes sense
+\footnote{We will show in Sections~\ref{sec:pdc-sensitivity} and \ref{sec:4-gw-071216} that this argument,
+generalising the issue of zero counts to the issue of \pdc\ (see Footnote~\ref{foot:pdc-idea} below), makes sense
 also for the general case of canonically constructed priors in Eq.~\eqref{eq:canonicalprior}.}
 
 To see this, note that, if $\yzl_j \le n_j/n \le \yzu_j$, it follows from
@@ -1492,8 +1493,11 @@ which is nearer to $n_j/n$ due to the lower weight $\nzl$ for the prior bound $\
 %resulting in a wider posterior expectation interval.
 The increased imprecision reflects the conflict between the prior assignment
 $[\yzl_j,\yzu_j]$ and the observed fraction $n_j/n$,
-and this is referred to as \emph{prior-data conflict}
-(see Section****, or \textcite{Walter2009a} for the paper centered around this idea).
+and this is referred to as \emph{prior-data conflict}.%
+\footnote{\label{foot:pdc-idea}%
+The issue of \pdc, and models that allow sensitivity of inferences in its presence,
+are discussed in more detail in Sections~\ref{sec:motivation:pdc} and \ref{sec:pdc-sensitivity}.
+\textcite{Walter2009a}, reproduced in Section~\ref{sec:jstp}, is the publication centered around this idea.}
 
 \subsubsection{Interval for Learning Parameter}
 

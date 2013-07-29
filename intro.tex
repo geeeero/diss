@@ -147,7 +147,7 @@ Other notational conventions are declared upon introduction of the concepts they
 
 %This thesis being concerned with generalized Bayesian Inference
 
-In this Section, we will give a short introduction to statistical inference
+In this section, we will give a short introduction to statistical inference
 and models that are used to describe random samples.
 %These introductory sections may also serve as a guide to the notation utilized.
 
@@ -184,12 +184,12 @@ The inferential task is to learn the true element $\p^* \in \mathcal{Q}$ from mu
 \label{sec:parametricmodels}
 
 In this thesis, generally, so-called \emph{parameteric models} are considered,
-where $\mathcal{Q}$ is pa\-ra\-me\-trized by a parameter $\vartheta$ of finite dimension,
+where $\mathcal{Q}$ is pa\-ra\-me\-trised by a parameter $\vartheta$ of finite dimension,
 assuming values in the so-called \emph{parameter space} $\Theta$, $\Theta \subseteq \reals^q, \ q < \infty$,
 i.e.\ ${\cal Q}=\left(\p_\vartheta\right)_{\vartheta \in \Theta}$.
-Here, the different sampling distributions $\p_\vartheta$ are implicitly understood as belonging to a specific class of distributions
+Here, the different sampling distributions $\p_\vartheta$ are implicitly understood as belonging to a specific class of distributions,
+the basic type of which is assumed to be known completely
 (e.g., normal distributions, as in Section~\ref{sec:normaldist} below),
-the basic type of which is assumed to be known completely,
 and only some characteristics $\vartheta$ (e.g., the mean) of the distributions are unknown.
 
 Throughout, we will assume (as is the case for all common applications)
@@ -216,10 +216,13 @@ $\p_\vartheta^{\otimes n}$ thus has the probability mass or density function
 \[
 f_\vartheta(x_1, \ldots, x_n) := \prod_{i=1}^{n} f_\vartheta(x_i)\,.%\label{120710-2}
 \]
-The term \emph{sample} is then also used for the concretely observed value(s) $\x=(x_1, \ldots, x_n)^T$.%
+The term \emph{sample} is then also used for the concretely observed value(s) $\x=(x_1, \ldots, x_n)^\tra$.%
 %\footnote{Throughout, random quantities are denoted by capital letters, their values, or realizations, by small letters.}
 
-Next, we will present two examples for basic parametric models that will be repeatedly discussed further on.
+\medskip
+
+In Sections~\ref{sec:normaldist} and \ref{sec:multinomdist},
+we will present two examples for basic parametric models that will be repeatedly discussed further on.
 
 
 \subsection{The Normal Distribution}
@@ -339,13 +342,13 @@ Such priors have the convenient property that the posterior resulting from~\eqre
 belongs to the same class of parametric distributions as the prior, and thus only the parameters have to be updated,
 which makes calculation of the posterior and thus the whole Bayesian inference easily tractable.%
 \footnote{This motivation for the use of conjugate priors can be founded on formal arguments.
-As will be explained below, posterior expectation of the parameter of interest
+As will be explained below, the posterior expectation of the parameter of interest
 is actually a linear function of a sufficient statistic of the data and the prior expectation.
 It turns out that, under some regularity conditions, requiring such linearity of posterior expectation
 implies the use of conjugate priors \parencite[p.~276]{2000:bernardosmith}.}
 % comment Frank: exponential family was known in pre-Bayes days as Kap***-Dar**** family
 
-Fortunately, there are general results guiding the construction of conjugate priors in several models models used most frequently in practice,
+Fortunately, there are general results guiding the construction of conjugate priors in several models used most frequently in practice,
 namely in the case where the sample distribution belongs to a so-called \emph{(regular) canonical exponential family}
 \parencite[e.g.,][pp.~202 and 272f]{2000:bernardosmith}. %Def.~4.12 and Prop.~5.6
 This indeed covers many sample distributions relevant in a statistician's everyday life,
@@ -358,10 +361,10 @@ A sample distribution
 is said to belong to the \emph{(regular) canonical exponential family} if its density or mass function satisfies the decomposition
 \begin{align}
 \label{eq:expofam-sampledens}
-f(\x \mid \theta) &\propto \exp\big\{\langle \psi, \tau(\x) \rangle - n \mbf{b}(\psi)\big\}\,,
+f(\x \mid \vartheta) &\propto \exp\big\{\langle \psi, \tau(\x) \rangle - n \mbf{b}(\psi)\big\}\,,
 \end{align}
-where $\psi \in \Psi \subset \reals^q$ is a transformation of the (possibly vectorial) parameter $\theta \in \Theta$,
-and $\mbf{b}(\psi)$ a scalar function of $\psi$ (or, in turn, of $\theta$).
+where $\psi \in \Psi \subset \reals^q$ is a transformation of the (possibly vectorial) parameter $\vartheta \in \Theta$,
+and $\mbf{b}(\psi)$ a scalar function of $\psi$ (or, in turn, of $\vartheta$).
 $\tau(\x)$ is a function of the sample $\x$ that fulfills $\tau(\x) = \sum_{i=1}^n \tau^*(x_i)$,
 with $\tau^*(x_i) \in \mathcal{T} \subset \reals^q$,
 while $\langle\cdot, \cdot\rangle$ denotes the scalar product.%
@@ -381,7 +384,7 @@ p(\psi \mid \nz, \yz) \dd\psi
 where $\nz$ and $\yz$ are now the parameters by which a certain prior can be specified.
 We will refer to priors of the form~\eqref{eq:canonicalprior} as \emph{canonically constructed priors}.
 The domain of $\yz$ is $\Y$, the interior of the convex hull of $\mathcal{T}$;
-$\nz$ must take strictly positive values for the prior to be \emph{proper} (i.e., integrable to $1$).
+the scalar $\nz$ must take strictly positive values for the prior to be \emph{proper} (i.e., integrable to $1$).
 
 An interpretation for these parameters will be given shortly.
 First, let us calculate the posterior density for $\psi$.
@@ -405,17 +408,20 @@ where in turn $\E[\nabla\mbf{b}(\psi) \mid \nz, \yz] = \yz$ \parencite[e.g.,][Pr
 Characteristically, $\yn$ is a weighted average of this prior guess $\yz$ and the sample `mean' $\ttau(\x)$,
 with weights $\nz$ and $n$, respectively.%
 \footnote{This weighted average property of Bayesian updating with conjugate priors is an important issue
-we comment on ***later / in Section~*****.}
+we comment on in Sections~\ref{sec:pdc-sensitivity} and \ref{section:fixednschlecht}.
+See also Section~\ref{sec:iid} for an illustration of this issue for the Normal-Normal and Multinomial-Dirichlet models.}
 Therefore, $\nz$ can be seen as ``prior strength'' or ``pseudocounts'',
 reflecting the weight one gives to the prior as compared to the sample size $n$.
 To make this more explicit, $\nz$ can be interpreted as the size of an imaginary sample
 that corresponds to the trust on the prior information in the same way
 as the sample size of a real sample
-corresponds to the trust in conclusions based on such a real sample \parencite[p.~258]{Walter2009a}.
+corresponds to the trust in conclusions based on such a real sample
+\parencite[p.~258; see Section~\ref{070517-sec2-1}]{Walter2009a}.
+%(see Section~\ref{070517-sec2-1}).
 
-The posterior $p(\psi \mid \nn, \yn)$ can be transformed back to a distribution on $\theta$
+The posterior $p(\psi \mid \nn, \yn)$ can be transformed back to a distribution on $\vartheta$
 in order to deal with a commonly known parameter or distribution family for it
-(as we will do, e.g., in Section~\ref{sec:beta-binom} below).
+(as we will do, e.g., in Sections~\ref{sec:beta-binom} and \ref{sec:diri-multi} below).
 Besides the posterior itself, also the posterior predictive distribution
 \begin{align}
 \label{eq:posteriorpredictive}
@@ -478,7 +484,7 @@ where, more generally, the conclusion is to select certain utility maximising or
 %the tasks listed above 
 We will flesh this out to some extent in the examples below.%
 \footnote{For more details, see, e.g., \textcite[\S 2]{2007:robert},
-where,loss functions typical for statistical settings are described in \S 2.5, pp.~77ff.}
+where loss functions typical for statistical settings are described in \S 2.5, pp.~77ff.}
 
 \medskip
 
@@ -490,7 +496,7 @@ being the special case of the Multinomial model with only two categories.
 Then, we will briefly turn to the Normal model,
 before we present the more complex considerations for the Multinomial model with $k>2$ categories.
 The latter model %for the Multinomial model (Section~\ref{sec:multinomdist})
-is then used in Section~\ref{sec:commoncause} for inferences in common-cause modeling,
+is then used in Section~\ref{sec:commoncause} for common-cause failure modeling,
 which will serve as a real-world example illustrating the powers and shortcomings of standard Bayesian inference,
 ultimately motivating the shift to imprecise Bayesian inference.
 
@@ -503,13 +509,13 @@ As the special case of the multinomial model \eqref{eq:multinomdens} with only t
 \label{eq:binomdens}
 f(\x\mid\theta) &= {n \choose s}\theta^s (1-\theta)^{n-s}\,,
 \end{align}
-where $\x$, the vector of $n$ observations, is composed of scalar $x_i$'s being either $0$ or $1$
+where $\x$, the vector of $n$ observations, is composed of scalar $x_i$'s being either $0$ or $1$,
 denoting `failure' or `success' in an experiment with these two outcomes.
 $s = \sum_{i=1}^n x_i$ is the number of successes,
 and the (unknown) parameter $\theta \in (0,1)$ is the probability for `success' in a single trial.
 \eqref{eq:binomdens} can be written in the canonical exponential family form \eqref{eq:expofam-sampledens}:
 \begin{align*}
-f(\x\mid\theta) &\propto \exp\Big\{ \log\Big(\frac{\theta}{1-\theta}\Big) s - n \big(-\log(1-\theta)\big) \Big\}
+f(\x\mid\theta) &\propto \exp\Big\{ \log\Big(\frac{\theta}{1-\theta}\Big) s - n \big(-\log(1-\theta)\big) \Big\} \,.
 \end{align*}
 We have thus $\psi = \log(\theta/(1-\theta))$, $\mbf{b}(\psi) = -\log(1-\theta)$, and $\tau(\x) = s$.
 The function $\log(\theta/(1-\theta))$ is known as the \emph{logit}, denoted by $\logit(\theta)$.
@@ -585,9 +591,9 @@ as the posterior distribution delivers a direct measure of probability for arbit
 Mostly, so-called \emph{highest posterior density} (HPD) intervals are considered,
 where for a given probability level $\gamma$ the shortest interval covering this probability mass is calculated.
 For unimodal densities, this is equivalent to finding a threshold $\alpha$ such that
-the probability mass for all $\theta$ with $p(\theta\mid\nn, \yn) \ge \alpha$ equals $\gamma$, hence the name.%
+the probability mass for the set of all $\theta$ with $p(\theta\mid\nn, \yn) \ge \alpha$ equals $\gamma$, hence the name.%
 \footnote{See, e.g., \textcite{2000:bernardosmith}, \S 5.1.5, pp.~259f, or \textcite{2007:robert}, Def.~5.5.3, p.~260.}
-For the Beta posterior, a HPD interval for $\theta$ must be determined by numeric optimization.
+For the Beta posterior, a HPD interval for $\theta$ must be determined by numeric optimisation.
 For approximately symmetric (around $\frac{1}{2}$) Beta posteriors, a good approximation is the symmetric credibility interval,
 delimited by the $\frac{1-\gamma}{2}$- and the $\frac{1+\gamma}{2}$-quantile of the posterior.
 
@@ -667,14 +673,16 @@ after having seen $s$ successes in $n$ trials, is
 \begin{align*}
 f(s^* \mid \nn, \yn) &= {n^* \choose s^*} \frac{\B\big(s^* + \nn \yn, n^* - s^* + \nn (1 - \yn)\big)}{\B\big(\nn\yn, \nn (1 - \yn)\big)}\,,
 \end{align*}
-known as the \emph{Beta-Binomial distribution}.
+known as the \emph{Beta-Binomial distribution}.%
+\footnote{Section~\ref{sec:isipta11} discusses imprecise Bayesian inference in the Beta-Binomial model,
+studying the probability of the next observation to be a success in dependence on the number of successes $s$ in $n$ past observations.}
 
 
 \subsection{The Normal-Normal Model}
 \label{sec:norm-norm}
 
 %***add comment on general case $\vartheta=(\mu,\sigma^2)$***\\
-The normal density \eqref{eq:normaldens}, here with the variance $\sigma^2$ known to be $\sigma^2_0$,
+The normal density \eqref{eq:normaldens}, here with the variance $\sigma^2$ known to be equal to $\sigma^2_0$,
 also adheres to the exponential family form:
 \begin{align*}
 f(\x \mid \mu, \sigma_0^2)
@@ -697,8 +705,8 @@ i.e.\ $\mu \sim \norm(\yz, \frac{\sigma_0^2}{\nz})$.%
 is the so-called normal-inverse gamma distribution,
 a combination of the normal distribution above and the inverse gamma distribution
 \parencite[see, e.g.,][pp.~119, 431]{2000:bernardosmith}.
-This prior is a special case of the priors for Bayesian regression discussed in ****festschrift****,
-where $\X = (1, \ldots, 1)^\tra$****.
+This prior is a special case of the priors for Bayesian regression discussed in Section~\ref{sec:festschrift},
+where $\X = (1, \ldots, 1)^\tra$ and $\bbeta = \mu$.
 When instead of the variance $\sigma^2$ the precision $\kappa = 1/\sigma^2$ is considered,
 this prior can be written as a normal-gamma prior
 \parencite[see, e.g.,][pp.~136, 434]{2000:bernardosmith}.}
@@ -712,7 +720,7 @@ The posterior expectation of $\mu$ thus is a weighted average of the prior expec
 with weights $\nz$ and $n$, respectively.
 The effect of the update step on variance is that it decreases by the factor $\nz/(\nz+n)$.
 
-Here, all of the three choices of loss functions mentioned for the Beta-Binomial model
+Here, all of the three standard choices of loss functions mentioned for the Beta-Binomial model
 lead to the same \textbf{point estimator} $\hat{\mu} = \yn$,
 as in normal distributions mean, median, and mode coincide.
 
@@ -724,7 +732,7 @@ The \textbf{testing of hypotheses} about $\mu$ works again by comparing posterio
 Note that the frequentist analogue to such a test is the (one-sided) one-sample Z-test (or Gaussian test).
 
 The \textbf{posterior predictive} distribution for $n^*$ future observations denoted by $\x^*$ is again a normal distribution,
-$\x^*\mid(\nn,\yn) \sim \norm\big(\yn, \frac{\sigma_0^2}{\nn}(\nn + n^*)\big)$,
+$\x^*\mid \nn,\yn \sim \norm\big(\yn, \frac{\sigma_0^2}{\nn}(\nn + n^*)\big)$,
 centered at the posterior mean \eqref{eq:normalposte},
 and with variance increasing with the posterior variance \eqref{eq:normalpostvar}
 and the number of observations to be predicted.
@@ -861,7 +869,7 @@ Due to the considerations from the beginning of this section,
 we see that the Dirichlet distribution is the canonically constructed conjugate prior
 also to the Multinomial sample model with arbitrary sample sizes.
 
-The Dirichlet distribution can be seen as a direct generalization of the Beta distribution,
+The Dirichlet distribution can be seen as a direct generalisation of the Beta distribution,
 and we will speak of the \emph{Dirichlet-Multinomial model}
 as the analogue to the Beta-Binomial model from Section~\ref{sec:beta-binom}.
 

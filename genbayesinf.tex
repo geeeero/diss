@@ -1007,7 +1007,19 @@ In our view, a much better alternative for hierarchical modelling was suggested 
 Here, information on the plausibility of elements in $\mathcal{M}$ is modelled
 by a possibility distribution, such that uncertainty in posterior inferences is reflected
 again by a possibility distribution, which takes the form of a normalised likelihood function
-and can be interpreted, like usual likelihoods, as a measure of relative plausibility.
+and can be interpreted, like usual likelihoods, as a measure of relative plausibility.%
+\footnote{The possibility distributions for quantities of interest can also be seen
+as \emph{fuzzy numbers}, such that, e.g.,
+the coverage probability for a certain parameter subset $\Theta_1$ is not a real number,
+but a fuzzy probability, expressing the uncertainty for that probability by relative plausibility values.
+The hierarchical model has thus close relations to approaches using fuzzy numbers and distributions,
+with the advantage of a clear interpretation of the possibility functions as likelihoods.
+Furthermore, there is a sound foundation of combination rules and deduction of inferences in probability theory
+\parencite[\S 3]{2007a:cattaneo} ***or other ref***.
+In contrast, in the fuzzy literature, the interpretation of fuzzy numbers, or membership functions,
+usually explained as expressing `degrees of membership', remains often rather cloudy***.
+Also, the rules for combining different inference sources are controversially disputed,
+and the fuzzy literature disagrees on how to correctly deduce inferences from a body of evidence.}
 
 %***from itip-statinf, \S 7:\\
 %\textcite{2008:cattaneo} suggests to use a slightly extended notion of likelihood as relative plausibility to construct a hierarchical model.
@@ -1015,7 +1027,7 @@ and can be interpreted, like usual likelihoods, as a measure of relative plausib
 %describing the plausibility of its elements based on the sample.
 In a non-Bayesian context, the model consists of a set of sample distributions $\mathcal{M}$
 (it is possible to take a whole family of sample distributions as $\mathcal{M}$),
-and of the likelihood function $\lik: \mathcal{M} \to \reals_0^+$ as the second level,
+and of the likelihood function $\lik: \mathcal{M} \to \posrealszero$ as the second level,
 describing the plausibility of its elements based on the sample.
 Inference on certain deduced quantities $\vartheta=g\left(p\right), p \in \mathcal{M}$
 then can be based on the so-called \emph{profile likelihood}
@@ -1028,7 +1040,7 @@ see also \cite[\S 4.3]{itip-classification}), and in the context of regression w
 
 \medskip
 
-After describing the theoretical foundations of and motivating the switch to imprecise probability models in general,
+After having described the theoretical foundations of, and having motivated the switch to, imprecise probability models in general,
 in Chapter~\ref{cha:imprecisebayes-conjugate} we will now present 
 models for Bayesian inference with imprecise proabilities
 that are practicable and account for the modelling opportunities discussed above. % the motives discussed

@@ -2,7 +2,7 @@
 \label{cha:concluding}
 
 We will conclude this thesis with a short summary of, and discussion of the central achievments in, this thesis
-in Section~\ref{sec:concluding-summary}.
+in Sections~\ref{sec:concluding-summary} and \ref{sec:concluding-discussion}.
 In Section~\ref{sec:concluding-outlook}, we will sketch some opportunities for applications and avenues for further research.
 
 As supplemental material, the Appendix (Chapter~\ref{cha:appendix}) contains
@@ -19,11 +19,11 @@ described informally in Section~\ref{sec:concluding-outlook} below
 \end{enumerate}
 
 
-\section{Summary and Discussion***}
+\section{Summary***}
 \label{sec:concluding-summary}
 
 % SUMMARY
-\subsection{Summary of Contents}
+%\subsection{Summary of Contents}
 
 After a detailed motivational example and application in Section~\ref{sec:commoncause},
 we presented the basic theory of imprecise or interval probability in Section~\ref{cha:gbi},
@@ -60,10 +60,12 @@ in our view deals very badly with \pdc\ %this issue of sensitivity to the prior
 (see Section~\ref{sec:iid} for some basic examples, and
 Section~\ref{sec:scp} and \ref{sec:cccp} for the case of Bayesian linear regression),
 we developed imprecise probability methods that overcome this deficiency
-(see Sections~\ref{sec:pdc-sensitivity} and \ref{sec:jstp}),
-by mapping ambiguity in posterior inferences due to prior-data conflict
-via larger posterior parameter sets $\MN$,
-ultimately resulting in more cautious inferences. % if, and only if, caution is needed.
+(see Sections~\ref{sec:pdc-sensitivity} and \ref{sec:jstp})
+by mapping ambiguity in posterior inferences in clear dependence of \pdc. 
+In case of prior-data conflict,
+via larger posterior parameter sets $\PN$,
+ultimately more cautious inferences result,
+being cautious if, and only if, caution is needed.
 \end{enumerate}
 Section~\ref{sec:luck} then presents a software implementation
 of the model framework developed in Section~\ref{sec:jstp},
@@ -81,7 +83,8 @@ inference behaviour in the presence of prior-data conflict.
 
 
 %DISCUSSION
-\subsection{Discussion}
+\section{***Discussion}
+\label{sec:concluding-discussion}
 
 The model overview in \ref{sec:generalmodel} gives already a good discussion
 of the models considered in this thesis,
@@ -98,32 +101,53 @@ in a natural and comprehensible way.
 %write again about general model framework (Section~\ref{sec:generalmodel}),
 %inference properties etc.:
 
-Regarding further model ***anforderunge*** like pdc sensitivity,
-there is a clear trade-off between easy handling of $\MZ$ or $\MN$, and desired model properties.
+Regarding the central further model criterion \pdc\ sensitivity,
+we concluded at the end of Section~\ref{sec:pdc-sensitivity} that
+there is a clear trade-off between easy handling of $\PZ$ or $\PN$ and the desired model property.
+Models with $\nz$ fixed, like the IDM under prior information and the model by \textcite{2005:quaeghebeurcooman},
+are very easy to handle, with $\nz$, $\yzl$ and $\yzu$ as the only parameters to elicit,
+and $\PN$ being characterised again by the three values $\nn$, $\ynl$ and $\ynu$.
+However, these models are insensitve to \pdc,
+and the model with $\PZ = [\nzl, \nzu] \times [\yzl, \yzu]$
+presented in Section~\ref{sec:4-gw-071216}
+mitigates this deficiency, but at the cost of a more complex $\PN$,
+not being a cartesian product of $[\nnl, \nnu]$ and $[\ynl, \ynu]$ anymore.
+The more refined behaviour discussed in Section~\ref{sec:isipta11}
+is achieved by an even more complex choice of $\PZ$ (see Section~\ref{sec:othershapes}).
 
-***explain this more
-
-Nevertheless, 
+%These considerations of parameter set shapes notwithstanding, %Nevertheless, 
+%For all these models, whether the shape of $\PZ$ turns more to the simple or to the complex end, 
+In general, these
 models based on sets of canonical conjugate priors form, in our view,
-a `sweet spot' in the realm of (imprecise) statistical models:
-easy to elicit (simple and straightforward interpretation of parameters,
-weigted average structure, model behaviour clear)
-and to apply (may construct priors as needed, closed form solutions for many quantities of interest),
-while giving reasonable inferences (uncertainty mirrored by size $\mathcal{M}$,
-inference criteria from Section~\ref{sec:gbicp-properties-criteria}, especially \pdc\ sensitivity),
-and allows flexible modelling (tweak prior sets according to needs),
+a `sweet spot' in the realm of (imprecise) statistical models.
+They are relatively easy to elicit
+(there is a simple and straightforward interpretation of the model parameters,
+the weighted average structure of the update step and the model behaviour resulting from it relatively clear),
+and easy to apply (it is possible to construct conjugate priors as needed for the problem at hand,
+often resulting in closed form solutions for many quantities of interest),
+while giving reasonable inferences (as discussed above, uncertainty is adequately mirrored by the size of $\MN$,
+fulfilling the inference criteria from Section~\ref{sec:gbicp-properties-criteria},
+with the potential to implement \pdc\ sensitivity or near-noninformativeness),
+and allows flexible modelling (it is possible to choose or tweak the prior set shape according to the current needs).
+
+We think the model framework from Section~\ref{sec:generalmodel}
+allows to use the full expressive power of imprecise probability based inference
+in a very elegant way, by giving a realistic description and treatment
+of model uncertainty, and thus, as in expressed in Section~\ref{sec:objections},
+allowing to do away with heroic model assumptions and with their spuriously precise inferences.
+%emphasise modeling opportunities, and realistic description and treatment
+%of model uncertainty as in \ref{sec:objections}
+
+
 
 further refinements are within reach (see outlook below).
 
-\pdc\ sensitivity: cautious inferences if, and only if, caution is needed
+%\pdc\ sensitivity: cautious inferences if, and only if, caution is needed
 
 example in Section~\ref{sec:commoncause}: special case of \pdc\ (zero counts),
 
-
 discussion of shapes as at the end of Section~\ref{sec:pdc-sensitivity} and \ref{sec:ibbm-resume}***
 
-emphasise modeling opportunities, and realistic description and treatment
-of model uncertainty as in \ref{sec:objections}
 
 
 

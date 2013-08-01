@@ -160,8 +160,10 @@ these models are distinguished by the following characteristics:
 
 \begin{itemize}
 \item They are relatively easy to elicit:
-there is a simple and straightforward interpretation of the model parameters.
-In general terms, the weighted average structure of the update step and the model behaviour resulting from it is relatively clear.
+there is a simple and straightforward interpretation of the model parameters $\nz$ and $\yz$
+as prior strength and main parameter, respectively (Sections~\ref{sec:regularconjugates} and \ref{070517-sec2-1}).
+In general terms, the weighted average structure of the update step \eqref{eq:canonicalupdate}
+and the model behaviour resulting from it is relatively clear.
 \item They are easy to apply in a variety of inference problems:
 it is possible to construct conjugate priors as needed for the problem at hand,
 often resulting in closed form solutions for many quantities of interest.
@@ -185,17 +187,44 @@ in Section~\ref{sec:intervallearningparameter}.}
 constitues a sensible compromise between model complexity and inference properties.
 \end{itemize}
 
+***However, some doubts regarding the rectangular shape of $\PZ$ are ***in order.
+From a strictly behavioral point of view
+(e.g., considering $\MZ$ to express an expert's belief),
+taking $\PZ = [\nzl, \nzu] \times [\yzl, \yzu]$,
+is, as we mentioned in Sections~\ref{sec:pdc-sensitivity} and \ref{sec:resume}, a somewhat peculiar choice.
+It indicates*** that we assign the same interval for the main parameter $\yz$
+over a range of prior strengths.
+
+It might be more reasonable to assume that the expert is able to give
+a more precise interval estimate for lower prior strengths,
+while being more cautious in his prior assignments for higher prior strengths
+by choosing a wider interval for $\yz$ at $\nzu$.%
+\footnote{As described in Section~\ref{sec:resume},
+such a choice could also lead to a more `tolerant' behaviour in case of \pdc.
+If, e.g., $\yzu(\nzl) < \yzu(\nzu)$ was chosen and $\ttau(\x) > \yzu(\nzu)$,
+the higher weight $\nzu$ for $\yzu(\nzu)$ in the update step
+would move $\ynu(\nnu)$ more slowly towards $\ttau(\x)$ as compared to $\ynu(\nnu)$,
+but for moderate degrees of \pdc, the faster movement of $\ynu(\nnl)$
+would be offset by the head start of $\yzu(\nzu)$.
+As the upper bound for $\yn$ is attained at $\ynu(\nnu)$
+if $\ttau(\x) < \yzu(\nzu)$ (i.e., data is in agreement with the prior assignements9,
+the effect of extra imprecision would only appear as soon as $\ynu(\nnl) > \ynu(\nnu)$.}
+
+However, it seems equally reasonable to choose $\yzu(\nzl) > \yzu(\nzu)$,
+by the following considerations: ***anteater****
 
 
-***comparison with other approaches in Section~\ref{sec:alternatives}***
+%``somewhat peculiar'' from a behavioral point of view (Section~\ref{sec:resume}).
 
 ***study by ***krautenbacher*** shows that elicitation of $\PZ$ can be difficult,
 compares with \textcite{2005:whitcomb}, similar results, see Section~\ref{sec:alternatives}****
 
+***comparison with other approaches in Section~\ref{sec:alternatives}***
+
 ***more studies for comparison with the model from \ref{sec:generalmodel} to be done,
 also with hierarchical models (Section~\ref{sec:hierarchical})?***
 
-***double role $\nz$
+***double role $\nz$, see Section~\ref{sec:resume}
 
 
 
@@ -212,7 +241,9 @@ As described in the Outlook below***,
 further advances are within reach 
 that, in addition to the properties \ref{enum:n0vsn}--\ref{enum:deltay} and \pdc\ sensitivity
 (see Section~\ref{sec:gbicp-properties-criteria}),
-allow for relatively precise posterior inferences when prior and data coincide especially well.
+allow for more precise posterior inferences when prior and data coincide especially well.%
+\footnote{We already mentioned this this modelling goal in Section~\ref{sec:insights},
+where we spoke of \emph{strong prior-data agreement}.}
 %further refinements are within reach (see outlook below).
 
 
@@ -221,6 +252,10 @@ allow for relatively precise posterior inferences when prior and data coincide e
 \label{sec:concluding-outlook}
 
 ***avenues for further research***
+
+Here, we come back to the ideas discussed in several concluding sections
+(\ref{sec:6-gw-071216}, \ref{sec:insights}, \ref{sec:discussion-festschrift}),
+subsuming them in three groups
 
 ***\textbf{first: model as is, use for\dots }
 
@@ -291,6 +326,11 @@ hope for a joint publication of GW, FC and MB explaining this in detail.
 
 
 \textbf{finally, general thoughts about updating, learning, etc}
+
+considerations in Sectione~\ref{sec:insights}:
+prior and data in conflict is of less value than the sum of both:
+$\nz$ negative?
+
 
 elaborate thoughts in Section~\ref{sec:updating} again,
 see also comments at end of Section~\ref{sec:6-gw-071216},

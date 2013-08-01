@@ -2,21 +2,8 @@
 \label{cha:concluding}
 
 We will conclude this thesis with a short summary of, and discussion of the central achievments in, this thesis
-in Sections~\ref{sec:concluding-summary} and \ref{sec:concluding-discussion}.
+in Sections~\ref{sec:concluding-summary} and \ref{sec:concluding-discussion}, respectively.
 In Section~\ref{sec:concluding-outlook}, we will sketch some opportunities for applications and avenues for further research.
-
-As supplemental material, the Appendix (Chapter~\ref{cha:appendix}) contains
-\begin{enumerate}[(i)]
-\item a study of \pdc\ sensitivity in Bayesian linear regression,
-presenting a simplified prior model that gives interesting insights into the updating step
-for the regression parameters and offers opportunities for inferences based on sets of priors
-(Section~\ref{sec:festschrift});
-\item a short summary of a previous approach to Bayesian linear regression
-with sets of priors, published as \parencite{Walter2007a}, in Section~\ref{sec:isipta07};
-\item some first technical results characterising a new prior parameter set shape $\PZ$,
-described informally in Section~\ref{sec:concluding-outlook} below
-(Section~\ref{sec:boatshape}).
-\end{enumerate}
 
 
 \section{Summary***}
@@ -26,7 +13,7 @@ described informally in Section~\ref{sec:concluding-outlook} below
 %\subsection{Summary of Contents}
 
 After a detailed motivational example and application in Section~\ref{sec:commoncause},
-we presented the basic theory of imprecise or interval probability in Section~\ref{cha:gbi},
+we presented some theoretical foundations of imprecise or interval probability in Section~\ref{cha:gbi},
 with a focus on the approaches leading the way towards a generalisation of Bayesian inference.
 There, we also gave some general motives for using imprecise probability methods,
 afterwards focussing again on the Bayesian setting, where a foundational motive%
@@ -43,12 +30,13 @@ but data is too sparse to overrule prior beliefs.
 After a short view on some approaches in alternative to imprecise probability,
 we discussed a general framework for imprecise Bayesian inference
 based on sets of conjugate priors in Section~\ref{sec:generalmodel},
-this framework serving as a bracket for a number of contributions discussed in this thesis.
+this framework serving as a bracket for most of the models ***discussed / investigated*** in this thesis.
+%a number of contributions discussed in this thesis.
 %the framework serving as a bracket for the remainder of the topics discussed in the thesis.
 Some general results regarding inference properties of models
 in this framework are presented (we will comment on these properties in the discussion below),
-and the two issues of weakly informative priors and prior-data conflict
-in usual Bayesian inference
+and the two issues of weakly informative priors and prior-data conflict,
+problematic in usual Bayesian inference,
 can now be considered as modelling opportunities of generalised Bayesian inference:
 \begin{enumerate}[(i)]
 \item Imprecise Bayesian methods allow to model weak prior information
@@ -59,36 +47,61 @@ more adequately than the so-called non-informative priors usually employed
 in our view deals very badly with \pdc\ %this issue of sensitivity to the prior
 (see Section~\ref{sec:iid} for some basic examples, and
 Section~\ref{sec:scp} and \ref{sec:cccp} for the case of Bayesian linear regression),
-we developed imprecise probability methods that overcome this deficiency
-(see Sections~\ref{sec:pdc-sensitivity} and \ref{sec:jstp})
-by mapping ambiguity in posterior inferences in clear dependence of \pdc. 
-In case of prior-data conflict,
-via larger posterior parameter sets $\PN$,
-ultimately more cautious inferences result,
-being cautious if, and only if, caution is needed.
+we developed imprecise probability methods that overcome this deficiency,
+by mapping ambiguity in posterior inferences now also in dependence of \pdc\ 
+(see Sections~\ref{sec:pdc-sensitivity}, and specifically \ref{sec:jstp}).
+In these models, a conflict of prior beliefs and data
+leads to larger posterior parameter sets $\PN$
+that ***bedingen, fuehren zu* more cautious inferences results,
+%ultimately giving more cautious inferences result,
+the model thus being cautious if, and only if, caution is needed.
 \end{enumerate}
 Section~\ref{sec:luck} then presents a software implementation
-of the model framework developed in Section~\ref{sec:jstp},
-and Section~\ref{sec:isipta11} presents attempts to further refine
+of the model framework developed in Section~\ref{sec:jstp}.
+
+Finally, Section~\ref{sec:isipta11} presents attempts to further refine
 inference behaviour in the presence of prior-data conflict.
+In a first approach, the models discussed in Sections~\ref{sec:generalmodel} and \ref{sec:jstp}
+are generalised by tayloring the prior parameter set $\PZ$ accordingly.
+The second, fundamentally different, approach attains \pdc\ sensitivity
+by combining \emph{inferences} based on two different priors,
+an informative prior (expressing prior beliefs) and an uninformative prior (a near-ignorance prior),
+through an imprecise weighting scheme.
 
-
-****The handling of prior-data conflict
-
-****reasons to use IP models:
-
-****issues in Bayesian inference: weakly informative priors, \pdc, or in general sensitivity to the prior
-
-****realistic modeling of partial information
+As supplemental material, the Appendix (Chapter~\ref{cha:appendix}) contains
+\begin{enumerate}[(i)]
+\item a study of \pdc\ sensitivity in Bayesian linear regression,
+presenting a simplified prior model that gives interesting insights into the updating step
+for the regression parameters and offers opportunities for inferences based on sets of priors
+(Section~\ref{sec:festschrift});
+\item a short summary of a previous approach to Bayesian linear regression
+with sets of priors which was published by \textcite{Walter2007a}, in Section~\ref{sec:isipta07};
+\item some first technical results characterising a new prior parameter set shape,
+described informally in Section~\ref{sec:concluding-outlook} below
+(Section~\ref{sec:boatshape}).
+\end{enumerate}
 
 
 %DISCUSSION
 \section{***Discussion}
 \label{sec:concluding-discussion}
 
-The model overview in \ref{sec:generalmodel} gives already a good discussion
-of the models considered in this thesis,
-such that we will try to emphasize some central points here only.
+%discussion of issues in Bayesian inference and discussion on IP methods given in Section~\ref{sec:motivation} %Chapter~\ref{cha:gbi}.
+%****reasons to use IP models:
+%****issues in Bayesian inference: weakly informative priors, \pdc, or in general sensitivity to the prior
+%****realistic modeling of partial information
+
+As the model overview in \ref{sec:generalmodel} gives already a good discussion
+of the imprecise probability models considered in this thesis,%
+\footnote{General motives for the use of imprecise probability models
+were discussed in Section~\ref{sec:motivation},
+with a focus on motives from a Bayesian perspective in Section~\ref{sec:motivation:bayesian}.
+These motives can be subsumed as follows:
+Generalised Bayesian models allow, in contrast to classical Bayesian models,
+a realistic modeling of partial prior information,
+and can account for model uncertainty in a preferable way.
+Critique and possible alternatives were discussed in Section~\ref{sec:ip-alternatives}.}
+we will try to emphasize some central points here only.
 %summary, condensed here again, emphasising some points
 
 The inference properties described in Section~\ref{sec:gbicp-properties-criteria}
@@ -162,7 +175,7 @@ also with hierarchical models (Section~\ref{sec:hierarchical})?***
 
 
 
-
+%****The handling of prior-data conflict
 
 
 

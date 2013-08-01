@@ -56,6 +56,7 @@ that ***bedingen, fuehren zu* more cautious inferences results,
 %ultimately giving more cautious inferences result,
 the model thus being cautious if, and only if, caution is needed.
 \end{enumerate}
+%\pdc\ sensitivity: cautious inferences if, and only if, caution is needed
 Section~\ref{sec:luck} then presents a software implementation
 of the model framework developed in Section~\ref{sec:jstp}.
 
@@ -114,8 +115,11 @@ in a natural and comprehensible way.
 %write again about general model framework (Section~\ref{sec:generalmodel}),
 %inference properties etc.:
 
-Regarding the central further model criterion \pdc\ sensitivity,
-we concluded at the end of Section~\ref{sec:pdc-sensitivity} that
+Regarding the further model criterion `\pdc\ sensitivity',
+central to this thesis,
+we concluded that the shape of the prior parameter set $\PZ$
+crucially influences model behaviour, 
+and noted at the end of Section~\ref{sec:pdc-sensitivity} that
 there is a clear trade-off between easy handling of $\PZ$ or $\PN$, and the desired model property.
 Models with fixed $\nz$, like the IDM under prior information and the model by \textcite{2005:quaeghebeurcooman},
 are very easy to handle, with $\nz$, $\yzl$ and $\yzu$ as the only parameters to elicit,
@@ -131,62 +135,86 @@ where the range of $\yz$ values depends on $\nz$
 via the contour functions $\yzl(\nz)$ and $\yzu(\nz)$
 (see Section~\ref{sec:othershapes}).
 
+Continuing*** the discussion of parameter set shapes as in Section~\ref{sec:ibbm-resume},
+the general framework in principle allows arbitrary shapes for the prior parameter set $\PZ$.
+However, freely elicting this set shape
+(e.g., by allowing for arbitrary contour functions $\yzl(\nz)$ and $\yzu(\nz)$)
+from limited prior information might be very difficult.
+If only specific inferences are of interest,
+it is possible that only a few aspects of the shape are relevant,
+such that elicitation of the entire shape might not be necessary.
+Furthermore, the derivation of posterior inferences from
+such complex prior shapes can be difficult as well.
+%discussion of shapes as at the end of Section~\ref{sec:pdc-sensitivity} and \ref{sec:ibbm-resume}***
+
 %These considerations of parameter set shapes notwithstanding, %Nevertheless, 
 %For all these models, whether the shape of $\PZ$ turns more to the simple or to the complex end, 
 In general, %these
 models based on sets of canonical conjugate priors form, in our view,
 a `sweet spot' in the realm of (imprecise) statistical models,
 by allowing a sophisticated model behaviour
-with easy elictitation and computation.
+combined with easy elictitation and computation.
 More verbosely***,
+these models are distinguished by the following characteristics:
+%This is ***backed / underlined*** by the following points: 
+
 \begin{itemize}
-\item they are relatively easy to elicit:
-there is a simple and straightforward interpretation of the model parameters,
-the weighted average structure of the update step and the model behaviour resulting from it is relatively clear;
-\item they are easy to apply:
+\item They are relatively easy to elicit:
+there is a simple and straightforward interpretation of the model parameters.
+In general terms, the weighted average structure of the update step and the model behaviour resulting from it is relatively clear.
+\item They are easy to apply in a variety of inference problems:
 it is possible to construct conjugate priors as needed for the problem at hand,
-often resulting in closed form solutions for many quantities of interest;
-\item nevertheless, they give reasonable and sophisticated inferences:
+often resulting in closed form solutions for many quantities of interest.
+\item Nevertheless, they give reasonable and sophisticated inferences:
 as discussed above, uncertainty is adequately mirrored by the size of $\MN$,
-fulfilling the inference criteria from Section~\ref{sec:gbicp-properties-criteria},
-with the potential to implement \pdc\ sensitivity or near-noninformativeness;
-\item and they allow flexible modelling:
-it is possible to choose or tweak the prior set shape according to the current needs.
+fulfilling the inference properties \ref{enum:n0vsn}--\ref{enum:deltay}
+%criteria from Section~\ref{sec:gbicp-properties-criteria},
+with the potential to implement \pdc\ sensitivity or near-noninformativeness,
+as required by the inference task at hand.
+\item They allow for flexible modelling, as
+it is possible to choose or tweak the prior set shape according to inference needs,
+where, however, the trade-off mentioned above should be ***kept in mind***.
+Specifically, we think the model presented in Section~\ref{sec:4-gw-071216}
+($\PZ = [\nzl, \nzu] \times [\yzl, \yzu]$)%
+\footnote{This kind of prior set shape was also employed in the motivational example
+from Section~\ref{sec:commoncause}, where we argued for an interval-valued $\nz$
+at the end of Section~\ref{sec:fixedlearningparameter},
+and demonstrated the merits of such a parameter shape for this specific situation of \pdc\
+in Section~\ref{sec:intervallearningparameter}.}
+%***example in Section~\ref{sec:commoncause}: special case of \pdc\ (zero counts),
+constitues a sensible compromise between model complexity and inference properties.
 \end{itemize}
 
+
+
+***comparison with other approaches in Section~\ref{sec:alternatives}***
+
+***study by ***krautenbacher*** shows that elicitation of $\PZ$ can be difficult,
+compares with \textcite{2005:whitcomb}, similar results, see Section~\ref{sec:alternatives}****
+
+***more studies for comparison with the model from \ref{sec:generalmodel} to be done,
+also with hierarchical models (Section~\ref{sec:hierarchical})?***
+
+***double role $\nz$
+
+
+
 Overall***, we think the model framework from Section~\ref{sec:generalmodel}
-allows to use the full expressive power of imprecise probability based inference
+allows to use the full expressive power of imprecise probability %based inference
 in a very elegant way, by giving a realistic description and treatment
 of model uncertainty, and thus, as expressed in Section~\ref{sec:objections},
 allowing to do away with heroic model assumptions, and their spuriously precise inferences they entail*** nach sich ziehen***.
 %emphasise modeling opportunities, and realistic description and treatment
 %of model uncertainty as in \ref{sec:objections}
 
+We also think that there is still further potential to models based on sets of conjugate priors.
+As described in the Outlook below***,
+further advances are within reach 
+that, in addition to the properties \ref{enum:n0vsn}--\ref{enum:deltay} and \pdc\ sensitivity
+(see Section~\ref{sec:gbicp-properties-criteria}),
+allow for relatively precise posterior inferences when prior and data coincide especially well.
+%further refinements are within reach (see outlook below).
 
-
-further refinements are within reach (see outlook below).
-
-%\pdc\ sensitivity: cautious inferences if, and only if, caution is needed
-
-example in Section~\ref{sec:commoncause}: special case of \pdc\ (zero counts),
-
-discussion of shapes as at the end of Section~\ref{sec:pdc-sensitivity} and \ref{sec:ibbm-resume}***
-
-
-
-
-
-***comparison with other approaches here or in Section~\ref{sec:alternatives}?***
-
-study by ***krautenbacher*** shows that elicitation of $\MZ$ can be difficult,
-compares with \textcite{2005:whitcomb}, similar results****
-
-more studies for comparison with the model from \ref{sec:generalmodel} to be done,
-also with hierarchical models (Section~\ref{sec:hierarchical})?***
-
-
-
-%****The handling of prior-data conflict
 
 
 \section{Outlook***}

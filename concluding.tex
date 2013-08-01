@@ -116,38 +116,49 @@ in a natural and comprehensible way.
 
 Regarding the central further model criterion \pdc\ sensitivity,
 we concluded at the end of Section~\ref{sec:pdc-sensitivity} that
-there is a clear trade-off between easy handling of $\PZ$ or $\PN$ and the desired model property.
-Models with $\nz$ fixed, like the IDM under prior information and the model by \textcite{2005:quaeghebeurcooman},
+there is a clear trade-off between easy handling of $\PZ$ or $\PN$, and the desired model property.
+Models with fixed $\nz$, like the IDM under prior information and the model by \textcite{2005:quaeghebeurcooman},
 are very easy to handle, with $\nz$, $\yzl$ and $\yzu$ as the only parameters to elicit,
 and $\PN$ being characterised again by the three values $\nn$, $\ynl$ and $\ynu$.
 However, these models are insensitve to \pdc,
 and the model with $\PZ = [\nzl, \nzu] \times [\yzl, \yzu]$
 presented in Section~\ref{sec:4-gw-071216}
-mitigates this deficiency, but at the cost of a more complex $\PN$,
+mitigates this deficiency, but at the cost of a more complex shape of $\PN$,
 not being a cartesian product of $[\nnl, \nnu]$ and $[\ynl, \ynu]$ anymore.
 The more refined behaviour discussed in Section~\ref{sec:isipta11}
-is achieved by an even more complex choice of $\PZ$ (see Section~\ref{sec:othershapes}).
+is achieved by a more complex choice of $\PZ$,
+where the range of $\yz$ values depends on $\nz$
+via the contour functions $\yzl(\nz)$ and $\yzu(\nz)$
+(see Section~\ref{sec:othershapes}).
 
 %These considerations of parameter set shapes notwithstanding, %Nevertheless, 
 %For all these models, whether the shape of $\PZ$ turns more to the simple or to the complex end, 
-In general, these
+In general, %these
 models based on sets of canonical conjugate priors form, in our view,
-a `sweet spot' in the realm of (imprecise) statistical models.
-They are relatively easy to elicit
-(there is a simple and straightforward interpretation of the model parameters,
-the weighted average structure of the update step and the model behaviour resulting from it relatively clear),
-and easy to apply (it is possible to construct conjugate priors as needed for the problem at hand,
-often resulting in closed form solutions for many quantities of interest),
-while giving reasonable inferences (as discussed above, uncertainty is adequately mirrored by the size of $\MN$,
+a `sweet spot' in the realm of (imprecise) statistical models,
+by allowing a sophisticated model behaviour
+with easy elictitation and computation.
+More verbosely***,
+\begin{itemize}
+\item they are relatively easy to elicit:
+there is a simple and straightforward interpretation of the model parameters,
+the weighted average structure of the update step and the model behaviour resulting from it is relatively clear;
+\item they are easy to apply:
+it is possible to construct conjugate priors as needed for the problem at hand,
+often resulting in closed form solutions for many quantities of interest;
+\item nevertheless, they give reasonable and sophisticated inferences:
+as discussed above, uncertainty is adequately mirrored by the size of $\MN$,
 fulfilling the inference criteria from Section~\ref{sec:gbicp-properties-criteria},
-with the potential to implement \pdc\ sensitivity or near-noninformativeness),
-and allows flexible modelling (it is possible to choose or tweak the prior set shape according to the current needs).
+with the potential to implement \pdc\ sensitivity or near-noninformativeness;
+\item and they allow flexible modelling:
+it is possible to choose or tweak the prior set shape according to the current needs.
+\end{itemize}
 
-We think the model framework from Section~\ref{sec:generalmodel}
+Overall***, we think the model framework from Section~\ref{sec:generalmodel}
 allows to use the full expressive power of imprecise probability based inference
 in a very elegant way, by giving a realistic description and treatment
-of model uncertainty, and thus, as in expressed in Section~\ref{sec:objections},
-allowing to do away with heroic model assumptions and with their spuriously precise inferences.
+of model uncertainty, and thus, as expressed in Section~\ref{sec:objections},
+allowing to do away with heroic model assumptions, and their spuriously precise inferences they entail*** nach sich ziehen***.
 %emphasise modeling opportunities, and realistic description and treatment
 %of model uncertainty as in \ref{sec:objections}
 
@@ -176,7 +187,6 @@ also with hierarchical models (Section~\ref{sec:hierarchical})?***
 
 
 %****The handling of prior-data conflict
-
 
 
 \section{Outlook***}

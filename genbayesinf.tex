@@ -78,7 +78,8 @@ While usual, precise probability measures can be used to model phenomena when th
 like, e.g., in a lottery where the number of winning tickets (and the total number of tickets) is precisely known,
 imprecise probability measures can account for cases where there is uncertainty about the probabilities themselves,
 just like in a lottery where the number of winning tickets is not exactly known.
-Non-stochastic uncertainty about model features like probabilities is often called \emph{ambiguity},
+Non-stochastic uncertainty about model features like probabilities is often called \emph{ambiguity},%
+\footnote{See Section~\ref{sec:motivation-riskambiguity}.}
 forming a crucial part of the human decision process,
 and there are studies suggesting that humans process ambiguity in a way
 differing from pure probabilistic reasoning \parencite{2005:hsu-bhatt}.
@@ -612,7 +613,8 @@ also not to optimal inference procedures; see, in particular, \textcite{2003:aug
 
 %Despite these criticisms, we will stick to ***
 These important criticisms notwithstanding, 
-the models discussed in this thesis will rely on the inference procedure described above, based on the Generalised Bayes' Rule.
+the models discussed in this thesis will rely on the inference procedure described above,
+based on the Generalised Bayes' Rule to obtain $\mathcal{M}_{|\x}$.
 As will be discussed in Section~\ref{sec:generalmodel},
 the suggested models nevertheless provide very attractive inference features.
 Furthermore, we will sketch in Section~\ref{sec:concluding-outlook}
@@ -636,7 +638,7 @@ or fuzzy probability measures, which are also known as capacities (see Section~\
 In fact, many of these concepts are closely linked to
 lower previsions or sets of probability distributions,
 and a large part can indeed be seen as special cases of generic lower previsions, 
-or sets of probability distributions with certain restrictions
+or as sets of probability distributions with certain restrictions
 \parencite[Fig.~5.5]{itip-special}.
 A considerable part of the imprecise probability literature
 explores these links, of which Destercke and Dubois \parencite*{itip-other,itip-special}
@@ -655,16 +657,73 @@ or simply be more easy to communicate to the practitioners involved
 %the step beyond precise probability distributions.
 %e.g., fuzzy sets with certain combination rule is same as probability.***
 
-***as example, par on belief functions and Dempster-Shafer Theory?*** \parencite[\S 2]{itip-other}
+%***as example, par on belief functions and Dempster-Shafer Theory?*** \parencite[\S 2]{itip-other}
+A typical example are \emph{belief} and \emph{plausibility functions}
+\parencite[see, e.g.,][\S 2]{itip-other}.
+These can be based on a \emph{probability mass assignment} $m(\cdot)$,
+valuing the occurrence propensity for subsets $E$ of the sample space $\mathcal{X}$
+by weights $m(E) \ge 0$ which sum up to 1, i.e. $\sum_{E \subseteq \mathcal{X}} m(E) = 1$.%
+\footnote{In a probability distribution, instead only singletons,
+or one-element subsets, may receive weights $m(\cdot) > 0$.
+Probability mass assignments can also be seen as a probability distribution on the
+power set of $\mathcal{M}$.}
+The \emph{belief function} is then defined, for any $A \subseteq \mathcal{X}$, by
+\begin{align*}
+\text{Bel}(A) &= \sum_{E \subseteq A, E \neq \emptyset} m(E)\,,
+\end{align*}
+collecting the probability mass assignments for all sets that necessarily imply $A$,
+and the \emph{plausibility function} by
+\begin{align*}
+\text{Pl}(A) &= \sum_{E \cap A \neq \emptyset} m(E)\,,
+\end{align*}
+collecting the probability mass assignments for all sets that are compatible with $A$
+(i.e., have common elements with $A$, or do not contradict $A$).
 
-***link between belief functions and lower previsions \parencite[\S 2.1, p~126]{itip-other}:
-If $m(\emptyset) = 0$, then belief functions coincide with $\infty$-monotone capacities,
-which are a special case of lower previsions.
-Only if $m(\emptyset) > 0$, which does not seem a reasonable choice in our view anyhow,
-the set of corresponding distributions $\mathcal{M}$ is empty.***
+This approach can be useful when,
+in the case of discrete sample spaces $\mathcal{X}$,
+it is not possible to obtain
+precise observations $x \in \mathcal{X}$,
+but only subsets $E \subset \mathcal{X}$ as observations.
+Consider, e.g., a poll where participants 
+are allowed to name sets of political parties or candidates they intend to vote,
+instead of being forced to name only one, even if they are undecided between, say, three parties or candidates.
+%***example??***
 
-***note on IP can be frequentist / non-Bayesian (similarities to Weichselberger?),
-see \parencite[\S 5]{itip-statinf}***, to avoid the impression that IP models are necessarily Bayesian.
+Belief functions are indeed a special case of coherent lower previsions;
+%***link between belief functions and lower previsions \parencite[\S 2.1, p~126]{itip-other}:
+if $m(\emptyset) = 0$, then belief functions coincide with $\infty$-monotone capacities,
+which are a special case of lower previsions \parencite[e.g.,][\S 2.1]{itip-other}.
+Only if $m(\emptyset) > 0$, which does not seem like a reasonable choice in most circumstances anyway,
+the set of corresponding probability distributions $\mathcal{M}$ is empty.
+
+To avoid the impression that imprecise probability models are necessarily related
+to the Bayesian approach to inference,
+we will now also mention briefly some non-Bayesian approaches.
+
+\textcite[\S 5]{itip-statinf} introduce to some frequentist approaches to inference using imprecise probability.
+A field that is so far comparatively widely developed
+is the theory of statistical hypothesis testing,
+based on the so-called \emph{Huber-Strassen theorem} \parencite[Theorem~4.1]{1973:huberstrassen}.
+It allows to test between two hypotheses $H_0$ and $H_1$,
+each representing a coherent lower prevision%
+\footnote{More precisely, \textcite{1973:huberstrassen} proved the existence of least favourable pairs
+for capacities, while \textcite{1998:augustin} proved existence of such pairs
+for the more general class \emph{F-Wahrscheinlichkeit},
+which is the equivalence of coherent lower previsions in the framework by \textcite{2001:weichselberger}.}
+(instead of a probability distribution as in classical Neyman-Pearson testing),
+\begin{align*}
+H_0:\ `\Pl_0 \text{ is true'  \qquad versus \qquad } H_1:\   `\Pl_1 \text{ is true'}\,,
+\end{align*}
+by proving the existence of a so-called \emph{globally least favourable pair}
+of probability distributions $p_0 \in \mathcal{M}_0$ and $p_1 \in \mathcal{M}_1$,
+where $\mathcal{M}_0$ and $\mathcal{M}_1$ are the credal sets
+corresponding to $\Pl_0$ and $\Pl_1$, respectively.
+This least favourable pair is representative for the testing problem regarding $\Pl_0$ and $\Pl_1$,
+in the sense that a test that is optimal for distinguishing $p_0$ and $p_1$
+is also optimal in testing $\Pl_1$ against $\Pl_0$,
+independently of significance level $\alpha$ and sample size $n$.
+%***note on IP can be frequentist / non-Bayesian (similarities to Weichselberger?),
+%see \parencite[\S 5]{itip-statinf}***, to avoid the impression that IP models are necessarily Bayesian.
 
 ***short description of NPI here? as \emph{inference} approach! 
 use section in \cite{itip-statinf}? link from weighted model here?

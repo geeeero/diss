@@ -554,7 +554,7 @@ in particular in the context of prior-data conflict
 
 %***on updating and conditioning; also conditioning versus belief revision (itip-special, other?)***
 
-The seemingly self-evident character of the Generalized Bayes Rule has been questioned in the literature.
+The seemingly self-evident character of the Generalised Bayes' Rule has been questioned in the literature.
 \Textcite[p.~335]{1991:walley} notes that, although the theory of coherence suggests that
 ``[\ldots the GBR] is a reasonable updating strategy,
 [\ldots] there is nothing in the theory that requires You to [\ldots] construct conditional previsions [\ldots] through the GBR''
@@ -565,12 +565,12 @@ but because they are often indeterminate''.
 Indeed, \textcite[\S 6.11.1]{1991:walley} lists twelve items summarizing
 ``[\ldots] the reasons for which the GBR may fail to be applicable or useful as an updating strategy.''
 
-One central argument is that the notion of coherence, of which the GBR is a consequence,
+One central argument is that the notion of coherence, of which the Generalised Bayes' Rule is a consequence,
 may not be adequate to represent learning, especially when observed data is rather surprising,
 and should overturn prior beliefs about the data generating process.
-As posterior beliefs derived from the GBR must be coherent with both prior beliefs and data,
+As posterior beliefs derived from the Generalised Bayes' Rule must be coherent with both prior beliefs and data,
 they may be rather imprecise in case of very vague prior beliefs or unexpected data.
-Essentially, the GBR does not allow to abandon prior beliefs in the light of new data,
+Essentially, the Generalised Bayes' Rule does not allow to abandon prior beliefs in the light of new data,
 and both too vague or specific, but (in the light of the data) inappropriate prior beliefs
 may influence posterior beliefs to an intolerable extent.%
 \footnote{However, as we will see in Section~\ref{sec:gbicp-properties-criteria},
@@ -578,7 +578,7 @@ items~\ref{enum:n0vsn}. and \ref{enum:ntoinfty}.,
 in our model, data can outweigh prior beliefs,
 leading to reasonable inferences.}
 
-Indeed, it has been debated that---intuitively---posterior inferences derived via the GBR are often too imprecise.
+Indeed, it has been debated that---intuitively---posterior inferences derived via the Generalised Bayes' Rule are often too imprecise.
 As such possibly counterintuitive bounds result from elements in the prior credal set under which the observed sample is rather unlikely,
 in order to maintain the understanding of updating as conditioning on the sample,
 several authors therefore suggested to reduce the prior credal sets in dependence on the sample.
@@ -588,8 +588,19 @@ resulting in a procedure that is related to Dempster's rule of conditioning \par
 Other ways to address this issue are update rules where imprecision is updated in accordance with an information measure 
 (\cite{1993:coolen, 1994:coolen}; see also \cite{1994:coolen::phd}), or hierarchical models,
 like the model suggested by \textcite{2008:cattaneo} in the (profile) likelihood context
-(see the short describtion in Section~\ref{sec:hierarchical}),
+(see the short description in Section~\ref{sec:hierarchical}),
 a variant of which also allows to incorporate prior information by using a so-called prior likelihood.
+
+Another approach to tackle these issues is to refine the concept of coherence itself,
+and replace or complement it with a notion that accounts for possible change of a subject's beliefs
+in the light of new evidence. This concept of \emph{temporal coherence} \parencite{1985:goldstein::temporal}
+attempts to frame, informally stated, only current beliefs about future beliefs,
+and not the future beliefs themselves (that may take into account new evidence not according to coherence).
+For an inference approach based on this notion, see
+\textcite{2007:goldstein:wooff::bayeslinear}; 
+\textcite{2013:troffaes:goldstein} give some first results on consequences of temporal coherence
+for inference with coherent lower previsions.
+%***something on conditioning versus belief revision, temporal coherence???***
 
 Another important critique of the Generalised Bayes' Rule relates to issues from a decision theoretic point of view.
 It has been shown that the decision theoretic justification of Bayes' Rule
@@ -598,14 +609,14 @@ Updating by Generalised Bayes' Rule does no longer necessarily lead to optimal d
 also not to optimal inference procedures; see, in particular, \textcite{2003:augustin} for a detailed discussion, 
 \textcite{2001:NoubiapSeidel} and \textcite{Augustin5:2004} for algorithms to calculate optimal decision functions.
 
-***something on conditioning versus belief revision, temporal coherence???***
 
 %Despite these criticisms, we will stick to ***
 These important criticisms notwithstanding, 
 the models discussed in this thesis will rely on the inference procedure described above, based on the Generalised Bayes' Rule.
 As will be discussed in Section~\ref{sec:generalmodel},
 the suggested models nevertheless provide very attractive inference features.
-Furthermore, we will sketch in Section ****boatshape***
+Furthermore, we will sketch in Section~\ref{sec:concluding-outlook}
+(see also some first technical considerations in Section~\ref{sec:boatshape}) ****boatshape***
 how models along this approach can be modified to cater for `bonus precision'
 if prior and data coincide especially well.****
 
@@ -653,7 +664,7 @@ Only if $m(\emptyset) > 0$, which does not seem a reasonable choice in our view 
 the set of corresponding distributions $\mathcal{M}$ is empty.***
 
 ***note on IP can be frequentist / non-Bayesian (similarities to Weichselberger?),
-see \parencite[\S 5]{itip-statinf}***
+see \parencite[\S 5]{itip-statinf}***, to avoid the impression that IP models are necessarily Bayesian.
 
 ***short description of NPI here? as \emph{inference} approach! 
 use section in \cite{itip-statinf}? link from weighted model here?

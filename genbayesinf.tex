@@ -623,7 +623,7 @@ how models along this approach can be modified to cater for `bonus precision'
 if prior and data coincide especially well.****
 
 
-\subsection{***A Brief Glance on Related Concepts}
+\subsection{A Brief Glance on Related Concepts***}
 \label{sec:ip-related}
 
 %****as separate section 2.3?****
@@ -657,27 +657,31 @@ or simply be more easy to communicate to the practitioners involved
 %the step beyond precise probability distributions.
 %e.g., fuzzy sets with certain combination rule is same as probability.***
 
+\subsubsection{Belief Functions}
+
 %***as example, par on belief functions and Dempster-Shafer Theory?*** \parencite[\S 2]{itip-other}
-A typical example are \emph{belief} and \emph{plausibility functions}
-\parencite[see, e.g.,][\S 2]{itip-other}.
-These can be based on a \emph{probability mass assignment} $m(\cdot)$,
-valuing the occurrence propensity for subsets $E$ of the sample space $\mathcal{X}$
+An important special case of coherent lower previsions %typical example
+are \emph{belief functions} \parencite[see, e.g.,][\S 2]{itip-other}.
+Here, the corresponding upper probability (related through conjugacy as mentioned in Section~\ref{sec:ip-general})
+is often considered explicitely, denoted as \emph{plausibility function}.
+Belief and plausibility functions can be based on a \emph{probability mass assignment} $m(\cdot)$,
+valuing the occurrence propensity for \emph{subsets} $E$ of the sample space $\mathcal{X}$
 by weights $m(E) \ge 0$ which sum up to 1, i.e. $\sum_{E \subseteq \mathcal{X}} m(E) = 1$.%
 \footnote{In a probability distribution, instead only singletons,
 or one-element subsets, may receive weights $m(\cdot) > 0$.
-Probability mass assignments can also be seen as a probability distribution on the
-power set of $\mathcal{M}$.}
+Probability mass assignments can also be seen as providing a probability distribution on the
+power set of the sample space $\mathcal{X}$.}
 The \emph{belief function} is then defined, for any $A \subseteq \mathcal{X}$, by
 \begin{align*}
 \text{Bel}(A) &= \sum_{E \subseteq A, E \neq \emptyset} m(E)\,,
 \end{align*}
-collecting the probability mass assignments for all sets that necessarily imply $A$,
-and the \emph{plausibility function} by
+collecting the probability mass assignments for all sets that necessarily imply $A$;
+the \emph{plausibility function} is defined by
 \begin{align*}
 \text{Pl}(A) &= \sum_{E \cap A \neq \emptyset} m(E)\,,
 \end{align*}
 collecting the probability mass assignments for all sets that are compatible with $A$
-(i.e., have common elements with $A$, or do not contradict $A$).
+(have common elements with $A$, i.e., do not contradict $A$).
 
 This approach can be useful when,
 in the case of discrete sample spaces $\mathcal{X}$,
@@ -686,15 +690,19 @@ precise observations $x \in \mathcal{X}$,
 but only subsets $E \subset \mathcal{X}$ as observations.
 Consider, e.g., a poll where participants 
 are allowed to name sets of political parties or candidates they intend to vote,
-instead of being forced to name only one, even if they are undecided between, say, three parties or candidates.
+instead of being forced to name only one, even if they are currently undecided between, say, three parties or candidates.
 %***example??***
 
-Belief functions are indeed a special case of coherent lower previsions;
+Belief functions are indeed a special case of coherent lower previsions.
 %***link between belief functions and lower previsions \parencite[\S 2.1, p~126]{itip-other}:
-if $m(\emptyset) = 0$, then belief functions coincide with $\infty$-monotone capacities,
+If $m(\emptyset) = 0$, then belief functions coincide with $\infty$-monotone capacities,
 which are a special case of lower previsions \parencite[e.g.,][\S 2.1]{itip-other}.
 Only if $m(\emptyset) > 0$, which does not seem like a reasonable choice in most circumstances anyway,
 the set of corresponding probability distributions $\mathcal{M}$ is empty.
+
+
+\subsubsection{Examples for Frequentist Approaches}
+\label{sec:frequentist}
 
 To avoid the impression that imprecise probability models are necessarily related
 to the Bayesian approach to inference,
@@ -725,9 +733,82 @@ independently of significance level $\alpha$ and sample size $n$.
 %***note on IP can be frequentist / non-Bayesian (similarities to Weichselberger?),
 %see \parencite[\S 5]{itip-statinf}***, to avoid the impression that IP models are necessarily Bayesian.
 
-***short description of NPI here? as \emph{inference} approach! 
-use section in \cite{itip-statinf}? link from weighted model here?
 
+An important, swiftly evolving, approach for predictive inferences using frequentist imprecise probability
+is the framework of \emph{nonparametric predictive inference} \parencite[NPI,][]{2004:augustin, 2006b:Coolen}.%
+\footnote{See also \url{www.npi-statistics.com}.}
+It is based on Hill's \parencite*{1968:hill} assumption $A_{(n)}$,
+giving a direct conditional probability for a future observable random quantity
+based on observed values of related random quantities.
+Suppose that $X_1, \ldots, X_n, X_{n+1}$ are continuous and exchangeable random quantities.
+Let the ordered observed values of $X_1, \ldots, X_n$ be denoted by $x_{(1)} < x_{(2)} < \ldots < x_{(n)}$,
+and let $x_{(0)}=-\infty$ and $x_{(n+1)}=\infty$ for ease of notation.
+For a future observation $X_{n+1}$, based on $n$ observations, the assumption $A_{(n)}$ \parencite{1968:hill} is
+\begin{align*}
+\p\big(X_{n+1} \in (x_{(j-1)},x_{(j)})\big) = \frac{1}{n+1} \quad \text{ for } j=1,2,\ldots,n+1\,.
+\end{align*}
+
+$A_{(n)}$ does not assume anything else, and is a post-data assumption related to exchangeability.
+The frequentist nature of $A_{(n)}$ can easily be understood by considering a simple case like $n=2$,
+for which $A_{(2)}$ states that the third observation has equal probability
+to be the minimum, median or maximum of all three observations, no matter the values $x_1$ and $x_2$.
+For repeated applications in situations with exchangeable random quantities,
+this post-data assumption is clearly seen to hold with a frequency interpretation of probability.
+For one-off applications, such an inference can be considered reasonable
+if one has no information at all about the location of $X_3$ relative to $x_1$ and $x_2$,
+or if one explicitly does not wish to use any such information.
+$A_{(n)}$ is also closely related to simple random sampling,
+and for the case with $n=2$ it just implies that the minimum, mean and maximum of the three random quantities
+each have the same probability to be $X_3$.%
+\footnote{For a detailed study of $A_{(n)}$ see \textcite{1988:hill}.}
+
+Inferences based on $A_{(n)}$ are predictive and nonparametric,
+and avoid the use of so-called \emph{counterfactuals},
+which play an important role in classical inferences like hypothesis testing,
+and which are often criticised by opponents of frequentist statistics
+\parencite[see, e.g.,][]{2000:dawid}.
+$A_{(n)}$ is not sufficient to derive precise probabilities for many events of interest,
+but it provides optimal bounds for probabilities for all events of interest involving $X_{n+1}$.
+These bounds are coherent lower (and upper) probabilities \parencite{2004:augustin}.
+
+NPI is a framework of statistical theory and methods that use these $A_{(n)}$-based lower and upper probabilities,
+and also considers several variations of $A_{(n)}$ which are suitable for different inferences.
+For example, NPI has been presented for Bernoulli data, multinomial data, and lifetime data with right-censored observations;
+NPI also enables inference for multiple future observations, with their interdependence explicitly taken into account.
+NPI provides a solution to some central goals formulated for objective (Bayesian) inference,
+which cannot be obtained when using precise probabilities \parencite{2006b:Coolen}.
+NPI is also exactly calibrated \parencite{2005:lawless}, which is a strong consistency property,
+and it never leads to results that are in conflict with inferences based on empirical probabilities.
+
+Inferential problems for which NPI solutions have recently been presented or are being developed
+include aspects of medical diagnosis with the use of ROC curves, 
+robust classification, inference on competing risks, quality control and acceptance sampling.
+To pick out an important application, % of this theory,
+a generalisation of the Kaplan-Meier estimator for survival functions \parencite{1958:kaplan}
+was developed by \textcite{2004:Coolen:Yan},
+which effectively expresses the uncertainty inherent in the estimation by lower and upper bounds.
+We think this is a striking example for the potential of imprecise probability methods,
+allowing to draw conclusions from data without the need to add overreaching assumptions.
+
+The nature of $A_{(n)}$ as a minimal model assumption also
+opens the possibility to study the effect of common further modelling assumptions,
+by comparing NPI-based inferences with the results of classical procedures. %based on further assumptions.
+As we will argue in Sections~\ref{sec:motivation-fundamental} and \ref{sec:motivation:bayesian-foundational} below,
+often the (imprecise) answers offered by imprecise probability methods are already enough %precise enough
+to solve the substantial question at hand,
+%for the substantial question at hand to be solved,
+and adding further assumptions to enable precise answers (as is the usual approach) is unnecessary,
+with the serious risk of giving spuriously precise answers
+when these further assumptions are unrealistic or unjustified.
+%***NPI models with minimal assumptions (study influence of further assumptions)
+
+\medskip
+
+Having studied some theoretical foundations of imprecise probability 
+and inference approaches based on them,
+we will now turn to the reasons motivating the use of imprecise probability in statistical inference.
+Again, special attention is paid to motives from a Bayesian perspective
+(Section~\ref{sec:motivation:bayesian}).
 
 
 \section{Motives for the Use of Imprecise Probability Methods}
@@ -796,10 +877,11 @@ leads naturally to lower and upper bounds for probabilities of events.
 These bounds may be, however, already informative enough to decide upon
 the substantive question at hand.%
 \footnote{\label{foot:npi}An important example for such an approach is the theory of \emph{nonparametric predictive inference}
-\parencite[NPI, see ][]{2011:IESS-npi}, where minimal model assumptions %(based on exchangeability of observations)
+\parencite[NPI, see, e.g., ][]{2011:IESS-npi},
+where minimal model assumptions %(based on exchangeability of observations)
 lead to a nonparametric model supplying lower and upper probability bounds for events
 involving future observations.
-A striking application of this theory is a generalisation of the
+As mentioned in Section~\ref{sec:frequentist}, a striking application of this theory is a generalisation of the
 Kaplan-Meier estimator for survival functions \parencite{1958:kaplan},
 which effectively expresses the uncertainty inherent in the estimation
 by lower and upper bounds \parencite{2004:Coolen:Yan}.}

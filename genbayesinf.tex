@@ -793,7 +793,8 @@ allowing to draw conclusions from data without the need to add overreaching assu
 The nature of $A_{(n)}$ as a minimal model assumption also
 opens the possibility to study the effect of common further modelling assumptions,
 by comparing NPI-based inferences with the results of classical procedures. %based on further assumptions.
-As we will argue in Sections~\ref{sec:motivation-fundamental} and \ref{sec:motivation:bayesian-foundational} below,
+As we will repeatedly argue in Sections~\ref{sec:motivation-fundamental},
+\ref{sec:motivation:bayesian-foundational} and \ref{sec:objections} below,
 often the (imprecise) answers offered by imprecise probability methods are already enough %precise enough
 to solve the substantial question at hand,
 %for the substantial question at hand to be solved,
@@ -1148,11 +1149,12 @@ As \textcite[\S 5.10.4, p.~260]{1991:walley} notes,
 However, this is very often not the case, and $\phi$ serves 
 ``merely as an index for the unknown, uninterpreted [ideal, precise prior] $p_T$.''
 Refuting the need for such an ideal precise prior $p_T$ (as noted in Section~\ref{sec:motivation:bayesian-foundational}),
-\textcite[\S 5.10.2]{1991:walley} proves that such an approach leads to incoherence
+\textcite[\S 5.10.2]{1991:walley} demonstrates that such an approach leads to incoherence
 when the priors in $\mathcal{M}$ are meant to model behavioural dispositions,
 as is the case for subjective Bayesian approaches.
 
-Leaving aside the serious problems that can arise when ignorance about $\phi$ is modelled by a non-informative prior,
+Leaving aside the serious problems that can arise when ignorance about $\phi$ is modelled by a non-informative prior,%
+\footnote{See, e.g., \textcite[\S 5.5.4 (h)]{1991:walley}, and \textcite{1988:pericchi:nazareth}. ***\textbf{1004/QH 233 B523 B3-3}***}
 a second-order distribution approach actually defines, via averaging over the elements in $\mathcal{M}$,
 a precise prior on the first level, leading to precise posterior inferences,
 thus obscuring the uncertainty in the model that was the reason
@@ -1169,15 +1171,16 @@ and can be interpreted, like usual likelihoods, as a measure of relative plausib
 \footnote{The possibility distributions for quantities of interest can also be seen
 as \emph{fuzzy numbers}, such that, e.g.,
 the coverage probability for a certain parameter subset $\Theta_1$ is not a real number,
-but a fuzzy probability, expressing the uncertainty for that probability by relative plausibility values.
+but a fuzzy probability, expressing the uncertainty for that probability by relative plausibility values \parencite{2008:cattaneo}.
 The hierarchical model has thus close relations to approaches using fuzzy numbers and distributions,
 with the advantage of a clear interpretation of the possibility functions as likelihoods.
-Furthermore, there is a sound foundation of combination rules and deduction of inferences in probability theory
-\parencite[\S 3]{2007a:cattaneo} ***other ref: SMPS, \textcite{2008:cattaneo}???***.
+Furthermore, this approach has a sound foundation for combination rules and deduction of inferences in probability theory.
 In contrast, in the fuzzy literature, the interpretation of fuzzy numbers, or membership functions in general,
-usually explained as expressing `degrees of membership', remains often rather cloudy***.
-Also, the rules for combining different inference sources are controversially disputed,
-and the fuzzy literature disagrees on how to correctly deduce inferences from a body of evidence.}
+usually explained as expressing `degrees of membership', remains often unclear, %rather cloudy***.
+the rules for combining different inference sources are controversially disputed,
+and the fuzzy literature disagrees on how to update fuzzy probability models in the light of data
+\parencite[\S 3]{2008:cattaneo}.}
+%correctly deduce inferences from a body of evidence.}
 
 %***from itip-statinf, \S 7:\\
 %\textcite{2008:cattaneo} suggests to use a slightly extended notion of likelihood as relative plausibility to construct a hierarchical model.

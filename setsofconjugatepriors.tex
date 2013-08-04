@@ -158,7 +158,19 @@ where the set of priors is spanned by normal distributions with a fixed mean $\y
 %$\nz \in \NZ \times \yz \in \YZ$.\\
 This type of model is first discussed in \textcite[\S 5.4.3]{1991:walley} for the Beta-Bernoulli model,
 and was later generalised by \textcite{Walter2009a}
-to sample distributions of the canonical exponential form \eqref{eq:expofam-sampledens}.
+to sample distributions of the canonical exponential form \eqref{eq:expofam-sampledens}.%
+\footnote{%
+%***from \textcite[\S 4.4]{itip-statinf}:\\
+More precisely, \textcite[see Section~\ref{sec:jstp}]{Walter2009a} proposed
+a direct extension of the model framework discussed in Section~\ref{sec:generalmodel}
+by the definition of so-called \emph{LUCK-models},
+which were already used in \textcite{Walter2007a}
+to generalise Bayesian linear regression (see a short summary in Section~\ref{sec:isipta07}).
+These exploit*** the fact that the central properties of the model framework
+(see Section~\ref{sec:gbicp-properties-criteria} below)
+rely on the specific form of the update step \eqref{eq:canonicalupdate} only.
+Thus, they can be generalised to settings that are not based on i.i.d.\ observations from canonical exponential family distributions,
+but nevertheless follow the same update step.} %This is elaborated in Section~\ref{sec:jstp} \parencite{Walter2009a} 
 We will discuss and illustrate this model in Section~\ref{sec:jstp}.
 It should be noted here that while the prior parameter set is a Cartesian product of $\NZ = [\nzl, \nzu]$ and $\YZ$,
 the posterior parameter set is not.
@@ -552,56 +564,181 @@ is not permitting the identification of a single prior distribution,
 imprecise probability models allow for adequate modeling of partial information and prior-data conflict sensitivity,
 and will ultimately result in more reliable inferences.
 
-\medskip
-
-***from \textcite[\S 4.4]{itip-statinf}:\\
-As a direct extension of the models discussed in Section~\ref{sec:generalmodel},
-it may be stressed that their central properties rely on the specific form of the update step \eqref{eq:canonicalupdate} only.
-Thus, they can be generalised to settings that are not based on i.i.d.\ observations from canonical exponential family distributions,
-but nevertheless follow the same update step.
-This is elaborated in Section~\ref{sec:jstp} \parencite{Walter2009a} by the definition of so-called LUCK-models,
-which were already used in \textcite{Walter2007a} to generalise Bayesian linear regression.
-
-
 ****more on parameter set shapes? refer to boatshape material****
 
+\medskip
+
+Before we will ***go into the details of models*** in Sections~\ref{sec:jstp} -- \ref{sec:isipta11},
+we will have a short look*** at some other models based on sets of priors in Section~\ref{sec:alternatives}.
 
 
 
 
 
-\section{***Alternative Models Based on Sets of Priors}
+
+\section{***Alternative Models Using Sets of Priors}
 \label{sec:alternatives}
 
-***to concluding remarks chapter?***
-
-\bigskip
-
-***comparison with other approaches based on sets of probability distributions:***
-
-\bigskip
-
-***par from \textcite[\S 4.4]{itip-statinf}:
+%***to concluding remarks chapter?***
 
 In Section~\ref{sec:generalmodel},
-we have discussed a specific class of models based on sets of conjugate priors,
-and illustrated in an exemplary way the main ideas and potential of generalized Bayesian inference.
-Other work on exponential family sampling models includes \textcite{1993:coolen}, ***discuss in detail???***
-who uses a different type of imprecise conjugate prior densities,
-and \textcite{2009:bickis}, who suggests the logit-normal model as an alternative to the IDM.
+we have discussed a specific class of models based on parametrically constructed sets of conjugate priors,
+and illustrated the main ideas and potential of generalised Bayesian inference for this model framework.
+
+Now, we will briefly discuss some further approaches that could serve
+as an alternative to the sets of conjugate priors discussed in this thesis.
+Firstly, in Section~\ref{sec:alternatives:conjugate} we will describe some models
+that also rely on conjugate priors in exponential families,
+but that cannot be subsumed in the framework of Section~\ref{sec:generalmodel}.
+In Section~\ref{sec:alternatives:other}, we will touch on models based on sets of priors that do not rely on conjugates.
+
+There are models in both sections where, 
+instead of generating the set of prior distributions by varying their parameters in a set
+(as in Section~\ref{sec:generalmodel}),
+the set of priors $\mathcal{M}$ is defined as an \emph{interval of measures},
+also known as \emph{density-ratio class}
+%Another interesting model that could be considered
+%as an alternative to the sets of conjugate priors discussed in this thesis
+%is the \emph{density-ratio class} model,
+%also known as \emph{interval of measures}
+\parencites{1981:derobertis}{1990:berger}.
+Here, a set of (prior) distributions on $\vartheta$ is defined by %$\mathcal{M}_{l,u}$ by 
+%through restricting the densities $p(\vartheta)$ in $\mathcal{M}_{l,u}$ to
+\begin{align}\label{eq:densityratioclass}
+\mathcal{M}_{l,u} = \left\{ p(\vartheta) :
+\exists c: l(\vartheta) \le c p(\vartheta) \le u(\vartheta)\right\}\,,
+\end{align}
+where $l(\vartheta)$ and $u(\vartheta)$ are bounded non-negative functions (i.e., non-normalised densities)	
+for which $l(\vartheta) \le u(\vartheta)\ \forall\ \vartheta$.
+$l(\vartheta)$ and $u(\vartheta)$ are often called \emph{lower and upper density functions}.
+The density ratio class thus can be seen as a certain type of credal sets as discussed in Section~\ref{sec:ip-main},
+%(derived from generic lower previsions)
+%\parencite[Figure~5.5]{itip-special}***,
+with the convenient property that the set of posteriors derived from $\mathcal{M}_{l,u}$
+through the Generalised Bayes' Rule (i.e., by updating element by element,
+see Sections~\ref{sec:gbr} and \ref{sec:imprecisebayes})
+can again be expressed as a density ratio class,
+with $l(\vartheta)$ and $u(\vartheta)$ updated according to Bayes' Rule \parencite{1981:derobertis}.%
+\footnote{As described in Section~\ref{sec:basicsetting},
+a similar property holds for the model framework if
+$\MZ$ is taken as all convex mixtures of parametric priors with parameters in $\PZ$,
+because $\MN$ can again be constructed as the set of all convex mixtures of distributions with parameters in $\PN$.}
+
+
+\subsection{Approaches Based on Conjugate Priors}
+\label{sec:alternatives:conjugate}
+
+***first sets based on conjugate priors: %1993:coolen, 1994:coolen interval of measures:
+*** also 2011:rinderknecht?,
+*** then 2009:bickis
+
+\textcite{1993:coolen} proposed an interesting model for sample distributions
+from the one-parameter exponential family using the density ration class.
+In this model, the prior bounding functions $l(\vartheta)$ and $u(\vartheta)$ from \eqref{eq:densityratioclass}
+are linked through the relation $u(\vartheta) = c_0 \cdot l(\vartheta)$,
+where $c_0 \ge 1$ is independent of $\vartheta$.
+$l(\vartheta)$ thus only needs to be known up to a multiplicative constant.
+Defining $l(\vartheta)$ as (proportional to) the conjugate prior,
+calculation of the posterior lower bounding function $l(\vartheta\mid\x)$ is straight-forward, by
+\begin{align*}
+l(\vartheta\mid\x) &= l(\vartheta) f(\x\mid\vartheta)\,,
+\end{align*}
+and the posterior upper bounding function is defined as
+\begin{align*}
+u(\vartheta\mid\x) &:= \frac{c_n}{c_0} u(\vartheta) f(\x\mid\vartheta) = c_n l(\vartheta\mid\x)\,,
+\end{align*}
+where $c_n$ is introduced to allow the posterior imprecision to decrease in dependence of the samples size $n$.%
+\footnote{$c_n \neq c_0$ means that we actually do not update $\mathcal{M}$ according to the Generalised Bayes' Rule.}
+$c_n$ must thus be chosen as a function decreasing in $n$,
+and \textcite{1993:coolen} suggests a functional form with
+$c_n \to 1$ for $n \to \infty$, containing a parameter $\xi$
+that has a meaning similar to $\nz$, in the sense that if $n = \xi$,
+an information measure suggested by \textcite[\S 5.3.7]{1991:walley} is doubled.%
+\footnote{Imprecision for models with fixed $\nz$ (Section~\ref{sec:basicsetting}, item~\ref{enum:modeltypes-a})
+is halfed when $\nz = n$, see Section~\ref{sec:gbicp-properties-criteria}, item~\ref{enum:n0vsn}.}
+To use the model, one has to elicit thus the parameters of the conjugate prior,
+along with $c_0$ and $\xi$.
+The model is quite easy to handle as there are, e.g., relatively simple formulas for the lower and upper
+cumulative density functions, and the lower and upper predictive densities.
+These formulas are easy to calculate if the involved integrals are easy to obtain,
+as is the case for a conjugate choice of $l(\vartheta)$.
+However, this model is insensitive to \pdc, owing to the requirement of $c_0$ and $c_n$
+to be independent of $\theta$ and $\x$ (except for the sample size $n$);
+furthermore, there could be many other functional forms for $c_n$ that are equally reasonable
+as the one suggested by \textcite{1993:coolen}.
+
+\textcite{1994:coolen} presents a further study of this model
+for the special case of Bernoulli observations.
+There, $l(\theta)$ is proportional to a $\be(\alpha,\beta)$,
+and $u(\theta)$ is defined as
+\begin{align*}
+u(\theta) = l(\theta) + c^*_0 a(\theta)\,,
+\end{align*}
+where $a(\theta)$ is proportional to a $\be(\mu,\lambda)$,
+and $c^*_0$ is again a factor that determines the prior imprecision.
+For the case $\mu=\alpha$, $\beta=\lambda$, and $c^*_0 = c^*_n = c$ for all $n$,%
+\footnote{The relation between $c_0$ and $c^*_0$ is thus $c^*_0 = c_0 - 1$.}
+formulas are derived that allow to study
+imprecision in posterior predicitive probabilities analytically.
+This model gives interesting insights into the dependence of imprecision on $s$,
+but the fact that posterior imprecision is the very same as prior imprecision
+if $s/n = \alpha/(\alpha+\beta)$ (i.e., data and prior assignments are perfectly in line)
+suggests that this model is not suitable for inferences \parencite[p.~160]{1994:coolen}.
+Furthermore, our conjecture is that the influence of $s$ on posterior imprecision
+is due to the restriction that the two bounding functions have to be
+proportional to Beta densities. For the case of $s/n = \alpha/(\alpha+\beta)$,
+imprecision decreases for any $s \neq n/2$ \parencite[Table~1]{1994:coolen}.
+This is very similar to the phenomenon that, in the Multinomial-Dirichlet model,
+the posterior variance of $\theta_j$ decreases for any $n_j$ if $\yz_j = 1/2$
+(see Section~\ref{sec:ex-mult}).
+
+The general case with $\mu\neq\alpha$, $\beta\neq\lambda$, and $c^*_n$ as in \textcite{1993:coolen}
+is illustrated with some numeric examples that show reasonable behaviour of the model.
+However, elicitation of the parameters ($\alpha,\beta,\mu,\lambda,c^*_0,\xi$)
+for an informative prior
+seems quite difficult and possibly involves elaborate pre-posterior procedures,
+as the influence of different choices of $l(\theta)$ and $a(\theta)$ on $\mathcal{M}$
+is rather oblique.
+
+***\textcite{2009:bickis} suggests the logit-normal model as an alternative to the IDM.
+
+***A very accessible presentation of density-ratio classes with
+parametric bounding shapes $l(\vartheta)$ and $u(\vartheta)$,
+along with a method for elicition from an expert
+providing quantiles (or quantile ranges) for a number of probability values,
+is given in \cite{2011:rinderknecht}.
+
+
+
+
+
+
+
+%***Other work on exponential family sampling models includes \textcite{1993:coolen, 1994:coolen}, ***discuss in detail???***
+%who uses a different type of imprecise conjugate prior densities (***interval of measures***),
+%and \textcite{2009:bickis}, who suggests the logit-normal model as an alternative to the IDM.
+
+
+\subsection{Other Approaches Using Sets of Priors}
+\label{sec:alternatives:other}
+
+***then sets of priors in general: discrete models (comparison whitcomb),
+pericchi-walley???,
+\textbf{neighbourhood models},
+interval of measures like 2011:rinderknecht ($l$ and $u$ non-conjugate?)
+
+
 Many other models have been investigated and applied, in particular neighborhood models
 (see, e.g., the surveys \cite{2000:bergerinsuaruggeri} and \cite{2005:ruggeri}).
 By studying credibility intervals, \textcite{1991:pericchi} give a neat overview on a number of approaches based on sets of priors,
 while \textcite{2011:rinderknecht} is an example of a study on elicitation for a certain class of priors that is both rigorous and accessible.
 
-Most models in generalized Bayesian inference rely on a precise sampling model,
-but the general framework also allows for imprecise sampling models \parencite[see, in particular,][\S 8.5]{1991:walley},
-also discussed under the notion of \emph{likelihood robustness} \parencite[e.g.,][]{2000:shyamalkumar} in the robust Bayesian framework.
 
 
 ***discuss these approaches some more?***
 
 
+***comparison with other approaches based on sets of probability distributions:***
 
 
 \bigskip
@@ -661,31 +798,8 @@ In short, the theory of lower previsions or sets of probability distributions
 provides a formal framework for robust Bayesian inference models
 \parencite{1994:berger}.
 
-***To other section? with boratynska, whitcomb, coolen1993 (diplomarbeit?)***\\
-Another interesting model that could be considered
-as an alternative to the sets of conjugate priors discussed in this thesis
-is the \emph{density-ratio class} model,
-also known as \emph{interval of measures}
-\parencites{1981:derobertis}{1990:berger}.
-Here, a set of (prior) distributions on $\vartheta$ is defined by %$\mathcal{M}_{l,u}$ by 
-%through restricting the densities $p(\vartheta)$ in $\mathcal{M}_{l,u}$ to
-\begin{align*}
-\mathcal{M}_{l,u} = \left\{ p(\vartheta) :
-\exists c: l(\vartheta) \le c p(\vartheta) \le u(\vartheta)\right\}\,,
-\end{align*}
-where $l(\vartheta)$ and $u(\vartheta)$ are bounded non-negative functions (i.e., non-normalised densities)	
-for which $l(\vartheta) \le u(\vartheta)\ \forall\ \vartheta$.
-The density ratio class thus can be seen as a certain type of credal sets as discussed in Section~\ref{sec:ip-main},
-%(derived from generic lower previsions)
-%\parencite[Figure~5.5]{itip-special}***,
-with the important property that the set of posteriors derived from $\mathcal{M}_{l,u}$
-can again be expressed as a density ratio class \parencite{1981:derobertis}.
-A very accessible presentation of density-ratio classes with
-parametric bounding shapes $l(\vartheta)$ and $u(\vartheta)$,
-along with a method for elicition from an expert
-providing quantiles (or quantile ranges) for a number of probability values,
-is given in \cite{2011:rinderknecht}.
-***end to other section?***
+
+
 
 
 \medskip

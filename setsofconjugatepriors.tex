@@ -700,7 +700,27 @@ seems quite difficult and possibly involves elaborate pre-posterior procedures,
 as the influence of different choices of $l(\theta)$ and $a(\theta)$ on $\mathcal{M}$
 is rather oblique.
 
-***\textcite{2009:bickis} suggests the logit-normal model as an alternative to the IDM.
+\textcite{2009:bickis} suggests a multivariate logit-normal model as an alternative to the IDM
+for an application where neighbouring category probabilities $\theta_j$ are correlated.
+Instead of the Dirichlet prior, the conjugate prior for $\theta_j$
+(see Section~\ref{sec:diri-multi}), a multivariate normal prior is assumed for the logits of $\theta_j$,
+i.e. $\log(\btheta/(1-\btheta)) \sim \norm_k(\mu \mbf{1}, \sigma^2\mbf{R})$,
+where $\mbf{1} = (1, \ldots, 1)$, and $\mbf{R}$ is a correlation structure.
+The resulting posterior in terms of $\btheta$ is itself not tractable, but can be approximated
+by an exponential family that can be seen as the convex hull of the logit-normal
+and dirichlet families \parencite[p.~189]{2009:bickis},
+and that contains the Dirichlet distribution for the limit $\sigma^2 \to \infty$.
+Although a conjugate prior in the sense that there is a simple update step for the hyperparameters,
+posterior inferences for this prior must usually be derived by simulation,
+as there are, e.g., no results on the expectation of this distribution.
+In the paper, a near-noninformative set of priors is constructed,
+used for an interesting application to estimate a discrete hazard function
+for which it is useful to mirror an autocorrelation structure in $\mbf{R}$.
+However, the potential of this prior model for applications where no correlation structure must be assumed is
+relatively low, due to the much more complex computations as compared to the IDM.
+It remains to be discovered how an informative (imprecise) prior could be elicited,
+and the behaviour in case of \pdc\ is as yet unkown.
+
 
 ***A very accessible presentation of density-ratio classes with
 parametric bounding shapes $l(\vartheta)$ and $u(\vartheta)$,

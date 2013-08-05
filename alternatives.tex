@@ -45,16 +45,22 @@ If $l(\vartheta)>0\ \forall\ \vartheta$, then \eqref{eq:densityratioclass} can a
 \end{align*}
 hence the name `density ration class'.
 
-The density ratio class thus can be seen as a certain type of credal sets as discussed in Section~\ref{sec:ip-main},
+The density ratio class thus can be seen as a certain type of credal sets as discussed in Section~\ref{sec:ip-main}.
 %(derived from generic lower previsions)
 %\parencite[Figure~5.5]{itip-special},
-with the convenient property of invariance under Bayesian updating,
+It has the convenient property of invariance under Bayesian updating,
 i.e., the set of posteriors derived from $\mathcal{M}_{l,u}$
 through the Generalised Bayes' Rule (i.e., by updating element by element,
 see Sections~\ref{sec:gbr} and \ref{sec:imprecisebayes})
 can again be expressed as a density ratio class,
 with $l(\vartheta)$ and $u(\vartheta)$ updated according to Bayes' Rule \parencite{1981:derobertis}.
-The density ration class has further advantageous properties,
+Although this invariance property is advantageous,
+a consequence of it is that also the ratio $u(\vartheta)/l(\vartheta)$
+is constant under updating, such that posterior imprecision is the same as prior imprecision,
+for and sample size $n$ \textcite[\S 4.2.2]{2011:rinderknecht:diss}.
+This is in strong contrast to the behaviour of the models discussed in Section~\ref{sec:generalmodel},
+where $\MZ$ converges to a precise distribution for $n \to \inf$. 
+The density ratio class has other advantageous properties,
 especially as compared to the neighbourhood models described in Section~\ref{sec:alternatives:other}
 \parencite[see, e.g.,][\S 2.3]{2011:rinderknecht}.
 
@@ -203,26 +209,117 @@ and the behaviour in case of \pdc\ is as yet unkown.
 
 ***\textbf{neighbourhood models},
 
+--------------------------------
+
 %interval of measures like 2011:rinderknecht ($l$ and $u$ non-conjugate?)
 \textcite[\S 4]{2011:rinderknecht:diss} presents a model for inferences 
-based on sets of priors of the form of a density-ratio class
-bounded by parametric distributions
-(see the elicitation method mentioned infootnote~\ref{foot:rinderknecht}, page~\pageref{foot:rinderknecht}).
+based on sets of priors of the form of a density-ratio class,
+where the bounding functions $l(\vartheta)$ and $u(\vartheta)$ are parametric, but not necessarily conjugate
+(see the elicitation method mentioned in footnote~\ref{foot:rinderknecht}, page~\pageref{foot:rinderknecht}).
+It is demonstrated that also marginals derived from a density ratio class with a multivariate parameter
+take again the form of density ratio classes, and can be calculated quite easily.
+Also, it is shown that deduced quantities (like probabilistic predictions) derived from the set of posteriors
+can be framed as a density ratio class.
+However, while for quantities that are a deterministic function of the model parameters
+the resulting density ratio class is exact, the bounding functions %$l$ and $u$
+for probabilistic predictions are not exact, but provide a conservative approximation for
+the exact set of posterior predictive distributions \parencite[\S 4.2.4]{2011:rinderknecht:diss}.
 
+The theoretical results are implemented and demonstrated via an example,
+a model for prediction of a certain type of river biomass, depending on six model parameters.
+Prior sets for these parameters were elicited from an expert,
+and combined with data from surveys of different streams.
+As the priors seem to be not conjugate (there is no reference to the respective likelihoods in the publication),
+joint and marginal posteriors, along with biomass predicitions, were calculated using
+Markov Chain Monte Carlo (MCMC) techniques \parencite[see, e.g.,][]{1998:gilks}.
+Interestingly, \textcite[\S 4.3]{2011:rinderknecht:diss} shows that
+MCMC results for a precise distribution can be used to approximate the set of posterior distributions,
+such that computational burden is only marginally more extensive than in case of a precise prior.
 
-Many other models have been investigated and applied, in particular neighborhood models
+Results are reasonably precise if prior information for only one of the six model parameters
+is modelled by a density ratio class, and for the other by precise probability distributions.
+If prior information for each of the six parameters is modelled by a density ratio class and combined independently,
+results are higly imprecise and of no practical use;
+the posterior marginals are even much more imprecise than their prior counterparts.%
+\footnote{The marginal posterior lower bounding functions $l(\vartheta\mid\x)$ are indistinguishable
+from zero if plotted in the same coordinate system as its respective the upper bounding functions $u(\vartheta\mid\x)$,
+such that the posterior set of distributions contains also nearly uniform distributions.}
+This undesirable phenomenon is called \emph{dilation} \parencite[see][]{1993:seidenfeld}.
+Here, it seems to result primarily from a kind of `curse of dimension',
+but may also be due to the fact that, as noted above, imprecision does not decrease with $n$
+for density ratio classes updated via the Generalised Bayes' Rule.
+
+Although being quite attractive for problems with a one-dimensional parameter
+(or where there is sufficient information to model further parameters by precise priors),
+the model is currently inadequate for higher-dimensional problems.
+This could be adressed through the development of multivariate elicitation procedures,
+eliciting also the dependence stucture for model parameters,
+or by replacing the independent combination of marginal prior sets
+by another strategy \parencite[as mentioned in][\S 5.2]{2011:rinderknecht:diss}.
+A solution could be to factor a multivariate prior $p(\vartheta_1,\ldots,\vartheta_p)$
+recursively by
+\begin{align*}
+p(\vartheta_1,\ldots,\vartheta_p)
+ &= p(\vartheta_1\mid \vartheta_2,\ldots,\vartheta_p) p(\vartheta_2,\ldots,\vartheta_p) \\
+ &= p(\vartheta_1\mid \vartheta_2,\ldots,\vartheta_p) p(\vartheta_2\mid \vartheta_3,\ldots,\vartheta_p)
+    \cdots p(\vartheta_{p-1}\mid\vartheta_p) p(\vartheta_p)\,,
+\end{align*}
+where usually the dependencies can be reduced by a large degree through assumptions of conditional independence.
+This is the approach in probabilistic graphical models,
+where (in)dependencies are visualised by a graph.
+Important guidance could be drawn from the vivid research conducted in the area
+of imprecise graphical models, also known as \emph{imprecise Bayesian} or \emph{credal networks},
+especially with respect to independence concepts and efficient calculations
+\parencite[for a recent overview, see][]{itip-ipgms}.
+
+More severely, however, we find the model unsatisfactory because it offers no opportunity
+to model posterior imprecision as a function of sample size or \pdc.
+%there seems to be no consistent mechanism by which posterior imprecision
+The model is thus inable to model prior near-ignorance, and to reflect \pdc\ in posterior inferences.%
+\footnote{However, a possibly attractive approach could be to
+combine ideas from \textcite{1993:coolen} and \textcite{2011:rinderknecht:diss}
+in a density ratio class model with non-Bayesian updating
+where $c_n$ is defined such that posterior inferences also reflect \pdc.}
+
+\medskip
+
+--------------------------------
+
+***Many other models have been investigated and applied, in particular neighborhood models
 (see, e.g., the surveys \cite{2000:bergerinsuaruggeri} and \cite{2005:ruggeri}).
+
+***different sorts of neighbourhood models as considered in robust Bayesian approaches \parencite[e.g.,][]{1994:berger}.
+
+
+As an example, consider the \emph{odds-ratio model}.
+As a neighbourhood model,
+it serves to model approximate adherence to a central probability law with distribution $\p_0$,
+by giving the following constraints for pairs of events $A$ and $B$:
+\begin{align*}
+\frac{\p(A)}{\p(B)} \le (1-\epsilon)\frac{\p_0(A)}{\p_0(B)}\,,\quad A, B \subseteq \Omega
+\end{align*}
+The set of distributions $\p$ compatible with these restrictions
+forms then an odds-ratio model with parameter $\epsilon$,
+and can be represented by a lower prevision $\El_\epsilon$.
+When such a model is taken as an imprecise prior in Bayesian inference,
+the set of posteriors can again be expressed as an odds-ratio model
+\parencite[\S 7.2]{itip-special}.
+Other neighbourhood models, like, e.g., the $\epsilon$-contamination class
+\parencite[see, e.g.,][\S 4.3.2]{1994:berger},
+may instead not be closed under Bayesian updating.
+
+In short, the theory of lower previsions or sets of probability distributions
+provides a formal framework for robust Bayesian inference models
+\parencite{1994:berger}.
+
+\medskip
+
 By studying credibility intervals, \textcite{1991:pericchi} give a neat overview on a number of approaches based on sets of priors,
-%while \textcite{2011:rinderknecht} is an example of a study on elicitation for a certain class of priors that is both rigorous and accessible.
-
-***discuss these approaches some more?***
-
+some of which can be seen as special cases of the approach by \textcite{2011:rinderknecht:diss},
+***and they make the distinction of near-noninformative versus informative (with \pdc\ sensitivity) priors.
 
 
-
-
-
-\bigskip
+\medskip
 
 ***short discussion of work in BA Norbert Krautenbacher,
 comparison to whitcomb, then rewrite this:
@@ -250,34 +347,6 @@ to determine posterior distributions in complex settings by simulation,
 Bayesian inference was mostly confined to conjugate prior distributions
 because posteriors derived from non-conjugate priors are very often intractable analytically.
 
-
-
-
-\bigskip
-
-***different sorts of neighbourhood models as considered in robust Bayesian approaches \parencite[e.g.,][]{1994:berger}.
-
-
-As an example, consider the \emph{odds-ratio model}.
-As a neighbourhood model,
-it serves to model approximate adherence to a central probability law with distribution $\p_0$,
-by giving the following constraints for pairs of events $A$ and $B$:
-\begin{align*}
-\frac{\p(A)}{\p(B)} \le (1-\epsilon)\frac{\p_0(A)}{\p_0(B)}\,,\quad A, B \subseteq \Omega
-\end{align*}
-The set of distributions $\p$ compatible with these restrictions
-forms then an odds-ratio model with parameter $\epsilon$,
-and can be represented by a lower prevision $\El_\epsilon$.
-When such a model is taken as an imprecise prior in Bayesian inference,
-the set of posteriors can again be expressed as an odds-ratio model
-\parencite[\S 7.2]{itip-special}.
-Other neighbourhood models, like, e.g., the $\epsilon$-contamination class
-\parencite[see, e.g.,][\S 4.3.2]{1994:berger},
-may instead not be closed under Bayesian updating.
-
-In short, the theory of lower previsions or sets of probability distributions
-provides a formal framework for robust Bayesian inference models
-\parencite{1994:berger}.
 
 
 

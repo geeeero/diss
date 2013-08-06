@@ -51,13 +51,15 @@ we developed imprecise probability methods that overcome this deficiency,
 by mapping ambiguity in posterior inferences now also in dependence of \pdc\ 
 (see Sections~\ref{sec:pdc-sensitivity}, and specifically \ref{sec:jstp}).
 In these models, a conflict of prior beliefs and data
-leads to larger posterior parameter sets $\PN$
-that ***bedingen, fuehren zu* more cautious inferences results,
-%ultimately giving more cautious inferences result,
-the model thus being cautious if, and only if, caution is needed.
+entails larger posterior parameter sets $\PN$,
+leading to cautious inferences if, and only if, caution is needed.
 \end{enumerate}
-%\pdc\ sensitivity: cautious inferences if, and only if, caution is needed
-Section~\ref{sec:luck} then presents a software implementation
+
+Section~\ref{sec:alternatives} described some alternative models based on sets of priors,
+and discussed their inference properties in comparison to the results in Section~\ref{sec:generalmodel}.
+Section~\ref{sec:jstp} then motivated, developed, and illustrated
+an central model type from Section~\ref{sec:generalmodel} in more detail;
+afterwards, Section~\ref{sec:luck} briefly presented a software implementation
 of the model framework developed in Section~\ref{sec:jstp}.
 
 Finally, Section~\ref{sec:isipta11} presents attempts to further refine
@@ -92,7 +94,7 @@ described informally in Section~\ref{sec:concluding-outlook} below
 %****issues in Bayesian inference: weakly informative priors, \pdc, or in general sensitivity to the prior
 %****realistic modeling of partial information
 
-As the model overview in \ref{sec:generalmodel} gives already a good discussion
+As the model overview in Section~\ref{sec:generalmodel} gives already a good discussion
 of the imprecise probability models considered in this thesis,%
 \footnote{General motives for the use of imprecise probability models
 were discussed in Section~\ref{sec:motivation},
@@ -101,7 +103,9 @@ These motives can be subsumed as follows:
 Generalised Bayesian models allow, in contrast to classical Bayesian models,
 a realistic modeling of partial prior information,
 and can account for model uncertainty in a preferable way.
-Critique and possible alternatives were discussed in Section~\ref{sec:ip-alternatives}.}
+Critique on and possible alternatives to Generalised Bayesian inference models
+were discussed in Section~\ref{sec:ip-alternatives},
+while alternatives to the models covered in Section~\ref{sec:generalmodel} are discussed in Section~\ref{sec:alternatives}.}
 we will try to emphasize some central points here only.
 %summary, condensed here again, emphasising some points
 
@@ -172,7 +176,12 @@ as discussed above, uncertainty is adequately mirrored by the size of $\MN$,
 fulfilling the inference properties \ref{enum:n0vsn}--\ref{enum:deltay}
 %criteria from Section~\ref{sec:gbicp-properties-criteria},
 with the potential to implement \pdc\ sensitivity or near-noninformativeness,
-as required by the inference task at hand.
+as required by the inference task at hand.%
+\footnote{We think this is a major advantage to the alternative models
+discussed in Section~\ref{sec:alternatives},
+especially to models based on the density ratio class.
+As noted in Section~\ref{alternatives:drc}, imprecision does not decrease with $n$ in
+density ratio class models that are updated according to the Generalised Bayes' Rule.}
 \item They allow for flexible modelling, as
 it is possible to choose or tweak the prior set shape according to inference needs,
 where, however, the trade-off mentioned above should be ***kept in mind***.

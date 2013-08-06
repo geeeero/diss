@@ -1,37 +1,120 @@
-\section{***Alternative Models Using Sets of Priors}
+\section{Alternative Models Using Sets of Priors***}
 \label{sec:alternatives}
 
 
 In Section~\ref{sec:generalmodel},
 we have discussed a specific class of models based on parametrically constructed sets of conjugate priors,
-and illustrated the main ideas and potential of generalised Bayesian inference for this model framework.
+described important properties of inferences based on this class in general terms,
+and illustrated the potential of generalised Bayesian inference methods
+for the situations of prior near-ignorance and substantial prior information.
+%illustrated the main ideas and potential of generalised Bayesian inference for this model framework.
+In this section, we will discuss two alternative frameworks for inference based on sets of priors,
+and consider a number of inference models that could serve as an alternative to the models discussed in Section~\ref{sec:generalmodel}.
+The two frameworks based on sets of priors
+in alternative to the model framework discussed in this thesis are 
+\emph{neighbourhood models} (Section~\ref{sec:alternatives:neighbourhood}) and
+the \emph{density-ratio class} (Section~\ref{alternatives:drc}).%
+\footnote{By some authors, the density ratio class is considered a neighbourhood model
+where instead of one central distribution $\p_0$ two distributions are considered
+\parencite[e.g.,][\S 4.3]{1991:pericchi}.
+We think, however, that the density ratio class is better characterised as a separate model framework.}
+Then, we will briefly describe a few concrete inference models,
+some of which are based on these two model frameworks,
+distinguishing between models that are based on conjugate priors (Section~\ref{sec:alternatives:conjugate})
+and models that are not (Section \ref{sec:alternatives:other}).
 
-Now, we will briefly discuss some further approaches that could serve
-as an alternative to the sets of conjugate priors discussed in this thesis.
+%Now, we will briefly discuss some further approaches that could serve
+%as an alternative to the sets of conjugate priors discussed in this thesis.
+%Firstly, in Section~\ref{sec:alternatives:conjugate} we will describe some models
+%that also rely on conjugate priors in exponential families,
+%but that cannot be subsumed in the framework of Section~\ref{sec:generalmodel}.
+%In Section~\ref{sec:alternatives:other}, we will touch on models based on sets of priors that do not rely on conjugates.
+
+\subsection{Neighbourhood Models}
+\label{sec:alternatives:neighbourhood}
+
+%different sorts of neighbourhood models as considered in robust Bayesian approaches \parencite[e.g.,][]{1994:berger}.
+An important class of models that make use of sets of priors are \emph{neighborhood models}.
+These are typically considered in the robust Bayesian approach \parencite[see, e.g.,][]{1994:berger,2000:rios},
+where a certain prior distribution $\p_0$ is singled out as a potential model for prior information,
+but, due to lack of confidence in this choice, a neigbourhood around $\p_0$ is considered,
+consisting of distributions `near' $\p_0$.
+The rationale for this approach is to ensure robustness of the Bayesian analysis based on a single prior $\p_0$
+by checking that small deviations from $\p_0$ do not lead to large deviations in posterior inferences.
+%Approaches along these lines are also called systematic sensitivity analysis, or Bayesian sensitivity analysis.
+As mentioned in Section~\ref{sec:bayesiansensitivity},
+imprecise probability offers a formal, not casuistic framework for such \emph{Bayesian sensitivity analysis};
+however, interpretation of the sets of priors, and the modelling intention is different,
+especially with respect to the inference situations we perceive as important modelling opportunities
+for generalised Bayesian inference.%
+\footnote{These are (i) the possibility of modeling prior near-ignorance
+(see Sections~\ref{sec:motivation:near-ignorance} and \ref{sec:idm-and-near-ignorance}),
+and (ii) \pdc\ sensitivity in case of informative priors
+(see Sections~\ref{sec:motivation:pdc} and \ref{sec:pdc-sensitivity}).}
+We will thus touch only briefly on neighbourhood models,
+picking out two typical examples,
+although many different kinds of neighbourhood models are discussed in the literature
+(see, e.g., the surveys by \textcite{2000:bergerinsuaruggeri} and \textcite{2005:ruggeri}).
+
+A typical example is the $\varepsilon$-contamination class \parencite[see, e.g.,][\S 4.3.2]{1994:berger},
+which can be motivated as follows:
+In a (virtual) sample distribution,
+not all data are distributed according to $\p_0$;
+instead, %a fraction of $\varepsilon$ 
+$100\cdot\varepsilon$\% of the data is distributed according to any distribution from a set $\mathcal{Q}$, %according to some other law,
+and depending on the choice for $\mathcal{Q}$, %the class of distributions this contaminating data can follow,
+a variety of $\varepsilon$-contamination classes can be defined.%
+\footnote{For $\mathcal{Q}$ taken as `all distributions',
+the $\varepsilon$-contamination class is also called `linear-vacuous mixture'
+in the imprecise probability literature \parencite[e.g.,][\S 7.3]{itip-special},
+constituting an important special case of coherent lower previsions.}
+%$100\cdot(1-\varepsilon)$\% of the data are distributed according to $\p_0$,
+%while $100\cdot\varepsilon$\% of the data are distributed according to any other distribut
+
+Another example for a neighbourhood model is the \emph{odds-ratio model}.
+It tries to model approximate adherence to a central probability law with distribution $\p_0$
+by giving the following constraints for pairs of events $A$ and $B$:
+\begin{align*}
+\frac{\p(A)}{\p(B)} \le (1-\epsilon)\frac{\p_0(A)}{\p_0(B)}\,,\quad A, B \subseteq \Omega
+\end{align*}
+The set of distributions $\p$ compatible with these restrictions
+forms then an odds-ratio model with parameter $\epsilon$,
+and can be represented by a lower prevision $\El_\epsilon$.
+When such a model is taken as an imprecise prior in Bayesian inference,
+the set of posteriors can again be expressed as an odds-ratio model
+\parencite[\S 7.2]{itip-special}.
+Other neighbourhood models, like, e.g., the $\epsilon$-contamination class
+mentioned above,
+%\parencite[see, e.g.,][\S 4.3.2]{1994:berger},
+may instead not be closed under Bayesian updating.
+
+
+\subsection{Density Ratio Class}
+\label{alternatives:drc}
+
 %Below, we will briefly describe an interesting model class
 %that can be defined using conjugate or non-conjugate distributions 
-Firstly, in Section~\ref{sec:alternatives:conjugate} we will describe some models
-that also rely on conjugate priors in exponential families,
-but that cannot be subsumed in the framework of Section~\ref{sec:generalmodel}.
-In Section~\ref{sec:alternatives:other}, we will touch on models based on sets of priors that do not rely on conjugates.
-
-%An important approach where 
-There are models in both sections*** where, 
-instead of generating the set of prior distributions by varying their parameters in a set
-(as in Section~\ref{sec:generalmodel}),
-the set of priors $\mathcal{M}$ is defined as an \emph{interval of measures},
-also known as \emph{density-ratio class}
+%--
 %Another interesting model that could be considered
 %as an alternative to the sets of conjugate priors discussed in this thesis
 %is the \emph{density-ratio class} model,
 %also known as \emph{interval of measures}
-\parencites{1981:derobertis}{1990:berger}.%
+The \emph{density ratio class}, also known as \emph{interval of measures}
+\parencites{1981:derobertis}{1990:berger},
+provides also an interesting model framework for Bayesian inference using sets of priors.
+Here, instead of generating the set of prior distributions by varying their parameters in a set
+(as in Section~\ref{sec:generalmodel}),
+the set of priors $\mathcal{M}$ is defined by bounding the probability density functions
+of elements $p(\vartheta) \in \mathcal{M}$
+via a lower bounding function $l(\vartheta)$ and an upper bounding function $u(\vartheta)$.%
 \footnote{\label{foot:rinderknecht}A very accessible presentation of density-ratio classes with
 parametric bounding shapes $l(\vartheta)$ and $u(\vartheta)$,
-along with a method for elicition from an expert
+along with a method for elicitation from an expert
 providing quantiles (or quantile ranges) for a number of probability values,
-is given in \textcite{2011:rinderknecht}.}
-Here, a set of (prior) distributions on $\vartheta$ is defined by %$\mathcal{M}_{l,u}$ by 
+is given in \textcite{2011:rinderknecht}.
+We discuss this model in Section~\ref{sec:alternatives:other}.}
+
+A set of (prior) distributions on $\vartheta$ is defined by %$\mathcal{M}_{l,u}$ by 
 %through restricting the densities $p(\vartheta)$ in $\mathcal{M}_{l,u}$ to
 \begin{align}\label{eq:densityratioclass}
 \mathcal{M}_{l,u} = \left\{ p(\vartheta) :
@@ -48,39 +131,42 @@ If $l(\vartheta)>0\ \forall\ \vartheta$, then \eqref{eq:densityratioclass} can a
 \end{align*}
 hence the name `density ration class'.
 
-The density ratio class thus can be seen as a certain type of credal sets as discussed in Section~\ref{sec:ip-main}.
+The density ratio class defines a certain type of credal sets;
+thus, as discussed in Section~\ref{sec:ip-main},
+it can also be expressed via an associated coherent lower prevision $\El_{l,u}$.
 %(derived from generic lower previsions)
 %\parencite[Figure~5.5]{itip-special},
-It has the convenient property of invariance under Bayesian updating,
-i.e., the set of posteriors derived from $\mathcal{M}_{l,u}$
+The density ratio class a number of advantageous properties,
+especially as compared to many neighbourhood models
+\parencite[see, e.g.,][\S 2.3]{2011:rinderknecht};
+most importantly, it has the convenient property of invariance under Bayesian updating.
+The set of posteriors derived from $\mathcal{M}_{l,u}$
 through the Generalised Bayes' Rule (i.e., by updating element by element,
 see Sections~\ref{sec:gbr} and \ref{sec:imprecisebayes})
 can again be expressed as a density ratio class,
 with $l(\vartheta)$ and $u(\vartheta)$ updated according to Bayes' Rule \parencite{1981:derobertis}.
+
 Although this invariance property is advantageous,
 a consequence of it is that also the ratio $u(\vartheta)/l(\vartheta)$
 is constant under updating, such that posterior imprecision is the same as prior imprecision,
-for and sample size $n$ \textcite[\S 4.2.2]{2011:rinderknecht:diss}.
+for any sample size $n$ \parencite[see, e.g.,][\S 4.2.2]{2011:rinderknecht:diss}.
 This is in strong contrast to the behaviour of the models discussed in Section~\ref{sec:generalmodel},
-where $\MZ$ converges to a precise distribution for $n \to \inf$. 
-The density ratio class has other advantageous properties,
-especially as compared to the neighbourhood models described in Section~\ref{sec:alternatives:other}
-\parencite[see, e.g.,][\S 2.3]{2011:rinderknecht}.
+where $\MZ$ converges to a precise distribution for $n \to \infty$. 
 
 It is important to note here that even if the bounding functions $l(\vartheta)$ and $u(\vartheta)$ are defined parametrically
-(or, as in the approaches by Coolen \parencite*{1993:coolen, 1994:coolen} described below, as conjugates),
+(or, as in the approaches by Coolen \parencite*{1993:coolen, 1994:coolen} described below, even as conjugates),
 $\mathcal{M}_{l,u}$ does not contain only these parametric densities (or conjugate densities).
 Instead, $\mathcal{M}_{l,u}$ contains a variety of shapes, where
 (if $l(\vartheta)$ and $u(\vartheta)$ are not proportional)
-the tail behaviour can vary between that of $l(\vartheta)$ and $u(\vartheta)$
-\parencite[\S 3.2]{2011:rinderknecht}.
+the tail behaviour can vary between that of $l(\vartheta)$ and $u(\vartheta)$.%
+\footnote{See, e.g., \cite[\S 3.2]{2011:rinderknecht}, or \cite[\S 4.3]{1991:pericchi}.}
 
 The density ratio class is thus similar to sets of priors
 discussed in the model framework from Section~\ref{sec:basicsetting} where
 $\MZ$ is taken as all convex mixtures of parametric priors with parameters in $\PZ$.
 Then, also $\MZ$ contains a variety of shapes that, however,
 do not allow for substantially different tail behaviour,
-and it still has the same property of invariance under Bayesian updating,
+but it also has the same property of invariance under Bayesian updating,
 because $\MN$ can be constructed as the set of all convex mixtures of distributions with parameters in $\PN$.
 
 
@@ -91,6 +177,22 @@ because $\MN$ can be constructed as the set of all convex mixtures of distributi
 %first sets based on conjugate priors: %1993:coolen, 1994:coolen interval of measures:
 %2011:rinderknecht does not consider update step, just elicitation, but 2011:rinderknecht:phd does
 %then 2009:bickis
+%Other work on exponential family sampling models includes \textcite{1993:coolen, 1994:coolen},
+%who uses a different type of imprecise conjugate prior densities (interval of measures),
+%and \textcite{2009:bickis}, who suggests the logit-normal model as an alternative to the IDM.
+We discuss here approaches based on conjugate priors.
+First, a density ratio class model using conjugate distributions
+for the bounding functions $l(\vartheta)$ and $u(\vartheta)$
+by Coolen \parencite*{1993:coolen,1994:coolen} is described.
+Then, a brief summary of an approach by \textcite{2009:bickis} is given,
+who constructs a conjugate to the multinomial sample distribution
+where a specific correlation structure for the categories can be specified.
+Afterwards, some results of the study by \textcite{1991:pericchi} are reported,
+who compare models for inference on the mean of a normal distribution with known variance
+that are based on a number of conjugate and non-conjugate sets of priors.
+ 
+
+\medskip
 
 \textcite{1993:coolen} proposed an interesting model for sample distributions
 from the one-parameter exponential family using the density ration class.
@@ -108,38 +210,40 @@ l(\vartheta\mid\x,\pz) &= l(\vartheta\mid\pz) f(\x\mid\vartheta) = l(\vartheta\m
 u(\vartheta\mid\x,\pz) &:= \frac{c_n}{c_0} u(\vartheta\mid\pz) f(\x\mid\vartheta) = c_n l(\vartheta\mid\pn)\,,
 \end{align*}
 where $c_n$ is introduced to allow the posterior imprecision to decrease in dependence of the samples size $n$.%
-\footnote{$c_n \neq c_0$ means that we actually do not update $\mathcal{M}$ according to the Generalised Bayes' Rule.}
+\footnote{Note that $c_n \neq c_0$ means that we actually do not update $\mathcal{M}$ according to the Generalised Bayes' Rule.}
 $c_n$ must thus be chosen as a function decreasing in $n$,
 and \textcite{1993:coolen} suggests a functional form with
 $c_n \to 1$ for $n \to \infty$, containing a parameter $\xi$
 that has a meaning similar to $\nz$, in the sense that if $n = \xi$,
-an information measure suggested by \textcite[\S 5.3.7]{1991:walley} is doubled.%
+an information measure \parencite[suggested by][\S 5.3.7]{1991:walley} is doubled.%
 \footnote{Imprecision for models with fixed $\nz$ (Section~\ref{sec:basicsetting}, item~\ref{enum:modeltypes-a})
 is halfed when $\nz = n$, see Section~\ref{sec:gbicp-properties-criteria}, item~\ref{enum:n0vsn}.}
-To use the model, one has to elicit thus the parameter(s) of the conjugate prior $\pz$,
+
+To use the model, one has to elicit the parameter(s) of the conjugate prior $\pz$,
 along with $c_0$ and $\xi$.
-The model is quite easy to handle as the density ratio class provides relatively simple formulas for, e.g.,
+The model is quite easy to handle, as the density ratio class provides relatively simple formulas for, e.g.,
 lower and upper cumulative density functions, and lower and upper predictive densities.
 These formulas are easy to calculate if the involved integrals are easy to obtain,
 as is the case for a conjugate choice of $l(\vartheta)$.
 However, this model is insensitive to \pdc, owing to the requirement of $c_0$ and $c_n$
 to be independent of $\theta$ and $\x$ (except for the sample size $n$);
-furthermore, there could be many other functional forms for $c_n$ that are equally reasonable
-as the one suggested in the paper \parencite[p.~341]{1993:coolen}.
+furthermore, as conceded by \textcite[p.~341]{1993:coolen},
+there could be many other functional forms for $c_n$ that were equally reasonable
+as the one suggested in the paper.
 
 \medskip
 
 \textcite{1994:coolen} presents a further study of this model
-for the special case of Bernoulli observations, and with a focus on predictive inferences.
+for the special case of Bernoulli observations with a focus on predictive inferences.
 There, $l(\theta)$ is proportional to a $\be(\alpha,\beta)$,
 and $u(\theta)$ is defined as
 \begin{align*}
 u(\theta) = l(\theta) + c^*_0 \cdot a(\theta)\,,
 \end{align*}
 where $a(\theta)$ is proportional to a $\be(\mu,\lambda)$,
-and $c^*_0$ is again a factor that determines the prior imprecision.
-For the case $\mu=\alpha$, $\beta=\lambda$, and $c^*_0 = c^*_n = c$ for all $n$,%
+and $c^*_0$ is again a factor that determines the prior imprecision.%
 \footnote{The relation between $c_0$ and $c^*_0$ is thus $c^*_0 = c_0 - 1$.}
+For the case $\mu=\alpha$, $\beta=\lambda$, and $c^*_0 = c^*_n = c$ for all $n$,
 formulas are derived that allow to study
 imprecision in posterior predicitive probabilities analytically.
 This model gives interesting insights into the dependence of imprecision on $s$,
@@ -154,9 +258,10 @@ This is very similar to the phenomenon that, in the Multinomial-Dirichlet model,
 the posterior variance of $\theta_j$ decreases for any $n_j$ if $\yz_j = 1/2$
 (see Section~\ref{sec:ex-mult}).
 
-Afterwards, the general case with $\mu\neq\alpha$, $\beta\neq\lambda$, and $c^*_n$ as in \textcite{1993:coolen}
-is illustrated with some numeric examples that show reasonable behaviour of the model.
-However, there are no theoretical results for model behaviour
+Afterwards, \textcite[\S 4]{1994:coolen} illustrates the general case
+with $\mu\neq\alpha$, $\beta\neq\lambda$, and $c^*_n$ as in \textcite{1993:coolen}
+with some numeric examples, showing a reasonable behaviour of the model.
+However, there are no theoretical results for model behaviour of the general case
 (as we gave in Section~\ref{sec:gbicp-properties-criteria}),
 and elicitation of the parameters ($\alpha,\beta,\mu,\lambda,c^*_0,\xi$)
 for an informative prior
@@ -181,55 +286,79 @@ and that contains the Dirichlet distribution for the limit $\sigma^2 \to \infty$
 Although a conjugate prior in the sense that there is a simple update step for the hyperparameters,
 posterior inferences for this prior must usually be derived by simulation,
 as there are, e.g., no results on the expectation of this distribution.
+
 In the paper, a near-noninformative set of priors is constructed
 by means of a set of hyperparameters,
 used for an interesting application to estimate a discrete hazard function
 for which it is useful to mirror an autocorrelation structure in $\mbf{R}$.
 However, the potential of this prior model for applications where no correlation structure must be assumed is
-relatively low, due to the much more complex computations as compared to the IDM.%
-\footnote{For a recent Bayesian alternative to the IDM, see \textcite{2013:mangilibenavoli}, also mentioned in Section~***.}
+relatively low, due to the much more complex computations as compared to the IDM.
+%\footnote{For a recent Bayesian alternative to the IDM, see \textcite{2013:mangilibenavoli}, also mentioned in Section~***.}
 It remains to be discovered how an informative (imprecise) prior could be elicited,
 and the behaviour in case of \pdc\ is as yet unkown.
 
+\medskip
 
+By studying credibility intervals for an unknown mean $\mu$ for samples from a normal distribution with known variance $\sigma^2$,
+\textcite{1991:pericchi} give a neat overview on a number of approaches based on sets of priors,
+a part of which are based on conjugate priors.
+As we do in Section~\ref{sec:generalmodel},
+this overview makes the distinction of modelling near-noninformativeness
+versus models for substantial prior information,
+the latter of which are investigated with respect to \pdc\ sensitivity.%
+\footnote{In fact, \textcite{1991:pericchi} was our inspiration to make this distinction in the first place.}
 
-%Other work on exponential family sampling models includes \textcite{1993:coolen, 1994:coolen},
-%who uses a different type of imprecise conjugate prior densities (interval of measures),
-%and \textcite{2009:bickis}, who suggests the logit-normal model as an alternative to the IDM.
+For modelling near-noninformativeness, \textcite[\S 3]{1991:pericchi}
+present several `translation-invariant' models,
+i.e., models whose posterior inferences do not depend on the location of $\bar{x}$.
+This includes a model where $\MZ$ consists of conjugate normal distributions $\mu \sim \norm(\mu_0, \nu^2)$
+for which $|\mu - \mu_0| \le c \nu^2 / 2\sigma$, and where $\nu \to \infty$.
+It is considered inferior to a model where $\MZ$ consists of all double exponential distributions
+with a fixed variance but the mean varying in $\reals$, %i.e., a non-conjugate class,
+showing the potential for models going beyond conjugate distributions.
+
+Here, models for substantial prior information are referred to as `neighbourhood models' \parencite[\S 4]{1991:pericchi},
+and two variants of the $\varepsilon$-contamination class (see Section~\ref{sec:alternatives:neighbourhood}) are studied
+that, however, are not satisfactorily according to the desiderata the authors had established in \S 2.
+The model they advocate in \S 5 for this situation %if substantial prior information is at hand
+is instead a density ratio class that
+can be seen as a special case of the approach by \textcite[see below]{2011:rinderknecht:diss},
+where $l(\vartheta)$ is proportional to the conjugate normal distribution,
+and $u(\vartheta)$ is the improper uniform density $u(\vartheta) \propto 1$ \parencite[\S 4.3]{1991:pericchi}.
+It shows a favourable behaviour similar to the model we argued for in Section~\ref{sec:pdc-sensitivity}
+(which is discussed in more detail in Section~\ref{sec:jstp} below).
 
 
 \subsection{Other Approaches Using Sets of Priors}
 \label{sec:alternatives:other}
 
 %comparison with other approaches based on sets of probability distributions
+%then sets of priors in general: discrete models (comparison whitcomb),
+In this section, we will give a short overview on \textcite[\S 4]{2011:rinderknecht:diss},
+discussing a density ratio class model based on not necessarily conjugate bounding functions,
+before we comment on an approach based on the discretisation of the parameter space
+\parencite{2005:whitcomb}.%
+\footnote{A further, very recent, contribution on Bayesian inference with sets of priors
+is \textcite{2013:mangilibenavoli}, modelling prior near-ignorance on the unit simplex
+by several sets of non-conjugate priors which provide an alternative to the IDM.}
 
+\medskip
 
-***then sets of priors in general: discrete models (comparison whitcomb),
-
-***pericchi-walley???,
-
-***mangili-benavoli???
-
-***\textbf{neighbourhood models},
-
---------------------------------
-
-%interval of measures like 2011:rinderknecht ($l$ and $u$ non-conjugate?)
 \textcite[\S 4]{2011:rinderknecht:diss} presents a model for inferences 
 based on sets of priors of the form of a density-ratio class,
 where the bounding functions $l(\vartheta)$ and $u(\vartheta)$ are parametric, but not necessarily conjugate
-(see the elicitation method mentioned in footnote~\ref{foot:rinderknecht}, page~\pageref{foot:rinderknecht}).
+(we already mentioned this approach with respect to elicitation in footnote~\ref{foot:rinderknecht}, page~\pageref{foot:rinderknecht}).
 It is demonstrated that also marginals derived from a density ratio class with a multivariate parameter
 take again the form of density ratio classes, and can be calculated quite easily.
 Also, it is shown that deduced quantities (like probabilistic predictions) derived from the set of posteriors
 can be framed as a density ratio class.
 However, while for quantities that are a deterministic function of the model parameters
 the resulting density ratio class is exact, the bounding functions %$l$ and $u$
-for probabilistic predictions are not exact, but provide a conservative approximation for
+for probabilistic predictions are too wide, thus providing a conservative approximation for
 the exact set of posterior predictive distributions \parencite[\S 4.2.4]{2011:rinderknecht:diss}.
 
 The theoretical results are implemented and demonstrated via an example,
-a model for prediction of a certain type of river biomass, depending on six model parameters.
+a model for prediction of a certain type of river biomass that depends on six model parameters.
 Prior sets for these parameters were elicited from an expert,
 and combined with data from surveys of different streams.
 As the priors seem to be not conjugate (there is no reference to the respective likelihoods in the publication),
@@ -237,15 +366,15 @@ joint and marginal posteriors, along with biomass predicitions, were calculated 
 Markov Chain Monte Carlo (MCMC) techniques \parencite[see, e.g.,][]{1998:gilks}.
 Interestingly, \textcite[\S 4.3]{2011:rinderknecht:diss} shows that
 MCMC results for a precise distribution can be used to approximate the set of posterior distributions,
-such that computational burden is only marginally more extensive than in case of a precise prior.
+such that computational burden for the density ratio class is only marginally more extensive than in case of a precise prior.
 
 Results are reasonably precise if prior information for only one of the six model parameters
 is modelled by a density ratio class, and for the other by precise probability distributions.
 If prior information for each of the six parameters is modelled by a density ratio class and combined independently,
 results are higly imprecise and of no practical use;
 the posterior marginals are even much more imprecise than their prior counterparts.%
-\footnote{The marginal posterior lower bounding functions $l(\vartheta\mid\x)$ are indistinguishable
-from zero if plotted in the same coordinate system as its respective the upper bounding functions $u(\vartheta\mid\x)$,
+\footnote{In the example, the marginal posterior lower bounding functions $l(\vartheta\mid\x)$ are indistinguishable
+from zero if plotted in the same coordinate system as their respective the upper bounding functions $u(\vartheta\mid\x)$,
 such that the posterior set of distributions contains also nearly uniform distributions.}
 This undesirable phenomenon is called \emph{dilation} \parencite[see][]{1993:seidenfeld}.
 Here, it seems to result primarily from a kind of `curse of dimension',
@@ -276,82 +405,35 @@ especially with respect to independence concepts and efficient calculations
 \parencite[for a recent overview, see][]{itip-ipgms}.
 
 More importantly, however, we find the model unsatisfactory because it offers no opportunity
-to model posterior imprecision as a function of sample size or \pdc.
+to model posterior imprecision in dependence of sample size. % or \pdc***.
 %there seems to be no consistent mechanism by which posterior imprecision
-The model is thus inable to model prior near-ignorance, and to reflect \pdc\ in posterior inferences.%
+The model is thus inable to model prior near-ignorance, and does not exhibit
+a natural decrease in imprecision as information accumulates.%
+%to reflect \pdc***\ in posterior inferences.%
 \footnote{However, a possibly attractive approach could be to
 combine ideas from \textcite{1993:coolen} and \textcite{2011:rinderknecht:diss}
 in a density ratio class model with non-Bayesian updating
 where $c_n$ is defined such that posterior inferences also reflect \pdc.}
 
-\medskip
+Also, except for a very specific special case \parencite[\S 4.3, as discussed above]{1991:pericchi},
+for this model there are so far no studies or general results regarding the behaviour in case of \pdc.
+This could be a promising topic of research,
+given the model described in \textcite[\S 4.3]{1991:pericchi} shows favourable behaviour,
+while the model by \textcite{1993:coolen} does not.
+Our conjecture is that the difference, or the ratio, of $u(\vartheta)$ to $l(\vartheta)$
+must vary with $\vartheta$ to provide \pdc\ sensitivity,
+where \textcite[\S 4.3]{1991:pericchi} represents an extreme case,
+combining a $l(\vartheta)$ proportional to the light-tailed normal distribution %(having light tails)
+with $u(\vartheta) \propto 1$ that gives the most heavy tails possible.
 
-%different sorts of neighbourhood models as considered in robust Bayesian approaches \parencite[e.g.,][]{1994:berger}.
-There are of course many other models that involving*** sets of priors,
-especially in the robust Bayesian approach \parencite[see, e.g.,][]{1994:berger,2000:rios}.
-There, typically so-called \emph{neighborhood models} are considered,
-where a certain prior distribution $\p_0$ is singled out as a potential model for prior information,
-but, due to lack of confidence in this choice, a neigbourhood around $\p_0$ is considered,
-consisting of distributions `near' $\p_0$.
-The idea in the robust Bayesian approach is to ensure robustness of the Bayesian analysis based on a single prior $\p_0$,
-by checking that small deviations from $\p_0$ do not lead to large deviations in posterior inferences.
-***also called systematic sensitivity analysis***
-
-***from \textcite[\S 2.2]{itip-statinf}\\
-Imprecise probabilities offer a formal, not casuistic framework for such \emph{Bayesian sensitivity analysis},
-also containing the so-called \emph{robust Bayesian approach}.
-
-As mentioned in Section~\ref{sec:bayesiansensitivity}, ***
-***different interpretation, statinf par***
-
-***In short, the theory of lower previsions or sets of probability distributions
-provides a formal framework for robust Bayesian inference models
-\parencite{1994:berger}.
-
-
-There are many different kinds of neighbourhood models
-(see, e.g., the surveys by \textcite{2000:bergerinsuaruggeri} and \textcite{2005:ruggeri}).
-A typical example is the $\varepsilon$-contamination class \parencite[see, e.g.,][\S 4.3.2]{1994:berger},
-which can be motivated as follows:
-In a (virtual) sample distribution,
-not all data are distributed according to $\p_0$;
-instead, %a fraction of $\varepsilon$ 
-$100\cdot\varepsilon$\% of the data is distributed according to some distribution from a set $\mathcal{Q}$, %according to some other law,
-and depending on the choice for $\mathcal{Q}$, %the class of distributions this contaminating data can follow,
-a variety of $\varepsilon$-contamination classes can be defined.
-%$100\cdot(1-\varepsilon)$\% of the data are distributed according to $\p_0$,
-%while $100\cdot\varepsilon$\% of the data are distributed according to any other distribut
-
-As another example for a neighbourhood model, consider the \emph{odds-ratio model}.
-It tries to model approximate adherence to a central probability law with distribution $\p_0$
-by giving the following constraints for pairs of events $A$ and $B$:
-\begin{align*}
-\frac{\p(A)}{\p(B)} \le (1-\epsilon)\frac{\p_0(A)}{\p_0(B)}\,,\quad A, B \subseteq \Omega
-\end{align*}
-The set of distributions $\p$ compatible with these restrictions
-forms then an odds-ratio model with parameter $\epsilon$,
-and can be represented by a lower prevision $\El_\epsilon$.***
-When such a model is taken as an imprecise prior in Bayesian inference,
-the set of posteriors can again be expressed as an odds-ratio model
-\parencite[\S 7.2]{itip-special}.
-Other neighbourhood models, like, e.g., the $\epsilon$-contamination class
-mentioned above,
-%\parencite[see, e.g.,][\S 4.3.2]{1994:berger},
-may instead not be closed under Bayesian updating.
-
-\medskip
-
-By studying credibility intervals, \textcite{1991:pericchi} give a neat overview on a number of approaches based on sets of priors,
-some of which can be seen as special cases of the approach by \textcite{2011:rinderknecht:diss},
-***and they make the distinction of near-noninformative versus informative (with \pdc\ sensitivity) priors.
 
 
 \medskip
 
 ***short discussion of work in BA Norbert Krautenbacher,
-comparison to whitcomb, then rewrite this:
+comparison to \parencite{2005:whitcomb}, then rewrite this:
 
-``Some computational aspects'' from \textcite[\S 4.2]{itip-statinf} on discrete models (Whitcomb!)***
+**par ``Some computational aspects'' from \textcite[\S 4.2]{itip-statinf} on discrete models***
 
 In the case of discrete prior distributions (i.e., distributions with a finite support of size $k$)
 %(where the unknown parameter can only assume a fixed number $k$ of values, $k < \infty$),
@@ -377,7 +459,7 @@ because posteriors derived from non-conjugate priors are very often intractable 
 
 
 
-
+-----------------------
 
 \medskip
 

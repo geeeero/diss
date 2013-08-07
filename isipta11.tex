@@ -587,7 +587,7 @@ Table~\ref{tab:anteater-shapes} provides an overview of the possible shapes of $
 %***The posterior parameter set $\PN$ may have the following shapes:
 \begin{table}
 \centering
-\begin{tabular}{c|ccc}
+\begin{tabular}{cccc}
 %          & $s \in$ \parbox{6ex}{left\\
 %                                 zone} & $s \in$ \parbox{6ex}{center\\
 %                                                              zone} & $s \in$ \parbox{6ex}{right\\
@@ -607,14 +607,20 @@ Table~\ref{tab:anteater-shapes} provides an overview of the possible shapes of $
 %                          banana}      & \parbox{12ex}{\centering $s \in [S_2, S_1]$\\
 %                                                       anteater}    & \parbox{07ex}{\centering $s > S_1$\\
 %                                                                                    banana}
+\toprule
+ & \multicolumn{3}{c}{$\PN$ shape} \\
+\cmidrule{2-4}
 \multirow{2}{*}{$n > n^h$} & $s < S_1$ & $s \in [S_1, S_2]$ & $s > S_2$ \\
                            & banana    & spotlight          & banana \\
-\hline
+%\hline
+\midrule
 \multirow{2}{*}{$n = n^h$} & $s < s^h$ & $s = s^h$          & $s > s^h$ \\
                            & banana    &  rectangular       &  banana \\
-\hline
+%\hline
+\midrule
 \multirow{2}{*}{$n < n^h$} & $s < S_2$ & $s \in [S_2, S_1]$ & $s > S_1$ \\
-                           & banana    & anteater           &  banana
+                           & banana    & anteater           &  banana \\
+\bottomrule
 \end{tabular}
 \caption{Shapes of $\PN$ if $\PZ$ has the \emph{anteater} shape.}
 \label{tab:anteater-shapes}

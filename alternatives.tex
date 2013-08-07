@@ -428,25 +428,180 @@ with $u(\vartheta) \propto 1$ that gives the most heavy tails possible.
 
 \medskip
 
-\parencite{2005:whitcomb} studies imprecise Bayesian inference in case of
+\textcite{2005:whitcomb} studies imprecise Bayesian inference in discrete parameter spaces.
+The inference procedure is illustrated with three examples
+where substantial prior information is combined with relatively few observations,
+and its results are discussed with a focus on the relation of prior to posterior imprecision.
+Contrary to the other studies mentioned so far,
+Whitcomb considers a discretised parameter space,
+i.e., there is only a finite number of values $\theta_1, \ldots, \theta_m$ the parameter $\theta$ can assume,
+and uses a linear programming formulation of the Generalised Bayes' Rule
+to derive posterior inferences from discrete prior distributions \parencite[\S 3]{2005:whitcomb}. %(\S 3)
+These discrete priors are derived from expert elicitations,
+given either as lower and upper bounds for $p(\vartheta_j), j=1,\ldots,m$,
+or as lower and upper bounds for probability ratios $p(\vartheta_j)/p(\vartheta_{j'}), j\in\{1,\ldots,m\} \backslash j'$,
+where one of the parameter values $\theta_1, \ldots, \theta_m$ serves as pivot. %$\vartheta_{j'}$.
+From the latter, Whitcomb then derives lower and upper bounds for $p(\vartheta_j), j=1,\ldots,m$,
+%through a linear programming 
+such that in both cases the set of prior probability functions is given by
+\begin{align*}
+\mathcal{M} &= \{ p(\vartheta) | \ul{p}_j \le p(\vartheta_j) \le \ol{p}_j\ \forall j=1,\ldots,m \}\,,
+\end{align*}
+where $\ul{p}_j$ and $\ol{p}_j$ are the lower and upper (indirectly) elicited bounds for $p(\vartheta_j)$, respectively.
+As a summary measure for imprecision, Whitcomb defines $\Delta = \sum_{j=1}^m \ol{p}_j-\ul{p}_j$.
 
-prior and posterior imprecision
+One example considers a reliability analysis problem
+regarding the mean time to failure $\theta$ of a technical component \parencite[\S 4.1]{2005:whitcomb} %(\S 4.1),
+and the influence of several hypothetical data sets on posterior imprecision is studied.
+The hypothetical data is assumed to come from a life testing experiment
+with observations following an exponential distribution,
+such that each data set can be represented by its exponential likelihood.
+Likelihoods based on a mean in agreement%
+\footnote{However, as \textcite[\S 4.3]{2011:krautenbacher} shows, the mean meant to be in agreement with
+the prior specifications is actually outside the interval $\big[\El[\theta], \Eu[\theta]\big]$
+derived from the prior probability specifications.}
+and in conflict with the elicited prior
+are considered, with three sample sizes $n=2,6,10$ in each group.
+For the resulting six posteriors, imprecision in the probability intervals for the discrete parameter values
+is compared to likewise imprecision in the prior.
+
+In accordance to intuition, imprecision $\Delta$ decreases with the sample size
+for those likelihoods based on a mean in agreement with the elicited prior,
+the posterior probability intervals being more precise than the respective prior intervals.
+For the likelihoods based on a mean in contrast with the prior, the picture is different.
+Here, for $n=2$ and $n=6$, posterior imprecision is instead larger than prior imprecision,
+mirroring the conflict of information from prior and data.
+$\Delta$ is largest for $n=6$,
+indicating that in this case prior and data seem to have a similar weight.%
+\footnote{In contrast to the models discribed in Section~\ref{sec:generalmodel}
+where the parameter $\nz$ clearly communicates the weight of the prior as compared to the sample,
+the prior is here defined non-parametric and does not entail any parameters
+by which the weight of an elicited prior can be gauged.}
+Only for the largest sample size $n=10$, posterior imprecision is less than prior imprecision,
+indicating that the prior is now overwhelmed by the data.
+Strangely, posterior imprecision for this likelihood is even less than
+for the likelihood based on the same sample size and a mean in agreement with the prior.
+This seems somehow unintuitive, and could be due to specifics of the elicited prior probability intervals,
+or could be an artefact of the relatively low number of distinct parameter values $m$.
+
+\textcite[\S 4]{2011:krautenbacher} compared the results from this example %\parencite{2005:whitcomb}
+with a model of the framework from Section~\ref{sec:generalmodel} (model type \ref{enum:rectangular}).
+To derive the prior parameter sets $\PZ$ from the expert assessments given by \textcite[Table~I]{2005:whitcomb} in terms of $\theta$,
+he suggested and implemented an algorithm that determined $\PZ$
+by searching over a parameter grid, starting from a precise distribution
+in accordance with the prior probability intervals.
+
+His results are generally similar to those of \parencite[\S 4.1]{2005:whitcomb},
+but with some interesting differences in the details.
+As the conjugate prior model is formulated in terms of $\lambda = 1/\theta$,
+%In order to compare same with same,
+Krautenbacher first calculates 
+%lower and upper cumulative density functions,
+expectation intervals and (approximate) unions of highest density intervals for $\lambda$
+based on the discrete prior and posteriors of Whitcomb.
+These are then compared with
+expectation intervals and unions of highest density intervals for $\lambda$
+derived from the determined $\PZ$.% and the different $\PN$.%
+\footnote{See also Example~\ref{ex:ymodel-nv}, page~\pageref{ex:ymodel-nv},
+for calculation of unions of highest density intervals in these models.}
+
+In Whitcomb's model, imprecision as regarded through highest density and expectation intervals for $\lambda$ is
+somewhat different from the imprecision $\Delta$ based on $\theta$.
+All posterior expectation intervals are shorter than the prior expectation interval;
+for the prior-data agreement case, expectation interval results are similar to those based on $\Delta$,
+with $[\Eu[\lambda]-\El[\lambda]$ decreasing according to sample size.
+For the prior-data conflict situations, however, similarities vanish:
+while $\Delta$ increased for $n=2$ and $n=6$, and dropped for $n=10$,
+$[\Eu[\lambda]-\El[\lambda]$ is decreasing with $n$ just like in the prior-data agreement case,
+but with now even shorter intervals.
+However, with regards to the skewness of Whitcombs's posteriors in terms of $\lambda$
+\parencite[depicted in][Abb.~24, p.~62]{2011:krautenbacher},
+the expectation intervals are probably misleading here.
+Due to the low number of distinct parameter values in Whitcomb's model,
+unions of highest density intervals for $\lambda$ can be determined only very coarsely.
+%For these, the picture is more as expected:
+Here, the picture is righted: starting from length $2.00$ of the prior HD interval,
+HD intervals get shorter with growing sample size in both groups,
+and the intervals in case of prior-data conflict are always larger
+than their counterparts in the prior-data agreement case (see Table~\ref{tab:hdintervals}).
+
+Expectation intervals for the conjugate-based model behave more as expected.
+Krautenbacher derived the prior parameter set as $\PZ = [2.39, 2.85] \times [2.91, 4.08]$;
+however, the set of priors $\MZ$ based on $\PZ$ fit the constraints posed by prior probability intervals
+not very well \parencite[see][Abb.~20]{2011:krautenbacher}.
+The conjugate Gamma distributions do not seem to capture well the prior information in this case.
+Nevertheless, imprecision as measured by $[\Eu[\lambda]-\El[\lambda]$ decreases with sample size,
+with slighly higher imprecision in the prior-data conflict case as expected.
+Owing to the caveat above, we will not compare these with the expectation intervals
+from Whitcomb's model, and instead look more closely on the HD intervals from both models,
+as given in Table~\ref{tab:hdintervals}.
+
+Although the prior HD interval of the discrete model has double the length of the conjugate model,
+posterior HD intervals are surprisingly similar in length and position
+for the prior-data agreement case.
+The conjugate-based posterior HD interval lengths in case of prior-data conflict are,
+in contrast to the discrete model, growing with $n$;
+from comparison with the expectation intervals that behave as expected,
+we think that this strange result can be appropriated
+to peculiarities of the Gamma distribution.%
+\footnote{While for the prior variance holds $\V(\lambda) \in [0.028, 0.070]$,
+the variance for the prior-data conflict posterior with $n=10$ ranges in $[0.120, 0.263]$,
+such that the upper variance almost quadruples, leading to this overly wide posterior HD interval.}
+
+\begin{table}
+\centering
+\begin{tabular}{lrcccccc}
+\toprule
+&     & \multicolumn{3}{c}{\textcite[\S 4.1]{2005:whitcomb}} & \multicolumn{3}{c}{\textcite[\S 4]{2011:krautenbacher}} \\%[1.2ex]
+\midrule
+& $n$ & \multicolumn{2}{c}{HD interval} & $\Delta_\text{HD}$ & \multicolumn{2}{c}{HD interval} & $\Delta_\text{HD}$ \\%[1.2ex]
+\cmidrule{3-4} \cmidrule{6-7}
+prior &  0 & 0.00 & 2.00 & 2.00 & 0.05 & 1.01 & 0.96 \\[0.5ex]
+pda   &  2 & 0.10 & 1.00 & 0.90 & 0.12 & 1.07 & 0.95 \\
+      &  6 & 0.20 & 1.00 & 0.80 & 0.22 & 1.09 & 0.87 \\
+      & 10 & 0.25 & 1.00 & 0.75 & 0.30 & 1.09 & 0.79 \\[0.5ex]
+pdc   &  2 & 0.20 & 2.00 & 1.80 & 0.14 & 1.39 & 1.25 \\
+      &  6 & 0.33 & 2.00 & 1.67 & 0.34 & 2.01 & 1.67 \\
+      & 10 & 0.50 & 2.00 & 1.50 & 0.54 & 2.52 & 1.98 \\
+\bottomrule
+\end{tabular}
+\caption[Highest density intervals for $\lambda$ based on the discrete model
+(Whitcomb 2005, \S 4.1) and on the conjugate model (Krautenbacher 2011, \S 4).]%
+%\parencite[\S 4.1]{2005:whitcomb} and on the conjugate model \parencite[\S 4]{2011:krautenbacher}]%
+{Highest density intervals for $\lambda$ based on the discrete model
+\parencite[\S 4.1, left]{2005:whitcomb} and on the conjugate model \parencite[\S 4, right]{2011:krautenbacher},
+as given in \textcite[Tab.~2, Tab.~3]{2011:krautenbacher}.
+$\Delta_\text{HD}$ gives the length of the HD interval;
+`pda' indicates posterior intervals for data in agreement with the prior,
+`pdc' indicates posterior intervals for the situation of prior-data conflict.}
+\label{tab:hdintervals}
+\end{table}
+
+In summary, both models show more or less adequate results,
+with the discrete model showing some strange behaviour with respect to the expectation intervals,
+and the conjugate model with respect to HD intervals.
+
+***Basically similar results, no parametric assumption, but we don't really know what's going on!
+(repair by complex pre-posterior analysis)
 
 
+
+-----------------------
+
+***short discussion of work in \textcite{2011:krautenbacher} BA Norbert Krautenbacher,
+comparison to \parencite{2005:whitcomb}, then rewrite this:
 
 ***large part of work in IP literature assumes finite sample spaces,
-basic examples often with very small support. Then, parametric models are unecessary,
+basic examples often do not use parametric distributions, but spaces
+with only a few events.
+with very small support.
+Then, parametric models are unnecessary,
 and priors can be defined as basic discrete distributions with a probability mass function
 $p(\vartheta_j) = p_j,\ j=1,\ldots,k$ if the support has $k$ elements.
 
 ***There is always the possibility to switch from parametric models to nonparemeteric ones
 by discretising***
 
-
-start with \parencite{2005:whitcomb} then comparison***
-
-***short discussion of work in \textcite{2011:krautenbacher} BA Norbert Krautenbacher,
-comparison to \parencite{2005:whitcomb}, then rewrite this:
 
 **par ``Some computational aspects'' from \textcite[\S 4.2]{itip-statinf} on discrete models***
 
@@ -466,10 +621,7 @@ An alternative is then the chi-squared test that is based on the continuous, one
 which, for large samples, is a good approximation of the distribution of the $\chi^2$ test statistic then used to determine the test decision.}
 The same path can be followed in generalized Bayesian inference,
 by considering sets of continuous distributions.
-Furthermore, before the advent of Markov Chain Monte Carlo (MCMC) techniques \parencite[see, e.g.,][]{1998:gilks}
-to determine posterior distributions in complex settings by simulation,
-Bayesian inference was mostly confined to conjugate prior distributions
-because posteriors derived from non-conjugate priors are very often intractable analytically.
+
 
 
 

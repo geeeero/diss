@@ -3,7 +3,7 @@
 
 
 In Section~\ref{sec:generalmodel},
-we have discussed a specific class of models based on parametrically constructed sets of conjugate priors,
+we have discussed a specific wide of models based on parametrically constructed sets of conjugate priors,
 described important properties of inferences based on this class in general terms,
 and illustrated the potential of generalised Bayesian inference methods
 for the situations of prior near-ignorance and substantial prior information.
@@ -57,7 +57,7 @@ although many different kinds of neighbourhood models are discussed in the liter
 (see, e.g., the surveys by \textcite{2000:bergerinsuaruggeri} and \textcite{2005:ruggeri}).
 
 A typical example is the $\varepsilon$-contamination class \parencite[see, e.g.,][\S 4.3.2]{1994:berger},
-which can be motivated as follows:
+which can be informally described as follows:
 In a (virtual) sample distribution,
 not all data are distributed according to $\p_0$;
 instead, %a fraction of $\varepsilon$ 
@@ -83,9 +83,8 @@ and can be represented by a lower prevision $\El_\epsilon$.
 When such a model is taken as an imprecise prior in Bayesian inference,
 the set of posteriors can again be expressed as an odds-ratio model
 \parencite[\S 7.2]{itip-special}.
-Other neighbourhood models, like, e.g., the $\epsilon$-contamination class
-mentioned above,
-%\parencite[see, e.g.,][\S 4.3.2]{1994:berger},
+Other neighbourhood models, like, e.g.,
+variants of the $\varepsilon$-contamination class mentioned above,
 may instead not be closed under Bayesian updating.
 
 
@@ -105,7 +104,8 @@ provides also an interesting model framework for Bayesian inference using sets o
 Here, instead of generating the set of prior distributions by varying their parameters in a set
 (as in Section~\ref{sec:generalmodel}),
 the set of priors $\mathcal{M}$ is defined by bounding the probability density functions
-of elements $p(\vartheta) \in \mathcal{M}$
+%of elements
+$p(\vartheta) \in \mathcal{M}$
 via a lower bounding function $l(\vartheta)$ and an upper bounding function $u(\vartheta)$.%
 \footnote{\label{foot:rinderknecht}A very accessible presentation of density-ratio classes with
 parametric bounding shapes $l(\vartheta)$ and $u(\vartheta)$,
@@ -136,7 +136,7 @@ thus, as discussed in Section~\ref{sec:ip-main},
 it can also be expressed via an associated coherent lower prevision $\El_{l,u}$.
 %(derived from generic lower previsions)
 %\parencite[Figure~5.5]{itip-special},
-The density ratio class a number of advantageous properties,
+The density ratio class has a number of advantageous properties,
 especially as compared to many neighbourhood models
 \parencite[see, e.g.,][\S 2.3]{2011:rinderknecht};
 most importantly, it has the convenient property of invariance under Bayesian updating.
@@ -148,10 +148,12 @@ with $l(\vartheta)$ and $u(\vartheta)$ updated according to Bayes' Rule \parenci
 
 Although this invariance property is advantageous,
 a consequence of it is that also the ratio $u(\vartheta)/l(\vartheta)$
-is constant under updating, such that posterior imprecision is the same as prior imprecision,
+is constant under updating, such that posterior imprecision,
+as measured by the magnitude of $\mathcal{M}_{l,u}$ is the same as prior imprecision,
 for any sample size $n$ \parencite[see, e.g.,][\S 4.2.2]{2011:rinderknecht:diss}.
 This is in strong contrast to the behaviour of the models discussed in Section~\ref{sec:generalmodel},
-where $\MZ$ converges to a precise distribution for $n \to \infty$. 
+where $\MZ$ converges to a %precise distribution
+one-element set for $n \to \infty$. 
 
 It is important to note here that even if the bounding functions $l(\vartheta)$ and $u(\vartheta)$ are defined parametrically
 (or, as in the approaches by Coolen \parencite*{1993:coolen, 1994:coolen} described below, even as conjugates),
@@ -180,7 +182,7 @@ because $\MN$ can be constructed as the set of all convex mixtures of distributi
 %Other work on exponential family sampling models includes \textcite{1993:coolen, 1994:coolen},
 %who uses a different type of imprecise conjugate prior densities (interval of measures),
 %and \textcite{2009:bickis}, who suggests the logit-normal model as an alternative to the IDM.
-We discuss here approaches based on conjugate priors.
+We discuss here some approaches based on conjugate priors.
 First, a density ratio class model using conjugate distributions
 for the bounding functions $l(\vartheta)$ and $u(\vartheta)$
 by Coolen \parencite*{1993:coolen,1994:coolen} is described.
@@ -209,7 +211,7 @@ l(\vartheta\mid\x,\pz) &= l(\vartheta\mid\pz) f(\x\mid\vartheta) = l(\vartheta\m
 %\begin{align*}
 u(\vartheta\mid\x,\pz) &:= \frac{c_n}{c_0} u(\vartheta\mid\pz) f(\x\mid\vartheta) = c_n l(\vartheta\mid\pn)\,,
 \end{align*}
-where $c_n$ is introduced to allow the posterior imprecision to decrease in dependence of the samples size $n$.%
+where $c_n$ is introduced to allow the magnitude of $\mathcal{M}$ to decrease in dependence of the samples size $n$.%
 \footnote{Note that $c_n \neq c_0$ means that we actually do not update $\mathcal{M}$ according to the Generalised Bayes' Rule.}
 $c_n$ must thus be chosen as a function decreasing in $n$,
 and \textcite{1993:coolen} suggests a functional form with
@@ -233,8 +235,8 @@ as the one suggested in the paper.
 
 \medskip
 
-\textcite{1994:coolen} presents a further study of this model
-for the special case of Bernoulli observations with a focus on predictive inferences.
+\textcite{1994:coolen} presents a further study of this model with a focus on predictive inferences,
+considering the special case of Bernoulli observations.
 There, $l(\theta)$ is proportional to a $\be(\alpha,\beta)$,
 and $u(\theta)$ is defined as
 \begin{align*}
@@ -249,7 +251,7 @@ imprecision in posterior predicitive probabilities analytically.
 This model gives interesting insights into the dependence of imprecision on $s$,
 but the fact that posterior imprecision is the very same as prior imprecision
 if $s/n = \alpha/(\alpha+\beta)$ (i.e., data and prior assignments are perfectly in line)
-suggests that this model is not suitable for inferences \parencite[p.~160]{1994:coolen}.
+suggests that this model is not very suitable for inferences \parencite[p.~160]{1994:coolen}.
 Furthermore, our conjecture is that the influence of $s$ on posterior imprecision
 is due to the restriction that the two bounding functions have to be
 proportional to Beta densities. For the case of $s/n = \alpha/(\alpha+\beta)$,
@@ -294,7 +296,7 @@ for which it is useful to mirror an autocorrelation structure in $\mbf{R}$.
 However, the potential of this prior model for applications where no correlation structure must be assumed is
 relatively low, due to the much more complex computations as compared to the IDM.
 %\footnote{For a recent Bayesian alternative to the IDM, see \textcite{2013:mangilibenavoli}, also mentioned in Section~***.}
-It remains to be discovered how an informative (imprecise) prior could be elicited,
+It remains to be investigated how an informative (imprecise) prior could be elicited,
 and the behaviour in case of \pdc\ is as yet unkown.
 
 \medskip
@@ -311,13 +313,14 @@ the latter of which are investigated with respect to \pdc\ sensitivity.%
 For modelling near-noninformativeness, \textcite[\S 3]{1991:pericchi}
 present several `translation-invariant' models,
 i.e., models whose posterior inferences do not depend on the location of $\bar{x}$.
-This includes a model where $\MZ$ consists of conjugate normal distributions $\mu \sim \norm(\mu_0, \nu^2)$
+This includes a model where $\mathcal{M}$ consists of conjugate normal distributions $\mu \sim \norm(\mu_0, \nu^2)$
 for which $|\mu - \mu_0| \le c \nu^2 / 2\sigma$, and where $\nu \to \infty$.
-It is considered inferior to a model where $\MZ$ consists of all double exponential distributions
+It is considered inferior to a model where $\mathcal{M}$ consists of all double exponential distributions
 with a fixed variance but the mean varying in $\reals$, %i.e., a non-conjugate class,
 showing the potential for models going beyond conjugate distributions.
 
-Here, models for substantial prior information are referred to as `neighbourhood models' \parencite[\S 4]{1991:pericchi},
+\textcite[\S 4]{1991:pericchi} denote all models that are considered
+for substantial prior information as `neighbourhood models',
 and two variants of the $\varepsilon$-contamination class (see Section~\ref{sec:alternatives:neighbourhood}) are studied
 that, however, are not satisfactorily according to the desiderata the authors had established in \S 2.
 The model they advocate in \S 5 for this situation %if substantial prior information is at hand
@@ -336,7 +339,7 @@ It shows a favourable behaviour similar to the model we argued for in Section~\r
 %then sets of priors in general: discrete models (comparison whitcomb),
 In this section, we will give a short overview on \textcite[\S 4]{2011:rinderknecht:diss},
 discussing a density ratio class model based on not necessarily conjugate bounding functions,
-before we comment on an approach based on the discretisation of the parameter space
+and then comment on an approach based on the discretisation of the parameter space
 \parencite{2005:whitcomb}.%
 \footnote{A further, very recent, contribution on Bayesian inference with sets of priors
 is \textcite{2013:mangilibenavoli}, modelling prior near-ignorance on the unit simplex
@@ -347,9 +350,9 @@ by several sets of non-conjugate priors which provide an alternative to the IDM.
 \textcite[\S 4]{2011:rinderknecht:diss} presents a model for inferences 
 based on sets of priors of the form of a density-ratio class,
 where the bounding functions $l(\vartheta)$ and $u(\vartheta)$ are parametric, but not necessarily conjugate
-(we already mentioned this approach with respect to elicitation in footnote~\ref{foot:rinderknecht}, page~\pageref{foot:rinderknecht}).
+(we already mentioned his work with respect to elicitation in footnote~\ref{foot:rinderknecht}, page~\pageref{foot:rinderknecht}).
 It is demonstrated that also marginals derived from a density ratio class with a multivariate parameter
-take again the form of density ratio classes, and can be calculated quite easily.
+take again the form of density ratio classes, and can be calculated straight-forwardly.
 Also, it is shown that deduced quantities (like probabilistic predictions) derived from the set of posteriors
 can be framed as a density ratio class.
 However, while for quantities that are a deterministic function of the model parameters
@@ -361,11 +364,11 @@ The theoretical results are implemented and demonstrated via an example,
 a model for prediction of a certain type of river biomass that depends on six model parameters.
 Prior sets for these parameters were elicited from an expert,
 and combined with data from surveys of different streams.
-As the priors seem to be not conjugate (there is no reference to the respective likelihoods in the publication),
+As the priors seem to be non-conjugate (there is no reference to the respective likelihoods in the publication),
 joint and marginal posteriors, along with biomass predicitions, were calculated using
 Markov Chain Monte Carlo (MCMC) techniques \parencite[see, e.g.,][]{1998:gilks}.
 Interestingly, \textcite[\S 4.3]{2011:rinderknecht:diss} shows that
-MCMC results for a precise distribution can be used to approximate the set of posterior distributions,
+MCMC results for a single precise distribution can be used to approximate the set of posterior distributions,
 such that computational burden for the density ratio class is only marginally more extensive than in case of a precise prior.
 
 Results are reasonably precise if prior information for only one of the six model parameters
@@ -378,7 +381,7 @@ from zero if plotted in the same coordinate system as their respective the upper
 such that the posterior set of distributions contains also nearly uniform distributions.}
 This undesirable phenomenon is called \emph{dilation} \parencite[see][]{1993:seidenfeld}.
 Here, it seems to result primarily from a kind of `curse of dimension',
-but may also be due to the fact that, as noted above, imprecision does not decrease with $n$
+but may also be due to the fact that, as noted above, the magnitude of $\mathcal{M}$ does not decrease with $n$
 for density ratio classes updated via the Generalised Bayes' Rule.
 
 Although being quite attractive for problems with a one-dimensional parameter
@@ -398,13 +401,13 @@ p(\vartheta_1,\ldots,\vartheta_p)
 \end{align*}
 where usually the dependencies can be reduced by a large degree through assumptions of conditional independence.
 This is the approach in probabilistic graphical models,
-where (in)dependencies are visualised by a graph.
+where (in)dependencies between model parameters are visualised by a graph.
 Important guidance could be drawn from the vivid research conducted in the area
 of imprecise graphical models, also known as \emph{imprecise Bayesian} or \emph{credal networks},
 especially with respect to independence concepts and efficient calculations
 \parencite[for a recent overview, see][]{itip-ipgms}.
 
-More importantly, however, we find the model unsatisfactory because it offers no opportunity
+More importantly, however, we find the model unsatisfactory because it offers no clear mechanism %opportunity
 to model posterior imprecision in dependence of sample size. % or \pdc***.
 %there seems to be no consistent mechanism by which posterior imprecision
 The model is thus inable to model prior near-ignorance, and does not exhibit
@@ -432,9 +435,10 @@ with $u(\vartheta) \propto 1$ that gives the most heavy tails possible.
 The inference procedure is illustrated with three examples
 where substantial prior information is combined with relatively few observations,
 and its results are discussed with a focus on the relation of prior to posterior imprecision.
+
 Contrary to the other studies mentioned so far,
 Whitcomb considers a discretised parameter space,
-i.e., there is only a finite number of values $\theta_1, \ldots, \theta_m$ the parameter $\theta$ can assume,
+i.e., there is only a finite number of values $\vartheta_1, \ldots, \vartheta_m$ the parameter $\vartheta$ can assume,
 and uses a linear programming formulation of the Generalised Bayes' Rule
 to derive posterior inferences from discrete prior distributions \parencite[\S 3]{2005:whitcomb}. %(\S 3)
 These discrete priors are derived from expert elicitations,
@@ -448,20 +452,20 @@ such that in both cases the set of prior probability functions is given by
 \mathcal{M} &= \{ p(\vartheta) \mid \ul{p}_j \le p(\vartheta_j) \le \ol{p}_j\ \forall j=1,\ldots,m \}\,,
 \end{align*}
 where $\ul{p}_j$ and $\ol{p}_j$ are the lower and upper (indirectly) elicited bounds for $p(\vartheta_j)$, respectively.
-As a summary measure for imprecision, Whitcomb defines $\Delta = \sum_{j=1}^m \ol{p}_j-\ul{p}_j$.
+As a summary measure for imprecision, Whitcomb chooses $\Delta = \sum_{j=1}^m \ol{p}_j-\ul{p}_j$.
 
-One example considers a reliability analysis problem
-regarding the mean time to failure $\theta$ of a technical component \parencite[\S 4.1]{2005:whitcomb} %(\S 4.1),
-and the influence of several hypothetical data sets on posterior imprecision is studied.
+We focus here on the example of a reliability analysis problem
+regarding the mean time to failure $\theta$ of a technical component \parencite[\S 4.1]{2005:whitcomb}, %(\S 4.1),
+studying the influence of several hypothetical data sets on posterior imprecision.
 The hypothetical data is assumed to come from a life testing experiment
 with observations following an exponential distribution,
 such that each data set can be represented by its exponential likelihood.
-Likelihoods based on a mean in agreement%
+Likelihoods based on a mean in agreement
+and in conflict with the elicited prior are considered,%
 \footnote{However, as \textcite[\S 4.3]{2011:krautenbacher} shows, the mean meant to be in agreement with
 the prior specifications is actually outside the interval $\big[\El[\theta], \Eu[\theta]\big]$
-derived from the prior probability specifications.}
-and in conflict with the elicited prior
-are considered, with three sample sizes $n=2,6,10$ in each group.
+derived from the prior probability specifications. We discuss this work below.}
+with three sample sizes $n=2,6,10$ in each group.
 For the resulting six posteriors, imprecision in the probability intervals for the discrete parameter values
 is compared to likewise imprecision in the prior.
 
@@ -482,17 +486,18 @@ indicating that the prior is now overwhelmed by the data.
 Strangely, posterior imprecision for this likelihood is even less than
 for the likelihood based on the same sample size and a mean in agreement with the prior.
 This seems somehow unintuitive, and could be due to specifics of the elicited prior probability intervals,
-or could be an artefact of the relatively low number of distinct parameter values $m$.
+or could be an artefact of the relatively low number of distinct parameter values $m = 7$.
 
 \textcite[\S 4]{2011:krautenbacher} compared the results from this example %\parencite{2005:whitcomb}
-with a model of the framework from Section~\ref{sec:generalmodel} (model type \ref{enum:rectangular}).
-To derive the prior parameter sets $\PZ$ from the expert assessments given by \textcite[Table~I]{2005:whitcomb} in terms of $\theta$,
+with a model of the framework from Section~\ref{sec:generalmodel}
+(model type \ref{enum:rectangular}, see also Section~\ref{sec:4-gw-071216} below).
+To derive a prior parameter set $\PZ$ from the expert assessments given by \textcite[Table~I]{2005:whitcomb}, %in terms of $\theta$,
 he suggested and implemented an algorithm that determined $\PZ$
 by searching over a parameter grid, starting from a precise distribution
 in accordance with the prior probability intervals.
-
-His results are generally similar to those of \parencite[\S 4.1]{2005:whitcomb},
+His results are generally similar to those of \textcite[\S 4.1]{2005:whitcomb},
 but with some interesting differences in the details.
+
 As the conjugate prior model is formulated in terms of $\lambda = 1/\theta$,
 %In order to compare same with same,
 Krautenbacher first calculates 
@@ -506,47 +511,39 @@ derived from the determined $\PZ$.% and the different $\PN$.%
 for calculation of unions of highest density intervals in these models.}
 
 In Whitcomb's model, imprecision as regarded through highest density and expectation intervals for $\lambda$ is
-somewhat different from the imprecision $\Delta$ based on $\theta$.
+naturally somewhat different from the imprecision $\Delta$ based on $\theta$.
 All posterior expectation intervals are shorter than the prior expectation interval;
 for the prior-data agreement case, expectation interval results are similar to those based on $\Delta$,
-with $[\Eu[\lambda]-\El[\lambda]$ decreasing according to sample size.
+with $\big[\Eu[\lambda]-\El[\lambda]\big]$ decreasing according to sample size.
 For the prior-data conflict situations, however, similarities vanish:
-while $\Delta$ increased for $n=2$ and $n=6$, and dropped for $n=10$,
-$[\Eu[\lambda]-\El[\lambda]$ is decreasing with $n$ just like in the prior-data agreement case,
+while $\Delta$ increased for $n=2$ and $n=6$, and dropped sharply for $n=10$,
+$\big[\Eu[\lambda]-\El[\lambda]\big]$ is decreasing with $n$ just like in the prior-data agreement case,
 but with now even shorter intervals.
 However, with regards to the skewness of Whitcombs's posteriors in terms of $\lambda$
 \parencite[depicted in][Abb.~24, p.~62]{2011:krautenbacher},
 the expectation intervals are probably misleading here.
-Due to the low number of distinct parameter values in Whitcomb's model,
-unions of highest density intervals for $\lambda$ can be determined only very coarsely.
+Unions of highest density intervals for $\lambda$, which are considered as an alternative,
+can be determined only very coarsely, as the number of distinct parameter values in Whitcomb's model is very low.
 %For these, the picture is more as expected:
-Here, the picture is righted: starting from length $2.00$ of the prior HD interval,
-HD intervals get shorter with growing sample size in both groups,
+Nevertheless, results for these are more intuitive. %Here, the picture is righted:
+Starting from length $2.00$ of the prior HD interval,
+posterior HD intervals get shorter with growing sample size in both groups,
 and the intervals in case of prior-data conflict are always larger
 than their counterparts in the prior-data agreement case (see Table~\ref{tab:hdintervals}).
 
-Expectation intervals for the conjugate-based model behave more as expected.
+In the conjugate-based model, expectation intervals instead behave as expected.
 Krautenbacher derived the prior parameter set as $\PZ = [2.39, 2.85] \times [2.91, 4.08]$;
-however, the set of priors $\MZ$ based on $\PZ$ fit the constraints posed by prior probability intervals
-not very well \parencite[see][Abb.~20]{2011:krautenbacher}.
-The conjugate Gamma distributions do not seem to capture well the prior information in this case.
-Nevertheless, imprecision as measured by $[\Eu[\lambda]-\El[\lambda]$ decreases with sample size,
-with slighly higher imprecision in the prior-data conflict case as expected.
+however, the set of priors $\MZ$ based on $\PZ$ fit the constraints posed by Whitcomb's prior probability intervals
+not very well \parencite[see][Abb.~20]{2011:krautenbacher};
+the conjugate Gamma distributions do not seem to capture all aspects of the prior information in this case.
+%Nevertheless, 
+%Keeping this in mind,
+As is clear from the general properties described in Section~\ref{sec:pdc-sensitivity},
+imprecision as measured by $\big[\Eu[\lambda]-\El[\lambda]\big]$ decreases with sample size,
+with slightly higher imprecision in the prior-data conflict case. % as expected.
 Owing to the caveat above, we will not compare these with the expectation intervals
 from Whitcomb's model, and instead look more closely on the HD intervals from both models,
 as given in Table~\ref{tab:hdintervals}.
-
-Although the prior HD interval of the discrete model has double the length of the conjugate model,
-posterior HD intervals are surprisingly similar in length and position
-for the prior-data agreement case.
-The conjugate-based posterior HD interval lengths in case of prior-data conflict are,
-in contrast to the discrete model, growing with $n$;
-from comparison with the expectation intervals that behave as expected,
-we think that this strange result can be appropriated
-to peculiarities of the Gamma distribution.%
-\footnote{While for the prior variance holds $\V(\lambda) \in [0.028, 0.070]$,
-the variance for the prior-data conflict posterior with $n=10$ ranges in $[0.120, 0.263]$,
-such that the upper variance almost quadruples, leading to this overly wide posterior HD interval.}
 
 \begin{table}
 \centering
@@ -577,65 +574,68 @@ $\Delta_\text{HD}$ gives the length of the HD interval;
 \label{tab:hdintervals}
 \end{table}
 
+Although the prior HD interval of the discrete model has double the length of the conjugate model,
+posterior HD intervals are surprisingly similar in length and position
+for the prior-data agreement case.
+The conjugate-based posterior HD interval lengths in case of prior-data conflict are,
+in contrast to the discrete model, growing with $n$;
+from comparison with the expectation intervals that behave as expected,
+we think that this unintuitive result can be appropriated
+to peculiarities of the Gamma distribution.%
+\footnote{While for the prior variance holds $\V(\lambda) \in [0.028, 0.070]$,
+the variance for the posterior with $n=10$ in case of prior-data conflict ranges in $[0.120, 0.263]$.
+The upper variance thus almost quadruples, leading to a very wide posterior HD interval.}
+
 In summary, both models show more or less adequate results,
-with the discrete model showing some strange behaviour with respect to the expectation intervals,
+with the discrete model showing some unintuitive behaviour with respect to the expectation intervals,
 and the conjugate model with respect to HD intervals.
+Although the conjugate model behaves, as ensured by the general results, `right' in terms of expectation intervals,
+the picture can be different for other inferences, depending on the functional form of the conjugate distributions.
+The example here makes it clear that, in considering expectations only
+(as is often done in the literature on imprecise probability methods,
+being based on the notion of previsions), important effects on inference can be obscured.
+On the other hand,
+a prerequisite for a conjugate model to give meaningful posterior inferenes is %that
+%one should keep in mind that the use conjugate model requires
+that the parametric priors are indeed a good model for the prior information at hand.
+For this example, this seems not to be the case.
 
-***conjugate model directly elicited might look different.
+A model based on a discretised parameter space offers more flexibility,
+at the cost of higher computational complexity.
+For the approach by Whitcomb, it also difficult to discern the effects of a chosen prior
+in interplay with a parametric likelihood.%
+\footnote{As mentioned above, there is no natural summary measure
+giving the weight of the information encoded in the prior in comparison in the data,
+as is given by $\nz$ in the conjugate models.}
+This could be tackled by considering more refined elicitation strategies involving `pre-posterior' elements,
+in which the analyst is asked to indicate what she is willing to learn from hypothetical data
+(see Section~\ref{sec:othershapes}, where such a strategy is used to develop a shape for $\PZ$).
 
-***Basically similar results, no parametric assumption, but we don't really know what's going on!
-(repair by complex pre-posterior analysis)
-
-
-
------------------------
-
-***short discussion of work in \textcite{2011:krautenbacher} BA Norbert Krautenbacher,
-comparison to \parencite{2005:whitcomb}, then rewrite this:
-
-***large part of work in IP literature assumes finite sample spaces,
-basic examples often do not use parametric distributions, but spaces
-with only a few events.
-with very small support.
-Then, parametric models are unnecessary,
-and priors can be defined as basic discrete distributions with a probability mass function
-$p(\vartheta_j) = p_j,\ j=1,\ldots,k$ if the support has $k$ elements.
-
-***There is always the possibility to switch from parametric models to nonparemeteric ones
-by discretising***
-
-
-**par ``Some computational aspects'' from \textcite[\S 4.2]{itip-statinf} on discrete models***
-
-In the case of discrete prior distributions (i.e., distributions with a finite support of size $k$)
-%(where the unknown parameter can only assume a fixed number $k$ of values, $k < \infty$),
-the computation of posterior credal sets is often done
-via the alternative model formulation as conditional lower previsions
-\parencite[see, e.g.,][]{itip-computation}.
-For large $k$, the algorithms described there may easily become infeasible.
-In traditional statistics, absolutely continuous distributions are employed
+The question whether a discrete, nonparameteric model or instead a parametric, often continuous, model should be used
+is widespread in statistical inference in general.
+In traditional statistics, absolutely continuous distributions are usually employed
 when inference using discrete distributions becomes too complex,
 typically approximating a non-parametric model with a parametric one.%
 \footnote{As an example, consider the test for independence in contingency tables.
 Fisher's exact test, a non-parametric test using a permutation argument (thus resulting in a discrete distribution),
 can become difficult to calculate for large samples.
 An alternative is then the chi-squared test that is based on the continuous, one-parametric $\chi^2(df)$ distribution,
-which, for large samples, is a good approximation of the distribution of the $\chi^2$ test statistic then used to determine the test decision.}
-The same path can be followed in generalized Bayesian inference,
-by considering sets of continuous distributions.
+which, for large samples, is a good approximation of the distribution
+of the $\chi^2$ test statistic then used to determine the test decision.}
+Similarly, the algorithms to compute posterior credal sets and inferences for discrete models,
+often framed via the alternative model formulation as conditional lower previsions
+\parencite[see, e.g.,][]{itip-computation},
+may easily become unfeasible for large $m$;
+the alternative is then to consider sets of continuous prior distributions
+like in the model framework from Section~\ref{sec:generalmodel}.
 
-
-
-
-
------------------------
 
 \medskip
 
 After having reviewed some models in alternative to the model framework from Section~\ref{sec:generalmodel},
-we will study some examples for models from this framework in more detail.
-Section~\ref{sec:jstp} discusses models of type~\ref{enum:rectangular} (p.~\pageref{enum:rectangular}),
+we will now study some examples for models from this framework in more detail.
+Section~\ref{sec:jstp} discusses models of type~(\ref{enum:rectangular}) (p.~\pageref{enum:rectangular}),
 and a software implementation is briefly described in Section~\ref{sec:luck}.
-Section~\ref{sec:isipta11} then presents a model of type~\ref{enum:generalset} (p.~\pageref{enum:generalset}),
+Section~\ref{sec:isipta11} then presents a model of type~(\ref{enum:generalset}) (p.~\pageref{enum:generalset}),
 along with a fundamentally different approach that combines (posterior) inferences from two different models.
 

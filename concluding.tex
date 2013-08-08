@@ -27,24 +27,24 @@ and the issue of \emph{prior-data conflict} (Section~\ref{sec:motivation:pdc}),
 where strong prior beliefs are in conflict with trusted data,
 but data is too sparse to overrule prior beliefs.
 
-After a short view on some approaches in alternative to imprecise probability,
+After a short view on some approaches in alternative to imprecise probability in Section~\ref{sec:ip-alternatives},
 we discussed a general framework for imprecise Bayesian inference
 based on sets of conjugate priors in Section~\ref{sec:generalmodel},
-this framework serving as a bracket for most of the models ***discussed / investigated*** in this thesis.
+this framework serving as a bracket and reference point for most of the models investigated in this thesis.
 %a number of contributions discussed in this thesis.
 %the framework serving as a bracket for the remainder of the topics discussed in the thesis.
 Some general results regarding inference properties of models
-in this framework are presented (we will comment on these properties in the discussion below),
+in this framework were presented (we will comment on these properties in the discussion below),
 and the two issues of weakly informative priors and prior-data conflict,
 problematic in usual Bayesian inference,
-can now be considered as modelling opportunities of generalised Bayesian inference:
+could subsequently be considered as modelling opportunities of generalised Bayesian inference:
 \begin{enumerate}[(i)]
 \item Imprecise Bayesian methods allow to model weak prior information
 more adequately than the so-called non-informative priors usually employed 
 (see item~\ref{enum:noninformative} on page~\pageref{enum:noninformative}, and Section~\ref{sec:idm-and-near-ignorance}).
 \item As a common class of Bayesian inference procedures
 (those based on the canonical conjugates described in Section~\ref{sec:regularconjugates})
-in our view deals very badly with \pdc\ %this issue of sensitivity to the prior
+in our view deals with \pdc\ in an unfavourable way %this issue of sensitivity to the prior
 (see Section~\ref{sec:iid} for some basic examples, and
 Section~\ref{sec:scp} and \ref{sec:cccp} for the case of Bayesian linear regression),
 we developed imprecise probability methods that overcome this deficiency,
@@ -58,15 +58,15 @@ leading to cautious inferences if, and only if, caution is needed.
 Section~\ref{sec:alternatives} described some alternative models based on sets of priors,
 and discussed their inference properties in comparison to the results in Section~\ref{sec:generalmodel}.
 Section~\ref{sec:jstp} then motivated, developed, and illustrated
-an central model type from Section~\ref{sec:generalmodel} in more detail;
-afterwards, Section~\ref{sec:luck} briefly presented a software implementation
+a central model type from Section~\ref{sec:generalmodel} in more detail;
+afterwards, Section~\ref{sec:luck} briefly described a software implementation
 of the model framework developed in Section~\ref{sec:jstp}.
 
-Finally, Section~\ref{sec:isipta11} presents attempts to further refine
+Finally, Section~\ref{sec:isipta11} presented attempts to further refine
 inference behaviour in the presence of prior-data conflict.
-In a first approach, the models discussed in Sections~\ref{sec:generalmodel} and \ref{sec:jstp}
-are generalised by tayloring the prior parameter set $\PZ$ accordingly.
-The second, fundamentally different, approach attains \pdc\ sensitivity
+In a first approach, the model discussed in Section~\ref{sec:jstp} %Sections~\ref{sec:generalmodel} and \ref{sec:jstp}
+was generalised by further tayloring the prior parameter set $\PZ$. %accordingly.
+The second, fundamentally different, approach attained \pdc\ sensitivity
 by combining \emph{inferences} based on two different priors,
 an informative prior (expressing prior beliefs) and an uninformative prior (a near-ignorance prior),
 through an imprecise weighting scheme.
@@ -77,7 +77,7 @@ As supplemental material, the Appendix (Chapter~\ref{cha:appendix}) contains
 presenting a simplified prior model that gives interesting insights into the updating step
 for the regression parameters and offers opportunities for inferences based on sets of priors
 (Section~\ref{sec:festschrift});
-\item a short summary of a previous approach to Bayesian linear regression
+\item ***a short summary of a previous approach to Bayesian linear regression
 with sets of priors which was published by \textcite{Walter2007a}, in Section~\ref{sec:isipta07};
 \item some first technical results characterising a new prior parameter set shape,
 described informally in Section~\ref{sec:concluding-outlook} below
@@ -86,7 +86,7 @@ described informally in Section~\ref{sec:concluding-outlook} below
 
 
 %DISCUSSION
-\section{***Discussion}
+\section{Discussion***}
 \label{sec:concluding-discussion}
 
 %discussion of issues in Bayesian inference and discussion on IP methods given in Section~\ref{sec:motivation} %Chapter~\ref{cha:gbi}.
@@ -111,23 +111,31 @@ we will try to emphasize some central points here only.
 
 The inference properties described in Section~\ref{sec:gbicp-properties-criteria}
 for the generalised Bayesian model framework established in Section~\ref{sec:basicsetting}
-are quite remarkable,***
-and illustrate the ability of imprecise probability models to realistically model partial information,
-in a variety of situations.
+are quite remarkable in their generality,***
+and illustrate the ability of imprecise probability models to realistically model partial information
+%in a variety of situations.
+for a wide field of inference tasks.
 In these models, ambiguity in prior specifications influences ambiguity in posterior inferences
-in a natural and comprehensible way.
+in a natural and comprehensible way.%
+\footnote{In contrast, as mentioned in Section~\ref{sec:alternatives:other}***,
+in imprecise probability models for discrete parameter spaces,
+it is for example difficult to judge the weight of a certain prior model as compared to the data.}
 %write again about general model framework (Section~\ref{sec:generalmodel}),
 %inference properties etc.:
 
 Regarding the further model criterion `\pdc\ sensitivity',
-central to this thesis,
+a central concept in this thesis,
 we concluded that the shape of the prior parameter set $\PZ$
 crucially influences model behaviour, 
 and noted at the end of Section~\ref{sec:pdc-sensitivity} that
 there is a clear trade-off between easy handling of $\PZ$ or $\PN$, and the desired model property.
 Models with fixed $\nz$, like the IDM under prior information and the model by \textcite{2005:quaeghebeurcooman},
 are very easy to handle, with $\nz$, $\yzl$ and $\yzu$ as the only parameters to elicit,
-and $\PN$ being characterised again by the three values $\nn$, $\ynl$ and $\ynu$.
+and $\PN$ being characterised again by the three values $\nn$, $\ynl$ and $\ynu$.%
+\footnote{For sake of a clarity,
+we consider only one-dimensional main parameters $\yz$ in the discussion here and below,
+although the model framework allows for multidimensional $\yz$,
+as illustrated by the examples involving the Dirichlet-Multinomial model.}
 However, these models are insensitve to \pdc,
 and the model with $\PZ = [\nzl, \nzu] \times [\yzl, \yzu]$
 presented in Section~\ref{sec:4-gw-071216}
@@ -139,14 +147,14 @@ where the range of $\yz$ values depends on $\nz$
 via the contour functions $\yzl(\nz)$ and $\yzu(\nz)$
 (see Section~\ref{sec:othershapes}).
 
-Continuing*** the discussion of parameter set shapes as in Section~\ref{sec:ibbm-resume},
+Revisiting and continuing*** the discussion of parameter set shapes in Section~\ref{sec:ibbm-resume},
 the general framework in principle allows arbitrary shapes for the prior parameter set $\PZ$.
 However, freely elicting this set shape
 (e.g., by allowing for arbitrary contour functions $\yzl(\nz)$ and $\yzu(\nz)$)
 from limited prior information might be very difficult.
 If only specific inferences are of interest,
 it is possible that only a few aspects of the shape are relevant,
-such that elicitation of the entire shape might not be necessary.
+such that elicitation of the entire shape might actually not be necessary.
 Furthermore, the derivation of posterior inferences from
 such complex prior shapes can be difficult as well.
 %discussion of shapes as at the end of Section~\ref{sec:pdc-sensitivity} and \ref{sec:ibbm-resume}***
@@ -157,15 +165,16 @@ In general, %these
 models based on sets of canonical conjugate priors form, in our view,
 a `sweet spot' in the realm of (imprecise) statistical models,
 by allowing a sophisticated model behaviour
-combined with easy elictitation and computation.
-More verbosely***,
+combined with easy elicitation and computation.
+%More verbosely***,
+In particular,
 these models are distinguished by the following characteristics:
 %This is ***backed / underlined*** by the following points: 
 
 \begin{itemize}
 \item They are relatively easy to elicit:
 there is a simple and straightforward interpretation of the model parameters $\nz$ and $\yz$
-as prior strength and main parameter, respectively (Sections~\ref{sec:regularconjugates} and \ref{070517-sec2-1}).
+as prior strength and main parameter, respectively (see Sections~\ref{sec:regularconjugates} and \ref{070517-sec2-1}).
 In general terms, the weighted average structure of the update step \eqref{eq:canonicalupdate}
 and the model behaviour resulting from it is relatively clear.
 \item They are easy to apply in a variety of inference problems:
@@ -180,100 +189,174 @@ as required by the inference task at hand.%
 \footnote{We think this is a major advantage to the alternative models
 discussed in Section~\ref{sec:alternatives},
 especially to models based on the density ratio class.
-As noted in Section~\ref{alternatives:drc}, imprecision does not decrease with $n$ in
-density ratio class models that are updated according to the Generalised Bayes' Rule.}
+As noted in Section~\ref{sec:alternatives:drc}, the magnitude of $\mathcal{M}_{l,u}$ %imprecision
+does not decrease with $n$ in density ratio class models that are updated according to the Generalised Bayes' Rule.}
 \item They allow for flexible modelling, as
 it is possible to choose or tweak the prior set shape according to inference needs,
-where, however, the trade-off mentioned above should be ***kept in mind***.
+where, however, the trade-off mentioned above should be ***factored in. %kept in mind***.
 Specifically, we think the model presented in Section~\ref{sec:4-gw-071216}
-($\PZ = [\nzl, \nzu] \times [\yzl, \yzu]$)%
+(with $\PZ = [\nzl, \nzu] \times [\yzl, \yzu]$)%
 \footnote{This kind of prior set shape was also employed in the motivational example
 from Section~\ref{sec:commoncause}, where we argued for an interval-valued $\nz$
 at the end of Section~\ref{sec:fixedlearningparameter},
 and demonstrated the merits of such a parameter shape for this specific situation of \pdc\
 in Section~\ref{sec:intervallearningparameter}.}
 %***example in Section~\ref{sec:commoncause}: special case of \pdc\ (zero counts),
-constitues a sensible compromise between model complexity and inference properties.
+constitutes a sensible compromise between model complexity and inference properties.
 \end{itemize}
 
-***However, some doubts regarding the rectangular shape of $\PZ$ are ***in order.
+% rectangle ``somewhat peculiar'' from a behavioral point of view (Section~\ref{sec:resume}).
+However, some doubts with respect to the rectangular shape of $\PZ$ are nevertheless warranted.
 From a strictly behavioral point of view
-(e.g., considering $\MZ$ to express an expert's belief),
+(e.g., if $\MZ$ should express an expert's prior beliefs),
 taking $\PZ = [\nzl, \nzu] \times [\yzl, \yzu]$,
-is, as we mentioned in Sections~\ref{sec:pdc-sensitivity} and \ref{sec:ibbm-resume}, a somewhat peculiar choice.
-It indicates*** that we assign the same interval for the main parameter $\yz$
+is, as we mentioned in Sections~\ref{sec:pdc-sensitivity} and \ref{sec:ibbm-resume}, a somewhat peculiar choice,
+as it entails that we assign the same interval for the main parameter $\yz$
 over a range of prior strengths.
 
-It might be more reasonable to assume that the expert is able to give
+Instead, it might be more reasonable to assume that the expert is able to give
 a more precise interval estimate for lower prior strengths,
 while being more cautious in his prior assignments for higher prior strengths
 by choosing a wider interval for $\yz$ at $\nzu$.%
 \footnote{As described in Section~\ref{sec:ibbm-resume},
-such a choice could also lead to a more `tolerant' behaviour in case of \pdc.
+such a choice can also lead to a more `tolerant' behaviour in case of \pdc.
 If, e.g., $\yzu(\nzl) < \yzu(\nzu)$ was chosen and $\ttau(\x) > \yzu(\nzu)$,
 the higher weight $\nzu$ for $\yzu(\nzu)$ in the update step
-would move $\ynu(\nnu)$ more slowly towards $\ttau(\x)$ as compared to $\ynu(\nnu)$,
+would move $\ynu(\nnu)$ more slowly towards $\ttau(\x)$ as compared to $\ynu(\nnl)$,
 but for moderate degrees of \pdc, the faster movement of $\ynu(\nnl)$
-would be offset by the head start of $\yzu(\nzu)$.
+would be offset by the `head start' of $\yzu(\nzu)$.
 As the upper bound for $\yn$ is attained at $\ynu(\nnu)$
 if $\ttau(\x) < \yzu(\nzu)$ (i.e., data is in agreement with the prior assignements),
-the effect of extra imprecision would only appear as soon as $\ynu(\nnl) > \ynu(\nnu)$.}
+the effect of extra imprecision would only appear as soon as
+$\ynu(\nnl)$ `overtakes' $\ynu(\nnu)$ in the move towards $\ttau(\x)$, i.e. $\ynu(\nnl) > \ynu(\nnu)$.}
 
-However, it seems equally reasonable to choose $\yzu(\nzl) > \yzu(\nzu)$,
-by the considerations described*** at the beginning of Section~\ref{sec:othershapes},
-involving a thought experiment, i.e., doing a pre-posterior analysis:
+However, it seems equally reasonable to choose %$\yzu(\nzl) > \yzu(\nzu)$,
+a shorter interval for $\yz$ at $\nzu$ than at $\nzl$,
+by the considerations described at the beginning of Section~\ref{sec:othershapes},
+involving a thought experiment or `pre-posterior thinking':
 %***anteater****
-If we designate bounds for $\yn$ constant in $\nn$ and a range of $\nn$ values,
+If we designate bounds for $\yn$ constant in $\nn$ and a range of $\nn$ values
 %where the corresponding posterior parameter set $\PN$
-expressing what we want to learn from certain hypothetical data,
+to express what we want to learn from certain hypothetical data,
 the corresponding $\PZ$ derived by doing a `backwards update' has,
 due to the update mechanism \eqref{eq:canonicalupdate},
-a wider range for high values of $\nz$, and a narrower range for lower $\nz$ values.%
+a wider range for low values of $\nz$, and a narrower range for high $\nz$ values.%
 \footnote{For this model, to elicit the pre-posterior bounds, certain hypothetical data have to be chosen.
 Section~\ref{sec:othershapes} touches only very briefly on these hypothetical data
-(that are a part of the model parameters) and how to choose it,
+(that are a part of the model parameters) and how to choose them,
 and there is ample opportunity for research here.
-One could also modify the model by allowing to choose
-the `pre-posterior $\PN$' more freely ($\yn$ not constant in $\nn$).}
+One could also further modify the model by allowing to choose
+the `pre-posterior $\PN$' more freely, with bounds for $\yn$ not constant in $\nn$.}
 For an actual sample size smaller than the hypothetical one,
-also this shape is more `tolerant' as the rectangular shape.
-
-The resulting shapes are similar to shapes that would result
+this `anteater' shape is more `tolerant' as the rectangular shape.%
+\footnote{The `anteater' shapes are somewhat similar to shapes that would result
 if we required, for information on the main prior parameter $\yz$ symmetrical around $0$,
 $|\nz \cdot \yz|$ to be constant.
 Such a shape was proposed by \textcite{2012:benavolizaffalon}
 for canonical priors to one-parameter exponential family likelihoods,
-with the aim to generate near-noninformative prior sets $\MZ$.
+with the aim to generate near-noninformative prior sets $\MZ$.}
 
-
+A suggestion for another more sophisticated shape of $\PZ$,
+with the aim to allow for extra precision if prior and data coincide especially well,
+is discussed in the outlook below.
 %***short note on eggplant shapes in talk? (preliminary results)
 
-% rectangle ``somewhat peculiar'' from a behavioral point of view (Section~\ref{sec:resume}).
+% study by krautenbacher shows that elicitation of $\PZ$ can be difficult,
+% compares with \textcite{2005:whitcomb}, similar results, see Section~\ref{sec:alternatives}
+% should be cautious with skewed distributions, as expectation interval may be misleading (look at HD intervals, too!)
+% remember that the canonical conjugate may not behave as expected
+However, the favourable properties given in general terms in Section~\ref{sec:generalmodel}***
+should not obscure the restrictions that are imposed by the canonical conjugate priors
+the framework is based on. 
 
+The study by \textcite[see the discussion in Section~\ref{sec:alternatives:other}***]{2011:krautenbacher}
+reminds us that fitting a prior parameter set $\PZ$
+to available prior information can be non-trivial,
+and that also the generally well-understood conjugate distributions may exhibit
+unintuitive inference behaviours when focussing on prior and posterior expectations only,
+as the model framework tempts us to do.
+It is thus advisable to not loose sight of the distributions in $\MZ$ and $\MN$ in their entirety, %as a whole,
+e.g., by considering unions of highest density intervals for different credibility levels.
 
-***comparison with other approaches in Section~\ref{sec:alternatives}***
+%can be mitigated by choosing $\MZ$ to be set of all convex mixtures.
+The restrictions imposed by canonical conjugate priors can be mitigated,
+or even completely overcome,
+when choosing $\MZ$ not to contain parametric distributions only,
+but to comprise all finite mixtures of parametric distributions,
+i.e., considering $\MZ$ as the convex hull of the parametric distributions.%
+\footnote{As noted in footnote~\ref{foot:denseinthespaceof}***, page~\pageref{foot:denseinthespaceof}***,
+if the parametric distributions are normal distributions and $\PZ$ is large enough,
+it can be assumed that $\MZ$ contains a very wide range of priors,
+as mixtures of normal distributions are dense in the space of well-behaved probability distributions.***}
+However, as mentioned in Section~\ref{sec:basicsetting},
+then only inferences that are linear in the parametric posteriors are easy to obtain,
+and the model may deliver very imprecise, or even vacuous, results
+for nonlinear functions of $p(\vartheta\mid\nn,\yn)$ like, e.g., the posterior variance.
 
-***study by ***krautenbacher*** shows that elicitation of $\PZ$ can be difficult,
-compares with \textcite{2005:whitcomb}, similar results, see Section~\ref{sec:alternatives}****
+It seems that models based on the density ratio class,
+the model framework most similar to this variant of the model framework of Section~\ref{sec:generalmodel}
+(similar in that they both allow non-parametric priors in the set of prior distributions,
+although the model is generated by use of parametric distributions),
+do not have this issue of tractability of nonlinear inferences
+(see the discussion of the model by \textcite[\S 4]{2011:rinderknecht} in Section~\ref{sec:alternatives:other}***);
+while this seems a major strength of the model,
+it is in our view offset by a fundamental weakness,
+the lack of a clear mechanism by which imprecision in coherent posterior inferences
+can be modelled in dependence of sample size.%
+\footnote{As mentioned in Sections~\ref{sec:alternatives:drc} and \ref{sec:alternatives:other},
+imprecision as measured by the magnitude of $\mathcal{M}_{l,u}$ is the same for any sample size $n$
+if $\mathcal{M}_{l,u}$ is updated according to Bayes' Rule.
+Only if the requirement of coherence, the fundation of the Generalised Bayes' Rule, is dropped,
+density ratio class models are possible that allow for imprecision to depend on sample size $n$.
+See also footnote~\ref{foot:coolenplusrinderknecht} on page~\pageref{foot:coolenplusrinderknecht},
+where we suggested a model based on a combination of ideas from \textcite{1993:coolen} and \textcite{2011:rinderknecht:diss}.}
 
-***should be cautious with skewed distributions, as expectation interval may be misleading (look at HD intervals, too!)
-***remember that the canonical conjugate may not behave as expected
+% double role $\nz$, see Section~\ref{sec:ibbm-resume} here, and again in outlook???
+Another, more fundamental, handicap of the model framework from Section~\ref{sec:generalmodel}
+is the double role of $\nz$ as mentioned at the end of Section~\ref{sec:ibbm-resume}.
+There, the issue is framed in terms of the imprecise Beta-Binomial model,
+but it is actually valid for the general case of updating
+in imprecise probability models based on canonical conjuagte priors:
+On the one hand, $\nz$ governs the weighting of prior information $\yz$ with
+respect to the data $\ttau(\x)$;
+the larger $\nz$, the more the values of $\ynl$ and $\ynu$ are dominated by $\yzl$ and $\yzu$.
+On the other hand, $\nz$ governs also the degree of posterior imprecision:
+the larger $\nz$, the larger c.p.\ ${\rm MPI}\un = \ynu - \ynl$.
+A larger $\nz$ thus leads to more imprecise posterior inferences,
+although a high weight on the supplied prior information
+should boost the trust in posterior inferences if $\ttau(\x) \in [\yzl, \yzu]$,
+i.e., if prior beliefs turned out to be appropriate.
 
-***more studies for comparisons with the model from \ref{sec:generalmodel} to be done,
-e.g., with hierarchical models (Section~\ref{sec:hierarchical})?***
+In Section~\ref{sec:weightedinf},
+an approach separating these two roles of $\nz$ was developed,
+by considering two separate models,
+an uninformative and an informative model,%
+\footnote{These two models could also be denoted by `cautious' and `bold', respectively,
+the cautious model trying to use only a minimal amount of information, %presuppose at least as possible**,
+whith the bold model going for more daring assumptions.}
+with individual levels of precision induced by different choices of $\nz$. 
+Inference intervals based on these two models were then combined into a definite*** inference interval
+using an imprecise weight.
 
+This model of \emph{weighted inference} is a very general approach,
+being applicable for a wide variety of inference tasks and accomodating all sorts of models that provide interval-valued inferences.
+Combining favourable properties 
+for the inference situation discussed in Section~\ref{sec:isipta11}
+with feasible elicitation and handling (see Section~\ref{wi-prop}),
+it is, however, going beyond the model framework of Section~\ref{sec:generalmodel},
+and thus the general properties described in Section~\ref{sec:gbicp-properties-criteria}
+cannot be guaranteed for it.***
 
-***double role $\nz$, see Section~\ref{sec:ibbm-resume} here, and again in outlook???
+\medskip
 
-
-
-Overall***, we think the model framework from Section~\ref{sec:generalmodel}
-allows to use the full expressive power of imprecise probability %based inference
-in a very elegant way, by giving a realistic description and treatment
-of model uncertainty, and thus, as expressed in Section~\ref{sec:objections},
-allowing to do away with heroic model assumptions, and their spuriously precise inferences they entail*** nach sich ziehen***.
 %emphasise modeling opportunities, and realistic description and treatment
 %of model uncertainty as in \ref{sec:objections}
+In summary, we think the model framework from Section~\ref{sec:generalmodel}
+exploits the full expressive power of imprecise probability %based inference
+in a very elegant way, by allowing a realistic description and treatment
+of model uncertainty, and thus, as expressed in Section~\ref{sec:objections},
+enable us to avoid heroic model assumptions, and the spuriously precise inferences they entail. 
+%allowing to do away with heroic model assumptions, and the spuriously precise inferences they entail. 
 
 We also think that there is still further potential to models based on sets of conjugate priors.
 As described in the Outlook below***,
@@ -290,13 +373,24 @@ where we spoke of \emph{strong prior-data agreement}.}
 \section{Outlook***}
 \label{sec:concluding-outlook}
 
-***avenues for further research***
-
-Here, we come back to the ideas discussed in several concluding sections
+%***avenues for further research***
+%Here, we come back to the ideas 
+Here, we will summarise central ideas discussed in several concluding sections
 (\ref{sec:6-gw-071216}, \ref{sec:insights}, \ref{sec:discussion-festschrift}),
-subsuming them in three groups
+carrying some of them further, giving an overview of %in order to describe 
+opportunities for applications and potential avenues for further research.
+In particular, an idea for modelling of \emph{strong prior-data agreement} will be explained in more detail.
 
-***\textbf{first: model as is, use for\dots }
+We will subsume our ideas for further research and developments in three groups:
+
+***\textbf{first: model as is, study and use for\dots }
+
+***comparison with other approaches in Section~\ref{sec:alternatives}, especially drc***
+
+***more studies for comparisons with the model from \ref{sec:generalmodel} to be done,
+e.g., with hierarchical models (Section~\ref{sec:hierarchical})?***
+
+***study multidimensional stuff in more detail?
 
 ***model could be vey useful in statistical surveillance, cite IESS:surveillance?***,
 as mentioned in footnote~\ref{foot:sequential}, page~\pageref{foot:sequential}),

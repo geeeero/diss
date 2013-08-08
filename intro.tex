@@ -60,7 +60,7 @@ and a paragraph from \textcite[\S 7]{itip-statinf}.
 Section~\ref{sec:generalmodel} consists of \textcite[\S 4.3]{itip-statinf}.
 %which was written primarily by Gero Walter.****
 
-Section~\ref{sec:alternatives} was devised for this thesis, using some very minor parts of \textcite[\SS 4.2, 4.4]{itip-statinf}.***
+Section~\ref{sec:alternatives} was devised for this thesis, using some very minor parts of \textcite[\S 4.2, \S 4.4]{itip-statinf}.***
 
 Section~\ref{sec:jstp} is a slightly abriged reproduction of \textcite{Walter2009a},
 with a minor change of notation towards the one introduced in Section~\ref{sec:regularconjugates}
@@ -569,7 +569,7 @@ The loss function $l$ gives a functional form for the severity of deviations of 
 here, it values the distance of a point estimator $\hat{\theta}$ to $\theta$.
 
 The \emph{quadratic loss function} $l(\hat{\theta}, \theta) = (\hat{\theta}-\theta)^2$
-values small deviations relatively low, whereas large deviations are given a high weight.
+values small deviations relatively low, whereas large deviations are given a high weight (see Figure~\ref{fig:loss} A).
 As can be shown \parencite[see, e.g.,][pp.~352f]{2002:casella}, %(see, e.g., \textcite{2002:casella}, p.~352f),
 the quadratic loss function leads to the posterior expectation as the Bayesian point estimator.
 Here, $\E[\theta\mid\x, \nz, \yz] = \E[\theta\mid\nn, \yn] = \yn$,
@@ -577,17 +577,54 @@ and so the posterior expectation of $\theta$ is a weighted average
 of the prior expectation $\E[\theta\mid\nz, \yz] = \yz$ and the sample proportion $s/n$, with weights $\nz$ and $n$, respectively.
 
 Taking the \emph{absolute loss function} $l(\hat{\theta}, \theta) = |\hat{\theta}-\theta|$
-leads to the median of the posterior distribution as the point estimator.
+leads to the median of the posterior distribution as the point estimator (see Figure~\ref{fig:loss} B).
 Here, $\med(\theta\mid\nn, \yn)$ has no closed form solution, and must be determined numerically.
 More generally, taking the \emph{check function} as the loss function,
 \begin{align*}
-l(\hat{\theta}, \theta) &= \begin{cases} q (\hat{\theta}-\theta)     & \text{if } x \ge 0 \\
-                                         (q-1) (\hat{\theta}-\theta) & \text{if } x < 0 \end{cases}\,,
+l(\hat{\theta}, \theta) &= \begin{cases} 2  q    (\hat{\theta}-\theta) & \text{if } x \ge 0 \\
+                                         2 (q-1) (\hat{\theta}-\theta) & \text{if } x < 0 \end{cases}\,,
 \end{align*}
-a tilted version of the absolute loss function, 
-leads to the quantile $q \in (0,1)$ of the posterior as point estimate.
+a tilted version of the absolute loss function (see Figure~\ref{fig:loss} C), 
+leads to the quantile $q \in (0,1)$ of the posterior as point estimate.%
+\footnote{The check function is usually given without the factor $2$,
+as it is not relevant for the optimisation.
+We have included it to make the relation to the absolute loss function more clear;
+for $q=0.5$, the check function becomes here indeed the absolute loss function.}
 
-****make a figure here (quadratic, absolute, check)??***
+%****make a figure here (quadratic, absolute, check)??***
+\begin{figure}
+\centering
+\begin{tikzpicture}%[domain=-1.8:1.8]
+\draw[very thin,color=gray] (-1.99,-0.1) grid (1.99,2.9);
+\draw[-stealth] (-2.1,0) -- (2.1,0) node[right] {$\hat{\theta}$};
+\draw[-stealth] (0,-0.2) node[below] {$\theta$} -- (0,3.2) node[above] {$l(\hat{\theta}-\theta)$};
+\draw[color=gray,thick,domain=0:1.8]  plot ({\x},{ \x^2});
+\draw[color=gray,thick,domain=-1.8:0] plot ({\x},{-\x^2});
+\draw (-2,3.2) node[above] {\textbf{A}};
+%
+\begin{scope}[xshift=5.5cm]
+\draw[very thin,color=gray] (-1.99,-0.1) grid (1.99,2.9);
+\draw[-stealth] (-2.1,0) -- (2.1,0) node[right] {$\hat{\theta}$};
+\draw[-stealth] (0,-0.2) node[below] {$\theta$} -- (0,3.2) node[above] {$l(\hat{\theta}-\theta)$};
+\draw[color=gray,thick,domain=0:2]  plot ({\x},{ \x});
+\draw[color=gray,thick,domain=-2:0] plot ({\x},{-\x});
+\draw (-2,3.2) node[above] {\textbf{B}};
+\end{scope}
+%
+\begin{scope}[xshift=11cm]
+\draw[very thin,color=gray] (-1.99,-0.1) grid (1.99,2.9);
+\draw[-stealth] (-2.1,0) -- (2.1,0) node[right] {$\hat{\theta}$};
+\draw[-stealth] (0,-0.2) node[below] {$\theta$} -- (0,3.2) node[above] {$l(\hat{\theta}-\theta)$};
+\draw[color=gray,thick,domain=0:2]  plot ({\x},{ 1.33*\x});
+\draw[color=gray,thick,domain=-2:0] plot ({\x},{-0.67*\x});
+\draw (-2,3.2) node[above] {\textbf{C}};
+\end{scope}
+\end{tikzpicture}
+\caption[The quadratic, absolute, and check loss functions.]%
+{The quadratic (left), absolute (center), and check (right) loss functions.}
+\label{fig:loss}
+\end{figure}
+
 
 The \emph{indicator loss function}
 \begin{align*}
@@ -612,7 +649,7 @@ Mostly, so-called \emph{highest posterior density} (HPD) intervals are considere
 where for a given probability level $\gamma$ the shortest interval covering this probability mass is calculated.
 For unimodal densities, this is equivalent to finding a threshold $\alpha$ such that
 the probability mass for the set of all $\theta$ with $p(\theta\mid\nn, \yn) \ge \alpha$ equals $\gamma$, hence the name.%
-\footnote{See, e.g., \textcite{2000:bernardosmith}, \S 5.1.5, pp.~259f, or \textcite{2007:robert}, Def.~5.5.3, p.~260.}
+\footnote{See, e.g., \textcite[\S 5.1.5, pp.~259f]{2000:bernardosmith}, or \textcite[Def.~5.5.3, p.~260]{2007:robert}.}
 For the Beta posterior, a HPD interval for $\theta$ must be determined by numeric optimisation.
 For approximately symmetric (around $\frac{1}{2}$) Beta posteriors, a good approximation is the symmetric credibility interval,
 delimited by the $\frac{1-\gamma}{2}$- and the $\frac{1+\gamma}{2}$-quantile of the posterior.

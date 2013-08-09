@@ -451,37 +451,48 @@ but also also other set shapes could prove useful here.
 
 \medskip
 
-***\textbf{then: extend the model, but keep GBR framework}
+%***\textbf{then: extend the model, but keep GBR framework}
+Now, we will present a number of ideas for further developments within the framework
+described in Section~\ref{sec:basicsetting}, i.e.,
+involving sets of priors defined via canonical conjugates
+that are updated via the Generalised Bayes' Rule.
 
-***extend to coarse or imprecise data, which is a very important field:
-do not idealise also the data (we stopped idealising the prior already)!
-
-***from \textcite[4.4]{itip-statinf}
-Most models in generalised Bayesian inference rely on a precise sampling model,
-but the general framework also allows for imprecise sampling models \parencite[see, in particular,][\S 8.5]{1991:walley},
+As a first important development,
+the models discussed in this thesis rely on a precise sampling model,
+%from \textcite[4.4]{itip-statinf}
+but the generalised Bayesian inference framework also allows for imprecise sampling models
+\parencite[see, in particular,][\S 8.5]{1991:walley},
 also discussed under the notion of \emph{likelihood robustness} \parencite[e.g.,][]{2000:shyamalkumar} in the robust Bayesian framework.
+This could be done, as mentioned in Section~\ref{sec:insights},
+in an analogous way to \textcite{2007:utkinaugustin} and \textcite{2009:Troffaes:Coolen},
+allowing to consider coarse or imprecise data adequately in the model,
+not idealising the data in a similar way as we ceased to idealise prior information by allowing for imprecision.
+%The detailed consequences of this development remain to be studied.
 
+%new weakly informative prior models / prior near-ignorance models by Mangili \& Benavoli (ISIPTA'13) better in 3.2??
 
-***from isipta11 concluding:
-\begin{small}
-For a deeper understanding of prior-data conflict, it may also be helpful
-to extend our methods to coarse data, in an analogous way to \textcite{2007:utkinaugustin} and
-\textcite{2009:Troffaes:Coolen}, and to look at other model classes of prior distributions, most
-notably at contamination neighbourhoods. Of particular interest here may
-be to combine both types of prior models, considering contamination
-neighbourhoods of our exponential family based-models with sets of
-parameters, as developed in the Neyman-Pearson setting by
-\textcite[\S~5]{2002:augustin}.
-\end{small}
+%***study multidimensional stuff in more detail: definition of pdc now dimension-wise, other shapes?
+%***in general, how to elicit more complex shapes, especially difficult for multidimensional $\yz$
+Another important area for further developments regards***concerns the case of multidimensional $\yz$.
+Elicitation of such high-dimensional parameter sets $\PZ$ poses interesting challenges.
+The simple, `hyper-rectangle' set suggested in Equation~\eqref{eq:hyperparams:boxmodel} (Section~\ref{sec:imprecise-alpha})
+might not be adequate in all circumstances, but elicitation of more general sets $\YZ \times [\nzl, \nzu]$,
+or even arbitrary subsets of $\Y \times \posreals$ can be very difficult.
+Related to this, for $\PZ$ as in Equation~\eqref{eq:hyperparams:boxmodel},
+\pdc\ is mirrored by increased imprecision for each dimension separately
+(see Example~\ref{ex:jstp-8}, Figure~\ref{fig:idm-nvar-nopdc}).
+It is an open question if other prior set shapes entail
+different consequences with respect to \pdc\ sensitivity. 
+%***take only pair of $\nz$ values? behavioural implications?
+A possible approach to simplify elicitation in high-dimensional cases
+that could also be useful for lower-dimensional $\yz$ is to not consider
+$\NZ = [\nzl, \nzu]$, but $\NZ = \{\nzl, \nzu\}$,
+i.e., taking only a pair of $\nz$ values.
+This would not only simplify elicitation, but also make computation of posterior inferences
+probably more feasible.
+However, as with the discussion of the rectangular shape in Section~\ref{sec:concluding-discussion} above,
+the behavioural implications of such a choice of parameter set would have to be studied in detail.
 
-
-***new weakly informative prior models / prior near-ignorance models by Mangili \& Benavoli (ISIPTA'13) better in 3.2??***
-
-***study multidimensional stuff in more detail: definition of pdc now dimension-wise, other shapes?
-
-***in general, how to elicit more complex shapes, especially difficult for multidimensional $\yz$
-
-***take only pair of $\nz$ values? behavioural implications?
 
 ***boatshape stuff: cater also for strong prior-data agreement***
 

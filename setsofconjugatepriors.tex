@@ -294,7 +294,7 @@ while ensuring easy handling and prior-data conflict sensitivity.%
 in situations when data is revealed to the analyst sequentially in distinct batches,
 it might also be useful if the model is able to resonate unusual patterns or extreme differences between the batches.
 This actually effects to doubting the i.i.d.\ assumptions on which these models are founded.
-This could be useful in the area of \emph{statistical surveillance},
+This could be useful in the area of \emph{statistical surveillance} \parencite[see, e.g.,][]{2011:IESS-surveillance},
 where, e.g., the number of cases of a certain infectious disease is continuously monitored,
 with the aim to detect epidemic outbreaks in their early stages.}
 
@@ -512,12 +512,13 @@ Models with $\PZ$ as in \eqref{equ:rectparamset}, %= \{ (\nz, \yz) \mid [\nzl, \
 i.e., belonging to model type~\eqref{enum:rectangular},
 are sensitive to prior-data conflict,
 where prior-data conflict is operationalised as $\ttau(\x) \notin \YZ$.
-There is no such direct mechanism for a gain in precision when prior and data information coincide especially well.
+There is no such direct mechanism for a gain in precision when prior and data information coincide especially well.%
+\footnote{However, first ideas and some preliminary results for a set shape allowing this
+are given in Sections~\ref{sec:concluding-outlook} and\ref{sec:boatshape}, respectively.***}
 However, $\YZ$ could be chosen relatively small such that it mirrors this situation,
 considering as the neutral situation $\ttau(\x)$ being not too far away from $\YZ$,
 and taking as prior-data conflict situations when $\ttau(\x)$ is in a greater distance to $\YZ$.%
 \footnote{See also Section~\ref{sec:insights} for this idea.}
-***link to boatshape material in outlook?***
 
 As mentioned in Section~\ref{sec:basicsetting}, page~\pageref{enum:rectangular},
 the parameter set $\PN$ resulting from updating $\PZ$ as in \eqref{equ:rectparamset}
@@ -558,8 +559,10 @@ It is, however, insensitive to prior-data conflict.
 but this advantage is payed for by a more complex description of $\PN$.
 \item More general set shapes $\PZ \subset \reals_{>0} \times \Y$ are possible,
 but may be difficult to elicit and complex to handle.%
-\footnote{For an example see, as mentioned above, the work in Section~\ref{sec:isipta11}, specifically in Section~\ref{sec:othershapes},
-or, alternatively, ***boatshape material***.}
+\footnote{For an example see, as mentioned above, the work in Section~\ref{sec:isipta11}, specifically in Section~\ref{sec:othershapes}.
+First ideas and some preliminary results for another approach to a set shape allowing
+also more precise inferences when prior and data coincide especially well
+are given in Sections~\ref{sec:concluding-outlook} and \ref{sec:boatshape}, respectively.***}
 \end{itemize}
 
 To conclude, when substantial prior information is available, that, however,
@@ -567,12 +570,12 @@ is not permitting the identification of a single prior distribution,
 imprecise probability models allow for adequate modeling of partial information and prior-data conflict sensitivity,
 and will ultimately result in more reliable inferences.
 
-****more on parameter set shapes? refer to boatshape material****
-
 \medskip
 
-Before we will ***go into the details of models*** in Sections~\ref{sec:jstp} -- \ref{sec:isipta11},
-we will have a short look*** at some other models based on sets of priors in Section~\ref{sec:alternatives}.
+Before we will study two choices for $\PZ$ %model types ***go into the details of models*** 
+in more detail in Sections~\ref{sec:jstp} and \ref{sec:isipta11}
+(Section~\ref{sec:luck} describes a software implementation of the model from Section~\ref{sec:jstp}),
+we will now discuss some other models based on sets of priors in Section~\ref{sec:alternatives}.
 
 
 

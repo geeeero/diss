@@ -377,32 +377,79 @@ where we spoke of \emph{strong prior-data agreement}.}
 %Here, we come back to the ideas 
 Here, we will summarise central ideas discussed in several concluding sections
 (\ref{sec:6-gw-071216}, \ref{sec:insights}, \ref{sec:discussion-festschrift}),
-carrying some of them further, giving an overview of %in order to describe 
+carrying some of them further, presenting %giving an ***overview of** %in order to describe 
 opportunities for applications and potential avenues for further research.
 In particular, an idea for modelling of \emph{strong prior-data agreement} will be explained in more detail.
 
 We will subsume our ideas for further research and developments in three groups:
+First, we will consider some potential applications and areas of study for the
+currently existing models in the framework from Section~\ref{sec:generalmodel}.
+Then, we will sketch some ideas to extend the presently available models,
+including a discussion of a novel parameter set shape that allows to cater for
+\emph{strong prior-data agreement} (see the technical details in Section~\ref{sec:boatshape}***).
+These further developments still follow the lines %are **still a part of the framework***
+of generalised Bayesian inference using sets of priors as described in Sections~\ref{sec:gbr} and \ref{sec:imprecisebayes},
+respecting*** coherence by updating the set of priors via the Generalised Bayes' Rule.
+In the last part of this outlook, we will look instead beyond this framework
+of coherent Bayesian inference, by discussing some general thoughts
+about updating and learning in the context of statistical inference.
 
-***\textbf{first: model as is, study and use for\dots }
+\medskip
 
-***comparison with other approaches in Section~\ref{sec:alternatives}, especially drc***
+%***\textbf{first: model as is, study and use for\dots }
+%***comparison with other approaches in Section~\ref{sec:alternatives}, especially drc***
+As seen in Section~\ref{sec:alternatives}, there are a number of alternative models
+for statistical inference using sets of priors.
+Besides the study by \textcite{2011:krautenbacher},
+no studies comparing inferences from the models described in Setions~\ref{sec:jstp} and \ref{sec:isipta11}
+with those based on the alternative models named in Section~\ref{sec:alternatives}
+(most importantly, models based on the density ratio class)
+in detail have been conducted.
+%***more studies for comparisons with the model from \ref{sec:generalmodel} to be done,
+%e.g., with hierarchical models (Section~\ref{sec:hierarchical})?***
+Further insight could also be gained from a comparison to the hierarchical model
+developed by \textcite{2008:cattaneo} (see Section~\ref{sec:hierarchical}).
 
-***more studies for comparisons with the model from \ref{sec:generalmodel} to be done,
-e.g., with hierarchical models (Section~\ref{sec:hierarchical})?***
+There are of course many opportunities for application of the models described in this thesis,
+and we will mention just two interesting general cases here.
 
-***study multidimensional stuff in more detail?
+%***use regression framework from Section~\ref{sec:cccp} in situations prone to \pdc.
+The canonical conjugate prior for Bayesian linear regression constructed in Section~\ref{sec:cccp}
+could be used for an imprecise regression analysis based on sets of priors.
+Although being probably the most important concept in modern statistical inference,
+in the imprecise probability literature,
+so far only very few contributions*** considering regression analysis have been published,%
+\footnote{Among the few exceptions are \textcite{Walter2007a}, \textcite{2011:utkin}, and \textcite{2012:cattaneo-wiencierz}.}
+so work in this direction could contribute to a major step towards a wider application
+of imprecise probability models in statistical practice.% 
+\footnote{In contrast, classification models are a thriving subject area in imprecise probability.
+For a recent overview see, e.g., \textcite{itip-classification}.}
+With priors based on $\PZ$ of type~(\ref{enum:rectangular}),
+the model could offer favourable inference properties in situations that are prone to \pdc\
+(see the discussion Section~\ref{sec:discussion-festschrift}).
 
-***model could be vey useful in statistical surveillance, cite IESS:surveillance?***,
-as mentioned in footnote~\ref{foot:sequential}, page~\pageref{foot:sequential}),
-write here some more: optimal stopping rules, outbreak detection is usually(?)
-framed as a testing problem (will new data refute the current model?),
-but can also be seen similar to \pdc\ (is new data in conflict with current (prior) model?).
-it might be interesting to see if rectangular sets or other shapes are good for this.  
+%***model could be vey useful in statistical surveillance, cite IESS:surveillance?***,
+Another potentially fruitful area of application is models for \emph{statistical surveillance}
+\parencite[see, e.g.,][]{2011:IESS-surveillance}.
+Here, the aim is to monitor a data-generating process over time
+to detect changes in the process as early as possible,
+without generating too many `false alarms'.
+A typical example is disease monitoring,
+where the number of cases of a certain infectious disease reported by clinicians
+is continuously monitored on the national level,
+with the aim to detect epidemic outbreaks in their early stages.
+Such outbreak detection is usually analysed using likelihood ratios,
+comparing new observations with a model derived from previous observations. 
+As mentioned in footnote~\ref{foot:sequential}, page~\pageref{foot:sequential},
+we could also consider this problem in terms of \pdc:
+if a new batch of observations does not fit our current model
+(a set $\MN$ subsuming prior information and previous data),
+the posterior based on $\MN$ resonates this by increased imprecision,
+triggering the alarm.
+We would expect rectangular parameter set shapes to perform quite well in such a task,
+but also also other set shapes could prove useful here.
 
-***use regression framework from Section~\ref{sec:cccp} in situations prone to \pdc.
-
-***take only pair of $\nz$ values? behavioural implications?
-
+\medskip
 
 ***\textbf{then: extend the model, but keep GBR framework}
 
@@ -427,8 +474,14 @@ parameters, as developed in the Neyman-Pearson setting by
 \textcite[\S~5]{2002:augustin}.
 \end{small}
 
+
 ***new weakly informative prior models / prior near-ignorance models by Mangili \& Benavoli (ISIPTA'13) better in 3.2??***
 
+***study multidimensional stuff in more detail: definition of pdc now dimension-wise, other shapes?
+
+***in general, how to elicit more complex shapes, especially difficult for multidimensional $\yz$
+
+***take only pair of $\nz$ values? behavioural implications?
 
 ***boatshape stuff: cater also for strong prior-data agreement***
 
@@ -468,6 +521,13 @@ hope for a joint publication of GW, FC and MB explaining this in detail.
 
 \textbf{finally, general thoughts about updating, learning, etc}
 
+construct cattaneo's hierarchical models (Section~\ref{sec:hierarchical})
+based on the models discussed here
+
+model suggestion in footnote~\ref{foot:coolenplusrinderknecht}, page~\pageref{foot:coolenplusrinderknecht}
+
+GBR, see Section~\ref{sec:updating}?
+
 considerations in Sectione~\ref{sec:insights}:
 prior and data in conflict is of less value than the sum of both:
 $\nz$ negative?
@@ -479,6 +539,8 @@ see also comments at end of Section~\ref{sec:6-gw-071216},
 dual role of $\nz$? (Section~\ref{sec:ibbm-resume})
 
 belief revision versus updating?
+
+Hampel: how can we *** new evidence?
 
 questions on (data) robustness of IP models, see isipta13 paper by Marco
 

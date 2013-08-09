@@ -452,9 +452,9 @@ but also also other set shapes could prove useful here.
 \medskip
 
 %***\textbf{then: extend the model, but keep GBR framework}
-Now, we will present a number of ideas for further developments within the framework
+Now, we will present some of ideas for further developments within the framework
 described in Section~\ref{sec:basicsetting}, i.e.,
-involving sets of priors defined via canonical conjugates
+involving sets of priors, defined using canonical conjugates,
 that are updated via the Generalised Bayes' Rule.
 
 As a first important development,
@@ -473,12 +473,16 @@ not idealising the data in a similar way as we ceased to idealise prior informat
 
 %***study multidimensional stuff in more detail: definition of pdc now dimension-wise, other shapes?
 %***in general, how to elicit more complex shapes, especially difficult for multidimensional $\yz$
-Another important area for further developments regards***concerns the case of multidimensional $\yz$.
+Another important area for further development concerns the case of multidimensional $\yz$.
 Elicitation of such high-dimensional parameter sets $\PZ$ poses interesting challenges.
-The simple, `hyper-rectangle' set suggested in Equation~\eqref{eq:hyperparams:boxmodel} (Section~\ref{sec:imprecise-alpha})
+The simple, `hyper-rectangle' set suggested in Section~\ref{sec:imprecise-alpha}, Equation~\eqref{eq:hyperparams:boxmodel},
 might not be adequate in all circumstances, but elicitation of more general sets $\YZ \times [\nzl, \nzu]$,
-or even arbitrary subsets of $\Y \times \posreals$ can be very difficult.
-Related to this, for $\PZ$ as in Equation~\eqref{eq:hyperparams:boxmodel},
+or even arbitrary subsets of $\Y \times \posreals$ can be very difficult,
+and further inquiries into this problem could be rewarding,
+also in connection to the application of the prior constructed in Section~\ref{sec:cccp},
+as problems in regression typically involve many covariates.
+
+Also, for $\PZ$ as in Equation~\eqref{eq:hyperparams:boxmodel},
 \pdc\ is mirrored by increased imprecision for each dimension separately
 (see Example~\ref{ex:jstp-8}, Figure~\ref{fig:idm-nvar-nopdc}).
 It is an open question if other prior set shapes entail
@@ -493,41 +497,76 @@ probably more feasible.
 However, as with the discussion of the rectangular shape in Section~\ref{sec:concluding-discussion} above,
 the behavioural implications of such a choice of parameter set would have to be studied in detail.
 
+%***boatshape stuff: cater also for strong prior-data agreement***
+Before we will discuss more general arguments about learning and updating,***
+we will describe a novel idea for generating parameter prior sets $\PZ$
+that, in addition to \pdc\ sensitivity, allow to mirror \emph{strong prior-data agreement}
+(i.e., the case when prior and data coincide especially well)
+by increased posterior precision.
 
-***boatshape stuff: cater also for strong prior-data agreement***
+As mentioned in Sections~\ref{sec:pdc-sensitivity} and \ref{sec:ibbm-resume},
+the shape of $\PZ$ determines the shape of $\PN$ and, via $\MN$, has a crucial influence on posterior inferences.
+In general lines, this influence is clear
+(see the studies on the behaviour of rectangular shapes in Sections~\ref{sec:jstp} and \ref{sec:isipta11}),
+but it may nevertheless be quite difficult to elicit more general set \emph{shapes} and ascertain their consequences.
 
-as mentioned in ***isipta'11***, shape of $\MZ$ has a crucial influence on inferences,
-and it might be very difficult to elicit a set \emph{shape} and ascertain*** the consequences of a certain shape.
-
-although the updating of the canonical parameters \eqref{eq:canonicalupdate},
+Although the updating of the canonical parameters according to \eqref{eq:canonicalupdate},
 i.e., the weighted average update step for $\yz$, and the increment step for $\nz$,
 seems very intuitive (and is central to the behaviour of the model,
 see the list of inference properties in Section~\ref{sec:gbicp-properties-criteria}),
-the shape change of $\MZ$ to $\MN$ through this updating and its effects on posterior inferences are difficult to grasp.
+the shape change of $\PZ$ to $\PN$ through this update step,
+and its effects on posterior inferences are difficult to grasp.
+This is due to the fact that,
+while the update of a single coordinate $(\nz,\yz)$ is a simple shift,
+this shift is different for each of the coordinates in a set;
+in fact, the shift changes with both $\nz$ and $\yz$.%
+\footnote{As given by \eqref{eq:canonicalupdate},
+for the $\nz$ coordinate holds $\nz \mapsto \nz+n$,
+while for the $\yz$ coordinate holds $\yz \mapsto \frac{\nz\yz + \tau(\x)}{\nz+n} = \yz + \frac{\tau(\x)-n\yz}{\nz+n}$.}
+These different shift for the coordinates within a set
+lead to the change of shape from $\PZ$ to $\PN$.
 
-although update of a single coordinate $(\nz,\yz)$ is a simple shift,
-this shift is different for different coordinates.
+As this shape change is so problematic for understanding of the update step,
+a different parametrisation of the canonical priors would be desirable,
+in which each coordinate has the same shift in updating,
+such that updating of entire parameter sets
+can be expressed as a shift within this parameter space.
 
-as shape change is so problematic for understanding,
-is there a different parametrisation such that shape remains constant,
-i.e., not only single coordinates shift, but also entire shapes
-(same shift for all coordinates)?
+%yes, there is, see preliminary results by Mik Bickis (``personal communication'' if no citable work?).
+In fact, such a parametrisation has been developed by Mi\c{k}elis Bickis (personal communication),
+and he is currently preparing a manuscript elaborating the details of his findings.
+In this parametrisation, a canonical prior is represented by a coordinate $(\eta_0,\eta_1)$,
+where $\eta_1$ essentially replaces the main prior parameter $\yz$,
+while $\eta_0$ is just a shifted version of $\nz$.%
+%there, update step for $\nz$ is the same, and shift for parameter replacing $\yz$ is the same for all. 
+\footnote{This parametrisation is described in more detail in Section~\ref{sec:boatshape},
+along with some first technical results that confirm the desired properties for the novel shape suggested there.}
+In the parametrisation from Section~\ref{sec:regularconjugates},
+$\yz$ had the convenient property of being equal to $\E\big[\E[\ttau(\x) \mid \psi] \mid \nz, \yz\big]$,
+giving the (prior) expectation, or a prior guess, for the mean sample statistic.
+%rays of constant expectation (i.e., $\approx \yn$)
+Naturally, $\eta_1$ cannot have this property,
+but in the transformed space for the Beta-Binomial model, the points on a ray emanating from the coordinate $(-2,0)$
+will give a constant expectation of $\E[\ttau(\x) \mid \psi]$. 
 
-yes, there is, see preliminary results by Mik Bickis (``personal communication'' if no citable work?***).
-there, update step for $\nz$ is the same, and shift for parameter replacing $\yz$ is the same for all. 
+As detailed in Section~\ref{sec:boatshape},
+the representation of priors through this parametrisation allows to tailor shapes for desired inference behaviour much easier.
+%GW and FC have thought of a shape that has \pdc\ sensitivity,
+Indeed, Frank Coolen and the author of this thesis have devised
+a set shape in this parametrisation that allows for both \pdc\ sensitivity
+%and gives `bonus precision' if prior and data agree especially well,
+and more precise inferences in case of strong prior-data agreement,
+a behaviour deemed very desirable in Section~\ref{sec:insights}
+and in the discussion of the Generalised Bayes' Rule in Section~\ref{sec:updating},
+and we are able to offer a solution that allows to remain within the generalised Bayesian framework,
+using the Generalsied Bayes' Rule for updating.
 
-describe some more?
-
-rays of constant expectation (i.e., $\approx \yn$)
-
-this parametrisation allows to tailor shapes for desired inference behaviour much easier.
-indeed, GW and FC have thought of a shape that has \pdc\ sensitivity,
-and gives `bonus precision' if prior and data agree especially well,
-as mentioned a desirable property in Section~\ref{sec:insights}
-and in the discussion of GBR in Section~\ref{sec:updating}
-
-very appealing first results for Beta-Binomial model and Normal-Normal model,
-hope for a joint publication of GW, FC and MB explaining this in detail.
+Our preliminary studies show some very appealing results in case of the Beta-Binomial model,
+for which the parametrisation is discussed in Section~\ref{sec:boatshape}.
+We are confident that these encouraging results also hold for the Normal-Normal model
+and in the general case of canonical conjugates,
+and a joint publication of Mi\c{k}elis Bickis, Frank Coolen and the author of this thesis is planned
+that will elaborate these findings in more detail.
 
 
 \textbf{finally, general thoughts about updating, learning, etc}

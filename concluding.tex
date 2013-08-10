@@ -316,7 +316,7 @@ Another, more fundamental, handicap of the model framework from Section~\ref{sec
 is the double role of $\nz$ as mentioned at the end of Section~\ref{sec:ibbm-resume}.
 There, the issue is framed in terms of the imprecise Beta-Binomial model,
 but it is actually valid for the general case of updating
-in imprecise probability models based on canonical conjuagte priors:
+in imprecise probability models based on canonical conjugate priors:
 On the one hand, $\nz$ governs the weighting of prior information $\yz$ with
 respect to the data $\ttau(\x)$;
 the larger $\nz$, the more the values of $\ynl$ and $\ynu$ are dominated by $\yzl$ and $\yzu$.
@@ -343,9 +343,9 @@ being applicable for a wide variety of inference tasks and accomodating all sort
 Combining favourable properties 
 for the inference situation discussed in Section~\ref{sec:isipta11}
 with feasible elicitation and handling (see Section~\ref{wi-prop}),
-it is, however, going beyond the model framework of Section~\ref{sec:generalmodel},
+it is an approach going beyond the model framework of Section~\ref{sec:generalmodel},
 and thus the general properties described in Section~\ref{sec:gbicp-properties-criteria}
-cannot be guaranteed for it.***
+do not necessarily hold.***
 
 \medskip
 
@@ -359,7 +359,7 @@ enable us to avoid heroic model assumptions, and the spuriously precise inferenc
 %allowing to do away with heroic model assumptions, and the spuriously precise inferences they entail. 
 
 We also think that there is still further potential to models based on sets of conjugate priors.
-As described in the Outlook below***,
+As described in the Outlook below,
 further advances are within reach 
 that, in addition to the properties \ref{enum:n0vsn}--\ref{enum:deltay} and \pdc\ sensitivity
 (see Section~\ref{sec:gbicp-properties-criteria}),
@@ -381,15 +381,15 @@ carrying some of them further, presenting %giving an ***overview of** %in order 
 opportunities for applications and potential avenues for further research.
 In particular, an idea for modelling of \emph{strong prior-data agreement} will be explained in more detail.
 
-We will subsume our ideas for further research and developments in three groups:
+We will subsume our ideas for further research and developments in three steps:
 First, we will consider some potential applications and areas of study for the
 currently existing models in the framework from Section~\ref{sec:generalmodel}.
 Then, we will sketch some ideas to extend the presently available models,
 including a discussion of a novel parameter set shape that allows to cater for
 \emph{strong prior-data agreement} (see the technical details in Section~\ref{sec:boatshape}***).
 These further developments still follow the lines %are **still a part of the framework***
-of generalised Bayesian inference using sets of priors as described in Sections~\ref{sec:gbr} and \ref{sec:imprecisebayes},
-respecting*** coherence by updating the set of priors via the Generalised Bayes' Rule.
+of generalised Bayesian inference using sets of priors as described in Sections~\ref{sec:gbr} and \ref{sec:imprecisebayes}
+that guarantees coherence of inferences by updating the set of priors via the Generalised Bayes' Rule.
 In the last part of this outlook, we will look instead beyond this framework
 of coherent Bayesian inference, by discussing some general thoughts
 about updating and learning in the context of statistical inference.
@@ -404,7 +404,9 @@ Besides the study by \textcite{2011:krautenbacher},
 no studies comparing inferences from the models described in Setions~\ref{sec:jstp} and \ref{sec:isipta11}
 with those based on the alternative models named in Section~\ref{sec:alternatives}
 (most importantly, models based on the density ratio class)
-in detail have been conducted.
+in detail have yet been conducted to our knowledge.
+Such studies could be rewarding
+by giving more detailed insight into strengths and weaknesses of the respective models.
 %***more studies for comparisons with the model from \ref{sec:generalmodel} to be done,
 %e.g., with hierarchical models (Section~\ref{sec:hierarchical})?***
 Further insight could also be gained from a comparison to the hierarchical model
@@ -418,19 +420,20 @@ The canonical conjugate prior for Bayesian linear regression constructed in Sect
 could be used for an imprecise regression analysis based on sets of priors.
 Although being probably the most important concept in modern statistical inference,
 in the imprecise probability literature,
-so far only very few contributions*** considering regression analysis have been published,%
-\footnote{Among the few exceptions are \textcite{Walter2007a}, \textcite{2011:utkin}, and \textcite{2012:cattaneo-wiencierz}.}
-so work in this direction could contribute to a major step towards a wider application
+so far only very few contributions*** considering regression analysis have been published.%
+\footnote{Among the few exceptions are \textcite{Walter2007a}, \textcite{2010:utkin},
+\textcite{2011:utkin}, \textcite{2012:cattaneo-wiencierz}, and \textcite{2013:utkin-wiencierz}.}
+Work in this direction could contribute to a major step towards a wider application
 of imprecise probability models in statistical practice.% 
 \footnote{In contrast, classification models are a thriving subject area in imprecise probability.
 For a recent overview see, e.g., \textcite{itip-classification}.}
 With priors based on $\PZ$ of type~(\ref{enum:rectangular}),
 the model could offer favourable inference properties in situations that are prone to \pdc\
-(see the discussion Section~\ref{sec:discussion-festschrift}).
+(see the discussion in Section~\ref{sec:discussion-festschrift}).
 
 %***model could be vey useful in statistical surveillance, cite IESS:surveillance?***,
 Another potentially fruitful area of application is models for \emph{statistical surveillance}
-\parencite[see, e.g.,][]{2011:IESS-surveillance}.
+\parencite[for a brief overview see, e.g.,][]{2011:IESS-surveillance}.
 Here, the aim is to monitor a data-generating process over time
 to detect changes in the process as early as possible,
 without generating too many `false alarms'.
@@ -442,19 +445,19 @@ Such outbreak detection is usually analysed using likelihood ratios,
 comparing new observations with a model derived from previous observations. 
 As mentioned in footnote~\ref{foot:sequential}, page~\pageref{foot:sequential},
 we could also consider this problem in terms of \pdc:
-if a new batch of observations does not fit our current model
-(a set $\MN$ subsuming prior information and previous data),
-the posterior based on $\MN$ resonates this by increased imprecision,
+if a new batch of $m$ observations does not fit our current model
+(a set $\MN$ subsuming prior information and previous data of size $n$),
+the posterior based on $\mathcal{M}^{(n+m)}$ resonates this by increased imprecision,
 triggering the alarm.
 We would expect rectangular parameter set shapes to perform quite well in such a task,
-but also also other set shapes could prove useful here.
+but also other set shapes could prove useful here.
 
 \medskip
 
 %***\textbf{then: extend the model, but keep GBR framework}
-Now, we will present some of ideas for further developments within the framework
+Now, we will present some ideas for further development within the framework
 described in Section~\ref{sec:basicsetting}, i.e.,
-involving sets of priors, defined using canonical conjugates,
+for models based on sets of canonical conjugate priors
 that are updated via the Generalised Bayes' Rule.
 
 As a first important development,
@@ -468,38 +471,41 @@ in an analogous way to \textcite{2007:utkinaugustin} and \textcite{2009:Troffaes
 allowing to consider coarse or imprecise data adequately in the model,
 not idealising the data in a similar way as we ceased to idealise prior information by allowing for imprecision.
 %The detailed consequences of this development remain to be studied.
+%questions on (data) robustness of IP models, see isipta13 paper by Marco
 
 %new weakly informative prior models / prior near-ignorance models by Mangili \& Benavoli (ISIPTA'13) better in 3.2??
 
 %***study multidimensional stuff in more detail: definition of pdc now dimension-wise, other shapes?
 %***in general, how to elicit more complex shapes, especially difficult for multidimensional $\yz$
-Another important area for further development concerns the case of multidimensional $\yz$.
+Another important area for further study concerns the case of multidimensional $\yz$.
 Elicitation of such high-dimensional parameter sets $\PZ$ poses interesting challenges.
 The simple, `hyper-rectangle' set suggested in Section~\ref{sec:imprecise-alpha}, Equation~\eqref{eq:hyperparams:boxmodel},
-might not be adequate in all circumstances, but elicitation of more general sets $\YZ \times [\nzl, \nzu]$,
-or even arbitrary subsets of $\Y \times \posreals$ can be very difficult,
+although an effective choice for the application considered there,
+might not be adequate in all circumstances.
+However, elicitation of more general sets $\YZ \times [\nzl, \nzu]$,
+or even arbitrary subsets of $\Y \times \posreals$, can be very difficult,
 and further inquiries into this problem could be rewarding,
 also in connection to the application of the prior constructed in Section~\ref{sec:cccp},
 as problems in regression typically involve many covariates.
 
 Also, for $\PZ$ as in Equation~\eqref{eq:hyperparams:boxmodel},
 \pdc\ is mirrored by increased imprecision for each dimension separately
-(see Example~\ref{ex:jstp-8}, Figure~\ref{fig:idm-nvar-nopdc}).
+(see also Example~\ref{ex:jstp-8}, Figure~\ref{fig:idm-nvar-nopdc}).
 It is an open question if other prior set shapes entail
-different consequences with respect to \pdc\ sensitivity. 
+different consequences with respect to multidimensional \pdc\ sensitivity. 
 %***take only pair of $\nz$ values? behavioural implications?
 A possible approach to simplify elicitation in high-dimensional cases
-that could also be useful for lower-dimensional $\yz$ is to not consider
+(that could also be useful for lower-dimensional $\yz$) is to not consider
 $\NZ = [\nzl, \nzu]$, but $\NZ = \{\nzl, \nzu\}$,
 i.e., taking only a pair of $\nz$ values.
 This would not only simplify elicitation, but also make computation of posterior inferences
 probably more feasible.
-However, as with the discussion of the rectangular shape in Section~\ref{sec:concluding-discussion} above,
+However, similar to the discussion of the rectangular shape in Section~\ref{sec:concluding-discussion} above,
 the behavioural implications of such a choice of parameter set would have to be studied in detail.
 
 %***boatshape stuff: cater also for strong prior-data agreement***
-Before we will discuss more general arguments about learning and updating,***
-we will describe a novel idea for generating parameter prior sets $\PZ$
+Before we will discuss more general arguments about learning and updating,
+we will now describe a novel idea for generating parameter prior sets $\PZ$
 that, in addition to \pdc\ sensitivity, allow to mirror \emph{strong prior-data agreement}
 (i.e., the case when prior and data coincide especially well)
 by increased posterior precision.
@@ -508,29 +514,30 @@ As mentioned in Sections~\ref{sec:pdc-sensitivity} and \ref{sec:ibbm-resume},
 the shape of $\PZ$ determines the shape of $\PN$ and, via $\MN$, has a crucial influence on posterior inferences.
 In general lines, this influence is clear
 (see the studies on the behaviour of rectangular shapes in Sections~\ref{sec:jstp} and \ref{sec:isipta11}),
-but it may nevertheless be quite difficult to elicit more general set \emph{shapes} and ascertain their consequences.
+but it is nevertheless quite difficult to elicit more general set \emph{shapes} and to ascertain their consequences.
 
 Although the updating of the canonical parameters according to \eqref{eq:canonicalupdate},
 i.e., the weighted average update step for $\yz$, and the increment step for $\nz$,
 seems very intuitive (and is central to the behaviour of the model,
 see the list of inference properties in Section~\ref{sec:gbicp-properties-criteria}),
 the shape change of $\PZ$ to $\PN$ through this update step,
-and its effects on posterior inferences are difficult to grasp.
+and its effects on posterior inferences, are difficult to grasp.
 This is due to the fact that,
 while the update of a single coordinate $(\nz,\yz)$ is a simple shift,
 this shift is different for each of the coordinates in a set;
-in fact, the shift changes with both $\nz$ and $\yz$.%
+in fact, the shift of the $\yz$ component changes with both $\nz$ and $\yz$.%
 \footnote{As given by \eqref{eq:canonicalupdate},
 for the $\nz$ coordinate holds $\nz \mapsto \nz+n$,
 while for the $\yz$ coordinate holds $\yz \mapsto \frac{\nz\yz + \tau(\x)}{\nz+n} = \yz + \frac{\tau(\x)-n\yz}{\nz+n}$.}
-These different shift for the coordinates within a set
+These different shifts for the coordinates within a set
 lead to the change of shape from $\PZ$ to $\PN$.
 
 As this shape change is so problematic for understanding of the update step,
-a different parametrisation of the canonical priors would be desirable,
-in which each coordinate has the same shift in updating,
-such that updating of entire parameter sets
-can be expressed as a shift within this parameter space.
+a different parametrisation of the canonical priors
+in which each coordinate has the same shift in updating
+would be advantageous,
+such that updating of parameter sets
+could be expressed as a shift of the entire set within the parameter space.
 
 %yes, there is, see preliminary results by Mik Bickis (``personal communication'' if no citable work?).
 In fact, such a parametrisation has been developed by Mi\c{k}elis Bickis (personal communication),
@@ -543,55 +550,140 @@ while $\eta_0$ is just a shifted version of $\nz$.%
 along with some first technical results that confirm the desired properties for the novel shape suggested there.}
 In the parametrisation from Section~\ref{sec:regularconjugates},
 $\yz$ had the convenient property of being equal to $\E\big[\E[\ttau(\x) \mid \psi] \mid \nz, \yz\big]$,
-giving the (prior) expectation, or a prior guess, for the mean sample statistic.
+giving the (prior) expectation, or a prior guess, for the mean sample statistic $\ttau(\x)$.
 %rays of constant expectation (i.e., $\approx \yn$)
 Naturally, $\eta_1$ cannot have this property,
-but in the transformed space for the Beta-Binomial model, the points on a ray emanating from the coordinate $(-2,0)$
-will give a constant expectation of $\E[\ttau(\x) \mid \psi]$. 
+but in the transformed space for the Beta-Binomial model, the points on rays emanating from the coordinate $(-2,0)$
+will give a constant expectation of $\E[\ttau(\x) \mid \psi]$,
+such that interpretation of parameter sets in terms of $(\eta_0,\eta_1)$ is still relatively easy.
 
 As detailed in Section~\ref{sec:boatshape},
-the representation of priors through this parametrisation allows to tailor shapes for desired inference behaviour much easier.
+the representation of priors through this parametrisation allows to tailor shapes for desired inference behaviour much easier,
+because the \emph{shapes} remain constant.
 %GW and FC have thought of a shape that has \pdc\ sensitivity,
 Indeed, Frank Coolen and the author of this thesis have devised
-a set shape in this parametrisation that allows for both \pdc\ sensitivity
+a set shape in %this parametrisation
+that allows for both \pdc\ sensitivity
 %and gives `bonus precision' if prior and data agree especially well,
 and more precise inferences in case of strong prior-data agreement,
 a behaviour deemed very desirable in Section~\ref{sec:insights}
-and in the discussion of the Generalised Bayes' Rule in Section~\ref{sec:updating},
-and we are able to offer a solution that allows to remain within the generalised Bayesian framework,
-using the Generalsied Bayes' Rule for updating.
+and in the discussion of the Generalised Bayes' Rule in Section~\ref{sec:updating}.
+We are thus able to offer a solution ti this issue that allows to remain within the generalised Bayesian framework
+by using the Generalised Bayes' Rule for updating.
 
 Our preliminary studies show some very appealing results in case of the Beta-Binomial model,
-for which the parametrisation is discussed in Section~\ref{sec:boatshape}.
+for which a possible parametrisation of our shape is discussed in Section~\ref{sec:boatshape}.
 We are confident that these encouraging results also hold for the Normal-Normal model
 and in the general case of canonical conjugates,
 and a joint publication of Mi\c{k}elis Bickis, Frank Coolen and the author of this thesis is planned
 that will elaborate these findings in more detail.
 
+\medskip
 
-\textbf{finally, general thoughts about updating, learning, etc}
+%\textbf{finally, general thoughts about updating, learning, etc}
+Concluding the outlook, we will now turn to more general thoughts about updating and learning
+in the context of statistical inference using sets of priors.
 
-construct cattaneo's hierarchical models (Section~\ref{sec:hierarchical})
-based on the models discussed here
+%elaborate thoughts in Section~\ref{sec:updating} again,
+%see also comments at end of Section~\ref{sec:6-gw-071216},
+%***We discussed some general critique on the Generalised Bayes' Rule
+%and inferences based on it in Section~\ref{sec:updating}
+%and at the end of Section~\ref{sec:6-gw-071216}???.
+%***subsuming? ***We will thus pick out only some aspects here, discussing them in a larger context.***
 
-model suggestion in footnote~\ref{foot:coolenplusrinderknecht}, page~\pageref{foot:coolenplusrinderknecht}
+As we wrote in Section~\ref{sec:6-gw-071216},
+it should well be remembered that the models considered in this thesis
+consciously confined the whole argumentation to a certain Bayesian setting:
+we studied how far one can go \emph{if} one relies strictly on the Generalised Bayes' Rule,
+transferring sets of priors to sets of posteriors element by element via Bayes' Rule \eqref{eq:bayesrule}.
+Regarding the criticisms discussed in Section~\ref{sec:updating},
+alternative learning rules could thus provide superiour model behaviour.%
+\footnote{In Section~\ref{sec:alternatives}, we discussed some of the approaches
+mentioned in footnote~\ref{foot:learningrules}, page~\pageref{foot:learningrules},
+that consider alternative learning rules.}
 
-GBR, see Section~\ref{sec:updating}?
+However, we argue that some aspects of inferences based on the Generalised Bayes' Rule that are critizised
+in the literature
+%\footnote{See in particular Section~\ref{sec:updating}.***}
+can be confronted, or at least mitigated, by a careful choice of the sets of priors.
 
-considerations in Sectione~\ref{sec:insights}:
-prior and data in conflict is of less value than the sum of both:
-$\nz$ negative?
+We consider this, to some extent, to be the case for the critique that 
+the Generalised Bayes' Rule is too inflexible when prior information is confronted with surprising data,
+as it insists on coherence of posterior inferences with prior assumptions that,
+in the light of the data, may turn out to be inadequate.
+The models discussed in Sections~\ref{sec:pdc-sensitivity} and \ref{sec:jstp}
+mitigate this issue by allowing for \pdc\ sensitivity.
+The resulting posterior sets are still, in essence, a compromise between the prior set and the data,
+but mirror this conflict by increased imprecision.
+This increased imprecision can the serve as a `warning light',
+highlighting the doubts with regards to the posterior model in such a conflict,
+which may ultimatively motivate the analyst to reconsider her prior assignments.
+
+Another critique based on the presumed inflexibility of the Generalised Bayes' Rule
+relates to posterior inferences being often `too imprecise'.
+For the case of near-noninformative priors, this has been confronted
+by approaches by \textcite{1996:walley::idm}, \textcite{2009:bickis}, \textcite{2012:benavolizaffalon},
+and, most recently, by \textcite{2013:mangilibenavoli}.
+Although starting from a set of priors expressing near-ignorance.
+these approaches lead to reasonably precise posterior inferences.
+Our approach for a novel parameter set $\PZ$, %based on a different parametrisation
+described above and in Section~\ref{sec:boatshape},
+may be able to fend off this criticism by
+offering especially precise inferences when prior information and data are in accordance.
+
+Other critical aspects of the Generalised Bayes' Rule are more difficult to tackle.
+Especially the caveat by \textcite{2003:augustin},
+showing that the decision theoretic justification of Bayes' Rule
+as producing prior risk minimising decision functions does not extend to the case of sets of priors,
+should remind us that using the Generalised Bayes' Rule
+can lead to non optimal decision functions and thus, as one could argue,
+also not to optimal inference procedures.%
+\footnote{For a brief overview on decision theory in the context of imprecise probability methods, see \textcite{itip-decision}.}
+From this angle, the desire for alternative learning rules
+gains a more solid footing in our view.
+
+Indeed, we already considered some models going beyond the generalised Bayesian framework.
+Apart from our suggestion in footnote~\ref{foot:coolenplusrinderknecht}, page~\pageref{foot:coolenplusrinderknecht},
+that could lead to an interesting model combining sophisticated elicitation with reasonable handling of imprecision,
+we think that a very attractive approach to inference where prior information can be included in the reasoning
+is the model by \textcite{2008:cattaneo} in the variant that
+allows to incorporate prior information by using a so-called prior likelihood.
+Along the lines of \textcite{2011:4:isipta},
+it would even be possible to apply the hierarchical level to models of the framework of Section~ref{generalmodel}.
+An approach that we studied in more detail is weighting model from Section~\ref{sec:weightedinf}.
+It was motivated by the dual role of $\nz$ in the framework from Section~\ref{generalmodel},
+controlling both posterior precision and derivation from prior assignments
+that can lead to unintuitive results in case of strong prior data agreement (see the discussion in Section~\ref{sec:ibbm-resume}).
+Another idea for models outside the generalised Bayesian framework
+related to the role of $\nz$ was discussed in Section~\ref{sec:insights},
+where we argued that a possible way to react to prior-data
+conflict could be to consider the combined information of prior and data
+to be of less value than either the real data themselves
+or than both information sources separately.
+When strong prior beliefs collide with contradicting data,
+this could lead to severe doubt about what is actually going on.
+To model this, one could consider allowing the prior strength parameter $\nz$
+to take on negative values, opening up a rich field for research and discussions.
 
 
-elaborate thoughts in Section~\ref{sec:updating} again,
-see also comments at end of Section~\ref{sec:6-gw-071216},
+We hope that further studies like, e.g., those trying to refine the concept of coherence
+towards allowing very substantial revisions in case of surprising data,%
+\footnote{We briefly mentioned this concept of \emph{temporal coherence} %\parencite{1985:goldstein::temporal}
+in Section~\ref{sec:updating}.}
+will pave the way for models resonating the (partly philosophical)
+reasoning of Hampel \parencite{2009:hampel:knowledge,2011:hampel},
+who argues that in order to represent learning,
+we have to be able to model situations
+where the whole system of background knowledge is revised
+in the light of surprising observations.
 
-dual role of $\nz$? (Section~\ref{sec:ibbm-resume})
 
-belief revision versus updating?
 
-Hampel: how can we *** new evidence?
 
-questions on (data) robustness of IP models, see isipta13 paper by Marco
+
+
+
+
+
 
 

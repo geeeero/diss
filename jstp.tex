@@ -103,14 +103,17 @@ to obtain the set ${\cal M}_{|\x}$ of posterior distributions. This
 updating procedure is understood as self-evident in the robust
 Bayesian framework \parencite[e.g.,][]{2000:rios}, and can be moreover
 justified by deriving it from general coherence arguments in the
-theory developed by \textcite{1991:walley}.%
+theory developed by \textcite{1991:walley}, where it is referred to as the \emph{Generalised Bayes' Rule}.%
 \footnote{See Sections~\ref{sec:gbr} and \ref{sec:imprecisebayes}.}
 Although there are some
 strong arguments for a plurality of learning rules,%
-\footnote{See, e.g.,
+\footnote{\label{foot:learningrules}See, e.g.,
 \textcite{2009:Coolen:Augustin}, \textcite{2007:weichselberger}, \textcite{2007a:cattaneo},
 \textcite{2007:held}, \textcite{2007:held-isipta07}, \textcite{2009:Coolen:Augustin},
-\textcite{2004:augustin:coolen}, \textcite{2003:augustin}, and Section~\ref{sec:updating}.} we
+\textcite{2004:augustin:coolen}, and \textcite{2003:augustin}.
+We discuss some of these approaches in Section~\ref{sec:alternatives},
+and the critical aspects of the Generalised Bayes' Rule discussed in others in Section~\ref{sec:updating}
+and again in Section~\ref{sec:concluding-outlook}.} we
 will strictly rely on this approach in this contribution.
 %throughout ***this Section*** when we speak of \emph{generalised Bayesian inference}.
 
@@ -193,7 +196,7 @@ IDM to the general class considered here.
 
 \medskip
 
-***The remainder of ***this section*** is structured as follows:
+The remainder of this section is structured as follows:
 In Section~\ref{070517-sec2-1}, we provide the formal background
 by distinguishing a wide class of classical, precise probability models
 where Bayesian inference has a particular form, being directly
@@ -203,7 +206,7 @@ We illustrate these models and then show in Section~\ref{sec:4-gw-071216}
 how these models can be extended to deal with prior-data conflict in a more sensible way,
 by additionally varying another parameter.
 Section~\ref{sec:illu} illustrates our procedure in two important special cases:
-inferences on the mean of a normal distribution and in the IDM.***
+inferences on the mean of a normal distribution and in the IDM.
 
 
 \subsection{Traditional Bayesian Inference and LUCK-models}
@@ -1138,7 +1141,7 @@ tend the more to the sample mean the larger the sample gets.
 \end{example}
 
 
-\subsection{Concluding Remarks}
+\subsection{Concluding Remarks***}
 \label{sec:6-gw-071216}
 
 ***change it or leave it? draw links to other chapters and sections?***
@@ -1157,24 +1160,31 @@ widely used situations, inference from a scaled normal and
 from a multinomial distribution, corroborating that our extension
 shows promising behavior.
 
-Further research will start with a more detailed study of
-the behavior of the proposed model, also taking into consideration
-that it may have some problems with dealing with very extreme
-degrees of conflict. Then careful attention should also be paid to
+Further research will start with a more detailed study of the behavior of the proposed model,
+also taking into consideration that it may have some problems
+with dealing with either minor or very extreme degrees of conflict.%
+\footnote{See the study in Section~\ref{sec:isipta11}.}
+Then careful attention should also be paid to
 other approaches for generalised Bayesian inference in exponential
 families \parencite{1993:coolen, 1997:boratynska} under prior data
 conflict, as well as to a thorough comparison of the inference
 developed here with the discretisation-based models considered by
 \textcite{2005:whitcomb}, and with the approaches of \textcite{1991:pericchi}
-and \textcite{1994:coolen}, who use different prior classes.
+and \textcite{1994:coolen}, who use different prior classes.%
+\footnote{A discussion of the approaches by Coolen \parencite{1993:coolen,1994:coolen},
+\textcite{2005:whitcomb}, and \textcite{1991:pericchi} was given in Section~\ref{sec:alternatives};
+The approach by \textcite{1997:boratynska} was mentioned in
+Section~\ref{sec:basicsetting}, where we concluded that her approach
+belongs to models of type~(\ref{enum:modeltypes-a}) that are insensitive to \pdc.}
 
 Far beyond these further developments, it should well be
-remembered that this ***paper*** consciously confined the whole
+remembered that this study consciously confined the whole
 argumentation to a certain Bayesian setting: we studied how far
-one can go \emph{if} one relies strictly on the generalised Bayes
-rule, transferring sets of priors to sets of posteriors element by
-element via Bayes rule. Alternative learning
-rules, including the approaches enumerated at Section~\ref{sec:jstp-intro},% %***paper intro*** %\ref{sec:intro},
+one can go \emph{if} one relies strictly on the Generalised Bayes'
+Rule, transferring sets of priors to sets of posteriors element by
+element via Bayes' Rule \eqref{eq:bayesrule}. Alternative learning
+rules, including the approaches enumerated in footnote~\ref{foot:learningrules}, page~\pageref{foot:learningrules},
+%at Section~\ref{sec:jstp-intro},% %***paper intro*** %\ref{sec:intro},
 \footnote{See also the critique regarding the Generalised Bayes' Rule in Section~\ref{sec:updating}.}
 could prove very important as, to use one of the referees'
 felicitous words, ``Bayesian methods cannot allow for surprise, the same is

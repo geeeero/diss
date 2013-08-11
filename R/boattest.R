@@ -39,9 +39,9 @@ dev.off()
 
 
 # in Mik's world
-postscript("boatshape-posterior-mik.ps", width=10.5, height=8)
+postscript("boatshape-posterior-mik.ps", width=10, height=6)
 boat1 <- list(xp = c(1,6), a = 2, b = 0.8, yc = 0.5, data = list(tau = 8, n = 8))
-boatplotter(boat1, prior=F, xlims=c(0,23), ylims=c(-10,10))
+boatplotter(boat1, prior=F, xlims=c(0,23), ylims=c(-5,10))
 boatplotter(boat1, add=T)
 boat1$data <- list(tau = 4, n = 8)
 boatplotter(boat1, prior=F, add=T)

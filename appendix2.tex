@@ -91,7 +91,9 @@ keeping in mind that in reality it can only take on integer values.}
 
 \begin{figure}  %trim=l b r t
 \centering
-\includegraphics[trim = 80mm 45mm 80mm 60mm, clip, width=0.7\textwidth]{R/boatshape-domain}
+%\fbox{%
+\includegraphics[trim = 80mm 45mm 80mm 60mm, clip, width=0.7\textwidth]{R/boatshape-domain}%
+%}
 \caption[Bounds for the domain of $\eta_0$ and $\eta_1$ for the Beta-Binomial model,
 with rays of constant expectation for $y_c = \{0.1,0.2,\ldots,0.9\}$.]%
 {Bounds for the domain of $\eta_0$ and $\eta_1$ for the Beta-Binomial model (black),
@@ -169,7 +171,9 @@ as illustrated in Figure~\ref{fig:boatshape-vertical}.
 
 \begin{figure}  %trim=l b r t
 \centering
-\includegraphics[trim = 15mm 45mm 25mm 60mm, clip, width=\textwidth]{R/boatshape-vertical}
+%\fbox{%
+\includegraphics[trim = 15mm 45mm 25mm 60mm, clip, width=\textwidth]{R/boatshape-vertical}%
+%}
 \caption[Line segment parameter set $\EZ$ %
 and respective posterior sets for $s/n=0.5$ and $s/n=0.9$.]%
 {Parameter set $\EZ = \ezz \times [\text{\underline{$\eta$}${}_1\uz$},\eozu]$ and respective posterior sets $\EN$
@@ -209,7 +213,7 @@ of the constant rays of expectation.
 The shape we suggest thus looks like a bullett, or like a boat with a transom stern
 (see Figure~\ref{fig:boatshape-prior}).
 
-\subsection{Basic Definition}
+\subsubsection{Basic Definition}
 \label{sec:basicdefboat}
 
 We will now present a parametrisation for such a boat-shaped parameter set $\EZ$.
@@ -238,17 +242,20 @@ We will also need the respective derivations with respect to $\eta_0$, given by
 
 For this basic situation, given the parameters $\ezl$, $\ezu$, $a$, and $b$,
 $\EZ$ is thus defined as
-\begin{align*}
+\begin{align}
+\label{eq:basicset}
 \EZ =
 \{(\eta_0,\eta_1) \colon \ezl \le \eta_0 \le \ezu, \czl(\eta_0) \le  \eta_1 \le \czu(\eta_0) \}\,.
-\end{align*}
+\end{align}
 A prior boatshape set with $\ezl=1$, $\ezu=6$, $a=2$, and $b=0.8$ is depicted in Figure~\ref{fig:boatshape-prior},
 where the left graph shows this set as defined in terms of $(\eta_0,\eta_1)$,
 and the right graph shows the set from the left transformed into the space $\N \times \Y$.
 
 \begin{figure}  %trim=l b r t
 \centering
-\includegraphics[trim = 15mm 45mm 25mm 60mm, clip, width=\textwidth]{R/boatshape-prior}
+%\fbox{%
+\includegraphics[trim = 15mm 45mm 25mm 60mm, clip, width=\textwidth]{R/boatshape-prior}%
+%}
 \caption[Boatshape prior set in the parametrisation via $(\eta_0,\eta_1)$ and via $(\nz,\yz)$.]%
 {Boatshape prior set in the parametrisation via $(\eta_0,\eta_1)$ (left) and via $(\nz,\yz)$ (right),
 with parameters $\ezl=1$, $\ezu=6$, $a=2$, and $b=0.8$.}
@@ -270,7 +277,9 @@ For $[\yzl, \yzu]$, the choice of $\ezu$ is irrelevant.%
 
 \begin{figure}  %trim=l b r t
 \centering
-\includegraphics[trim = 15mm 10mm 25mm 25mm, clip, width=\textwidth]{R/boatshape-posterior-mik}
+%\fbox{%
+\includegraphics[trim = 20mm 35mm 30mm 45mm, clip, width=\textwidth]{R/boatshape-posterior-mik}%
+%}
 \caption[Boatshape prior and posterior sets for data in accordance and in conflict with the prior.]%
 {Boatshape prior and posterior sets for data in accordance and in conflict with the prior.
 The prior set is the same as in Figure~\ref{fig:boatshape-prior}.
@@ -287,7 +296,9 @@ while at least one touchpoint is at the end for all other sets.
 
 \begin{figure}  %trim=l b r t
 \centering
-\includegraphics[trim = 15mm 45mm 25mm 60mm, clip, width=\textwidth]{R/boatshape-posterior-normal}
+%\fbox{%
+\includegraphics[trim = 15mm 45mm 25mm 60mm, clip, width=\textwidth]{R/boatshape-posterior-normal}%
+%}
 \caption[Boatshape prior and posterior sets from Figure~\ref{fig:boatshape-posterior-mik} in the parametrisation via $(\nz,\yz)$.]%
 {Boatshape prior and posterior sets from Figure~\ref{fig:boatshape-posterior-mik} in the parametrisation via $(\nz,\yz)$.
 Note that in the strong prior-data agreement case,
@@ -295,6 +306,202 @@ posteriors based on a rectangular set with the same prior main parameter impreci
 would be larger than the ones depicted here, illustrating the extra gain in precision.}
 \label{fig:boatshape-posterior-normal}
 \end{figure}
+
+
+\subsubsection{Finding the Touchpoints for the Basic Set}
+
+In contrast to models discussed in Section~\ref{sec:generalmodel},
+where $\yzl$ and $\yzu$ were at either ends of a set $\PZ$,
+here, for a set \eqref{eq:basicset}, the touchpoints $\yzl$ and $\yzu$ 
+are not necessarily at $\ezzl$ or $\ezzu$.
+\footnote{See, e.g., the prior in Figure~\ref{fig:boatshape-prior}.}
+Instead, the rays of constant expectation \eqref{eq:raysofconstantexpectation}
+touching the parameter set must be determined to find $\yzl$ and $\yzu$.
+To do this, the tangent equations for the lower and the upper contour function
+depending on $\eta_0$ are determined.
+As all rays of constant expectation pass through the point $(-2,0)$,
+the tangent that passes through this point is determined by inserting this point
+into the tangent equation, and the resulting equation is solved for $\eta_0$.
+The resulting points $(\eta_0^u,\czu(\eta_0^u))$ resp.\ $(\eta_0^l,\czl(\eta_0^l))$
+then give the touchpoints of the parameter set,
+and can be transformed to $\yzl$ and $\yzu$ by using \eqref{eq:trafotony}.
+
+As the basic set is symmetrical to the $\eta_0$ axis, $\eta_0^u = \eta_0^l$,
+and it suffices to find, e.g., $\eta_0^u$, by considering the upper contour tangent.
+
+We denote the tangent in contour point $(\eta_0,\czu(\eta_0))$ by
+\begin{align*}
+\ol{t}_{\eta_0}(x) &= dx + i\,,
+\end{align*}
+where $d = \frac{d}{d\eta_0} \czu(\eta_0)$ and
+$i$ such that $\ol{t}_{\eta_0}(x)$ goes through the point $(\eta_0,\czu(\eta_0))$:
+\begin{align*}
+\ol{t}_{\eta_0}(x) &= dx + i \quad \equiv\\
+\czu(\eta_0) &= \frac{d}{d\eta_0} \czu(\eta_0) \eta_0 + i \\
+i &= \czu(\eta_0) -\frac{d}{d\eta_0} \czu(\eta_0) \eta_0 \\
+  &= a - a e^{-b(\eta_0 - \ezl)} - \eta_0 ab e^{-b(\eta_0 - \ezl)} \\
+  &= a - a (1 + b \eta_0) e^{-b(\eta_0 - \ezl)} \\
+\Longrightarrow\quad
+\ol{t}_{\eta_0}(x) &= ab e^{-b(\eta_0 - \ezl)} x + a - a (1 + b \eta_0) e^{-b(\eta_0 - \ezl)} \\
+                   &= a - a \big(1 + b(\eta_0-x)\big) e^{-b(\eta_0 - \ezl)}
+\end{align*}
+
+Now, let us find the touchpoint $(\eta_0^u, \czu(\eta_0^u))$ whose tangent goes through $(-2,0)$, as this gives us $\yzu$.
+We insert $(-2,0)$ into the tangent equation and solve for $\eta_0$.
+\begin{align}
+a - a \big(1 + b(\eta_0^u + 2)\big) e^{-b(\eta_0^u - \ezl)} &\stackrel{!}{=} 0 \nonumber\\
+1 + b(\eta_0^u + 2) &\stackrel{!}{=} e^{b(\eta_0^u - \ezl)} \label{eq:eta0u}
+\end{align}
+This equation has only one solution for $\eta_0^u > \ezl$, that is,
+however, not available in closed form.
+
+As a general rule, the nearer $\eta_0^u$ is to $\ezl$, the larger $\frac{d}{d\eta_0} \czu(\eta_0^u)$,
+that is, $\yzu$ %the upper expected value for the prior set
+is more away from $\frac{1}{2}$.
+Here, this means that the larger $\eta_0^u$, the more imprecise is the prior parameter set.
+
+\subsubsection{Strong Prior-Data Agreement Property}
+\label{sec:spda-property}
+
+For a prior parameter set $\EZ = \ezz \times [\eozl,\eozu]$
+%, with $\eta_0 = \ezz$ fixed and $\eta_1$ varying in an interval $[\eol, \eou]$
+symmetric around $0$,
+the prior upper expected value $\yzu$
+results from the transformation \eqref{eq:trafotony} of the point $(\ezz,\eozu)$.
+The posterior upper expected value $\ynu$,
+given data that coincide especially well with the prior,
+i.e., data with $s = \frac{n}{2}$, will then be found at the point $(\ezz+n,\eozu)$,
+because in this case, the set does not move in the vertical ($\eta_1$) direction.
+As $\yz$ is decreasing in $\eta_0$ and $\eta_1$ is constant, $\ynu$ %the posterior upper expected value
+will be lower than $\yzu$, i.e., imprecision is reduced.
+
+Imprecision is, however, even more strongly reduced for the boatshape parameter set \eqref{eq:basicset}.
+Say, we define the prior parameter set such that the prior upper touchpoint
+is at the $\eta_0$ coordinate $\eta_0^u = \ezz$.
+For this shape, the $\eta_0$ coordinate for the posterior upper touchpoint ${\eta_0^u}\un$
+will be  larger than the updated $\ezz$, i.e., ${\eta_0^u}\un > \ezz + n$ (as will be shown below), and thus $\ynu$ is lower.
+Although the $\eta_1$ coordinate will be slightly larger at the point $({\eta_0^u}\un, \ol{c}({\eta_0^u}\un))$
+as compared to the point $(\ezz+n,\eozu)$, the corresponding $\ynu$ is still lower,
+as it holds that
+\begin{align*}
+\frac{d}{d\eta_0} \ol{c}({\eta_0^u}\un) < \frac{d}{d\eta_0} \ol{c}(\ezz + n)
+\end{align*}
+because $\frac{d}{d\eta_0} \ol{c}(\eta_0)$ is decreasing in $\eta_0$,
+and a smaller slope for the tangent through $(-2,0)$ is equivalent to a lower $\ynu$.
+This is the desired reduction in imprecision for the case of strong prior-data agreement,
+also depicted exemplarily in Figures~\ref{fig:boatshape-posterior-mik} and \ref{fig:boatshape-posterior-normal}.
+
+The property ${\eta_0^u}\un > \ezz + n$ of the boatshape set will be shown below.
+Due to symmetry of prior and posterior parameter shape around the $\eta_0$ axis,
+${\eta_0^u}\un = {\eta_0^l}\un$, i.e.,
+the touchpoint at the upper contour (giving $\ynu$) is equal to
+the touchpoint at the lower contour (giving $\ynl$),
+and thus, the argument formulated in terms of ${\eta_0^u}\un$ holds also for ${\eta_0^l}\un$.
+
+The upper exponential contour for the posterior boatshape,
+updated with $s = \frac{n}{2}$, has its `prow' now at $(\ezl + n, 0)$,
+and is defined by the function
+\begin{align*}
+\ol{c}(\eta_0) &= a \left( 1 - e^{-b(\eta_0 - n -\ezl)} \right) \\
+\frac{d}{d\eta_0} \ol{c}(\eta_0) &= ab e^{-b(\eta_0 - n - \ezl)} \,.
+\end{align*}
+
+The tangent in contour point $(\eta_0,\ol{c}(\eta_0))$ is
+\begin{align*}
+\ol{t}_{\eta_0}(x) &= a - a \big(1 + b(\eta_0-x)\big) e^{-b(\eta_0 - n - \ezl)} \,.
+\end{align*}
+
+Again, we insert $(-2,0)$ into this tangent equation and solve for $\eta_0$.
+\begin{align}
+a - a \big(1 + b({\eta_0^u}\un + 2)\big) e^{-b({\eta_0^u}\un - n - \ezl)} &\stackrel{!}{=} 0 \nonumber\\
+1 + b({\eta_0^u}\un + 2) &\stackrel{!}{=} e^{b({\eta_0^u}\un - n - \ezl)} \,.\label{eq:eta0uposterior}
+\end{align}
+We compare now \eqref{eq:eta0uposterior} to \eqref{eq:eta0u} and conclude
+that indeed ${\eta_0^u}\un > \ezz + n$.
+
+\begin{figure}
+\centering
+\begin{tikzpicture}[pin distance=1cm]
+\node (0,0) {%\fbox{% %trim=l b r t
+\includegraphics[trim = 45mm 35mm 45mm 45mm, clip, width=\textwidth]{R/prior-vs-posterior-eta0u}%
+};
+\coordinate (x1) at (-0.35,-1.21);
+\draw (x1) circle (2.5pt);
+\coordinate [pin=below:${\eta_0^u}\uz$] (a1) at (-0.35,-3.24);
+\draw[dashed] (x1) -- (a1);
+\coordinate (x2) at ( 5.2 ,-0.15);
+\draw (x2) circle (2.5pt);
+\coordinate [pin=-70:${\eta_0^u}\un$] (a2) at ( 5.2,-3.24);
+\draw[dashed] (x2) -- (a2);
+\coordinate (x1n) at (3.8,-1.21);
+%\draw (x1n) circle (2.5pt);
+%\coordinate [label=below:${\eta_0^u}\uz + n$] (a1n) at (3.8,-3.5);
+\coordinate [pin=below:${\eta_0^u}\uz + n$] (a1n) at (3.8,-3.24);
+\draw[dashed] (x1) -- (x1n) -- (a1n);
+\end{tikzpicture}
+\caption{Illustration for the argument that ${\eta_0^u}\un > {\eta_0^u}\uz + n$.}
+\label{fig:spda1}
+\end{figure}
+
+In Figure~\ref{fig:spda1}, the two exponential graphs have the same curvature,
+the right one is the same as the left, only being shifted to the right by $n$.
+The value of $\ezz + n$, defined as the abscissa of the intersection of the left exponential and the linear function,
+being shifted to the right by $n$, would thus be on the right exponential curve.
+Because ${\eta_0^u}\un$ results from the intersection of the right exponential curve and the linear function,
+it is necessarily larger than ${\eta_0^u}\uz + n$, as the linear function is increasing.
+
+
+\subsubsection{General Update with \texorpdfstring{$s > \frac{n}{2}$}{s > n/2}}
+\label{sec:generalupdate}
+
+Let us now consider updating of the basic boatshape \eqref{eq:basicset}. %symmetric around the $\eta_0$ axis,
+As the prior set is symmetric around the $\eta_0$ axis,
+the touchpoints are located at the same $\eta_0$ coordinate,
+the resulting $\yzl$ and $\yzu$ having the same distance to $0.5$.
+
+According to \eqref{eq:eta-update},
+$\eta_0$ coordinates are incremented by $n$, while
+$\eta_1$ coordinates are incremented by $s+\frac{n}{2}$.
+That is, if $s \neq \frac{n}{2}$, the updated set is no longer symmetric around the $\eta_0$ axis,
+such that we must consider the lower and upper contours separately.
+
+The upper and lower contours and their respective derivatives for the updated boatshape set are now
+\begin{align*}
+\ol{c}(\eta_0)                   &= s - \frac{n}{2} + a - a e^{-b(\eta_0 - n - \ezl)} \,,\\
+\frac{d}{d\eta_0} \ol{c}(\eta_0) &=                      ab e^{-b(\eta_0 - n - \ezl)} \,,\\
+\ul{c}(\eta_0)                   &= s - \frac{n}{2} - a + a e^{-b(\eta_0 - n - \ezl)} \,,\\
+\frac{d}{d\eta_0} \ul{c}(\eta_0) &=                     -ab e^{-b(\eta_0 - n - \ezl)} \,.
+\end{align*}
+The upper and lower tangents in contour point $(\eta_0,c(\eta_0))$ are now given by
+\begin{align*}
+\ol{t}_{\eta_0}(x) &= s - \frac{n}{2} + a - a \big(1 + b(\eta_0-x)\big) e^{-b(\eta_0 - n - \ezl)} \,,\\
+\ul{t}_{\eta_0}(x) &= s - \frac{n}{2} - a + a \big(1 + b(\eta_0-x)\big) e^{-b(\eta_0 - n - \ezl)} \,.
+\end{align*}
+Inserting again $(-2,0)$, we get the equations defining the $\eta_0$ coordinates
+${\eta_0^u}\un$ and ${\eta_0^l}\un$
+that give us $\ynu$ and $\ynl$, respectively:
+\begin{align}
+%s - \frac{n}{2} + a - a \big(1 + b(\eta_0^u + 2)\big) e^{-b(\eta_0^u - n - \ezl)} &\stackrel{!}{=} 0 \nonumber\\
+\label{eq:eta0u-general}
+\frac{a}{s - \frac{n}{2} + a} \big(1 + b(\eta_0^u + 2)\big) &\stackrel{!}{=} e^{b(\eta_0^u - n - \ezl)} \,,\\
+\label{eq:eta0l-general}
+\frac{a}{\frac{n}{2} -s  + a} \big(1 + b(\eta_0^u + 2)\big) &\stackrel{!}{=} e^{b(\eta_0^u - n - \ezl)} \,.
+\end{align}
+
+We see thus that the picture from Figure~\ref{fig:spda1} holds here as well,
+except that the linear function (left hand side of equations
+\eqref{eq:eta0u-general} and \eqref{eq:eta0l-general}) is changed in slope and intercept by a factor.
+(Equivalently, we can consider it to be rotated around the root $-2-\frac{1}{b}$.)
+For $s=\frac{n}{2}$, this factor is 1 for both the lower and the upper touchpoint,
+resulting in the situation of strong prior-data agreement as considered in Section~\ref{sec:spda-property},
+where ${\eta_0^u}\un = {\eta_0^l}\un$ moved to the right.
+
+Due to symmetry, we will consider the case $s > \frac{n}{2}$ only 
+to describe ${\eta_0^u}\un$ and ${\eta_0^l}\un$.
+
+
+
+
 
 
 --------------------------------

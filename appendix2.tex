@@ -116,8 +116,9 @@ will have a constant expectation $y_c$.
 The domain $\Eta$, and these \emph{rays of constant expectation} emanating from the coordinate $(-2,0)$,
 are depicted in Figure~\ref{fig:boatshape-domain}.
 
-\subsection{The Boatshape}
-\label{sec:boatshape-2}
+
+\subsection{Informal Rationale for Boat-Shaped Parameter Sets}
+\label{boatshape-rationale}
 
 When Mi\c{k}elis Bickis presented this parametrisation of conjugate priors at a talk,
 both Frank Coolen and the author of this thesis had independently the same basic idea
@@ -126,10 +127,7 @@ for a set shape that allows for both \pdc\ sensitivity
 and more precise inferences in case of strong prior-data agreement.
 The basic idea for this shape is described informally below,
 while a suggestion for a parametrisation of such a shape is described and discussed
-in the later subsections.
-
-\subsubsection{Informal Rationale for Boat-Shaped Parameter Sets}
-\label{boatshape-rationale}
+in Section~\ref{sec:boatshape-2}.
 
 In the parametrisation in terms of $(\nz,\yz)$ and $(\nn, \yn)$,
 posterior inferences become more precise,
@@ -211,7 +209,18 @@ are attained at higher values of $\eta_0$ in case of strong prior-data agreement
 Shapes that accomplish this must have a curvature along their length in the direction
 of the constant rays of expectation.
 The shape we suggest thus looks like a bullett, or like a boat with a transom stern
-(see Figure~\ref{fig:boatshape-prior}).
+(see, e.g., Figure~\ref{fig:boatshape-prior}).
+
+
+
+\subsection{The Boatshape}
+\label{sec:boatshape-2}
+
+In this Section, %~\ref{sec:boatshape-2} below,
+%Now,
+we will suggest a parametrisation for such a shape.
+The definition, along with some first graphical examples, is given in Section~\ref{sec:basicdefboat},
+and we discuss some first technical results for this shape in Sections~\ref{sec:touchpoints} -- \ref{sec:generalupdate}.
 
 \subsubsection{Basic Definition}
 \label{sec:basicdefboat}
@@ -222,7 +231,7 @@ that are symmetric around the $\eta_0$ axis, i.e., centered around $y_c = 0.5$,
 expressing prior the information that we deem a fraction of successes of $\frac{s}{n} = \frac{1}{2}$
 as the most probable.%
 \footnote{The general case of sets $\EZ$ with central ray $y_c \neq 0.5$
-is discussed informally in *****}
+is discussed informally in Section~\ref{sec:boatshape-outlook}.}
 
 For the contours of $\EZ$, we suggest an exponential function as the functional form,
 where the `prow' of the set is located at $(\ezl, 0)$.
@@ -309,6 +318,7 @@ would be larger than the ones depicted here, illustrating the extra gain in prec
 
 
 \subsubsection{Finding the Touchpoints for the Basic Set}
+\label{sec:touchpoints}
 
 In contrast to models discussed in Section~\ref{sec:generalmodel},
 where $\yzl$ and $\yzu$ were at either ends of a set $\PZ$,
@@ -360,8 +370,12 @@ that is, $\yzu$ %the upper expected value for the prior set
 is more away from $\frac{1}{2}$.
 Here, this means that the larger $\eta_0^u$, the more imprecise is the prior parameter set.
 
+
 \subsubsection{Strong Prior-Data Agreement Property}
 \label{sec:spda-property}
+
+We will now prove the essential property that sets \eqref{eq:basicset}
+will lead to especially precise inferences when data are strongly suporting prior information.
 
 For a prior parameter set $\EZ = \ezz \times [\eozl,\eozu]$
 %, with $\eta_0 = \ezz$ fixed and $\eta_1$ varying in an interval $[\eol, \eou]$
@@ -427,16 +441,16 @@ that indeed ${\eta_0^u}\un > \ezz + n$.
 };
 \coordinate (x1) at (-0.35,-1.21);
 \draw (x1) circle (2.5pt);
-\coordinate [pin=below:${\eta_0^u}\uz$] (a1) at (-0.35,-3.24);
+\coordinate [pin=-93:${\eta_0^u}\uz$] (a1) at (-0.35,-3.24);
 \draw[dashed] (x1) -- (a1);
 \coordinate (x2) at ( 5.2 ,-0.15);
 \draw (x2) circle (2.5pt);
-\coordinate [pin=-70:${\eta_0^u}\un$] (a2) at ( 5.2,-3.24);
+\coordinate [pin=-75:${\eta_0^u}\un$] (a2) at ( 5.2,-3.24);
 \draw[dashed] (x2) -- (a2);
 \coordinate (x1n) at (3.8,-1.21);
 %\draw (x1n) circle (2.5pt);
 %\coordinate [label=below:${\eta_0^u}\uz + n$] (a1n) at (3.8,-3.5);
-\coordinate [pin=below:${\eta_0^u}\uz + n$] (a1n) at (3.8,-3.24);
+\coordinate [pin=-93:${\eta_0^u}\uz + n$] (a1n) at (3.8,-3.24);
 \draw[dashed] (x1) -- (x1n) -- (a1n);
 \end{tikzpicture}
 \caption{Illustration for the argument that ${\eta_0^u}\un > {\eta_0^u}\uz + n$.}
@@ -454,12 +468,15 @@ it is necessarily larger than ${\eta_0^u}\uz + n$, as the linear function is inc
 \subsubsection{General Update with \texorpdfstring{$s > \frac{n}{2}$}{s > n/2}}
 \label{sec:generalupdate}
 
-Let us now consider updating of the basic boatshape \eqref{eq:basicset}. %symmetric around the $\eta_0$ axis,
-As the prior set is symmetric around the $\eta_0$ axis,
-the touchpoints are located at the same $\eta_0$ coordinate,
-the resulting $\yzl$ and $\yzu$ having the same distance to $0.5$.
+Let us now consider the update of the basic boatshape \eqref{eq:basicset} %symmetric around the $\eta_0$ axis,
+in the general case $s \neq \frac{n}{2}$.
+Due to symmetry of the prior set, we can, without loss of generality,
+consider again only the case $s > \frac{n}{2}$.
 
-According to \eqref{eq:eta-update},
+For the prior set, being symmetric around the $\eta_0$ axis,
+both touchpoints are located at the same $\eta_0$ coordinate,
+the resulting $\yzl$ and $\yzu$ having the same distance to $0.5$.
+Regarding the posterior set, according to \eqref{eq:eta-update},
 $\eta_0$ coordinates are incremented by $n$, while
 $\eta_1$ coordinates are incremented by $s+\frac{n}{2}$.
 That is, if $s \neq \frac{n}{2}$, the updated set is no longer symmetric around the $\eta_0$ axis,
@@ -499,22 +516,129 @@ where ${\eta_0^u}\un = {\eta_0^l}\un$ moved to the right.
 Due to symmetry, we will consider the case $s > \frac{n}{2}$ only 
 to describe ${\eta_0^u}\un$ and ${\eta_0^l}\un$.
 
+\paragraph{Description of ${\eta_0^u}\un$.}
+
+The factor to the linear function $\frac{a}{s - \frac{n}{2} + a}$
+in \eqref{eq:eta0u-general} is smaller than $1$ and decreasing in $s$.
+Thus, the larger $s$, the smaller the factor, the most extreme case being $s=n$,
+where the factor is $\frac{a}{\frac{n}{2} + a}$.
+As the linear function's slope will be less steep (the intercept is lowered as well),
+%\footnote{The common root of the linear functions for any $s$ is at $\eta_0 = -2 -\frac{1}{b}$.}
+the intersection with the exponential function moves to the left,
+i.e.\ $\eta_0^u(s) < \eta_0^u(\frac{n}{2})$ for $\frac{n}{2} < s \le n$.
+This means that $\ynu(s) > \ynu(\frac{n}{2})$ in general.
+However, decrease of $\eta_0^u(s)$ is limited by $\ezl+n$.
+When the intersection point reaches the left end of the shape at $\ezl+n$,
+the gradual increase of $\ynu$ through the changing tangent slope 
+for $\ezl+n \le \eta_0^u(s) \le \eta_0^u(\frac{n}{2})$ is replaced
+by a different change mechanism,
+where increase of $\ynu$ is solely due to increase in the $\eta_1$ direction.
+Due to \eqref{eq:trafotony}, $\ynu$ is then linear in $s$.
+
+\paragraph{Description of ${\eta_0^l}\un$.}
+
+In \eqref{eq:eta0l-general}, the factor to the linear function is $\frac{a}{\frac{n}{2} - s + a}$.
+Here, we have to distinguish the two cases $\frac{n}{2} \le s < \frac{n}{2} + a$
+and $s \ge \frac{n}{2} + a$.
+In the first case, the factor is larger than $1$ and increasing in $s$.
+Therefore, the intersection of the linear function with the exponential function
+will move towards the right, i.e., we will have a larger ${\eta_0^l}\un$, and $\ynl$ increases.
+In the second case, the factor is undefined (for $s = \frac{n}{2} + a$)
+or negative (for $s > = \frac{n}{2} + a$).
+Either way, there will be no intersection of the linear function with the exponential function
+for any $\eta_0 > \ezl + n$ (For $s \to \frac{n}{2} + a$, the slope $\to \infty$).
+In fact, for $s \ge \frac{n}{2} + a$, the whole shape is above the $\eta_0$ axis,
+and the touchpoint must be thus at $\ezu + n $.
+Actually, $\ezu + n$ will be the touchpoint already at some $\frac{n}{2} \le s < \frac{n}{2} + a$,
+when the intersection point arrives at $\ezu + n$.
+At this point, gradual increase of $\ynl$ resulting from the movement of ${\eta_0^l}\un$ along the set
+towards the right is replaced by a linear increase in $s$.
+Again, this linear increase is due to the $\eta_1$ coordinate being incremented
+according to \eqref{eq:eta-update},
+and from \eqref{eq:trafotony} we see that $\ynl$ is linear in $\eta_1$.
+
+%Contrary to the former consideration, the posterior boatshape set updated with $s > \frac{n}{2}$
+%is not symmetric around the $\eta_0$ axis.
+%To compare the posterior imprecision for $s=\frac{n}{2}$ with $s > \frac{n}{2}$,
+%we have to consider also $\ynl$ for both cases.
+
+%$\ynl(\frac{n}{2})$, i.e.\ the posterior lower expectation for $s=\frac{n}{2}$,
+%can be found, due to symmetry around the $\eta_0$ axis, at ${\eta_0^l}\un = {\eta_0^u}\un$. 
+
+\paragraph{Synthesis.}
+
+For $s > \frac{n}{2}$, both $\ynu$ and $\ynl$ will at first increase gradually with $s$,
+as ${\eta_0^u}\un$ moves to the left, and ${\eta_0^l}\un$ moves to the right.
+We will call such updating of the prior parameter set,
+where neither posterior touchpoints are at the left or the right end of the set, as `happy learning'.
+
+At some $s^u$, ${\eta_0^u}\un$ will arrive at $\ezl + n$,
+and at some $s^l$, ${\eta_0^l}\un$ will arrive at $\ezu + n$.
+Whether $s^l < s^u$ or the other way round depends on
+the choice of parameters $\ezl, \ezu, a$ and $b$.
+Either way, once $s$ is larger than either of $s^l$ or $s^u$,
+we switch to ``unhappy learning'',
+where data $s$ is very much out of line with our prior expectations as expressed
+by the prior parameter set $\EZ$.
+Ultimately, when $s > s^u$ and $s > s^l$,
+both $\ynu$ and $\ynl$ will increase linearly in $s$, but with different slopes.
+$\ynu$ will increase with slope $\frac{1}{\ezl + n + 2}$,
+whereas $\ynl$ will increase with a lower slope $\frac{1}{\ezu + n + 2}$.
 
 
+\subsection{Discussion and Outlook}
+\label{sec:boatshape-outlook}
 
+Profiting*** from a novel parametrisation derived by Mi\c{c}elis Bickis that was shortly sketched in Section~\ref{sec:miksworld},
+we proposed a prior parameter set shape with the aim to model strong prior-data agreement.
+Our preliminary studies show some very appealing results for the Beta-Binomial model.
+Our conjectures about boat-shaped parameter sets in the parametrisation via $(\eta_0,\eta_1)$,
+described in Section~\ref{boatshape-rationale},
+could be confirmed in our preliminary studies subsumed in Section~\ref{sec:boatshape-2}.
 
+In these studies, we confined ourselves to sets symmetric around the $\eta_0$ axis,
+thus expressing prior information suggesting values of $\frac{s}{n}$ close to $\frac{1}{2}$.
+As we mentioned in Section~\ref{boatshape-rationale},
+prior sets symmetric around rays of constant expectation \eqref{eq:raysofconstantexpectation}
+may express prior information with a stress on $\frac{s}{n}=y_c$;
+these can be obtained by rotating the set \eqref{eq:basicset} such that
+its symmetry axis is on the ray of constant expectation with $y_c$.
+Then, basically everything should work the same as described above,
+except that for $y_c$ near to $0$ or $1$, one would have to take care to respect
+the bounds of the parameter space.
+Informally, we can also think of this as rotating the whole parameter space (the wedge)
+under the boat-set until its symmetry axis is alingned to $y_c$. 
 
---------------------------------
+So far, we have only vague intuitions for the role of the parameters $a$ and $b$ that,
+together with $\ezl$ and $\ezu$, define the shape.
+An idea to find elicitation rules is to investigate also here `pre-posterior' strategies,
+by letting the analyst reason on hypothetical counts and what she would like to learn from them.
 
+Related to this, the concrete behaviour during `happy learning' is difficult to pinpoint exactly,
+as there are no closed form solutions for ${\eta_0^u}\un$ and ${\eta_0^l}\un$.
+Also, the exact threshold for $s$ where we transfer from `happy learning' to `unhappy learning'
+(where strong prior-data conflict indicated by a linear increase of $\ynu$ and $\ynl$) is not available in closed form.
+We plan to study these aspects of the model by numeric examples,
+drawing $\ynl$ and $\ynu$ against $s$ for some exemplary choices of $a, b, \ezl$ and $\ezu$,
+similarly to the \emph{predictive probability plots} given in Section~\ref{sec:isipta11}.%
+\footnote{Examples for these plots are Figures~\ref{fig:priorset-generic},
+\ref{fig:anteater-nsmall}, and \ref{fig:weighted-generic}.}
 
-possible to put information in near-noninformative set $\EZ$!
+Regarding more advanced considerations on elicitation, if the severity of deviations
+in the upper ($\frac{s}{n} > y_c$) and in the lower ($\frac{s}{n} < y_c$) direction
+differ for the analyst
+(e.g., he wants to be less imprecise for $\frac{s}{n} < y_c$, although he still thinks $\frac{s}{n} \approx y_c$),
+$a$ and $b$ could be different for the lower and the upper contour.
+Furthermore, in this parametrisation, it is possible to elicit sets $\EZ$
+that are near-noninformative with respect to $\yz$,
+but nevertheless can express preferences towards a certain success fraction by being symmetric around $y_c$.
+Such an approach could be similar to the priors suggested by \textcite{1996:atwood} and \textcite{2011:kelly:atwood}
+mentioned in Section~\ref{sec:epistemic-alpha},
+opening up interesting research questions regarding the relation of near-noniformativeness
+to situations with substantial prior information.
 
-***As our preliminary studies show some very appealing results in case of the Beta-Binomial model,
-for which a possible parametrisation of our shape is discussed in Section~\ref{sec:boatshape},
-we are confident that these encouraging results also hold for the Normal-Normal model
-and in the general case of canonical conjugates.
-A joint publication of Mi\c{k}elis Bickis, Frank Coolen and the author of this thesis is planned
-that will elaborate these findings in more detail.
+%A joint publication of Mi\c{k}elis Bickis, Frank Coolen and the author of this thesis is planned
+%in which we will elaborate the approach sketched here in more detail.
 
 
 

@@ -79,7 +79,7 @@ Alternatively, $\MZ$ can be defined as the set of all convex mixtures of paramet
 In this case, the set of priors corresponding to $\PZ$ considered above gives the set of extreme points for the actual convex set $\MZ$.
 Updating this convex prior credal set with the Generalized Bayes' Rule results in a set $\MN$ of posterior distributions that is again convex,
 and $\MN$ conveniently can be obtained by taking the convex hull of the set of posteriors
-defined by the set of updated parameters $\PN$.
+defined by the set of updated parameters $\PN$.***Beleg?***
 
 When the credal set $\MZ$ is taken to contain convex combinations (i.e., finite mixtures) of parametric priors,
 $\MZ$ is very flexible and contains, through the mixture distributions, a wealth of distributional shapes.%
@@ -101,7 +101,10 @@ the Bayes criterion selects as optimal acts those acts which minimise posterior 
 where posterior risk is the expected loss under the posterior distribution.
 With credal sets, the optimal acts are usually determined by minimising the upper posterior risk
 \parencite[see, e.g.,][\S 3.2]{itip-decision}.
-It thus depends on the loss function if the supremum of the expected loss over $\MN$ can be easily determined.****check***}
+The posterior risk, being an expectation, is thus a quantity linear in the posterior distribution,
+such that its upper bound for posteriors in $\MN$ can be easily determined
+even if $\MN$ is taken to contain convex combinations.} %of the parametric distributions.}
+%It thus depends on the loss function if the supremum of the expected loss over $\MN$ can be easily determined.****check***}
 %****footnote: loss minimising / utility maximising acts, decision making tasks often rely on expectations only****
 
 %When the credal set $\MZ$ is taken to contain convex combinations (i.e., finite mixtures) of parametric priors,

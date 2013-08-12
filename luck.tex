@@ -1,0 +1,174 @@
+\section{***The \texttt{luck} Package} %***Software***}
+\label{sec:luck}
+
+%seperate section, take short description from abstract for ISIPTA'09 poster?
+
+***put footnotes to jstp definitions: \ymodel\ is type (a), \ldots***
+
+***Section~\ref{sec:luck} gives a short overview on a software implementation of \nymodel s,
+the add-on package \texttt{luck} ***citation*** for the statistical programming environment \textbf{R} \parencite{2013:r}.
+
+This secion gives a short overview on a software implementation of the models discussed in Section~\ref{sec:jstp},
+the add-on package \texttt{luck} ***citation*** for the statistical programming environment \textbf{R} \parencite{2013:r}.
+
+In recent years, the statistical programming environment %software
+\textbf{R} is used more and more frequently for every-day statistical analyses
+in academia and inside corporations. %(Wikipedia)
+It has also become a de facto standard among
+statisticians for software implementations of novel methods,
+which can be easily distributed by means of so-called \emph{packages}
+%, additional functionality can be provided to \texttt{R} users
+via the online repository \emph{cran} (Comprehensive \textbf{R} Archive Network, \url{http://www.cran.R-project.org}).
+
+%***implements the general model structure from Section~\ref{sec:jstp}.
+As described in footnote~\ref{foot:luckmodels}, page~\pageref{foot:luckmodels},
+\model s (see Definition~\ref{070503-defin1}) generalise the framework
+of canoncial conjugate priors from Section~\ref{sec:regularconjugates},
+by requiring only the form of the update step \eqref{eq:canonicalupdate},
+and not the specific functional form of \eqref{eq:expofam-sampledens} for $f(\x \mid \vartheta)$.
+
+The present implementation is thus programmed in a class system
+that reflects %mirrors
+the hierarchy between the unified description in terms of \model s %of conjugate priors
+and the concrete application of this framework by, e.g.,
+considering inference on the mean of scaled normal distribution using sets of conjugate priors
+as described in Example~\ref{ex:ymodel-nv}.
+%making extensions for arbitrary prior classes very easy.
+This hierarchical structure makes extensions of the package
+to cater for arbitrary sample distributions very easy.
+
+Hierarchical structures like the one used*** here
+can be implemented using the object-oriented paradigm for programming.
+The central tools in this paradigm are \emph{classes} and \emph{methods}.
+Classes provide the blueprint for concepts that should be modelled in software,
+defining ***wiederkehrende*** structures, or the type, according to which concrete
+objects can be created. These concrete realisations of a class are called \emph{instances}.
+Methods then provide functions to manipulate such instances,
+the classe description guaranteeing a standardised input.
+The **clou** of this paradigm is that hierarchies between concepts
+can be modelled by \emph{inheritance}.
+More specific structures can be modelled as special cases of more general classes,
+and the blueprint for such specialised objects are called \emph{subclasses}.
+
+To recap, the present implementation is programmed in the S4 class system of
+\textbf{R} and provides the basic framework for the definition, display and updating
+sets of priors based on \model s by defining the class \texttt{LuckModel}.
+Inferences in a concrete sample distribution are then done
+using lean subclasses that make the `translation'
+between the \model\ framework and a concrete sample distribution.
+
+For defining prior parameter sets $\PZ$,
+the class \texttt{LuckModel} provides the slots \texttt{n0} for $\nz$, and \texttt{y0} for $\yz$, respectively,
+the contents of which are intervals where the lower and upper bound may coincide,
+such that both $\NZ$ and $\YZ$ can be either an interval or a singleton.%
+\footnote{In case of $\byz \in \reals^k$, $\YZ$ may be a multidimensional interval,
+i.e., a cartesian product of intervals $[\yzl_j,\yzu_j]$, $j=1,\ldots,k$,
+(see Example~\ref{ex:ymodel-idm}),
+with $\yzl$ and $\yzu$ denoting the vectors of these element-wise lower and upper bounds, respectively.} 
+From the model types discussed in Section~\ref{sec:basicsetting}, type
+(\ref{enum:modeltypes-a}), (\ref{enum:varyn}), and (\ref{enum:rectangular})
+can thus be implemented by choosing \texttt{n0} and \texttt{y0} accordingly.
+
+To calculate the set of posterior distributions,
+the class \texttt{LuckModel} also provides a \texttt{data} slot.
+This must contain an object of class \texttt{LuckModelData},
+providing the data in the needed form as $\tau(\x)$ and $n$.
+
+As the posterior parameter sets $\PN$ resulting from updating all the priors in a
+prior set $\PZ$ are, in the most general case of $\PZ = [\nzl,\nzu] \times [\yzl, \yzu]$,
+%\footnote{In the case of multidimensional $\byz$,
+%$\ynl$ and $\ynu$ are understood as element-wise lower and upper bounds of $\YN$, respectively.}
+not cartesian products of $[\nnl, \nnu]$ and $[\ynl, \ynu]$ anymore, posterior sets are not
+explicitely represented as \texttt{LuckModel} objects. Whenever posterior quantities
+are of interest (specified in functions or methods for \texttt{LuckModel} objects by the option \texttt{"posterior = TRUE")},
+the range of these quantities are calculated by minimising and maximising over $\PN$, %the updated parameters,
+which in turn can be done by a box-constrained optimisation over the set of prior parameters,
+as $\PZ$ is a cartesian product.
+This is why the data object (\texttt{LuckModelData}) is directly included in the \texttt{LuckModel} object.
+For the box-constrained optimisation, a helper function called \texttt{wrapOptim} is used,
+such that all cases (none, one or both of \texttt{n0} and \texttt{y0} %canonical parameters
+are interval-valued) can be treated in the same way.%
+\footnote{The function \texttt{optim} provided by \textbf{R} for general-purpose
+multivariate optimisation is not recommended for univariate optimisation.}
+
+The class \texttt{LuckModel} in fact only implements the general superstructure as given in the
+(abstract) definition of \model s (Definition~\ref{070503-defin1}).
+For inference in a concrete distribution family like the Normal distribution,
+this general framework must be ***concretisised*** %. This can be done
+by defining a subclass, inheriting from \texttt{LuckModel},
+for this specific distribution family,
+along with a subclass of \texttt{LuckModelData} to specify how $\tau(\x)$
+are calculated for this distribution family.
+Currently, this has been done for data from a scaled normal distribution,
+i.e., $x_i \sim \norm(\mu, 1)$,%
+\footnote{See Example~\ref{ex:ymodel-nv}.}
+with the classes \texttt{ScaledNormalLuckModel} and \texttt{ScaledNormalData},
+and for data from an exponential distribution, i.e., $x_i \sim Exp(\lambda)$,%
+\footnote{See the study by \textcite{2011:krautenbacher},
+who contributed the code for this distribution family.
+The results of this study are discussed in Section~\ref{sec:alternatives:other}.***}
+with the classes \texttt{ExponentialLuckModel} and \texttt{ExponentialData}.
+
+
+***UML diagramm? ***talk, poster***
+
+
+For illustrations of and workings*** with \texttt{LuckModel} objects, some methods have
+been written. First, there are methods to display and print plain \texttt{LuckModel}
+objects (existing only on the superstructure level):
+\begin{itemize}
+\item So-called \emph{constructor functions} for the \texttt{LuckModel} and \texttt{LuckModelData} class
+   make the creation of \model s more easy. They can be supplied with a 
+   number of different arguments, which are checked on consistency upon
+   creation of the object.
+\item Due to the S4 implementation, so-called \emph{accessor} and \emph{replacement functions}
+   are defined, regulating the access and the replacement of object slots.
+\item The \texttt{show} method prints the contents of a \texttt{LuckModel} object in more
+   readable form. If the object contains a \texttt{LuckModelData object}, this is
+   printed along as well, resorting on a \texttt{show} method for \texttt{LuckModelData}
+   objects.\footnote{\texttt{show} methods are the S4 equivalent to \texttt{print} methods for S3 objects.}
+\item The \texttt{plot} method for \texttt{LuckModel} objects represents the parameter sets graphically.
+\end{itemize}
+
+For concrete data distributions, there are methods for working with
+and displaying the resulting sets of prior or posterior distributions.
+\begin{itemize}
+\item The constructor functions are modified, for example to check if the input
+   fits to the data or prior distribution, or to allow the simulation of data
+   according to the data distribution when creating the \texttt{LuckModelData} object.
+\item The accessor and replacement functions need not be specified again for the
+   specialized classes, as those can be taken from the general classes, i.e.,
+   these functions are 'inherited' from the respective \texttt{LuckModel} or \texttt{LuckModelData}
+   class. An exception is the function for replacing the raw data in the
+   \texttt{LuckModelData object}, as there, the input must be checked to fit the sample
+   space domain. As an example, in case of the \texttt{ExponentialData} class, data must be
+   strictly positive.
+\item The \texttt{show} methods for \texttt{LuckModel} and \texttt{LuckModelData} are specialised in order
+   to explain to the user the meaning of the canonical parameters $\nz$ and $\yz$.
+\item \texttt{unionHdi} calculates the union of highest density intervals for a
+   specialised \texttt{LuckModel} object.%
+   \footnote{See Section~*** for an example of union of highest density intervals****.}
+   This method relies on a function \texttt{singleHdi},
+   that gives a highest density interval for a single parameter combination
+   $(n, y)$ for the respective conjugate prior or posterior distribution.
+   Therefore, for each specialised LuckModel class, \texttt{singleHdi} must be
+   provided.
+\item \texttt{cdfplot} plots the set of cumulative density functions for specialised
+   \texttt{LuckModel} objects. Again, this method relies on a function \texttt{singleCdf},
+   returning values of the cumulative density function for a single parameter combination $(n, y)$
+   for the respective conjugate prior distribution.
+\end{itemize}
+
+
+
+
+
+
+
+
+
+%\section{***Isipta'07 paper?***}
+
+%***I would prefer not to include this, or just give a short summary of the contents.***
+
+

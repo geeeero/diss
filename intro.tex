@@ -1,16 +1,8 @@
 \chapter{Introduction}
 \label{cha:intro}
 
-%\begin{itemize}
-%\item overview/outline, which paper used where\ldots
-%\item statistical inference (\textbf{StatInf chapter}, \cite{itip-statinf})
-%\item Bayesian inference, conjugate priors, etc. (\textbf{TechRep Dirichlet}, \cite{Walter2012b})
-%\item motivate priors etc.\ with ress paper: \cite{Troffaes2013a}
-%\item short part on decision theory, updating rules? --- probably not
-%\item other motivations for IP? --- later
-%\end{itemize}
 
-***add diss sections to refs to own papers included in diss*** 
+% add diss sections to refs to own papers included in diss
 
 
 \section{***Overview / Outline}
@@ -22,7 +14,7 @@
 
 \subsection{Sources}
 
-\textbf{***less details***}
+%\textbf{less details} OK
 
 
 Sec.~\ref{sec:stat-inference}: parts of \textcite[\S\S 1.1, 1.2, 1.5]{itip-statinf}
@@ -965,8 +957,13 @@ not to be confused with $\vec{\alpha}$ as discussed in Section~\ref{sec:alpha-fa
 
 We will now present a problem in reliability analysis for which the most common model
 relies on the Dirichlet-Multinomial model.
-This will also motivate the use of sets of prior distributions.
-
+The issues encountered in this application that is based on
+\textcite{Troffaes2013a} will motivate the use of sets of distributions as prior models,
+illustrating the advantages in uncertainty modelling that can be gained from using imprecise probability models.%
+\footnote{Basic aspects of the theory of imprecise probability,
+and further motivations for using it, will be given in Chapter~\ref{cha:gbi}.}
+The models discussed there will then be ***eingeordnet*** in a general framework
+of inference using sets of canonical conjugate priors in Section~\ref{sec:generalmodel}.
 
 \section{Dirichlet-Multinomial Model for Common-Cause Failure}
 \label{sec:commoncause}
@@ -1400,7 +1397,10 @@ we take
 \end{equation}
 where the analyst has to specify the bounds
 $[\yzl_j,\yzu_j]$ for each $j\in\{1,\dots,k\}$,
-and $[\nzl,\nzu]$.
+and $[\nzl,\nzu]$.%
+\footnote{We will discuss models based on this type of prior parameter set
+in Sections~\ref{sec:jstp} and \ref{sec:ibbm-walley}.
+Different choices of parameter sets are discussed in general in Section~\ref{sec:basicsetting}.}
 
 As $\yn$ is linear in $\yz$ (see Eq.~\eqref{eq:canonicalupdate}), the posterior lower and upper expectations of $\alpha_j$ are:
 \begin{align}

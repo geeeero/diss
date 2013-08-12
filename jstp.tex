@@ -238,13 +238,15 @@ linear given a second parameter ($\nz$).
 More precisely, we return to the following definition,
 originally introduced in \textcite{Walter2007a}:%\vspace*{-0.5ex}
 \footnote{Compare to the model presented in Section~\ref{sec:regularconjugates}.
-Here, the likelihood $f(\x\mid\vartheta)$ may have any form,
+There, the likelihood $f(\x\mid\vartheta)$ was considered to have the
+functional form \eqref{eq:expofam-sampledens}.
+Here, $f(\x\mid\vartheta)$ may have instead any form,
 given that the update step from prior to posterior distribution
 adheres to Equations~\eqref{070305-2} -- \eqref{070305-4}.
 The model discussed in Section~\ref{sec:regularconjugates} is a special case,
 as Equations~\eqref{070305-2} and \eqref{070305-4} are the same as
 Equations~\eqref{eq:canonicalprior} and \eqref{eq:canonicalupdate}, respectively.
-See Example~\ref{ex:jstp-1} below.}
+This is again elaborated in Example~\ref{ex:jstp-1} below.}
 
 \begin{definition}[LUCK-models]\label{070503-defin1}
 Consider traditional Bayesian inference on a parameter $\vartheta$
@@ -380,7 +382,7 @@ considered in the continuation of this example in Section~\ref{sec:3}.%
 
 \begin{example}[Bayesian Inference in Linear Regression]
 %\noindent\textbf{Example 2: Bayesian Inference in Linear Regression.}
-As shown by \textcite{Walter2006a,Walter2007a,Walter2007b},
+As shown by \textcite{Walter2006a}, \textcite{Walter2007a}, and \textcite{Walter2007b},
 the importance of LUCK-models is not limited to the i.i.d.\ case
 but also provides a formal superstructure containing in particular
 the practically important case of linear regression
@@ -1205,6 +1207,8 @@ The authors would like to thank two anonymous referees for their very stimulatin
 
 seperate section, take short description from abstract for ISIPTA'09 poster?
 
+***Section~\ref{sec:luck} gives a short overview on a software implementation of \nymodel s,
+the add-on package \texttt{luck} ***citation*** for the statistical programming environment \textbf{R} \parencite{2013:r}.
 
 %\section{***Isipta'07 paper?***}
 

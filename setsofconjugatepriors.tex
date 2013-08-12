@@ -5,7 +5,7 @@ Imprecise probability models based on conjugate priors are an important model cl
 and have been central to the development and application of imprecise probability methods
 in statistical inference.
 They have lead to the so-called \emph{Imprecise Dirichlet model} (IDM, see Section~\ref{sec:idm-and-near-ignorance} below)
-by \textcite{1996:walley::idm}, see also \textcite{2009:bernard},
+by \textcite{1996:walley::idm}, %see also \textcite{2009:bernard},
 and more generally to powerful imprecise probability models for inference
 based on i.i.d.\ exponential family sampling models by \textcite{2005:quaeghebeurcooman} and \textcite{2009:quaeghebeur::phd}.
 These models were extended by \textcite[see Section~\ref{sec:jstp}]{Walter2009a} and \textcite[see Section~\ref{sec:isipta11}]{Walter2011a}
@@ -13,24 +13,20 @@ to allow in addition an elegant handling of prior-data conflict.
 
 \medskip
 
+The chapter is structured as follows.
 Section~\ref{sec:generalmodel} attempts to give a systematic overview on these models, %the different models discussed in the literature,
-and illustrates some characteristic modelling opportunities of generalised Bayesian inference.
-
-Section~\ref{sec:alternatives} briefly discusses some alternative models based on sets of priors.***
-
+and illustrates some characteristic modelling opportunities of generalised Bayesian inference, while
+Section~\ref{sec:alternatives} briefly discusses some alternative models based on sets of priors.
 Section~\ref{sec:jstp} then presents one model in detail, namely the so-called
 \nymodel\ developed in \textcite{Walter2009a},
 and illustrates its application to the Normal-Normal and Dirichlet-Multinomial models. % in more detail. %***JSTP***
-
 Section~\ref{sec:luck} gives a short overview on a software implementation of \nymodel s,
 the add-on package \texttt{luck} ***citation*** for the statistical programming environment \textbf{R} \parencite{2013:r}.
-
-%***isipta07 summary in appendix?***
-
-Section~\ref{sec:isipta11} presents attempts to further refine inference behaviour in the presence of \pdc,
-one by considering more sophisticated shapes for prior parameter sets,
-the other by a fundamentally different approach of combining inferences from two arbitrary distinct models.
-Interestingly, the inferences from the two approaches in Section~\ref{sec:isipta11} show nevertheless fascinating similarities.
+Finally,
+Section~\ref{sec:isipta11} presents two attempts to further refine inference behaviour in the presence of \pdc.
+While the first approach considers more sophisticated shapes for prior parameter sets,
+the second is a fundamentally different approach that combining inferences from two arbitrary distinct models.
+Interestingly, the inferences from these two approaches in Section~\ref{sec:isipta11} show nevertheless fascinating similarities.
 %***ISIPTA'11***
 
 %***football example?***
@@ -166,17 +162,20 @@ a direct extension of the model framework discussed in Section~\ref{sec:generalm
 by the definition of so-called \emph{LUCK-models},
 which were already used in \textcite{Walter2007a}
 to generalise Bayesian linear regression). %(see a short summary in Section~\ref{sec:isipta07}).
-These exploit*** the fact that the central properties of the model framework
+These utilize the fact that the central properties of the model framework
 (see Section~\ref{sec:gbicp-properties-criteria} below)
 rely on the specific form of the update step \eqref{eq:canonicalupdate} only.
 Thus, they can be generalised to settings that are not based on i.i.d.\ observations from canonical exponential family distributions,
 but nevertheless follow the same update step.} %This is elaborated in Section~\ref{sec:jstp} \parencite{Walter2009a} 
-We will discuss and illustrate this model in Section~\ref{sec:jstp}.
+We have used a model of this type in Section~\ref{sec:intervallearningparameter},
+and will discuss and illustrate this approach in more detail in Section~\ref{sec:jstp}.
 It should be noted here that while the prior parameter set is a Cartesian product of $\NZ = [\nzl, \nzu]$ and $\YZ$,
 the posterior parameter set is not.
 This is due to Eq.~\eqref{eq:canonicalupdate},
 which results in different ranges for $\yn$ depending on the value of $\nz$ used in the update step.%
-\footnote{This is illustrated, e.g., in Figure~\ref{fig:spot-banana}, page~\pageref{fig:spot-banana}.}
+\footnote{This change of shape of the parameter $\PN$ set is illustrated in Figure~\ref{fig:spot-banana}, page~\pageref{fig:spot-banana}.
+We discuss the phenomenon of shape change in Section~\ref{sec:ibbm-walley},
+and again in Sections~\ref{sec:concluding-outlook} and \ref{sec:miksworld}.}
 \item Both $\nz$ and $\yz$ vary in other sets $\PZ \subset (\reals_{>0} \times \Y)$.\\
 \label{enum:generalset}%
 In this type, also in the prior parameter set the range of $\yz$ may depend on $\nz$,
@@ -407,7 +406,8 @@ determining the learning speed of the model, namely $\nz$ for the IDM.
 Models intended specifically for use in situations with substantial prior information are presented in
 \textcite[footnote no.~10 in \S 1.1.4, and \S 7.8.3]{1991:walley}, \textcite{2005:quaeghebeurcooman}, and \textcite{Walter2009a};%
 \footnote{See Section~\ref{sec:jstp} for a more detailed coverage and examples.}
-the IDM can be modified by not taking $\YZ = \text{int}(\Delta)$, but a smaller set $\YZ$ fitting the prior information.
+the IDM can be modified by not taking $\YZ = \text{int}(\Delta)$, but a smaller set $\YZ$ fitting the prior information,
+as was done in Section~\ref{sec:fixedlearningparameter}.
 
 Generalising the IDM approach to conjugate priors for sample distributions of the canonical form \eqref{eq:expofam-sampledens},
 \textcite{2005:quaeghebeurcooman} proposed an imprecise prior $\MZ$ based on $\PZ = \YZ \times \nz$.
@@ -545,7 +545,7 @@ e.g., by some functional form $\yzl(\nz)$ and $\yzu(\nz)$.
 The choice of such general forms is not straightforward,
 as it may heavily influence the posterior inferences,
 and it may be very difficult to elicit as a whole.
-One such choice is discussed in Section~\ref{sec:isipta11} \parencite{Walter2011a} for the Binomial case,
+One such choice is discussed in \textcite[\S 2.3, see Section~\ref{sec:othershapes}]{Walter2011a} for the Binomial case,
 developed with the intention to create a smoother reaction to prior-data conflict than in the model with rectangle $\PZ$.
 
 In summary, there is a trade-off between easy description and handling of $\PZ$ on one side,
@@ -562,7 +562,7 @@ but may be difficult to elicit and complex to handle.%
 \footnote{For an example see, as mentioned above, the work in Section~\ref{sec:isipta11}, specifically in Section~\ref{sec:othershapes}.
 First ideas and some preliminary results for another approach to a set shape allowing
 also more precise inferences when prior and data coincide especially well
-are given in Sections~\ref{sec:concluding-outlook} and \ref{sec:boatshape}, respectively.***}
+are given in Sections~\ref{sec:concluding-outlook} and \ref{sec:boatshape}, respectively.}
 \end{itemize}
 
 To conclude, when substantial prior information is available, that, however,

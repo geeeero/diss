@@ -76,10 +76,10 @@ it has received surprisingly little attention. Rare exceptions include two short
 and the papers by \textcite{1991:pericchi}, \textcite{1994:coolen} and
 \textcite{2005:whitcomb}. The popular IDM \parencite{1996:walley::idm, 2009:bernard}
 and its generalisation to exponential families \parencite{2005:quaeghebeurcooman} do not reflect prior-data conflict.
-\textcite{Walter2009a} used the basic ideas of \textcite[\S 5.4]{1991:walley} to extend the approach of
+\textcite[see Section~\ref{sec:jstp}]{Walter2009a} used the basic ideas of \textcite[\S 5.4]{1991:walley} to extend the approach of
 \textcite{2005:quaeghebeurcooman} to models that show sensitivity to \pdc.
 
-In this ***paper***, a deeper investigation of the issue of \pdc\ is undertaken,
+In this work, a deeper investigation of the issue of \pdc\ is undertaken,
 focusing on the prototypic special case of predictive inference in Bernoulli trials:%
 \footnote{See also the discussion of the Beta-Binomial model in Section~\ref{sec:beta-binom},
 and the imprecise Dirichlet-Multinomial model discussed in several examples in Section~\ref{sec:jstp}.}
@@ -181,11 +181,11 @@ step: Convexity of $\PZ$ does not imply convexity of $\PN$.
 Throughout, we are interested in the posterior predictive
 probability $[\Pl,\Pu]$ for the event that a
 future draw is a success. In the Beta-Bernoulli model, this
-probability is equal to $\yn$, and we get\footnote{%
-\textcite{2005:quaeghebeurcooman}, \textcite{Walter2009a}, and \textcite{Walter2007a} use the prototypical character of
-(\ref{equ:update-nn-yn-precise}) underlying (\ref{equ:General-Pl}) and
-(\ref{equ:General-Pu}) to generalise this inference to models based on canonical exponential families.
-See Section~\ref{sec:generalmodel} and \ref{sec:jstp}. ***leave this out here??***}
+probability is equal to $\yn$, and we get%
+%\footnote{\textcite{2005:quaeghebeurcooman}, \textcite{Walter2009a}, and \textcite{Walter2007a} use the prototypical character of
+%\eqref{equ:update-nn-yn-precise} underlying \eqref{equ:General-Pl} and
+%\eqref{equ:General-Pu} to generalise this inference to models based on canonical exponential families.
+%See Section~\ref{sec:generalmodel} and \ref{sec:jstp}. ***leave this out here??***}
 %
 \begin{align}
 \Pl = \ynl &:= \min_{\PN} \yn = \min_{\PZ} \frac{\nz\yz + s}{\nz +n}\,, \label{equ:General-Pl}\\
@@ -212,10 +212,10 @@ denoted as the imprecise Beta (Binomal/Bernoulli) model (IBBM)%
 \footnote{We use `IBBM' also for the model with prior information.},
 which is a special case of the popular Imprecise Dirichlet (Multinomial) Model
 \parencite{1996:walley::idm,1999:walleybernard}. Unfortunately, in this basic form with fixed $\nz$, the model is
-insensitive to prior-data conflict \parencite[p.~263]{Walter2009a} ****.
+insensitive to prior-data conflict \parencite[p.~263, see Section~\ref{section:fixednschlecht}]{Walter2009a}.
 \textcite[\S 5.4]{1991:walley} therefore generalised this
 model by additionally varying $\nz$. In his extended model,
-called \emph{pdc-IBBM} in this ***paper***, the set of priors is defined via the
+called \emph{pdc-IBBM} in this work, the set of priors is defined via the
 set of prior parameters $\PZ = [\nzl, \nzu] \times [\yzl, \yzu]$,
 being a two-dimensional interval, or a rectangle set.
 Studying inference in this model, it is important to note that the set of posterior parameters

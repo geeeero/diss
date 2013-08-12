@@ -1,4 +1,4 @@
-\section{Alternative Models Using Sets of Priors***}
+\section{Alternative Models Using Sets of Priors}
 \label{sec:alternatives}
 
 
@@ -8,7 +8,7 @@ described important properties of inferences based on this class in general term
 and illustrated the potential of generalised Bayesian inference methods
 for the situations of prior near-ignorance and substantial prior information.
 %illustrated the main ideas and potential of generalised Bayesian inference for this model framework.
-In this section, we will discuss two alternative frameworks for inference based on sets of priors,
+Now, we will discuss two alternative frameworks for inference based on sets of priors in Section~\ref{sec:alternatives:frameworks},
 and consider a number of inference models that could serve as an alternative to the models discussed in Section~\ref{sec:generalmodel}.
 The two frameworks based on sets of priors
 in alternative to the model framework discussed in this thesis are 
@@ -30,7 +30,10 @@ and models that are not (Section \ref{sec:alternatives:other}).
 %but that cannot be subsumed in the framework of Section~\ref{sec:generalmodel}.
 %In Section~\ref{sec:alternatives:other}, we will touch on models based on sets of priors that do not rely on conjugates.
 
-\subsection{Neighbourhood Models}
+\subsection{Some Alternative Model Frameworks}
+\label{sec:alternatives:frameworks}
+
+\subsubsection{Neighbourhood Models}
 \label{sec:alternatives:neighbourhood}
 
 %different sorts of neighbourhood models as considered in robust Bayesian approaches \parencite[e.g.,][]{1994:berger}.
@@ -88,7 +91,7 @@ variants of the $\varepsilon$-contamination class mentioned above,
 may instead not be closed under Bayesian updating.
 
 
-\subsection{Density Ratio Class}
+\subsubsection{The Density Ratio Class}
 \label{sec:alternatives:drc}
 
 %Below, we will briefly describe an interesting model class
@@ -173,7 +176,7 @@ because $\MN$ can be constructed as the set of all convex mixtures of distributi
 
 
 
-\subsection{Approaches Based on Conjugate Priors}
+\subsection{Some Approaches Based on Conjugate Priors}
 \label{sec:alternatives:conjugate}
 
 %first sets based on conjugate priors: %1993:coolen, 1994:coolen interval of measures:
@@ -185,16 +188,17 @@ because $\MN$ can be constructed as the set of all convex mixtures of distributi
 We discuss here some approaches based on conjugate priors.
 First, a density ratio class model using conjugate distributions
 for the bounding functions $l(\vartheta)$ and $u(\vartheta)$
-by Coolen \parencite*{1993:coolen,1994:coolen} is described.
+by Coolen \parencite*{1993:coolen,1994:coolen} is described in Section~\ref{sec:alternatives:coolen}.
 Then, a brief summary of an approach by \textcite{2009:bickis} is given,
 who constructs a conjugate to the multinomial sample distribution
-where a specific correlation structure for the categories can be specified.
-Afterwards, some results of the study by \textcite{1991:pericchi} are reported,
+where a specific correlation structure for the categories can be specified (Section~\ref{sec:alternatives:bickis}).
+Afterwards, some results of the study by \textcite{1991:pericchi} are reported in Section~\ref{sec:alternatives:pericchi},
 who compare models for inference on the mean of a normal distribution with known variance
 that are based on a number of conjugate and non-conjugate sets of priors.
  
 
-\medskip
+\subsubsection{The Model by \texorpdfstring{Coolen \parencite*{1993:coolen,1994:coolen}}{Coolen (1993b; 1994)}}
+\label{sec:alternatives:coolen}
 
 \textcite{1993:coolen} proposed an interesting model for sample distributions
 from the one-parameter exponential family using the density ration class.
@@ -233,7 +237,7 @@ furthermore, as conceded by \textcite[p.~341]{1993:coolen},
 there could be many other functional forms for $c_n$ that were equally reasonable
 as the one suggested in the paper.
 
-\medskip
+%\medskip
 
 \textcite{1994:coolen} presents a further study of this model with a focus on predictive inferences,
 considering the special case of Bernoulli observations.
@@ -273,7 +277,9 @@ is rather oblique.%
 \footnote{However, the elicitation method by \textcite{2011:rinderknecht} could be used
 to elicit $\alpha,\ \beta,\ \mu,\ \lambda$, and $c^*_0$.}
 
-\medskip
+
+\subsubsection{The Model by \texorpdfstring{\textcite{2009:bickis}}{Bickis (2009)}}
+\label{sec:alternatives:bickis}
 
 \textcite{2009:bickis} suggests a multivariate logit-normal model as an alternative to the IDM
 for an application where neighbouring category probabilities $\theta_j$ are correlated.
@@ -299,7 +305,9 @@ relatively low, due to the much more complex computations as compared to the IDM
 It remains to be investigated how an informative (imprecise) prior could be elicited,
 and the behaviour in case of \pdc\ is as yet unkown.
 
-\medskip
+
+\subsubsection{Some of the Models Studied by \texorpdfstring{\textcite{1991:pericchi}}{Pericchi and Walley (1991)}}
+\label{sec:alternatives:pericchi}
 
 By studying credibility intervals for an unknown mean $\mu$ for samples from a normal distribution with known variance $\sigma^2$,
 \textcite{1991:pericchi} give a neat overview on a number of approaches based on sets of priors,
@@ -332,20 +340,25 @@ It shows a favourable behaviour similar to the model we argued for in Section~\r
 (which is discussed in more detail in Section~\ref{sec:jstp} below).
 
 
-\subsection{Other Approaches Using Sets of Priors}
+\subsection{Some Other Approaches Using Sets of Priors}
 \label{sec:alternatives:other}
 
 %comparison with other approaches based on sets of probability distributions
 %then sets of priors in general: discrete models (comparison whitcomb),
-In this section, we will give a short overview on \textcite[\S 4]{2011:rinderknecht:diss},
-discussing a density ratio class model based on not necessarily conjugate bounding functions,
-and then comment on an approach based on the discretisation of the parameter space
+In this section, we will discuss two approaches based on sets of priors that are,
+in contrast to the approaches discussed in Section~\ref{sec:alternatives:conjugate},
+not based on conjugate distributions.
+In Section~\ref{sec:alternatives:rinderknecht}, we
+will give a short overview on \textcite[\S 4]{2011:rinderknecht:diss},
+discussing a density ratio class model based on not necessarily conjugate bounding functions.
+In Section~\ref{sec:alternatives:whitcomb}, we will comment on an approach based on the discretisation of the parameter space
 \parencite{2005:whitcomb}.%
 \footnote{A further, very recent, contribution on Bayesian inference with sets of priors
 is \textcite{2013:mangilibenavoli}, modelling prior near-ignorance on the unit simplex
 by several sets of non-conjugate priors which provide an alternative to the IDM.}
 
-\medskip
+\subsubsection{The Model by \texorpdfstring{\textcite{2011:rinderknecht:diss}}{Rinderknecht (2011)}}
+\label{sec:alternatives:rinderknecht}
 
 \textcite[\S 4]{2011:rinderknecht:diss} presents a model for inferences 
 based on sets of priors of the form of a density-ratio class,
@@ -429,7 +442,9 @@ where \textcite[\S 4.3]{1991:pericchi} represents an extreme case,
 combining a $l(\vartheta)$ proportional to the light-tailed normal distribution %(having light tails)
 with $u(\vartheta) \propto 1$ that gives the most heavy tails possible.
 
-\medskip
+
+\subsubsection{The Model by \texorpdfstring{\textcite{2005:whitcomb}}{Whitcomb (2005)}}
+\label{sec:alternatives:whitcomb}
 
 \textcite{2005:whitcomb} studies imprecise Bayesian inference in discrete parameter spaces.
 The inference procedure is illustrated with three examples

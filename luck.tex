@@ -5,8 +5,8 @@
 
 ***put footnotes to jstp definitions: \ymodel\ is type (a), \ldots***
 
-***Section~\ref{sec:luck} gives a short overview on a software implementation of \nymodel s,
-the add-on package \texttt{luck} ***citation*** for the statistical programming environment \textbf{R} \parencite{2013:r}.
+%Section~\ref{sec:luck} gives a short overview on a software implementation of \nymodel s,
+%the add-on package \texttt{luck} ***citation*** for the statistical programming environment \textbf{R} \parencite{2013:r}.
 
 This secion gives a short overview on a software implementation of the models discussed in Section~\ref{sec:jstp},
 the add-on package \texttt{luck} ***citation*** for the statistical programming environment \textbf{R} \parencite{2013:r}.
@@ -18,39 +18,41 @@ It has also become a de facto standard among
 statisticians for software implementations of novel methods,
 which can be easily distributed by means of so-called \emph{packages}
 %, additional functionality can be provided to \texttt{R} users
-via the online repository \emph{cran} (Comprehensive \textbf{R} Archive Network, \url{http://www.cran.R-project.org}).
+via the online repository `cran' (Comprehensive \textbf{R} Archive Network, \url{http://www.cran.R-project.org}).
 
 %***implements the general model structure from Section~\ref{sec:jstp}.
 As described in footnote~\ref{foot:luckmodels}, page~\pageref{foot:luckmodels},
-\model s (see Definition~\ref{070503-defin1}) generalise the framework
+\model s generalise the framework
 of canoncial conjugate priors from Section~\ref{sec:regularconjugates},
 by requiring only the form of the update step \eqref{eq:canonicalupdate},
-and not the specific functional form of \eqref{eq:expofam-sampledens} for $f(\x \mid \vartheta)$.
+and not the specific functional form of \eqref{eq:expofam-sampledens} for $f(\x \mid \vartheta)$
+(see Definition~\ref{070503-defin1}).
 
-The present implementation is thus programmed in a class system
+The present implementation is programmed in a class system
 that reflects %mirrors
 the hierarchy between the unified description in terms of \model s %of conjugate priors
 and the concrete application of this framework by, e.g.,
 considering inference on the mean of scaled normal distribution using sets of conjugate priors
-as described in Example~\ref{ex:ymodel-nv}.
+(as described in Example~\ref{ex:ymodel-nv}).
 %making extensions for arbitrary prior classes very easy.
 This hierarchical structure makes extensions of the package
-to cater for arbitrary sample distributions very easy.
+to allow for inference in arbitrary*** sample distributions very easy.
 
-Hierarchical structures like the one used*** here
+Such hierarchical structures 
 can be implemented using the object-oriented paradigm for programming.
 The central tools in this paradigm are \emph{classes} and \emph{methods}.
-Classes provide the blueprint for concepts that should be modelled in software,
+\emph{Classes} provide the blueprint for concepts that should be modelled in software,
 defining ***wiederkehrende*** structures, or the type, according to which concrete
 objects can be created. These concrete realisations of a class are called \emph{instances}.
-Methods then provide functions to manipulate such instances,
-the classe description guaranteeing a standardised input.
-The **clou** of this paradigm is that hierarchies between concepts
-can be modelled by \emph{inheritance}.
+\emph{Methods} then provide functions to manipulate such instances,
+the class description guaranteeing a standardised input.
+However, the most prominent feature of the object-oriented paradigm is
+that hierarchies between concepts can be modelled by \emph{inheritance}.
 More specific structures can be modelled as special cases of more general classes,
-and the blueprint for such specialised objects are called \emph{subclasses}.
+and the blueprint for such specialised objects are called \emph{subclasses},
+which \emph{inherit} the treats*** of the more general class.
 
-To recap, the present implementation is programmed in the S4 class system of
+***To recap, the present implementation is programmed in the S4 class system of
 \textbf{R} and provides the basic framework for the definition, display and updating
 sets of priors based on \model s by defining the class \texttt{LuckModel}.
 Inferences in a concrete sample distribution are then done

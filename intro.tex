@@ -5,16 +5,27 @@
 % add diss sections to refs to own papers included in diss
 
 
-\section{***Overview / Outline}
+\section{Preliminaries}
 
-%\subsection{Outline}
+\subsection{***Outline / Overview}
 
-***structure, sources, which papers where***
+***four chapters, plus appendix
 
+***structure, 
 
 \subsection{Sources}
 
-%\textbf{less details} OK
+***main sources:
+\begin{itemize}
+\item \textcite{Walter2009a}
+\item \textcite{Walter2009b} (substantially extended version of \textcite{Walter2010a})
+\item \textcite{Walter2011a}
+\item \textcite{Troffaes2013a}
+\item \textcite{itip-statinf}
+\end{itemize}
+not main (only Sec.~\ref{sec:diri-multi}): \textcite{Walter2012b}
+
+sources, which papers where***
 
 
 Sec.~\ref{sec:stat-inference}: parts of \textcite[\S\S 1.1, 1.2, 1.5]{itip-statinf}
@@ -63,7 +74,7 @@ instead of $n^{(1)}$ and $y^{(1)}$, respectively).
 %along with the theoretical results, Thomas Augustin devised most of the structure,
 %and contributed most of the introductory and concluding sections.***
 
-***Section~\ref{sec:luck} gives a short overview on a software implementation
+Section~\ref{sec:luck} gives a short overview on a software implementation
 of the model presented in Section~\ref{sec:jstp}.
 Author and maintainer of this add-on package ***citation*** is Gero Walter,
 with Norbert Krautenbacher as a second author, who contributed code for an application
@@ -90,7 +101,7 @@ reproduced here with a slight change in notation and some added comments.
 %of Gero Walter and Thomas Augustin.
 
 
-\section{Notation}
+\subsection{Notation}
 \label{sec:notation}
 
 Scalars are denoted by italic letters ($x$, $\theta$),
@@ -141,7 +152,10 @@ are added in the argument, seperated by a vertical line, as in $f(x\mid\theta)$,
 Other notational conventions are declared upon introduction of the concepts they are representing.
 
 
-\section{Statistical Inference}
+\section{Some Fundamentals}
+
+
+\subsection{Statistical Inference}
 \label{sec:stat-inference}
 
 %This thesis being concerned with generalized Bayesian Inference
@@ -179,7 +193,7 @@ In this setting $\mathcal{Q}$ is called \emph{sampling model} and every element 
 The inferential task is to learn the true element $\p^* \in \mathcal{Q}$ from multiple observations of the random process producing $X$.
 
 
-\section{Parametric Models}
+\subsection{Parametric Models}
 \label{sec:parametricmodels}
 
 In this thesis, generally, so-called \emph{parameteric models} are considered,
@@ -307,7 +321,7 @@ As a shortcut, we write $\vec{n} \sim \mult(\btheta)$.
 \end{example}
 
 
-\section{Statistical Inference with the Bayesian Paradigm}
+\subsection{Statistical Inference with the Bayesian Paradigm}
 \label{sec:bayes-inference}
 
 As the inference models discussed in this thesis are all based on the Bayesian approach to statistical inference,
@@ -341,7 +355,7 @@ which is the distribution of further observations based on $p(\vartheta\mid\x)$
 (see Eq.~\eqref{eq:posteriorpredictive} below).
 
 
-\subsection{Regular Conjugate Families of Distributions}
+\subsubsection{Regular Conjugate Families of Distributions}
 \label{sec:regularconjugates}
 
 Traditional Bayesian inference is frequently based on so-called \emph{conjugate priors} related to a specific likelihood.
@@ -441,7 +455,7 @@ forms the basis for the different inference tasks. %as listed in Section~\ref{in
 Next, we will briefly describe a taxonomy of inference tasks.
 
 
-\subsection{Inference Tasks}
+\subsubsection{Inference Tasks}
 \label{sec:inferencetasks}
 
 We may structure the different inference tasks by
@@ -513,7 +527,7 @@ which will serve as a real-world example illustrating the powers and shortcoming
 ultimately motivating the shift to imprecise Bayesian inference.
 
 
-\subsection{The Beta-Binomial Model}
+\subsubsection{The Beta-Binomial Model}
 \label{sec:beta-binom}
 
 As the special case of the multinomial model \eqref{eq:multinomdens} with only two categories, we will consider the Binomial model
@@ -727,7 +741,7 @@ known as the \emph{Beta-Binomial distribution}.%
 studying the probability of the next observation to be a success in dependence on the number of successes $s$ in $n$ past observations.}
 
 
-\subsection{The Normal-Normal Model}
+\subsubsection{The Normal-Normal Model}
 \label{sec:norm-norm}
 
 %***add comment on general case $\vartheta=(\mu,\sigma^2)$***\\
@@ -787,7 +801,7 @@ and with variance increasing with the posterior variance \eqref{eq:normalpostvar
 and the number of observations to be predicted.
 
 
-\subsection{The Dirichlet-Multinomial Model}
+\subsubsection{The Dirichlet-Multinomial Model}
 \label{sec:diri-multi}
 
 The construction of the canonical conjugate prior by Eq.~\eqref{eq:canonicalprior}

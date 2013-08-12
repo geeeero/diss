@@ -1,17 +1,131 @@
 \chapter{Introduction}
 \label{cha:intro}
 
-
-% add diss sections to refs to own papers included in diss
+In this introductory chapter, we will first deal with some preliminaries in Section~\ref{sec:preliminaries},
+where will give an overview on the contents of this thesis,
+declare the sources these contents are based on,
+and present some notational conventions.
+In Section~\ref{sec:fundamentals}, we will discuss some basic fundamentals
+that frame the work we want to accomplish.
+There, we will clarify our notion of statistical inference using parametric models,
+and give a brief introduction to the Bayesian approach to statistical inference. %based on the Bayesian paradigm.
+Section~\ref{sec:commoncause} then presents a motivating example,
+%illustrating the need to go beyond usual Baysian inference
+illustrating the advantages in uncertainty modelling that can be gained from using imprecise probability models,
+thus serving as a preview on the general concepts we will then introduce in the later chapters.
 
 
 \section{Preliminaries}
+\label{sec:preliminaries}
 
-\subsection{***Outline / Overview}
+\subsection{Overview***}
 
-***four chapters, plus appendix
+***This thesis is concerned with the generalisation of Bayesian inference towards the use of imprecise or interval probability,
+with a focus on model behaviour in case of prior-data conflict.
 
-***structure, 
+With the basics of Bayesian inference based on parametric distributions
+covered in Section~\ref{sec:bayes-inference},
+the motivating example in Section~\ref{sec:commoncause},
+considering the reliability analysis problem of common-cause failure modelling,
+serves to show the possibilities of generalised Bayesian inference using sets of conjugate priors.
+
+Chapter~\ref{cha:gbi} then gives a general introduction to the methodology of imprecise probability models,
+presenting the general framework for generalised Bayesian inference using sets of priors.
+Furthermore, motives for the use of imprecise probability methods are discussed,
+among which prior-data conflict (encountered already in the motivating example) and weakly informative priors
+are the central topics guiding our assessments of the specific imprecise probability models covered
+in Chapter~\ref{cha:imprecisebayes-conjugate}.
+
+There, we first present a general framework for generalised Bayesian inference using sets of conjugate priors,
+giving a superstructure for a number of imprecise probability models
+that have been central to the development and application of imprecise probability methods
+in statistical inference (Section~\ref{sec:generalmodel}).
+Some important favourable inference properties for these models are demonstrated, 
+and the range of models that can be subsumed under this framework are discussed with respect to
+the handling of prior-data conflict and the possibility to model weak prior information.
+
+Section~\ref{sec:alternatives} briefly discusses some alternative models based on sets of priors,
+and compares these to the model framework from Section~\ref{sec:generalmodel}.
+The remainder of Chapter~\ref{cha:imprecisebayes-conjugate}
+reproduces two works that suggested important models %***geared at***
+that provide a sophisticated handling of prior-data conflict
+(Sections~\ref{sec:jstp} and \ref{sec:isipta11}),
+while Section~\ref{sec:luck} gives a short overview on a software implementation.
+
+Chapter~\ref{cha:concluding} concludes the thesis,
+giving a summary and discussion of the central achievments,
+and sketching some opportunities for applications and avenues for further research.
+
+As supplemental material, the Appendix (Chapter~\ref{cha:appendix}) contains
+a study of \pdc\ sensitivity in Bayesian linear regression,
+and an informal rationale, together with some first technical results,
+for a novel approach that, in addition to prior-data conflict sensitivity,
+leads to favourable behaviour in case of strong agreement between prior information and data.
+
+
+
+%and illustrates some characteristic modelling opportunities of generalised Bayesian inference, while
+
+%a wealth of favourable model properties
+
+\iffalse
+-------------- 2 ---------------------------
+
+After having seen a detailed example for Bayesian inference using sets of conjugate priors in Section~\ref{sec:commoncause},
+in this chapter we will now give a general introduction to the methodology of generalised Bayesian inference,
+before we give a systematic discussion of models for generalised Bayesian inference with sets of conjugate priors
+in the central Section~\ref{sec:generalmodel} of this thesis.
+
+In Section~\ref{sec:ip-intro} below, we will try to outline the general theory of imprecise or interval probability,
+describing its main formulations and interpretations, and discuss the generalised Bayesian inference procedure.
+Section~\ref{sec:motivation} then gives at first some general motives for the use of imprecise probability methodology,
+concluding with the motives especially relevant in the context of the Bayesian approach to statistical inference,
+among which prior-data conflict and weakly informative priors will receive special attention
+in the model discussion in Chapter~\ref{cha:imprecisebayes-conjugate}.
+
+-------------- 3 ---------------------------
+
+The imprecise probability models based on conjugate priors we will discuss in this chapter
+are an important model class,
+and have been central to the development and application of imprecise probability methods
+in statistical inference.
+
+The chapter is structured as follows.
+Section~\ref{sec:generalmodel} attempts to give a systematic overview on these models, %the different models discussed in the literature,
+and illustrates some characteristic modelling opportunities of generalised Bayesian inference, while
+Section~\ref{sec:alternatives} briefly discusses some alternative models based on sets of priors.
+Section~\ref{sec:jstp} then presents one model in detail, namely the so-called
+\nymodel\ developed in \textcite{Walter2009a},
+and illustrates its application to the Normal-Normal and Dirichlet-Multinomial models. % in more detail. %***JSTP***
+Section~\ref{sec:luck} gives a short overview on a software implementation of \nymodel s,
+the add-on package \texttt{luck} ***citation*** for the statistical programming environment \textbf{R} \parencite{2013:r}.
+Finally,
+Section~\ref{sec:isipta11} presents two attempts to further refine inference behaviour in the presence of \pdc.
+While the first approach considers more sophisticated shapes for prior parameter sets,
+the second is a fundamentally different approach that combining inferences from two arbitrary distinct models.
+Interestingly, the inferences from these two approaches in Section~\ref{sec:isipta11} show nevertheless fascinating similarities.
+
+--------------- 4 -----------------------------
+
+We will conclude this thesis with a short summary of, and discussion of the central achievments in, this thesis
+in Sections~\ref{sec:concluding-summary} and \ref{sec:concluding-discussion}, respectively.
+In Section~\ref{sec:concluding-outlook}, we will sketch some opportunities for applications and avenues for further research.
+
+
+--------------- A ------------------------------
+
+As supplemental material, the Appendix (Chapter~\ref{cha:appendix}) contains
+\begin{enumerate}[(i)]
+\item a study of \pdc\ sensitivity in Bayesian linear regression,
+presenting a simplified prior model that gives interesting insights into the updating step
+for the regression parameters and offers opportunities for inferences based on sets of priors
+(Section~\ref{sec:festschrift});
+\item some first technical results characterising a new prior parameter set shape,
+described informally in Section~\ref{sec:concluding-outlook} below
+(Section~\ref{sec:boatshape}).
+\end{enumerate}
+\fi
+
 
 \subsection{Sources}
 
@@ -153,7 +267,7 @@ Other notational conventions are declared upon introduction of the concepts they
 
 
 \section{Some Fundamentals}
-
+\label{sec:fundamentals}
 
 \subsection{Statistical Inference}
 \label{sec:stat-inference}
@@ -976,8 +1090,10 @@ The issues encountered in this application that is based on
 illustrating the advantages in uncertainty modelling that can be gained from using imprecise probability models.%
 \footnote{Basic aspects of the theory of imprecise probability,
 and further motivations for using it, will be given in Chapter~\ref{cha:gbi}.}
-The models discussed there will then be ***eingeordnet*** in a general framework
+The models discussed there will then be integrated into a general framework
 of inference using sets of canonical conjugate priors in Section~\ref{sec:generalmodel}.
+
+
 
 \section{Dirichlet-Multinomial Model for Common-Cause Failure}
 \label{sec:commoncause}

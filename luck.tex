@@ -1,4 +1,4 @@
-\section{The \texttt{luck} Package***} %***Software***}
+\section{The \texttt{luck} Package}
 \label{sec:luck}
 
 %seperate section, take short description from abstract for ISIPTA'09 poster?
@@ -7,21 +7,23 @@
 %the add-on package \texttt{luck} (citation) for the statistical programming environment \textbf{R} \parencite{2013:r}.
 
 This secion gives a short overview on a software implementation of the models discussed in Section~\ref{sec:jstp},
-the add-on package \texttt{luck} ***citation*** for the statistical programming environment \textbf{R} \parencite{2013:r}.
+the add-on package \texttt{luck} \parencite{luck-package} for the statistical programming environment \textbf{R}.
+Author and maintainer of this package is Gero Walter,
+with Norbert Krautenbacher as a second author, who contributed code for an application
+to exponentially distributed data.
 
-\medskip
-
+\paragraph{Introduction.}
 In recent years, the statistical programming environment %software
-\textbf{R} is used more and more frequently for every-day statistical analyses
+\textbf{R} \parencite{2013:r} is used more and more frequently for every-day statistical analyses
 in academia and inside corporations. %(Wikipedia)
 It has also become a de facto standard among
 statisticians for software implementations of novel methods,
 which can be easily distributed by means of so-called \emph{packages}
 %, additional functionality can be provided to \texttt{R} users
 via the online repository `cran' (Comprehensive \textbf{R} Archive Network, \url{http://www.cran.R-project.org}).
-
+%
 %***implements the general model structure from Section~\ref{sec:jstp}.
-The present implementation is programmed in a class system
+The present implementation is programmed in a class system of \textbf{R}
 that reflects %mirrors
 the hierarchy between the unified description in terms of \model s%
 \footnote{As described in footnote~\ref{foot:luckmodels}, page~\pageref{foot:luckmodels},
@@ -34,8 +36,10 @@ and the concrete application of this framework by, e.g.,
 considering inference on the mean of scaled normal distribution using sets of conjugate priors
 (as described in Example~\ref{ex:ymodel-nv}).
 %making extensions for arbitrary prior classes very easy.
-This hierarchical structure makes extensions of the package inorder to
-enable inference in wide class of sample distributions very easy.
+This hierarchical structure makes extensions of the package in order to
+enable inference in a wide class of sample distributions very easy.
+
+\paragraph{Object-oriented Programming.}
 
 Such hierarchical structures 
 can be implemented using the object-oriented paradigm for programming.
@@ -56,6 +60,49 @@ that hierarchies between concepts can be modelled by \emph{inheritance}.
 More specific concepts can be modelled as special cases of a general concept, % behind more general classes,
 and the blueprint for such specialised objects are called \emph{subclasses},
 which \emph{inherit} the traits of the more general class.
+Moreover, also methods can be specialised to reflect the class hierarchies,
+by giving more specific output for subclasses.
+The relations between classes are usually depicted in so-called \emph{UML graphs}.
+Figure~\ref{fig:uml-general} gives an example for such a graph.
+
+\begin{figure}
+\centering
+\begin{tikzpicture}[class/.style={draw, rectangle split, rectangle split parts=3, %
+                                  every text node part/.style={text centered}, %
+                                  fill=gray!30, text width=53mm, thick}, %
+                    point/.style={coordinate}]%every node/.style=draw]
+%\draw[help lines] (0,0) grid (2,2);
+\node[class] (superclass) at (1,1) {Some Class \nodepart{second} `slots' (attributes) \nodepart{third} `methods' (functions)};
+\node[class] (subclass) [below=0.75cm of superclass] {Subclass \nodepart{second} \small additional/specialised slots
+                                                               \nodepart{third}  \small additional/specialised methods};
+\node [right=0.5cm of subclass, draw=none] {\parbox{25ex}{`Subclass' extends\\ `Some Class', inheriting\\ slots and methods}};
+\draw [stealth'-, thick] (superclass.south) -- (subclass.north); %node [midway, right, draw=none] {extends Some Class; inherits slots \& methods};
+\node[class, text width=45mm] (subclass2) [below=0.8cm of subclass] %
+{\small Subsubclass 2 \nodepart{second} \scriptsize additional/specialised slots
+                      \nodepart{third}  \scriptsize additional/specialised methods};
+\draw [stealth'-, thick] (subclass.south) -- (subclass2.north) node (p0) [coordinate, midway] {}; %node [midway,right,draw=none] {inherits};
+\node[class, text width=45mm] (subclass1) [left=0.5cm of subclass2] %
+{\small Subsubclass 1 \nodepart{second} \scriptsize additional/specialised slots
+                      \nodepart{third}  \scriptsize additional/specialised methods};
+\node[class, text width=45mm] (subclass3) [right=0.5cm of subclass2] %
+{\small Subsubclass 3 \nodepart{second} \scriptsize additional/specialised slots
+                      \nodepart{third}  \scriptsize additional/specialised methods};
+\node [coordinate, above=0.4cm of subclass1] (p1) {};
+\draw [thick] (p0) --  (p1) -- (subclass1.north);
+\node [coordinate, above=0.4cm of subclass3] (p3) {};
+\draw [thick] (p0) --  (p3) -- (subclass3.north);
+\end{tikzpicture}
+\caption[Illustration of class hierarchies in object-oriented software (UML diagram).]%
+{Illustration of class hierarchies in object-oriented software.
+Each class is drawn as a rectangle with three parts,
+the top part giving the name of the class.
+The two lower parts name the slots and the methods for the class, respectively.
+A class that inherts from another class is linked to this other class with an arrow.
+Such graphs are called \emph{UML diagrams}.}
+\label{fig:uml-general}
+\end{figure}
+
+\paragraph{The Basic Classes.} %{Basic Structure of the Package.}
 
 The package \texttt{luck} uses the S4 class system of
 %***To recap, the present implementation is programmed in the S4 class system of
@@ -78,11 +125,13 @@ From the model types discussed in Section~\ref{sec:basicsetting}, type
 (\ref{enum:modeltypes-a}), (\ref{enum:varyn}), and (\ref{enum:rectangular})
 can thus be implemented by choosing \texttt{n0} and \texttt{y0} accordingly
 as singletons or intervals.
-
+%
 To calculate the set of posterior distributions,
 the class \texttt{LuckModel} also provides a \texttt{data} slot.
 This must contain an object of class \texttt{LuckModelData},
 providing the data in the needed form ($\tau(\x)$ and $n$).
+
+\paragraph{Posterior Parameter Sets.}
 
 As the posterior parameter sets $\PN$ resulting from updating all the priors in a
 prior parameter set $\PZ$ are, in the most general case of $\PZ = [\nzl,\nzu] \times [\yzl, \yzu]$,
@@ -101,8 +150,10 @@ are interval-valued) can be treated in the same way.%
 \footnote{The function \texttt{optim} provided by \textbf{R} for general-purpose
 multivariate optimisation is not recommended for univariate optimisation.}
 
+\paragraph{Subclasses for Concrete Distributions.}
+
 As mentioned above, the class \texttt{LuckModel} in fact only implements the general superstructure as given in the
-(abstract) definition of \model s (Definition~\ref{070503-defin1}).
+(abstract) definition of \model s (see Definition~\ref{070503-defin1}).
 For inference in a concrete distribution family like the Normal distribution,
 this general framework must be concretised %. This can be done
 by defining a subclass, inheriting from \texttt{LuckModel},
@@ -111,19 +162,86 @@ along with a subclass of \texttt{LuckModelData} to specify how $\tau(\x)$
 is calculated for this distribution family.
 Currently, this has been done for data from a scaled normal distribution,
 i.e., $x_i \sim \norm(\mu, 1)$,%
-\footnote{See Example~\ref{ex:ymodel-nv}.}
+\footnote{See Example~\ref{ex:ymodel-nv}, p.~\pageref{ex:ymodel-nv}f.}
 with the classes \texttt{ScaledNormalLuckModel} and \texttt{ScaledNormalData},
 and for data from an exponential distribution, i.e., $x_i \sim \text{Exp}(\lambda)$,%
 \footnote{See the study by \textcite{2011:krautenbacher},
 who contributed the code for this distribution family.
-The results of this study are breifly discussed in Section~\ref{sec:alternatives:other}.***}
+The results of this study are briefly discussed in Section~\ref{sec:alternatives:whitcomb}.}
 with the classes \texttt{ExponentialLuckModel} and \texttt{ExponentialData}.
+Figure~\ref{fig:uml-luck} shows the UML diagram,
+illustrating the hierarchical structure of the package. 
 
+\begin{figure}
+\centering
+\begin{tikzpicture}[class/.style={draw, rectangle split, rectangle split parts=3, %
+                                  every text node part/.style={text centered}, %
+                                  font=\ttfamily, %
+                                  fill=gray!30, text width=45mm, thick}, %
+                    point/.style={coordinate}]%every node/.style=draw]
+\node [class] (luck) at (0,0) {LuckModel \nodepart{second} n0: matrix \\
+                                         y0: matrix \\
+                                         data: LuckModelData
+                                         \nodepart{third}
+                                         show() \\
+                                         plot() \\
+                                         unionHdi() \\
+                                         \quad \vdots};
+\node [coordinate, below=0.4cm of luck] (p0) {};
+\node [coordinate, left=0.4cm of p0] (p1) {};
+\node [class, text width = 47mm] (scalednormal) [below=0.4cm of p1] {ScaledNormalLuckModel\phantom{p} %
+                                                                        \nodepart{second} \phantom{pS}
+                                                                        \nodepart{third} singleHdi()\phantom{p}\\};
+\draw [stealth'-, thick] (luck.south) -- (p0) -- (p1) -- (scalednormal.north); %node [midway,right,draw=none] {inherits};
+\node[class, text width=45mm] (poisson) [right=0.5cm of scalednormal] {ExponentialLuckModel %
+                                                                        \nodepart{second} \phantom{pS}
+                                                                        \nodepart{third} singleHdi()\phantom{p}\\};
+\node[class, text width=35mm, double copy shadow={shadow xshift=1mm,shadow yshift=-1mm}] %
+ (more) [right=0.5cm of poisson] {\phantom{pS}\ldots\phantom{pS} \nodepart{second} \phantom{pS}
+                                                                 \nodepart{third} singleHdi()\phantom{pS}\\};
+\node [coordinate, above=0.4cm of poisson] (p2) {};
+\draw [thick] (p0) -- (p2) -- (poisson.north);
+\node [coordinate, above=0.4cm of more] (p3) {};
+\draw [thick] (p2) -- (p3) -- (more.north);
+%\draw[->] (0,0) -- (1,0);
+\begin{scope}[transform canvas={scale=0.75}]
+%\draw[->] (0,0.5) -- (1,0.5);
+%\node [coordinate] (lmd) [right=0.5cm of luck] {}; 
+\node [class] (data) at (6.8,1.5) {LuckModelData \nodepart{second} tauN: matrix\\ rawData: matrix
+                                                             \nodepart{third} show()};
+\node [coordinate, below=0.4cm of data] (dp0) {};
+\node [coordinate, left=0.4cm of dp0] (dp1) {};
+\node[class, text width=37mm] (scalednormaldata) [below=0.4cm of dp1] {ScaledNormalData\phantom{p} \nodepart{second} \phantom{h}
+                                                                                                   \nodepart{third} show()};
+\node[class, text width=37mm] (poissondata) [right=0.5cm of scalednormaldata] {ExponentialData \nodepart{second} \phantom{h}
+                                                                                               \nodepart{third} show()};
+\node[class, text width=30mm, double copy shadow={shadow xshift=1mm,shadow yshift=-1mm}] %
+ (moredata) [right=0.5cm of poissondata] {\phantom{pD}\ldots\phantom{pD} \nodepart{second} \phantom{h}
+                                                                         \nodepart{third}  show()};
+\draw [stealth'-, thick] (data.south) -- (dp0) -- (dp1) -- (scalednormaldata.north); %node [midway,right,draw=none] {inherits};
+\node [coordinate, above=0.4cm of poissondata] (dp2) {};
+\draw [thick] (dp0) -- (dp2) -- (poissondata.north);
+\node [coordinate, above=0.4cm of moredata] (dp3) {};
+\draw [thick] (dp2) -- (dp3) -- (moredata.north);
+\end{scope}
+\node [coordinate] (snake) at (2.75,1.025) {};
+\draw [dashed, very thick, -stealth'] (2.5,0.35) .. controls +(right:4mm) and +(up:4mm)
+                                      .. (snake) .. controls +(up:4mm) and +(left:8mm) .. (3.2,1.7);
+\end{tikzpicture}
+\caption[UML diagram for the \texttt{luck} package, illustrating the class hierarchy.]%
+{UML diagram for the \texttt{luck} package, illustrating the class hierarchy.
+In UML diagrams, the slots and methods that
+subclasses inherit are not specify explicitely;
+only new slots and methods are displayed.
+The class of each slot is given next to its name.
+The \texttt{data} slot in \texttt{LuckModel} is of class \texttt{LuckModelData},
+indicated by the dashed arrow.}
+\label{fig:uml-luck}
+\end{figure}
 
-***UML diagramm? ***talk, poster***
+\paragraph{Implemented Methods.}
 
-
-For illustrations of and workings*** with \texttt{LuckModel} objects, some methods have
+For illustrations of \texttt{LuckModel} objects and inferences based on them, some methods have
 been written. First, there are methods to display and print plain \texttt{LuckModel}
 objects (existing only on the superstructure level):
 \begin{itemize}
@@ -139,9 +257,9 @@ objects (existing only on the superstructure level):
    objects.\footnote{\texttt{show} methods are the S4 equivalent to \texttt{print} methods for S3 objects.}
 \item The \texttt{plot} method for \texttt{LuckModel} objects represents the parameter sets graphically.
 \end{itemize}
-
-For concrete data distributions, there are methods for working with
-and displaying the resulting sets of prior or posterior distributions.
+Secondly, there are methods for working with
+and displaying the resulting sets of prior or posterior distributions
+for concrete data distributions, along with two exemplary inference methods.
 \begin{itemize}
 \item The constructor functions are modified, for example to check if the input
    fits to the data or prior distribution, or to allow the simulation of data
@@ -157,7 +275,9 @@ and displaying the resulting sets of prior or posterior distributions.
    to explain to the user the meaning of the canonical parameters $\nz$ and $\yz$.
 \item \texttt{unionHdi} calculates the union of highest density intervals for a
    specialised \texttt{LuckModel} object.%
-   \footnote{Union of highest density intervals were discussed in Section~***.}
+   \footnote{Highest density (HD) intervals were discussed in Section~\ref{sec:beta-binom},
+   while unions of highest density intervals were considered, e.g.,
+   in Example~\ref{ex:ymodel-nv}, p.~\pageref{ex:ymodel-nv}f.}
    This method relies on a function \texttt{singleHdi},
    that gives a highest density interval for a single parameter combination
    $(n, y)$ for the respective conjugate prior or posterior distribution.

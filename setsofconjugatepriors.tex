@@ -80,9 +80,40 @@ Alternatively, $\MZ$ can be defined as the set of all convex mixtures of paramet
 In this case, the set of priors corresponding to $\PZ$ considered above gives the set of extreme points for the actual convex set $\MZ$.
 Updating this convex prior credal set with the Generalized Bayes' Rule results in a set $\MN$ of posterior distributions that is again convex,
 and $\MN$ conveniently can be obtained by taking the convex hull of the set of posteriors
-defined by the set of updated parameters $\PN$.***Beleg?***
+defined by the set of updated parameters $\PN$.
+%
+To see this, consider a mixture distribution $p_m(\vartheta\mid \nz_1,\yz_1, \nz_2,\yz_2, \alpha)$
+based, without loss of generality, on only two parametric components
+with parameters $(\nz_1,\yz_1)$ and $(\nz_2,\yz_2)$, respectively:
+\begin{align*}
+p_m(\vartheta\mid \nz_1,\yz_1, \nz_2,\yz_2, \alpha) &:=
+   \alpha\,  p(\vartheta\mid\nz_1,\yz_1) +
+(1-\alpha)\, p(\vartheta\mid\nz_2,\yz_2) \,.
+\end{align*}
+The corresponding posterior, derived via Bayes' Rule, %\eqref{eq:bayesrule},
+can then be written as
+\begin{align}
+\lefteqn{
+p_m(\vartheta\mid \nz_1,\yz_1, \nz_2,\yz_2, \alpha, \x) } \hspace*{8ex} & \nonumber\\
+ &= \frac{f(\x\mid\vartheta)}{f(\x)} \Big(
+     \alpha\,  p(\vartheta\mid\nz_1,\yz_1) +
+  (1-\alpha)\, p(\vartheta\mid\nz_2,\yz_2) \Big) \nonumber\\
+ &=  \alpha\,  \frac{f(\x\mid\vartheta)}{f(\x)} p(\vartheta\mid\nz_1,\yz_1) +
+  (1-\alpha)\, \frac{f(\x\mid\vartheta)}{f(\x)} p(\vartheta\mid\nz_2,\yz_2) \nonumber\\
+ &=  \alpha\,  p(\vartheta\mid\nn_1,\yn_1) +
+  (1-\alpha)\, p(\vartheta\mid\nn_2,\yn_2) \nonumber\\
+ &=: p_m(\vartheta\mid \nn_1,\yn_1, \nn_2,\yn_2, \alpha)\,,
+\label{sec:posteriormixture}
+\end{align}
+being the mixture of two parametric posteriors
+with updated parameters $(\nn_1,\yn_1)$ and $(\nn_2,\yn_2)$, respectively.
+Through complete induction, this result holds also for any finite number of mixture components, such that
+the set of updated mixture distributions $\MN$ can thus be constructed
+as the convex hull of the parametric posteriors %updated parametric distributions.
+with $(\nn,\yn) \in \PN$.
 
-When the credal set $\MZ$ is taken to contain convex combinations (i.e., finite mixtures) of parametric priors,
+When the credal set $\MZ$ is taken to contain all finite mixtures of parametric priors,
+%convex combinations (i.e., finite mixtures) of parametric priors,
 $\MZ$ is very flexible and contains, through the mixture distributions, a wealth of distributional shapes.%
 \footnote{\label{foot:denseinthespaceof}Indeed, if the parametric distributions are normal distributions
 and $\PZ$ is large enough,

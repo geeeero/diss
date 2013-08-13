@@ -213,9 +213,9 @@ l(\vartheta\mid\x,\pz) &= l(\vartheta\mid\pz) f(\x\mid\vartheta) = l(\vartheta\m
 %\end{align*}
 \intertext{and the posterior upper bounding function is defined as}
 %\begin{align*}
-u(\vartheta\mid\x,\pz) &:= \frac{c_n}{c_0} u(\vartheta\mid\pz) f(\x\mid\vartheta) = c_n l(\vartheta\mid\pn)\,,
+u(\vartheta\mid\x,\pz) &=: \frac{c_n}{c_0} u(\vartheta\mid\pz) f(\x\mid\vartheta) = c_n l(\vartheta\mid\pn)\,,
 \end{align*}
-where $c_n$ is introduced to allow the magnitude of $\mathcal{M}$ to decrease in dependence of the samples size $n$.%
+where $c_n$ is introduced to allow the magnitude of $\mathcal{M}_{l,u}$ to decrease in dependence of the samples size $n$.%
 \footnote{Note that $c_n \neq c_0$ means that we actually do not update $\mathcal{M}$ according to the Generalised Bayes' Rule.}
 $c_n$ must thus be chosen as a function decreasing in $n$,
 and \textcite{1993:coolen} suggests a functional form with
@@ -232,8 +232,8 @@ lower and upper cumulative density functions, and lower and upper predictive den
 These formulas are easy to calculate if the involved integrals are easy to obtain,
 as is the case for a conjugate choice of $l(\vartheta)$.
 However, this model is insensitive to \pdc, owing to the requirement of $c_0$ and $c_n$
-to be independent of $\theta$ and $\x$ (except for the sample size $n$);
-furthermore, as conceded by \textcite[p.~341]{1993:coolen},
+to be independent of $\vartheta$ and $\x$ (except for the sample size $n$);
+furthermore, as mentioned by \textcite[p.~341]{1993:coolen},
 there could be many other functional forms for $c_n$ that were equally reasonable
 as the one suggested in the paper.
 
@@ -255,9 +255,12 @@ imprecision in posterior predicitive probabilities analytically.
 This model gives interesting insights into the dependence of imprecision on $s$,
 but the fact that posterior imprecision is the very same as prior imprecision
 if $s/n = \alpha/(\alpha+\beta)$ (i.e., data and prior assignments are perfectly in line)
-suggests that this model is not very suitable for inferences \parencite[p.~160]{1994:coolen}.
+suggests that models with constant $c^*_n$ should be avoided,
+and that instead $c^*_n$ should decrease with $n$
+%this model is not very suitable for inferences
+\parencite[p.~160]{1994:coolen}.
 Furthermore, our conjecture is that the influence of $s$ on posterior imprecision
-is due to the restriction that the two bounding functions have to be
+is mainly due to the restriction that the two bounding functions have to be
 proportional to Beta densities. For the case of $s/n = \alpha/(\alpha+\beta)$,
 imprecision decreases for any $s \neq n/2$ \parencite[Table~1]{1994:coolen}.
 This is very similar to the phenomenon that, in the Multinomial-Dirichlet model,
@@ -267,15 +270,21 @@ the posterior variance of $\theta_j$ decreases for any $n_j$ if $\yz_j = 1/2$
 Afterwards, \textcite[\S 4]{1994:coolen} illustrates the general case
 with $\mu\neq\alpha$, $\beta\neq\lambda$, and $c^*_n$ as in \textcite{1993:coolen}
 with some numeric examples, showing a reasonable behaviour of the model.
-However, there are no theoretical results for model behaviour of the general case
-(as we gave in Section~\ref{sec:gbicp-properties-criteria}),
-and elicitation of the parameters ($\alpha,\beta,\mu,\lambda,c^*_0,\xi$)
-for an informative prior
-seems quite difficult and possibly involves elaborate pre-posterior procedures,
-as the influence of different choices of $l(\theta)$ and $a(\theta)$ on $\mathcal{M}$
-is rather oblique.%
-\footnote{However, the elicitation method by \textcite{2011:rinderknecht} could be used
-to elicit $\alpha,\ \beta,\ \mu,\ \lambda$, and $c^*_0$.}
+Unfortunately, there are no theoretical results for model behaviour of the general case
+(as we were able to give in Section~\ref{sec:gbicp-properties-criteria}).
+Elicitation of the parameters ($\alpha,\beta,\mu,\lambda,c^*_0,\xi$)
+for an informative prior would possibly involve some elaborate pre-posterior procedures
+\parencite[p.~163]{1994:coolen},
+%seems quite difficult and possibly involves elaborate pre-posterior procedures,
+as the influence of different choices of $l(\theta)$ and $a(\theta)$ on $\mathcal{M}_{l,u}$
+is not straight-forward to ascertain.%
+%is rather oblique.%
+\footnote{An alternative for eliciting $\alpha,\ \beta,\ \mu,\ \lambda$, and $c^*_0$
+could be to use the elicitation method by \textcite{2011:rinderknecht},
+who require the analyst to specify quantile intervals $[q^p_l,q^p_u]$
+for some given probability levels $p \in (0,1)$,
+and fit $\mathcal{M}_{l,u}$ such that the corresponding cumulative density functions
+do not exceed the constraints given by the quantile intervals.}
 
 
 \subsubsection{The Model by \texorpdfstring{\textcite{2009:bickis}}{Bickis (2009)}}
@@ -285,25 +294,28 @@ to elicit $\alpha,\ \beta,\ \mu,\ \lambda$, and $c^*_0$.}
 for an application where neighbouring category probabilities $\theta_j$ are correlated.
 Instead of the conjugate Dirichlet prior for $\btheta$ (see Section~\ref{sec:diri-multi}),
 a multivariate normal prior is assumed for the (element-wise) logits of $\btheta$,
-i.e., $\log(\btheta/(1-\btheta)) \sim \norm_k(\mu \mbf{1}, \sigma^2\mbf{R})$,
-where $\mbf{1} = (1, \ldots, 1)$, and $\mbf{R}$ is a correlation structure.
+i.e., $\log(\btheta/(1-\btheta)) \sim \norm_k(\mu \mbf{1}, \sigma^2\mbf{M})$,
+where $\mbf{1} = (1, \ldots, 1)$, and $\mbf{M}$ is a $(k\times k)$ matrix giving the correlation structure.
 The resulting posterior in terms of $\btheta$ is itself not tractable, but can be approximated
 by an exponential family that can be seen as the convex hull of the logit-normal
 and dirichlet families \parencite[p.~189]{2009:bickis},
 and that contains the Dirichlet distribution for the limit $\sigma^2 \to \infty$.
 Although a conjugate prior in the sense that there is a simple update step for the hyperparameters,
-posterior inferences for this prior must usually be derived by simulation,
-as there are, e.g., no results on the expectation of this distribution.
+posterior inferences for this prior are derived by simulation,
+as the posterior is not analytically tractable.
 
 In the paper, a near-noninformative set of priors is constructed
 by means of a set of hyperparameters,
 used for an interesting application to estimate a discrete hazard function
-for which it is useful to mirror an autocorrelation structure in $\mbf{R}$.
-However, the potential of this prior model for applications where no correlation structure must be assumed is
-relatively low, due to the much more complex computations as compared to the IDM.
-%\footnote{For a recent Bayesian alternative to the IDM, see \textcite{2013:mangilibenavoli}, also mentioned in Section~***.}
-It remains to be investigated how an informative (imprecise) prior could be elicited,
-and the behaviour in case of \pdc\ is as yet unkown.
+for which it is useful to mirror an autocorrelation structure in $\mbf{M}$.
+By giving a numeric example, \textcite{2009:bickis} shows that
+posterior inferences based on this set of priors can be calculated using relatively simple algorithms.
+%However, the potential of this prior model for applications where no correlation structure must be assumed is
+%relatively low, due to the much more complex computations as compared to the IDM.
+A number of interesting research questions present themselves for this model,
+regarding the potential for applications where no correlation structure must be assumed,
+possible differences to inferences based on the IDM,
+and the behaviour in case of \pdc\ when an informative set of priors is chosen.
 
 
 \subsubsection{Some of the Models Studied by \texorpdfstring{\textcite{1991:pericchi}}{Pericchi and Walley (1991)}}

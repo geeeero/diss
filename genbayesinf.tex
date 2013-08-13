@@ -4,7 +4,7 @@
 %\begin{itemize}
 %\item Short introduction to IP (sets of priors, lower/upper prevision/probability)
 %\item motivate imprecise priors with ress paper: \cite{Troffaes2013a} --- now in intro
-%\item \pdc\ (Evans \& Moshonov, Fuquene-Cook-Pericchi) somewhere???*** %, examples (Festschrift paper: \cite{Walter2010a})
+%\item \pdc\ (Evans \& Moshonov, Fuquene-Cook-Pericchi) somewhere??? %, examples (Festschrift paper: \cite{Walter2010a})
 %\item further motivations for IP (ITIP chapter \cite{itip-statinf}) 
 %\item Generalized Bayesian inference
 %\item Generalized Bayesian inference with sets of priors
@@ -35,7 +35,6 @@ concluding with the motives especially relevant in the context of the Bayesian a
 among which prior-data conflict and weakly informative priors will receive special attention
 in the model discussion in Chapter~\ref{cha:imprecisebayes-conjugate}.
 
-%***Section~\ref{sec:alternatives} ****
 
 \newpage
 
@@ -420,7 +419,7 @@ whose expectations $\E_p$ dominate $\El$, i.e.,%
 \footnote{The probability distributions contained in a credal set $\mathcal{M}$
 will be referred to by their probability density or mass functions $p(\cdot)$
 in place of their probability measures $\p(\cdot)$, as we will consider mostly the densities
-in our later discussions***.}
+in our later discussions.}
 \begin{align*}
 \mathcal{M} &= \{ p(\omega) : \E_p[X] \ge \El[X]\ \forall X \in \mathcal{L}\}\,.
 \end{align*}
@@ -536,7 +535,7 @@ However, there is a basic difference in the interpretation of the underlying set
 While in the imprecise probability context a credal set is understood as an entity of its own,
 the robust Bayesian approach emphasizes the single elements in the set,
 and very often discusses the effects of deviations from a certain central element.%
-\footnote{These so-called \emph{neighbourhood models} are briefly discussed in Section~\ref{sec:alternatives:neighbourhood}****.}
+\footnote{These so-called \emph{neighbourhood models} are briefly discussed in Section~\ref{sec:alternatives:neighbourhood}.}
 
 As a consequence, for the robust Bayesian point of view it is quite natural and common
 to impose some further regularity conditions on the elements in the set of distributions,
@@ -554,8 +553,6 @@ in particular in the context of prior-data conflict
 
 \subsubsection{Critique}
 \label{sec:updating}
-
-%***on updating and conditioning; also conditioning versus belief revision (itip-special, other?)***
 
 The seemingly self-evident character of the Generalised Bayes' Rule has been questioned in the literature.
 \Textcite[p.~335]{1991:walley} notes that, although the theory of coherence suggests that
@@ -627,8 +624,6 @@ if prior and data coincide especially well.
 \subsection{A Brief Glance on Related Concepts}
 \label{sec:ip-related}
 
-%****as separate section 2.3?****
-
 The theory of imprecise probability outlined in Sections~\ref{sec:ip-main} and \ref{sec:imprecisebayes} above
 is of course not the only attempt to complement probability theory as tool for handling uncertainty;%
 \footnote{A number of motives for going beyond usual probability measures will be discussed in Section~\ref{sec:motivation}.}
@@ -656,11 +651,10 @@ or simply be more easy to communicate to the practitioners involved
 %It should be stressed that there is always the possibility
 %that these concepts are used in a way that does not warrant
 %the step beyond precise probability distributions.
-%e.g., fuzzy sets with certain combination rule is same as probability.***
+%e.g., fuzzy sets with certain combination rule is same as probability.
 
 \subsubsection{Belief Functions}
 
-%***as example, par on belief functions and Dempster-Shafer Theory?*** \parencite[\S 2]{itip-other}
 An important special case of coherent lower previsions %typical example
 are \emph{belief functions} \parencite[see, e.g.,][\S 2]{itip-other}.
 Here, the corresponding upper probability (related through conjugacy as mentioned in Section~\ref{sec:ip-general})
@@ -692,10 +686,8 @@ but only subsets $E \subset \mathcal{X}$ as observations.
 Consider, e.g., a poll where participants 
 are allowed to name sets of political parties or candidates they intend to vote,
 instead of being forced to name only one, even if they are currently undecided between, say, three parties or candidates.
-%***example??***
 
 Belief functions are indeed a special case of coherent lower previsions.
-%***link between belief functions and lower previsions \parencite[\S 2.1, p~126]{itip-other}:
 If $m(\emptyset) = 0$, then belief functions coincide with $\infty$-monotone capacities,
 which are a special case of lower previsions \parencite[e.g.,][\S 2.1]{itip-other}.
 Only if $m(\emptyset) > 0$, which does not seem like a reasonable choice in most circumstances anyway,
@@ -731,8 +723,6 @@ This least favourable pair is representative for the testing problem regarding $
 in the sense that a test that is optimal for distinguishing $p_0$ and $p_1$
 is also optimal in testing $\Pl_1$ against $\Pl_0$,
 independently of significance level $\alpha$ and sample size $n$.
-%***note on IP can be frequentist / non-Bayesian (similarities to Weichselberger?),
-%see \parencite[\S 5]{itip-statinf}***, to avoid the impression that IP models are necessarily Bayesian.
 
 
 An important, swiftly evolving, approach for predictive inferences using frequentist imprecise probability
@@ -802,7 +792,6 @@ to solve the substantial question at hand,
 and adding further assumptions to enable precise answers (as is the usual approach) is unnecessary,
 with the serious risk of giving spuriously precise answers
 when these further assumptions are unrealistic or unjustified.
-%***NPI models with minimal assumptions (study influence of further assumptions)
 
 \medskip
 
@@ -901,7 +890,7 @@ and the Choquet integral, which allows integration according to capacities.
 These tools open up a wealth of modelling opportunities.%
 \footnote{In fact, certain subclasses of capacities are a special case of lower previsions \parencite[see, e.g.,][Fig.~5.5]{itip-special}.}
 \item The need to model approximate adherence to a central probability distribution,
-which is often done through \emph{neighbourhood models} (see Section~***).
+which is often done through \emph{neighbourhood models} (see Section~\ref{sec:alternatives:neighbourhood}).
 This is the dominant model type in robust Bayesian approaches \parencite[see, e.g.,][]{1994:berger}.
 \item The available data may not be sufficient to excactly determine the parameters of a usual proability model.
 Instead, only ranges for these parameters can be identified.
@@ -969,7 +958,6 @@ at Section~\ref{sec:ip-alternatives}.}
 \subsection{Motives from a Bayesian Perspective}
 \label{sec:motivation:bayesian}
 
-%***central motive for use in Bayesian inference:***\\
 From a decidedly Bayesian perspective as taken in this thesis,
 we first want to point out foundational motives for the use of imprecise probability methods,
 before we come to two specific motives in Sections~\ref{sec:motivation:near-ignorance} and \ref{sec:motivation:pdc}.
@@ -1087,7 +1075,7 @@ is rewarded with a more realistic description of the uncertainty involved.
 Imprecise probability models lead to more reliable conclusions,
 by explicitely communicating the uncertainties inherent in the model or the data,
 in contrast to the often seemingly precise results from precise probability methods,
-which are frequently obtained due to a multitude of, often heroic, model assumptions. %***footnote or par on manski?***
+which are frequently obtained due to a multitude of, often heroic, model assumptions. 
 This `overprecision' is often offset in statistical practice by `taking models not too seriously',
 and to understand them as crude approximations to reality only.
 Box and Draper's statement ``Essentially, all models are wrong, but some of them are useful'' \parencite[p.~424]{1987:box}
@@ -1134,9 +1122,9 @@ that eliciting two numbers instead of one must be more difficult a misconception
 \subsubsection{Hierarchical Models}
 \label{sec:hierarchical}
 
-%***hierarchical Bayes, distribution over intervals ****model averaging???***: 
+%hierarchical Bayes, distribution over intervals, model averaging???: 
 %uncertainty is averaged out for inferences,
-%posterior state of knowledge is again expressed via precise distribution***
+%posterior state of knowledge is again expressed via precise distribution
 %\parencite[\S 5.10]{1991:walley}: second-order probabilities
 Another obvious approach when considering a set of probability distributions $\mathcal{M}$
 as the model for prior information is to rate the elements in $\mathcal{M}$,
@@ -1164,7 +1152,7 @@ for devising a second-order distribution in the first place.
 
 %better alternative: hierarchical model by \textcite{2008:cattaneo} .
 %where a possibility distribution is used for info about (hyper-)parameters,
-%interpretation as likelihood, profile lik***
+%interpretation as likelihood, profile lik
 In our view, a much better alternative for hierarchical modelling was suggested by \textcite{2008:cattaneo}.
 Here, information on the plausibility of elements in $\mathcal{M}$ is modelled
 by a possibility distribution, such that uncertainty in posterior inferences is reflected
@@ -1178,13 +1166,13 @@ The hierarchical model has thus close relations to approaches using fuzzy number
 with the advantage of a clear interpretation of the possibility functions as likelihoods.
 Furthermore, this approach has a sound foundation for combination rules and deduction of inferences in probability theory.
 In contrast, in the fuzzy literature, the interpretation of fuzzy numbers, or membership functions in general,
-usually explained as expressing `degrees of membership', remains often unclear, %rather cloudy***.
+usually explained as expressing `degrees of membership', remains often unclear, %rather cloudy.
 the rules for combining different inference sources are controversially disputed,
 and the fuzzy literature disagrees on how to update fuzzy probability models in the light of data
 \parencite[\S 3]{2008:cattaneo}.}
 %correctly deduce inferences from a body of evidence.}
 
-%***from itip-statinf, \S 7:\\
+%from itip-statinf, \S 7:\\
 %\textcite{2008:cattaneo} suggests to use a slightly extended notion of likelihood as relative plausibility to construct a hierarchical model.
 %It consists of a credal set $\mathcal{P}$ and of the likelihood function $\text{lik}: {\cal P} \to \reals_0^+$ as a second level,
 %describing the plausibility of its elements based on the sample.

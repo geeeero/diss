@@ -22,7 +22,7 @@ Section~\ref{sec:jstp} then presents one model in detail, namely the so-called
 \nymodel\ developed in \textcite{Walter2009a},
 and illustrates its application to the Normal-Normal and Dirichlet-Multinomial models. % in more detail. 
 Section~\ref{sec:luck} gives a short overview on a software implementation of \nymodel s,
-the add-on package \texttt{luck} ***citation*** for the statistical programming environment \textbf{R} \parencite{2013:r}.
+the add-on package \texttt{luck} \parencite{luck-package} for the statistical programming environment \textbf{R} \parencite{2013:r}.
 Finally,
 Section~\ref{sec:isipta11} presents two attempts to further refine inference behaviour in the presence of \pdc.
 While the first approach considers more sophisticated shapes for prior parameter sets,
@@ -37,8 +37,7 @@ Interestingly, the inferences from these two approaches in Section~\ref{sec:isip
 %\section{The General Model}
 \label{sec:generalmodel}
 
-%***structure of section: here comes the important part!
-
+%structure of section: here comes the important part!
 This section gives a systematic overview on imprecise probability models
 for inference in canonical exponential families
 based on sets of canonical conjugate priors.
@@ -49,7 +48,7 @@ and reviews their inference properties.
 \medskip
 
 In Section~\ref{sec:basicsetting}, a general framework that characterises these models is elaborated,
-and the models discussed in the literature that can be subsumed*** under this framework are named/given/enumerated***.
+and models discussed in the literature that can be subsumed under this framework are described. % named/given/enumerated.
 %
 Section~\ref{sec:gbicp-properties-criteria} presents a number of inference properties that this framework provides,
 along with two further criteria characterising the unique modelling opportunities that
@@ -135,8 +134,8 @@ With credal sets, the optimal acts are usually determined by minimising the uppe
 The posterior risk, being an expectation, is thus a quantity linear in the posterior distribution,
 such that its upper bound for posteriors in $\MN$ can be easily determined
 even if $\MN$ is taken to contain convex combinations.} %of the parametric distributions.}
-%It thus depends on the loss function if the supremum of the expected loss over $\MN$ can be easily determined.****check***}
-%****footnote: loss minimising / utility maximising acts, decision making tasks often rely on expectations only****
+%It thus depends on the loss function if the supremum of the expected loss over $\MN$ can be easily determined. *check*}
+%footnote: loss minimising / utility maximising acts, decision making tasks often rely on expectations only
 
 %When the credal set $\MZ$ is taken to contain convex combinations (i.e., finite mixtures) of parametric priors,
 %$\MZ$ is very flexible and contains a wide variety of priors.
@@ -190,7 +189,7 @@ This type of model is first discussed in \textcite[\S 5.4.3]{1991:walley} for th
 and was later generalised by \textcite{Walter2009a}
 to sample distributions of the canonical exponential form \eqref{eq:expofam-sampledens}.%
 \footnote{\label{foot:luckmodels}%
-%***from \textcite[\S 4.4]{itip-statinf}:\\
+%from \textcite[\S 4.4]{itip-statinf}:\\
 More precisely, \textcite[see Section~\ref{sec:jstp}]{Walter2009a} proposed
 a direct extension of the model framework discussed in Section~\ref{sec:generalmodel}
 by the definition of so-called \emph{LUCK-models},
@@ -313,7 +312,7 @@ extending the principle of insufficient reason,
 and the closely related discussion of weak and strong invariance in \textcite[\S 3]{itip-structural}.
 For a critique on non-informative priors from an imprecise probability viewpoint see, e.g., \textcite[\S 5.5]{1991:walley};
 their partition dependence is also discussed in the context of elicitation \parencite[see][\S 3]{itip-elicitation}.}
-%\item ***further desirable properties??***
+%\item further desirable properties??
 \end{enumerate}
 
 The approaches mentioned in \eqref{enum:modeltypes-a} -- \eqref{enum:modeltypes-d} are now discussed in detail,
@@ -357,7 +356,7 @@ as, for all $j = 1,\ldots, k$,
 \end{align*}
 and probabilities for events regarding $\theta_j$ are vacuous, i.e.\
 $[\Pl,\Pu](\theta_j \in A) = (0,1)$, for any $A \subset [0, 1]$.%
-%****also true for $\theta \in A \subset \Delta$?***%
+% also true for $\theta \in A \subset \Delta$?%
 \footnote{However, the IDM may give non-vacuous prior probabilities for some more elaborate events.
 An example \parencite[p.~14]{1996:walley::idm} is the event $(A_J, A_K)$
 that the next observation belongs to a category subset $J \subseteq\{1, \ldots, k\}$,
@@ -396,7 +395,7 @@ and by \textcite{2013:mangilibenavoli}.}
 %and its credal set is already completely determined by the lower and upper probabilities of the singletons,
 %i.e., the corresponding lower and upper probabilities constitute a probability interval \parencite[see, e.g.,][\S 4]{itip-special}.
 
-%***other properties of IDM: embeddig principle, symmetry principle?\\
+%other properties of IDM: embeddig principle, symmetry principle?\\
 
 Due to its tractability, the IDM has been employed in a number of applications.
 \textcite{1996:walley::idm} offers an application to data from medical studies;
@@ -539,7 +538,8 @@ and Figure~\ref{fig:nv-nvar-vertfu} for the Normal-Normal model).
 %while the position of $\bar{\x}$ used in the update step is indicated by the lower point of the triangle.
 %Note how prior-data conflict in the example depicted in the lower row leads to increased imprecision,
 %as reflected by the larger set of posteriors and the longer union of HPD intervals.
-%Graph taken from \textcite[p.~267]{2009:walteraugustin}.} %\textbf{***comment by Frank: depict also prior/posterior parameter sets?***}}
+%Graph taken from \textcite[p.~267]{2009:walteraugustin}.}
+%\textbf{comment by Frank: depict also prior/posterior parameter sets?}}
 %\end{figure}
 
 Models with $\PZ$ as in \eqref{equ:rectparamset}, %= \{ (\nz, \yz) \mid [\nzl, \nzu], \yz \in \YZ \}$
@@ -548,7 +548,7 @@ are sensitive to prior-data conflict,
 where prior-data conflict is operationalised as $\ttau(\x) \notin \YZ$.
 There is no such direct mechanism for a gain in precision when prior and data information coincide especially well.%
 \footnote{However, first ideas and some preliminary results for a set shape allowing this
-are given in Sections~\ref{sec:concluding-outlook} and\ref{sec:boatshape}, respectively.***}
+are given in Sections~\ref{sec:concluding-outlook} and \ref{sec:boatshape}, respectively.}
 However, $\YZ$ could be chosen relatively small such that it mirrors this situation,
 considering as the neutral situation $\ttau(\x)$ being not too far away from $\YZ$,
 and taking as prior-data conflict situations when $\ttau(\x)$ is in a greater distance to $\YZ$.%
@@ -606,7 +606,7 @@ and will ultimately result in more reliable inferences.
 
 \medskip
 
-Before we will study two choices for $\PZ$ %model types ***go into the details of models*** 
+Before we will study two choices for $\PZ$ %model types / go into the details of models 
 in more detail in Sections~\ref{sec:jstp} and \ref{sec:isipta11}
 (Section~\ref{sec:luck} describes a software implementation of the model from Section~\ref{sec:jstp}),
 we will now discuss some other models based on sets of priors in Section~\ref{sec:alternatives}.

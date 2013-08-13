@@ -18,22 +18,27 @@ thus serving as a preview on the general concepts we will then introduce in the 
 \section{Preliminaries}
 \label{sec:preliminaries}
 
-\subsection{Overview***}
+\subsection{Overview}
 
-***This thesis is concerned with the generalisation of Bayesian inference towards the use of imprecise or interval probability,
-with a focus on model behaviour in case of prior-data conflict.
+In this thesis, a generalisation of Bayesian inference towards the use of imprecise or interval probability is investigated.
+A general framework for models based on sets of conjugate priors is established,
+and some new models within this framework are proposed.
+These models are then compared to some other models based on sets of priors discussed in the literature,
+focussing on model behaviour in case of prior-data conflict.
 
-With the basics of Bayesian inference based on parametric distributions
-covered in Section~\ref{sec:bayes-inference},
-the motivating example in Section~\ref{sec:commoncause},
+\medskip
+
+With the fundamentals of Bayesian inference based on parametric distributions and conjugate priors
+covered in Section~\ref{sec:fundamentals} %\ref{sec:bayes-inference},
+a motivating example in Section~\ref{sec:commoncause},
 considering the reliability analysis problem of common-cause failure modelling,
 serves to show the possibilities of generalised Bayesian inference using sets of conjugate priors.
 
 Chapter~\ref{cha:gbi} then gives a general introduction to the methodology of imprecise probability models,
-presenting the general framework for generalised Bayesian inference using sets of priors.
+presenting the general approach to generalised Bayesian inference with lower previsions or sets of priors.
 Furthermore, motives for the use of imprecise probability methods are discussed,
 among which prior-data conflict (encountered already in the motivating example) and weakly informative priors
-are the central topics guiding our assessments of the specific imprecise probability models covered
+are the central topics guiding our assessments of the specific imprecise probability models covered then
 in Chapter~\ref{cha:imprecisebayes-conjugate}.
 
 There, we first present a general framework for generalised Bayesian inference using sets of conjugate priors,
@@ -41,13 +46,13 @@ giving a superstructure for a number of imprecise probability models
 that have been central to the development and application of imprecise probability methods
 in statistical inference (Section~\ref{sec:generalmodel}).
 Some important favourable inference properties for these models are demonstrated, 
-and the range of models that can be subsumed under this framework are discussed with respect to
+and a range of models that can be subsumed under this framework are discussed with respect to
 the handling of prior-data conflict and the possibility to model weak prior information.
 
 Section~\ref{sec:alternatives} briefly discusses some alternative models based on sets of priors,
-and compares these to the model framework from Section~\ref{sec:generalmodel}.
+and compares these to models in the framework from Section~\ref{sec:generalmodel}.
 The remainder of Chapter~\ref{cha:imprecisebayes-conjugate}
-reproduces two works that suggested important models %***geared at***
+reproduces two works that suggest novel models %***geared at***
 that provide a sophisticated handling of prior-data conflict
 (Sections~\ref{sec:jstp} and \ref{sec:isipta11}),
 while Section~\ref{sec:luck} gives a short overview on a software implementation.
@@ -129,56 +134,71 @@ described informally in Section~\ref{sec:concluding-outlook} below
 
 \subsection{Sources}
 
-***main sources:
+
+This thesis is partly based on previously published works
+where the author of this thesis was the first or second author.
+These works, also listed in the Bibliography, are given below.
+
+\printbibliography[heading=none,keyword=disssource]
+
+\iffalse
 \begin{itemize}
 \item \textcite{Walter2009a}
 \item \textcite{Walter2009b} (substantially extended version of \textcite{Walter2010a})
 \item \textcite{Walter2011a}
+\item \textcite{Walter2012b}
 \item \textcite{Troffaes2013a}
 \item \textcite{itip-statinf}
 \end{itemize}
-not main (only Sec.~\ref{sec:diri-multi}): \textcite{Walter2012b}
+\fi
 
-sources, which papers where***
+In detail, these works have been used in this thesis as described below.
 
+\medskip
 
-Sec.~\ref{sec:stat-inference}: parts of \textcite[\S\S 1.1, 1.2, 1.5]{itip-statinf}
-
-Sec.~\ref{sec:bayes-inference} uses parts of \textcite[\S\S 1.3, 1.4, 4.1]{itip-statinf},
-except Sec.~\ref{sec:diri-multi}, which is based on \textcite{Walter2012b}.
-
+In \textbf{Chapter~\ref{cha:intro}},
+%Sec.~\ref{sec:stat-inference}: parts of \textcite[\S\S 1.1, 1.2, 1.5]{itip-statinf}
+%Sec.~\ref{sec:bayes-inference} uses parts of \textcite[\S\S 1.3, 1.4, 4.1]{itip-statinf},
+%except Sec.~\ref{sec:diri-multi}, which is based on \textcite{Walter2012b}.
+Section~\ref{sec:fundamentals} is based on \textcite{itip-statinf},
+using \S\S 1.1--1.5 and \S 4.1.
+Section~\ref{sec:diri-multi}, which is based on \textcite{Walter2012b}.
+%
 %Sec.~\ref{sec:inferencetasks}: parts of \cite{itip-statinf}
 %Sec.~\ref{sec:beta-binom}: parts of \cite{itip-statinf}
 %Sec.~\ref{sec:norm-norm}: parts of \cite{itip-statinf}
-
-
-Sec.~\ref{sec:commoncause} is based on %parts of
+%
+Section~\ref{sec:commoncause} is based on %parts of
 \textcite{Troffaes2013a},
 %where in particular Sec.~\ref{sec:basic-param-model} and Sec.~\ref{sec:alpha-factor-model}
 %have been written primarily by Matthias Troffaes.
 except Section~\ref{sec:commoncause-motivation}, which was newly written for this thesis.
-
 %Sec.~\ref{sec:alpha-factor-prior}: parts of \cite{Troffaes2013a}
 
-Sec.~\ref{sec:ip-intro} was newly written for this thesis,
-except Sec.~\ref{sec:imprecisebayes}, which is based on \textcite[\S 4.2]{itip-statinf},
+\medskip
+
+In \textbf{Chapter~\ref{cha:gbi}},
+Section~\ref{sec:ip-intro} was newly written for this thesis,
+except Section~\ref{sec:imprecisebayes}, which is based on \textcite[\S 4.2]{itip-statinf},
 and Section~\ref{sec:updating}, which is based on parts of \textcite[\S 4.4]{itip-statinf}.
 %where the latter was mainly written by Thomas Augustin.
 Also, Section~\ref{sec:ip-related} uses parts of \textcite[\S 5.2]{itip-statinf} and \textcite[\S 6.1]{itip-statinf}.
-
-Sec.~\ref{sec:motivation} was devised for this thesis,
+%
+Sec.~\ref{sec:motivation} was newly devised for this thesis,
 under use of \textcite[\S 2.3]{itip-statinf}
 for the last paragraph in Sec.~\ref{sec:motivation:bayesian-foundational},
 and Sections~\ref{sec:motivation:near-ignorance} and \ref{sec:motivation:pdc}.
-
+%
 Section~\ref{sec:ip-alternatives} uses parts of \textcite[\S 2.2, 2.4]{itip-statinf},
 and a paragraph from \textcite[\S 7]{itip-statinf}.
 
-Section~\ref{sec:generalmodel} consists of \textcite[\S 4.3]{itip-statinf}.
+\medskip
+
+In \textbf{Chapter~\ref{cha:imprecisebayes-conjugate}},
+Section~\ref{sec:generalmodel} is based on \textcite[\S 4.3]{itip-statinf}.
 %which was written primarily by Gero Walter.****
-
-Section~\ref{sec:alternatives} was devised for this thesis, using some very minor parts of \textcite[\S 4.2, \S 4.4]{itip-statinf}.***
-
+Section~\ref{sec:alternatives} was newly written for this thesis,
+using some very minor parts of \textcite[\S 4.2, \S 4.4]{itip-statinf}.
 Section~\ref{sec:jstp} is a slightly abriged reproduction of \textcite{Walter2009a},
 with a minor change of notation towards the one introduced in Section~\ref{sec:regularconjugates}
 (most importantly, writing $\nn$ and $\yn$ for the canonical posterior parameters
@@ -187,13 +207,13 @@ instead of $n^{(1)}$ and $y^{(1)}$, respectively).
 %more or less in equal parts. While Gero Walter contributed central concepts and basic ideas,
 %along with the theoretical results, Thomas Augustin devised most of the structure,
 %and contributed most of the introductory and concluding sections.***
-
+%
 Section~\ref{sec:luck} gives a short overview on a software implementation
 of the model presented in Section~\ref{sec:jstp}.
-Author and maintainer of this add-on package ***citation*** is Gero Walter,
+Author and maintainer of this add-on package \texttt{luck}***citation*** is Gero Walter,
 with Norbert Krautenbacher as a second author, who contributed code for an application
 to exponentially distributed data.
-
+%
 Section~\ref{sec:isipta11} consists of \textcite{Walter2011a},
 again with a slight change of notation for consistency with the rest of the material presented in this thesis.
 Specifically, the success probability in Bernoulli trials is denoted by $\theta$ instead of $p$.
@@ -205,6 +225,13 @@ that could not appear in the original publication due to page restrictions.
 %Thomas Augustin contributed substantially to all parts of the manuscript,
 %especially in the introductory and concluding sections.***
 
+\medskip
+
+\textbf{Chapter~\ref{cha:concluding}} was newly written for this thesis.
+
+\medskip
+
+In the \textbf{Appendix} (Chapter~\ref{cha:appendix}),
 Section~\ref{sec:festschrift} consists of \textcite{Walter2009b},
 which is a substantially extended version of \textcite{Walter2010a},
 reproduced here with a slight change in notation and some added comments.
@@ -213,6 +240,8 @@ reproduced here with a slight change in notation and some added comments.
 %and the computations and most of the write-up in Sections~\ref{sec:scp} and \ref{sec:cccp}.
 %Sections~\ref{sec:festschrift-intro} and \ref{sec:discussion-festschrift} were a joined effort
 %of Gero Walter and Thomas Augustin.
+%
+Section~\ref{sec:boatshape} was instead written newly for this thesis.
 
 
 \subsection{Notation}
@@ -265,24 +294,24 @@ are added in the argument, seperated by a vertical line, as in $f(x\mid\theta)$,
 
 Other notational conventions are declared upon introduction of the concepts they are representing.
 
+\newpage
 
 \section{Some Fundamentals}
 \label{sec:fundamentals}
 
+In this section, we will briefly introduce our notion of statistical inference,
+%first give a brief introduction to statistical inference
+and discuss models that are used to describe random samples.
+Then, we will give a short introduction into the basic principles of Bayesian inference
+based on conjugate priors.
+
+
 \subsection{Statistical Inference}
 \label{sec:stat-inference}
 
-%This thesis being concerned with generalized Bayesian Inference
-
-In this section, we will give a short introduction to statistical inference
-and models that are used to describe random samples.
-%These introductory sections may also serve as a guide to the notation utilized.
-
-\medskip
-
 Statistical inference is about learning from data.
 It is basically concerned with inductive reasoning,
-i.e.\ establishing a general rule from observations.
+i.e., establishing a general rule from observations.
 As is long known as the problem of induction \parencite{1739:hume},
 it is impossible to justify inductive reasoning by pure reason,
 and therefore one cannot infer general statements (laws) with absolute truth from single observations.
@@ -348,12 +377,12 @@ The term \emph{sample} is then also used for the concretely observed value(s) $\
 
 \medskip
 
-%***In Sections~\ref{sec:normaldist} and \ref{sec:multinomdist},
+%In Sections~\ref{sec:normaldist} and \ref{sec:multinomdist},
 Now
 we will present two examples for basic parametric models that will be repeatedly discussed further on.
 
 
-%\subsection{***The Normal Distribution}
+%\subsection{The Normal Distribution}
 %\label{sec:normaldist}
 \begin{example}[Normal distribution]
 \label{ex:normaldist}
@@ -389,7 +418,7 @@ or future observations $x_{n+1}, x_{n+2}, \ldots$ in a chain of i.i.d.\ observat
 \end{example}
 
 
-%\subsection{***The Multinomial Distribution}
+%\subsection{The Multinomial Distribution}
 %\label{sec:multinomdist}
 \begin{example}[Multinomial distribution]
 \label{ex:multinomdist}
@@ -440,6 +469,8 @@ As a shortcut, we write $\vec{n} \sim \mult(\btheta)$.
 
 As the inference models discussed in this thesis are all based on the Bayesian approach to statistical inference,
 we will now give a short introduction to the basic principles of Bayesian inference.
+
+\medskip
 
 The Bayesian approach requires (possibly subjective) knowledge on the parameter $\vartheta$ to be expressed by a probability distribution on%
 \footnote{Again we implicitly assume that $\Theta$ is complemented by an appropriate $\sigma$-field $\sigma(\Theta)$.}
@@ -1093,7 +1124,7 @@ and further motivations for using it, will be given in Chapter~\ref{cha:gbi}.}
 The models discussed there will then be integrated into a general framework
 of inference using sets of canonical conjugate priors in Section~\ref{sec:generalmodel}.
 
-
+\newpage
 
 \section{Dirichlet-Multinomial Model for Common-Cause Failure}
 \label{sec:commoncause}

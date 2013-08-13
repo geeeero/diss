@@ -52,7 +52,7 @@ the handling of prior-data conflict and the possibility to model weak prior info
 Section~\ref{sec:alternatives} briefly discusses some alternative models based on sets of priors,
 and compares these to models in the framework from Section~\ref{sec:generalmodel}.
 The remainder of Chapter~\ref{cha:imprecisebayes-conjugate}
-reproduces two works that suggest novel models %***geared at***
+reproduces two works that suggest novel models
 that provide a sophisticated handling of prior-data conflict
 (Sections~\ref{sec:jstp} and \ref{sec:isipta11}),
 while Section~\ref{sec:luck} gives a short overview on a software implementation.
@@ -101,9 +101,9 @@ and illustrates some characteristic modelling opportunities of generalised Bayes
 Section~\ref{sec:alternatives} briefly discusses some alternative models based on sets of priors.
 Section~\ref{sec:jstp} then presents one model in detail, namely the so-called
 \nymodel\ developed in \textcite{Walter2009a},
-and illustrates its application to the Normal-Normal and Dirichlet-Multinomial models. % in more detail. %***JSTP***
+and illustrates its application to the Normal-Normal and Dirichlet-Multinomial models. % in more detail. 
 Section~\ref{sec:luck} gives a short overview on a software implementation of \nymodel s,
-the add-on package \texttt{luck} ***citation*** for the statistical programming environment \textbf{R} \parencite{2013:r}.
+the add-on package \texttt{luck} for the statistical programming environment \textbf{R} \parencite{2013:r}.
 Finally,
 Section~\ref{sec:isipta11} presents two attempts to further refine inference behaviour in the presence of \pdc.
 While the first approach considers more sophisticated shapes for prior parameter sets,
@@ -196,7 +196,7 @@ and a paragraph from \textcite[\S 7]{itip-statinf}.
 
 In \textbf{Chapter~\ref{cha:imprecisebayes-conjugate}},
 Section~\ref{sec:generalmodel} is based on \textcite[\S 4.3]{itip-statinf}.
-%which was written primarily by Gero Walter.****
+%which was written primarily by Gero Walter.
 Section~\ref{sec:alternatives} was newly written for this thesis,
 using some very minor parts of \textcite[\S 4.2, \S 4.4]{itip-statinf}.
 Section~\ref{sec:jstp} is a slightly abriged reproduction of \textcite{Walter2009a},
@@ -206,7 +206,7 @@ instead of $n^{(1)}$ and $y^{(1)}$, respectively).
 %This paper was the result of a collaborative work, where both authors contributed
 %more or less in equal parts. While Gero Walter contributed central concepts and basic ideas,
 %along with the theoretical results, Thomas Augustin devised most of the structure,
-%and contributed most of the introductory and concluding sections.***
+%and contributed most of the introductory and concluding sections.
 %
 Section~\ref{sec:luck} gives a short overview on a software implementation
 of the model presented in Section~\ref{sec:jstp}.
@@ -223,7 +223,7 @@ Specifically, the success probability in Bernoulli trials is denoted by $\theta$
 Here, it was possible to add a few explanatory paragraphs
 that could not appear in the original publication due to page restrictions. 
 %Thomas Augustin contributed substantially to all parts of the manuscript,
-%especially in the introductory and concluding sections.***
+%especially in the introductory and concluding sections.
 
 \medskip
 
@@ -290,7 +290,6 @@ Expectation and variance of a random quantity $X$ are denoted by $\E[X]$ and $\V
 In a Bayesian setting, quantities identifying the distribution
 (with respect to which expectation and variance are calculated)
 are added in the argument, seperated by a vertical line, as in $f(x\mid\theta)$, or $\E[\theta\mid\nz, \yz]$.
-%(This notation refers to the auffassung in Bayesian statistics that ****)
 
 Other notational conventions are declared upon introduction of the concepts they are representing.
 
@@ -315,8 +314,8 @@ i.e., establishing a general rule from observations.
 As is long known as the problem of induction \parencite{1739:hume},
 it is impossible to justify inductive reasoning by pure reason,
 and therefore one cannot infer general statements (laws) with absolute truth from single observations.
-%***statistical models are built for a certain purpose. (citexxx George P. Box, Kaplan?)\\
-%***models try to mirror certain aspects of reality: those deemed relevant to answer %the question(s) at hand etc.
+% statistical models are built for a certain purpose. (citexxx George P. Box, Kaplan?)\\
+% models try to mirror certain aspects of reality: those deemed relevant to answer %the question(s) at hand etc.
 The statistical remedy for this inevitable and fundamental dilemma of any type of inductive reasoning is
 (postulated, maybe virtual) \emph{randomness} of the sampling process that generates the data.
 If, and only if, the sample is, or can be understood as, drawn randomly,
@@ -540,7 +539,7 @@ while $\langle\cdot, \cdot\rangle$ denotes the scalar product.%
 to consider a single observation $x$ in Eq.~\eqref{eq:expofam-sampledens} only,
 as the conjugacy property does not depend on the sample size.
 However, we find our version with $n$-dimensional i.i.d.\ sample $\vec{x}$
-more appropriate for a statistical treatment.} %, as `data is plural' ***kaplan?***.}
+more appropriate for a statistical treatment.} %, as `data is plural' (kaplan?).}
 
 From these ingredients, a conjugate prior on $\psi$ can be constructed as%
 \footnote{In our notation, ${}\uz$ denotes prior parameters; ${}\un$ posterior parameters.}
@@ -742,7 +741,6 @@ as it is not relevant for the optimisation.
 We have included it to make the relation to the absolute loss function more clear;
 for $q=0.5$, the check function becomes here indeed the absolute loss function.}
 
-%****make a figure here (quadratic, absolute, check)??***
 \begin{figure}
 \centering
 \begin{tikzpicture}%[domain=-1.8:1.8]
@@ -889,7 +887,6 @@ studying the probability of the next observation to be a success in dependence o
 \subsubsection{The Normal-Normal Model}
 \label{sec:norm-norm}
 
-%***add comment on general case $\vartheta=(\mu,\sigma^2)$***\\
 The normal density \eqref{eq:normaldens}, here with the variance $\sigma^2$ known to be equal to $\sigma^2_0$,
 also adheres to the exponential family form:
 \begin{align*}
@@ -1169,7 +1166,6 @@ and thus for the safety systems of nuclear power plants in general \parencite[pp
 there are usually several diesel generators installed in a nuclear power plant,
 each of which can supply enough energy to power the cooling systems on its own.
 The number of diesel generators installed is typically in the range of two to four per reactor
-%**EPRI NP-2433 ??***.
 (see, e.g., \textcite{csni86-115}, pp.~121, 145).
 If the nuclear power plant has several reactors, diesel generators may be shared between reactors \parencite[p.~7]{2004:iaea::emergencypower}.
 %i.e., there are four redundant components, of which one is needed for service.

@@ -38,7 +38,7 @@ in a prior parameter set $\PZ$,
 the shift in the $y$ coordinate depends on $\nz$, and the location of $\yz$ itself.
 Due to this, the shape of $\PZ$ will change during the update step.
 
-This shape change makes it very difficult to understand the posterior inference properties
+This shape change to some extent obscures the posterior inference properties
 of a certain shape of the prior parameter set $\PZ$.
 Therefore, a different parametrisation of the canonical priors
 in which each coordinate has the same shift in updating would be advantageous.
@@ -46,20 +46,21 @@ Then, updating of parameter sets
 could be expressed as a shift of the entire set within the parameter space.
 %Although interpretation of the shapes may be slightly more difficult due to the,
 
-A parametrisation developed by Mi\c{k}elis Bickis (personal communication) attains*** just that.
+A parametrisation developed by Mi\c{k}elis Bickis (\cite*{2011:bickis:geomip}, personal communication) achieves just that.
 He is currently preparing a manuscript elaborating the details of his findings,
 and we will present here a preview on the results for the Beta-Binomial case.
 
-In this parametrisation, a canonical prior is represented by a coordinate $(\eta_0,\eta_1)$,
-where $\eta_1$ replaces the main prior parameter $\yz$,
-while $\eta_0$ is just a different name for $\nz$.
-The relation of $(\eta_0,\eta_1)$ to $(\nz, \yz)$ is as follows:
+In this parametrisation, a canonical prior is represented by a coordinate $(\ezz,\eoz)$,%
+\footnote{Again, we denote prior parameters with superscript ${}\uz$, and posterior parameters with superscript ${}\un$.}
+where $\eoz$ replaces the main prior parameter $\yz$,
+while $\ezz$ is just a different name for $\nz$.
+The relation of $(\ezz,\eoz)$ to $(\nz, \yz)$ is as follows:
 %\begin{equation}
 \begin{align}
 \label{eq:trafotony}
 %\begin{aligned}
-\nz &= \eta_0 \,, &
-\yz &= \frac{\eta_1}{\eta_0 + 2} + \frac{1}{2}\,.
+\nz &= \ezz \,, &
+\yz &= \frac{\eoz}{\ezz + 2} + \frac{1}{2}\,.
 %\end{aligned}
 %\end{equation}
 \end{align}
@@ -69,7 +70,6 @@ The domain of $\eta_0$ and $\eta_1$ in case of the Beta-Binomial model is
 \label{eq:eta-domain}
 \Eta &= \Big\{ (\eta_0,\eta_1) \Big| \eta_0 > -2,\ |\eta_1| < \frac{1}{2}(\eta_0 + 2) \Big.\Big\}\,,
 \end{align}
-
 and the update step in terms of $\eta_0$ and $\eta_1$ is given by
 \begin{equation}
 \label{eq:eta-update}
@@ -78,16 +78,15 @@ and the update step in terms of $\eta_0$ and $\eta_1$ is given by
 \eta_1\un &= \eta_1\uz + \frac{1}{2}(s - (n-s)) = \eta_1\uz + s - \frac{n}{2}\,,
 \end{aligned}
 \end{equation}
-where we denote prior parameters with superscript ${}\uz$, and posterior parameters with superscript ${}\un$,
-while $s$ is the number of successes in the $n$ Bernoulli trials.
+where $s$ is the number of successes in the $n$ Bernoulli trials.
 A `success' in a Bernoulli trial thus
 leads to step of $1$ in the $\eta_0$ direction and of $+\frac{1}{2}$ in the $\eta_1$ direction,
 while a `failure'
 leads to step of $1$ in the $\eta_0$ direction and of $-\frac{1}{2}$ in the $\eta_1$ direction.%
 \footnote{As in Section~\ref{sec:isipta11}, we  
-will often consider $s$ as a a real-valued observation in $[0,n]$
+will often treat $s$ as a a real-valued observation in $[0,n]$
 because the continuous representation is convenient for our discussions,
-keeping in mind that in reality it can only take on integer values.}
+keeping in mind that in reality it can only take integer values.}
 
 \begin{figure}  %trim=l b r t
 \centering
@@ -120,7 +119,7 @@ are depicted in Figure~\ref{fig:boatshape-domain}.
 \subsection{Informal Rationale for Boat-Shaped Parameter Sets}
 \label{boatshape-rationale}
 
-When Mi\c{k}elis Bickis presented this parametrisation of conjugate priors at a talk,
+When Mi\c{k}elis Bickis presented this parametrisation of conjugate priors at a talk \parencite{2011:bickis:geomip},
 both Frank Coolen and the author of this thesis had independently the same basic idea
 for a set shape that allows for both \pdc\ sensitivity
 %and gives `bonus precision' if prior and data agree especially well,
@@ -216,7 +215,7 @@ The shape we suggest thus looks like a bullett, or like a boat with a transom st
 \subsection{The Boatshape}
 \label{sec:boatshape-2}
 
-In this Section, %~\ref{sec:boatshape-2} below,
+In this section, %~\ref{sec:boatshape-2} below,
 %Now,
 we will suggest a parametrisation for such a shape.
 The definition, along with some first graphical examples, is given in Section~\ref{sec:basicdefboat},
@@ -272,7 +271,7 @@ with parameters $\ezl=1$, $\ezu=6$, $a=2$, and $b=0.8$.}
 \end{figure}
 
 
-We have as yet no good formal description for the role of the parameters $a$ and $b$. %that,
+We have as yet no appealing formal description for the role of the parameters $a$ and $b$. %that,
 %togeher with $\ezl$ and $\ezu$, define the boat-set (see Section~\ref{sec:basicdefboat} below).
 Informally, $a$ determines the half-width of the set;
 the width, i.e., the size in the $\eta_1$ dimension, would be $a$ if $\ezu \to \infty$.
@@ -589,7 +588,7 @@ whereas $\ynl$ will increase with a lower slope $\frac{1}{\ezu + n + 2}$.
 \subsection{Discussion and Outlook}
 \label{sec:boatshape-outlook}
 
-Profiting*** from a novel parametrisation derived by Mi\c{c}elis Bickis that was shortly sketched in Section~\ref{sec:miksworld},
+Taking advantage of a novel parametrisation derived by Mi\c{k}elis Bickis that was shortly sketched in Section~\ref{sec:miksworld},
 we proposed a prior parameter set shape with the aim to model strong prior-data agreement.
 Our preliminary studies show some very appealing results for the Beta-Binomial model.
 Our conjectures about boat-shaped parameter sets in the parametrisation via $(\eta_0,\eta_1)$,
@@ -627,7 +626,7 @@ similarly to the \emph{predictive probability plots} given in Section~\ref{sec:i
 Regarding more advanced considerations on elicitation, if the severity of deviations
 in the upper ($\frac{s}{n} > y_c$) and in the lower ($\frac{s}{n} < y_c$) direction
 differ for the analyst
-(e.g., he wants to be less imprecise for $\frac{s}{n} < y_c$, although he still thinks $\frac{s}{n} \approx y_c$),
+(e.g., she wants to be less imprecise for $\frac{s}{n} < y_c$, although she still thinks $\frac{s}{n} \approx y_c$),
 $a$ and $b$ could be different for the lower and the upper contour.
 Furthermore, in this parametrisation, it is possible to elicit sets $\EZ$
 that are near-noninformative with respect to $\yz$,

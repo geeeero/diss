@@ -3,35 +3,36 @@
 \addcontentsline{toc}{chapter}{\protect Zusammenfassung}
 
 Das Thema dieser Dissertation ist die Generalisierung der Bayes-Inferenz
-im Hinblick auf unscharfe oder intervallwertige Wahrscheinlichkeiten.
-Ein besonderer Fokus liegt dabei auf dem Modellverhalten
-wenn Priori-Verteilung und Daten in Konflikt stehen.
+durch die Verwendung von unscharfen oder intervallwertigen Wahrscheinlichkeiten.
+Ein besonderer Fokus liegt dabei auf dem Modellverhalten für den Fall,
+dass Priori-Verteilung und Daten in Konflikt stehen.
 
 Die Bayes-Inferenz ist einer der Hauptansätze zur Herleitung von statistischen Inferenzmethoden.
 In diesem Ansatz muss (eventuell subjektives) Vorwissen über die Modellparameter,
 welches nicht von den Daten erfasst wird, in einer sogenannten Priori-Verteilung (kurz: Priori) erfasst werden.
 Alle Inferenzaussagen basieren dann auf der sogenannten Posteriori-Verteilung (kurz: Posteriori),
-die das Vorwissen und die Informationen in den Daten zusammenfasst
-und mittels des Satz' von Bayes berechnet wird.
+welche mittels des Satz' von Bayes berechnet wird, 
+und das Vorwissen und die Informationen in den Daten zusammenfasst.
 
-Wie eine Priori-Verteilung zu wählen sei, ist dabei stark umstritten.
-Ein großer Teil der Literatur*** befasst sich mit der Bestimmung von sogenannten
+Wie eine Priori-Verteilung in der Praxis zu wählen sei, ist dabei stark umstritten.
+Ein großer Teil der Literatur befasst sich mit der Bestimmung von sogenannten
 nichtinformativen Prioris. Diese zielen darauf ab, den Einfluss der Priori auf die Posteriori
-zu eliminieren, oder zumindest zu standardisieren.
+zu eliminieren oder zumindest zu standardisieren.
 Falls jedoch nur wenige Daten zur Verfügung stehen, oder diese nur wenige Informationen
-in Bezug auf die Modellparameter bereit stellen,
-kann es nötig sein, spezifische Priori-Informationen in ein Modell einzubeziehen.
+in Bezug auf die Modellparameter bereitstellen,
+kann es hingegen nötig sein, spezifische Priori-Informationen in ein Modell einzubeziehen.
 Außerdem können sogenannte Shrinkage-Schätzer, die in frequentistischen Ansätzen häufig zum Einsatz kommen,
 als Bayes-Schätzer mit informativen Prioris angesehen werden.
 
 Wenn spezifisches Vorwissen zur Bestimmung einer Priori genutzt wird (beispielsweise durch eine Befragung eines Experten),
 und aber die Stichprobengröße nicht ausreicht, um eine solche informative Priori zu überstimmen,
-kann ein sich Konflikt zwischen Priori und Daten ergeben.
+kann sich ein Konflikt zwischen Priori und Daten ergeben.
 Dieser kann sich darin äußern, dass die beobachtete (und von eventuellen Ausreißern bereinigte)
 Stichprobe Parameterwerte impliziert, die aus Sicht der Priori äußerst überraschend und unerwartet sind.
-In solch einem Fall kann es unklar sein, ob eher das Vorwissen oder eher die Integrität***
+In solch einem Fall kann es unklar sein, ob eher das Vorwissen oder eher die Validität der
 Datenerhebung in Zweifel gezogen werden sollen.
-(Ein bestimmtes Messverfahren könnte beispielsweise zu systematischen Verzerrungen führen.)
+(Es könnten beispielsweise Messfehler, Kodierfehler, oder eine Stichprobenverzerrung durch \emph{selection bias} vorliegen.)
+%(Ein bestimmtes Messverfahren könnte beispielsweise zu systematischen Verzerrungen führen.)
 Zweifellos sollte sich ein solcher Konflikt in der Posteriori widerspiegeln
 und eher vorsichtige Inferenzaussagen bedingen;
 die meisten Statistiker würden daher davon ausgehen,
@@ -44,12 +45,12 @@ In dieser problematischen Situation können Intervallwahrscheinlichkeits-Methode
 fundierten Ausweg bieten, indem Unsicherheit über die Modellparameter mittels
 \emph{Mengen} von Prioris beziehungsweise Posterioris ausgedrückt wird.
 Neuere Erkenntnisse aus Risikoforschung, Ökonometrie und der Forschung zu künstlicher Intelligenz,
-die eine mehrdimensionale Auffassung von Unsicherheit bestätigen / nahelegen***,
+die die Existenz von verschiedenen Arten von Unsicherheit nahelegen,
 unterstützen einen solchen Modellansatz,
 der auf der Feststellung aufbaut, dass die auf den
-auf den Theorien*** von Kolmogorov oder de Finetti basierende
+auf den Ansätzen von Kolmogorov oder de Finetti basierende
 übliche Wahrscheinlichkeitsrechung zu restriktiv ist,
-um diesen mehrdimensionalen Charakter adäquat einzubeziehen,
+um diesen mehrdimensionalen Charakter von Unsicherheit adäquat einzubeziehen,
 und sich stattdessen nur auf eine der Dimensionen beziehen kann,
 nämlich die der idealen Stochastizität.
 
@@ -64,7 +65,7 @@ ohne die Einsatzmöglichkeiten in der statistischen Praxis durch
 eine zu hohe Komplexität in der Anwendung zu erschweren.
 Anwendungen in verschiedenen Bereichen, unter anderem in sogenannten
 common-cause-failure-Modellen und in der linearen Bayes-Regression,
-werden betrachtet / erforscht / untersucht***, 
+werden untersucht, 
 und das in dieser Dissertation entwickelte Modell wird mit anderen Intervallwahrscheinlichkeits-Modellen verglichen.
 
 

@@ -4,14 +4,15 @@
 
 Das Thema dieser Dissertation ist die Generalisierung der Bayes-Inferenz
 durch die Verwendung von unscharfen oder intervallwertigen Wahrscheinlichkeiten.
-Ein besonderer Fokus liegt dabei auf dem Modellverhalten für den Fall,
-dass Priori-Verteilung und Daten in Konflikt stehen.
+Ein besonderer Fokus liegt dabei auf dem Modellverhalten in dem Fall,
+dass Vorwissen und beobachtete Daten in Konflikt stehen.
 
 Die Bayes-Inferenz ist einer der Hauptansätze zur Herleitung von statistischen Inferenzmethoden.
-In diesem Ansatz muss (eventuell subjektives) Vorwissen über die Modellparameter,
-welches nicht von den Daten erfasst wird, in einer sogenannten Priori-Verteilung (kurz: Priori) erfasst werden.
+In diesem Ansatz muss (eventuell subjektives) Vorwissen über die Modellparameter %,
+%welches nicht von den Daten erfasst wird,
+in einer sogenannten Priori-Verteilung (kurz: Priori) erfasst werden.
 Alle Inferenzaussagen basieren dann auf der sogenannten Posteriori-Verteilung (kurz: Posteriori),
-welche mittels des Satz' von Bayes berechnet wird, 
+welche mittels des Satzes von Bayes berechnet wird 
 und das Vorwissen und die Informationen in den Daten zusammenfasst.
 
 Wie eine Priori-Verteilung in der Praxis zu wählen sei, ist dabei stark umstritten.
@@ -25,19 +26,21 @@ Außerdem können sogenannte Shrinkage-Schätzer, die in frequentistischen Ansä
 als Bayes-Schätzer mit informativen Prioris angesehen werden.
 
 Wenn spezifisches Vorwissen zur Bestimmung einer Priori genutzt wird (beispielsweise durch eine Befragung eines Experten),
-und aber die Stichprobengröße nicht ausreicht, um eine solche informative Priori zu überstimmen,
+aber die Stichprobengröße nicht ausreicht, um eine solche informative Priori zu überstimmen,
 kann sich ein Konflikt zwischen Priori und Daten ergeben.
 Dieser kann sich darin äußern, dass die beobachtete (und von eventuellen Ausreißern bereinigte)
 Stichprobe Parameterwerte impliziert, die aus Sicht der Priori äußerst überraschend und unerwartet sind.
 In solch einem Fall kann es unklar sein, ob eher das Vorwissen oder eher die Validität der
 Datenerhebung in Zweifel gezogen werden sollen.
-(Es könnten beispielsweise Messfehler, Kodierfehler, oder eine Stichprobenverzerrung durch \emph{selection bias} vorliegen.)
+(Es könnten beispielsweise Messfehler, Kodierfehler oder eine Stichprobenverzerrung durch \emph{selection bias} vorliegen.)
 %(Ein bestimmtes Messverfahren könnte beispielsweise zu systematischen Verzerrungen führen.)
 Zweifellos sollte sich ein solcher Konflikt in der Posteriori widerspiegeln
-und eher vorsichtige Inferenzaussagen bedingen;
+und eher vorsichtige Inferenzaussagen nach sich ziehen;
 die meisten Statistiker würden daher davon ausgehen,
 dass sich in solchen Fällen breitere Posteriori-Kredibilitätsintervalle für die Modellparameter ergeben.
-Bei Modellen, die auf konjugierten Prioris basieren,
+Bei Modellen, die auf der Wahl einer bestimmten parametrischen Form der Priori basieren,
+welche die Berechnung der Posteriori wesentlich vereinfachen
+(sogenannte konjugierte Priori-Verteilungen),
 wird ein solcher Konflikt jedoch einfach ausgemittelt.
 Dann werden Inferenzaussagen, die auf einer solchen Posteriori basieren, den Anwender in falscher Sicherheit wiegen.
 
@@ -47,26 +50,32 @@ fundierten Ausweg bieten, indem Unsicherheit über die Modellparameter mittels
 Neuere Erkenntnisse aus Risikoforschung, Ökonometrie und der Forschung zu künstlicher Intelligenz,
 die die Existenz von verschiedenen Arten von Unsicherheit nahelegen,
 unterstützen einen solchen Modellansatz,
-der auf der Feststellung aufbaut, dass die auf den
+der auf der Feststellung aufbaut, dass die
 auf den Ansätzen von Kolmogorov oder de Finetti basierende
 übliche Wahrscheinlichkeitsrechung zu restriktiv ist,
-um diesen mehrdimensionalen Charakter von Unsicherheit adäquat einzubeziehen,
-und sich stattdessen nur auf eine der Dimensionen beziehen kann,
+um diesen mehrdimensionalen Charakter von Unsicherheit adäquat einzubeziehen.
+Tatsächlich kann in diesen Ansätzen 
+nur eine der Dimensionen von Unsicherheit modelliert werden,
 nämlich die der idealen Stochastizität.
 
-In dieser Dissertation wird untersucht, wie sich Mengen von Prioris
+In der vorgelegten Dissertation wird untersucht, wie sich Mengen von Prioris
 für Stichproben aus Exponentialfamilien effizient beschreiben lassen.
 Wir entwickeln Modelle, die eine ausreichende Flexibilität gewährleisten,
-so dass eine Vielfalt von Ausprägungen von partiellem Vorwissen beschrieben werden kann.
+sodass eine Vielfalt von Ausprägungen von partiellem Vorwissen beschrieben werden kann.
 Diese Modelle führen zu vorsichtigen Inferenzaussagen,
 wenn ein Konflikt zwischen Priori und Daten besteht,
 und ermöglichen dennoch präzisere Aussagen für den Fall, dass Priori und Daten im Wesentlichen übereinstimmen,
-ohne die Einsatzmöglichkeiten in der statistischen Praxis durch
+ohne dabei die Einsatzmöglichkeiten in der statistischen Praxis durch
 eine zu hohe Komplexität in der Anwendung zu erschweren.
-Anwendungen in verschiedenen Bereichen, unter anderem in sogenannten
-common-cause-failure-Modellen und in der linearen Bayes-Regression,
-werden untersucht, 
-und das in dieser Dissertation entwickelte Modell wird mit anderen Intervallwahrscheinlichkeits-Modellen verglichen.
-
+Wir ermitteln die allgemeinen Inferenz\-eigen\-schaften dieser Modelle,
+die sich durch einen klaren und nachvollziehbaren Zusammenhang
+zwischen Modellunsicherheit und der Präzision von Inferenzaussagen auszeichnen,
+und untersuchen Anwendungen in verschiedenen Bereichen, unter anderem in sogenannten
+common-cause-failure-Modellen und in der linearen Bayes-Regression.
+Zudem werden die in dieser Dissertation entwickelten Modelle
+mit anderen Intervallwahrscheinlichkeits-Modellen verglichen
+und deren jeweiligen Stärken und Schwächen diskutiert,
+insbesondere in Bezug auf die Präzision von Inferenzaussagen
+bei einem Konflikt von Vorwissen und beobachteten Daten.
 
 %\selectlanguage{english}

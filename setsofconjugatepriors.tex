@@ -79,7 +79,7 @@ In this case, the set of priors corresponding to $\PZ$ considered above gives th
 Updating this convex prior credal set with the Generalized Bayes' Rule results in a set $\MN$ of posterior distributions that is again convex,
 and $\MN$ conveniently can be obtained by taking the convex hull of the set of posteriors
 defined by the set of updated parameters $\PN$.
-%
+
 To see this, consider a mixture distribution $p_m(\vartheta\mid \nz_1,\yz_1, \nz_2,\yz_2, \alpha)$
 based, without loss of generality, on only two parametric components
 with parameters $(\nz_1,\yz_1)$ and $(\nz_2,\yz_2)$, respectively:
@@ -88,23 +88,52 @@ p_m(\vartheta\mid \nz_1,\yz_1, \nz_2,\yz_2, \alpha) &:=
    \alpha\,  p(\vartheta\mid\nz_1,\yz_1) +
 (1-\alpha)\, p(\vartheta\mid\nz_2,\yz_2) \,.
 \end{align*}
-The corresponding posterior, derived via Bayes' Rule, %\eqref{eq:bayesrule},
+Denoting the marginals by
+\begin{align*}
+f_1(\x) &= \int_\Theta f(\x\mid\vartheta) p(\vartheta\mid \nz_1,\yz_1) d\vartheta \,, \\
+f_2(\x) &= \int_\Theta f(\x\mid\vartheta) p(\vartheta\mid \nz_2,\yz_2) d\vartheta \,, \\
+f_m(\x) &= \int_\Theta f(\x\mid\vartheta) p_m(\vartheta\mid \nz_1,\yz_1, \nz_2,\yz_2, \alpha) d\vartheta \\
+        &=    \alpha  \int_\Theta f(\x\mid\vartheta) p(\vartheta\mid \nz_1,\yz_1) d\vartheta 
+         + (1-\alpha) \int_\Theta f(\x\mid\vartheta) p(\vartheta\mid \nz_2,\yz_2) d\vartheta \\
+        &=    \alpha  \int_\Theta f_1(\x) p(\vartheta\mid \nn_1,\yn_1) d\vartheta 
+         + (1-\alpha) \int_\Theta f_2(\x) p(\vartheta\mid \nn_2,\yn_2) d\vartheta \\
+        &= \alpha f_1(\x) + (1-\alpha) f_2(\x) \,,
+\end{align*}
+the posterior coresponding to $p_m(\vartheta\mid \nz_1,\yz_1, \nz_2,\yz_2, \alpha)$,
+derived via Bayes' Rule, % \eqref{eq:bayesrule},
 can then be written as
 \begin{align}
 \lefteqn{
 p_m(\vartheta\mid \nz_1,\yz_1, \nz_2,\yz_2, \alpha, \x) } \hspace*{8ex} & \nonumber\\
- &= \frac{f(\x\mid\vartheta)}{f(\x)} \Big(
+ &= \frac{f(\x\mid\vartheta)}{f_m(\x)} \Big(
      \alpha\,  p(\vartheta\mid\nz_1,\yz_1) +
   (1-\alpha)\, p(\vartheta\mid\nz_2,\yz_2) \Big) \nonumber\\
- &=  \alpha\,  \frac{f(\x\mid\vartheta)}{f(\x)} p(\vartheta\mid\nz_1,\yz_1) +
-  (1-\alpha)\, \frac{f(\x\mid\vartheta)}{f(\x)} p(\vartheta\mid\nz_2,\yz_2) \nonumber\\
- &=  \alpha\,  p(\vartheta\mid\nn_1,\yn_1) +
-  (1-\alpha)\, p(\vartheta\mid\nn_2,\yn_2) \nonumber\\
- &=: p_m(\vartheta\mid \nn_1,\yn_1, \nn_2,\yn_2, \alpha)\,,
+ &=  \alpha\,  \frac{f(\x\mid\vartheta)}{f_m(\x)} p(\vartheta\mid\nz_1,\yz_1) +
+  (1-\alpha)\, \frac{f(\x\mid\vartheta)}{f_m(\x)} p(\vartheta\mid\nz_2,\yz_2) \nonumber\\
+ &=  \alpha\,  \frac{f_1(\x)}{f_m(\x)} p(\vartheta\mid\nn_1,\yn_1) +
+  (1-\alpha)\, \frac{f_w(\x)}{f_m(\x)} p(\vartheta\mid\nn_2,\yn_2) \nonumber\\
+ &=: p_m(\vartheta\mid \nn_1,\yn_1, \nn_2,\yn_2, \alpha^*)\,,
 \label{sec:posteriormixture}
 \end{align}
-being the mixture of two parametric posteriors
+where
+\begin{align*}
+\alpha^* &= \alpha\, \frac{f_1(\x)}{f_m(\x)}
+          = \frac{\alpha\, f_1(\x)}{\alpha\, f_1(\x) + (1-\alpha)\, f_2(\x)}\,. 
+\end{align*}
+The posterior of the $\alpha$-mixture distribution,
+based on parametric priors with parameters $(\nz_1,\yz_1)$ and $(\nz_2,\yz_2)$,
+is thus the $\alpha^*$-mixture of two parametric posteriors,
 with updated parameters $(\nn_1,\yn_1)$ and $(\nn_2,\yn_2)$, respectively.
+
+Now, the convex hull of $p(\vartheta\mid\nz_1,\yz_1)$ and $p(\vartheta\mid\nz_2,\yz_2)$
+is given by the set of all mixture distributions based on $p(\vartheta\mid\nz_1,\yz_1)$ and $p(\vartheta\mid\nz_2,\yz_2)$,
+where $\alpha$ varies in $[0, 1]$.
+As for any $\alpha \in [0,1]$, the corresponding $\alpha^*$ is again in $[0,1]$,
+and it holds that $\{\alpha^* \mid \alpha \in [0,1]\} = [0,1]$,
+The convex hull of $p(\vartheta\mid\nn_1,\yn_1)$ and $p(\vartheta\mid\nn_2,\yn_2)$
+is indeed equivalent to the set of updated mixtures $p_m(\vartheta\mid \nz_1,\yz_1, \nz_2,\yz_2, \alpha, \x)$
+for $\alpha \in [0,1]$.
+
 Through complete induction, this result holds also for any finite number of mixture components, such that
 the set of updated mixture distributions $\MN$ can thus be constructed
 as the convex hull of the parametric posteriors %updated parametric distributions.

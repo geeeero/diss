@@ -12,9 +12,7 @@ and the addition of some comments and footnotes linking this work to other parts
 Furthermore, the notation was changed slightly to assure consistency with the rest of the material presented in this thesis.
 Specifically, the success probability in Bernoulli trials is denoted by $\theta$ instead of $p$.
 
-%***with Frank's weighting model!***
 \subsubsection*{Abstract}
-%***abstract***
 
 By its capability to deal with the multidimensional nature of
 uncertainty, imprecise probability provides a powerful methodology
@@ -32,7 +30,6 @@ Thereafter we present a new approach, consisting of an
 imprecise weighting of two originally separate inferences, one of which is based on an informative
 imprecise prior, whereas the other one is based on an uninformative imprecise prior. This approach
 deals with \pdc\ in a fascinating way.
-%***end of abstract***
 
 \subsection{Introduction}
 \label{sec:isipta11-intro}
@@ -61,8 +58,8 @@ stick to his prior assumptions: starting with the same level of ambiguity in the
 specification, wide posterior intervals can
 reflect conflict between prior and data, while
 no \pdc\ will lead to narrow intervals.%
-\footnote{See the discussions in Sections~\ref{sec:motivation:pdc} and \ref{sec:pdc-sensitivity},
-and the ***work*** on \pdc\ in Section~\ref{sec:jstp}.}
+\footnote{See the discussions of \pdc\ sensitivity in Sections~\ref{sec:motivation:pdc} and \ref{sec:pdc-sensitivity},
+and our contribution centerd around this issue in Section~\ref{sec:jstp}.}
 Ideally, the model could provide an extra `bonus' of precision if prior %specifications had been `spot on'.
 assumptions are very strongly supported by the data.
 Such a model would have the advantage
@@ -112,7 +109,7 @@ Section~\ref{sec:weightedinf} addresses the problem of \pdc\ from a
 completely different angle. There, we combine two originally separate
 inferences, one based on an informative imprecise prior and one
 on an uninformative imprecise prior, by an imprecise weighting
-scheme. The ***paper*** concludes with a brief comparison of the different
+scheme. We conclude the contribution with a brief comparison of the different
 approaches in Section~\ref{sec:insights}.
 
 
@@ -121,8 +118,6 @@ approaches in Section~\ref{sec:insights}.
 
 \subsubsection{The Framework}
 \label{sec:ibbm-framework}
-
-%***change notation for success probability from $p$ to $\theta$!!!***
 
 The traditional Bayesian approach for our basic problem is the Beta-Binominal model, which expresses prior
 beliefs about the probability $\theta$ of observing a `success' by a Beta
@@ -185,7 +180,7 @@ probability is equal to $\yn$, and we get%
 %\footnote{\textcite{2005:quaeghebeurcooman}, \textcite{Walter2009a}, and \textcite{Walter2007a} use the prototypical character of
 %\eqref{equ:update-nn-yn-precise} underlying \eqref{equ:General-Pl} and
 %\eqref{equ:General-Pu} to generalise this inference to models based on canonical exponential families.
-%See Section~\ref{sec:generalmodel} and \ref{sec:jstp}. ***leave this out here??***}
+%See Section~\ref{sec:generalmodel} and \ref{sec:jstp}. *leave this out here*}
 %
 \begin{align}
 \Pl = \ynl &:= \min_{\PN} \yn = \min_{\PZ} \frac{\nz\yz + s}{\nz +n}\,, \label{equ:General-Pl}\\
@@ -221,12 +216,12 @@ being a two-dimensional interval, or a rectangle set.
 Studying inference in this model, it is important to note that the set of posterior parameters
 %$\PN = \{(\nn,\yn) \mid [\nzl, \nzu] \times [\yzl, \yzu]\}$
 %$\PN = \{(\nn,\yn) \mid (\nz, \yz) \in \PZero\}$ defining the set
-%of ***vertex*** posterior distributions is not rectangular anymore.
+%of vertex posterior distributions is not rectangular anymore.
 $\PN$ is not rectangular anymore. The resulting shapes are illustrated in Figure~\ref{fig:spot-banana}: For the
 prior set $\PZ = [1, 5 ] \times  [0.4, 0.7]$---thus assuming a priori the
 fraction of successes to be between 40\% and 70\% and rating these assumptions
 with at least $1$ and at most $5$ pseudo observations---the resulting posterior parameter sets $\PN$
-are shown for data consisting of 3 successes in 6 draws (left) and with all 6 draws successes (right). %***TPDA***. On the right, ***PDC***.
+are shown for data consisting of 3 successes in 6 draws (left) and with all 6 draws successes (right).
 We call the left shape \emph{spotlight}, and the right shape
 \emph{banana}. In both graphs, the elements of $\PN$ yielding
 %the minimal and maximal $\yn$, $\ynl = \LE[p\mid s]$ and $\ynu = \UE[p\mid s]$,
@@ -266,7 +261,7 @@ will be called `Total Prior-Data Agreement' interval, or TPDA. For $s$ in the TP
 we are `spot on': $\ynl$ and $\ynu$ are attained for $\nzu$ and $\PN$ has the \emph{spotlight} shape.
 But if the observed number of successes is outside TPDA, %the range of expected successes,
 $\PN$ goes \emph{bananas} and either $\Pl$ or $\Pu$
-%(resulting from updating the one of $\yzl$ and $\yzu$ being nearer to $\frac{s}{n}$***)
+%(resulting from updating the one of $\yzl$ and $\yzu$ being nearer to $\frac{s}{n}$)
 is calculated with $\nzl$. %attained for $\nzl$.
 
 \begin{figure}%[h]
@@ -305,8 +300,6 @@ is calculated with $\nzl$. %attained for $\nzl$.
 \draw (B) -- node[sloped,below] {\small sl.~1} (Eu) -- node[sloped,above,pos=0.55] {\small sl.~1} (Fu) -- node[sloped,above] {\small sl.~2} (D);
 \draw (A) -- node[sloped,below] {\small sl.~2} (El) -- node[sloped,below,pos=0.45] {\small sl.~1} (Fl) -- node[sloped,above] {\small sl.~1} (C);
 \end{tikzpicture}
-%\caption{***error***}
-%\caption{$\Pl$ and $\Pu$ for models in Sections~*** }% \ref{sec:ibbm-walley} and \ref{sec:othershapes}.}
 \caption{\underline{P}\ and $\Pu$
 %Lower and upper predictive probability of success
 for models in Sections~\ref{sec:ibbm-walley} and \ref{sec:othershapes}.}
@@ -355,7 +348,7 @@ approaches are explored next.
 
 Choosing a two-dimensional interval $\PZ$ seems logical,
 but the resulting inference is not fully satisfactory in case of prior data conflict.
-Recall that $\PZ$ is used to produce $\MZ$, %****the set of prior distributions***,
+Recall that $\PZ$ is used to produce $\MZ$, % the set of prior distributions,
 which then is processed by the Generalised Bayes rule. Any shape can be chosen for $\PZ$,
 including the composure of single pairs $(\nz, \yz)$. %In this Section, 
 Here, we investigate
@@ -381,7 +374,7 @@ Then, the lower and upper bounds for $\yz$ must be %\vspace*{-0.5ex}
 %for $\nz$ in an interval $[\nzl, \nzu]$ that must be elicited as well.
 for $\nz$ in an interval $[\nzl, \nzu]$ derived by the range $[\nnl, \nnu]$ one wishes to attain for $\Pl$ and $\Pu$
 given the $n^h$ hypothetical observations.%
-\footnote{For the rest of the ***paper***, we tacitly assume that $n^h$, $s^h$, $\nz$ and $\cl$/$\cu$
+\footnote{For the rest of this section, we tacitly assume that $n^h$, $s^h$, $\nz$ and $\cl$/$\cu$
 are chosen such that $\yzl \geq 0$ resp.\ $\yzu \leq 1$ to generate Beta distributions as priors.}
 % or by its own right as prior range of confidence.
 The resulting shape of $\PZ$ is as in Figure~\ref{fig:anteater-ex1} (left) and called \emph{anteater} shape.
@@ -584,7 +577,7 @@ Table~\ref{tab:anteater-shapes} provides an overview of the possible shapes of $
 %When instead $s \neq [S_2, S_1]$ (or $s \neq [S_1, S_2]$ if $n > n^h$),
 %$\PN$ is `going bananas' just as $\PN$ in the pdc-IBBM.
 %
-%***The posterior parameter set $\PN$ may have the following shapes:
+% The posterior parameter set $\PN$ may have the following shapes:
 \begin{table}
 \centering
 \begin{tabular}{cccc}
@@ -630,7 +623,7 @@ Table~\ref{tab:anteater-shapes} provides an overview of the possible shapes of $
 \subsubsection{Intermediate R\'{e}sum\'{e}}
 \label{sec:ibbm-resume}
 
-%***also here two slopes, dead flamingo, other shapes possible.
+% also here two slopes, dead flamingo, other shapes possible.
 %conjecture: arbitrary number of slopes are possible with careful selection of shape:
 Despite the (partly) different behaviour inside the TPDA, both %the
 pdc-IBBM and the \emph{anteater} shape display only two different slopes in their PPPs
@@ -708,7 +701,7 @@ Section~\ref{wi-prop}.
 %In line with the other sections of this paper,
 %we focus on the event that, following $s$ successes in $n$
 %observations, the next observation is a success. The model proposed
-%here is motivated by two main observations related to the models discussed in Sections ********************** 2 and 3.
+%here is motivated by two main observations related to the models discussed in Sections 2 and 3.
 
 
 \subsubsection{The Basic Model}
@@ -818,14 +811,15 @@ $S_2=(n+1)\frac{s^i}{n^i}$, they are equal to%\vspace*{-0.5ex}
 %variable on $[0,n]$) in a generic way.
 The PPP graph for this model is displayed %presented
 in Figure~\ref{fig:weighted-generic}.
-%***the following par can be shortened*** Note that the lower probability
-%$\Pl$ is made up of two line segments, one from $s=0$ to $s=S_2$ and
-%a second line segment, with smaller slope, for the larger values
-%until $s=n$. The upper probability $\Pu$ is also made up of two line
-%segments, one from $s=0$ to $s=S_1$ and a second line segment, with
-%larger slope, for the larger values until $s=n$. These switch points
-%are the same for the special cases of the weighted inference method
-%as discussed in detail in this section.
+Note that the lower probability
+$\Pl$ is made up of two line segments, one from $s=0$ to $s=S_2$ and
+a second line segment, with smaller slope, for the larger values
+until $s=n$. The upper probability $\Pu$ is also made up of two line
+segments, one from $s=0$ to $s=S_1$ and a second line segment, with
+larger slope, for the larger values until $s=n$. These switch points
+are the same for the special cases of the weighted inference method
+as discussed in detail in this section.
+
 The upper probability for $s=S_1$ and the lower probability for
 $s=S_2$ are both equal to $\frac{s^i}{n^i}$. The TPDA
 contains only a single possible value of $s$ (except if $S_1$ and $S_2$ are
@@ -1124,7 +1118,7 @@ on the other parameters.
 %It is also interesting to investigate the application of
 %our methods with coarse data, in an analogous way to \cite{UtkinAugustin1:2007}
 %and \cite{TroffaesCoolen2009}, which may provide further insights into
-%prior-data conflict. ***Text von Thomas zu contamination***
+%prior-data conflict. 
 For a deeper understanding of prior-data conflict, it may also be helpful
 to extend our methods to coarse data, in an analogous way to \textcite{2007:utkinaugustin} and
 \textcite{2009:Troffaes:Coolen}, and to look at other model classes of prior distributions, most
@@ -1141,7 +1135,9 @@ information, or by not including them initially as in
 Section~\ref{sec:weightedinf}. All these models show the desired increase of
 imprecision in case of prior-data conflict. It may be of
 interest to derive methods that explicitly respond to (perhaps
-surprisingly) strong prior-data agreement. ***link to boatshape material in outlook***
+surprisingly) strong prior-data agreement.%
+\footnote{See our suggestion for a parameter set shape that allows
+such a behaviour in Section~\ref{sec:concluding-outlook} and Section~\ref{sec:boatshape}.}
 One possibility to achieve this with the methods presented here is to
 consider the TPDA as this situation of strong agreement in which one wants
 imprecision reduced further than compared to an `expected'

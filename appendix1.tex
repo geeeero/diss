@@ -50,7 +50,7 @@ Due to the complexity of real-life data situations, basic linear
 regression models, where the expectation of the outcome $z_i$ simply equals the linear predictor $\x_i^\tra\bbeta$,
 have been generalized in numerous ways, ranging from generalised linear
 models (\cite{2001:fahrmeier-tutz}, see also \cite{1985:fahrmeir-kaufmann} for classical work on asymptotics)
-for non-normal distributions of $z_i\mid \x_i$, or linear mixed models %(LMM, ***zitate)
+for non-normal distributions of $z_i\mid \x_i$, or linear mixed models %(LMM, zitate)
 allowing the inclusion of clustered observations, over semi- and nonparametric models
 \parencite{2009:kauermann,2007:fahrmeir,2007:scheipl}, up to
 generalised additive (mixed) models and structured
@@ -261,7 +261,7 @@ Even if one is not so confident about one's prior knowledge and thus assigning a
 relatively large variance to the prior, the posterior mean is less strongly influenced
 by the prior mean, but the posterior variance still is getting smaller, no matter
 if the data support the prior information or not.
-%and this is the point: it gets smaller by the same ***amount / factor no matter
+%and this is the point: it gets smaller by the same amount / factor no matter
 %if the prior knowledge
 %\end{example}
 
@@ -352,7 +352,7 @@ we stay with the numbering $1,\ldots, p$ for the components of $\bbeta$.}
 or consider only centered responses $\z$ and standardized covariates
 to make the estimation of an intercept unnecessary.
 
-%***vorher allgemein: $p(\beta,\,\sigma^2) = p(\beta\mid\sigma^2) p(\sigma^2)$, klassische conjugierte Priori ist NIG, etc...
+%vorher allgemein: $p(\beta,\,\sigma^2) = p(\beta\mid\sigma^2) p(\sigma^2)$, klassische conjugierte Priori ist NIG, etc...
 In Bayesian linear regression analysis, the distribution of the response $\z$ is interpreted as
 a distribution of $\z$ given the parameters $\bbeta$ and $\sigma^2$, and %a (class of)
 prior distributions on $\bbeta$ and $\sigma^2$ must be considered.
@@ -363,7 +363,7 @@ For this, it is convenient to split the joint prior on $\beta$ and $\sigma^2$ as
 $p(\bbeta,\sigma^2) = p(\bbeta\mid\sigma^2) p(\sigma^2)$
 and to consider conjugate distributions for both parts, respectively.
 
-%\section{**Standard-Modell wie in O'Hagan / FKL***}
+%\section{**Standard-Modell wie in O'Hagan / FKL}
 
 In the literature, the proposed conjugate prior for $\bbeta\mid\sigma^2$
 is a normal distribution with expectation vector $\mz \in \reals^p$ and variance-covariance
@@ -480,7 +480,7 @@ thus smaller prior variance, in turn giving a higher weight for $\E[\sigma^2]$
 in the calculation of $\E[\sigma^2\mid \z]$.
 The weight to $\sls$ corresponds to the classical degrees of freedom, $n-p$. With the
 the sample size approaching infinity, this weight will dominate the others, such that
-$\E[\sigma^2\mid \z]$ approaches $\sls$.%, indeed ******.
+$\E[\sigma^2\mid \z]$ approaches $\sls$.%, indeed .
 
 Similar results hold for the posterior mode instead of the posterior expectation.
 
@@ -556,9 +556,9 @@ also for the ones with prior assignments that have turned out to be basically co
 \subsection{An Alternative Approach for Conjugate Priors in Bayesian Linear Regression (CCCP)}
 \label{sec:cccp}
 
-%***erst allgemein: wie kann priori zu lik konstruiert werden.\\
-%***dann verkuerzte konstruktion\\
-%***alles noch be-tilde-n und ent-fett-en\\
+%erst allgemein: wie kann priori zu lik konstruiert werden.\\
+%dann verkuerzte konstruktion\\
+%alles noch be-tilde-n und ent-fett-en\\
 
 In this section, a prior model for $\btheta = (\bbeta,\,\sigma^2)$ will be constructed
 along the general construction method for sample distributions that form a
@@ -571,16 +571,16 @@ $\z \sim \norm(\X\bbeta, \sigma^2\mbf{I})$ will be shown to follow the specific
 exponential family form as well.
 
 The canonically constructed conjugate prior (CCCP) model will
-%The prior constructed along the general method \cite{BernardoSmith}*** in the following will
+%The prior constructed along the general method \cite{BernardoSmith} in the following will
 %result in the same parametric class of prior distributions, but with a different parametrization and other differences.
-%Comments on these differences will be made after the derivation.***
+%Comments on these differences will be made after the derivation.
 also result in a normal-inverse gamma distribution, but with a fixed variance-covariance structure.
 The CCCP model is thus a special case of the SCP model, which -- as will be detailed in this subsection --
 offers some interesting further insights into the structure of the update step.
 
-%***nur andere parametrisierung, und struktur der var-covar-matrix nicht frei w\"{a}hlbar.
+%nur andere parametrisierung, und struktur der var-covar-matrix nicht frei w\"{a}hlbar.
 %w\"{u}rde aber auch sehr schwierig, Menge von var-covar-matrizen zu definieren, bei denen
-%die pos.def. garantiert ist...***
+%die pos.def. garantiert ist...
 
 %\subsubsection{Derivation of the Conjugate Prior}
 
@@ -897,7 +897,7 @@ A value of $\yz_2$ dependent on the value of $\E[\sigma^2]$ can thus be chosen b
 %                = \frac{1}{\frac{n\uz + p}{2} +1 - 2}\big( \ewt[\sigma^2] \big)^2 %\\
 %                = \frac{2}{n\uz + p -2} \big(\ewt[\sigma^2]\big)^2 \,,
 %\end{align*}
-%and might be of interest for assessing one's choice regarding $n\uz$ and $y\uz_2$***.\\
+%and might be of interest for assessing one's choice regarding $n\uz$ and $y\uz_2$.\\
 
 For the posterior expected value of $\sigma^2$, there is a similar decomposition
 as for the SCP model, and furthermore two other possible decompositions offering
@@ -982,7 +982,7 @@ giving eventually an even larger posterior expectation for $\sigma^2$.
 %Interestingly, this is not the only useful interpretation of $\mathds{E}[\sigma^2\mid\bs{z}]$.
 %The formula (\ref{equ:posteriori_sigma}) can be shown to convert in other two different forms
 %that offer an intuitive interpretation for the update step of $\sigma^2$,
-%where one gives an interpretation similar to the one for the SCP** model in ***gleichung***.\\
+%where one gives an interpretation similar to the one for the SCP model in gleichung.\\
 
 A decomposition similar to the one in Section~\ref{sec:scp-update2} can be derived
 by considering the third term from \eqref{equ:cccp-sigma1} in more detail:
@@ -1240,7 +1240,7 @@ that also can be extended to imprecise probabilities, see \textcite{Walter2007a}
 A detailed development is beyond the scope of this contribution. %, but the basic steps may finally be sketched:
 
 \iffalse
-***aus sec~\ref{sec:cccp}, noch be-tilde-n und ent-fett-en***\\
+*aus sec~\ref{sec:cccp}, noch be-tilde-n und ent-fett-en*\\
 To make inference on $\beta$ using the \nymodel\ calculus, thus one can choose (elementwise) lower
 and upper bounds for $\bs{m}(y\uz)$ based on one's prior knowledge on $\beta$; $n\uz$ must be chosen fix and
 determines the prior covariance matrix for $\beta\mid\sigma^2$, as $\mathds{V}(\beta\mid\sigma^2) = \frac{n\sigma^2}{n\uz}(\XtX)^{-1}$.

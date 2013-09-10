@@ -1,0 +1,576 @@
+\documentclass{beamer}
+
+\usetheme{LMU}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage[english]{babel}
+\usepackage{url}
+%\usepackage{cite}
+%\usepackage{natbib}
+\usepackage[backend=bibtex,style=authoryear,dashed=false]{biblatex}
+\addbibresource{../bib/eigene.bib}
+\addbibresource{../bib/itip-refs.bib}
+\addbibresource{../bib/other-refs.bib}
+\renewcommand{\bibfont}{\normalfont\scriptsize}
+\setlength{\bibhang}{3ex}
+
+\usepackage{amssymb, amsmath, amsfonts, enumerate}
+%\usepackage{bbold}
+\newcommand\hmmax{0}
+\usepackage{bm}
+%\usepackage{dsfont}
+\usepackage{pxfonts}
+\usepackage{xcolor}
+
+\usepackage{tikz}
+\usetikzlibrary{%
+   arrows,%
+   calc,%
+   fit,%
+   patterns,%
+   plotmarks,%
+   shapes.geometric,%
+   shapes.misc,%
+   shapes.symbols,%
+   shapes.arrows,%
+   shapes.callouts,%
+   shapes.multipart,%
+   shapes.gates.logic.US,%
+   shapes.gates.logic.IEC,%
+   er,%
+   automata,%
+   backgrounds,%
+   chains,%
+   topaths,%
+   trees,%
+   petri,%
+   mindmap,%
+   matrix,%
+   calendar,%
+   folding,%
+   fadings,%
+   through,%
+   patterns,%
+   positioning,%
+   scopes,%
+   decorations.fractals,%
+   decorations.shapes,%
+   decorations.text,%
+   decorations.pathmorphing,%
+   decorations.pathreplacing,%
+   decorations.footprints,%
+   decorations.markings,%
+   shadows}
+%\usepackage{bbold}
+\usepackage{hyperref}
+
+\setbeamertemplate{blocks}[rounded][shadow=true]
+\definecolor{lmugreen2}{RGB}{0,120,94}
+%\definecolor{lmugreen2}{RGB}{0,148,64}
+\definecolor{lmugreen}{RGB}{0,140,84}
+\definecolor{unidurham}{RGB}{126,49,123}
+
+\parindent0pt
+\setlength{\unitlength}{1ex}
+\setlength{\fboxsep}{0ex}
+
+\def\then{{\color{lmugreen}$\rule[0.35ex]{2ex}{0.5ex}\!\!\!\blacktriangleright$}}
+%\def\then{{\color{lmugreen}$\blacktriangleright\!\blacktriangleright$}}
+%\def\then{{\color{lmugreen}$\blacktriangleright$}}
+%\def\then{{\color{lmugreen}$\Rrightarrow$}}
+%\def\then{{\color{lmugreen}$\rhd$}}
+%\def\then{{\color{lmugreen}$\gg\!\!\!\!\!\gg$}}
+%\def\then{{\color{lmugreen}${\mathbf{\gg}}$}}
+\def\play{{\color{lmugreen}$\blacktriangleright$}}
+
+\def\rthen{{\color{lmugreen}$\rule[0.35ex]{0.5ex}{0.95ex}\rule[0.35ex]{1.3ex}{0.5ex}\!\!\!\blacktriangleright$}}
+
+\def\thenthen{{\color{lmugreen}$\blacktriangleleft\!\!\!\rule[0.35ex]{2ex}{0.5ex}\!\!\!\blacktriangleright$}}
+
+\def\gplus{{\color{lmugreen}\rule[0.45ex]{1.4ex}{0.4ex}\hspace{-0.9ex}\rule[0.0ex]{0.4ex}{1.3ex}\hspace{0.5ex}}}
+\def\gminus{{\color{lmugreen}\rule[0.45ex]{1.4ex}{0.4ex}}}
+
+
+\def\blau#1{{\color{lmugreen2}#1}}
+\def\rot#1{{\color{red}#1}}
+\def\gruen#1{{\color{blue}#1}}
+%\def\gruen#1{{\color{gray}#1}}
+
+\input{../defs}
+
+\def\yzr{\rot{\yz}}
+\def\ynr{\rot{\yn}}
+\def\byzr{\rot{\byz}}
+\def\bynr{\rot{\byn}}
+\def\yzor{\rot{y\uz_1}}
+\def\yzjr{\rot{y\uz_j}}
+\def\yzkr{\rot{y\uz_k}}
+\def\yzlr{\rot{\yzl}}
+\def\yzur{\rot{\yzu}}
+\def\ynjr{\rot{y\un_j}}
+\def\ynlr{\rot{\ynl}}
+\def\ynur{\rot{\ynu}}
+\def\yzjlr#1{\rot{\ul{y}\uz_#1}}
+\def\yzjur#1{\rot{\ol{y}\uz_#1}}
+
+
+\def\nzg{\gruen{\nz}}
+\def\nng{\gruen{\nn}}
+\def\nzlg{\gruen{\nzl}}
+\def\nzug{\gruen{\nzu}}
+\def\nnlg{\gruen{\nnl}}
+\def\nnug{\gruen{\nnu}}
+
+\def\psib{\blau{\psi}}
+\def\bpsib{\blau{{b}(\psi)}}
+
+
+% ------------ shading start
+\newsavebox{\tempbox}
+\newcommand\leftrightshading[3]{%
+  \begin{tikzfadingfrompicture}[name=inputtext]
+    \node [text=white] {#1};
+  \end{tikzfadingfrompicture}
+  \begin{lrbox}{\tempbox}%
+    \begin{tikzpicture}
+      \node [text=white,inner sep=0pt,outer sep=0pt] (textnode) {#1};
+      \shade[path fading=inputtext,fit fading=false,left color=#2,right color=#3]
+      (textnode.south west) rectangle (textnode.north east);
+    \end{tikzpicture}%
+  \end{lrbox}
+  % Now we use the fading in another picture:
+  \usebox\tempbox{}%
+}
+% ------------ shading end
+
+
+%\def\PZc{\mathrm I\!\Pi\uz}
+\def\PZc{\leftrightshading{$\mathrm I\!\Pi\uz$}{blue}{red}}
+%\def\PNc{\PN}
+\def\PNc{\leftrightshading{$\mathrm I\!\Pi\un$}{blue}{red}}
+
+
+\title[***Bayesian Inference with Sets of Conjugate Priors]
+{***Bayesian Inference with Sets of Conjugate Priors: Parameter Set Shapes and Model Behaviour}
+
+\author%[]
+       {Gero Walter}
+
+\institute{Department of Statistics\\
+           Ludwig-Maximilians-Universit\"at M\"unchen (LMU)\\
+                      {}%\{gero.walter; thomas\}@stat.uni-muenchen.de
+}
+
+\date{September 16th, 2013}
+
+
+\titlegraphic{
+%\begin{center}
+\includegraphics[scale=0.032]{lmu_logos/lmu_massiv.png}
+\raisebox{1.375cm}{
+\includegraphics[scale=0.4]{lmu_logos/lmu_statistic.pdf}
+}
+%\end{center}
+}
+
+\begin{document}
+
+
+\frame{
+\titlepage
+}
+
+\frame{\frametitle{Outline***}
+\begin{enumerate}
+\item Common-cause failure modelling\\ (joint work with Matthias Troffaes and Dana Kelly)
+\item Generalised Bayesian inference with sets of priors\\ (joint work with Thomas Augustin)
+\item Prior-data conflict and Strong prior-data agreement\\ (joint work with Thomas Augustin and Frank Coolen)
+\end{enumerate}
+}
+
+\frame{\frametitle{Prior-Data Conflict}
+
+%\begin{itemize}[<+->]
+%\item Shape of $\PZc$ influences shape of $\PNc$
+%\item Shape of $\PNc$ influences model behaviour\\
+%\then\ shape of $\PZc$ is a crucial modelling choice
+%\item $\PZc = [\nzlg, \nzug] \times [\yzlr, \yzur]$ (\emph{rectangle}) %(as before)
+%is very easy to elicit\\
+%and gives good model behaviour for \alert{\pdc}
+%\end{itemize}
+
+%\uncover<4->{%
+\begin{block}{Prior-Data Conflict}
+\begin{itemize}
+\item \emph{informative prior beliefs} and \emph{trusted data}\\ %\rule{0ex}{3ex}\\
+(sampling model correct, no outliers, etc.) are in conflict%\\%[2ex]
+\item ``[\ldots] the prior [places] its mass primarily on distributions
+in the sampling model for which the observed data is surprising''\\
+(Evans \& Moshonov, 2006)
+\item there are not enough data to overrule the prior
+\end{itemize}
+\end{block}%}
+
+\uncover<2->{%
+example for application where \pdc\ can show up:\\
+\alert{common-cause failure modeling} (more later)
+}
+
+}
+
+\section{Prior-Data Conflict}
+
+\subsection{Example}
+
+\frame{\frametitle{Prior-Data Conflict: Example}
+
+%Example Beta-Binom, show point, line, rectangle
+\begin{itemize}[<+->]
+\item Bernoulli observations: 0/1 observations (team wins no/yes)
+\item given: a set of observations (team won 12 out of 16 matches)
+\item additional to observations, we have strong prior information\\ (we are convinced that $P(\text{win})$ should be around $0.75$)
+\item we are, e.g., interested in (predictive) probability $P$ that team wins in the next match
+%(or some other inferences) %(predictive probability!)
+%\item standard statistical model for this situation: Beta-Bernoulli/Binomial Model
+%\item \textbf{\pdc:} if $P(\text{heads})$ for the coin is actually very different from our prior guess
+%(i.e., prior information and data are in conflict), this should show up in the %predictive
+%inferences (probability $\mbox{P}$ and, e.g., confidence intervals)
+\end{itemize}
+\uncover<5->{
+\begin{block}{Beta-Binomial Model}
+\begin{tabular}{r|lcl}
+Data :           & $s\mid \theta$          & $\sim$ & $\bin(n,\theta)$   \\[0.5ex]
+conjugate prior: & $\theta\mid \nzg, \yzr$ & $\sim$ & $\be(\nzg,\, \yzr)$  \\[0.5ex]
+\cline{1-4}
+posterior:       & $\theta\mid \nng, \ynr$ & $\sim$ & $\be(\nng,\, \ynr)$\rule{0ex}{2.5ex}
+%\quad ($\frac{\tau(\x)}{n} = \frac{s}{n}$)\rule{0ex}{2.5ex}
+\end{tabular}
+\end{block}
+where $s$ = number of wins in the $n$ matches observed
+}
+
+}
+
+\frame{\frametitle{Beta-Binomial Model}
+
+\uncover<1->{
+\begin{block}{Beta-Binomial Model}
+\begin{tabular}{r|lcl}
+Data :           & $s\mid \theta$          & $\sim$ & $\bin(n,\theta)$   \\[0.5ex]
+conjugate prior: & $\theta\mid \nzg, \yzr$ & $\sim$ & $\be(\nzg,\, \yzr)$  \\[0.5ex]
+\cline{1-4}
+posterior:       & $\theta\mid \nng, \ynr$ & $\sim$ & $\be(\nng,\, \ynr)$\rule{0ex}{2.5ex}
+%\quad ($\frac{\tau(\x)}{n} = \frac{s}{n}$)\rule{0ex}{2.5ex}
+\end{tabular}
+\end{block}
+}
+\begin{align*}
+\uncover<2->{%
+P = \E[\theta\mid\nng,\ynr]
+}%
+\uncover<3->{%
+= \rot{\yn}
+= \frac{\gruen{\nz}}{\gruen{\nz} + n} \cdot \rot{\yz} + \frac{n}{\gruen{\nz} + n} \cdot \frac{s}{n}
+}%
+\end{align*}\vspace*{-3ex}
+\begin{align*}
+\uncover<4->{%
+\gruen{\nn} &= \gruen{\nz} + n
+}%
+\uncover<5->{%
+& \V(\theta\mid\nng,\ynr) &= \frac{\rot{\yn}(1-\rot{\yn})}{\gruen{\nn} + 1}
+}
+\end{align*}
+
+}
+
+\frame{\frametitle{Beta-Binomial Model (BBM)}
+
+\hspace*{-12ex}
+\begin{columns}%[T]
+\begin{column}{0.58\textwidth}
+\begin{tikzpicture}
+\pgftransformscale{0.025}
+\uncover<1>{
+\input{precise01.tex}
+}
+\uncover<2>{
+\input{precise02.tex}
+\draw[-stealth,very thick] (110,175) -- (220,175) node [above,midway] {12 out of 16};
+}
+\uncover<3->{
+\input{precise03.tex}
+\draw[-stealth,very thick,gray] (110,175) -- (220,175) node [above,midway,gray] {12 out of 16};
+}
+\uncover<4->{
+\draw[-stealth,very thick] (110,102) -- (220,167) node [above,midway,sloped] {16 out of 16};
+}
+\end{tikzpicture}
+\end{column}
+\begin{column}{0.42\textwidth}
+\uncover<1->{%
+\begin{block}{no conflict:}
+prior $\nzg = 8$, $\yzr = 0.75$\\
+data $s/n = 12/16 = 0.75$
+\end{block}
+} %
+\uncover<2->{%
+\vspace*{-1.5ex}\centerline{\color{lmugreen} $\blacktriangledown$}\vspace*{-1.5ex}
+\begin{block}{}
+$\nng = 24$, $\ynr = 0.75$
+\end{block}
+} %
+\uncover<4->{%
+\vspace*{-1.5ex}\centerline{\color{lmugreen} $\blacktriangle$}\vspace*{-1.5ex}
+}
+\uncover<3->{%
+\begin{block}{\pdc:}
+prior $\nzg = 8$, $\yzr = 0.25$\\
+data $s/n = 16/16 = 1$
+\end{block}
+} %
+\uncover<0>{%
+\vspace*{-1.5ex}\centerline{\color{lmugreen} $\blacktriangledown$}\vspace*{-1.5ex}
+\begin{block}{}
+$\nng \in [20, 24]$, $\ynr \in [0.73, 0.86]$
+\end{block}
+} %
+%\uncover<5->{ %
+%\then\ same predictive prob.\ P!
+%}
+\end{column}
+\end{columns}
+
+}
+
+\subsection{Parameter Set Shapes}
+
+\frame{\frametitle{***explain imprecise Bayesian models idea***}
+
+}
+
+\frame{\frametitle{Imprecise BBM with $\nzg$ fixed = IDM (Walley 1996)}
+
+%gleich mit $\nz$ variabel?
+\hspace*{-12ex}
+\begin{columns}%[T]
+\begin{column}{0.58\textwidth}
+\begin{tikzpicture}
+\pgftransformscale{0.025}
+\uncover<1>{
+\input{line01.tex}
+}
+\uncover<2>{
+\input{line02.tex}
+\draw[-stealth,very thick] (110,175) -- (220,175) node [above,midway] {12 out of 16};
+}
+\uncover<3->{
+\input{line03.tex}
+\draw[-stealth,very thick,gray] (110,175) -- (220,175) node [above,midway,gray] {12 out of 16};
+}
+\uncover<4->{
+\draw[-stealth,very thick] (110,102) -- (220,167) node [above,midway,sloped] {16 out of 16};
+}
+\end{tikzpicture}
+\end{column}
+\begin{column}{0.42\textwidth}
+\uncover<1->{%
+\begin{block}{no conflict:}
+prior $\nzg = 8$, $\yzr \in [0.7, 0.8]$\\
+data $s/n = 12/16 = 0.75$
+\end{block}
+} %
+\uncover<2->{%
+\vspace*{-1.5ex}\centerline{\color{lmugreen} $\blacktriangledown$}\vspace*{-1.5ex}
+\begin{block}{}
+$\nng = 24$, $\ynr \in [0.73, 0.77]$
+\end{block}
+} %
+\uncover<4->{%
+\vspace*{-1.5ex}\centerline{\color{lmugreen} $\blacktriangle$}\vspace*{-1.5ex}
+}
+\uncover<3->{%
+\begin{block}{\pdc:}
+prior $\nzg = 8$, $\yzr \in [0.2, 0.3]$\\
+data $s/n = 16/16 = 1$
+\end{block}
+} %
+\uncover<0>{%
+\vspace*{-1.5ex}\centerline{\color{lmugreen} $\blacktriangledown$}\vspace*{-1.5ex}
+\begin{block}{}
+$\nng \in [20, 24]$, $\ynr \in [0.73, 0.86]$
+\end{block}
+} %
+%\uncover<5->{ %
+%\then\ same imprecise predictive prob.\ $[\Pl,\Pu]$!
+%}
+\end{column}
+\end{columns}
+
+}
+
+
+\frame{\frametitle{Imprecise BBM with $[\nzlg,\nzug]$ (Walley 1991, \S 5.4.3)}
+
+\hspace*{-12ex}
+\begin{columns}%[T]
+\begin{column}{0.58\textwidth}
+\begin{tikzpicture}
+\pgftransformscale{0.025}
+\uncover<1>{
+\input{rect01.tex}
+}
+\uncover<2>{
+\input{rect02.tex}
+\draw[-stealth,very thick] (110,175) -- (193,175) node [above,midway] {12 out of 16};
+}
+\uncover<3>{
+\input{rect03.tex}
+\draw[-stealth,very thick,gray] (110,175) -- (193,175) node [above,midway,gray] {12 out of 16};
+}
+\uncover<4>{
+\input{rect04.tex}
+\draw[-stealth,very thick,gray] (110,175) -- (193,175) node [above,midway,gray] {12 out of 16};
+\draw[-stealth,very thick] (110,102) -- (213,180) node [above,midway,sloped] {16 out of 16};
+%\draw[-stealth,very thick, postaction={decorate,decoration={raise=2pt,text along path, %
+%                                       text={16 out of 16}}}] (110,95) .. controls +(right:30) and +(down:30) .. (210,183);
+%\draw[-stealth,very thick] (110,95) .. controls +(right:10) and +(down:10) .. (210,183) node [below,midway,sloped] {16 out of 16};
+}
+\end{tikzpicture}
+\end{column}
+\begin{column}{0.42\textwidth}
+\uncover<1->{%
+\begin{block}{no conflict:}
+prior $\nzg \in [4, 8]$, $\yzr \in [0.7, 0.8]$\\
+data $s/n = 12/16 = 0.75$
+\end{block}
+} %
+\uncover<2->{%
+\vspace*{-1.5ex}\centerline{\color{lmugreen} $\blacktriangledown$}\vspace*{-1.5ex}
+\begin{block}{}
+%$\gruen{\nn} \in [20, 24]$,
+\centering $\ynr \in [0.73, 0.77]$
+%\centering ``spotlight'' shape
+\end{block}
+} %
+\uncover<3->{%
+\begin{block}{\pdc:}
+prior $\nzg \in [4, 8]$, $\yzr \in [0.2, 0.3]$\\
+data $s/n = 16/16 = 1$
+\end{block}
+} %
+\uncover<4->{%
+\vspace*{-1.5ex}\centerline{\color{lmugreen} $\blacktriangledown$}\vspace*{-1.5ex}
+\begin{block}{}
+%$\gruen{\nn} \in [20, 24]$,
+\centering $\ynr \in [0.73, 0.86]$
+%\centering ``banana'' shape
+\end{block}
+} %
+\end{column}
+\end{columns}
+
+}
+
+
+\frame{\frametitle{Parameter Set Shapes: Discussion}
+
+\begin{itemize}%[<+->]
+\item<1-> $\PZc = \nzg \times [\yzlr, \yzur]$:\\% \thenthen\
+IDM (Walley 1996), Quaghebeur \& de Cooman (2005)
+ \begin{itemize}%[<+->]
+ \item posterior parameter set has same form $\PNc = \nng \times [\ynlr, \ynur]$ %simpel model description,
+ \item optimise over $[\ynlr, \ynur]$ only %(often, posteriors are stoch.\ ordered along $\ynr$)
+ \item no \pdc\ reaction: same imprecision as without conflict (just like precise priors)
+ \end{itemize}
+\item<2-> $\PZc = [\nzlg,\nzug] \times [\yzlr, \yzur]$: %\thenthen\
+Walley (1991, \S 5.4.3),\\ \emph{generalized iLUCK-models} (Walter \& Augustin 2009) 
+ \begin{itemize}%[<+->]
+ \item still simple to elicit, allows flexible weighing of prior and data
+ \item additional imprecision in case of \pdc\\ \then\ more cautious inferences
+ \item $\PNc$ have non-trivial forms (banana / spotlight) %posterior parameter sets 
+ \item however, closed form for $\min / \max \ynr$ over $\PNc$
+ \item general optimisation over $\PNc$ more difficult, but doable
+ \item \textbf{R} package \texttt{luck}: do optimisation over $\PZc$ actually 
+ \end{itemize}
+\end{itemize}
+
+}
+
+
+\frame{\frametitle{Parameter Set Shapes: Discussion}
+
+\begin{itemize}%[<+->]
+\item<1-> Need a range of $\nzg$ values for \pdc\ reaction
+\item<2-> Other set shapes are possible, but may be more difficult to elicit
+\item<3-> Prior information may be such that range of $\yzr$ changes with $\nzg$ (or vice versa)
+\item<4-> \emph{Near-ignorance priors}: $\PZc$ such that prior inferences are nearly \emph{vacuous},
+but posterior inferences are informative
+ \begin{itemize}
+ \item IDM (Walley 1996): range of $\yzjr = (0,1)\ \forall j$
+ \item Benavoli \& Zaffalon (2012): range of $\yzr = (-\infty,+\infty)$\\
+ while $\nzug$ decreasing with $\yzr$\\ %$\nzg$ bounded above
+ (to avoid $\nzg |\yzr| = \infty$, i.e.\ vacuous posterior inferences)
+ \end{itemize}
+\end{itemize}
+
+}
+
+\frame{\frametitle{Parameter Set Shapes: Outlook}
+
+Work in progress (joint work with Frank Coolen):\\
+parameter set shape enabling\ldots
+\begin{itemize}
+\item additional imprecision in case of \pdc\ (as before)
+\item less imprecision for \emph{strong prior-data agreement}
+\end{itemize}
+%This work uses 
+via a different parametrisation of priors suggested by Mik Bickis % (in preparation)
+%\hspace*{-2ex}%
+\uncover<2->{%
+\vspace*{-7ex}%
+\begin{center}
+\includegraphics[scale=0.63]{../../../boatshape/R/boatshape/boatshape-talk130306.pdf}
+\end{center}}
+
+}
+
+\subsection{Conclusion}
+
+\frame{\frametitle{Conclusion}
+
+\begin{itemize}%[<+->]
+\item<1-> Conjugate priors are a convenient tool for Bayesian inference\\ but there are some pitfalls
+ \begin{itemize}%[<+->]
+ \item Hyperparameters are easy to interpret and elicit
+ \item Averaging property makes calculations simple,\\
+ but inadequate model behaviour in case of \pdc
+ \end{itemize}
+\item<2-> Sets of conjugate priors maintain advantages \& mitigate issues %find a sweet spot in between
+ \begin{itemize}%[<+->]
+ \item Hyperparameter set shape is important %a crucial modeling choice
+ \item Reasonable choice: \emph{rectangular} $\PZc = [\nzlg, \nzug] \times [\yzlr, \yzur]$
+ \item Bounds for hyperparameters easy to interpret and elicit
+ \item Additional imprecison in case of \pdc\\
+ leads to cautious inferences if, and only if, caution is needed
+ \item Shape for less imprecision in case of strong prior-data agreement is in development
+ \end{itemize}
+\end{itemize}
+
+}
+
+
+\frame{\frametitle{References}
+
+\nocite{1996:walley::idm,1991:walley,2005:quaeghebeurcooman-short,Walter2009a-short}
+%1994:hoyland,1965:good,2011:kelly:atwood,1996:atwood,Troffaes2013a,2006:evans,}
+
+\printbibliography[heading=none]
+
+%\bibliographystyle{plainnat}
+%\bibliography{../bib/eigene,../bib/itip-refs,../bib/other-refs}
+}
+
+\end{document}

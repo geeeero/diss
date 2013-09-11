@@ -1,0 +1,9 @@
+##############################################
+# comments & ideas for durham interview talk #
+##############################################
+
+* example for aplication where... -> out, mention it on overview slide?
+
+* BBM slide -> write Var(\theta) on blackboard as a reminder
+
+

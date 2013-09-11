@@ -152,8 +152,8 @@
 \def\PNc{\leftrightshading{$\mathrm I\!\Pi\un$}{blue}{red}}
 
 
-\title[***Bayesian Inference with Sets of Conjugate Priors]
-{***Bayesian Inference with Sets of Conjugate Priors: Parameter Set Shapes and Model Behaviour}
+\title%[]
+{Prior-Data Conflict\\ in\\ Generalised Bayesian Inference}
 
 \author%[]
        {Gero Walter}
@@ -184,11 +184,13 @@
 
 \frame{\frametitle{Outline***}
 \begin{enumerate}
-\item Common-cause failure modelling\\ (joint work with Matthias Troffaes and Dana Kelly)
+\item Prior-data conflict %and Strong prior-data agreement\\ (joint work with Thomas Augustin and Frank Coolen)
 \item Generalised Bayesian inference with sets of priors\\ (joint work with Thomas Augustin)
-\item Prior-data conflict and Strong prior-data agreement\\ (joint work with Thomas Augustin and Frank Coolen)
+\item Common-cause failure modeling\\ (joint work with Matthias Troffaes and Dana Kelly)
 \end{enumerate}
 }
+
+\section{Prior-Data Conflict}
 
 \frame{\frametitle{Prior-Data Conflict}
 
@@ -214,17 +216,16 @@ in the sampling model for which the observed data is surprising''\\
 \end{block}%}
 
 \uncover<2->{%
-example for application where \pdc\ can show up:\\
+example for application where \pdc\ is relevant:\\ %can show up:\\
 \alert{common-cause failure modeling} (more later)
 }
 
 }
 
-\section{Prior-Data Conflict}
 
-\subsection{Example}
+\subsection{Basic Example}
 
-\frame{\frametitle{Prior-Data Conflict: Example}
+\frame{\frametitle{Prior-Data Conflict: Basic Example}
 
 %Example Beta-Binom, show point, line, rectangle
 \begin{itemize}[<+->]
@@ -252,6 +253,8 @@ where $s$ = number of wins in the $n$ matches observed
 }
 
 }
+
+\subsection{Beta-Binomial Model}
 
 \frame{\frametitle{Beta-Binomial Model}
 
@@ -345,18 +348,183 @@ $\nng \in [20, 24]$, $\ynr \in [0.73, 0.86]$
 
 }
 
-\subsection{Parameter Set Shapes}
+\subsection{Canonical conjugate priors}
 
-\frame{\frametitle{***explain imprecise Bayesian models idea***}
+\frame{\frametitle{Canonical conjugate priors}
+
+\uncover<1->{%
+%The multinomial is an example for a \alert{canonical exponential family} %(Bernardo \& Smith, 2000)
+Weighted average structure is underneath \alert{all common conjugate priors}
+for exponential family sampling distributions! %\\[2ex]
+
+\begin{block}%
+{$(x_1, \ldots, x_n) = \x \stackrel{iid}{\sim}$ canonical exponential family} %(Bernardo and Smith, 1994)
+%, i.e.
+\begin{align*}
+p(\x \mid \vartheta) &\propto \exp\big\{\langle \psib, \tau(\x) \rangle - n \bpsib \big\}
+\qquad \Big[ \psib \text{ transformation of } \vartheta \Big]
+\end{align*}
+(includes Binomial, Multinomial, Normal, Poisson, Exponential, \ldots )%\\[2ex]
+\end{block}}
+\vspace*{-3ex}%
+\begin{align*}
+\uncover<2->{%
+&\text{\play\ conjugate prior:} &
+p(\psib\mid\nzg,\yzr) \hspace*{2ex}
+&\propto \exp\big\{ \nzg \big[\langle \psib, \yzr \rangle - \bpsib\big]\big\} \\}
+\uncover<3->{%
+&\text{\play\ (conjugate) posterior:} &
+p(\psib\mid\nzg,\yzr,\vec{x})
+%p(\psib\mid\nng,\ynr) \hspace*{2ex}
+&\propto \exp\big\{ \nng \big[\langle \psib, \ynr \rangle - \bpsib\big]\big\} }%\quad \mbox{where}
+\end{align*}
+\begin{align*}
+\uncover<3->{%
+\mbox{where}\quad \ynr &= \frac{\nzg}{\nzg + n} \cdot \yzr + \frac{n}{\nzg + n} \cdot \frac{\tau(\x)}{n}
+& &\mbox{and} & \nng &= \nzg + n }
+\end{align*}
 
 }
 
-\frame{\frametitle{Imprecise BBM with $\nzg$ fixed = IDM (Walley 1996)}
+\frame{\frametitle{Canonical Conjugate Priors}
 
-%gleich mit $\nz$ variabel?
+\vspace*{-2ex}%
+\uncover<1->{%
+\begin{align*}
+&\text{\play\ (conjugate) posterior:} &
+%p(\psib\mid\nzg,\yzr,\vec{x})
+p(\psib\mid\nng,\ynr) %\hspace*{2ex}
+&\propto \exp\big\{ \nng \big[\langle \psib, \ynr \rangle - \bpsib\big]\big\} %\quad \mbox{where}
+\end{align*}
+\vspace*{-2ex}
+\begin{align*}
+\mbox{where}\quad \ynr &= \frac{\nzg}{\nzg + n} \cdot \yzr + \frac{n}{\nzg + n} \cdot \frac{\tau(\x)}{n}
+& &\mbox{and} & \nng &= \nzg + n
+\end{align*}}%
+\vspace*{-2ex}%
+\uncover<2->{%
+\begin{block}{Interpretation}
+  \begin{itemize}
+  \item $\nzg$ = determines \alert{spread} and \alert{learning speed}
+  \item $\yzr$ = \alert{prior expectation} of $\tau(\x)/n$ %$\frac{\tau(\vec{x})}{n}$
+  \end{itemize}
+\end{block}}%
+\uncover<3->{%
+\begin{block}{Example: Scaled Normal Data}
+\begin{tabular}{r|lcl}
+Data :           & $\x\mid\mu$        & $\sim$ & $\norm(\mu,1)$\\[0.5ex] %\sigma_0^2)$ \quad ($\sigma_0^2$ known)\\[0.5ex]
+conjugate prior: & $\mu\mid\nzg,\yzr$ & $\sim$ & $\norm(\yzr, 1/\nzg)$  \\[0.5ex]
+\cline{1-4}
+posterior:       & $\mu\mid\nng,\ynr$ & $\sim$ & $\norm(\ynr, 1/\nng)$ \quad ($\frac{\tau(\x)}{n} = \bar{\x}$)\rule{0ex}{2.5ex} %& \\[0.5ex]
+\end{tabular}
+\end{block}}
+}
+
+
+
+\section{Generalised Bayesian inference}
+
+\subsection{Why generalise Bayesian inference?}
+
+\frame{\frametitle{Why Generalise Bayesian Inference?}
+
+Assigning a certain prior distribution on $\vartheta$\\
+\hfill $=$ defining a conglomerate of probability statements (on $\vartheta$).\\[1.5ex]
+
+Bayesian theory lacks the ability to specifiy the degree of uncertainty in these probability statements.\\[1.5ex]
+
+\pause
+Variance or stretch of a distribution for describing uncertainty?\\[1.5ex]
+%but this mostly does not work in conjugate updating as just shown.
+%but this has mostly no influence on the behaviour to prior-data conflict.
+
+\pause
+\then\ \parbox[t]{0.9\textwidth}{Does not work in the case of prior-data conflict:\\
+In conjugate updating, the posterior variance does not depend
+on the degree of prior-data conflict in most cases.}\\[1.5ex]
+
+\then\ How to express the precision of a probability statement?\\
+\pause
+\hspace*{6ex}\fbox{\parbox[t]{0.9\textwidth}{add \alert{imprecision} as new model dimension:\\
+\alert{sets of priors} model uncertainty about probability statements}}
+
+}
+
+
+\subsection{Sets of priors}
+
+\frame{\frametitle{Bayesian Inference with Sets of Priors}
+
+\uncover<1->{%
+\begin{block}{Standard Bayesian inference procedure}
+\centerline{prior + likelihood = posterior}
+using Bayes' Rule\\
+All inferences are based on the posterior\\
+(e.g., point estimate = $\E[\psib\mid\nng,\ynr]$)
+\end{block}}
+
+\uncover<2->{\centerline{Let hyperparameters $(\nzg, \yzr)$ vary in a set $\PZc$ \then\ \alert{set of priors}}}
+
+\uncover<3->{%
+\begin{block}{Generalised Bayesian inference procedure}
+\centerline{set of priors + likelihood = set of posteriors}
+All inferences are based on the set of posteriors\\
+\emph{Coherence} (consistency of inferences) ensured by using\\
+\emph{Generalised Bayes' Rule} (GBR, Walley 1991)\\
+= element-wise application of Bayes' Rule\\ %\emph{\small (set of priors must be convex)}\\
+%(e.g., point estimate = $\big[\El[\psib\mid\nng,\ynr],\Eu[\psib\mid\nng,\ynr]\big]$)
+\end{block}}
+
+}
+
+\frame{\frametitle{Generalised Bayesian Inference Procedure}
+
+\vspace*{-1ex}%
+\uncover<1->{%
+\begin{align*}
+\text{single prior $(\nzg, \yzr)$}
+ &\quad\mbox{\then }\quad 
+\text{set of priors $\MZ$ (defined via $\PZc$)} \\
+\E[\psib\mid\nzg,\yzr,\x]
+ &\quad\mbox{\then }\quad 
+\big[\El[\psib\mid\PZc,\x],\Eu[\psib\mid\PZc,\x]\big] \\
+P(\psib\in A\mid\nzg,\yzr,\x)
+ &\quad\mbox{\then }\quad 
+\big[\Pl[\psib\in A\mid\PZc,\x],\Pu[\psib\in A\mid\PZc,\x]\big]
+%\E[\theta]  &\quad\mbox{\then }\quad \big[\LE[\theta],\, \UE[\theta]\big] \\
+%= \left[ \min_{p \in {\cal M}_\theta} \E_{p}[\theta],\,
+%         \max_{p \in {\cal M}_\theta} \E_{p}[\theta]\right]\\
+%P(\theta\! \in\! A) &\quad\mbox{\then }\quad \big[\ul{P}(\theta\! \in\! A),\, \ol{P}(\theta\! \in\! A)\big]
+%= \big[\! \min P_{\!\!p}(\theta\! \in\! A),\,
+%          \max P_{\!\!p}(\theta\! \in\! A)\big]
+\end{align*}
+\begin{center}
+Lower/upper posterior expectation by min/max over set of posteriors %$\PZc$
+\end{center}}
+\uncover<2->{%
+\begin{block}{Interpretation}
+\centerline{\textbf{Shorter intervals \thenthen\ more precise probability statements}}
+\vspace*{1ex}
+\parbox[t]{0.45\textwidth}{\centering \textbf{Lottery A}\\
+                          Number of winning tickets:\\
+                          exactly known as 5 out of 100\\
+                          \then\ $P(\text{win}) = 5/100$}
+\qquad
+\parbox[t]{0.45\textwidth}{\centering \textbf{Lottery B}\\
+                          Number of winning tickets:\\
+                          not exactly known, supposedly\\
+                          between 1 and 7 out of 100\\
+                          \then\ $P(\text{win}) = [1/100,\, 7/100]$}
+\end{block}}
+
+}
+
+
+
+\frame{\frametitle{Imprecise BBM with $\nzg$ fixed = IDM (Walley 1996)}
 \hspace*{-12ex}
 \begin{columns}%[T]
-\begin{column}{0.58\textwidth}
+\begin{column}{0.55\textwidth}
 \begin{tikzpicture}
 \pgftransformscale{0.025}
 \uncover<1>{
@@ -375,7 +543,7 @@ $\nng \in [20, 24]$, $\ynr \in [0.73, 0.86]$
 }
 \end{tikzpicture}
 \end{column}
-\begin{column}{0.42\textwidth}
+\begin{column}{0.45\textwidth}
 \uncover<1->{%
 \begin{block}{no conflict:}
 prior $\nzg = 8$, $\yzr \in [0.7, 0.8]$\\
@@ -413,10 +581,9 @@ $\nng \in [20, 24]$, $\ynr \in [0.73, 0.86]$
 
 
 \frame{\frametitle{Imprecise BBM with $[\nzlg,\nzug]$ (Walley 1991, \S 5.4.3)}
-
 \hspace*{-12ex}
 \begin{columns}%[T]
-\begin{column}{0.58\textwidth}
+\begin{column}{0.55\textwidth}
 \begin{tikzpicture}
 \pgftransformscale{0.025}
 \uncover<1>{
@@ -440,10 +607,10 @@ $\nng \in [20, 24]$, $\ynr \in [0.73, 0.86]$
 }
 \end{tikzpicture}
 \end{column}
-\begin{column}{0.42\textwidth}
+\begin{column}{0.45\textwidth}
 \uncover<1->{%
 \begin{block}{no conflict:}
-prior $\nzg \in [4, 8]$, $\yzr \in [0.7, 0.8]$\\
+prior $\nzg\! \in [4, 8]$, $\yzr\! \in [0.7, 0.8]$\\
 data $s/n = 12/16 = 0.75$
 \end{block}
 } %
@@ -457,7 +624,7 @@ data $s/n = 12/16 = 0.75$
 } %
 \uncover<3->{%
 \begin{block}{\pdc:}
-prior $\nzg \in [4, 8]$, $\yzr \in [0.2, 0.3]$\\
+prior $\nzg \in\! [4, 8]$, $\yzr\! \in [0.2, 0.3]$\\
 data $s/n = 16/16 = 1$
 \end{block}
 } %
@@ -475,7 +642,9 @@ data $s/n = 16/16 = 1$
 }
 
 
-\frame{\frametitle{Parameter Set Shapes: Discussion}
+\subsection{Parameter Set Shapes}
+
+\frame{\frametitle{Parameter Set Shapes}
 
 \begin{itemize}%[<+->]
 \item<1-> $\PZc = \nzg \times [\yzlr, \yzur]$:\\% \thenthen\
@@ -486,7 +655,7 @@ IDM (Walley 1996), Quaghebeur \& de Cooman (2005)
  \item no \pdc\ reaction: same imprecision as without conflict (just like precise priors)
  \end{itemize}
 \item<2-> $\PZc = [\nzlg,\nzug] \times [\yzlr, \yzur]$: %\thenthen\
-Walley (1991, \S 5.4.3),\\ \emph{generalized iLUCK-models} (Walter \& Augustin 2009) 
+Walley (1991, \S 5.4.3),\\ \emph{generalised iLUCK-models} (Walter \& Augustin 2009) 
  \begin{itemize}%[<+->]
  \item still simple to elicit, allows flexible weighing of prior and data
  \item additional imprecision in case of \pdc\\ \then\ more cautious inferences
@@ -518,7 +687,7 @@ but posterior inferences are informative
 
 }
 
-\frame{\frametitle{Parameter Set Shapes: Outlook}
+\frame{\frametitle{Parameter Set Shapes: Outlook***}
 
 Work in progress (joint work with Frank Coolen):\\
 parameter set shape enabling\ldots
@@ -527,13 +696,34 @@ parameter set shape enabling\ldots
 \item less imprecision for \emph{strong prior-data agreement}
 \end{itemize}
 %This work uses 
-via a different parametrisation of priors suggested by Mik Bickis % (in preparation)
+via a different parametrisation of priors suggested by Mi\c{k} Bickis % (in preparation)
 %\hspace*{-2ex}%
 \uncover<2->{%
-\vspace*{-7ex}%
+%\vspace*{-7ex}%
 \begin{center}
-\includegraphics[scale=0.63]{../../../boatshape/R/boatshape/boatshape-talk130306.pdf}
+\includegraphics[trim = 15mm 45mm 25mm 60mm, clip, width=\textwidth]{../R/boatshape-posterior-normal} %[scale=0.63]
 \end{center}}
+
+}
+
+
+\section{Common-cause failure modeling}
+
+\subsection{Common-Cause Failures}
+
+\frame{\frametitle{Common-Cause Failures***}
+
+\begin{itemize}
+\item fukushima picture
+\item common-cause failure box
+\item alpha factor model uses Dirichlet-Multinomial model
+\item informative priors (elicited from experts), as data are luckily sparse (zero counts for multi-component failures)
+\item non-informative priors are unsatisfactory
+(posterior very sensitive to chice of prior, which non-informative prior should we adopt?)
+\item Troffaes, Walter \& Kelly (2013): adapt Imprecise Dirichlet model (IDM, Walley 1996)
+\item \pdc
+\item simple ways to elicit bounds for hyperparameters by reasoning on hypothetical data
+\end{itemize}
 
 }
 
@@ -544,9 +734,9 @@ via a different parametrisation of priors suggested by Mik Bickis % (in preparat
 \begin{itemize}%[<+->]
 \item<1-> Conjugate priors are a convenient tool for Bayesian inference\\ but there are some pitfalls
  \begin{itemize}%[<+->]
- \item Hyperparameters are easy to interpret and elicit
- \item Averaging property makes calculations simple,\\
- but inadequate model behaviour in case of \pdc
+ \item Hyperparameters $\nzg,\yzr$ are easy to interpret and elicit
+ \item Averaging property makes calculations simple, but leads to
+ inadequate model behaviour in case of \pdc
  \end{itemize}
 \item<2-> Sets of conjugate priors maintain advantages \& mitigate issues %find a sweet spot in between
  \begin{itemize}%[<+->]
@@ -554,8 +744,9 @@ via a different parametrisation of priors suggested by Mik Bickis % (in preparat
  \item Reasonable choice: \emph{rectangular} $\PZc = [\nzlg, \nzug] \times [\yzlr, \yzur]$
  \item Bounds for hyperparameters easy to interpret and elicit
  \item Additional imprecison in case of \pdc\\
- leads to cautious inferences if, and only if, caution is needed
+ leads to \alert{cautious inferences if, and only if, caution is needed}
  \item Shape for less imprecision in case of strong prior-data agreement is in development
+ (joint work with Frank Coolen and Mi\c{k} Bickis)
  \end{itemize}
 \end{itemize}
 
@@ -564,8 +755,8 @@ via a different parametrisation of priors suggested by Mik Bickis % (in preparat
 
 \frame{\frametitle{References}
 
-\nocite{1996:walley::idm,1991:walley,2005:quaeghebeurcooman-short,Walter2009a-short}
-%1994:hoyland,1965:good,2011:kelly:atwood,1996:atwood,Troffaes2013a,2006:evans,}
+\nocite{2006:evans,1996:walley::idm,1991:walley,2005:quaeghebeurcooman-short,Walter2009a-short,luck-package,Troffaes2013a}
+%1994:hoyland,1965:good,2011:kelly:atwood,1996:atwood,}
 
 \printbibliography[heading=none]
 

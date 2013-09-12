@@ -102,8 +102,10 @@ miktonormal <- function(xylist){
   list(x = xylist$x, y=y)
 }
 
+
 # plot the transformed set in "normal world"
 normalplotter <- function(boatobj, prior = TRUE, xlims = NULL, ylims = c(0,1), minmax = FALSE,
+                          minmaxtol = 1e-6,
                           xlabs = bquote(n^(0)), ylabs = bquote(y^(0)), seqx = 100,
                           fillcol = "gray", add = FALSE, col = 1, ...){
   if(!prior) {
@@ -132,12 +134,17 @@ normalplotter <- function(boatobj, prior = TRUE, xlims = NULL, ylims = c(0,1), m
   polygon(c(upper$x, lower$x), c(upper$y, lower$y), col = fillcol, border = col, ...)
   if(minmax){
     minpos <- which(lower$y == min(lower$y))
+    if(abs(lower$y[minpos] - lower$y[length(lower$y)]) < minmaxtol)
+      minpos <- length(lower$y)
     minx <- lower$x[minpos]
     miny <- lower$y[minpos]
-    maxpos <- which(upper$y == max(lower$y))
+    maxpos <- which(upper$y == max(upper$y))
+    if(abs(upper$y[maxpos] - upper$y[length(upper$y)]) < minmaxtol)
+      maxpos <- length(upper$y)
     maxx <- upper$x[maxpos]
     maxy <- upper$y[maxpos]
     points(c(minx,maxx), c(miny,maxy), cex = 1.5)
+    return(list(lower=c(minx,miny), upper=c(maxx,maxy)))
   }
 }
 

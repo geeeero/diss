@@ -153,7 +153,7 @@
 
 
 \title%[]
-{Prior-Data Conflict\\ in\\ Generalised Bayesian Inference}
+{Prior-Data Conflict\\ in Generalised Bayesian Inference}
 
 \author%[]
        {Gero Walter}
@@ -182,9 +182,9 @@
 \titlepage
 }
 
-\frame{\frametitle{Outline***}
+\frame{\frametitle{Outline}
 \begin{enumerate}
-\item Prior-data conflict %and Strong prior-data agreement\\ (joint work with Thomas Augustin and Frank Coolen)
+\item Bayesian inference \& prior-data conflict %and Strong prior-data agreement\\ (joint work with Thomas Augustin and Frank Coolen)
 \item Generalised Bayesian inference with sets of priors\\ (joint work with Thomas Augustin)
 \item Common-cause failure modeling\\ (joint work with Matthias Troffaes and Dana Kelly)
 \end{enumerate}
@@ -192,18 +192,17 @@
 
 \section{Prior-Data Conflict}
 
-\frame{\frametitle{Prior-Data Conflict}
+\frame{\frametitle{Bayesian Inference \& Prior-Data Conflict}
 
-%\begin{itemize}[<+->]
-%\item Shape of $\PZc$ influences shape of $\PNc$
-%\item Shape of $\PNc$ influences model behaviour\\
-%\then\ shape of $\PZc$ is a crucial modelling choice
-%\item $\PZc = [\nzlg, \nzug] \times [\yzlr, \yzur]$ (\emph{rectangle}) %(as before)
-%is very easy to elicit\\
-%and gives good model behaviour for \alert{\pdc}
-%\end{itemize}
+\uncover<1->{%
+\begin{block}{Bayesian inference procedure}
+\centerline{prior + likelihood = posterior}
+using Bayes' Rule\\
+All inferences are based on the posterior\\
+(e.g., point estimate = posterior expectation, \ldots)
+\end{block}}
 
-%\uncover<4->{%
+\uncover<2->{%
 \begin{block}{Prior-Data Conflict}
 \begin{itemize}
 \item \emph{informative prior beliefs} and \emph{trusted data}\\ %\rule{0ex}{3ex}\\
@@ -213,12 +212,12 @@ in the sampling model for which the observed data is surprising''\\
 (Evans \& Moshonov, 2006)
 \item there are not enough data to overrule the prior
 \end{itemize}
-\end{block}%}
+\end{block}}
 
-\uncover<2->{%
-example for application where \pdc\ is relevant:\\ %can show up:\\
-\alert{common-cause failure modeling} (more later)
-}
+%\uncover<2->{%
+%example for application where \pdc\ is relevant:\\ %can show up:\\
+%\alert{common-cause failure modeling} (more later)
+%}
 
 }
 
@@ -242,7 +241,7 @@ example for application where \pdc\ is relevant:\\ %can show up:\\
 \uncover<5->{
 \begin{block}{Beta-Binomial Model}
 \begin{tabular}{r|lcl}
-Data :           & $s\mid \theta$          & $\sim$ & $\bin(n,\theta)$   \\[0.5ex]
+data :           & $s\mid \theta$          & $\sim$ & $\bin(n,\theta)$   \\[0.5ex]
 conjugate prior: & $\theta\mid \nzg, \yzr$ & $\sim$ & $\be(\nzg,\, \yzr)$  \\[0.5ex]
 \cline{1-4}
 posterior:       & $\theta\mid \nng, \ynr$ & $\sim$ & $\be(\nng,\, \ynr)$\rule{0ex}{2.5ex}
@@ -261,7 +260,7 @@ where $s$ = number of wins in the $n$ matches observed
 \uncover<1->{
 \begin{block}{Beta-Binomial Model}
 \begin{tabular}{r|lcl}
-Data :           & $s\mid \theta$          & $\sim$ & $\bin(n,\theta)$   \\[0.5ex]
+data :           & $s\mid \theta$          & $\sim$ & $\bin(n,\theta)$   \\[0.5ex]
 conjugate prior: & $\theta\mid \nzg, \yzr$ & $\sim$ & $\be(\nzg,\, \yzr)$  \\[0.5ex]
 \cline{1-4}
 posterior:       & $\theta\mid \nng, \ynr$ & $\sim$ & $\be(\nng,\, \ynr)$\rule{0ex}{2.5ex}
@@ -348,9 +347,9 @@ $\nng \in [20, 24]$, $\ynr \in [0.73, 0.86]$
 
 }
 
-\subsection{Canonical conjugate priors}
+\subsection{Canonical Conjugate Priors}
 
-\frame{\frametitle{Canonical conjugate priors}
+\frame{\frametitle{Canonical Conjugate Priors}
 
 \uncover<1->{%
 %The multinomial is an example for a \alert{canonical exponential family} %(Bernardo \& Smith, 2000)
@@ -422,9 +421,9 @@ posterior:       & $\mu\mid\nng,\ynr$ & $\sim$ & $\norm(\ynr, 1/\nng)$ \quad ($\
 
 
 
-\section{Generalised Bayesian inference}
+\section{Generalised Bayesian Inference}
 
-\subsection{Why generalise Bayesian inference?}
+\subsection{Why Generalise Bayesian Inference?}
 
 \frame{\frametitle{Why Generalise Bayesian Inference?}
 
@@ -451,7 +450,7 @@ on the degree of prior-data conflict in most cases.}\\[1.5ex]
 }
 
 
-\subsection{Sets of priors}
+\subsection{Sets of Priors}
 
 \frame{\frametitle{Bayesian Inference with Sets of Priors}
 
@@ -521,7 +520,8 @@ Lower/upper posterior expectation by min/max over set of posteriors %$\PZc$
 
 
 
-\frame{\frametitle{Imprecise BBM with $\nzg$ fixed = IDM (Walley 1996)}
+%\frame{\frametitle{Imprecise BBM with $\nzg$ fixed = IDM (Walley 1996)}
+\frame{\frametitle{Imprecise BBM with $\nzg$ fixed: \parbox{0.44\textwidth}{\small IDM (Walley 1996)\\ Quaghebeur \& de Cooman (2005)}}
 \hspace*{-12ex}
 \begin{columns}%[T]
 \begin{column}{0.55\textwidth}
@@ -580,7 +580,7 @@ $\nng \in [20, 24]$, $\ynr \in [0.73, 0.86]$
 }
 
 
-\frame{\frametitle{Imprecise BBM with $[\nzlg,\nzug]$ (Walley 1991, \S 5.4.3)}
+\frame{\frametitle{Imprecise BBM with $[\nzlg,\nzug]$: \parbox{0.43\textwidth}{\small Walley (1991, \S 5.4.3)\\ Walter \& Augustin (2009)}}
 \hspace*{-12ex}
 \begin{columns}%[T]
 \begin{column}{0.55\textwidth}
@@ -669,13 +669,27 @@ Walley (1991, \S 5.4.3),\\ \emph{generalised iLUCK-models} (Walter \& Augustin 2
 }
 
 
-\frame{\frametitle{Parameter Set Shapes: Discussion}
+%\frame{\frametitle{Parameter Set Shapes: Discussion}
+\frame{\frametitle{Model Summary}
+
+%\begin{itemize}[<+->]
+%\item Shape of $\PZc$ influences shape of $\PNc$
+%\item Shape of $\PNc$ influences model behaviour\\
+%\then\ shape of $\PZc$ is a crucial modelling choice
+%\item $\PZc = [\nzlg, \nzug] \times [\yzlr, \yzur]$ (\emph{rectangle}) %(as before)
+%is very easy to elicit\\
+%and gives good model behaviour for \alert{\pdc}
+%\end{itemize}
 
 \begin{itemize}%[<+->]
-\item<1-> A range of $\nzg$ values is needed for \pdc\ reaction
-\item<2-> Other set shapes are possible, but may be more difficult to elicit
-\item<3-> Prior information may be such that range of $\yzr$ changes with $\nzg$ (or vice versa)
-\item<4-> \emph{Near-ignorance priors}: $\PZc$ such that prior inferences are nearly \emph{vacuous},
+\item<1-> Easy to handle, generally favourable inference properties, e.g.:\\
+$n \to \infty$\hspace*{0.9ex}%
+\uncover<2->{\then\ \ $\ynr$ values in $\PNc \to \frac{\tau(\x)}{n}$\hspace*{0.9ex}}%
+\uncover<3->{\then\ \ `Bayesian consistency'}
+\item<4-> A range of $\nzg$ values is needed for \pdc\ reaction
+\item<5-> Other set shapes are possible, but may be more difficult to elicit
+\item<6-> Prior information may be such that range of $\yzr$ changes with $\nzg$ (or vice versa)
+\item<7-> \alert{Near-ignorance priors}: $\PZc$ such that prior inferences are nearly \emph{vacuous},
 but posterior inferences are informative
  \begin{itemize}
  \item IDM (Walley 1996): range of $\yzjr = (0,1)\ \forall j$
@@ -707,22 +721,51 @@ via a different parametrisation of priors suggested by Mi\c{k} Bickis % (in prep
 }
 
 
-\section{Common-cause failure modeling}
+\section{Common-Cause Failure Modeling}
 
 \subsection{Common-Cause Failures}
 
-\frame{\frametitle{Common-Cause Failures***}
+\frame{\frametitle{Common-Cause Failures}
+\begin{tikzpicture}
+\uncover<1->{
+\node {\includegraphics[scale=0.4]{./graph/800px-Fukushima_I_by_Digital_Globe.jpg}};
+\node at (0,-3.5) {\tiny Source: Wikimedia Commons, \url{http://commons.wikimedia.org/wiki/File:Fukushima_I_by_Digital_Globe.jpg}};
+}
+\uncover<2->{
+%\draw[white,fill=white] (-5,1) rectangle (5,3);
+\node at (0,2.6) {\parbox{\textwidth}{
+ \begin{alertblock}{common-cause failure} 
+ \emph{simultaneous failure of several redundant components\\ due to a common or shared root cause}
+ (H{\o}yland \& Rausand, 1994)
+ \end{alertblock}
+}};
+}
+\uncover<3>{
+\draw[white,fill=white] (-0.2,-3.3) rectangle (6,0.75);
+\node at (3,-1) {\includegraphics[scale=0.3]{./graph/plant-systems-diesel-generator.jpg}};
+\node at (3.05,-3.05) {\parbox{6.2cm}{\tiny Source: \url{http://www.diakont.com/solutions/nuclear-energy/plant-systems/diesel-generator-control-systems/}}};
+}
+\end{tikzpicture}
+}
 
-\begin{itemize}
-\item fukushima picture
-\item common-cause failure box
-\item alpha factor model uses Dirichlet-Multinomial model
-\item informative priors (elicited from experts), as data are luckily sparse (zero counts for multi-component failures)
-\item non-informative priors are unsatisfactory
-(posterior very sensitive to chice of prior, which non-informative prior should we adopt?)
-\item Troffaes, Walter \& Kelly (2013): adapt Imprecise Dirichlet model (IDM, Walley 1996)
-\item \pdc
-\item simple ways to elicit bounds for hyperparameters by reasoning on hypothetical data
+\frame{\frametitle{Common-Cause Failure Modeling}
+
+
+\begin{itemize}[<+->]
+\item Crucial for overall system reliability analysis
+\item \alert{Alpha factor model} is based on the Dirichlet-Multinomial model:\\
+{\small categories $1,2,3,\ldots = 1,2,3,\ldots$ components failing simultaneously}
+\item Informative Dirichlet priors elicited from experts\\ as data are sparse (zero counts for multi-component failures)
+\item Non-informative priors are unsatisfactory:
+ \begin{itemize}
+ \item posterior is very sensitive to choice of prior
+ \item which non-informative prior should we adopt?
+ \end{itemize}
+\item Troffaes, Walter \& Kelly (2013) adapt Imprecise Dirichlet model %(IDM, Walley 1996)
+%\item Prior-data conflict sensitivity especially important for multi-component failures
+\item More cautious inferences if prior and data are in conflict\\
+(especially important for multi-component failures!)
+\item Simple ways to elicit bounds for hyperparameters\\ by reasoning on hypothetical data
 \end{itemize}
 
 }
@@ -745,7 +788,7 @@ via a different parametrisation of priors suggested by Mi\c{k} Bickis % (in prep
  \item Bounds for hyperparameters easy to interpret and elicit
  \item Additional imprecison in case of \pdc\\
  leads to \alert{cautious inferences if, and only if, caution is needed}
- \item Shape for less imprecision in case of strong prior-data agreement is in development
+ \item Shape for more precision in case of strong prior-data agreement is in development
  (joint work with Frank Coolen and Mi\c{k} Bickis)
  \end{itemize}
 \end{itemize}
@@ -755,8 +798,9 @@ via a different parametrisation of priors suggested by Mi\c{k} Bickis % (in prep
 
 \frame{\frametitle{References}
 
-\nocite{2006:evans,1996:walley::idm,1991:walley,2005:quaeghebeurcooman-short,Walter2009a-short,luck-package,Troffaes2013a}
-%1994:hoyland,1965:good,2011:kelly:atwood,1996:atwood,}
+\nocite{2006:evans,1996:walley::idm,1991:walley,2005:quaeghebeurcooman-short,
+Walter2009a-short,luck-package,Troffaes2013a,1994:hoyland,2012:benavolizaffalon-short}
+%1965:good,2011:kelly:atwood,1996:atwood,}
 
 \printbibliography[heading=none]
 

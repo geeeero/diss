@@ -197,8 +197,8 @@
 \frame{\frametitle{Bayesian Inference \& Prior-Data Conflict}
 
 \uncover<1->{%
-\begin{block}{Bayesian approach to statistical inference}
-\centerline{prior $p(\vartheta)$ + likelihood $f(\x\mid\theta)$\hspace*{1ex} \then\ \ posterior $p(\vartheta\mid\x)$}
+\begin{block}{The Bayesian approach to statistical inference}
+\centerline{prior $p(\vartheta)$ + likelihood $f(\x\mid\vartheta)$\hspace*{1ex} \then\ \ posterior $p(\vartheta\mid\x)$}
 %\quad using Bayes' Rule}
 All inferences are based on the posterior (e.g., point estimate, \ldots)
 \end{block}}
@@ -314,6 +314,16 @@ P = \E[\theta\mid\nng,\ynr]
 \uncover<4->{
 \draw[-stealth,very thick] (110,102) -- (220,167) node [above,midway,sloped] {16 out of 16};
 }
+\uncover<5>{%
+%\draw[thick,fill=white] (0,0) rectangle (100,50) {text};
+%\node at (140,80) {\parbox{0.5\textwidth}{
+\draw (160,35) node [rectangle,very thick,draw,fill=white] {\parbox{23.5ex}{
+%\begin{block}{}
+Weighted average structure\\ is underneath \alert{all common\\ conjugate priors}
+for\\ exponential family\\ sampling distributions!
+%\end{block}
+}};
+} %
 \end{tikzpicture}
 \end{column}
 \begin{column}{0.45\textwidth}
@@ -434,10 +444,10 @@ posterior:       & $\mu\mid\nng,\ynr$ & $\sim$ & $\norm(\ynr, 1/\nng)$ \quad ($\
 
 \frame{\frametitle{Why Generalise Bayesian Inference?}
 
-Weighted average structure is underneath \alert{all common conjugate priors}
-for exponential family sampling distributions!\\[1.5ex]
+%Weighted average structure is underneath \alert{all common conjugate priors}
+%for exponential family sampling distributions!\\[1.5ex]
 
-\pause
+%\pause
 Bayesian theory lacks the ability to specifiy the degree of uncertainty in probability statements
 encoded in a (prior, posterior) distribution.\\[1.5ex]
 
@@ -464,7 +474,7 @@ on the degree of prior-data conflict in most cases.}\\[1.5ex]
 
 \uncover<2->{%
 \begin{block}{Interpretation}
-\centerline{Shorter intervals \thenthen\ more precise probability statements}
+\centerline{smaller sets \thenthen\ more precise probability statements}
 \vspace*{1ex}
 \parbox[t]{0.45\textwidth}{\centering \textbf{Lottery A}\\
                           Number of winning tickets:\\
@@ -478,7 +488,9 @@ on the degree of prior-data conflict in most cases.}\\[1.5ex]
                           \then\ $P(\text{win}) = [1/100,\, 7/100]$}
 \end{block}
 }
-
+\uncover<3->{%
+\centerline{shorter intervals \thenthen\ more precise probability statements}
+}
 }
 
 \subsection{Sets of Priors}
@@ -489,8 +501,8 @@ on the degree of prior-data conflict in most cases.}\\[1.5ex]
 \begin{block}{Standard Bayesian inference procedure}
 \centerline{prior + likelihood\hspace*{1ex} \then\ \ posterior}
 using Bayes' Rule\\
-All inferences are based on the posterior\\
-(e.g., point estimate = $\E[\psib\mid\nng,\ynr]$)
+All inferences are based on the posterior%\\
+%(e.g., point estimate = $\E[\psib\mid\nng,\ynr]$)
 \end{block}}
 
 \uncover<2->{%
@@ -716,8 +728,10 @@ Walley (1991, \S 5.4.3),\\ \emph{generalised iLUCK-models} (Walter \& Augustin 2
 \begin{itemize}%[<+->]
 \item<1-> Easy to handle, generally favourable inference properties, e.g.:\\
 $n \to \infty$\hspace*{0.9ex}%
-\uncover<2->{\then\ \ $\ynr$ values in $\PNc \to \frac{\tau(\x)}{n}$\hspace*{0.9ex}}%
-\uncover<3->{\then\ \ `Bayesian consistency'}
+%\uncover<2->{\then\ \ $\ynr$ values in $\PNc \to \frac{\tau(\x)}{n}$\hspace*{0.9ex}}%
+%\uncover<3->{\then\ \ `Bayesian consistency'}
+\uncover<2->{\then\ \ $\ynr$ stretch in $\PNc \to 0$\hspace*{0.9ex}}%
+\uncover<3->{\then\ \ more precise inferences}
 \item<4-> A range of $\nzg$ values is needed for \pdc\ reaction
 \item<5-> Other set shapes are possible, but may be more difficult to elicit
 \item<6-> Prior information may be such that range of $\yzr$ changes with $\nzg$ (or vice versa)
@@ -786,7 +800,7 @@ via a different parametrisation of priors suggested by Mi\c{k} Bickis % (in prep
  \item posterior is very sensitive to choice of prior
  \item which non-informative prior should we adopt?
  \end{itemize}
-\item Troffaes, Walter \& Kelly (2013) adapt Imprecise Dirichlet model %(IDM, Walley 1996)
+\item Troffaes, Walter \& Kelly (2013): sets of Dirichlet priors %(IDM, Walley 1996)
 %\item Prior-data conflict sensitivity especially important for multi-component failures
 \item More cautious inferences if prior and data are in conflict\\
 (especially important for multi-component failures!)

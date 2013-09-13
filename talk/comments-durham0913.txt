@@ -6,24 +6,22 @@
 
 * BBM slide -> write Var(\theta) on blackboard as a reminder
 
-* 
-
-* Model Summary slide -> near-ignorance priors are only a sidenote
-
 * Fukushima picture is from March 15th, 2011, 09:35 AM (local time), reactors 1 to 4 (right to left)
 
 
-assigning a certain prior -> anfangsfolie zu Bayes-Inferenz
+V assigning a certain prior -> anfangsfolie zu Bayes-Inferenz
 
-second Canoncial Conjugate Priors slide (folie 8) can be dropped
+V second Canoncial Conjugate Priors slide (folie 8) can be dropped
 
-weighted average structure auf folie 9 statt assigning..., rest folie 7 weg
+V weighted average structure auf folie 9 statt assigning..., rest folie 7 weg
 
-lottery vorziehen (nach add imprecision as model dimension), ohne formeln folie 11 oben
+V lottery vorziehen (nach add imprecision as model dimension), ohne formeln folie 11 oben
 
-folie 10 lassen, aber nur unten erzählen
+V noch add imprecision as model dimension auf lottery folie ziehen, [dort risk & ambiguity]
 
-folie 15: near-ignorance raus
+V folie 10 lassen, aber nur unten erzählen
+
+V folie 15: near-ignorance raus
 
 folie 16: kreise auf rect sets (graphik eigene folie größer?)
 

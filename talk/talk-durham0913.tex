@@ -192,17 +192,21 @@
 
 \section{Prior-Data Conflict}
 
+\subsection{Bayesian Inference}
+
 \frame{\frametitle{Bayesian Inference \& Prior-Data Conflict}
 
 \uncover<1->{%
-\begin{block}{Bayesian inference procedure}
-\centerline{prior + likelihood = posterior}
-using Bayes' Rule\\
-All inferences are based on the posterior\\
-(e.g., point estimate = posterior expectation, \ldots)
+\begin{block}{Bayesian approach to statistical inference}
+\centerline{prior $p(\vartheta)$ + likelihood $f(\x\mid\theta)$\hspace*{1ex} \then\ \ posterior $p(\vartheta\mid\x)$}
+%\quad using Bayes' Rule}
+All inferences are based on the posterior (e.g., point estimate, \ldots)
 \end{block}}
-
 \uncover<2->{%
+Assigning a certain prior distribution on $\vartheta$\\
+\hfill $=$ defining a conglomerate of probability statements (on $\vartheta$).
+}
+\uncover<3->{%
 \begin{block}{Prior-Data Conflict}
 \begin{itemize}
 \item \emph{informative prior beliefs} and \emph{trusted data}\\ %\rule{0ex}{3ex}\\
@@ -229,8 +233,9 @@ in the sampling model for which the observed data is surprising''\\
 %Example Beta-Binom, show point, line, rectangle
 \begin{itemize}[<+->]
 \item Bernoulli observations: 0/1 observations (team wins no/yes)
-\item given: a set of observations (team won 12 out of 16 matches)
-\item additional to observations, we have strong prior information\\ (we are convinced that $P(\text{win})$ should be around $0.75$)
+\item given: a set of observations and strong prior information
+%\item given: a set of observations (team won 12 out of 16 matches)
+%\item additional to observations, we have strong prior information\\ (we are convinced that $P(\text{win})$ should be around $0.75$)
 \item we are, e.g., interested in (predictive) probability $P$ that team wins in the next match
 %(or some other inferences) %(predictive probability!)
 %\item standard statistical model for this situation: Beta-Bernoulli/Binomial Model
@@ -238,7 +243,7 @@ in the sampling model for which the observed data is surprising''\\
 %(i.e., prior information and data are in conflict), this should show up in the %predictive
 %inferences (probability $\mbox{P}$ and, e.g., confidence intervals)
 \end{itemize}
-\uncover<5->{
+\uncover<4->{
 \begin{block}{Beta-Binomial Model}
 \begin{tabular}{r|lcl}
 data :           & $s\mid \theta$          & $\sim$ & $\bin(n,\theta)$   \\[0.5ex]
@@ -347,6 +352,7 @@ $\nng \in [20, 24]$, $\ynr \in [0.73, 0.86]$
 
 }
 
+\iffalse
 \subsection{Canonical Conjugate Priors}
 
 \frame{\frametitle{Canonical Conjugate Priors}
@@ -385,6 +391,7 @@ p(\psib\mid\nzg,\yzr,\vec{x})
 
 }
 
+
 \frame{\frametitle{Canonical Conjugate Priors}
 
 \vspace*{-2ex}%
@@ -418,7 +425,7 @@ posterior:       & $\mu\mid\nng,\ynr$ & $\sim$ & $\norm(\ynr, 1/\nng)$ \quad ($\
 \end{tabular}
 \end{block}}
 }
-
+\fi
 
 
 \section{Generalised Bayesian Inference}
@@ -427,10 +434,12 @@ posterior:       & $\mu\mid\nng,\ynr$ & $\sim$ & $\norm(\ynr, 1/\nng)$ \quad ($\
 
 \frame{\frametitle{Why Generalise Bayesian Inference?}
 
-Assigning a certain prior distribution on $\vartheta$\\
-\hfill $=$ defining a conglomerate of probability statements (on $\vartheta$).\\[1.5ex]
+Weighted average structure is underneath \alert{all common conjugate priors}
+for exponential family sampling distributions!\\[1.5ex]
 
-Bayesian theory lacks the ability to specifiy the degree of uncertainty in these probability statements.\\[1.5ex]
+\pause
+Bayesian theory lacks the ability to specifiy the degree of uncertainty in probability statements
+encoded in a (prior, posterior) distribution.\\[1.5ex]
 
 \pause
 Variance or stretch of a distribution for describing uncertainty?\\[1.5ex]
@@ -443,12 +452,34 @@ In conjugate updating, the posterior variance does not depend
 on the degree of prior-data conflict in most cases.}\\[1.5ex]
 
 \then\ How to express the precision of a probability statement?\\
-\pause
-\hspace*{6ex}\parbox[t]{0.9\textwidth}{\textbf{add \alert{imprecision} as new model dimension:\\
-\alert{sets of priors} model uncertainty in probability statements}}
 
 }
 
+\frame{\frametitle{Imprecision}
+
+%\hspace*{6ex}\parbox[t]{0.9\textwidth}{
+\textbf{Add \alert{imprecision} as new model dimension:\\
+\alert{Sets of priors} model uncertainty in probability statements}\\[2ex]
+%}
+
+\uncover<2->{%
+\begin{block}{Interpretation}
+\centerline{Shorter intervals \thenthen\ more precise probability statements}
+\vspace*{1ex}
+\parbox[t]{0.45\textwidth}{\centering \textbf{Lottery A}\\
+                          Number of winning tickets:\\
+                          exactly known as 5 out of 100\\
+                          \then\ $P(\text{win}) = 5/100$}
+\qquad
+\parbox[t]{0.45\textwidth}{\centering \textbf{Lottery B}\\
+                          Number of winning tickets:\\
+                          not exactly known, supposedly\\
+                          between 1 and 7 out of 100\\
+                          \then\ $P(\text{win}) = [1/100,\, 7/100]$}
+\end{block}
+}
+
+}
 
 \subsection{Sets of Priors}
 
@@ -456,17 +487,15 @@ on the degree of prior-data conflict in most cases.}\\[1.5ex]
 
 \uncover<1->{%
 \begin{block}{Standard Bayesian inference procedure}
-\centerline{prior + likelihood = posterior}
+\centerline{prior + likelihood\hspace*{1ex} \then\ \ posterior}
 using Bayes' Rule\\
 All inferences are based on the posterior\\
 (e.g., point estimate = $\E[\psib\mid\nng,\ynr]$)
 \end{block}}
 
-\uncover<2->{\centerline{Let hyperparameters $(\nzg, \yzr)$ vary in a set $\PZc$ \then\ \alert{set of priors}}}
-
-\uncover<3->{%
+\uncover<2->{%
 \begin{block}{Generalised Bayesian inference procedure}
-\centerline{set of priors + likelihood = set of posteriors}
+\centerline{set of priors + likelihood\hspace*{1ex} \then\ \ set of posteriors}
 All inferences are based on the set of posteriors\\
 \emph{Coherence} (consistency of inferences) ensured by using\\
 \emph{Generalised Bayes' Rule} (GBR, Walley 1991)\\
@@ -474,8 +503,11 @@ All inferences are based on the set of posteriors\\
 %(e.g., point estimate = $\big[\El[\psib\mid\nng,\ynr],\Eu[\psib\mid\nng,\ynr]\big]$)
 \end{block}}
 
+\uncover<3->{\centerline{Let hyperparameters $(\nzg, \yzr)$ vary in a set $\PZc$ \then\ \alert{set of priors}}}
+
 }
 
+\iffalse
 \frame{\frametitle{Generalised Bayesian Inference Procedure}
 
 \vspace*{-1ex}%
@@ -517,7 +549,7 @@ Lower/upper posterior expectation by min/max over set of posteriors %$\PZc$
 \end{block}}
 
 }
-
+\fi
 
 
 %\frame{\frametitle{Imprecise BBM with $\nzg$ fixed = IDM (Walley 1996)}
@@ -689,21 +721,7 @@ $n \to \infty$\hspace*{0.9ex}%
 \item<4-> A range of $\nzg$ values is needed for \pdc\ reaction
 \item<5-> Other set shapes are possible, but may be more difficult to elicit
 \item<6-> Prior information may be such that range of $\yzr$ changes with $\nzg$ (or vice versa)
-\item<7-> \alert{Near-ignorance priors}: $\PZc$ such that prior inferences are nearly \emph{vacuous},
-but posterior inferences are informative
- \begin{itemize}
- \item IDM (Walley 1996): range of $\yzjr = (0,1)\ \forall j$
- \item Benavoli \& Zaffalon (2012): range of $\yzr = (-\infty,+\infty)$\\
- while $\nzug$ decreasing with $\yzr$\\ %$\nzg$ bounded above
- (to avoid $\nzg |\yzr| = \infty$, i.e.\ vacuous posterior inferences)
- \end{itemize}
-\end{itemize}
-
-}
-
-\frame{\frametitle{Parameter Set Shapes: Outlook***}
-
-Work in progress (joint work with Frank Coolen):\\
+\item<7-> Work in progress (joint work with Frank Coolen):\\
 parameter set shape enabling\ldots
 \begin{itemize}
 \item additional imprecision in case of \pdc\ (as before)
@@ -711,12 +729,19 @@ parameter set shape enabling\ldots
 \end{itemize}
 %This work uses 
 via a different parametrisation of priors suggested by Mi\c{k} Bickis % (in preparation)
+\end{itemize}
+
+}
+
+\frame{\frametitle{Parameter Set Shapes: Outlook}
+
 %\hspace*{-2ex}%
-\uncover<2->{%
+%\uncover<2->{%
 %\vspace*{-7ex}%
-\begin{center}
-\includegraphics[trim = 15mm 45mm 25mm 60mm, clip, width=\textwidth]{../R/boatshape-durham0913} %[scale=0.63]
-\end{center}}
+\begin{center} %trim=l b r t
+%\includegraphics[trim = 40mm 35mm 40mm 45mm, clip, width=\textwidth]{../R/boatshape-durham0913} % width=8, height=6
+\includegraphics[trim = 70mm 52.5mm 70mm 65mm, clip, width=\textwidth]{../R/boatshape-durham0913} % width=6, height=4.5
+\end{center}%}
 
 }
 

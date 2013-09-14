@@ -8,11 +8,10 @@
 
 * Fukushima picture is from March 15th, 2011, 09:35 AM (local time), reactors 1 to 4 (right to left)
 
-* slide 12 & 13 on one slide?!?
+* slide 13: only short explanation, see previous version
 
-* slide 15: only short explanation for generators
-
-* shorter version slide 16: just basic idea, imprecise instead of precise,
+* slide 14: only short explanation for generators, see previous version
+                            just basic idea, imprecise instead of precise,
                             pdc especially important due to informative prior and sparse data
 
 * say something about future research

@@ -731,8 +731,8 @@ leads to the median of the posterior distribution as the point estimator (see Fi
 Here, $\med(\theta\mid\nn, \yn)$ has no closed form solution, and must be determined numerically.
 More generally, taking the \emph{check function} as the loss function,
 \begin{align*}
-l(\hat{\theta}, \theta) &= \begin{cases} 2  q    (\hat{\theta}-\theta) & \text{if } x \ge 0 \\
-                                         2 (q-1) (\hat{\theta}-\theta) & \text{if } x < 0 \end{cases}\,,
+l(\hat{\theta}, \theta) &= \begin{cases} 2  q    (\hat{\theta}-\theta) & \text{if } \hat{\theta}-\theta \ge 0 \\
+                                         2 (q-1) (\hat{\theta}-\theta) & \text{if } \hat{\theta}-\theta < 0 \end{cases}\,,
 \end{align*}
 a tilted version of the absolute loss function (see Figure~\ref{fig:loss} C), 
 leads to the quantile $q \in (0,1)$ of the posterior as point estimate.%

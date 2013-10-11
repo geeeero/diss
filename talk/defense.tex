@@ -1,0 +1,234 @@
+\documentclass{beamer}
+
+\usetheme{LMU}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage[english]{babel}
+\usepackage{url}
+%\usepackage{cite}
+%\usepackage{natbib}
+\usepackage[backend=bibtex,style=authoryear,dashed=false]{biblatex}
+\addbibresource{../bib/eigene.bib}
+\addbibresource{../bib/itip-refs.bib}
+\addbibresource{../bib/other-refs.bib}
+\renewcommand{\bibfont}{\normalfont\scriptsize}
+\setlength{\bibhang}{3ex}
+
+\usepackage{amssymb, amsmath, amsfonts, enumerate}
+%\usepackage{bbold}
+\newcommand\hmmax{0}
+\usepackage{bm}
+%\usepackage{dsfont}
+\usepackage{pxfonts}
+\usepackage{xcolor}
+
+\usepackage{tikz}
+\usetikzlibrary{%
+   arrows,%
+   calc,%
+   fit,%
+   patterns,%
+   plotmarks,%
+   shapes.geometric,%
+   shapes.misc,%
+   shapes.symbols,%
+   shapes.arrows,%
+   shapes.callouts,%
+   shapes.multipart,%
+   shapes.gates.logic.US,%
+   shapes.gates.logic.IEC,%
+   er,%
+   automata,%
+   backgrounds,%
+   chains,%
+   topaths,%
+   trees,%
+   petri,%
+   mindmap,%
+   matrix,%
+   calendar,%
+   folding,%
+   fadings,%
+   through,%
+   patterns,%
+   positioning,%
+   scopes,%
+   decorations.fractals,%
+   decorations.shapes,%
+   decorations.text,%
+   decorations.pathmorphing,%
+   decorations.pathreplacing,%
+   decorations.footprints,%
+   decorations.markings,%
+   shadows}
+%\usepackage{bbold}
+\usepackage{hyperref}
+
+\setbeamertemplate{blocks}[rounded][shadow=true]
+\definecolor{lmugreen2}{RGB}{0,120,94}
+%\definecolor{lmugreen2}{RGB}{0,148,64}
+\definecolor{lmugreen}{RGB}{0,140,84}
+\definecolor{unidurham}{RGB}{126,49,123}
+
+\parindent0pt
+\setlength{\unitlength}{1ex}
+\setlength{\fboxsep}{0ex}
+
+\def\then{{\color{lmugreen}$\rule[0.35ex]{2ex}{0.5ex}\!\!\!\blacktriangleright$}}
+%\def\then{{\color{lmugreen}$\blacktriangleright\!\blacktriangleright$}}
+%\def\then{{\color{lmugreen}$\blacktriangleright$}}
+%\def\then{{\color{lmugreen}$\Rrightarrow$}}
+%\def\then{{\color{lmugreen}$\rhd$}}
+%\def\then{{\color{lmugreen}$\gg\!\!\!\!\!\gg$}}
+%\def\then{{\color{lmugreen}${\mathbf{\gg}}$}}
+\def\play{{\color{lmugreen}$\blacktriangleright$}}
+
+\def\rthen{{\color{lmugreen}$\rule[0.35ex]{0.5ex}{0.95ex}\rule[0.35ex]{1.3ex}{0.5ex}\!\!\!\blacktriangleright$}}
+
+\def\thenthen{{\color{lmugreen}$\blacktriangleleft\!\!\!\rule[0.35ex]{2ex}{0.5ex}\!\!\!\blacktriangleright$}}
+
+\def\gplus{{\color{lmugreen}\rule[0.45ex]{1.4ex}{0.4ex}\hspace{-0.9ex}\rule[0.0ex]{0.4ex}{1.3ex}\hspace{0.5ex}}}
+\def\gminus{{\color{lmugreen}\rule[0.45ex]{1.4ex}{0.4ex}}}
+
+
+\def\blau#1{{\color{lmugreen2}#1}}
+\def\rot#1{{\color{red}#1}}
+\def\gruen#1{{\color{blue}#1}}
+%\def\gruen#1{{\color{gray}#1}}
+
+\input{../defs}
+
+\def\yzr{\rot{\yz}}
+\def\ynr{\rot{\yn}}
+\def\byzr{\rot{\byz}}
+\def\bynr{\rot{\byn}}
+\def\yzor{\rot{y\uz_1}}
+\def\yzjr{\rot{y\uz_j}}
+\def\yzkr{\rot{y\uz_k}}
+\def\yzlr{\rot{\yzl}}
+\def\yzur{\rot{\yzu}}
+\def\ynjr{\rot{y\un_j}}
+\def\ynlr{\rot{\ynl}}
+\def\ynur{\rot{\ynu}}
+\def\yzjlr#1{\rot{\ul{y}\uz_#1}}
+\def\yzjur#1{\rot{\ol{y}\uz_#1}}
+
+
+\def\nzg{\gruen{\nz}}
+\def\nng{\gruen{\nn}}
+\def\nzlg{\gruen{\nzl}}
+\def\nzug{\gruen{\nzu}}
+\def\nnlg{\gruen{\nnl}}
+\def\nnug{\gruen{\nnu}}
+
+\def\psib{\blau{\psi}}
+\def\bpsib{\blau{{b}(\psi)}}
+
+
+% ------------ shading start
+\newsavebox{\tempbox}
+\newcommand\leftrightshading[3]{%
+  \begin{tikzfadingfrompicture}[name=inputtext]
+    \node [text=white] {#1};
+  \end{tikzfadingfrompicture}
+  \begin{lrbox}{\tempbox}%
+    \begin{tikzpicture}
+      \node [text=white,inner sep=0pt,outer sep=0pt] (textnode) {#1};
+      \shade[path fading=inputtext,fit fading=false,left color=#2,right color=#3]
+      (textnode.south west) rectangle (textnode.north east);
+    \end{tikzpicture}%
+  \end{lrbox}
+  % Now we use the fading in another picture:
+  \usebox\tempbox{}%
+}
+% ------------ shading end
+
+
+%\def\PZc{\mathrm I\!\Pi\uz}
+\def\PZc{\leftrightshading{$\mathrm I\!\Pi\uz$}{blue}{red}}
+%\def\PNc{\PN}
+\def\PNc{\leftrightshading{$\mathrm I\!\Pi\un$}{blue}{red}}
+
+
+\title[Generalised Bayesian Inference \& Prior-Data Conflict]
+{Generalised Bayesian Inference\\ under Prior-Data Conflict}
+
+\author%[]
+       {Gero Walter}
+
+\institute{Department of Statistics\\
+           Ludwig-Maximilians-Universit\"at M\"unchen (LMU)\\
+                      {}%\{gero.walter; thomas\}@stat.uni-muenchen.de
+}
+
+\date{October 25th, 2013}
+
+
+\titlegraphic{
+%\begin{center}
+\includegraphics[scale=0.032]{lmu_logos/lmu_massiv.png}
+\raisebox{1.375cm}{
+\includegraphics[scale=0.4]{lmu_logos/lmu_statistic.pdf}
+}
+%\end{center}
+}
+
+\begin{document}
+
+
+\frame{
+\titlepage
+}
+
+\frame{\frametitle{Overview}
+\begin{tikzpicture}
+\node[draw] at (0,0) {\includegraphics[scale=0.25]{../diss-toc-1.pdf}};
+%\draw[decorate,decoration={brace,mirror,raise=5pt},blue]
+\draw[thick,decorate,decoration=brace] (2.2,-1.5) -- (2.2,-2.7) node[midway,right,align=left] %
+{motivating example:\\ {\color{lmugreen} common-cause failure}};
+\end{tikzpicture}
+}
+
+\frame{\frametitle{Overview}
+\begin{enumerate}
+\item Introduction
+ \begin{enumerate}
+ \item Preliminaries
+ \item Some Fundamentals
+ \item Dirichlet-Multinomial Model for Common-Cause Failure
+ \end{enumerate}
+\item Imprecise Probability as Foundation of Generalised Bayesian Inference
+ \begin{enumerate}
+ \item Imprecise or Interval Probability
+ \item Motives for the Use of Imprecise Probability
+ \end{enumerate}
+\item Generalised Bayesian Inference with Sets of Conjugate Priors in Exponential Families
+ \begin{enumerate}
+ \item Model Overview and Discussion
+ \item Alternative Models Using Sets of Priors
+ \item Imprecision and Prior-Data Conflict in Generalised Bayesian Inference
+ \item The \texttt{luck} Package
+ \item On Prior-Data Conflict inPredictive Bernoulli Inferences
+ \end{enumerate}
+\end{enumerate}
+}
+
+\frame{\frametitle{Overview}
+\begin{enumerate}
+\item[4.] Concluding Remarks
+ \begin{enumerate}
+ \item[4.1] Summary
+ \item[4.2] Discussion
+ \item[4.3] Outlook
+ \end{enumerate}
+\item[A.] Appendix
+ \begin{enumerate}
+ \item[A.1] Bayesian Linear Regression: Different Conjugate Models and Their (In)Sensitivity to Prior-Data Conflict
+ \item[A.2] A Parameter Set Shape for Strong Prior-Data Agreement Modelling
+ \end{enumerate}
+\end{enumerate}
+
+}
+\end{document}

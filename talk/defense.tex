@@ -175,6 +175,10 @@
 %\end{center}
 }
 
+%---- Notes ---------------------
+\setbeameroption{hide notes}
+%\setbeameroption{show only notes}
+
 \begin{document}
 
 
@@ -230,5 +234,121 @@
  \end{enumerate}
 \end{enumerate}
 
+Outline of the talk***
+\begin{enumerate}
+\item Common-cause failure modelling\\ (joint work with Matthias Troffaes and Dana Kelly)
+\item Generalised Bayesian inference with sets of priors\\ (joint work with Thomas Augustin)
+\item Prior-data conflict and Strong prior-data agreement\\ (joint work with Thomas Augustin and Frank Coolen)
+\end{enumerate}
+
+}
+
+\section{Common-cause Failure Modelling}
+
+
+\frame{\frametitle{Common-Cause Failures}
+\begin{tikzpicture}
+\uncover<1->{
+\node {\includegraphics[scale=0.4]{./graph/800px-Fukushima_I_by_Digital_Globe.jpg}};
+\node at (0,-3.5) {\tiny Source: Wikimedia Commons, \url{http://commons.wikimedia.org/wiki/File:Fukushima_I_by_Digital_Globe.jpg}};
+}
+\uncover<2->{
+%\draw[white,fill=white] (-5,1) rectangle (5,3);
+\node at (0,2.6) {\parbox{\textwidth}{
+ \begin{alertblock}{common-cause failure} 
+ \emph{simultaneous failure of several redundant components\\ due to a common or shared root cause}
+ (H{\o}yland \& Rausand, 1994)
+ \end{alertblock}
+}};
+}
+\uncover<3>{
+\draw[white,fill=white] (-0.2,-3.3) rectangle (6,0.75);
+\node at (3,-1) {\includegraphics[scale=0.3]{./graph/plant-systems-diesel-generator.jpg}};
+\node at (3.05,-3.05) {\parbox{6.2cm}{\tiny Source: \url{http://www.diakont.com/solutions/nuclear-energy/plant-systems/diesel-generator-control-systems/}}};
+}
+\end{tikzpicture}
+
+% Notes for the slide
+\note<3>[item]{All 12 generators (for 6 reactors) at Fukushima Daiichi\\ were not available due to flooding of machine rooms\\
+ (Tsunami caused by T\={o}hoku earthquake)}
+\note<3>[item]{Reliability of redundant systems}
+\note<3>[item]{Usually 2 -- 4 emergency diesel generators per reactor}
+\note<3>[item]{Sufficient cooling of core if one generator works}
+\note<3>[item]{Reliability through redundancy is jeopardised by common-cause failure:}
+\note<3>[item]{Redundant components may not fail independently: common-cause failure}
+\note<3>[item]{Must include common-cause failures in overall system reliability analysis}
+}
+
+
+\frame{\frametitle{References}
+
+\nocite{Walter2009a-short,1994:hoyland,1965:good,1991:walley,1996:walley::idm,2011:kelly:atwood,1996:atwood,Troffaes2013a-short,2006:evans,2005:quaeghebeurcooman-short}
+
+\printbibliography[heading=none]
+
+%\bibliographystyle{plainnat}
+%\bibliography{../bib/eigene,../bib/itip-refs,../bib/other-refs}
+}
+
+
+
+%---- Appendix: Updating and Mixture Commute
+
+\frame{\frametitle{Updating and Mixture Commute}
+
+Let
+\begin{align*}
+p_m(\vartheta\mid \nz_1\!,\yz_1\!, \nz_2\!,\yz_2\!, \kappa) &:=
+   \kappa\,  p(\vartheta\mid\nz_1\!,\yz_1) +
+(1-\kappa)\, p(\vartheta\mid\nz_2\!,\yz_2) \,,
+\end{align*}
+with marginals
+\begin{align*}
+f_1(\x) &= \int_\Theta\! f(\x\mid\vartheta) p(\vartheta\mid \nz_1\!,\yz_1) \dd\vartheta \,, \\
+f_2(\x) &= \int_\Theta\! f(\x\mid\vartheta) p(\vartheta\mid \nz_2\!,\yz_2) \dd\vartheta \,, \\
+f_m(\x) &= \int_\Theta\! f(\x\mid\vartheta) p_m(\vartheta\mid \nz_1\!,\yz_1\!, \nz_2\!,\yz_2\!, \kappa) \dd\vartheta \\
+        &=    \kappa  \int_\Theta f(\x\mid\vartheta) p(\vartheta\mid \nz_1\!,\yz_1) \dd\vartheta 
+         + (1-\kappa) \int_\Theta f(\x\mid\vartheta) p(\vartheta\mid \nz_2\!,\yz_2) \dd\vartheta \\
+%        &=    \kappa  \int_\Theta f_1(\x) p(\vartheta\mid \nn_1,\yn_1) \dd\vartheta 
+%         + (1-\kappa) \int_\Theta f_2(\x) p(\vartheta\mid \nn_2,\yn_2) \dd\vartheta \\
+        &= \kappa f_1(\x) + (1-\kappa) f_2(\x) \,.
+\end{align*}
+
+}
+
+\frame{\frametitle{Updating and Mixture Commute}
+
+%Then
+\begin{align*}
+\lefteqn{
+p_m(\vartheta\mid \nz_1,\yz_1, \nz_2,\yz_2, \kappa, \x) } \hspace*{8ex} & \\[2ex]
+ &= \frac{f(\x\mid\vartheta)}{f_m(\x)} \big(
+     \kappa\,  p(\vartheta\mid\nz_1,\yz_1) +
+  (1-\kappa)\, p(\vartheta\mid\nz_2,\yz_2) \big) \\
+ &=  \kappa\,  \frac{f(\x\mid\vartheta) p(\vartheta\mid\nz_1,\yz_1)}{f_m(\x)} +
+  (1-\kappa)\, \frac{f(\x\mid\vartheta) p(\vartheta\mid\nz_2,\yz_2)}{f_m(\x)} \\
+ &=  \kappa\,  \frac{f_1(\x) p(\vartheta\mid\nn_1,\yn_1)}{f_m(\x)} +
+  (1-\kappa)\, \frac{f_2(\x) p(\vartheta\mid\nn_2,\yn_2)}{f_m(\x)} \\
+ &= p_m(\vartheta\mid \nn_1,\yn_1, \nn_2,\yn_2, \kappa^*)\,,
+\end{align*}
+\begin{align*}
+\text{where}\hspace{5ex}
+\kappa^* &= \kappa\, \frac{f_1(\x)}{f_m(\x)}
+          = \frac{\kappa\, f_1(\x)}{\kappa\, f_1(\x) + (1-\kappa)\, f_2(\x)}\,. 
+\end{align*}
+
+}
+
+\frame{\frametitle{Updating and Mixture Commute}
+
+\begin{itemize}
+\item updated mixture distribution is a mixture of the updated components
+with mixture parameter $\kappa^*$ instead of $\kappa$.
+\item convex hull of prior components\\ $=$ set of prior mixture distributions with $\kappa \in [0,1]$
+\item for any $\kappa \in [0,1]$, the corresponding $\kappa^* \in [0,1]$.
+\item in fact, $\{\kappa^* \mid \kappa \in [0,1]\} = [0,1]$.
+\item set of updated mixture distributions with $\kappa^* \in [0,1]$\\ $=$ convex hull of updated components
+\item arbitrary number of components by complete induction
+\end{itemize}
 }
 \end{document}

@@ -62,7 +62,8 @@
    decorations.pathreplacing,%
    decorations.footprints,%
    decorations.markings,%
-   shadows}
+   shadows,%
+   spy}
 %\usepackage{bbold}
 \usepackage{hyperref}
 
@@ -186,15 +187,135 @@
 \titlepage
 }
 
-\frame{\frametitle{Overview}
-\begin{tikzpicture}
-\node[draw] at (0,0) {\includegraphics[scale=0.25]{../diss-toc-1.pdf}};
+% ---------- brace with label -----------
 %\draw[decorate,decoration={brace,mirror,raise=5pt},blue]
-\draw[thick,decorate,decoration=brace] (2.2,-1.5) -- (2.2,-2.7) node[midway,right,align=left] %
-{motivating example:\\ {\color{lmugreen} common-cause failure}};
+%\draw[thick,decorate,decoration=brace] (2.2,-1.5) -- (2.2,-2.7) node[midway,right,align=left] %
+%{motivating example:\\ {\color{lmugreen} common-cause failure}};
+
+\frame{\frametitle{Overview}
+\begin{tikzpicture}%[spy using outlines={rectangle, magnification=3, size=1.5cm, connect spies}]
+\path (-1.5,-5) rectangle (10.5,2);
+\node[draw] at (0,0) {\includegraphics[scale=0.12]{../diss-toc-1.pdf}};
+\node[draw] at (3,0) {\includegraphics[scale=0.12]{../diss-toc-2.pdf}};
+\node[draw] at (6,0) {\includegraphics[scale=0.12]{../diss-toc-3.pdf}};
+\node[draw] at (9,0) {\includegraphics[scale=0.12]{../diss-toc-4.pdf}};
 \end{tikzpicture}
 }
 
+% page 1
+\addtocounter{framenumber}{-1} 
+\frame{\frametitle{Overview}
+\begin{tikzpicture}%[spy using outlines={rectangle, magnification=3, size=1.5cm, connect spies}]
+\path (-1.5,-5) rectangle (10.5,2);
+\node[draw, yellow!60!red, fill=white!60!yellow] at (0,0) {\includegraphics[scale=0.12]{../diss-toc-1.pdf}};
+\node[draw] at (3,0) {\includegraphics[scale=0.12]{../diss-toc-2.pdf}};
+\node[draw] at (6,0) {\includegraphics[scale=0.12]{../diss-toc-3.pdf}};
+\node[draw] at (9,0) {\includegraphics[scale=0.12]{../diss-toc-4.pdf}};
+%
+\node[draw, yellow!60!red, fill=white] at (1.3,-1.5) {\includegraphics[scale=0.225]{../diss-toc-1.pdf}};
+\end{tikzpicture}
+}
+
+\addtocounter{framenumber}{-1} 
+\frame{\frametitle{Overview}
+\begin{tikzpicture}[spy using outlines={rectangle, magnification=3, width=11cm, connect spies}]
+\path (-1.5,-5) rectangle (10.5,2);
+\node[draw, yellow!60!red, fill=white!60!yellow] at (0,0) {\includegraphics[scale=0.12]{../diss-toc-1.pdf}};
+\node[draw] at (3,0) {\includegraphics[scale=0.12]{../diss-toc-2.pdf}};
+\node[draw] at (6,0) {\includegraphics[scale=0.12]{../diss-toc-3.pdf}};
+\node[draw] at (9,0) {\includegraphics[scale=0.12]{../diss-toc-4.pdf}};
+\node[draw, yellow!60!red, fill=white] at (1.3,-1.5) {\includegraphics[scale=0.225]{../diss-toc-1.pdf}};
+\spy[red, height=0.55cm] on (1.34,-1.3) in node [fill=white] at (5, 1.5);
+\end{tikzpicture}
+}
+
+\addtocounter{framenumber}{-1} 
+\frame{\frametitle{Overview}
+\begin{tikzpicture}[spy using outlines={rectangle, magnification=3, width=11cm, connect spies}]
+\path (-1.5,-5) rectangle (10.5,2);
+\node[draw, yellow!60!red, fill=white!60!yellow] at (0,0) {\includegraphics[scale=0.12]{../diss-toc-1.pdf}};
+\node[draw] at (3,0) {\includegraphics[scale=0.12]{../diss-toc-2.pdf}};
+\node[draw] at (6,0) {\includegraphics[scale=0.12]{../diss-toc-3.pdf}};
+\node[draw] at (9,0) {\includegraphics[scale=0.12]{../diss-toc-4.pdf}};
+\node[draw, yellow!60!red, fill=white] at (1.3,-1.5) {\includegraphics[scale=0.225]{../diss-toc-1.pdf}};
+\spy[red, height=0.55cm] on (1.34,-1.3) in node [fill=white] at (5, 1.5);
+\spy[red, height=3.55cm] on (1.34,-3.4) in node [fill=white] at (5,-0.8);
+\end{tikzpicture}
+}
+
+% page 2
+\addtocounter{framenumber}{-1} 
+\frame{\frametitle{Overview}
+\begin{tikzpicture}%[spy using outlines={rectangle, magnification=3, size=1.5cm, connect spies}]
+\path (-1.5,-5) rectangle (10.5,2);
+\node[draw] at (0,0) {\includegraphics[scale=0.12]{../diss-toc-1.pdf}};
+\node[draw, yellow!60!red, fill=white!60!yellow] at (3,0) {\includegraphics[scale=0.12]{../diss-toc-2.pdf}};
+\node[draw] at (6,0) {\includegraphics[scale=0.12]{../diss-toc-3.pdf}};
+\node[draw] at (9,0) {\includegraphics[scale=0.12]{../diss-toc-4.pdf}};
+%
+\node[draw, yellow!60!red, fill=white] at (1.3,-1.5) {\includegraphics[scale=0.225]{../diss-toc-2.pdf}};
+\end{tikzpicture}
+}
+
+% page 3
+\addtocounter{framenumber}{-1} 
+\frame{\frametitle{Overview}
+\begin{tikzpicture}%[spy using outlines={rectangle, magnification=3, size=1.5cm, connect spies}]
+\path (-1.5,-5) rectangle (10.5,2);
+\node[draw] at (0,0) {\includegraphics[scale=0.12]{../diss-toc-1.pdf}};
+\node[draw] at (3,0) {\includegraphics[scale=0.12]{../diss-toc-2.pdf}};
+\node[draw, yellow!60!red, fill=white!60!yellow] at (6,0) {\includegraphics[scale=0.12]{../diss-toc-3.pdf}};
+\node[draw] at (9,0) {\includegraphics[scale=0.12]{../diss-toc-4.pdf}};
+%
+\node[draw, yellow!60!red, fill=white] at (1.3,-1.5) {\includegraphics[scale=0.225]{../diss-toc-3.pdf}};
+\end{tikzpicture}
+}
+
+% page 4
+\addtocounter{framenumber}{-1} 
+\frame{\frametitle{Overview}
+\begin{tikzpicture}%[spy using outlines={rectangle, magnification=3, size=1.5cm, connect spies}]
+\path (-1.5,-5) rectangle (10.5,2);
+\node[draw] at (0,0) {\includegraphics[scale=0.12]{../diss-toc-1.pdf}};
+\node[draw] at (3,0) {\includegraphics[scale=0.12]{../diss-toc-2.pdf}};
+\node[draw] at (6,0) {\includegraphics[scale=0.12]{../diss-toc-3.pdf}};
+\node[draw, yellow!60!red, fill=white!60!yellow] at (9,0) {\includegraphics[scale=0.12]{../diss-toc-4.pdf}};
+%
+\node[draw, yellow!60!red, fill=white] at (1.3,-1.5) {\includegraphics[scale=0.225]{../diss-toc-4.pdf}};
+\end{tikzpicture}
+}
+
+
+\iffalse
+% ----------------------------------------fast-forward compiling
+\section{Common-cause Failure Modelling}
+\subsection{Alpha-Factor Model}
+\subsection{Bayesian Inference}
+\subsection{Imprecise Dirichlet Model}
+\frame{
+Outline of the talk***
+\begin{enumerate}
+\item Common-cause failure modelling\\ (joint work with Matthias Troffaes and Dana Kelly)
+\item Generalised Bayesian inference with sets of priors\\ (joint work with Thomas Augustin)
+\item Prior-data conflict and Strong prior-data agreement\\ (joint work with Thomas Augustin and Frank Coolen)
+\end{enumerate}
+}
+\end{document}
+% ----------------------------------------fast-forward compiling
+\fi
+
+
+\frame{\frametitle{Overview}
+%Outline of the talk***
+\begin{enumerate}
+\item Common-cause failure modelling\\ (joint work with Matthias Troffaes and Dana Kelly)
+\item Generalised Bayesian inference with sets of priors\\ (joint work with Thomas Augustin)
+\item Prior-data conflict and Strong prior-data agreement\\ (joint work with Thomas Augustin and Frank Coolen)
+\end{enumerate}
+}
+
+
+\iffalse
 \frame{\frametitle{Overview}
 \begin{enumerate}
 \item Introduction
@@ -240,8 +361,8 @@ Outline of the talk***
 \item Generalised Bayesian inference with sets of priors\\ (joint work with Thomas Augustin)
 \item Prior-data conflict and Strong prior-data agreement\\ (joint work with Thomas Augustin and Frank Coolen)
 \end{enumerate}
-
 }
+\fi
 
 \section{Common-cause Failure Modelling}
 
@@ -326,10 +447,11 @@ Right: Wikimedia Commons,\\[-1.8ex]
     \end{itemize}
   \end{block}
   (the model actually serves to estimate failure \emph{rates},\\ but the above is all what matters in this talk)
+\note<1>[item]{Slide on inferences in alph-factor model commented out}
 \end{frame}
 
 \iffalse
-\begin{frame}{Alpha-Factor Model: Inference ***raus??***}
+\begin{frame}{Alpha-Factor Model: Inference}
   \begin{block}{Inference}
     involves rational functions \\
     of probabilities $\vec{\alpha}$ of common-cause failures\\
@@ -342,36 +464,345 @@ Right: Wikimedia Commons,\\[-1.8ex]
 \fi
 
 \begin{frame}{Alpha-Factor Model: Parameter Estimation}
-\uncover<1->{%
-  \begin{exampleblock}{The Good News}
-    attractive feature of this model: \\
-    $\vec{\alpha}$ can be estimated directly from data, e.g.\ MLE:
+
+%\begin{itemize}
+maximum likelihood estimator: 
     \begin{align*}
-      \alpha_j &= \frac{n_j}{n},\quad \text{where $\textstyle\sum_{j=1}^n n_j = n$}
+      \hat{\alpha}_j &= \frac{n_j}{n},\quad \text{where $\textstyle\sum_{j=1}^n n_j = n$}
     \end{align*}
-  \end{exampleblock}}
+%\end{itemize}
+
 \uncover<2->{%
-  \begin{alertblock}{The Bad News}
-    \begin{itemize}
+  \begin{alertblock}{The Problem}%{The Bad News}
+    \begin{itemize}[<+->]
     \item typically, for $j\ge 2$, the $n_j$ are very low \\
       with zero being quite common for larger $j$
-    \item zero counts = flat likelihoods \\
-      standard techniques such as MLE can struggle \\
-      to produce sensible inferences for this problem
+    \item zero counts = flat likelihoods \quad\then\quad $\hat{\alpha}_j =$?
+%      standard techniques such as MLE can struggle \\
+%      to produce sensible inferences for this problem
+%    \item need to rely on \alert{epistemic information}\\
+%       \quad \then\ Bayesian inference
     \end{itemize}
   \end{alertblock}}
-\uncover<3>{%
-  \vspace*{-1ex}
+\uncover<3->{%
   \begin{center}
-    \textbf{\then\ need to rely on \alert{epistemic information}}
+    \textbf{\then\ need to rely on \alert{epistemic information}: Bayesian inference}
   \end{center}}
 \end{frame}
 
-\frame{\frametitle{References}
 
-\nocite{Walter2009a-short,1994:hoyland,1965:good,1991:walley,1996:walley::idm,2011:kelly:atwood,1996:atwood,Troffaes2013a-short,2006:evans,2005:quaeghebeurcooman-short}
+\subsection{Bayesian Inference}
 
-\printbibliography[heading=none]
+\begin{frame}{Bayesian Inference: Dirichlet Prior}
+\uncover<1->{%
+  $\vec{\alpha}$ considered as uncertain parameter on which we put\dots
+  \begin{block}{Dirichlet Distribution ($\to$ Dirichlet-Multinomial Model)}
+  \begin{columns}
+  \begin{column}{0.65\textwidth}
+    \begin{align*}
+      p(\vec{\alpha}\mid \nzg,\byzr) \propto \prod_{j=1}^k\alpha_j^{\nzg\yzjr-1}
+    \end{align*}
+  \end{column}  
+  \begin{column}{0.35\textwidth}
+    \rule{0ex}{3ex}where $(\nzg, \byzr)$\\ are \emph{hyperparameters}
+ \end{column}
+ \end{columns}\vspace*{-1.8ex}
+    \begin{align*}
+      \nzg &> 0\\[-1ex]
+      \byzr &\in \Delta=\Big\{
+        (\yzor,\dots,\yzkr)\colon \yzor\ge0,\dots,\yzkr\ge 0,\,\sum_{j=1}^k \yzjr=1
+      \Big\}
+    \end{align*}
+  \end{block}}
+\uncover<2->{%
+  \vspace*{-0.5ex}
+  \begin{block}{Interpretation}
+    \begin{itemize}
+    \item $\byzr$ = \alert{prior expectation of $\vec{\alpha}$}, i.e., a prior guess for $\frac{n_j}{n}$, $j=1,\ldots,n$
+    \item $\nzg$ = determines \alert{spread} and \alert{learning speed} (see next slide)
+    \end{itemize}
+  \end{block}}
+\note<1>[item]{draw 1d and 2d simplex on black board}
+\end{frame}
+
+\begin{frame}{Bayesian Inference: Dirichlet Posterior}
+  \begin{itemize}[<+->]
+  \item posterior density for $\vec{\alpha}$ is again Dirichlet \ \ \then\ \ \alert{conjugacy}\\
+  \alert{update parameters}: $\nzg \to\ \nng$, $\byzr \to \bynr$
+    \begin{align*}
+      p(\vec{\alpha}\mid\nzg,\byzr,\vec{n})
+      &=
+      p(\vec{\alpha}\mid\nng,\bynr)
+      \propto
+%      \prod_{j=1}^k\alpha_j^{\nzg\yzjr+n_j-1}
+      \prod_{j=1}^k\alpha_j^{\nng\ynjr-1}
+    \end{align*}
+\item posterior expectation of $\alpha_j$:
+    \begin{align*}
+      %\label{eq:dirichlet:posterior:predictive}
+      %\colorbox{red!10!white}{$\displaystyle
+      \E[\alpha_j\mid\nzg,\byzr,\vec{n}]
+      &=
+      \E[\alpha_j\mid\nng,\bynr] 
+      =
+      \int_{\Delta}\alpha_j p(\vec{\alpha}\mid\nzg,\byzr,\vec{n})\dd\vec{\alpha} \\
+      &= \ynjr
+      =
+      %\frac{n_j+st_j}{N+s}
+      %=
+      %\textcolor{green!50!black}{\frac{N}{N+s}}
+      %\textcolor{blue}{\frac{n_j}{N}}
+      %+
+      %\textcolor{green!50!black}{\frac{s}{N+s}}
+      %\textcolor{blue}{t_j}
+      \colorbox{lmugreen!10!white}{$\displaystyle
+      \frac{\nzg}{\nzg+n} \cdot \yzjr + \frac{n}{\nzg+n} \cdot \frac{n_j}{n}
+      $}
+    \end{align*}
+%    where $n=\sum_{j=1}^k n_j$ is total number of observations
+  \end{itemize}
+  %\vspace{1em}
+  \uncover<3->{%
+%   \begin{alertblock}{}%{we will focus on $\E[\alpha_j\mid\nng,\bynr]$}
+  \begin{center}
+    \textbf{we will focus on $\E[\alpha_j\mid\nng,\bynr]$} \\
+    (in a decision context, this expectation would typically end up \\
+    in expressions for expected utility)
+  \end{center}}
+%   \end{alertblock}}
+\end{frame}
+
+\begin{frame}{Example: Prior and Data}
+  (taken from Kelly \& Atwood, 2011) %\cite{2011:kelly:atwood})
+
+  \begin{example}
+    Consider a system with four redundant components ($k=4$). \\
+    %The probability of
+    %$j$ out of $k$ common-cause failures, given that failure has happend,
+    %was denoted by $\theta_j$.
+    The analyst specifies
+    the following prior expectation $\mu_{\text{spec},j}$
+    for each $\alpha_j$:
+    \begin{align*}
+      %\label{eq:example:muspec}
+      \mu_{\text{spec},1}&=0.950
+      &
+      \mu_{\text{spec},2}&=0.030
+      &
+      \mu_{\text{spec},3}&=0.015
+      &
+      \mu_{\text{spec},4}&=0.005
+    \end{align*}
+    We have 36 observations, in which 35 showed one component failing,
+    and 1 showed two components failing:
+    \begin{align*}
+      n_1&=35
+      &
+      n_2&=1
+      &
+      n_3&=0
+      &
+      n_4&=0
+    \end{align*}
+  \end{example}
+\end{frame}
+
+\begin{frame}{Example: Non-Informative Priors}
+  \alert{large variation in posterior under different non-informative priors}
+  \begin{itemize}[<+->]
+  \item with constrained maximum entropy prior\\ (Atwood, 1996; Kelly \& Atwood, 2011): %\cite{1996:atwood,2011:kelly:atwood}):
+    \begin{align*}
+      \E[\alpha_1\mid\nng,\bynr]&=0.967
+      &
+      \E[\alpha_2\mid\nng,\bynr]&=0.028
+      \\
+      \E[\alpha_3\mid\nng,\bynr]&=0.003
+      &
+      \E[\alpha_4\mid\nng,\bynr]&=0.001
+    \end{align*}
+  \item 
+  with uniform prior ($\yzjr=0.25$ and $\nzg=4$):
+  \begin{align*}
+    \E[\alpha_1\mid\nng,\bynr]&=0.9
+    &
+    \E[\alpha_2\mid\nng,\bynr]&=0.05
+    \\
+    \E[\alpha_3\mid\nng,\bynr]&=0.025
+    &
+    \E[\alpha_4\mid\nng,\bynr]&=0.025
+  \end{align*}
+  \item
+  with Jeffrey's prior ($\yzjr=0.25$ and $\nzg=2$):
+  \begin{align*}
+    \E[\alpha_1\mid\nng,\bynr]&=0.9342
+    &
+    \E[\alpha_2\mid\nng,\bynr]&=0.0395
+    \\
+    \E[\alpha_3\mid\nng,\bynr]&=0.0132
+    &
+    \E[\alpha_4\mid\nng,\bynr]&=0.0132
+  \end{align*}
+  \end{itemize}%
+% The degree of variation in the posterior under different priors
+  % is evidently somewhat alarming.
+  % In the next section, we aim to robustify the model
+  % by using sets of priors from the start.
+\note<1>[item]{emphasize variation for $\alpha_4$, the crucial part of the model\\
+(all components fail): $0.1\%$ vs $2.5\%$ vs $1.3\%$}
+\end{frame}
+
+\subsection{Imprecise Dirichlet Model}
+
+\begin{frame}{Imprecise Dirichlet Model: Definition}
+\uncover<1->{%
+Troffaes, Walter \& Kelly (2013): model vague prior info more cautiously
+\begin{block}{Imprecise Dirichlet Model (IDM) for Common-Cause Failure}
+use a \alert{set of hyperparameters}
+    % \cite[p.~224, \S 5.4.3]{1991:walley} \cite[p.~32, \S 6]{1996:walley::idm},
+    %\cite{1991:walley,1996:walley::idm}
+    (Walley 1991, 1996):
+    \begin{align*}
+      %\label{eq:hyperparams:boxmodel}
+      %\mathcal{H}
+      \PZc
+      =
+      \left\{
+        (\nzg,\byzr)
+        \colon
+        \nzg\in[\nzlg,\nzug],\,
+        \byzr\in\Delta,\,
+        \yzjr\in[\yzjlr{j},\yzjur{j}]
+      \right\}
+    \end{align*}
+\end{block}\vspace*{-0.5ex}}\uncover<2->{%
+\begin{block}{Interpretation}
+\begin{itemize}
+  \item we are doing a \alert{sensitivity analysis} (\'a la robust Bayes)\\ over $(\nzg,\byzr) \in \PZc$
+  \item we take a \alert{set of priors} %$\text{conv}\big(\big\{p(\alpha\mid\nzg,\byzr) \colon (\nzg,\byzr) \in \PZc\big\}\big)$
+  based on $\PZc$ \\
+  as model for prior information (details later)
+%  (resp.\ all convex mixtures of them)
+\end{itemize}
+\end{block}}\uncover<3>{%
+Analyst has to specify (`elicit') \\
+    bounds $[\nzlg,\nzug]$ and
+    bounds $[\yzjlr{j},\yzjur{j}]$ for each $j\in\{1,\dots,k\}$ }%\\
+\end{frame}
+
+\begin{frame}{Imprecise Dirichlet Model: Elicitation}
+  \begin{itemize}[<+->]
+  \item   $[\yzjlr{j},\yzjur{j}]$: Cautious interpretation of prior specifications $\mu_{\text{spec},j}$:
+  \begin{align*}
+    [\yzjlr{1},\yzjur{1}]&=[0.950,1]
+    &
+    [\yzjlr{2},\yzjur{2}]&=[0,0.030]
+    \\
+    [\yzjlr{3},\yzjur{3}]&=[0,0.015]
+    &
+    [\yzjlr{4},\yzjur{4}]&=[0,0.005]
+  \end{align*}
+  \item  $[\nzlg,\nzug]$: Good (1965): \\ %\cite{1965:good}: \\
+    \begin{center}
+    reason about posterior expectations for hypothetical data
+    \end{center}
+  \end{itemize}
+  \uncover<3->{%
+  \begin{alertblock}{}
+    $\nzug$ = number of one-component failures required \\
+    to reduce the upper probabilities of multi-component failure by half
+  \end{alertblock}
+  \begin{alertblock}{}
+    $\nzlg$ = number of multi-component failures required \\
+    to reduce the lower probability of one-component failure by half
+  \end{alertblock}}
+\note<2>[item]{choice of bounds for $\nzg$ is not so straight-forward,
+so we took advice from Good and reason about posterior expectations for hypothetical data,
+also known as pre-posterior analysis}
+\note<3>[item]{These rules are a bit difficult to grasp at first, so I'll explain them with the example:}
+\end{frame}
+
+\begin{frame}{Imprecise Dirichlet Model: Elicitation}
+\uncover<1->{%
+\begin{alertblock}{}
+    $\nzug$ = number of one-component failures required \\
+    to reduce the upper probabilities of multi-component failure by half
+  \end{alertblock}
+  \begin{alertblock}{}
+    $\nzlg$ = number of multi-component failures required \\
+    to reduce the lower probability of one-component failure by half
+  \end{alertblock}}
+  \uncover<2->{%
+  Reasonable values in example:
+  \begin{itemize}
+  \item 
+    $\nzug=10$: %\\
+    after observing $10$ one-component failures \\
+    \then\ halve upper probabilities of multi-component failures
+  \item
+    $\nzlg=1$: %\\
+    immediate multi-component failure
+    \\
+    \then\ keen to reduce lower probability for one-component failure
+  \end{itemize}}
+  \uncover<3->{%
+  \alert{Difference between $\nzlg$ and $\nzug$} reflects a \alert{level of caution}:\\
+  The rate at which we reduce upper probabilities \\
+  is less than the rate at which we reduce lower probabilities \\}
+  %\then\ reflects a \alert{level of caution}
+\end{frame}
+
+\begin{frame}{Imprecise Dirichlet Model: Inference}
+%  \begin{center}
+%    prior bounds + likelihood $\to$ posterior bounds
+%  \end{center}
+%\vspace*{-2ex}
+\begin{block}{prior bounds + likelihood $\to$ posterior bounds}
+  \begin{center}
+  \begin{tabular}{c|cc||cc}
+    \multicolumn{1}{c}{}
+  & \multicolumn{2}{c}{with $\yzjr=\mu_{\text{spec},j}$:}
+  & \multicolumn{2}{c}{with bounds as earlier:} \\
+    $j$ & $\El[\alpha_j\mid\PZc,\vec{n}]$ &$\Eu[\alpha_j\mid\PZc,\vec{n}]$
+        & $\El[\alpha_j\mid\PZc,\vec{n}]$ &$\Eu[\alpha_j\mid\PZc,\vec{n}]$ \\
+    \hline
+    1 & 0.967\phantom{00} & 0.972\phantom{00} & 0.967\phantom{0} & 0.978\phantom{00}\\
+    2 & 0.0278\phantom{0} & 0.0283\phantom{0} & 0.0270           & 0.0283\phantom{0}\\
+    3 & 0.00041           & 0.00326           & 0\phantom{0.000}  & 0.00326\\
+    4 & 0.00014           & 0.00109           & 0\phantom{0.000}  & 0.00109
+  \end{tabular}
+  \end{center}
+\end{block} 
+  \begin{itemize}%[<+->]
+  \item<2-> \alert{Bounds}, rather than precise values, are desirable \\
+    due to inferences being strongly sensitive to the prior \\
+    particularly when faced with zero counts
+  \item<3-> Simple ways to elicit the parameters of the model \\
+    by \alert{reasoning on hypothetical data} \\
+%    rather than by maximum entropy arguments
+  \item<4-> Is it possible to generalise this method to other problems?
+  \end{itemize}
+\note<1>[item]{So what does this choice of parameter set mean for our number example?
+We now have a posterior model that is based on a clear behavioural choice of prior,
+expressing our prior ideas about $\vec{\alpha}$ and still being flexible enough to ***}
+\end{frame}
+
+
+
+\frame{\frametitle{Works Incorporated into the Thesis}
+
+\nocite{Walter2009a-short,Walter2010a,Walter2011a,Walter2012b,Troffaes2013a-short,itip-statinf,luck-package}
+
+\printbibliography[heading=none,keyword=defensethesis]
+
+%\bibliographystyle{plainnat}
+%\bibliography{../bib/eigene,../bib/itip-refs,../bib/other-refs}
+}
+
+\frame{\frametitle{Further References}
+
+\nocite{1994:hoyland,1965:good,1991:walley,1996:walley::idm,2011:kelly:atwood,1996:atwood,2006:evans,2005:quaeghebeurcooman}
+
+\printbibliography[heading=none,keyword=defensefurther]
 
 %\bibliographystyle{plainnat}
 %\bibliography{../bib/eigene,../bib/itip-refs,../bib/other-refs}
@@ -440,7 +871,7 @@ with mixture parameter $\kappa^*$ instead of $\kappa$.
 }
 
 
-%---- Appendix: reset frame number
+%---- Appendix: reset total frame number
 \addtocounter{framenumber}{-3} 
 
 \end{document}

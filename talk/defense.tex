@@ -295,9 +295,9 @@
 \frame{
 Outline of the talk***
 \begin{enumerate}
-\item Common-cause failure modelling\\ (joint work with Matthias Troffaes and Dana Kelly)
-\item Generalised Bayesian inference with sets of priors\\ (joint work with Thomas Augustin)
-\item Prior-data conflict and Strong prior-data agreement\\ (joint work with Thomas Augustin and Frank Coolen)
+\item Bayesian inference \& prior-data conflict %and Strong prior-data agreement
+\item Generalised Bayesian inference with sets of priors\\ (joint work with Thomas Augustin and Frank Coolen)
+\item Common-cause failure modeling\\ (joint work with Matthias Troffaes and Dana Kelly)
 \end{enumerate}
 }
 \end{document}
@@ -308,12 +308,11 @@ Outline of the talk***
 \frame{\frametitle{Overview}
 %Outline of the talk***
 \begin{enumerate}
-\item Common-cause failure modelling\\ (joint work with Matthias Troffaes and Dana Kelly)
-\item Generalised Bayesian inference with sets of priors\\ (joint work with Thomas Augustin)
-\item Prior-data conflict and Strong prior-data agreement\\ (joint work with Thomas Augustin and Frank Coolen)
+\item Bayesian inference \& prior-data conflict %and Strong prior-data agreement
+\item Generalised Bayesian inference with sets of priors\\ (joint work with Thomas Augustin and Frank Coolen)
+\item Common-cause failure modeling\\ (joint work with Matthias Troffaes and Dana Kelly)
 \end{enumerate}
 }
-
 
 \iffalse
 \frame{\frametitle{Overview}
@@ -357,12 +356,397 @@ Outline of the talk***
 
 Outline of the talk***
 \begin{enumerate}
-\item Common-cause failure modelling\\ (joint work with Matthias Troffaes and Dana Kelly)
-\item Generalised Bayesian inference with sets of priors\\ (joint work with Thomas Augustin)
-\item Prior-data conflict and Strong prior-data agreement\\ (joint work with Thomas Augustin and Frank Coolen)
+\item Bayesian inference \& prior-data conflict %and Strong prior-data agreement
+\item Generalised Bayesian inference with sets of priors\\ (joint work with Thomas Augustin and Frank Coolen)
+\item Common-cause failure modeling\\ (joint work with Matthias Troffaes and Dana Kelly)
 \end{enumerate}
 }
 \fi
+
+\section{Bayesian Inference \& Prior-Data Conflict}
+
+\subsection{Bayesian Inference}
+
+\frame{\frametitle{Bayesian Inference \& Prior-Data Conflict}
+
+\uncover<1->{%
+\begin{block}{The Bayesian approach to statistical inference}
+\centerline{prior $p(\vartheta)$ + likelihood $f(\x\mid\vartheta)$\hspace*{1ex} \then\ \ posterior $p(\vartheta\mid\x)$}
+%\quad using Bayes' Rule}
+All inferences are based on the posterior (e.g., point estimate, \ldots)
+\end{block}}
+\uncover<2->{%
+Assigning a certain prior distribution on $\vartheta$\\
+\hfill $=$ defining a conglomerate of probability statements (on $\vartheta$)
+}
+\uncover<3->{%
+\begin{block}{Prior-Data Conflict}
+\begin{itemize}
+\item \emph{informative prior beliefs} and \emph{trusted data}\\ %\rule{0ex}{3ex}\\
+(sampling model correct, no outliers, etc.) are in conflict%\\%[2ex]
+\item ``[\ldots] the prior [places] its mass primarily on distributions
+in the sampling model for which the observed data is surprising''\\
+(Evans \& Moshonov, 2006)
+\item there are not enough data to overrule the prior
+\end{itemize}
+\end{block}}
+\note<3>[item]{real-world example where \pdc\ is relevant at the end of the talk}
+}
+
+
+\frame{\frametitle{Prior-Data Conflict: Basic Example}
+
+%Example Beta-Binom, show point, line, rectangle
+\begin{itemize}[<+->]
+\item Bernoulli observations: 0/1 observations (team wins no/yes)
+\item given: a set of observations and strong prior information
+%\item given: a set of observations (team won 12 out of 16 matches)
+%\item additional to observations, we have strong prior information\\ (we are convinced that $P(\text{win})$ should be around $0.75$)
+\item we are, e.g., interested in (predictive) probability $P$ that team wins in the next match
+%(or some other inferences) %(predictive probability!)
+%\item standard statistical model for this situation: Beta-Bernoulli/Binomial Model
+%\item \textbf{\pdc:} if $P(\text{heads})$ for the coin is actually very different from our prior guess
+%(i.e., prior information and data are in conflict), this should show up in the %predictive
+%inferences (probability $\mbox{P}$ and, e.g., confidence intervals)
+\end{itemize}
+\uncover<4->{
+\begin{block}{Beta-Binomial Model}
+\begin{tabular}{r|lcl}
+data :           & $s\mid \theta$          & $\sim$ & $\bin(n,\theta)$   \\[0.5ex]
+conjugate prior: & $\theta\mid \nzg, \yzr$ & $\sim$ & $\be(\nzg,\, \yzr)$  \\[0.5ex]
+\cline{1-4}
+posterior:       & $\theta\mid \nng, \ynr$ & $\sim$ & $\be(\nng,\, \ynr)$\rule{0ex}{2.5ex}
+%\quad ($\frac{\tau(\x)}{n} = \frac{s}{n}$)\rule{0ex}{2.5ex}
+\end{tabular}
+\end{block}
+where $s$ = number of wins in the $n$ matches observed
+}
+}
+
+\subsection{Example: Beta-Binomial Model}
+
+\frame{\frametitle{Beta-Binomial Model}
+
+\uncover<1->{
+\begin{block}{Beta-Binomial Model}
+\begin{tabular}{r|lcl}
+data :           & $s\mid \theta$          & $\sim$ & $\bin(n,\theta)$   \\[0.5ex]
+conjugate prior: & $\theta\mid \nzg, \yzr$ & $\sim$ & $\be(\nzg,\, \yzr)$  \\[0.5ex]
+\cline{1-4}
+posterior:       & $\theta\mid \nng, \ynr$ & $\sim$ & $\be(\nng,\, \ynr)$\rule{0ex}{2.5ex}
+%\quad ($\frac{\tau(\x)}{n} = \frac{s}{n}$)\rule{0ex}{2.5ex}
+\end{tabular}
+\end{block}
+}
+\begin{align*}
+\uncover<2->{%
+P = \E[\theta\mid\nng,\ynr]
+}%
+\uncover<3->{%
+= \rot{\yn}
+= \frac{\gruen{\nz}}{\gruen{\nz} + n} \cdot \rot{\yz} + \frac{n}{\gruen{\nz} + n} \cdot \frac{s}{n}
+}%
+\end{align*}\vspace*{-3ex}
+\begin{align*}
+\uncover<4->{%
+\gruen{\nn} &= \gruen{\nz} + n
+}%
+\uncover<5->{%
+& \V(\theta\mid\nng,\ynr) &= \frac{\rot{\yn}(1-\rot{\yn})}{\gruen{\nn} + 1}
+}
+\end{align*}
+
+}
+
+\frame{\frametitle{Beta-Binomial Model (BBM)}
+
+\hspace*{-12ex}
+\begin{columns}%[T]
+\begin{column}{0.55\textwidth}
+\begin{tikzpicture}
+\pgftransformscale{0.025}
+\uncover<1>{
+\input{precise01.tex}
+}
+\uncover<2>{
+\input{precise02.tex}
+\draw[-stealth,very thick] (110,175) -- (220,175) node [above,midway] {12 out of 16};
+}
+\uncover<3->{
+\input{precise03.tex}
+\draw[-stealth,very thick,gray] (110,175) -- (220,175) node [above,midway,gray] {12 out of 16};
+}
+\uncover<4->{
+\draw[-stealth,very thick] (110,102) -- (220,167) node [above,midway,sloped] {16 out of 16};
+}
+\uncover<5>{%
+%\draw[thick,fill=white] (0,0) rectangle (100,50) {text};
+%\node at (140,80) {\parbox{0.5\textwidth}{
+\draw (160,35) node [rectangle,very thick,draw,fill=white] {\parbox{23.5ex}{
+%\begin{block}{}
+Weighted average structure\\ is underneath \alert{all common\\ conjugate priors}
+for\\ exponential family\\ sampling distributions!
+%\end{block}
+}};
+} %
+\end{tikzpicture}
+\end{column}
+\begin{column}{0.45\textwidth}
+\uncover<1->{%
+\begin{block}{no conflict:}
+prior $\nzg = 8$, $\yzr = 0.75$\\
+data $s/n = 12/16 = 0.75$
+\end{block}
+} %
+\uncover<2->{%
+\vspace*{-1.5ex}\centerline{\color{lmugreen} $\blacktriangledown$}\vspace*{-1.5ex}
+\begin{block}{}
+$\nng = 24$, $\ynr = 0.75$
+\end{block}
+} %
+\uncover<4->{%
+\vspace*{-1.5ex}\centerline{\color{lmugreen} $\blacktriangle$}\vspace*{-1.5ex}
+}
+\uncover<3->{%
+\begin{block}{\pdc:}
+prior $\nzg = 8$, $\yzr = 0.25$\\
+data $s/n = 16/16 = 1$
+\end{block}
+} %
+\uncover<0>{%
+\vspace*{-1.5ex}\centerline{\color{lmugreen} $\blacktriangledown$}\vspace*{-1.5ex}
+\begin{block}{}
+$\nng \in [20, 24]$, $\ynr \in [0.73, 0.86]$
+\end{block}
+} %
+%\uncover<5->{ %
+%\then\ same predictive prob.\ P!
+%}
+\end{column}
+\end{columns}
+}
+
+
+\subsection{Canonical Conjugate Priors}
+
+\frame{\frametitle{Canonical Conjugate Priors}
+
+\uncover<1->{%
+%The multinomial is an example for a \alert{canonical exponential family} %(Bernardo \& Smith, 2000)
+Weighted average structure is underneath \alert{all common conjugate priors}
+for exponential family sampling distributions! %\\[2ex]
+
+\begin{block}%
+{$(x_1, \ldots, x_n) = \x \stackrel{iid}{\sim}$ canonical exponential family} %(Bernardo and Smith, 1994)
+%, i.e.
+\begin{align*}
+p(\x \mid \vartheta) &\propto \exp\big\{\langle \psib, \tau(\x) \rangle - n \bpsib \big\}
+\qquad \Big[ \psib \text{ transformation of } \vartheta \Big]
+\end{align*}
+(includes Binomial, Multinomial, Normal, Poisson, Exponential, \ldots )%\\[2ex]
+\end{block}}
+\vspace*{-2ex}%
+\begin{align*}
+\uncover<2->{%
+&\text{\play\ conjugate prior:} &
+p(\psib\mid\nzg,\yzr) \hspace*{2ex}
+&\propto \exp\big\{ \nzg \big[\langle \psib, \yzr \rangle - \bpsib\big]\big\} \\}
+\uncover<3->{%
+&\text{\play\ (conjugate) posterior:} &
+p(\psib\mid\nzg,\yzr,\vec{x})
+%p(\psib\mid\nng,\ynr) \hspace*{2ex}
+&\propto \exp\big\{ \nng \big[\langle \psib, \ynr \rangle - \bpsib\big]\big\} }%\quad \mbox{where}
+\end{align*}
+\begin{align*}
+\uncover<3->{%
+\mbox{where}\quad \ynr &= \frac{\nzg}{\nzg + n} \cdot \yzr + \frac{n}{\nzg + n} \cdot \frac{\tau(\x)}{n}
+& &\mbox{and} & \nng &= \nzg + n }
+\end{align*}
+}
+
+\frame{\frametitle{Canonical Conjugate Priors}
+
+\vspace*{-2ex}%
+\uncover<1->{%
+\begin{align*}
+&\text{\play\ (conjugate) posterior:} &
+%p(\psib\mid\nzg,\yzr,\vec{x})
+p(\psib\mid\nng,\ynr) %\hspace*{2ex}
+&\propto \exp\big\{ \nng \big[\langle \psib, \ynr \rangle - \bpsib\big]\big\} %\quad \mbox{where}
+\end{align*}
+\vspace*{-2ex}
+\begin{align*}
+\mbox{where}\quad \ynr &= \frac{\nzg}{\nzg + n} \cdot \yzr + \frac{n}{\nzg + n} \cdot \frac{\tau(\x)}{n}
+& &\mbox{and} & \nng &= \nzg + n
+\end{align*}}%
+\vspace*{-2ex}%
+\uncover<2->{%
+\begin{block}{Interpretation}
+  \begin{itemize}
+  \item $\nzg$ = determines \alert{spread} and \alert{learning speed}
+  \item $\yzr$ = \alert{prior expectation} of $\tau(\x)/n$ %$\frac{\tau(\vec{x})}{n}$
+  \end{itemize}
+\end{block}}%
+\uncover<3->{%
+\begin{block}{Example: Scaled Normal Data}
+\begin{tabular}{r|lcl}
+Data :           & $\x\mid\mu$        & $\sim$ & $\norm(\mu,1)$\\[0.5ex] %\sigma_0^2)$ \quad ($\sigma_0^2$ known)\\[0.5ex]
+conjugate prior: & $\mu\mid\nzg,\yzr$ & $\sim$ & $\norm(\yzr, 1/\nzg)$  \\[0.5ex]
+\cline{1-4}
+posterior:       & $\mu\mid\nng,\ynr$ & $\sim$ & $\norm(\ynr, 1/\nng)$ \quad ($\frac{\tau(\x)}{n} = \bar{\x}$)\rule{0ex}{2.5ex} %& \\[0.5ex]
+\end{tabular}
+\end{block}}
+}
+
+
+\section{Generalised Bayesian Inference}
+
+\subsection{Why Generalise Bayesian Inference?}
+
+\frame{\frametitle{Why Generalise Bayesian Inference?}
+
+***Foundational arguments for the Bayesian approach as a coherent way of inferential reasoning
+hold only if one can make \emph{``arbitrarily fine discriminations in judgement about unknowns and utilities''}
+(Berger et al.\ 1994, p.~303).\\[1.5ex]
+
+\pause
+Bayesian theory lacks the ability to specifiy the degree of uncertainty in probability statements
+encoded in a (prior, posterior) distribution.\\[1.5ex]
+
+\pause
+Variance or stretch of a distribution for describing uncertainty?\\[1.5ex]
+%but this mostly does not work in conjugate updating as just shown.
+%but this has mostly no influence on the behaviour to prior-data conflict.
+
+\pause
+\then\ \parbox[t]{0.9\textwidth}{Does not work in the case of prior-data conflict:\\
+In conjugate updating, the posterior variance does not depend
+on the degree of prior-data conflict in most cases.}\\[1.5ex]
+
+\then\ How to express the precision of a probability statement?\\
+
+***appendix slide on Foundational arguments \& hierarchical models???***
+}
+
+
+\frame{\frametitle{Imprecision}
+
+%\hspace*{6ex}\parbox[t]{0.9\textwidth}{
+\textbf{Add \alert{imprecision} as new model dimension:\\
+\alert{Sets of priors} model uncertainty in probability statements\\
+and allow to model partial information on $\vartheta$}\\[2ex]
+%}
+
+\uncover<2->{%
+\begin{block}{Interpretation}
+\centerline{smaller sets \thenthen\ more precise probability statements}
+\vspace*{1ex}
+\parbox[t]{0.45\textwidth}{\centering \textbf{Lottery A}\\
+                          Number of winning tickets:\\
+                          exactly known as 5 out of 100\\
+                          \then\ $P(\text{win}) = 5/100$}
+\qquad
+\parbox[t]{0.45\textwidth}{\centering \textbf{Lottery B}\\
+                          Number of winning tickets:\\
+                          not exactly known, supposedly\\
+                          between 1 and 7 out of 100\\
+                          \then\ $P(\text{win}) = [1/100,\, 7/100]$}
+\end{block}
+}
+%\uncover<3->{%
+%\centerline{shorter intervals \thenthen\ more precise probability statements}
+%}
+}
+
+\subsection{Sets of Priors}
+
+\frame{\frametitle{Bayesian Inference with Sets of Priors}
+
+\uncover<1->{%
+\begin{block}{Standard Bayesian inference procedure}
+\centerline{prior + likelihood\hspace*{1ex} \then\ \ posterior}
+using Bayes' Rule\\
+All inferences are based on the posterior%\\
+%(e.g., point estimate = $\E[\psib\mid\nng,\ynr]$)
+\end{block}}
+\uncover<2->{%
+\begin{block}{Generalised Bayesian inference procedure}
+\centerline{set of priors + likelihood\hspace*{1ex} \then\ \ set of posteriors}
+\emph{Coherence} (consistency of inferences) ensured by using\\
+\emph{Generalised Bayes' Rule} (GBR, Walley 1991)\\
+= element-wise application of Bayes' Rule\\ %\emph{\small (set of priors must be convex)}\\
+%(e.g., point estimate = $\big[\El[\psib\mid\nng,\ynr],\Eu[\psib\mid\nng,\ynr]\big]$)
+All inferences are based on the set of posteriors
+\end{block}}
+\uncover<3->{\centerline{Let hyperparameters $(\nzg, \yzr)$ vary in a set $\PZc$ \then\ \alert{set of priors}}}
+}
+
+\begin{frame}{Bayesian Inference with Sets of Priors ***raus?}
+\begin{align*}
+\text{single prior $(\nzg, \yzr)$}
+ &\quad\mbox{\then }\quad 
+\text{set of priors $\MZ$ (defined via $\PZc$)} \\
+\E[\psib\mid\nzg,\yzr,\x]
+ &\quad\mbox{\then }\quad 
+\big[\El[\psib\mid\PZc,\x],\Eu[\psib\mid\PZc,\x]\big] \\
+P(\psib\in A\mid\nzg,\yzr,\x)
+ &\quad\mbox{\then }\quad 
+\big[\Pl[\psib\in A\mid\PZc,\x],\Pu[\psib\in A\mid\PZc,\x]\big]
+%\E[\theta]  &\quad\mbox{\then }\quad \big[\LE[\theta],\, \UE[\theta]\big] \\
+%= \left[ \min_{p \in {\cal M}_\theta} \E_{p}[\theta],\,
+%         \max_{p \in {\cal M}_\theta} \E_{p}[\theta]\right]\\
+%P(\theta\! \in\! A) &\quad\mbox{\then }\quad \big[\ul{P}(\theta\! \in\! A),\, \ol{P}(\theta\! \in\! A)\big]
+%= \big[\! \min P_{\!\!p}(\theta\! \in\! A),\,
+%          \max P_{\!\!p}(\theta\! \in\! A)\big]
+\end{align*}
+\begin{center}
+Lower/upper posterior expectation by min/max over set of posteriors %$\PZc$
+\end{center}
+\end{frame}
+
+
+\begin{frame}[label=commute-back]{Taking the Convex Hull as the Set of Priors}
+
+\uncover<1->{%
+\begin{block}{Convex Set of Priors}
+%\vspace*{-1ex}
+%\begin{align*}
+%\MZ &= \text{conv}\big(\big\{p(\psib\mid\nzg,\byzr) \colon (\nzg,\byzr) \in \PZc\big\}\big)\vspace*{-0.5ex}%
+%\end{align*}
+\centerline{$\MZ = \text{conv}\big(\big\{p(\psib\mid\nzg,\byzr) \colon (\nzg,\byzr) \in \PZc\big\}\big)$}
+%Model for prior information =
+$\MZ$ = {\small finite convex mixtures of canonical conjugate priors defined by} $\PZc$\\
+%Convex set of probability distributions %\\ %{\small(Walley 1991)}\\
+%of inference procedure
+%(as in standard Bayesian inference procedure)
+\end{block}}
+
+\uncover<2->{%
+\hyperlink{commute-app}{Updating \& mixture commute} \then\ set of posteriors can be written as\ldots
+
+\begin{block}{Convex Set of Posteriors}
+%\vspace*{-1ex}
+%\begin{align*}
+%\MN &= \text{conv}\big(\big\{p(\psib\mid\nng,\bynr) \colon (\nng,\bynr) \in \PNc\big\}\big)\vspace*{-0.5ex}%
+%\end{align*}
+\centerline{$\MN = \text{conv}\big(\big\{p(\psib\mid\nng,\bynr) \colon (\nng,\bynr) \in \PNc\big\}\big)$}
+where $\PNc = \big\{(\nng,\bynr) \colon (\nzg,\byzr) \in \PZc \big\}$.\\
+%Set of posteriors = 
+$\MN$ = finite convex mixtures of canonical conjugate posteriors\\ defined by set of updated hyperparameters $\PNc$
+\end{block}}
+
+\uncover<3->{%
+Convex sets make the procedure very general (mixture distributions),\\
+but are useful only for inferences that are \emph{linear} in the posteriors\\
+{\small (expectations: yes, variances: no)}}
+\note<3>[item]{so, convexity yes/no is a modelling choice}
+\end{frame}
+
+
+\begin{frame}{BBM-example}
+\end{frame}
+
+
 
 \section{Common-cause Failure Modelling}
 
@@ -608,7 +992,7 @@ maximum likelihood estimator:
 \end{frame}
 
 \begin{frame}{Example: Non-Informative Priors}
-  \alert{large variation in posterior under different non-informative priors}
+  \alert{large variation in posterior under different non-informative***link priors}
   \begin{itemize}[<+->]
   \item with constrained maximum entropy prior\\ (Atwood, 1996; Kelly \& Atwood, 2011): %\cite{1996:atwood,2011:kelly:atwood}):
     \begin{align*}
@@ -786,138 +1170,12 @@ We now have a posterior model that is based on a clear behavioural choice of pri
 expressing our prior ideas about $\vec{\alpha}$ and still being flexible enough to ***}
 \end{frame}
 
-\section{Bayesian Inference with Sets of Priors}
 
-\subsection{Canonical Conjugate Priors}
 
-\frame{\frametitle{Canonical Conjugate Priors}
 
-\uncover<1->{%
-The multinomial is an example for a \alert{canonical exponential family} %(Bernardo \& Smith, 2000)
-%Weighted average structure is underneath all common conjugate priors
-%for exponential family sampling distributions!\\[2ex]
 
-\begin{block}%
-{$(x_1, \ldots, x_n) = \x \stackrel{iid}{\sim}$ canonical exponential family} %(Bernardo and Smith, 1994)
-%, i.e.
-\begin{align*}
-p(\x \mid \theta) &\propto \exp\big\{\langle \psib, \tau(\x) \rangle - n \bpsib \big\}
-\qquad \Big[ \psib \text{ transformation of } \theta \Big]
-\end{align*}
-(includes Binomial, Multinomial, Normal, Poisson, Exponential, \ldots )%\\[2ex]
-\end{block}}
-\vspace*{-2ex}%
-\begin{align*}
-\uncover<2->{%
-&\text{\play\ conjugate prior:} &
-p(\psib\mid\nzg,\yzr) \hspace*{2ex}
-&\propto \exp\big\{ \nzg \big[\langle \psib, \yzr \rangle - \bpsib\big]\big\} \\}
-\uncover<3->{%
-&\text{\play\ (conjugate) posterior:} &
-p(\psib\mid\nzg,\yzr,\vec{x})
-%p(\psib\mid\nng,\ynr) \hspace*{2ex}
-&\propto \exp\big\{ \nng \big[\langle \psib, \ynr \rangle - \bpsib\big]\big\} }%\quad \mbox{where}
-\end{align*}
-\begin{align*}
-\uncover<3->{%
-\mbox{where}\quad \ynr &= \frac{\nzg}{\nzg + n} \cdot \yzr + \frac{n}{\nzg + n} \cdot \frac{\tau(\x)}{n}
-& &\mbox{and} & \nng &= \nzg + n }
-\end{align*}
-}
 
-\frame{\frametitle{Canonical Conjugate Priors ***raus?}
 
-\vspace*{-2ex}%
-\uncover<1->{%
-\begin{align*}
-&\text{\play\ (conjugate) posterior:} &
-%p(\psib\mid\nzg,\yzr,\vec{x})
-p(\psib\mid\nng,\ynr) %\hspace*{2ex}
-&\propto \exp\big\{ \nng \big[\langle \psib, \ynr \rangle - \bpsib\big]\big\} %\quad \mbox{where}
-\end{align*}
-\vspace*{-2ex}
-\begin{align*}
-\mbox{where}\quad \ynr &= \frac{\nzg}{\nzg + n} \cdot \yzr + \frac{n}{\nzg + n} \cdot \frac{\tau(\x)}{n}
-& &\mbox{and} & \nng &= \nzg + n
-\end{align*}}%
-\vspace*{-2ex}%
-\uncover<2->{%
-\begin{block}{Interpretation}
-  \begin{itemize}
-  \item $\nzg$ = determines \alert{spread} and \alert{learning speed}
-  \item $\yzr$ = \alert{prior expectation} of $\tau(\x)/n$ %$\frac{\tau(\vec{x})}{n}$
-  \end{itemize}
-\end{block}}%
-\uncover<3->{%
-\begin{block}{Example: Scaled Normal Data}
-\begin{tabular}{r|lcl}
-Data :           & $\x\mid\mu$        & $\sim$ & $\norm(\mu,1)$\\[0.5ex] %\sigma_0^2)$ \quad ($\sigma_0^2$ known)\\[0.5ex]
-conjugate prior: & $\mu\mid\nzg,\yzr$ & $\sim$ & $\norm(\yzr, 1/\nzg)$  \\[0.5ex]
-\cline{1-4}
-posterior:       & $\mu\mid\nng,\ynr$ & $\sim$ & $\norm(\ynr, 1/\nng)$ \quad ($\frac{\tau(\x)}{n} = \bar{\x}$)\rule{0ex}{2.5ex} %& \\[0.5ex]
-\end{tabular}
-\end{block}}
-}
-
-\subsection{Sets of Priors}
-
-\frame{\frametitle{Bayesian Inference with Sets of Priors}
-
-\uncover<1->{%
-\begin{block}{Standard Bayesian inference procedure}
-\centerline{prior + likelihood\hspace*{1ex} \then\ \ posterior}
-using Bayes' Rule\\
-All inferences are based on the posterior%\\
-%(e.g., point estimate = $\E[\psib\mid\nng,\ynr]$)
-\end{block}}
-\uncover<2->{%
-\begin{block}{Generalised Bayesian inference procedure}
-\centerline{set of priors + likelihood\hspace*{1ex} \then\ \ set of posteriors}
-\emph{Coherence} (consistency of inferences) ensured by using\\
-\emph{Generalised Bayes' Rule} (GBR, Walley 1991)\\
-= element-wise application of Bayes' Rule\\ %\emph{\small (set of priors must be convex)}\\
-%(e.g., point estimate = $\big[\El[\psib\mid\nng,\ynr],\Eu[\psib\mid\nng,\ynr]\big]$)
-All inferences are based on the set of posteriors
-\end{block}}
-\uncover<3->{\centerline{Let hyperparameters $(\nzg, \yzr)$ vary in a set $\PZc$ \then\ \alert{set of priors}}}
-}
-
-\begin{frame}[label=commute-back]{Taking the Convex Hull as the Set of Priors}
-
-\uncover<1->{%
-\begin{block}{Convex Set of Priors}
-%\vspace*{-1ex}
-%\begin{align*}
-%\MZ &= \text{conv}\big(\big\{p(\psib\mid\nzg,\byzr) \colon (\nzg,\byzr) \in \PZc\big\}\big)\vspace*{-0.5ex}%
-%\end{align*}
-\centerline{$\MZ = \text{conv}\big(\big\{p(\psib\mid\nzg,\byzr) \colon (\nzg,\byzr) \in \PZc\big\}\big)$}
-%Model for prior information =
-$\MZ$ = {\small finite convex mixtures of canonical conjugate priors defined by} $\PZc$\\
-%Convex set of probability distributions %\\ %{\small(Walley 1991)}\\
-%of inference procedure
-%(as in standard Bayesian inference procedure)
-\end{block}}
-
-\uncover<2->{%
-\hyperlink{commute-app}{Updating \& mixture commute} \then\ set of posteriors can be written as\ldots
-
-\begin{block}{Convex Set of Posteriors}
-%\vspace*{-1ex}
-%\begin{align*}
-%\MN &= \text{conv}\big(\big\{p(\psib\mid\nng,\bynr) \colon (\nng,\bynr) \in \PNc\big\}\big)\vspace*{-0.5ex}%
-%\end{align*}
-\centerline{$\MN = \text{conv}\big(\big\{p(\psib\mid\nng,\bynr) \colon (\nng,\bynr) \in \PNc\big\}\big)$}
-where $\PNc = \big\{(\nng,\bynr) \colon (\nzg,\byzr) \in \PZc \big\}$.\\
-%Set of posteriors = 
-$\MN$ = finite convex mixtures of canonical conjugate posteriors\\ defined by set of updated hyperparameters $\PNc$
-\end{block}}
-
-\uncover<3->{%
-Convex sets make the procedure very general (mixture distributions),\\
-but are useful only for inferences that are \emph{linear} in the posteriors\\
-{\small (expectations: yes, variances: no)}}
-\note<3>[item]{so, convexity yes/no is a modelling choice}
-\end{frame}
 
 
 
@@ -936,7 +1194,7 @@ but are useful only for inferences that are \emph{linear} in the posteriors\\
 
 \frame{\frametitle{Further References}
 
-\nocite{1994:hoyland,1965:good,1991:walley,1996:walley::idm,2011:kelly:atwood,1996:atwood,2006:evans,2005:quaeghebeurcooman}
+\nocite{1994:hoyland,1965:good,1991:walley,1996:walley::idm,2011:kelly:atwood,1996:atwood,2006:evans,2005:quaeghebeurcooman,1994:berger}
 
 \printbibliography[heading=none,keyword=defensefurther]
 

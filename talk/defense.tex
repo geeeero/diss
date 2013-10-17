@@ -786,6 +786,142 @@ We now have a posterior model that is based on a clear behavioural choice of pri
 expressing our prior ideas about $\vec{\alpha}$ and still being flexible enough to ***}
 \end{frame}
 
+\section{Bayesian Inference with Sets of Priors}
+
+\subsection{Canonical Conjugate Priors}
+
+\frame{\frametitle{Canonical Conjugate Priors}
+
+\uncover<1->{%
+The multinomial is an example for a \alert{canonical exponential family} %(Bernardo \& Smith, 2000)
+%Weighted average structure is underneath all common conjugate priors
+%for exponential family sampling distributions!\\[2ex]
+
+\begin{block}%
+{$(x_1, \ldots, x_n) = \x \stackrel{iid}{\sim}$ canonical exponential family} %(Bernardo and Smith, 1994)
+%, i.e.
+\begin{align*}
+p(\x \mid \theta) &\propto \exp\big\{\langle \psib, \tau(\x) \rangle - n \bpsib \big\}
+\qquad \Big[ \psib \text{ transformation of } \theta \Big]
+\end{align*}
+(includes Binomial, Multinomial, Normal, Poisson, Exponential, \ldots )%\\[2ex]
+\end{block}}
+\vspace*{-2ex}%
+\begin{align*}
+\uncover<2->{%
+&\text{\play\ conjugate prior:} &
+p(\psib\mid\nzg,\yzr) \hspace*{2ex}
+&\propto \exp\big\{ \nzg \big[\langle \psib, \yzr \rangle - \bpsib\big]\big\} \\}
+\uncover<3->{%
+&\text{\play\ (conjugate) posterior:} &
+p(\psib\mid\nzg,\yzr,\vec{x})
+%p(\psib\mid\nng,\ynr) \hspace*{2ex}
+&\propto \exp\big\{ \nng \big[\langle \psib, \ynr \rangle - \bpsib\big]\big\} }%\quad \mbox{where}
+\end{align*}
+\begin{align*}
+\uncover<3->{%
+\mbox{where}\quad \ynr &= \frac{\nzg}{\nzg + n} \cdot \yzr + \frac{n}{\nzg + n} \cdot \frac{\tau(\x)}{n}
+& &\mbox{and} & \nng &= \nzg + n }
+\end{align*}
+}
+
+\frame{\frametitle{Canonical Conjugate Priors ***raus?}
+
+\vspace*{-2ex}%
+\uncover<1->{%
+\begin{align*}
+&\text{\play\ (conjugate) posterior:} &
+%p(\psib\mid\nzg,\yzr,\vec{x})
+p(\psib\mid\nng,\ynr) %\hspace*{2ex}
+&\propto \exp\big\{ \nng \big[\langle \psib, \ynr \rangle - \bpsib\big]\big\} %\quad \mbox{where}
+\end{align*}
+\vspace*{-2ex}
+\begin{align*}
+\mbox{where}\quad \ynr &= \frac{\nzg}{\nzg + n} \cdot \yzr + \frac{n}{\nzg + n} \cdot \frac{\tau(\x)}{n}
+& &\mbox{and} & \nng &= \nzg + n
+\end{align*}}%
+\vspace*{-2ex}%
+\uncover<2->{%
+\begin{block}{Interpretation}
+  \begin{itemize}
+  \item $\nzg$ = determines \alert{spread} and \alert{learning speed}
+  \item $\yzr$ = \alert{prior expectation} of $\tau(\x)/n$ %$\frac{\tau(\vec{x})}{n}$
+  \end{itemize}
+\end{block}}%
+\uncover<3->{%
+\begin{block}{Example: Scaled Normal Data}
+\begin{tabular}{r|lcl}
+Data :           & $\x\mid\mu$        & $\sim$ & $\norm(\mu,1)$\\[0.5ex] %\sigma_0^2)$ \quad ($\sigma_0^2$ known)\\[0.5ex]
+conjugate prior: & $\mu\mid\nzg,\yzr$ & $\sim$ & $\norm(\yzr, 1/\nzg)$  \\[0.5ex]
+\cline{1-4}
+posterior:       & $\mu\mid\nng,\ynr$ & $\sim$ & $\norm(\ynr, 1/\nng)$ \quad ($\frac{\tau(\x)}{n} = \bar{\x}$)\rule{0ex}{2.5ex} %& \\[0.5ex]
+\end{tabular}
+\end{block}}
+}
+
+\subsection{Sets of Priors}
+
+\frame{\frametitle{Bayesian Inference with Sets of Priors}
+
+\uncover<1->{%
+\begin{block}{Standard Bayesian inference procedure}
+\centerline{prior + likelihood\hspace*{1ex} \then\ \ posterior}
+using Bayes' Rule\\
+All inferences are based on the posterior%\\
+%(e.g., point estimate = $\E[\psib\mid\nng,\ynr]$)
+\end{block}}
+\uncover<2->{%
+\begin{block}{Generalised Bayesian inference procedure}
+\centerline{set of priors + likelihood\hspace*{1ex} \then\ \ set of posteriors}
+\emph{Coherence} (consistency of inferences) ensured by using\\
+\emph{Generalised Bayes' Rule} (GBR, Walley 1991)\\
+= element-wise application of Bayes' Rule\\ %\emph{\small (set of priors must be convex)}\\
+%(e.g., point estimate = $\big[\El[\psib\mid\nng,\ynr],\Eu[\psib\mid\nng,\ynr]\big]$)
+All inferences are based on the set of posteriors
+\end{block}}
+\uncover<3->{\centerline{Let hyperparameters $(\nzg, \yzr)$ vary in a set $\PZc$ \then\ \alert{set of priors}}}
+}
+
+\begin{frame}[label=commute-back]{Take Convex Hull for the Set of Priors}
+
+\uncover<1->{%
+\begin{block}{Convex Set of Priors}
+%\vspace*{-1ex}
+%\begin{align*}
+%\MZ &= \text{conv}\big(\big\{p(\psib\mid\nzg,\byzr) \colon (\nzg,\byzr) \in \PZc\big\}\big)\vspace*{-0.5ex}%
+%\end{align*}
+\centerline{$\MZ = \text{conv}\big(\big\{p(\psib\mid\nzg,\byzr) \colon (\nzg,\byzr) \in \PZc\big\}\big)$}
+%Model for prior information =
+$\MZ$ = {\small finite convex mixtures of canonical conjugate priors defined by} $\PZc$\\
+%Convex set of probability distributions %\\ %{\small(Walley 1991)}\\
+%of inference procedure
+%(as in standard Bayesian inference procedure)
+\end{block}}
+
+\uncover<2->{%
+\hyperlink{commute-app}{Updating \& mixture commute} \then\ set of posteriors can be written as\ldots
+
+\begin{block}{Convex Set of Posteriors}
+%\vspace*{-1ex}
+%\begin{align*}
+%\MN &= \text{conv}\big(\big\{p(\psib\mid\nng,\bynr) \colon (\nng,\bynr) \in \PNc\big\}\big)\vspace*{-0.5ex}%
+%\end{align*}
+\centerline{$\MN = \text{conv}\big(\big\{p(\psib\mid\nng,\bynr) \colon (\nng,\bynr) \in \PNc\big\}\big)$}
+where $\PNc = \big\{(\nng,\bynr) \colon (\nzg,\byzr) \in \PZc \big\}$.\\
+%Set of posteriors = 
+$\MN$ = finite convex mixtures of canonical conjugate posteriors\\ defined by set of updated hyperparameters $\PNc$
+\end{block}}
+
+\uncover<3->{%
+Convex sets make the procedure very general (mixture distributions),\\
+but are useful only for inferences that are \emph{linear} in the posteriors\\
+{\small (expectations: yes, variances: no)}}
+\note<3>[item]{so, convexity yes/no is a modelling choice}
+\end{frame}
+
+
+
+
 
 
 \frame{\frametitle{Works Incorporated into the Thesis}
@@ -812,7 +948,7 @@ expressing our prior ideas about $\vec{\alpha}$ and still being flexible enough 
 
 %---- Appendix: Updating and Mixture Commute
 
-\frame{\frametitle{Updating and Mixture Commute}
+\begin{frame}[label=commute-app]{Updating and Mixture Commute \hyperlink{commute-back<3>}{\beamerreturnbutton{}}}
 
 Let
 \begin{align*}
@@ -832,9 +968,9 @@ f_m(\x) &= \int_\Theta\! f(\x\mid\vartheta) p_m(\vartheta\mid \nz_1\!,\yz_1\!, \
         &= \kappa f_1(\x) + (1-\kappa) f_2(\x) \,.
 \end{align*}
 
-}
+\end{frame}
 
-\frame{\frametitle{Updating and Mixture Commute}
+\frame{\frametitle{Updating and Mixture Commute \hyperlink{commute-back<3>}{\beamerreturnbutton{}}}
 
 %Then
 \begin{align*}
@@ -857,16 +993,16 @@ p_m(\vartheta\mid \nz_1,\yz_1, \nz_2,\yz_2, \kappa, \x) } \hspace*{8ex} & \\[2ex
 
 }
 
-\frame{\frametitle{Updating and Mixture Commute}
+\frame{\frametitle{Updating and Mixture Commute \hyperlink{commute-back<3>}{\beamerreturnbutton{}}}
 
 \begin{itemize}
 \item updated mixture distribution is a mixture of the updated components
 with mixture parameter $\kappa^*$ instead of $\kappa$.
-\item convex hull of prior components\\ $=$ set of prior mixture distributions with $\kappa \in [0,1]$
+\item convex hull of prior components\\ $=$ set of prior mixture distributions with $\kappa \in [0,1]$.
 \item for any $\kappa \in [0,1]$, the corresponding $\kappa^* \in [0,1]$.
 \item in fact, $\{\kappa^* \mid \kappa \in [0,1]\} = [0,1]$.
-\item set of updated mixture distributions with $\kappa^* \in [0,1]$\\ $=$ convex hull of updated components
-\item arbitrary number of components by complete induction
+\item set of updated mixture distributions with $\kappa^* \in [0,1]$\\ $=$ convex hull of updated components.
+\item arbitrary number of components by complete induction.
 \end{itemize}
 }
 

@@ -743,8 +743,131 @@ but are useful only for inferences that are \emph{linear} in the posteriors\\
 \end{frame}
 
 
-\begin{frame}{BBM-example}
-\end{frame}
+\frame{\frametitle{Imprecise BBM with $\nzg$ fixed: \parbox{0.44\textwidth}{\small IDM (Walley 1996)\\ Quaghebeur \& de Cooman (2005)}}
+\hspace*{-12ex}
+\begin{columns}%[T]
+\begin{column}{0.55\textwidth}
+\begin{tikzpicture}
+\pgftransformscale{0.025}
+\uncover<1>{
+\input{line01.tex}
+}
+\uncover<2>{
+\input{line02.tex}
+\draw[-stealth,very thick] (110,175) -- (220,175) node [above,midway] {12 out of 16};
+}
+\uncover<3->{
+\input{line03.tex}
+\draw[-stealth,very thick,gray] (110,175) -- (220,175) node [above,midway,gray] {12 out of 16};
+}
+\uncover<4->{
+\draw[-stealth,very thick] (110,102) -- (220,167) node [above,midway,sloped] {16 out of 16};
+}
+\end{tikzpicture}
+\end{column}
+\begin{column}{0.45\textwidth}
+\uncover<1->{%
+\begin{block}{no conflict:}
+prior $\nzg = 8$, $\yzr \in [0.7, 0.8]$\\
+data $s/n = 12/16 = 0.75$
+\end{block}
+} %
+\uncover<2->{%
+\vspace*{-1.5ex}\centerline{\color{lmugreen} $\blacktriangledown$}\vspace*{-1.5ex}
+\begin{block}{}
+$\nng = 24$, $\ynr \in [0.73, 0.77]$
+\end{block}
+} %
+\uncover<4->{%
+\vspace*{-1.5ex}\centerline{\color{lmugreen} $\blacktriangle$}\vspace*{-1.5ex}
+}
+\uncover<3->{%
+\begin{block}{\pdc:}
+prior $\nzg = 8$, $\yzr \in [0.2, 0.3]$\\
+data $s/n = 16/16 = 1$
+\end{block}
+} %
+\uncover<0>{%
+\vspace*{-1.5ex}\centerline{\color{lmugreen} $\blacktriangledown$}\vspace*{-1.5ex}
+\begin{block}{}
+$\nng \in [20, 24]$, $\ynr \in [0.73, 0.86]$
+\end{block}
+} %
+%\uncover<5->{ %
+%\then\ same imprecise predictive prob.\ $[\Pl,\Pu]$!
+%}
+\end{column}
+\end{columns}
+
+}
+
+
+\frame{\frametitle{Imprecise BBM with $[\nzlg,\nzug]$: \parbox{0.43\textwidth}{\small Walley (1991, \S 5.4.3)\\ Walter \& Augustin (2009)}}
+\hspace*{-12ex}
+\begin{columns}%[T]
+\begin{column}{0.55\textwidth}
+\begin{tikzpicture}
+\pgftransformscale{0.025}
+\uncover<1>{
+\input{rect01.tex}
+}
+\uncover<2>{
+\input{rect02.tex}
+\draw[-stealth,very thick] (110,175) -- (193,175) node [above,midway] {12 out of 16};
+}
+\uncover<3>{
+\input{rect03.tex}
+\draw[-stealth,very thick,gray] (110,175) -- (193,175) node [above,midway,gray] {12 out of 16};
+}
+\uncover<4>{
+\input{rect04.tex}
+\draw[-stealth,very thick,gray] (110,175) -- (193,175) node [above,midway,gray] {12 out of 16};
+\draw[-stealth,very thick] (110,102) -- (213,180) node [above,midway,sloped] {16 out of 16};
+%\draw[-stealth,very thick, postaction={decorate,decoration={raise=2pt,text along path, %
+%                                       text={16 out of 16}}}] (110,95) .. controls +(right:30) and +(down:30) .. (210,183);
+%\draw[-stealth,very thick] (110,95) .. controls +(right:10) and +(down:10) .. (210,183) node [below,midway,sloped] {16 out of 16};
+}
+\end{tikzpicture}
+\end{column}
+\begin{column}{0.45\textwidth}
+\uncover<1->{%
+\begin{block}{no conflict:}
+prior $\nzg\! \in [4, 8]$, $\yzr\! \in [0.7, 0.8]$\\
+data $s/n = 12/16 = 0.75$
+\end{block}
+} %
+\uncover<2->{%
+\vspace*{-1.5ex}\centerline{\color{lmugreen} $\blacktriangledown$}\vspace*{-1.5ex}
+\begin{block}{}
+%$\gruen{\nn} \in [20, 24]$,
+\centering $\ynr \in [0.73, 0.77]$
+%\centering ``spotlight'' shape
+\end{block}
+} %
+\uncover<3->{%
+\begin{block}{\pdc:}
+prior $\nzg \in\! [4, 8]$, $\yzr\! \in [0.2, 0.3]$\\
+data $s/n = 16/16 = 1$
+\end{block}
+} %
+\uncover<4->{%
+\vspace*{-1.5ex}\centerline{\color{lmugreen} $\blacktriangledown$}\vspace*{-1.5ex}
+\begin{block}{}
+%$\gruen{\nn} \in [20, 24]$,
+\centering $\ynr \in [0.73, 0.86]$
+%\centering ``banana'' shape
+\end{block}
+} %
+\end{column}
+\end{columns}
+
+}
+
+
+\subsection{Model Discussion}
+
+
+
 
 
 

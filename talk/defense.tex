@@ -1520,16 +1520,22 @@ with mixture parameter $\kappa^*$ instead of $\kappa$.
 graph mik's world
 \end{frame}
 
-\begin{frame}[label=noninf-app]{So-called Noninformative Priors \hyperlink{noninf-back<3>}{\beamerreturnbutton{}}}
+\begin{frame}[label=noninf-app]{`Noninformative' Priors \hyperlink{noninf-back<3>}{\beamerreturnbutton{}}}
 \begin{itemize}
-\item noninformative priors can be useful as a technical device if data are non-sparse***
+\item noninformative priors can be useful as a technical device if data is ample*** enough
 \item in contrast to the name they do contain substantial information:\\
 they give a (precise) probability for any subset $A$ of the parameter space
 \item they are often improper: problematic for testing and model selection
 \item they express \emph{indifference} instead of \emph{ignorance}
 \item instead, a set of priors with $P(A) = [0,1]$ is noninformative
 \item model framework allows for near-noninformative sets of priors\\
-(Walley 1996; Benavoli \& Zaffalon 2012)
+%(Walley 1996; Benavoli \& Zaffalon 2012)
+ \begin{itemize}
+ \item IDM (Walley 1996): range of $\yzjr = (0,1)\ \forall j$
+ \item Benavoli \& Zaffalon (2012): range of $\yzr = (-\infty,+\infty)$\\
+ while $\nzug$ decreasing with $\yzr$\\ %$\nzg$ bounded above
+ (to avoid $\nzg |\yzr| = \infty$, i.e.\ vacuous posterior inferences)
+ \end{itemize}
 \end{itemize}
 \end{frame}
 

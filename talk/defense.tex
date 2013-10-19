@@ -1080,8 +1080,9 @@ maximum likelihood estimator:
 
 \begin{frame}{Bayesian Inference: Dirichlet Prior}
 \uncover<1->{%
-  $\vec{\alpha}$ considered as uncertain parameter on which we put\dots
-  \begin{block}{Dirichlet Distribution ($\to$ Dirichlet-Multinomial Model)}
+%  $\vec{\alpha}$ considered as uncertain parameter on which we put\dots
+  \begin{block}{Dirichlet-Multinomial Model}
+  \vspace*{-2.0ex}
   \begin{columns}
   \begin{column}{0.65\textwidth}
     \begin{align*}
@@ -1091,12 +1092,20 @@ maximum likelihood estimator:
   \begin{column}{0.35\textwidth}
     \rule{0ex}{3ex}where $(\nzg, \byzr)$\\ are \emph{hyperparameters}
  \end{column}
- \end{columns}\vspace*{-1.8ex}
+ \end{columns}\vspace*{-2.7ex}
     \begin{align*}
-      \nzg &> 0\\[-1ex]
+      \nzg &> 0\\[-1.1ex]
       \byzr &\in \Delta=\Big\{
         (\yzor,\dots,\yzkr)\colon \yzor\ge0,\dots,\yzkr\ge 0,\,\sum_{j=1}^k \yzjr=1
       \Big\}
+    \end{align*}%
+    \vspace*{-4.8ex}%
+    \begin{align*}
+      p(\vec{\alpha}\mid\nzg,\byzr,\vec{n})
+      &=
+      p(\vec{\alpha}\mid\nng,\bynr)
+      =
+      \prod_{j=1}^k\alpha_j^{\nng\ynjr-1}\rule{9ex}{0ex}
     \end{align*}
   \end{block}}
 \uncover<2->{%
@@ -1104,12 +1113,13 @@ maximum likelihood estimator:
   \begin{block}{Interpretation}
     \begin{itemize}
     \item $\byzr$ = \alert{prior expectation of $\vec{\alpha}$}, i.e., a prior guess for $\frac{n_j}{n}$, $j=1,\ldots,n$
-    \item $\nzg$ = determines \alert{spread} and \alert{learning speed} (see next slide)
+    \item $\nzg$ = determines \alert{spread} and \alert{learning speed} %(see next slide)
     \end{itemize}
   \end{block}}
 \note<1>[item]{draw 1d and 2d simplex on black board}
 \end{frame}
 
+\iffalse
 \begin{frame}{Bayesian Inference: Dirichlet Posterior}
   \begin{itemize}[<+->]
   \item posterior density for $\vec{\alpha}$ is again Dirichlet \ \ \then\ \ \alert{conjugacy}\\
@@ -1156,11 +1166,11 @@ maximum likelihood estimator:
   \end{center}}
 %   \end{alertblock}}
 \end{frame}
+\fi
 
-\begin{frame}{Example: Prior and Data}
-  (taken from Kelly \& Atwood, 2011) %\cite{2011:kelly:atwood})
-
-  \begin{example}
+\begin{frame}{Bayesian Inference: Example}
+  
+  \begin{exampleblock}{Example (Kelly \& Atwood, 2011)}
     Consider a system with four redundant components ($k=4$). \\
     %The probability of
     %$j$ out of $k$ common-cause failures, given that failure has happend,
@@ -1189,13 +1199,28 @@ maximum likelihood estimator:
       &
       n_4&=0
     \end{align*}
-  \end{example}
+  \end{exampleblock}
+\vspace*{-2ex}%
+\uncover<2->{%
+    \begin{align*}
+      %\label{eq:dirichlet:posterior:predictive}
+      %\colorbox{red!10!white}{$\displaystyle
+      \text{\bf we focus on }
+      \E[\alpha_j\mid\nng,\bynr] 
+      %=
+      %\int_{\Delta}\alpha_j p(\vec{\alpha}\mid\nzg,\byzr,\vec{n})\dd\vec{\alpha} \\
+      = \ynjr
+      =
+      \frac{\nzg}{\nzg+n} \cdot \yzjr + \frac{n}{\nzg+n} \cdot \frac{n_j}{n}
+    \end{align*}
+    (in a decision context, this expectation would typically end up \\
+    in expressions for expected utility)}
 \end{frame}
 
-\begin{frame}{Example: Non-Informative Priors}
-  \alert{large variation in posterior under different non-informative***link priors}
-  \begin{itemize}[<+->]
-  \item with constrained maximum entropy prior\\ (Atwood, 1996; Kelly \& Atwood, 2011): %\cite{1996:atwood,2011:kelly:atwood}):
+\begin{frame}[label=noninf-back]{Example: Non-Informative Priors}
+  \alert{large variation in posterior under different \hyperlink{noninf-app}{non-informative priors}}
+  \begin{itemize}%[<+->]
+  \item<1-> with constrained maximum entropy prior\\ (Atwood, 1996; Kelly \& Atwood, 2011): %\cite{1996:atwood,2011:kelly:atwood}):
     \begin{align*}
       \E[\alpha_1\mid\nng,\bynr]&=0.967
       &
@@ -1205,7 +1230,7 @@ maximum likelihood estimator:
       &
       \E[\alpha_4\mid\nng,\bynr]&=0.001
     \end{align*}
-  \item 
+  \item<2->
   with uniform prior ($\yzjr=0.25$ and $\nzg=4$):
   \begin{align*}
     \E[\alpha_1\mid\nng,\bynr]&=0.9
@@ -1216,7 +1241,7 @@ maximum likelihood estimator:
     &
     \E[\alpha_4\mid\nng,\bynr]&=0.025
   \end{align*}
-  \item
+  \item<3->
   with Jeffrey's prior ($\yzjr=0.25$ and $\nzg=2$):
   \begin{align*}
     \E[\alpha_1\mid\nng,\bynr]&=0.9342
@@ -1264,8 +1289,8 @@ use a \alert{set of hyperparameters}
 \begin{itemize}
   \item we are doing a \alert{sensitivity analysis} (\'a la robust Bayes)\\ over $(\nzg,\byzr) \in \PZc$
   \item we take a \alert{set of priors} %$\text{conv}\big(\big\{p(\alpha\mid\nzg,\byzr) \colon (\nzg,\byzr) \in \PZc\big\}\big)$
-  based on $\PZc$ \\
-  as model for prior information (details later)
+  based on $\PZc$ 
+  as model for prior information %(details later)
 %  (resp.\ all convex mixtures of them)
 \end{itemize}
 \end{block}}\uncover<3>{%
@@ -1364,7 +1389,7 @@ also known as pre-posterior analysis}
   \item<3-> Simple ways to elicit the parameters of the model \\
     by \alert{reasoning on hypothetical data} \\
 %    rather than by maximum entropy arguments
-  \item<4-> Is it possible to generalise this method to other problems?
+%  \item<4-> Is it possible to generalise this method to other problems?
   \end{itemize}
 \note<1>[item]{So what does this choice of parameter set mean for our number example?
 We now have a posterior model that is based on a clear behavioural choice of prior,
@@ -1372,16 +1397,28 @@ expressing our prior ideas about $\vec{\alpha}$ and still being flexible enough 
 \end{frame}
 
 
+\frame{\frametitle{Conclusion}
 
-
-
-
-
-
-
-
-
-
+\begin{itemize}%[<+->]
+\item<1-> Conjugate priors are a convenient tool for Bayesian inference\\ but there are some pitfalls
+ \begin{itemize}%[<+->]
+ \item Hyperparameters $\nzg,\yzr$ are easy to interpret and elicit
+ \item Averaging property makes calculations simple, but leads to
+ inadequate model behaviour in case of \pdc
+ \end{itemize}
+\item<2-> Sets of conjugate priors maintain advantages \& mitigate issues %find a sweet spot in between
+ \begin{itemize}%[<+->]
+ \item Hyperparameter set shape is important %a crucial modeling choice
+ \item Reasonable choice: \emph{rectangular} $\PZc = [\nzlg, \nzug] \times [\yzlr, \yzur]$\\
+ (Walter \& Augustin 2009: \emph{generalised iLUCK-models}, \hyperlink{luck-app}{\texttt{luck}})
+ \item Bounds for hyperparameters are easy to interpret and elicit
+ \item Additional imprecison in case of \pdc\\
+ leads to \alert{cautious inferences if, and only if, caution is needed}
+ \item Shape for more precision in case of strong prior-data agreement is in development
+ (joint work with Frank Coolen and Mi\c{k} Bickis)
+ \end{itemize}
+\end{itemize}
+}
 
 \frame{\frametitle{Works the Thesis is Based on}
 
@@ -1395,7 +1432,8 @@ expressing our prior ideas about $\vec{\alpha}$ and still being flexible enough 
 
 \frame{\frametitle{Further References}
 
-\nocite{1994:hoyland,1965:good,1991:walley,1996:walley::idm,2011:kelly:atwood,1996:atwood,2006:evans,2005:quaeghebeurcooman,1994:berger}
+\nocite{1994:hoyland,1965:good,1991:walley,1996:walley::idm,2011:kelly:atwood,1996:atwood,2006:evans,2005:quaeghebeurcooman,%
+1994:berger,2012:benavolizaffalon-short}
 
 \printbibliography[heading=none,keyword=defensefurther]
 
@@ -1482,8 +1520,21 @@ with mixture parameter $\kappa^*$ instead of $\kappa$.
 graph mik's world
 \end{frame}
 
+\begin{frame}[label=noninf-app]{So-called Noninformative Priors \hyperlink{noninf-back<3>}{\beamerreturnbutton{}}}
+\begin{itemize}
+\item noninformative priors can be useful as a technical device if data are non-sparse***
+\item in contrast to the name they do contain substantial information:\\
+they give a (precise) probability for any subset $A$ of the parameter space
+\item they are often improper: problematic for testing and model selection
+\item they express \emph{indifference} instead of \emph{ignorance}
+\item instead, a set of priors with $P(A) = [0,1]$ is noninformative
+\item model framework allows for near-noninformative sets of priors\\
+(Walley 1996; Benavoli \& Zaffalon 2012)
+\end{itemize}
+\end{frame}
+
 %---- reset total frame number
-\addtocounter{framenumber}{-6} 
+\addtocounter{framenumber}{-7} 
 
 
 \end{document}

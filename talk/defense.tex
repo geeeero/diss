@@ -634,7 +634,7 @@ on the degree of prior-data conflict in most cases.}\\[1.5ex]
 %\hspace*{6ex}\parbox[t]{0.9\textwidth}{
 \textbf{Add \alert{imprecision} as new model dimension:\\
 \alert{Sets of priors} model uncertainty in probability statements\\
-and allow to model partial information on $\vartheta$}\\[2ex]
+and allow to better model partial information on $\vartheta$}\\[2ex]
 %}
 
 \uncover<2->{%
@@ -864,11 +864,89 @@ data $s/n = 16/16 = 1$
 }
 
 
-\subsection{Model Discussion}
+\begin{frame}[label=othermodels-back]{General Model Properties}
+
+\uncover<1->{%
+Favourable inference properties \hyperlink{othermodels-app}{\small (cf.\ other models based on sets of priors)}}
+\begin{itemize}%[<+->]
+\note<1>[item]{In contrast to other model based on sets of priors,
+this model is easy to handle and to elicit, and has very favourable inference properties}
+\item<1-> $n \to \infty$\hspace*{0.9ex}%
+%\uncover<2->{\then\ \ $\ynr$ values in $\PNc \to \frac{\tau(\x)}{n}$\hspace*{0.9ex}}%
+%\uncover<3->{\then\ \ `Bayesian consistency'}
+\uncover<2->{\then\ \ $\ynr$ stretch in $\PNc \to 0$\hspace*{0.9ex}}%
+\uncover<3->{\then\ \ precise inferences}
+\note<3>[item]{`Bayesian consistency' just like in usual Bayesian inference}
+\item<4-> larger $\nzg$ \then\ larger $\PNc$ \then\ more vague inferences
+\note<4>[item]{larger $\nzg$ as compared to $n$:\\
+more weight on imprecise prior $\MZ$ leads to more imprecise posterior $\MN$}
+\item<5-> larger range of $\yzr$ in $\PZc$ \then\ larger range of $\ynr$ in $\PNc$\\ \quad  \then\ more vague inferences
+\note<5>[item]{more imprecise prior $\MZ$ leads to more imprecise $\MN$}
+\end{itemize}
+
+\uncover<6->{%
+Model very easy to handle:}
+\begin{itemize}%[<+->]
+\item<6-> Hyperparameter set $\PZc$ defines set of priors $\MZ$
+\item<7-> Hyperparameter set $\PNc$ defines set of posteriors $\MN$
+\item<8-> $\PZc \to \PNc$ is easy: $\nng = \nzg + n$, $\ynr = \frac{\nzg}{\nzg + n}\yzr + \frac{n}{\nzg + n}\frac{\tau(\x)}{n}$
+\item<9-> For quantities linear in posteriors, bounds are attained at ``pure'' posteriors $p(\psib\mid\nng,\bynr)$
+\then\ optimise over $\PNc$ (not over $\MN$)
+\item<10-> Often, optimising over $(\nng,\bynr) \in \PNc$ is also easy:\\
+\alert{closed form solution} for $\ynr$ = posterior `guess' for $\frac{\tau(\x)}{n}$ (think: $\bar{\x}$)\\
+given $\PNc$ has `nice' shape
+\end{itemize}
+
+\end{frame}
 
 
+\subsection{Parameter Set Shapes}
+
+\frame{\frametitle{Parameter Set Shapes}
+
+%graphs line, rectangle, eggplant
+\vspace*{-7ex}
+\begin{tikzpicture}
+%\uncover<1>{\node {\includegraphics[scale=0.75]{../R/shape0.pdf}};
+%            \draw[-stealth,very thick] (-1,-0.4) -- (2.3,1.1) node [above,midway,sloped] {+ data};}
+\uncover<1>{\node {\includegraphics[scale=0.75]{../R/shape1.pdf}};
+            \draw[-stealth,very thick] (-1,-0.4) -- (2.3,1.1) node [above,midway,sloped] {+ data};}
+\uncover<2>{\node {\includegraphics[scale=0.75]{../R/shape2.pdf}};
+            \draw[-stealth,very thick] ( 0,-0.5) -- (2.3,1.1) node [above,midway,sloped] {+ data};}
+\uncover<3>{\node {\includegraphics[scale=0.75]{../R/shape3.pdf}};
+            \draw[-stealth,very thick] ( 0,-0.5) -- (2.3,1.1) node [above,midway,sloped] {+ data};}
+\end{tikzpicture}
+}
 
 
+\begin{frame}[label=luck-back]{Parameter Set Shapes}
+\begin{itemize}%[<+->]
+\item<1-> Set shape is crucial modeling choice:\\ %A range of $\nzg$ values is needed for \pdc\ reaction
+trade-off between model complexity and model behaviour
+% \begin{itemize}
+\item<2-> $\PZc\! = \nzg \times [\yzlr, \yzur]$ {\small (Walley\,1996;\,Quaghebeur\,\&\,de\,Cooman\,2005)}:\\
+ $\PNc\! = \nng \times [\ynlr, \ynur]$ \then\ optimise over $[\ynlr, \ynur]$ only,\\
+ but no \pdc\ sensitivity
+\item<3-> $\PZc\! = [\nzlg,\nzug] \times [\yzlr, \yzur]$ {\small (Walley 1991; Walter \& Augustin 2009)}:\\
+ $\PNc$ have non-trivial forms (banana / spotlight), but \pdc\ sensitivity and closed form for $\min / \max \ynr$ over $\PNc$\\
+ implementation: \hyperlink{luck-app}{\textbf{R} package \texttt{luck}}
+% \end{itemize}
+\item<4-> Other set shapes are possible, but may be more difficult to handle %elicit
+%\item<8-> Prior information may be such that range of $\yzr$ changes with $\nzg$ (or vice versa)
+\end{itemize}
+\end{frame}
+
+\begin{frame}[label=boat-back]{Parameter Set Shape for Strong Prior-Data Agreement}
+%\hspace*{-2ex}%
+%\uncover<2->{%
+%\vspace*{-7ex}%
+\begin{center} %trim=l b r t
+\hyperlink{boat-app}{%
+%\includegraphics[trim = 40mm 35mm 40mm 45mm, clip, width=\textwidth]{../R/boatshape-durham0913} % width=8, height=6
+\includegraphics[trim = 70mm 52.5mm 70mm 65mm, clip, width=\textwidth]{../R/boatshape-durham0913} % width=6, height=4.5
+}%
+\end{center}%}
+\end{frame}
 
 
 \section{Common-cause Failure Modelling}
@@ -1387,8 +1465,25 @@ with mixture parameter $\kappa^*$ instead of $\kappa$.
 \end{itemize}
 }
 
+\begin{frame}[label=othermodels-app]{Other Models Based on Sets of Priors
+\hyperlink{othermodels-back<3>}{\beamerreturnbutton{3}} \hyperlink{othermodels-back<10>}{\beamerreturnbutton{10}}}
+\begin{itemize}
+\item Neighbourhood models
+\item Interval of measures / density ratio class
+\item Discrete models
+\end{itemize}
+\end{frame}
 
-%---- Appendix: reset total frame number
-\addtocounter{framenumber}{-3} 
+\begin{frame}[label=luck-app]{\textbf{R} package \texttt{luck} \hyperlink{luck-back<4>}{\beamerreturnbutton{}}}
+***uml graph
+\end{frame}
+
+\begin{frame}[label=boat-app]{Strong Prior-Data Agreement Modelling \hyperlink{boat-back<1>}{\beamerreturnbutton{}}}
+graph mik's world
+\end{frame}
+
+%---- reset total frame number
+\addtocounter{framenumber}{-6} 
+
 
 \end{document}

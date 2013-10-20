@@ -479,16 +479,6 @@ P = \E[\theta\mid\nng,\ynr]
 \uncover<4->{
 \draw[-stealth,very thick] (110,102) -- (220,167) node [above,midway,sloped] {16 out of 16};
 }
-\uncover<5>{%
-%\draw[thick,fill=white] (0,0) rectangle (100,50) {text};
-%\node at (140,80) {\parbox{0.5\textwidth}{
-\draw (160,35) node [rectangle,very thick,draw,fill=white] {\parbox{23.5ex}{
-%\begin{block}{}
-Weighted average structure\\ is underneath \alert{all common\\ conjugate priors}
-for\\ exponential family\\ sampling distributions!
-%\end{block}
-}};
-} %
 \end{tikzpicture}
 \end{column}
 \begin{column}{0.45\textwidth}
@@ -603,30 +593,33 @@ posterior:       & $\mu\mid\nng,\ynr$ & $\sim$ & $\norm(\ynr, 1/\nng)$ \quad ($\
 
 \subsection{Why Generalise Bayesian Inference?}
 
-\frame{\frametitle{Why Generalise Bayesian Inference?}
-
-***Foundational arguments for the Bayesian approach as a coherent way of inferential reasoning
-hold only if one can make \emph{``arbitrarily fine discriminations in judgement about unknowns and utilities''}
-(Berger et al.\ 1994, p.~303).\\[1.5ex]
-
-\pause
+\begin{frame}[label=foundational-back]{Why Generalise Bayesian Inference?}
 Bayesian theory lacks the ability to specifiy the degree of uncertainty in probability statements
 encoded in a (prior, posterior) distribution.\\[1.5ex]
 
-\pause
-Variance or stretch of a distribution for describing uncertainty?\\[1.5ex]
+\uncover<2->{%
+Variance or stretch of a distribution for describing uncertainty?\\[1.5ex]}
 %but this mostly does not work in conjugate updating as just shown.
 %but this has mostly no influence on the behaviour to prior-data conflict.
 
-\pause
+\uncover<3->{%
 \then\ \parbox[t]{0.9\textwidth}{Does not work in the case of prior-data conflict:\\
 In conjugate updating, the posterior variance does not depend
 on the degree of prior-data conflict in most cases.}\\[1.5ex]
+\then\ How to express the precision of a probability statement?\\[1.5ex]}
 
-\then\ How to express the precision of a probability statement?\\
-
-***appendix slide on Foundational arguments \& hierarchical models???***
+\vfill
+{\color{gray}%
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\hyperlink{foundational-app}{\small Foundational arguments regarding over-precision of the classical Bayesian framework}
+\end{column}
+\begin{column}{0.5\textwidth}
+\hyperlink{hierarchical-app}{\small Comments on hierarchical modelling}
+\end{column}
+\end{columns}
 }
+\end{frame}
 
 
 \frame{\frametitle{Imprecision}
@@ -929,7 +922,7 @@ trade-off between model complexity and model behaviour
  but no \pdc\ sensitivity
 \item<3-> $\PZc\! = [\nzlg,\nzug] \times [\yzlr, \yzur]$ {\small (Walley 1991; Walter \& Augustin 2009)}:\\
  $\PNc$ have non-trivial forms (banana / spotlight), but \pdc\ sensitivity and closed form for $\min / \max \ynr$ over $\PNc$\\
- implementation: \hyperlink{luck-app}{\textbf{R} package \texttt{luck}}
+ {\small (\hyperlink{luck-app}{\textbf{R} package \texttt{luck}}: box-constraint optimisation over $\PZc$ for other inferences)}
 % \end{itemize}
 \item<4-> Other set shapes are possible, but may be more difficult to handle %elicit
 %\item<8-> Prior information may be such that range of $\yzr$ changes with $\nzg$ (or vice versa)
@@ -1441,6 +1434,43 @@ expressing our prior ideas about $\vec{\alpha}$ and still being flexible enough 
 %\bibliography{../bib/eigene,../bib/itip-refs,../bib/other-refs}
 }
 
+%---- Appendix: Foundational arguments for IP
+\begin{frame}[label=foundational-app]{Arguments for Imprecise Bayesian Inference
+\hyperlink{foundational-back<3>}{\beamerreturnbutton{}}}
+\begin{itemize}
+\item The formal arguments for the Bayesian approach as a coherent way of inferential reasoning
+hold only if one can make \emph{``arbitrarily fine discriminations in judgement about unknowns and utilities''}
+(Berger et al.\ 1994, p.~303). (Your subjective prior must \emph{exactly} express your preferences,
+anticipating \emph{anything} that may happen.)
+\item Walley's (1991) framework for coherent inference using imprecise probabilities
+instead allows for incomplete and imprecise prior specifications.
+%\item It properly reflects the knowledge base ***
+\note<1>[item]{The unattainable precision required by usual Bayesian inference is thus unnecessary (even as an ideal).}
+\begin{itemize}
+\item more realistic description of uncertainties that are often hidden by spuriously precise models (through arbitrary modeling decisions)
+\item `overprecision' is often compensated %in statistical practice
+by `taking models not too seriously' (``all models are wrong, but some are useful'')
+\item why not use reliable models in the first place?
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[label=hierarchical-app]{Hierarchical Modelling
+\hyperlink{foundational-back<3>}{\beamerreturnbutton{}}}
+\begin{itemize}
+\item Usually: space of parametric priors indexed by parameter $\phi$.
+\item Very useful if $\phi$ has a clear meaning (e.g., as a global mean),
+such that a prior on $\phi$ can be meaningfully elicited.
+\item Noninformative priors on $\phi$ can be problematic\\ (incoherence, improper posteriors).
+\begin{exampleblock}{Example (e.g., Walley 1991, p.~232)}
+$x_i \stackrel{i.i.d.}{\sim} \norm(\mu_i,1)$, $\mu_i \stackrel{i.i.d.}{\sim} \norm(\mu,\sigma^2)$, $i=1,\ldots,n$.\\
+%For the noninformative hyperprior
+For $p(\mu,\sigma^2) \propto \sigma^{-1}$, the posterior is improper.
+\end{exampleblock}
+\item High-variance priors on $\phi$ do not express ignorance about $\phi$,\\
+but a strong prior belief that $|\phi|$ is large (Walley 1991, p.~233).
+\end{itemize}
+\end{frame}
 
 
 %---- Appendix: Updating and Mixture Commute
@@ -1522,25 +1552,27 @@ graph mik's world
 
 \begin{frame}[label=noninf-app]{`Noninformative' Priors \hyperlink{noninf-back<3>}{\beamerreturnbutton{}}}
 \begin{itemize}
-\item noninformative priors can be useful as a technical device if data is ample*** enough
-\item in contrast to the name they do contain substantial information:\\
-they give a (precise) probability for any subset $A$ of the parameter space
+\item noninformative priors can be useful as a technical device\\
+when they hardly influence the posterior
 \item they are often improper: problematic for testing and model selection
+\item %in contrast to the name they do contain subtantial information:\\
+they give a (precise) probability for any subset $A$ of the parameter space,
+which seems incompatible with the notion of ignorance
 \item they express \emph{indifference} instead of \emph{ignorance}
-\item instead, a set of priors with $P(A) = [0,1]$ is noninformative
+\item a set of priors with $P(A) = [0,1]$ is noninformative
 \item model framework allows for near-noninformative sets of priors\\
 %(Walley 1996; Benavoli \& Zaffalon 2012)
  \begin{itemize}
  \item IDM (Walley 1996): range of $\yzjr = (0,1)\ \forall j$
- \item Benavoli \& Zaffalon (2012): range of $\yzr = (-\infty,+\infty)$\\
- while $\nzug$ decreasing with $\yzr$\\ %$\nzg$ bounded above
+ \item Benavoli \& Zaffalon (2012):\\ range of $\yzr = (-\infty,+\infty)$,
+ while $\nzug$ decreases with $\yzr$\\ %$\nzg$ bounded above
  (to avoid $\nzg |\yzr| = \infty$, i.e.\ vacuous posterior inferences)
  \end{itemize}
 \end{itemize}
 \end{frame}
 
 %---- reset total frame number
-\addtocounter{framenumber}{-7} 
+\addtocounter{framenumber}{-9} 
 
 
 \end{document}

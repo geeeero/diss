@@ -7,6 +7,7 @@
 
 \usepackage[english]{babel}
 \usepackage{url}
+\usepackage{listings}
 %\usepackage{cite}
 %\usepackage{natbib}
 \usepackage[backend=bibtex,style=authoryear,dashed=false]{biblatex}
@@ -195,12 +196,36 @@
 \frame{\frametitle{Overview}
 \begin{tikzpicture}%[spy using outlines={rectangle, magnification=3, size=1.5cm, connect spies}]
 \path (-1.5,-5) rectangle (10.5,2);
+\node at (4.5,-3.4) {\parbox{0.9\textwidth}{%
+\begin{enumerate}
+\item Bayesian inference \& prior-data conflict %and Strong prior-data agreement
+\item Generalised Bayesian inference with sets of priors\\ (joint work with Thomas Augustin and Frank Coolen)
+\item Common-cause failure modeling\\ (joint work with Matthias Troffaes and Dana Kelly)
+\end{enumerate}
+}};
+\end{tikzpicture}
+}
+
+\addtocounter{framenumber}{-1} 
+\frame{\frametitle{Overview}
+\begin{tikzpicture}%[spy using outlines={rectangle, magnification=3, size=1.5cm, connect spies}]
+\path (-1.5,-5) rectangle (10.5,2);
 \node[draw] at (0,0) {\includegraphics[scale=0.12]{../diss-toc-1.pdf}};
 \node[draw] at (3,0) {\includegraphics[scale=0.12]{../diss-toc-2.pdf}};
 \node[draw] at (6,0) {\includegraphics[scale=0.12]{../diss-toc-3.pdf}};
 \node[draw] at (9,0) {\includegraphics[scale=0.12]{../diss-toc-4.pdf}};
+%
+\node at (4.5,-3.4) {\parbox{0.9\textwidth}{%
+\begin{enumerate}
+\item Bayesian inference \& prior-data conflict %and Strong prior-data agreement
+\item Generalised Bayesian inference with sets of priors\\ (joint work with Thomas Augustin and Frank Coolen)
+\item Common-cause failure modeling\\ (joint work with Matthias Troffaes and Dana Kelly)
+\end{enumerate}
+}};
 \end{tikzpicture}
 }
+
+
 
 % page 1
 \addtocounter{framenumber}{-1} 
@@ -259,7 +284,7 @@
 
 \addtocounter{framenumber}{-1} 
 \frame{\frametitle{Overview}
-\begin{tikzpicture}[spy using outlines={rectangle, magnification=3, width=11cm, connect spies}]
+\begin{tikzpicture}[spy using outlines={rectangle, magnification=3, width=11cm}]
 \path (-1.5,-5) rectangle (10.5,2);
 \node[draw] at (0,0) {\includegraphics[scale=0.12]{../diss-toc-1.pdf}};
 \node[draw, yellow!60!red, fill=white!60!yellow] at (3,0) {\includegraphics[scale=0.12]{../diss-toc-2.pdf}};
@@ -273,7 +298,7 @@
 
 \addtocounter{framenumber}{-1} 
 \frame{\frametitle{Overview}
-\begin{tikzpicture}[spy using outlines={rectangle, magnification=3, width=11cm, connect spies}]
+\begin{tikzpicture}[spy using outlines={rectangle, magnification=3, width=11cm}]
 \path (-1.5,-5) rectangle (10.5,2);
 \node[draw] at (0,0) {\includegraphics[scale=0.12]{../diss-toc-1.pdf}};
 \node[draw, yellow!60!red, fill=white!60!yellow] at (3,0) {\includegraphics[scale=0.12]{../diss-toc-2.pdf}};
@@ -296,9 +321,9 @@
 \node[draw] at (9,0) {\includegraphics[scale=0.12]{../diss-toc-4.pdf}};
 %
 \node[draw, yellow!60!red, fill=white] at (1.3,-1.5) {\includegraphics[scale=0.225]{../diss-toc-2.pdf}};
-\spy[red, height=0.55cm, connect spies] on (1.34,-1.53) in node [fill=white] at (5,-0.4);
-\spy[red, height=0.55cm, connect spies] on (1.34,-0.85) in node [fill=white] at (5, 0.3);
-\spy[red, height=1.05cm]                on (1.34, 0.78) in node [fill=white] at (5, 1.3);
+\spy[red, height=0.55cm] on (1.34,-1.53) in node [fill=white] at (5,-0.4);
+\spy[red, height=0.55cm] on (1.34,-0.85) in node [fill=white] at (5, 0.3);
+\spy[red, height=1.05cm] on (1.34, 0.78) in node [fill=white] at (5, 1.3);
 \end{tikzpicture}
 }
 
@@ -312,10 +337,10 @@
 \node[draw] at (9,0) {\includegraphics[scale=0.12]{../diss-toc-4.pdf}};
 %
 \node[draw, yellow!60!red, fill=white] at (1.3,-1.5) {\includegraphics[scale=0.225]{../diss-toc-2.pdf}};
-\spy[red, height=0.55cm, connect spies] on (1.34,-1.53) in node [fill=white] at (5,-0.4);
-\spy[red, height=0.55cm, connect spies] on (1.34,-0.85) in node [fill=white] at (5, 0.3);
-\spy[red, height=1.05cm]                on (1.34, 0.78) in node [fill=white] at (5, 1.3);
-\spy[red, height=2.45cm]                on (1.34,-2.43) in node [fill=white] at (5,-3.7);
+\spy[red, height=0.55cm] on (1.34,-1.53) in node [fill=white] at (5,-0.4);
+\spy[red, height=0.55cm] on (1.34,-0.85) in node [fill=white] at (5, 0.3);
+\spy[red, height=1.05cm] on (1.34, 0.78) in node [fill=white] at (5, 1.3);
+\spy[red, height=2.45cm] on (1.34,-2.43) in node [fill=white] at (5,-3.7);
 \end{tikzpicture}
 }
 
@@ -343,7 +368,7 @@
 \node[draw] at (9,0) {\includegraphics[scale=0.12]{../diss-toc-4.pdf}};
 %
 \node[draw, yellow!60!red, fill=white] at (1.3,-1.5) {\includegraphics[scale=0.225]{../diss-toc-3.pdf}};
-\spy[red, height=2.90cm, connect spies] on (1.34, 0.36) in node [fill=white] at (5,-2.1);
+\spy[red, height=2.90cm] on (1.34, 0.36) in node [fill=white] at (5,-2.1);
 \end{tikzpicture}
 }
 
@@ -357,8 +382,8 @@
 \node[draw] at (9,0) {\includegraphics[scale=0.12]{../diss-toc-4.pdf}};
 %
 \node[draw, yellow!60!red, fill=white] at (1.3,-1.5) {\includegraphics[scale=0.225]{../diss-toc-3.pdf}};
-\spy[red, height=2.90cm, connect spies] on (1.34, 0.36) in node [fill=white] at (5,-2.1);
-\spy[red, height=0.55cm, connect spies] on (1.34,-0.28) in node [fill=white] at (5,-4.0);
+\spy[red, height=2.90cm] on (1.34, 0.36) in node [fill=white] at (5,-2.1);
+\spy[red, height=0.55cm] on (1.34,-0.28) in node [fill=white] at (5,-4.0);
 \end{tikzpicture}
 }
 
@@ -386,7 +411,7 @@
 \node[draw, yellow!60!red, fill=white!60!yellow] at (9,0) {\includegraphics[scale=0.12]{../diss-toc-4.pdf}};
 %
 \node[draw, yellow!60!red, fill=white] at (1.3,-1.5) {\includegraphics[scale=0.225]{../diss-toc-4.pdf}};
-\spy[red, height=0.85cm, connect spies] on (1.34, 0.47) in node [fill=white] at (5,-3.0);
+\spy[red, height=0.85cm] on (1.34, 0.47) in node [fill=white] at (5,-3.0);
 \end{tikzpicture}
 }
 
@@ -408,15 +433,6 @@ Outline of the talk***
 % ----------------------------------------fast-forward compiling
 \fi
 
-
-\frame{\frametitle{Overview}
-%Outline of the talk***
-\begin{enumerate}
-\item Bayesian inference \& prior-data conflict %and Strong prior-data agreement
-\item Generalised Bayesian inference with sets of priors\\ (joint work with Thomas Augustin and Frank Coolen)
-\item Common-cause failure modeling\\ (joint work with Matthias Troffaes and Dana Kelly)
-\end{enumerate}
-}
 
 \iffalse
 \frame{\frametitle{Overview}
@@ -525,6 +541,7 @@ posterior:       & $\theta\mid \nng, \ynr$ & $\sim$ & $\be(\nng,\, \ynr)$\rule{0
 \end{block}
 where $s$ = number of wins in the $n$ matches observed
 }
+\note<4>[item]{why conjuagte priors? easy to calculate, posterior tractable (known family)}
 }
 
 \subsection{Example: Beta-Binomial Model}
@@ -656,6 +673,7 @@ p(\psib\mid\nzg,\yzr,\vec{x})
 \mbox{where}\quad \ynr &= \frac{\nzg}{\nzg + n} \cdot \yzr + \frac{n}{\nzg + n} \cdot \frac{\tau(\x)}{n}
 & &\mbox{and} & \nng &= \nzg + n }
 \end{align*}
+\note<3>[item]{in the Beta-Binomial model, $\tau(\x) = s$}
 }
 
 \frame{\frametitle{Canonical Conjugate Priors}
@@ -736,7 +754,7 @@ and allow to better model partial information on $\vartheta$}\\[2ex]
 
 \uncover<2->{%
 \begin{block}{Interpretation}
-\centerline{smaller sets \thenthen\ more precise probability statements}
+\centerline{smaller sets $=$ more precise probability statements}
 \vspace*{1ex}
 \parbox[t]{0.45\textwidth}{\centering \textbf{Lottery A}\\
                           Number of winning tickets:\\
@@ -991,7 +1009,7 @@ Model very easy to handle:}
 \then\ optimise over $\PNc$ (not over $\MN$)
 \item<10-> Often, optimising over $(\nng,\bynr) \in \PNc$ is also easy:\\
 \alert{closed form solution} for $\ynr$ = posterior `guess' for $\frac{\tau(\x)}{n}$ (think: $\bar{\x}$)\\
-given $\PNc$ has `nice' shape
+given $\PZc$ has `nice' shape
 \end{itemize}
 
 \end{frame}
@@ -1026,7 +1044,7 @@ trade-off between model complexity and model behaviour
  but no \pdc\ sensitivity
 \item<3-> $\PZc\! = [\nzlg,\nzug] \times [\yzlr, \yzur]$ {\small (Walley 1991; Walter \& Augustin 2009)}:\\
  $\PNc$ have non-trivial forms (banana / spotlight), but \pdc\ sensitivity and closed form for $\min / \max \ynr$ over $\PNc$\\
- {\small (\hyperlink{luck-app}{\textbf{R} package \texttt{luck}}: box-constraint optimisation over $\PZc$ for other inferences)}
+ For other inferences, \hyperlink{luck-app}{\textbf{R} package \texttt{luck}} implements box-constraint optimisation over $\PZc$ 
 % \end{itemize}
 \item<4-> Other set shapes are possible, but may be more difficult to handle %elicit
 %\item<8-> Prior information may be such that range of $\yzr$ changes with $\nzg$ (or vice versa)
@@ -1043,6 +1061,7 @@ trade-off between model complexity and model behaviour
 \includegraphics[trim = 70mm 52.5mm 70mm 65mm, clip, width=\textwidth]{../R/boatshape-durham0913} % width=6, height=4.5
 }%
 \end{center}%}
+\note<1>[item]{Prior set with different posterior sets (for different data)}
 \end{frame}
 
 
@@ -1551,10 +1570,10 @@ instead allows for incomplete and imprecise prior specifications.
 %\item It properly reflects the knowledge base ***
 \note<1>[item]{The unattainable precision required by usual Bayesian inference\\ is thus unnecessary (even as an ideal).}
 \begin{itemize}
-\item more realistic description of uncertainties that are often hidden by spuriously precise models (through arbitrary modeling decisions)
+\item more realistic description of uncertainties that are often hidden by spuriously precise models (through `arbitrary' modeling decisions)
 \item `overprecision' is often compensated %in statistical practice
 by `taking models not too seriously' (``all models are wrong, but some are useful'')
-\item why not use reliable models in the first place?
+\item why not use sensible, reliable models in the first place?
 \end{itemize}
 \end{itemize}
 \end{frame}
@@ -1563,7 +1582,7 @@ by `taking models not too seriously' (``all models are wrong, but some are usefu
 \hyperlink{foundational-back<3>}{\beamerreturnbutton{}}}
 \begin{itemize}
 \item Usually: space of parametric priors indexed by parameter $\phi$.
-\item Very useful if $\phi$ has a clear meaning (e.g., as a global mean),
+\item Very useful if $\phi$ has a clear interpretation (e.g., as a global mean),\\
 such that a prior on $\phi$ can be meaningfully elicited.
 \item Noninformative priors on $\phi$ can be problematic\\ (incoherence, improper posteriors).
 \begin{exampleblock}{Example (e.g., Walley 1991, p.~232)}
@@ -1632,7 +1651,8 @@ with mixture parameter $\kappa^*$ instead of $\kappa$.
 \item convex hull of prior components\\ $=$ set of prior mixture distributions with $\kappa \in [0,1]$.
 \item for any $\kappa \in [0,1]$, the corresponding $\kappa^* \in [0,1]$.
 \item in fact, $\{\kappa^* \mid \kappa \in [0,1]\} = [0,1]$.
-\item set of updated mixture distributions with $\kappa^* \in [0,1]$\\ $=$ convex hull of updated components.
+\item set of updated mixture distributions with $\kappa \in [0,1]$\\
+$=$ convex hull of updated components ($\kappa^* \in [0,1]$).
 \item arbitrary number of components by complete induction.
 \end{itemize}
 }
@@ -1641,17 +1661,180 @@ with mixture parameter $\kappa^*$ instead of $\kappa$.
 \hyperlink{othermodels-back<3>}{\beamerreturnbutton{3}} \hyperlink{othermodels-back<10>}{\beamerreturnbutton{10}}}
 \begin{itemize}
 \item Neighbourhood models
-\item Interval of measures / density ratio class
-\item Discrete models
+\begin{itemize}
+\item set of distributions `close to' a central distribution $\p_0$
+\item common in robust Bayesian approaches 
+\item example: $\varepsilon$-contamination class:
+$\{ \p : \p = (1-\varepsilon) \p_0 + \varepsilon \q, \q \in \mathcal{Q} \}$
+\item not necessarily closed under Bayesian updating
+\end{itemize}
+\item Density ratio class / interval of measures 
+\begin{itemize}
+\item set of distributions by bounds for the density function $p(\vartheta)$:
+\begin{align*}
+\mathcal{M}_{l,u} = \left\{ p(\vartheta) :
+\exists c \in \posreals: l(\vartheta) \le c p(\vartheta) \le u(\vartheta)\right\}
+\end{align*}
+\item posterior set is bounded by updated $l(\vartheta)$ and $u(\vartheta)$
+\item $u(\vartheta)/l(\vartheta)$ is constant under updating\\
+\quad\then\ size of the set does not decrease with $n$\\
+\quad\then\ too vague posterior inferences
+\end{itemize}
 \end{itemize}
 \end{frame}
 
+
+\begin{frame}{Other Models Based on Sets of Priors
+\hyperlink{othermodels-back<3>}{\beamerreturnbutton{3}} \hyperlink{othermodels-back<10>}{\beamerreturnbutton{10}}}
+\begin{itemize}
+\item Discrete models
+\begin{itemize}
+\item discretize the parameter space as $\Theta = \{\theta_j\}_{j \in \{1,\ldots,m\}}$
+\item set of distributions by bounds for $p(\vartheta_j)$ (or for expectations)
+\item posterior bounds determined by linear programming algorithm
+\item more flexibility at the cost of computational complexity
+\item no clear measure for weight of prior information as compared to $n$
+\end{itemize}
+\end{itemize}
+\begin{center}
+\begin{tikzpicture}%[transform canvas={scale=0.33}]
+\pgftransformscale{0.4}
+% 
+\coordinate (e100) at (90:6);
+\coordinate (e010) at (210:6);
+\coordinate (e001) at (-30:6);
+\draw [thick] (e100) -- (e010) -- (e001) -- cycle;
+% Achsen
+\draw [thick,-stealth] (e001) -- +( 90:1.5) node [right] {$\vartheta_1$};
+\draw [thick,-stealth] (e100) -- +(210:1.5) node [left]  {$\vartheta_2$};
+\draw [thick,-stealth] (e010) -- +(-30:1.5) node [right] {$\vartheta_3$};
+% graue Linien
+%
+\foreach \zehntel in {0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1}
+{
+ % Richtung p1
+ \draw[gray,densely dotted] (barycentric cs:e100=\zehntel,e010=0,e001=1-\zehntel) -- %
+                            (barycentric cs:e100=\zehntel,e010=1-\zehntel,e001=0);   %
+ % Richtung p2
+ \draw[gray,densely dotted] (barycentric cs:e100=1-\zehntel,e010=\zehntel,e001=0) -- %
+                            (barycentric cs:e100=0,e010=\zehntel,e001=1-\zehntel);   %
+ % Richtung p3
+ \draw[gray,densely dotted] (barycentric cs:e100=0,e010=1-\zehntel,e001=\zehntel) -- %
+                            (barycentric cs:e100=1-\zehntel,e010=0,e001=\zehntel);   %
+}
+%\draw[fill=gray!40] (barycentric cs:e100=0.75,e010=0.125,e001=0.125) circle (5pt);
+% prior set
+\draw[fill=gray!40] (barycentric cs:e100=0.4,e010=0.4,e001=0.2) -- %
+                    (barycentric cs:e100=0.4,e010=0.1,e001=0.5) -- %
+                    (barycentric cs:e100=0.7,e010=0.1,e001=0.2) -- cycle;
+% data point
+%\fill[black] (barycentric cs:e100=0.75,e010=0.125,e001=0.125) circle (5pt);
+\begin{scope}[xshift=13cm]
+\coordinate (e100) at (90:6);
+\coordinate (e010) at (210:6);
+\coordinate (e001) at (-30:6);
+\draw [thick] (e100) -- (e010) -- (e001) -- cycle;
+% Achsen
+\draw [thick,-stealth] (e001) -- +( 90:1.5) node [right] {$\vartheta_1$};
+\draw [thick,-stealth] (e100) -- +(210:1.5) node [left]  {$\vartheta_2$};
+\draw [thick,-stealth] (e010) -- +(-30:1.5) node [right] {$\vartheta_3$};
+% graue Linien
+%
+\foreach \zehntel in {0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1}
+{
+ % Richtung p1
+ \draw[gray,densely dotted] (barycentric cs:e100=\zehntel,e010=0,e001=1-\zehntel) -- %
+                            (barycentric cs:e100=\zehntel,e010=1-\zehntel,e001=0);   %
+ % Richtung p2
+ \draw[gray,densely dotted] (barycentric cs:e100=1-\zehntel,e010=\zehntel,e001=0) -- %
+                            (barycentric cs:e100=0,e010=\zehntel,e001=1-\zehntel);   %
+ % Richtung p3
+ \draw[gray,densely dotted] (barycentric cs:e100=0,e010=1-\zehntel,e001=\zehntel) -- %
+                            (barycentric cs:e100=1-\zehntel,e010=0,e001=\zehntel);   %
+}
+\draw[fill=gray!40] (barycentric cs:e100=0.5,e010=0.4,e001=0.1) -- %
+                    (barycentric cs:e100=0.3,e010=0.2,e001=0.5) -- %
+                    (barycentric cs:e100=0.7,e010=0.1,e001=0.2) -- cycle;
+\end{scope}
+\end{tikzpicture}
+\end{center}
+\end{frame}
+
+
 \begin{frame}[label=luck-app]{\textbf{R} package \texttt{luck} \hyperlink{luck-back<4>}{\beamerreturnbutton{}}}
-***uml graph
+\begin{itemize}
+\item \texttt{S4} implementation of the general canonical prior parameter structure
+with rectangular sets $\PZc = [\nzlg, \nzug] \times [\yzlr, \yzur]$
+\item lean subclasses for concrete sample distributions\\
+(currently implemented: scaled normal, exponential)
+\item currently on R-Forge, to be submitted to CRAN
+%{\small (issue: \texttt{S4} classes and \texttt{S3}-style documentation seem to be incompatible)} 
+\end{itemize}
+{\small \url{install.packages("luck", repos="http://R-Forge.R-project.org")}}
+\end{frame}
+
+\begin{frame}{\textbf{R} package \texttt{luck} \hyperlink{luck-back<4>}{\beamerreturnbutton{}}}
+\vspace*{-5ex}
+\hspace*{10ex}
+\begin{tikzpicture}[class/.style={draw, rectangle split, rectangle split parts=3, %
+                                  every text node part/.style={text centered}, %
+                                  font=\ttfamily, %
+                                  fill=gray!30, text width=45mm, thick}, %
+                    point/.style={coordinate},
+                    transform canvas={scale=0.8}]%every node/.style=draw]
+\node [class] (luck) at (0,0) {LuckModel \nodepart{second} \gruen{n0}: matrix \\
+                                         \rot{y0}: matrix \\
+                                         data: LuckModelData
+                                         \nodepart{third}
+                                         show() \\
+                                         plot() \\
+                                         unionHdi() \\
+                                         \quad \vdots};
+\node [coordinate, below=0.4cm of luck] (p0) {};
+\node [coordinate, left=0.4cm of p0] (p1) {};
+\node [class, text width = 47mm] (scalednormal) [below=0.4cm of p1] {ScaledNormalLuckModel\phantom{p} %
+                                                                        \nodepart{second} \phantom{pS}
+                                                                        \nodepart{third} singleHdi()\phantom{p}\\};
+\draw [stealth'-, thick] (luck.south) -- (p0) -- (p1) -- (scalednormal.north); %node [midway,right,draw=none] {inherits};
+\node[class, text width=45mm] (poisson) [right=0.5cm of scalednormal] {ExponentialLuckModel %
+                                                                        \nodepart{second} \phantom{pS}
+                                                                        \nodepart{third} singleHdi()\phantom{p}\\};
+\node[class, text width=35mm, double copy shadow={shadow xshift=1mm,shadow yshift=-1mm}] %
+ (more) [right=0.5cm of poisson] {\phantom{pS}\ldots\phantom{pS} \nodepart{second} \phantom{pS}
+                                                                 \nodepart{third} singleHdi()\phantom{pS}\\};
+\node [coordinate, above=0.4cm of poisson] (p2) {};
+\draw [thick] (p0) -- (p2) -- (poisson.north);
+\node [coordinate, above=0.4cm of more] (p3) {};
+\draw [thick] (p2) -- (p3) -- (more.north);
+%\draw[->] (0,0) -- (1,0);
+\begin{scope}[transform canvas={scale=0.75}]
+%\draw[->] (0,0.5) -- (1,0.5);
+%\node [coordinate] (lmd) [right=0.5cm of luck] {}; 
+\node [class] (data) at (6.8,1.5) {LuckModelData \nodepart{second} tauN: matrix\\ rawData: matrix
+                                                             \nodepart{third} show()};
+\node [coordinate, below=0.4cm of data] (dp0) {};
+\node [coordinate, left=0.4cm of dp0] (dp1) {};
+\node[class, text width=37mm] (scalednormaldata) [below=0.4cm of dp1] {ScaledNormalData\phantom{p} \nodepart{second} \phantom{h}
+                                                                                                   \nodepart{third} show()};
+\node[class, text width=37mm] (poissondata) [right=0.5cm of scalednormaldata] {ExponentialData \nodepart{second} \phantom{h}
+                                                                                               \nodepart{third} show()};
+\node[class, text width=30mm, double copy shadow={shadow xshift=1mm,shadow yshift=-1mm}] %
+ (moredata) [right=0.5cm of poissondata] {\phantom{pD}\ldots\phantom{pD} \nodepart{second} \phantom{h}
+                                                                         \nodepart{third}  show()};
+\draw [stealth'-, thick] (data.south) -- (dp0) -- (dp1) -- (scalednormaldata.north); %node [midway,right,draw=none] {inherits};
+\node [coordinate, above=0.4cm of poissondata] (dp2) {};
+\draw [thick] (dp0) -- (dp2) -- (poissondata.north);
+\node [coordinate, above=0.4cm of moredata] (dp3) {};
+\draw [thick] (dp2) -- (dp3) -- (moredata.north);
+\end{scope}
+\node [coordinate] (snake) at (2.75,1.025) {};
+\draw [dashed, very thick, -stealth'] (2.5,0.35) .. controls +(right:4mm) and +(up:4mm)
+                                      .. (snake) .. controls +(up:4mm) and +(left:8mm) .. (3.2,1.7);
+\end{tikzpicture}
 \end{frame}
 
 \begin{frame}[label=boat-app]{Strong Prior-Data Agreement Modelling \hyperlink{boat-back<1>}{\beamerreturnbutton{}}}
-graph mik's world
+\includegraphics[trim = 15mm 45mm 25mm 60mm, clip, width=\textwidth]{../R/boatshape-prior}
 \end{frame}
 
 \begin{frame}[label=noninf-app]{`Noninformative' Priors \hyperlink{noninf-back<3>}{\beamerreturnbutton{}}}
@@ -1676,7 +1859,7 @@ which seems incompatible with the notion of ignorance
 \end{frame}
 
 %---- reset total frame number
-\addtocounter{framenumber}{-9} 
+\addtocounter{framenumber}{-11} 
 
 
 \end{document}

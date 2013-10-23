@@ -546,7 +546,7 @@ where $s$ = number of wins in the $n$ matches observed
 
 \subsection{Example: Beta-Binomial Model}
 
-\frame{\frametitle{Beta-Binomial Model}
+\frame{\frametitle{Beta-Binomial Model (BBM)}
 
 \uncover<1->{
 \begin{block}{Beta-Binomial Model}
@@ -793,20 +793,25 @@ All inferences are based on the posterior%\\
 %(e.g., point estimate = $\big[\El[\psib\mid\nng,\ynr],\Eu[\psib\mid\nng,\ynr]\big]$)
 All inferences are based on the set of posteriors
 \end{block}}
-\uncover<3->{\centerline{Let hyperparameters $(\nzg, \yzr)$ vary in a set $\PZc$ \then\ \alert{set of priors}}}
+\uncover<3->{\centerline{Let hyperparameters $(\nzg, \yzr)$ vary in a set $\PZc$ \then\ \alert{set of priors} $\MZ$}}
 }
 
-\begin{frame}{Bayesian Inference with Sets of Priors ***raus?}
+\begin{frame}{Bayesian Inference with Sets of Priors}
+
+Set of posteriors $\MN$ via $\PNc = \big\{(\nng,\bynr) \colon (\nzg,\byzr) \in \PZc \big\}$
 \begin{align*}
-\text{single prior $(\nzg, \yzr)$}
+\text{single posterior $p(\nng, \ynr)$}
  &\quad\mbox{\then }\quad 
-\text{set of priors $\MZ$ (defined via $\PZc$)} \\
-\E[\psib\mid\nzg,\yzr,\x]
+\text{set of posteriors $\MN$ (via $\PNc$)} \\
+\E[\psib\mid\nng,\ynr]
  &\quad\mbox{\then }\quad 
-\big[\El[\psib\mid\PZc,\x],\Eu[\psib\mid\PZc,\x]\big] \\
-P(\psib\in A\mid\nzg,\yzr,\x)
+\big[\El[\psib\mid\PNc],\Eu[\psib\mid\PNc]\big] \\
+P(\psib\in A\mid\nng,\ynr)
  &\quad\mbox{\then }\quad 
-\big[\Pl[\psib\in A\mid\PZc,\x],\Pu[\psib\in A\mid\PZc,\x]\big]
+\big[\Pl[\psib\in A\mid\PNc],\Pu[\psib\in A\mid\PNc]\big] \\
+\text{HPD interval}
+ &\quad\mbox{\then }\quad 
+\text{union of HPD intervals}
 %\E[\theta]  &\quad\mbox{\then }\quad \big[\LE[\theta],\, \UE[\theta]\big] \\
 %= \left[ \min_{p \in {\cal M}_\theta} \E_{p}[\theta],\,
 %         \max_{p \in {\cal M}_\theta} \E_{p}[\theta]\right]\\
@@ -815,7 +820,8 @@ P(\psib\in A\mid\nzg,\yzr,\x)
 %          \max P_{\!\!p}(\theta\! \in\! A)\big]
 \end{align*}
 \begin{center}
-Lower/upper posterior expectation by min/max over set of posteriors %$\PZc$
+%Lower/upper posterior expectation by min/max over set of posteriors %$\PZc$
+Lower/upper bounds by min/max over set of posteriors %$\PZc$
 \end{center}
 \end{frame}
 
@@ -845,7 +851,7 @@ $\MZ$ = {\small finite convex mixtures of canonical conjugate priors defined by}
 %\MN &= \text{conv}\big(\big\{p(\psib\mid\nng,\bynr) \colon (\nng,\bynr) \in \PNc\big\}\big)\vspace*{-0.5ex}%
 %\end{align*}
 \centerline{$\MN = \text{conv}\big(\big\{p(\psib\mid\nng,\bynr) \colon (\nng,\bynr) \in \PNc\big\}\big)$}
-where $\PNc = \big\{(\nng,\bynr) \colon (\nzg,\byzr) \in \PZc \big\}$.\\
+%where $\PNc = \big\{(\nng,\bynr) \colon (\nzg,\byzr) \in \PZc \big\}$.\\
 %Set of posteriors = 
 $\MN$ = finite convex mixtures of canonical conjugate posteriors\\ defined by set of updated hyperparameters $\PNc$
 \end{block}}
@@ -978,6 +984,9 @@ data $s/n = 16/16 = 1$
 
 }
 
+\begin{frame}{Scaled Normal Data Example ($\x \stackrel{iid}{\sim} \norm(\mu,1)$)}
+\includegraphics[trim = 20mm 20mm 20mm 25mm, clip, width=\textwidth]{../fig/jstp-paper_nv_nvar_vertfu01_081128}
+\end{frame}
 
 \begin{frame}[label=othermodels-back]{General Model Properties}
 
@@ -1043,8 +1052,9 @@ trade-off between model complexity and model behaviour
  $\PNc\! = \nng \times [\ynlr, \ynur]$ \then\ optimise over $[\ynlr, \ynur]$ only,\\
  but no \pdc\ sensitivity
 \item<3-> $\PZc\! = [\nzlg,\nzug] \times [\yzlr, \yzur]$ {\small (Walley 1991; Walter \& Augustin 2009)}:\\
- $\PNc$ have non-trivial forms (banana / spotlight), but \pdc\ sensitivity and closed form for $\min / \max \ynr$ over $\PNc$\\
- For other inferences, \hyperlink{luck-app}{\textbf{R} package \texttt{luck}} implements box-constraint optimisation over $\PZc$ 
+ $\PNc$ have non-trivial forms (banana / spotlight), but \pdc\ sensitivity and closed form for $\min / \max \ynr$ over $\PNc$.\\
+ For other inferences, \hyperlink{luck-app}{\textbf{R} package \texttt{luck}} implements optimisation
+ over $\PNc$ via box-constraint optimisation over $\PZc$
 % \end{itemize}
 \item<4-> Other set shapes are possible, but may be more difficult to handle %elicit
 %\item<8-> Prior information may be such that range of $\yzr$ changes with $\nzg$ (or vice versa)
@@ -1055,12 +1065,15 @@ trade-off between model complexity and model behaviour
 %\hspace*{-2ex}%
 %\uncover<2->{%
 %\vspace*{-7ex}%
-\begin{center} %trim=l b r t
+%\begin{center} %trim=l b r t
 \hyperlink{boat-app}{%
+\begin{tikzpicture}
 %\includegraphics[trim = 40mm 35mm 40mm 45mm, clip, width=\textwidth]{../R/boatshape-durham0913} % width=8, height=6
-\includegraphics[trim = 70mm 52.5mm 70mm 65mm, clip, width=\textwidth]{../R/boatshape-durham0913} % width=6, height=4.5
+\uncover<1>{\node {\includegraphics[trim = 70mm 52.5mm 70mm 65mm, clip, width=\textwidth]{../R/boatshape-defense-1}};} % width=6, height=4.5
+\uncover<2>{\node {\includegraphics[trim = 70mm 52.5mm 70mm 65mm, clip, width=\textwidth]{../R/boatshape-defense-2}};} % width=6, height=4.5
+\end{tikzpicture}
 }%
-\end{center}%}
+%\end{center}%}
 \note<1>[item]{Prior set with different posterior sets (for different data)}
 \end{frame}
 
@@ -1102,7 +1115,7 @@ trade-off between model complexity and model behaviour
 }
 
 \frame{
-\frametitle{Common-Cause Failure Modelling ***raus?}
+\frametitle{Common-Cause Failure Modelling}
 
 \begin{columns}%[T]
 \begin{column}{0.7\textwidth}\centering
@@ -1482,19 +1495,16 @@ also known as pre-posterior analysis}
 %    prior bounds + likelihood $\to$ posterior bounds
 %  \end{center}
 %\vspace*{-2ex}
-\begin{block}{prior bounds + likelihood $\to$ posterior bounds}
+With $[\nzlg, \nzug] = [1, 10]$, we get\ldots
+\begin{block}{prior bounds + data $\to$ posterior bounds}
   \begin{center}
-  \begin{tabular}{c|cc||cc}
-    \multicolumn{1}{c}{}
-  & \multicolumn{2}{c}{with $\yzjr=\mu_{\text{spec},j}$:}
-  & \multicolumn{2}{c}{with bounds as earlier:} \\
-    $j$ & $\El[\alpha_j\mid\PZc,\vec{n}]$ &$\Eu[\alpha_j\mid\PZc,\vec{n}]$
-        & $\El[\alpha_j\mid\PZc,\vec{n}]$ &$\Eu[\alpha_j\mid\PZc,\vec{n}]$ \\
+  \begin{tabular}{c|cc|c|cc}
+    $j$ & $\yzjlr{j}$ & $\yzjur{j}$ & $n_j$ & $\El[\alpha_j\mid\PNc]$ &$\Eu[\alpha_j\mid\PNc]$ \\
     \hline
-    1 & 0.967\phantom{00} & 0.972\phantom{00} & 0.967\phantom{0} & 0.978\phantom{00}\\
-    2 & 0.0278\phantom{0} & 0.0283\phantom{0} & 0.0270           & 0.0283\phantom{0}\\
-    3 & 0.00041           & 0.00326           & 0\phantom{0.000}  & 0.00326\\
-    4 & 0.00014           & 0.00109           & 0\phantom{0.000}  & 0.00109
+    1 & 0.950           & 1\phantom{0.00} & 35           & 0.967\phantom{0} & 0.978\phantom{00}\\
+    2 & 0\phantom{0.00} & 0.030           & \phantom{0}1 & 0.0270           & 0.0283\phantom{0}\\
+    3 & 0\phantom{0.00} & 0.015           & \phantom{0}0 & 0\phantom{0.000}  & 0.00326\\
+    4 & 0\phantom{0.00} & 0.005           & \phantom{0}0 & 0\phantom{0.000}  & 0.00109
   \end{tabular}
   \end{center}
 \end{block} 
@@ -1586,7 +1596,7 @@ by `taking models not too seriously' (``all models are wrong, but some are usefu
 such that a prior on $\phi$ can be meaningfully elicited.
 \item Noninformative priors on $\phi$ can be problematic\\ (incoherence, improper posteriors).
 \begin{exampleblock}{Example (e.g., Walley 1991, p.~232)}
-$x_i \stackrel{i.i.d.}{\sim} \norm(\mu_i,1)$, $\mu_i \stackrel{i.i.d.}{\sim} \norm(\mu,\sigma^2)$, $i=1,\ldots,n$.\\
+$x_i \stackrel{iid}{\sim} \norm(\mu_i,1)$, $\mu_i \stackrel{iid}{\sim} \norm(\mu,\sigma^2)$, $i=1,\ldots,n$.\\
 %For the noninformative hyperprior
 For $p(\mu,\sigma^2) \propto \sigma^{-1}$, the posterior is improper.
 \end{exampleblock}
@@ -1672,8 +1682,8 @@ $\{ \p : \p = (1-\varepsilon) \p_0 + \varepsilon \q, \q \in \mathcal{Q} \}$
 \begin{itemize}
 \item set of distributions by bounds for the density function $p(\vartheta)$:
 \begin{align*}
-\mathcal{M}_{l,u} = \left\{ p(\vartheta) :
-\exists c \in \posreals: l(\vartheta) \le c p(\vartheta) \le u(\vartheta)\right\}
+\mathcal{M}_{l,u} = \big\{ p(\vartheta) :
+\exists c \in \posreals: l(\vartheta) \le c p(\vartheta) \le u(\vartheta)\big\}
 \end{align*}
 \item posterior set is bounded by updated $l(\vartheta)$ and $u(\vartheta)$
 \item $u(\vartheta)/l(\vartheta)$ is constant under updating\\
@@ -1833,7 +1843,7 @@ with rectangular sets $\PZc = [\nzlg, \nzug] \times [\yzlr, \yzur]$
 \end{tikzpicture}
 \end{frame}
 
-\begin{frame}[label=boat-app]{Strong Prior-Data Agreement Modelling \hyperlink{boat-back<1>}{\beamerreturnbutton{}}}
+\begin{frame}[label=boat-app]{Strong Prior-Data Agreement Modelling \hyperlink{boat-back<2>}{\beamerreturnbutton{}}}
 \includegraphics[trim = 15mm 45mm 25mm 60mm, clip, width=\textwidth]{../R/boatshape-prior}
 \end{frame}
 

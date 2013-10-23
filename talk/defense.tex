@@ -181,6 +181,11 @@
 \setbeameroption{hide notes}
 %\setbeameroption{show only notes}
 
+\setbeamertemplate{note page}{%
+ {\Huge \theframenumber}\\
+ \insertnote%
+}
+
 \begin{document}
 
 
@@ -510,7 +515,7 @@ in the sampling model for which the observed data is surprising''\\
 \item there are not enough data to overrule the prior
 \end{itemize}
 \end{block}}
-\note<3>[item]{real-world example where \pdc\ is relevant\\ at the end of the talk}
+%\note<3>[item]{real-world example where \pdc\ is relevant\\ at the end of the talk}
 }
 
 
@@ -541,7 +546,7 @@ posterior:       & $\theta\mid \nng, \ynr$ & $\sim$ & $\be(\nng,\, \ynr)$\rule{0
 \end{block}
 where $s$ = number of wins in the $n$ matches observed
 }
-\note<4>[item]{why conjuagte priors? easy to calculate, posterior tractable (known family)}
+\note<4>[item]{why conjugate priors? easy to calculate, posterior tractable (known family)}
 }
 
 \subsection{Example: Beta-Binomial Model}
@@ -993,7 +998,7 @@ data $s/n = 16/16 = 1$
 \uncover<1->{%
 Favourable inference properties \hyperlink{othermodels-app}{\small (cf.\ other models based on sets of priors)}}
 \begin{itemize}%[<+->]
-\note<10>[item]{In contrast to other model based on sets of priors,\\
+\note<10>[item]{In contrast to other models based on sets of priors,\\
 this model is easy to handle and to elicit,\\ and has very favourable inference properties}
 \item<1-> $n \to \infty$\hspace*{0.9ex}%
 %\uncover<2->{\then\ \ $\ynr$ values in $\PNc \to \frac{\tau(\x)}{n}$\hspace*{0.9ex}}%
@@ -1118,6 +1123,8 @@ and the EDG started to produce power for cooling..}
 were flooded by the tsunami wave.}
 \note<3>[item]{So, common-cause failure compromises the reliability of redundant systems,
 with components not failing independently.}
+\note<3>[item]{So this must be included in overall systems reliability analysis}
+\note<3>[item]{This lesson was learned at another accident at a nuclear power station, \play\ }
 }
 
 \frame{
@@ -1138,9 +1145,6 @@ Right: Wikimedia Commons,\\[-1.8ex]
 \url{http://commons.wikimedia.org/wiki/File:Graphic_TMI-2_Core_End-State_Configuration.png}
 \end{tiny}
 % Notes for the slide
-\note<1>[item]{So this must be included in overall systems reliability analysis}
-\note<1>[item]{This lesson was learned at another accident at a nuclear power station, \play\ }
-\note<1>[item]{}
 \note<1>[item]{Lesson learned at another accident:\\ Three Mile Island (1979) where also a meltdown happened (right)}
 \note<1>[item]{So, realising that reliability through redundancy is jeopardised by common-cause failure,
 models including common-cause failure were developed in the wake of the Three Mile Island accident.}
@@ -1173,7 +1177,7 @@ models including common-cause failure were developed in the wake of the Three Mi
     \end{itemize}
   \end{block}
   (the model actually serves to estimate failure \emph{rates},\\ but the above is all what matters in this talk)
-\note<1>[item]{Slide on inferences in alpha-factor model commented out}
+%\note<1>[item]{Slide on inferences in alpha-factor model commented out}
 \end{frame}
 
 \iffalse
@@ -1466,7 +1470,7 @@ Analyst has to specify (`elicit') \\
     $\nzlg$ = number of multi-component failures required \\
     to reduce the lower probability of one-component failure by half
   \end{alertblock}}
-\note<2>[item]{choice of bounds for $\nzg$ is not so straight-forward,
+\note<3>[item]{choice of bounds for $\nzg$ is not so straight-forward,
 so we took advice from Good and reason about posterior expectations for hypothetical data,
 also known as pre-posterior analysis}
 \note<3>[item]{These rules are a bit difficult to grasp at first,\\ so I'll explain them with the example:}

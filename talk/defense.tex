@@ -993,19 +993,19 @@ data $s/n = 16/16 = 1$
 \uncover<1->{%
 Favourable inference properties \hyperlink{othermodels-app}{\small (cf.\ other models based on sets of priors)}}
 \begin{itemize}%[<+->]
-\note<1>[item]{In contrast to other model based on sets of priors,\\
+\note<10>[item]{In contrast to other model based on sets of priors,\\
 this model is easy to handle and to elicit,\\ and has very favourable inference properties}
 \item<1-> $n \to \infty$\hspace*{0.9ex}%
 %\uncover<2->{\then\ \ $\ynr$ values in $\PNc \to \frac{\tau(\x)}{n}$\hspace*{0.9ex}}%
 %\uncover<3->{\then\ \ `Bayesian consistency'}
 \uncover<2->{\then\ \ $\ynr$ stretch in $\PNc \to 0$\hspace*{0.9ex}}%
 \uncover<3->{\then\ \ precise inferences}
-\note<3>[item]{`Bayesian consistency' just like in usual Bayesian inference}
+\note<10>[item]{`Bayesian consistency' just like in usual Bayesian inference}
 \item<4-> larger $\nzg$ \then\ larger $\PNc$ \then\ more vague inferences
-\note<4>[item]{larger $\nzg$ as compared to $n$:
+\note<10>[item]{larger $\nzg$ as compared to $n$:
 more weight on imprecise prior $\MZ$\\ leads to more imprecise posterior $\MN$}
 \item<5-> larger range of $\yzr$ in $\PZc$ \then\ larger range of $\ynr$ in $\PNc$\\ \quad  \then\ more vague inferences
-\note<5>[item]{more imprecise prior $\MZ$ leads to more imprecise $\MN$}
+\note<10>[item]{more imprecise prior $\MZ$ leads to more imprecise $\MN$}
 \end{itemize}
 
 \uncover<6->{%
@@ -1074,7 +1074,7 @@ trade-off between model complexity and model behaviour
 \end{tikzpicture}
 }%
 %\end{center}%}
-\note<1>[item]{Prior set with different posterior sets (for different data)}
+\note<2>[item]{Prior set with different posterior sets (for different data $n=8$, $n=16$)}
 \end{frame}
 
 
@@ -1104,14 +1104,20 @@ trade-off between model complexity and model behaviour
 \end{tikzpicture}
 
 % Notes for the slide
-\note<3>[item]{All 12 generators (for 6 reactors) at Fukushima Daiichi\\ were not available due to flooding of machine rooms\\
- (Tsunami caused by T\={o}hoku earthquake)}
-\note<3>[item]{Reliability of redundant systems}
-\note<3>[item]{Usually 2 -- 4 emergency diesel generators per reactor}
-\note<3>[item]{Sufficient cooling of core if one generator works}
-\note<3>[item]{Redundant components may not fail independently:\\ common-cause failure}
-\note<3>[item]{(Reliability through redundancy is jeopardised)}
-\note<3>[item]{Must include common-cause failures\\ in overall system reliability analysis}
+\note<3>[item]{This is a recent, drastic example for common-cause failure.\\
+So what is common-cause failure? \play\ }
+\note<3>[item]{Here, at the Fukushima Dai-ichi Nuclear Power Plant,\\
+this simultaneous failure refers to the emergency diesel generators. \play\ }
+\note<3>[item]{They are there to power the emergency cooling systems when off-site power is lost.}
+\note<3>[item]{As cooling after shutdown is so important, there are usually 2 -- 4 EDG per reactor,
+each of which can provide sufficient energy for the cooling systems alone.}
+\note<3>[item]{At Fukushima Dai-ichi, there were 12 generators for 6 reactors.}
+\note<3>[item]{When the T\={o}hoku earthquake, the reactors were shut down automatically,
+and the EDG started to produce power for cooling..}
+\note<3>[item]{They stopped working simultaneously because the machine rooms in the basement
+were flooded by the tsunami wave.}
+\note<3>[item]{So, common-cause failure compromises the reliability of redundant systems,
+with components not failing independently.}
 }
 
 \frame{
@@ -1132,8 +1138,14 @@ Right: Wikimedia Commons,\\[-1.8ex]
 \url{http://commons.wikimedia.org/wiki/File:Graphic_TMI-2_Core_End-State_Configuration.png}
 \end{tiny}
 % Notes for the slide
+\note<1>[item]{So this must be included in overall systems reliability analysis}
+\note<1>[item]{This lesson was learned at another accident at a nuclear power station, \play\ }
+\note<1>[item]{}
 \note<1>[item]{Lesson learned at another accident:\\ Three Mile Island (1979) where also a meltdown happened (right)}
-\note<1>[item]{Most popular model: \emph{basic parameter model},\\ we will look at a parameterisation of it called\ldots}
+\note<1>[item]{So, realising that reliability through redundancy is jeopardised by common-cause failure,
+models including common-cause failure were developed in the wake of the Three Mile Island accident.}
+\note<1>[item]{The most popular model is called \emph{basic parameter model}.}
+\note<1>[item]{We will look at a parameterisation of this model called\ldots}
 }
 
 \subsection{Alpha-Factor Model}
@@ -1517,9 +1529,9 @@ With $[\nzlg, \nzug] = [1, 10]$, we get\ldots
 %    rather than by maximum entropy arguments
 %  \item<4-> Is it possible to generalise this method to other problems?
   \end{itemize}
-\note<1>[item]{So what does this choice of parameter set mean for our number example?
+\note<3>[item]{So what does this choice of parameter set mean for our number example?
 We now have a posterior model that is based on a clear behavioural choice of prior,
-expressing our prior ideas about $\vec{\alpha}$ and still being flexible enough to ***}
+expressing our prior ideas about $\vec{\alpha}$ which is still flexible enough to lead to reasonable posterior inferences}
 \end{frame}
 
 

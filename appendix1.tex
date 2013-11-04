@@ -43,7 +43,7 @@ prior-data conflict can be handled in a very appealing and intuitive way.
 
 Regression analysis is a central tool in applied statistics that
 aims to answer the omnipresent question how certain variables
-(called covariates / confounders, regressors, stimulus or
+(called covariates, confounders, regressors, stimulus or
 independent variables, here denoted by $\x$) influence a certain
 outcome (called response or dependent variable, here denoted by $z$).
 Due to the complexity of real-life data situations, basic linear
@@ -607,7 +607,6 @@ The likelihood arising from the distribution of $\z$,
                               \underbrace{-\Big(\frac{1}{2 \sigma^2} \bbeta^\tra \XtX \bbeta
                                           +\frac{n}{2} \log(\sigma^2) \Big)}_{n \mbf{b}(\psi)} \Big\}\,,
 \end{align*}
-
 indeed corresponds to the canonical exponential family form%
 \footnote{In Equation~\ref{eq:expofam-sampledens}, the integration constant $\mbf{a}(\cdot)$
 was omitted.}
@@ -1191,7 +1190,7 @@ in Sections~\ref{sec:scp-update2} and \ref{sec:cccp-update2}.
 Through the formulations \eqref{equ:scp-varbeta} and \eqref{equ:cccp-varbeta} for $\V(\bbeta\mid \z)$,
 respectively, it can be seen that the posterior distribution on $\bbeta$ can in fact
 become less pointed than the prior when prior-data conflict is present.
-Nevertheless, the effect might be not be as strong as desired: In the formulations
+Nevertheless, the effect might not be as strong as desired: In the formulations
 \eqref{equ:scp-decomposition} and \eqref{equ:cccp-sigma2}, respectively, the effect is based only on one term of the decomposition,
 and furthermore may be foiled through the automatic decrease of $\Mn$ and $\tMn$.
 Probably the most problematic finding is that this (possibly weak) reaction affects the whole

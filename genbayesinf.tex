@@ -379,14 +379,14 @@ A coherent set of desirable gambles can be derived from a coherent lower previsi
 X > \sum_{i=1}^n c_i (X_i - \El[X_i] + \epsilon) \text{ for some } n \in \naturals, c_i > 0, \epsilon > 0, X_i \in \mathcal{L} \right\}\,.
 \end{align*}
 If we adopt $\El$ as the lower prevision expressing our beliefs about $\Omega$,
-gambles $X_i - \El[X_i] + \epsilon$ should be desirabe for us;
+gambles $X_i - \El[X_i] + \epsilon$ with $\epsilon > 0$ should be desirabe for us;
 considering the price $\El[X_i]$ as the supremum acceptable buying price for $X_i$,
 the gamble $X_i - \El[X_i]$ should---in our view---be at least as good as the zero gamble.
 
 Conversely, a coherent lower prevision can be deduced from a coherent set of desirable gambles by
-$\El[X] := \sup\{c: X - c \in \mathcal{D}\}$.
+$\El[X] := \sup\{c > 0 : X - c \in \mathcal{D}\}$.
 %\parencite[p.~139]{2000:walley::towards}
-If we make $c$ as large as possible such that the gamble $X-c$ is still acceptable to us,
+If we make $c > 0$ as large as possible such that the gamble $X-c$ is still acceptable to us,
 then $\El[X]$ simply is our supremum acceptable buying price for $X$.
 
 As already mentioned, sets of desirable gambles are a more general formulation
@@ -567,11 +567,11 @@ Indeed, \textcite[\S 6.11.1]{1991:walley} lists twelve items summarizing
 
 One central argument is that the notion of coherence, of which the Generalised Bayes' Rule is a consequence,
 may not be adequate to represent learning, especially when observed data is rather surprising,
-and should overturn prior beliefs about the data generating process.
+and should completely overturn prior beliefs about the data generating process.
 As posterior beliefs derived from the Generalised Bayes' Rule must be coherent with both prior beliefs and data,
 they may be rather imprecise in case of very vague prior beliefs or unexpected data.
 Essentially, the Generalised Bayes' Rule does not allow to abandon prior beliefs in the light of surprising data,
-and both too vague or specific, but (in the light of the data) inappropriate prior beliefs
+and both too vague or too specific, but (in the light of the data) inappropriate prior beliefs
 may influence posterior beliefs to an intolerable extent.%
 \footnote{However, as we will see in Section~\ref{sec:gbicp-properties-criteria},
 items~\ref{enum:n0vsn}. and \ref{enum:ntoinfty}.,
@@ -701,7 +701,7 @@ To avoid the impression that imprecise probability models are necessarily relate
 to the Bayesian approach to inference,
 we will now also mention briefly some non-Bayesian approaches.
 
-\textcite[\S 5]{itip-statinf} introduce to some frequentist approaches to inference using imprecise probability.
+\textcite[\S 5]{itip-statinf} introduce some frequentist approaches to inference using imprecise probability.
 A field that is so far comparatively widely developed
 is the theory of statistical hypothesis testing,
 based on the so-called \emph{Huber-Strassen theorem} \parencite[Theorem~4.1]{1973:huberstrassen}.
@@ -815,7 +815,7 @@ and in more recent times most prominently by scientists involved in the developm
 
 Expert systems have the task to formally represent the knowledege of one or several experts in a field,
 properly modeling the reasoning of these experts in order to aid non-experts in their decisions.
-A protoptypical example is MYCIN \parencite{1976:shortliffe},
+A prototypical example is MYCIN \parencite{1976:shortliffe},
 which was developed to assist physicians in diagnosing bacterial infections.
 The reasoning to be modeled by expert systems typically involes
 ``uncertainty, partial ignorance and incomplete or conflicting information'', and thus provides

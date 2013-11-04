@@ -1,0 +1,20 @@
+################################################################################
+## Typos found by Frank to submitted version of diss and other comments        #
+################################################################################
+
+Comments not worked on
+
+p32: "speaking" ok?
+p35: analogy to ASL
+p79: presentation of jstp paper without abstract? 
+p93: fig3.4 on its own page with no text, why?
+p97: acknowledgements to referees into global acknowledgements/danksagung?
+p103: presentation of isipta11 paper without abstract?
+p115: "discuss generally"?? (s in  TPDA)
+p119: rewrite "further research is ongoing"?
+p121: acknowledgements to referees into global acknowledgements/danksagung?
+p135: festschrift paper without abstract?
+p156: acknowledgements into global acknowledgements/danksagung?
+
+p171ff: order problems in bibliograpy (related to "Frank" vs. "F." in bibtex entries?)
+#

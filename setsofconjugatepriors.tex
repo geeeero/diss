@@ -370,7 +370,7 @@ as a model for inferences from multinomial data when no prior information is ava
 can be seen as a precursor to the IDM, covering the special case of two categories.}
 As indicated by its name, it uses as imprecise prior a (near-) noninformative set of Dirichlet priors,
 which is obtained by choosing $\YZ$ as the whole interior of the unit simplex $\Delta$, with $\nz$ fixed,%
-\footnote{Our notation relates to Walley's \parencite*{1996:walley::idm} as
+\footnote{As mentioned before, our notation relates to Walley's \parencite*{1996:walley::idm} as
 $t_j \leftrightarrow \yz_j$, $s \leftrightarrow \nz$, $t^*_j \leftrightarrow \yn_j$.}
 \begin{align*}
 \MZ &= \left\{ p(\theta \mid \nz, \yz) \left| 0 < \yz_j < 1\ \forall j, \sum_{j=1}^k \yz_j = 1 \right. \right\}\,.
@@ -399,7 +399,7 @@ with parameters $\nn$ and $\yn$ obtained by \eqref{eq:canonicalupdate},
 \MN &= \left\{ p(\theta \mid \nn, \yn) \ \left| \  0 < \yz_j < 1\ \forall j, \sum_{j=1}^k \yz_j = 1 \right. \right\} \,.
 \end{align*}
 For any event $A_J$ that the next observation belongs to a subset $J$ of the categories, $J \subseteq\{1, \ldots, k\}$,
-the posterior lower and upper probabilities calculate as
+the posterior lower and upper probabilities are given by
 \begin{align*}
 \Pl(A_J) &= \frac{n(A_J)}{\nz + n} &
 \Pu(A_J) &= \frac{\nz + n(A_J)}{\nz + n}\,,

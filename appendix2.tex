@@ -47,18 +47,17 @@ and we will present here a preview on the results for the Beta-Binomial case.
 In this parametrisation, a canonical prior is represented by a coordinate $(\ezz,\eoz)$,%
 \footnote{Again, we denote prior parameters with superscript ${}\uz$, and posterior parameters with superscript ${}\un$.}
 where $\eoz$ replaces the main prior parameter $\yz$,
-while $\ezz$ is just a different name for $\nz$.***
+while $\ezz$ is just a shifted version of $\nz$.***
 The relation of $(\ezz,\eoz)$ to $(\nz, \yz)$ is as follows:
 %\begin{equation}
 \begin{align}
 \label{eq:trafotony}
 %\begin{aligned}
-\nz &= \ezz ***\,, &
+\nz &= \ezz + 2\,, &
 \yz &= \frac{\eoz}{\ezz + 2} + \frac{1}{2}\,.
 %\end{aligned}
 %\end{equation}
 \end{align}
-
 The domain of $\eta_0$ and $\eta_1$ in case of the Beta-Binomial model is
 \begin{align}
 \label{eq:eta-domain}
@@ -74,7 +73,7 @@ and the update step in terms of $\eta_0$ and $\eta_1$ is given by
 \end{equation}
 where $s$ is the number of successes in the $n$ Bernoulli trials.
 A `success' in a Bernoulli trial thus
-leads to step of $1$ in the $\eta_0$ direction and of $+\frac{1}{2}$ in the $\eta_1$ direction,
+leads to a step of $1$ in the $\eta_0$ direction and of $+\frac{1}{2}$ in the $\eta_1$ direction,
 while a `failure'
 leads to step of $1$ in the $\eta_0$ direction and of $-\frac{1}{2}$ in the $\eta_1$ direction.%
 \footnote{As in Section~\ref{sec:isipta11}, we  
@@ -146,7 +145,7 @@ i.e.,
 \ynu &:= \max_{(\ezn,\eon) \in \EN} \yn = \max_{(\ezn,\eon) \in \EN} \frac{\eon}{\ezn+2} + \frac{1}{2}\,,
 \end{align*}
 and we call the coordinates $\argmin_{(\eta_0,\eta_1) \in \EN} \yn$ and $\argmax_{(\eta_0,\eta_1) \in \EN} \yn$
-the \emph{touchpoints} of $\EN$ responsible for the shadow $[\ynl, \ynu]$.
+the \emph{lower} and \emph{upper touchpoints} of $\EN$ responsible for the shadow $[\ynl, \ynu]$.
 Mutatis mutandis, the same definitions can be made for the prior set $\EZ$.
 
 Due to the fanning out of rays, most shapes for $\EZ$ will lead to decreasing imprecision for increasing $n$.
@@ -205,7 +204,6 @@ The shape we suggest thus looks like a bullett, or like a boat with a transom st
 (see, e.g., Figure~\ref{fig:boatshape-prior}).
 
 
-
 \subsection{The Boatshape}
 \label{sec:boatshape-2}
 
@@ -241,7 +239,6 @@ We will also need the respective derivations with respect to $\eta_0$, given by
 \frac{d}{d\eta_0} \czu(\eta_0) &= \phantom{-}%
                                    ab e^{-b(\eta_0 - \ezl)}\,.
 \end{align*}
-
 For this basic situation, given the parameters $\ezl$, $\ezu$, $a$, and $b$,
 $\EZ$ is thus defined as
 \begin{align}
@@ -304,7 +301,7 @@ while at least one touchpoint is at the end for all other sets.
 \caption[Boatshape prior and posterior sets from Figure~\ref{fig:boatshape-posterior-mik} in the parametrisation via $(\nz,\yz)$.]%
 {Boatshape prior and posterior sets from Figure~\ref{fig:boatshape-posterior-mik} in the parametrisation via $(\nz,\yz)$.
 Note that in the strong prior-data agreement case,
-posteriors based on a rectangular set with the same prior main parameter imprecision
+posterior sets based on a rectangular prior set with the same prior main parameter imprecision
 would be larger than the ones depicted here, illustrating the extra gain in precision.}
 \label{fig:boatshape-posterior-normal}
 \end{figure}
@@ -316,7 +313,7 @@ would be larger than the ones depicted here, illustrating the extra gain in prec
 In contrast to models discussed in Section~\ref{sec:generalmodel},
 where $\yzl$ and $\yzu$ were at either ends of a set $\PZ$,
 here, for a set \eqref{eq:basicset}, the touchpoints $\yzl$ and $\yzu$ 
-are not necessarily at $\ezzl$ or $\ezzu$.
+are not necessarily at $\ezzl$ or $\ezzu$.%
 \footnote{See, e.g., the prior in Figure~\ref{fig:boatshape-prior}.}
 Instead, the rays of constant expectation \eqref{eq:raysofconstantexpectation}
 touching the parameter set must be determined to find $\yzl$ and $\yzu$.
@@ -325,11 +322,11 @@ depending on $\eta_0$ are determined.
 As all rays of constant expectation pass through the point $(-2,0)$,
 the tangent that passes through this point is determined by inserting this point
 into the tangent equation, and the resulting equation is solved for $\eta_0$.
-The resulting points $(\eta_0^u,\czu(\eta_0^u))$ resp.\ $(\eta_0^l,\czl(\eta_0^l))$
-then give the touchpoints of the parameter set,
+The resulting points $(\eta_0^l,\czl(\eta_0^l))$ and $(\eta_0^u,\czu(\eta_0^u))$
+then give the lower and upper touchpoints of the parameter set, respectively,
 and can be transformed to $\yzl$ and $\yzu$ by using \eqref{eq:trafotony}.
 
-As the basic set is symmetrical to the $\eta_0$ axis, $\eta_0^u = \eta_0^l$,
+As the basic set is symmetrical to the $\eta_0$ axis, we have $\eta_0^u = \eta_0^l$,
 and it suffices to find, e.g., $\eta_0^u$, by considering the upper contour tangent.
 
 We denote the tangent in contour point $(\eta_0,\czu(\eta_0))$ by
@@ -348,7 +345,6 @@ i &= \czu(\eta_0) -\frac{d}{d\eta_0} \czu(\eta_0) \eta_0 \\
 \ol{t}_{\eta_0}(x) &= ab e^{-b(\eta_0 - \ezl)} x + a - a (1 + b \eta_0) e^{-b(\eta_0 - \ezl)} \\
                    &= a - a \big(1 + b(\eta_0-x)\big) e^{-b(\eta_0 - \ezl)}
 \end{align*}
-
 Now, let us find the touchpoint $(\eta_0^u, \czu(\eta_0^u))$ whose tangent goes through $(-2,0)$, as this gives us $\yzu$.
 We insert $(-2,0)$ into the tangent equation and solve for $\eta_0$.
 \begin{align}
@@ -412,12 +408,10 @@ and is defined by the function
 \ol{c}(\eta_0) &= a \left( 1 - e^{-b(\eta_0 - n -\ezl)} \right) \\
 \frac{d}{d\eta_0} \ol{c}(\eta_0) &= ab e^{-b(\eta_0 - n - \ezl)} \,.
 \end{align*}
-
 The tangent in contour point $(\eta_0,\ol{c}(\eta_0))$ is
 \begin{align*}
 \ol{t}_{\eta_0}(x) &= a - a \big(1 + b(\eta_0-x)\big) e^{-b(\eta_0 - n - \ezl)} \,.
 \end{align*}
-
 Again, we insert $(-2,0)$ into this tangent equation and solve for $\eta_0$.
 \begin{align}
 a - a \big(1 + b({\eta_0^u}\un + 2)\big) e^{-b({\eta_0^u}\un - n - \ezl)} &\stackrel{!}{=} 0 \nonumber\\

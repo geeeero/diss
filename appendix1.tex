@@ -17,20 +17,15 @@ Furthermore, the notation was changed slightly towards the one introduced in Sec
 e.g., writing $\yn$ instead of $y^{(1)}$),
 and citations were updated and changed towards the style employed throughout this thesis.
 
-\subsubsection*{Abstract}
-
-The paper is concerned with Bayesian analysis under
-prior-data conflict, i.e.\ the situation when observed data are
-rather unexpected under the prior (and the sample size is not large
-enough to eliminate the influence of the prior). Two approaches for
+Here, two approaches for
 Bayesian linear regression modeling based on conjugate priors are
 considered in detail, namely the standard approach, described, e.g., in
 \textcite{2013:fahrmeier-kneib-lang-marx}, and an alternative adoption of the
 general construction procedure for exponential family sampling
-models. We recognize that -- in contrast to some standard i.i.d.\
-models like the scaled normal model and the Beta-Binomial /
+models. We recognize that --- in contrast to some standard i.i.d.\
+models like the scaled normal model and the Beta-Binomial or
 Dirichlet-Multinomial model, where prior-data conflict is completely
-ignored -- the models may show some reaction to prior-data conflict,
+ignored --- the models may show some reaction to prior-data conflict,
 however in a rather unspecific way. Finally we briefly sketch the
 extension to a corresponding imprecise probability model, where,
 %by enlarging the underlying set of distributions and the imprecision of the resulting interval-valued probabilities,
@@ -89,7 +84,7 @@ what the data indicates are severely conflicting?
 If the sample size $n$ is not sufficiently large to discard the
 possibly erroneous prior knowledge and thus to rely on data only,
 prior-data conflict should affect the inference and
-should  -- intuitively and informally --  result in an increased degree
+should  --- intuitively and informally ---  result in an increased degree
 of uncertainty in posterior inference. Probably most statisticians would thus expect
 a higher variance of the posterior distribution in situations of prior-data conflict.
 
@@ -106,14 +101,14 @@ and on the probability distribution of a categorical variable by the Dirichlet-M
 Sections~\ref{sec:scp} and \ref{sec:cccp} extend
 the question of (in)sensitivity to prior-data to regression models.
 We confine attention to linear regression analysis with conjugate priors,
-because -- contrary to the more advanced regression model classes --
+because --- contrary to the more advanced regression model classes ---
 the linear model still allows a fully analytical access, making it possible to understand
 potential restrictions imposed by the model in detail.
 We discuss and compare two different conjugate models:
 \begin{enumerate}[(i)]
 \item the standard conjugate prior (SCP, Section~\ref{sec:scp}) as described in \textcite{2013:fahrmeier-kneib-lang-marx} or,
 in more detail, in \textcite{1994:ohagan}; and
-\item a conjugate prior, called ``canonically constructed conjugate prior'' (CCCP, Section~\ref{sec:cccp}) in the following,
+\item a conjugate prior, called ``canonically constructed conjugate prior'' (CCCP, Section \ref{sec:cccp}) in the following,
 which is derived by a general method used to construct conjugate priors to sample distributions that
 belong to a certain class of exponential families, described, e.g., in \textcite{2000:bernardosmith}.%
 \footnote{This is the regular conjugate framework of Section~\ref{sec:regularconjugates}.}
@@ -388,7 +383,6 @@ For the prior model, it holds thus that (if $\az > 1$ resp.\ $\az > 2$)
 \end{aligned}
 \label{equ:scp-priori_betasigma}
 \end{align}
-
 As $\sigma^2$ is considered as nuisance parameter, the unconditional distribution
 on $\bbeta$ is of central interest, because it subsumes the shape of prior knowledge on $\bbeta$
 as expressed by the choice of parameters $\mz$, $\Mz$, $\az$ and $\bz$.
@@ -399,7 +393,6 @@ such that
 \E[\bbeta] &= \mz \,, &  \V(\bbeta) &= \frac{\bz}{\az - 1} \Mz = \E[\sigma^2] \Mz\,.
 \label{equ:scp-priori_beta}
 \end{align}
-
 The joint posterior distribution $p(\btheta\mid z)$, due to conjugacy, is then
 again a normal-inverse gamma distribution with the updated parameters
 \begin{align*}
@@ -461,7 +454,6 @@ the least-squares based estimate for $\sigma^2$, and
 \begin{align*}
 \spdc &= \frac{1}{p} (\mz - \bls)^\tra \big(\Mz + (\XtX)^{-1} \big)^{-1} (\mz - \bls)\,.
 \end{align*}
-
 For the latter it holds that $\E[\spdc\mid\sigma^2] = \sigma^2$;
 the posterior expectation of $\sigma^2$ can thus be seen
 as a weighted mean of three estimates:
@@ -623,7 +615,6 @@ Here, we have
 \mbf{b}(\bpsi) &= \frac{1}{2n\sigma^2} \bbeta^\tra \XtX \bbeta + \frac{1}{2}\log(\sigma^2)\,.
 \label{equ:cccp-psi}
 \end{align}
-
 According to the general construction method, a conjugate prior %(and posterior)
 for $\bpsi$ can be obtained from these ingredients by the following equation:%
 \footnote{See Equation~\ref{eq:canonicalprior}, where the integration constant $\mbf{c}(\cdot)$ was omitted as well.}
@@ -726,7 +717,6 @@ where the latter derives from
 &\Longleftrightarrow\quad &
 {\byz_1}^\tra (\XtX)^{-1}\, n             &\stackrel{!}{=} {\tmz}^\tra\,.
 \end{alignat*}
-
 We must thus complete the square in the exponent with
 %\begin{align*}
 \begin{multline*}
@@ -736,9 +726,7 @@ We must thus complete the square in the exponent with
     -\frac{1}{\sigma^2} \left(-\frac{\nz n}{2} {\byz_1}^\tra (\XtX)^{-1} \byz_1 \right)\,,
 \end{multline*}
 %\end{align*}
-
 such that the joint density of $\bbeta$ and $\sigma^2$ reads as
-
 \begin{align}
 %\lefteqn{
 p(\bbeta,\sigma^2) &= \mbf{c}(\nz, \byz) \nonumber\\ & \hspace*{3ex} 
@@ -770,7 +758,6 @@ an inverse gamma distribution with parameters
 \text{i.e., }\quad
 \sigma^2 &\sim \ig \bigg( \frac{\nz + p + 2}{2}\,,\ \nz \yz_2 - \frac{\nz}{2} {\byz_1}^\tra n(\XtX)^{-1} \byz_1  \bigg)\,.
 \end{align}
-
 We have thus derived the CCCP distribution on $(\bbeta,\sigma^2)$,
 which can be expressed either in terms of the canonical prior parameters $\nz$ and $\byz$,
 or in terms of the prior parameters from Section~\ref{sec:scp}, $\tmz$, $\tMz$, $\taz$ and $\tbz$.
@@ -802,7 +789,6 @@ by their updated versions $\nn$ and $\byn$, which calculate as
 \yn_j &= \frac{\nz \yz_j + \tau(\z)_j}{\nz + n}\,, \quad \forall j \in \{1, \ldots, p+1\}\,, \\
 \nn   &= \nz + n \,.
 \end{align*}
-
 In the following, we will describe what this means for the update steps of
 $\bbeta\mid\sigma^2$, $\sigma^2$, and $\beta$, and compare these results
 with those for the SCP. %in Section~\ref{sec:discussion-festschrift}.
@@ -828,7 +814,6 @@ As the transformation $\tmz \mapsto \byz$ is linear, this poses no problem:
   + \frac{n}  {\nz + n} \bls\,.
   \label{equ:update_beta}
 \end{align}
-
 The posterior expectation for $\bbeta\mid\sigma^2$ is here a
 scalar-weighted mean of the prior expectation and the least squares
 estimate, with weights $\nz$ and $n$, respectively. The role of
@@ -847,7 +832,6 @@ The variance of $\bbeta\mid\sigma^2$ is updated as follows:
 \V(\bbeta\mid\sigma^2,\z) &= \frac{n\sigma^2}{\nn}(\XtX)^{-1} %\nonumber\\
                            = \frac{n\sigma^2}{\nz + n}(\XtX)^{-1}\,. \nonumber%\vspace*{-5ex}
 \end{align}
-
 Here, $\nz$ is updated to $\nn$, and thus the posterior variances are
 automatically smaller than the prior variances, just as in the SCP model.
 %
@@ -897,7 +881,7 @@ A value of $\yz_2$ dependent on the value of $\E[\sigma^2]$ can thus be chosen b
 %                = \frac{2}{n\uz + p -2} \big(\ewt[\sigma^2]\big)^2 \,,
 %\end{align*}
 %and might be of interest for assessing one's choice regarding $n\uz$ and $y\uz_2$.\\
-
+%
 For the posterior expected value of $\sigma^2$, there is a similar decomposition
 as for the SCP model, and furthermore two other possible decompositions offering
 interesting interpretations of the update step of $\sigma^2$.
@@ -1005,7 +989,6 @@ by considering the third term from \eqref{equ:cccp-sigma1} in more detail:
  &= \frac{n}{\nz + n}       \big(\tmz - \bls\big)^\tra {\tMz}^{-1} \big(\tmz - \bls\big)
                            - \ztX (\XtX)^{-1} \Xtz\,.
 \end{align*}
-
 Thus, we get
 \begin{align}
 \E[\sigma^2\mid\z] &= \frac{\nz + p}{\nz + n + p} \E[\sigma^2]
@@ -1018,7 +1001,6 @@ Thus, we get
                                                           \frac{1}{p} (\tmz - \bls)^\tra {\tMz}^{-1} (\tmz - \bls)}_{=:\tspdc}\,.
 \label{equ:cccp-sigma2}
 \end{align}
-
 The posterior expectation for $\sigma^2$ can therefore be seen also here as
 a weighted average of the prior expected value,
 the estimation $\sls$ resulting from least squares methods,
@@ -1056,7 +1038,6 @@ As a preparation, it holds that
                      &= \sigma^2 (\XtX)^{-1} + \frac{n\sigma^2}{\nz} (\XtX)^{-1}
                       = \frac{\nz + n}{\nz} \sigma^2 (\XtX)^{-1} \,.
 \end{align*}
-
 With this in mind, we can now derive
 \begin{align*}
 \lefteqn{
@@ -1087,7 +1068,6 @@ can be derived by another reformulation of the third term in \eqref{equ:cccp-sig
   + \ztz
   - 2\ztX\bls \,. % (\XtX)^{-1} \Xtz \,.
 \end{align*}
-
 With this, we get
 \begin{align}
 \E[\sigma^2\mid \z] &= \frac{\nz + p} {\nz + n + p} \E[\sigma^2]
@@ -1103,7 +1083,6 @@ With this, we get
                                                                          .
 \label{equ:cccp-sigma3}%\vspace*{-1.5ex}
 \end{align}
-
 Here, the calculation of $\E[\sigma^2\mid \z]$ is based
 again on $\E[\sigma^2]$ and $\sls$, but now complemented with
 two special estimates:
@@ -1158,7 +1137,6 @@ on the formula for $\E[\sigma^2\mid \z]$:
  +\frac{2(n - p)}{\nz + n + p}   \frac{n}{\nn} \underbrace{\sls (\XtX)^{-1}}_{\V(\bls)}
  -\frac{\nn + p} {\nz + n + p}                 \underbrace{{\sigma\un}^2 \frac{n}{\nn} (\XtX)^{-1}}_{=:\V\un(\bbeta)} \,. \nonumber
 \end{align}
-
 In these equations, it is possible to isolate $\V(\bbeta)$, $\V(\bls)$ and,
 in the formulation with $\eqref{equ:cccp-sigma3}$, the newly defined
 $\V\uz(\bbeta)$ and $\V\un(\bbeta)$.

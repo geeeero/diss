@@ -975,7 +975,7 @@ such that
 \begin{align*}
 \x \in \{0,1\}^k \cap \big\{ \x: \sum_{j=1}^k x_j \in \{0,1\}  \big\}\,,
 \end{align*}
-and $x_0 := 1 - \sum_{j=1} x_j$.
+and $x_0 := 1 - \sum_{j=1}^k x_j$.
 
 The parameter vector is treated in the same way, i.e.,
 we consider now $\btheta$ with $k$ components $\theta_j, j=1,\ldots,k$ such that
@@ -1000,7 +1000,7 @@ the conjugate prior is at first constructed as a density over $\bpsi$,
 dropping the upper index ${}\uz$ in $\nz$ and the vectorial $\byz$ for ease of notation:
 \begin{align*}
 p(\bpsi\mid n,\vec{y})\, \dd\bpsi
- &\propto \exp\Bigg\{n\, \Bigg[ \sum_{j=1}^k y_j \ln\bigg(\frac{\theta_j}{\theta_0}\bigg) - \big(-\ln(\theta_0)\big) \Bigg] \Bigg\} \,\dd\bpsi\,,.
+ &\propto \exp\Bigg\{n\, \Bigg[ \sum_{j=1}^k y_j \ln\bigg(\frac{\theta_j}{\theta_0}\bigg) - \big(-\ln(\theta_0)\big) \Bigg] \Bigg\} \,\dd\bpsi\,.
 \end{align*}
 Written as a density over $\btheta$, we have
 \begin{align*}

@@ -47,7 +47,7 @@ and we will present here a preview on the results for the Beta-Binomial case.
 In this parametrisation, a canonical prior is represented by a coordinate $(\ezz,\eoz)$,%
 \footnote{Again, we denote prior parameters with superscript ${}\uz$, and posterior parameters with superscript ${}\un$.}
 where $\eoz$ replaces the main prior parameter $\yz$,
-while $\ezz$ is just a shifted version of $\nz$.***
+while $\ezz$ is just a shifted version of $\nz$.
 The relation of $(\ezz,\eoz)$ to $(\nz, \yz)$ is as follows:
 %\begin{equation}
 \begin{align}
@@ -77,7 +77,7 @@ leads to a step of $1$ in the $\eta_0$ direction and of $+\frac{1}{2}$ in the $\
 while a `failure'
 leads to step of $1$ in the $\eta_0$ direction and of $-\frac{1}{2}$ in the $\eta_1$ direction.%
 \footnote{As in Section~\ref{sec:isipta11}, we  
-will often treat $s$ as a a real-valued observation in $[0,n]$
+will treat $s$ as a a real-valued observation in $[0,n]$
 because the continuous representation is convenient for our discussions,
 keeping in mind that in reality it can only take integer values.}
 
@@ -219,7 +219,7 @@ and we discuss some first technical results for this shape in Sections~\ref{sec:
 We will now present a parametrisation for such a boat-shaped parameter set $\EZ$.
 To keep things simple, we will consider here and in the follwing only prior sets
 that are symmetric around the $\eta_0$ axis, i.e., centered around $y_c = 0.5$,
-expressing prior the information that we deem a fraction of successes of $\frac{s}{n} = \frac{1}{2}$
+expressing the prior information that we deem a fraction of successes of $\frac{s}{n} = \frac{1}{2}$
 as the most probable.%
 \footnote{The general case of sets $\EZ$ with central ray $y_c \neq 0.5$
 is discussed informally in Section~\ref{sec:boatshape-outlook}.}
@@ -422,7 +422,8 @@ that indeed ${\eta_0^u}\un > \ezz + n$.
 
 \begin{figure}
 \centering
-\begin{tikzpicture}[pin distance=1cm]
+\begin{tikzpicture}[pin distance=1cm,
+                    every pin edge/.style={thick}]
 \node (0,0) {%\fbox{% %trim=l b r t
 \includegraphics[trim = 45mm 35mm 45mm 45mm, clip, width=\textwidth]{R/prior-vs-posterior-eta0u}%
 };
